@@ -1,0 +1,12 @@
+._*
+.DS_Store
+.DS_Store?
+.idea
+.nyc_output
+.Spotlight-V100
+.Trashes
+coverage
+dist
+docs
+Icon?
+node_modules

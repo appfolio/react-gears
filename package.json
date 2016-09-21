@@ -1,0 +1,58 @@
+{
+  "name": "xanthous",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Appfolio, Inc.",
+  "license": "MIT",
+  "main": "dev_server.js",
+  "scripts": {
+    "dist": "webpack -p",
+    "lint": "eslint src; exit 0",
+    "start": "webpack-dashboard -- node dev_server.js",
+    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles"
+  },
+  "dependencies": {
+    "babel-polyfill": "~6.13.0",
+    "react": "~15.3.0",
+    "react-dom": "~15.3.0"
+  },
+  "devDependencies": {
+    "assert": "~1.4.1",
+    "autoprefixer": "~6.4.0",
+    "babel-core": "~6.14.0",
+    "babel-loader": "~6.2.4",
+    "babel-plugin-transform-object-assign": "~6.8.0",
+    "babel-preset-es2015": "~6.14.0",
+    "babel-preset-react": "~6.11.1",
+    "babel-preset-stage-1": "~6.13.0",
+    "babel-preset-stage-2": "~6.13.0",
+    "css-loader": "~0.25.0",
+    "enzyme": "~2.4.1",
+    "eslint-config-appfolio-react": "~0.2.0",
+    "express": "~4.14.0",
+    "ignore-styles": "~5.0.1",
+    "jsdom-global": "~2.1.0",
+    "lodash": "~4.16.1",
+    "mocha": "~3.0.2",
+    "nightmare": "~2.7.0",
+    "node-sass": "~3.10.0",
+    "nyc": "~6.6.1",
+    "postcss": "~5.2.0",
+    "postcss-loader": "~0.13.0",
+    "react-addons-test-utils": "~15.3.0",
+    "sass-loader": "~4.0.0",
+    "style-loader": "~0.13.0",
+    "webpack": "~2.1.0-beta.13",
+    "webpack-dashboard": "~0.1.5",
+    "webpack-dev-middleware": "^1.8.1",
+    "webpack-hot-middleware": "~2.12.1",
+    "webpack-visualizer-plugin": "~0.1.5"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js",
+      "dev_server.js",
+      "webpack.*config.js"
+    ]
+  }
+}
