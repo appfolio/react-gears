@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Button, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu, ButtonGroup,
         ButtonToolbar, Container, Row } from 'reactstrap';
+import Icon from 'react-fontawesome';
+
+import './app.css';
 
 export default () => (
   <Container>
@@ -22,10 +25,18 @@ export default () => (
         <Button>Default</Button>
         <Button outline color="primary">Primary</Button>
         <Button outline color="secondary">Secondary</Button>
-        <Button outline color="success">Success</Button>
-        <Button outline color="info">Info</Button>
-        <Button outline color="warning">Warning</Button>
-        <Button outline color="danger">Danger</Button>
+        <Button outline color="success">
+          <Icon name="check" /> Success
+        </Button>
+        <Button outline color="info">
+          <Icon name="info-circle" /> Info
+        </Button>
+        <Button outline color="warning">
+          <Icon name="warning" /> Warning
+        </Button>
+        <Button outline color="danger">
+          <Icon name="times-circle" /> Danger
+        </Button>
         <Button outline color="link">Link</Button>
       </ButtonToolbar>
     </Row>
