@@ -9,7 +9,9 @@
     "dist": "webpack -p",
     "lint": "eslint src; exit 0",
     "start": "webpack-dashboard -- node dev_server.js",
-    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles"
+    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "babel-polyfill": "~6.13.0",
@@ -53,7 +55,8 @@
     "webpack-dashboard": "~0.1.5",
     "webpack-dev-middleware": "^1.8.1",
     "webpack-hot-middleware": "~2.12.1",
-    "webpack-visualizer-plugin": "~0.1.5"
+    "webpack-visualizer-plugin": "~0.1.5",
+    "@kadira/storybook": "^2.5.2"
   },
   "nyc": {
     "exclude": [
