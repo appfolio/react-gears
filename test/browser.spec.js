@@ -7,7 +7,7 @@ import '../dev_server.js';
 /**
  * Sample headless browser test loading the index page and script.
  */
-describe('Render app', () => {
+describe.skip('Render app', () => {
   const browser = (new Nightmare()).goto('http://localhost:8080');
 
   it('should render the correct message', () => {
