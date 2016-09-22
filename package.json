@@ -40,7 +40,6 @@
     "lodash.includes": "^4.2.0",
     "lodash.range": "~3.2.0",
     "mocha": "~3.0.2",
-    "nightmare": "~2.7.0",
     "node-sass": "~3.10.0",
     "nyc": "~6.6.1",
     "postcss": "~5.2.0",
