@@ -12,7 +12,10 @@ module.exports = {
   ],
   module: {
     loaders: [
-      // add your custom loaders.
+      {
+        test: /\.s?css$/,
+        loader: 'style!css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'
+      }
     ],
   },
 };
