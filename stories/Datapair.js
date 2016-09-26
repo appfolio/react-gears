@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, CardBlock, Container } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
-import Datapair from '../src/components/datapair/Datapair';
+import Datapair from '../src/components/Datapair';
 
 storiesOf('Datapair', module)
   .add('with props', () => (
