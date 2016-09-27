@@ -24,6 +24,11 @@ storiesOf('Alerts', module)
       <Alert icon color="info"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</Alert>
     </Container>
   ))
+  .add('Dismissible', () => (
+    <Container className="m-t-1">
+      <Alert dismissible><p>Humblebrag prism twee, gochujang seitan whatever asymmetrical ramps enamel pin austin salvia swag helvetica. Chartreuse food truck tofu raclette, 3 wolf moon poke chia paleo skateboard. Pickled tote bag echo park raclette. Irony fashion axe sartorial, cornhole jean shorts vaporware flannel salvia glossier beard 3 wolf moon. Literally semiotics hammock irony cred, bicycle rights lomo selvage tousled vegan 8-bit. Four loko cardigan live-edge truffaut pour-over, helvetica chia brooklyn swag pug scenester kogi pitchfork leggings yuccie. Ethical put a bird on it portland vape YOLO.</p></Alert>
+    </Container>
+  ))
   .add('Bootstrap Extras', () => (
     <Container className="m-t-1">
       <Alert icon color="info">
