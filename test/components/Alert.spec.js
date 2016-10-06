@@ -9,7 +9,7 @@ import Alert from '../../src/components/Alert';
 describe('<Alert />', () => {
   it('should have a default color of "warning"', () => {
     const component = shallow(<Alert/>);
-    assert.equal(component.prop('className'), 'alert alert-warning');
+    assert.equal(component.prop('color'), 'warning');
   });
 
   describe('with icon', () => {
@@ -33,7 +33,7 @@ describe('<Alert />', () => {
       assert.equal(icon.prop('name'), 'check');
     });
 
-    it('should wrap children with block (for alignment)', () => {
+    it('should wrap children with block (for alignment) with icon', () => {
       const component = shallow(<Alert icon>Stuff Here</Alert>)
           , wrapper = component.children().find('div');
       assert.equal(wrapper.length, 1);
