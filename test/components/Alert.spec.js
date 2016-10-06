@@ -7,6 +7,11 @@ import Icon from 'react-fontawesome';
 import Alert from '../../src/components/Alert';
 
 describe('<Alert />', () => {
+  it('should not be dismissible', () => {
+    const component = shallow(<Alert/>);
+    assert.equal(component.prop('toggle'), null);
+  });
+
   it('should have a default color of "warning"', () => {
     const component = shallow(<Alert/>);
     assert.equal(component.prop('color'), 'warning');
@@ -39,6 +44,23 @@ describe('<Alert />', () => {
       assert.equal(wrapper.length, 1);
       assert.deepEqual(wrapper.prop('style'), { overflow: 'hidden' });
       assert.equal(wrapper.text(), 'Stuff Here');
+    });
+  });
+
+  describe('when dismissible', () => {
+    it('should toggle state when clicked', () => {
+      const component = shallow(<Alert dismissible/>);
+      assert.equal(component.state('visible'), true);
+      assert.equal(component.prop('isOpen'), true);
+      component.instance().toggle();
+      component.update();
+      assert.equal(component.state('visible'), false);
+      assert.equal(component.prop('isOpen'), false);
+    });
+
+    it('should pass toggle function', () => {
+      const component = shallow(<Alert dismissible/>);
+      assert.equal(component.prop('toggle'), component.instance().toggle);
     });
   });
 });
