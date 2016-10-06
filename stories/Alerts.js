@@ -24,6 +24,11 @@ storiesOf('Alerts', module)
       <Alert icon color="info"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</Alert>
     </Container>
   ))
+  .add('Dismissible', () => (
+    <Container className="m-t-1">
+      <Alert dismissible icon color="success">Alerts can also be dismissed. Simply add the <code>dismissible</code> prop.</Alert>
+    </Container>
+  ))
   .add('Bootstrap Extras', () => (
     <Container className="m-t-1">
       <Alert icon color="info">

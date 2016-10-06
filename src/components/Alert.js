@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-fontawesome';
+import { Alert } from 'reactstrap';
 
 const iconMap = {
   warning: 'bullhorn',
@@ -8,19 +9,41 @@ const iconMap = {
   danger: 'ban'
 };
 
-const Alert = (props) => (
-  <div className={['alert', `alert-${props.color}`].join(' ')} role="alert">
-    {props.icon ? <Icon name={iconMap[props.color]} className="pull-xs-left m-r-1" style={{ lineHeight: 'inherit' }}/> : null}
-    {props.icon ? <div style={{ overflow: 'hidden' }}>{props.children}</div> : props.children}
-  </div>
-);
+class AlertComponent extends React.Component {
+  constructor(props) {
+    super(props);
 
-Alert.propTypes = {
-  color: React.PropTypes.string
-};
+    this.state = {
+      visible: true
+    }
+  }
 
-Alert.defaultProps = {
-  color: 'warning'
-};
+  toggle = () => {
+    this.setState({ visible: !this.state.visible });
+  }
 
-export default Alert;
+  render() {
+    const { color, children, dismissible, icon } = this.props;
+
+    return (
+      <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null}>
+        {icon ? <Icon name={iconMap[color]} className="pull-xs-left m-r-1" style={{ lineHeight: 'inherit' }}/> : null}
+        {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
+      </Alert>
+    );
+  }
+}
+
+AlertComponent.propTypes = {
+  color: React.PropTypes.string,
+  dismissible: React.PropTypes.bool,
+  icon: React.PropTypes.bool
+}
+
+AlertComponent.defaultProps = {
+  color: 'warning',
+  dismissible: false,
+  icon: false
+}
+
+export default AlertComponent;

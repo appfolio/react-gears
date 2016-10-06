@@ -7,9 +7,14 @@ import Icon from 'react-fontawesome';
 import Alert from '../../src/components/Alert';
 
 describe('<Alert />', () => {
+  it('should not be dismissible', () => {
+    const component = shallow(<Alert/>);
+    assert.equal(component.prop('toggle'), null);
+  });
+
   it('should have a default color of "warning"', () => {
     const component = shallow(<Alert/>);
-    assert.equal(component.prop('className'), 'alert alert-warning');
+    assert.equal(component.prop('color'), 'warning');
   });
 
   describe('with icon', () => {
@@ -33,12 +38,29 @@ describe('<Alert />', () => {
       assert.equal(icon.prop('name'), 'check');
     });
 
-    it('should wrap children with block (for alignment)', () => {
+    it('should wrap children with block (for alignment) with icon', () => {
       const component = shallow(<Alert icon>Stuff Here</Alert>)
           , wrapper = component.children().find('div');
       assert.equal(wrapper.length, 1);
       assert.deepEqual(wrapper.prop('style'), { overflow: 'hidden' });
       assert.equal(wrapper.text(), 'Stuff Here');
+    });
+  });
+
+  describe('when dismissible', () => {
+    it('should toggle state when clicked', () => {
+      const component = shallow(<Alert dismissible/>);
+      assert.equal(component.state('visible'), true);
+      assert.equal(component.prop('isOpen'), true);
+      component.instance().toggle();
+      component.update();
+      assert.equal(component.state('visible'), false);
+      assert.equal(component.prop('isOpen'), false);
+    });
+
+    it('should pass toggle function', () => {
+      const component = shallow(<Alert dismissible/>);
+      assert.equal(component.prop('toggle'), component.instance().toggle);
     });
   });
 });
