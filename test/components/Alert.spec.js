@@ -41,4 +41,12 @@ describe('<Alert />', () => {
       assert.equal(wrapper.text(), 'Stuff Here');
     });
   });
+
+  describe('with animated dismiss', () => {
+    it('should have a close button', () => {
+      const component = shallow(<Alert dismissible />);
+      assert.equal(component.children('button').length, 1);
+      assert.equal(component.prop('className'), 'alert alert-warning alert-dismissible');
+    });
+  });
 });
