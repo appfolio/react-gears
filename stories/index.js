@@ -3,4 +3,5 @@ import './Alerts';
 import './Buttons';
 import './Datapair';
 import './DateMonth';
+import './Forms';
 import './HelpBubble';
