@@ -25,21 +25,29 @@ storiesOf('Forms', module)
       <FormRow label="Last Name" feedback="can't be blank" color="danger" />
       <FormRow label="Nickname" hint="A fun name to describe yourself!" />
       <FormRow label="DOB" required />
+      <FormRow label="Disabled Field" disabled />
       <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
+      <FormRow type="textarea" label="Notes" />
       <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
         <FormChoice>A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
       </FormRow>
-      <FormRow type="checkbox" label="Select Character(s)">
+      <FormRow type="radio" label="Select Ship" hint="Some ships are unreliable..." name="ship">
+        <FormChoice color="danger">Death Star</FormChoice>
+        <FormChoice color="warning">Millennium Falcon</FormChoice>
+        <FormChoice color="success">Imperial Shuttle</FormChoice>
+      </FormRow>
+      <FormRow type="checkbox" label="Select the character(s) you like">
         <FormChoice>Darth Vader</FormChoice>
         <FormChoice>Luke Skywalker</FormChoice>
-        <FormChoice>Rey</FormChoice>
         <FormChoice disabled>Emperor Palpatine</FormChoice>
+        <FormChoice>Rey</FormChoice>
+        <FormChoice>TK-421</FormChoice>
       </FormRow>
-      <FormRow type="radio" label="Do you like Star Wars?" inline name="star_wars">
+      <FormRow type="radio" label="Do you like Star Wars?" inline name="movie">
         <FormChoice>Yes</FormChoice>
-        <FormChoice>No</FormChoice>
+        <FormChoice disabled>No</FormChoice>
       </FormRow>
     </Container>
   ));

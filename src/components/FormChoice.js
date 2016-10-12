@@ -1,4 +1,5 @@
 import React from 'react';
+import classname from 'classnames';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 const FormChoice = props => {
@@ -12,23 +13,25 @@ const FormChoice = props => {
     ...attributes
   } = props;
 
-  if (type === 'select') {
-    return <option {...attributes} children={children} />
-  } else if (inline) {
-    return (
-      <Label className="form-check-inline">
-        <Input type={type} {...attributes} />
-        <span children={children} />
-      </Label>
-    );
-  } else {
-    return (
-      <FormGroup check color={color || state} disabled={disabled}>
-        <Label check>
+  const labelClasses = classname({ 'form-check-inline': inline })
+      , item = (
+        <Label className={labelClasses} check={!inline}>
           <Input type={type} {...attributes} disabled={disabled} />
           <span children={children} />
         </Label>
-      </FormGroup>
+      );
+
+  if (type === 'select') {
+    return <option {...attributes} children={children} />
+  } else if (inline) {
+    return item;
+  } else {
+    return (
+      <FormGroup
+        check
+        color={color || state}
+        disabled={disabled}
+        children={item} />
     );
   }
 }
