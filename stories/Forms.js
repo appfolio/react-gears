@@ -27,14 +27,15 @@ storiesOf('Forms', module)
       <FormRow label="DOB" required />
       <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
       <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
-        <option>A New Hope</option>
-        <option>The Empire Strikes Back</option>
-        <option>The Force Awakens</option>
+        <FormChoice>A New Hope</FormChoice>
+        <FormChoice>The Empire Strikes Back</FormChoice>
+        <FormChoice>The Force Awakens</FormChoice>
       </FormRow>
       <FormRow type="checkbox" label="Select Character(s)">
         <FormChoice>Darth Vader</FormChoice>
         <FormChoice>Luke Skywalker</FormChoice>
         <FormChoice>Rey</FormChoice>
+        <FormChoice disabled>Emperor Palpatine</FormChoice>
       </FormRow>
       <FormRow type="radio" label="Do you like Star Wars?" inline name="star_wars">
         <FormChoice>Yes</FormChoice>

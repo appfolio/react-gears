@@ -21,7 +21,6 @@ const FormRow = props => {
   if (type === 'radio' || type === 'checkbox') {
     content = React.Children.map(children, child => React.cloneElement(child, {
       type,
-      state: color || state,
       inline,
       ...attributes
     }));
@@ -31,7 +30,7 @@ const FormRow = props => {
         id={id}
         state={color || state}
         type={type}
-        children={children}
+        children={React.Children.map(children, child => React.cloneElement(child, { type }))}
         {...attributes}
       />
     );
