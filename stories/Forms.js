@@ -3,6 +3,7 @@ import { Container, Input } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
 import FormRow from '../src/components/FormRow';
+import FormChoice from '../src/components/FormChoice';
 
 storiesOf('Forms', module)
   .add('Inputs', () => (
@@ -25,5 +26,19 @@ storiesOf('Forms', module)
       <FormRow label="Nickname" hint="A fun name to describe yourself!" />
       <FormRow label="DOB" required />
       <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
+      <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
+        <option>A New Hope</option>
+        <option>The Empire Strikes Back</option>
+        <option>The Force Awakens</option>
+      </FormRow>
+      <FormRow type="checkbox" label="Select Character(s)">
+        <FormChoice>Darth Vader</FormChoice>
+        <FormChoice>Luke Skywalker</FormChoice>
+        <FormChoice>Rey</FormChoice>
+      </FormRow>
+      <FormRow type="radio" label="Do you like Star Wars?" inline name="star_wars">
+        <FormChoice>Yes</FormChoice>
+        <FormChoice>No</FormChoice>
+      </FormRow>
     </Container>
   ));
