@@ -16,7 +16,7 @@ storiesOf('Forms', module)
       <Input placeholder="I'm a placeholder!" />
 
       <h2 className="m-y-3">Custom Inputs</h2>
-      <p>Currency</p>
+      <p><code>&lt;CurrencyInput/&gt;</code></p>
       <CurrencyInput />
     </Container>
   ))
@@ -31,6 +31,7 @@ storiesOf('Forms', module)
       <FormRow label="Nickname" hint="A fun name to describe yourself!" />
       <FormRow label="DOB" required />
       <FormRow label="Disabled Field" disabled />
+      <FormRow label="Who is Luke's Father?" value="Darth Vader" type="static" />
       <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
       <FormRow type="textarea" label="Notes" />
       <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
