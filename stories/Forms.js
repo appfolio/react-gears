@@ -4,6 +4,7 @@ import { storiesOf } from '@kadira/storybook';
 
 import FormRow from '../src/components/FormRow';
 import FormChoice from '../src/components/FormChoice';
+import CurrencyInput from '../src/components/CurrencyInput';
 
 storiesOf('Forms', module)
   .add('Inputs', () => (
@@ -11,8 +12,12 @@ storiesOf('Forms', module)
       <h1 className="display-4 m-b-3">Inputs</h1>
       <p className="lead">An <code>Input</code> is the simplest unit for building forms.</p>
 
-      <h2 className="m-y-3">Example</h2>
+      <h2 className="m-y-3">Default (Text) Input</h2>
       <Input placeholder="I'm a placeholder!" />
+
+      <h2 className="m-y-3">Custom Inputs</h2>
+      <p>Currency</p>
+      <CurrencyInput />
     </Container>
   ))
   .add('Form Rows', () => (
@@ -29,7 +34,7 @@ storiesOf('Forms', module)
       <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
       <FormRow type="textarea" label="Notes" />
       <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
-        <FormChoice>A New Hope</FormChoice>
+        <FormChoice value="override">A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
       </FormRow>
@@ -49,5 +54,6 @@ storiesOf('Forms', module)
         <FormChoice>Yes</FormChoice>
         <FormChoice disabled>No</FormChoice>
       </FormRow>
+      <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" />
     </Container>
   ));

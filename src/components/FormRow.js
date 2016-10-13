@@ -4,6 +4,7 @@ import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap
 const FormRow = props => {
   const {
     id,
+    size,
     label,
     color,
     state,
@@ -25,9 +26,11 @@ const FormRow = props => {
       ...attributes
     }));
   } else {
+    const InputElement = (typeof type === 'string') ? Input : type;
     content = (
-      <Input
+      <InputElement
         id={id}
+        size={size}
         state={color || state}
         type={type}
         children={React.Children.map(children, child => React.cloneElement(child, { type }))}
@@ -38,7 +41,7 @@ const FormRow = props => {
 
   return (
     <FormGroup row color={color || state}>
-      <Label for={id} sm={3}>
+      <Label for={id} sm={3} size={size}>
         { label }
         { required && label ? <span className="text-danger"> *</span> : null }
       </Label>
@@ -56,7 +59,11 @@ FormRow.propTypes = {
   hint: React.PropTypes.string,
   feedback: React.PropTypes.string,
   required: React.PropTypes.bool,
-  type: React.PropTypes.string,
+  type: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element,
+    React.PropTypes.func
+  ]),
   inline: React.PropTypes.bool
 };
 
