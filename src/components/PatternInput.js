@@ -11,4 +11,8 @@ const PatternInput = ({ pattern, ...props }) => (
   <Input {...props} onKeyPress={pattern ? e => restrictKeystrokeTo(e, pattern) : null} />
 );
 
+PatternInput.propTypes = {
+  pattern: React.PropTypes.object
+}
+
 export default PatternInput;
