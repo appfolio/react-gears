@@ -25,6 +25,14 @@ const FormRow = props => {
       inline,
       ...attributes
     }));
+  } else if (type === 'static') {
+    content = <Input static
+        id={id}
+        children={props.value || props.defaultValue}
+        size={size}
+        state={color || state}
+        {...attributes}
+      />
   } else {
     const InputElement = (typeof type === 'string') ? Input : type;
     content = (
