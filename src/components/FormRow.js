@@ -26,13 +26,16 @@ const FormRow = props => {
       ...attributes
     }));
   } else if (type === 'static') {
-    content = <Input static
+    content = (
+      <Input
+        static
         id={id}
         children={props.value || props.defaultValue}
         size={size}
         state={color || state}
         {...attributes}
       />
+    );
   } else {
     const InputElement = (typeof type === 'string') ? Input : type;
     content = (
@@ -50,13 +53,13 @@ const FormRow = props => {
   return (
     <FormGroup row color={color || state}>
       <Label for={id} sm={3} size={size}>
-        { label }
-        { required && label ? <span className="text-danger"> *</span> : null }
+        {label}
+        {required && label ? <span className="text-danger"> *</span> : null}
       </Label>
       <Col sm={9}>
-        { content }
-        { hint ? <FormText color="muted" children={hint} /> : null }
-        { feedback ? <FormFeedback children={feedback} /> : null }
+        {content}
+        {hint ? <FormText color="muted" children={hint} /> : null}
+        {feedback ? <FormFeedback children={feedback} /> : null}
       </Col>
     </FormGroup>
   );

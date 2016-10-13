@@ -13,16 +13,16 @@ const FormChoice = props => {
     ...attributes
   } = props;
 
-  const labelClasses = classname({ 'form-check-inline': inline })
-      , item = (
-        <Label className={labelClasses} check={!inline}>
-          <Input type={type} {...attributes} disabled={disabled} />
-          <span children={children} />
-        </Label>
-      );
+  const labelClasses = classname({ 'form-check-inline': inline });
+  const item = (
+    <Label className={labelClasses} check={!inline}>
+      <Input type={type} {...attributes} disabled={disabled} />
+      <span children={children} />
+    </Label>
+  );
 
   if (type === 'select') {
-    return <option {...attributes} children={children} />
+    return <option {...attributes} children={children} />;
   } else if (inline) {
     return item;
   } else {
@@ -31,9 +31,10 @@ const FormChoice = props => {
         check
         color={color || state}
         disabled={disabled}
-        children={item} />
+        children={item}
+      />
     );
   }
-}
+};
 
 export default FormChoice;
