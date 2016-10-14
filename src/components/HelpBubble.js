@@ -10,7 +10,7 @@ function getID() {
 
 const style = {
   cursor: 'pointer'
-}
+};
 
 class HelpBubble extends React.Component {
   constructor(props) {
@@ -20,10 +20,10 @@ class HelpBubble extends React.Component {
 
     this.state = {
       isOpen: false
-    }
+    };
   }
 
-  toggle = () => {
+  toggle() {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
@@ -50,6 +50,6 @@ class HelpBubble extends React.Component {
 HelpBubble.propTypes = {
   title: React.PropTypes.string.isRequired,
   className: React.PropTypes.any
-}
+};
 
 export default HelpBubble;
