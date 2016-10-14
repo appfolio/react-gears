@@ -13,6 +13,6 @@ const PatternInput = ({ pattern, ...props }) => (
 
 PatternInput.propTypes = {
   pattern: React.PropTypes.object
-}
+};
 
 export default PatternInput;

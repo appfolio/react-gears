@@ -11,6 +11,6 @@ const Datapair = (props) => (
 Datapair.PropTypes = {
   label: React.PropTypes.string.isRequired,
   value: React.PropTypes.string
-}
+};
 
 export default Datapair;
