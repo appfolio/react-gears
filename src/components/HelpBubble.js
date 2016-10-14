@@ -23,7 +23,7 @@ class HelpBubble extends React.Component {
     };
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   }
 

@@ -18,7 +18,7 @@ class AlertComponent extends React.Component {
     };
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({ visible: !this.state.visible });
   }
 
