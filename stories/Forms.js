@@ -2,8 +2,13 @@ import React from 'react';
 import { Container, Input } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
-import { FormRow, FormChoice, CurrencyInput } from '../src';
+import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+
+let contactInfo = {
+  firstName: 'Obi-Wan',
+  lastName: 'Kenobi'
+};
 
 storiesOf('Forms', module)
   .addWithInfo('Live example', () => (
@@ -63,4 +68,29 @@ storiesOf('Forms', module)
       </FormRow>
       <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" />
     </form>
+  ))
+  .addWithInfo('Forms with Objects', () => (
+    <Container className="m-t-3">
+      <h1 className="display-4 m-b-3">Bound Forms</h1>
+      <p className="lead">A <code>BoundForm</code> binds a form to a particular object and keeps form data in sync.</p>
+
+      <h2 className="m-y-3">Example</h2>
+      <BoundForm object={contactInfo}>
+        <FormRow label="First Name" name="firstName" required />
+        <FormRow label="Last Name" name="lastName" />
+        <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
+        <FormRow type="select" label="Select Movie" name="movie">
+          <FormChoice>A New Hope</FormChoice>
+          <FormChoice>The Empire Strikes Back</FormChoice>
+          <FormChoice>The Force Awakens</FormChoice>
+        </FormRow>
+        <FormRow type="checkbox" label="Select the character(s) you like">
+          <FormChoice name="foo">Darth Vader</FormChoice>
+          <FormChoice>Luke Skywalker</FormChoice>
+          <FormChoice disabled>Emperor Palpatine</FormChoice>
+          <FormChoice>Rey</FormChoice>
+          <FormChoice>TK-421</FormChoice>
+        </FormRow>
+      </BoundForm>
+    </Container>
   ));
