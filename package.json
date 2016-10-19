@@ -20,6 +20,7 @@
     "react-dom": "~15.3.0"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.5.2",
     "assert": "~1.4.1",
     "autoprefixer": "~6.4.0",
     "babel-core": "~6.14.0",
@@ -45,19 +46,19 @@
     "nyc": "~6.6.1",
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "~15.3.0",
     "react-addons-transition-group": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
     "react-fontawesome": "^1.2.0",
     "reactstrap": "^3.4.0",
     "sass-loader": "~4.0.0",
+    "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
     "webpack": "~2.1.0-beta.13",
     "webpack-dashboard": "~0.1.5",
     "webpack-dev-middleware": "^1.8.1",
     "webpack-hot-middleware": "~2.12.1",
-    "webpack-visualizer-plugin": "~0.1.5",
-    "@kadira/storybook": "^2.5.2"
+    "webpack-visualizer-plugin": "~0.1.5"
   },
   "nyc": {
     "exclude": [
