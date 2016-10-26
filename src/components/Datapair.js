@@ -8,7 +8,7 @@ const Datapair = (props) => (
   </Row>
 );
 
-Datapair.PropTypes = {
+Datapair.propTypes = {
   label: React.PropTypes.string.isRequired,
   value: React.PropTypes.string
 };

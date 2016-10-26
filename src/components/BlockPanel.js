@@ -11,7 +11,7 @@ const BlockPanel = (props) => (
   </Card>
 );
 
-BlockPanel.PropTypes = {
+BlockPanel.propTypes = {
   title: React.PropTypes.string,
   url: React.PropTypes.string,
   value: React.PropTypes.string
