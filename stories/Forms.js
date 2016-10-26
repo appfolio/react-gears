@@ -2,12 +2,10 @@ import React from 'react';
 import { Container, Input } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
-import FormRow from '../src/components/FormRow';
-import FormChoice from '../src/components/FormChoice';
-import CurrencyInput from '../src/components/CurrencyInput';
+import { FormRow, FormChoice, CurrencyInput } from '../src';
 
 storiesOf('Forms', module)
-  .add('Inputs', () => (
+  .addWithInfo('Inputs', () => (
     <Container className="m-t-3">
       <h1 className="display-4 m-b-3">Inputs</h1>
       <p className="lead">An <code>Input</code> is the simplest unit for building forms.</p>
@@ -20,7 +18,7 @@ storiesOf('Forms', module)
       <CurrencyInput />
     </Container>
   ))
-  .add('Form Rows', () => (
+  .addWithInfo('Form Rows', () => (
     <Container className="m-t-3">
       <h1 className="display-4 m-b-3">Form Rows</h1>
       <p className="lead">A <code>FormRow</code> combines a label and an input with an interface to provide feedback, hints, and can specify whether or not the field is required.</p>

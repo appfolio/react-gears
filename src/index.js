@@ -14,7 +14,7 @@ import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 //import Icon from './components/Icon.js';
 import PatternInput from './components/PatternInput.js';
-import UnitPropertyCard from './components/UnitPropertyCard.js';
+//import UnitPropertyCard from './components/UnitPropertyCard.js';
 
 export * from 'reactstrap';
 
@@ -31,5 +31,5 @@ export {
   HelpBubble,
   FontAwesome as Icon,
   PatternInput,
-  UnitPropertyCard
+  // UnitPropertyCard TODO
 };

@@ -4,71 +4,55 @@ import { Button, ButtonGroup, ButtonToolbar, Container, ButtonDropdown,
 import { storiesOf } from '@kadira/storybook';
 
 storiesOf('Buttons', module)
-  .add('Colors', () => (
-    <Container>
-      <Row className="m-b-1">
-        <ButtonToolbar>
-          <Button>Default</Button>
-          <Button color="primary">Primary</Button>
-          <Button color="secondary">Secondary</Button>
-          <Button color="success">Success</Button>
-          <Button color="info">Info</Button>
-          <Button color="warning">Warning</Button>
-          <Button color="danger">Danger</Button>
-          <Button color="link">Link</Button>
-        </ButtonToolbar>
-      </Row>
-    </Container>
+  .addWithInfo('Colors', () => (
+    <ButtonToolbar>
+      <Button>Default</Button>
+      <Button color="primary">Primary</Button>
+      <Button color="secondary">Secondary</Button>
+      <Button color="success">Success</Button>
+      <Button color="info">Info</Button>
+      <Button color="warning">Warning</Button>
+      <Button color="danger">Danger</Button>
+      <Button color="link">Link</Button>
+    </ButtonToolbar>
     )
   )
-  .add('Disabled', () => (
-    <Container>
-      <Row className="m-b-1">
-        <ButtonToolbar>
-          <Button>Default</Button>
-          <Button disabled color="primary">Primary</Button>
-          <Button disabled color="secondary">Secondary</Button>
-          <Button disabled color="success">Success</Button>
-          <Button disabled color="info">Info</Button>
-          <Button disabled color="warning">Warning</Button>
-          <Button disabled color="danger">Danger</Button>
-          <Button disabled color="link">Link</Button>
-        </ButtonToolbar>
-      </Row>
-    </Container>
+  .addWithInfo('Disabled', () => (
+    <ButtonToolbar>
+      <Button disabled>Default</Button>
+      <Button disabled color="primary">Primary</Button>
+      <Button disabled color="secondary">Secondary</Button>
+      <Button disabled color="success">Success</Button>
+      <Button disabled color="info">Info</Button>
+      <Button disabled color="warning">Warning</Button>
+      <Button disabled color="danger">Danger</Button>
+      <Button disabled color="link">Link</Button>
+    </ButtonToolbar>
     )
   )
-  .add('Outline', () => (
-    <Container>
-      <Row className="m-b-1">
-        <ButtonToolbar>
-          <Button>Default</Button>
-          <Button outline color="primary">Primary</Button>
-          <Button outline color="secondary">Secondary</Button>
-          <Button outline color="success">Success</Button>
-          <Button outline color="info">Info</Button>
-          <Button outline color="warning">Warning</Button>
-          <Button outline color="danger">Danger</Button>
-          <Button outline color="link">Link</Button>
-        </ButtonToolbar>
-      </Row>
-    </Container>
+  .addWithInfo('Outline', () => (
+    <ButtonToolbar>
+      <Button outline>Default</Button>
+      <Button outline color="primary">Primary</Button>
+      <Button outline color="secondary">Secondary</Button>
+      <Button outline color="success">Success</Button>
+      <Button outline color="info">Info</Button>
+      <Button outline color="warning">Warning</Button>
+      <Button outline color="danger">Danger</Button>
+      <Button outline color="link">Link</Button>
+    </ButtonToolbar>
     )
   )
-  .add('Sizes', () => (
-    <Container>
-      <Row className="m-b-1">
-        <ButtonToolbar>
-          <Button color="primary" size="lg">Large button</Button>
-          <Button color="primary" size="md">Medium button</Button>
-          <Button color="primary" size="sm">Small button</Button>
-        </ButtonToolbar>
-      </Row>
-    </Container>
+  .addWithInfo('Sizes', () => (
+    <ButtonToolbar>
+      <Button color="primary" size="lg">Large button</Button>
+      <Button color="primary" size="md">Medium button</Button>
+      <Button color="primary" size="sm">Small button</Button>
+    </ButtonToolbar>
     )
   )
-  .add('Groups', () => (
-    <Container>
+  .addWithInfo('Groups', () => (
+    <div>
       <Row className="m-b-1">
         <Button size="lg" block>Block level button</Button>
       </Row>
@@ -119,6 +103,6 @@ storiesOf('Buttons', module)
           <Button>Button</Button>
         </ButtonGroup>
       </Row>
-    </Container>
+    </div>
   )
 );
