@@ -20,6 +20,7 @@
     "react-dom": "~15.3.0"
   },
   "devDependencies": {
+    "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.5.2",
     "assert": "~1.4.1",
     "autoprefixer": "~6.4.0",
@@ -50,7 +51,7 @@
     "react-addons-test-utils": "~15.3.0",
     "react-addons-transition-group": "^15.3.2",
     "react-fontawesome": "^1.2.0",
-    "reactstrap": "^3.4.0",
+    "reactstrap": "^3.6.0",
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
