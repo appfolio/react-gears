@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
-import Icon from '../src/components/Icon';
+import { Icon } from '../src';
 
 storiesOf('Icon', module)
   .addWithInfo('with props', () => (

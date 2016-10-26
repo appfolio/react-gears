@@ -1,5 +1,5 @@
 import { Tag } from 'reactstrap';
-import { FontAwesome } from 'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 
 // Gears:
 
@@ -8,12 +8,12 @@ import BlockPanel from './components/BlockPanel.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
-//import Flag from './components/Flag.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
-//import Icon from './components/Icon.js';
 import PatternInput from './components/PatternInput.js';
+//import SummaryBox from './components/SummaryBox.js';
+//import SummaryBoxItem from './components/SummaryBoxItem.js';
 //import UnitPropertyCard from './components/UnitPropertyCard.js';
 
 export * from 'reactstrap';
@@ -31,5 +31,7 @@ export {
   HelpBubble,
   FontAwesome as Icon,
   PatternInput,
+//  SummaryBox,
+//  SummaryBoxItem
   // UnitPropertyCard TODO
 };
