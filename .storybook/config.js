@@ -1,15 +1,18 @@
-import InfoAddon from '@kadira/react-storybook-addon-info';
 import React from 'react';
+import infoAddon from '@kadira/react-storybook-addon-info';
 import { Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
 
-addDecorator((story) => (
-  <Container className="m-t-2">
-    {story()}
-  </Container>
-));
+addDecorator((story, info) => {
+  return (<Container className="m-t-2">
+            <h1>{info.kind}</h1>
+            <h3 className="text-muted">{info.story}</h3>
+            <hr />
+            {story()}
+          </Container>)
+   });
 
-setAddon(InfoAddon);
+setAddon(infoAddon);
 
 function loadStories() {
   require('../stories');
