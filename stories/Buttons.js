@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar, Container, ButtonDropdown,
+import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
          DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
@@ -104,5 +104,7 @@ storiesOf('Buttons', module)
         </ButtonGroup>
       </Row>
     </div>
-  )
-);
+  ))
+//  .addWithInfo('with dropdowns', () => <h1>TODO</h1>)
+//  .addWithInfo('with split dropdowns', () => <h1>TODO</h1>)
+//  .addWithInfo('with dropups', () => <h1>TODO</h1>);
