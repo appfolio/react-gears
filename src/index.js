@@ -65,13 +65,13 @@ import {
 
 // Gears:
 
-import Address from './components/Address.js';
+//import Address from './components/Address.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
-import Dropdown2 from './components/Dropdown2.js';
+//import Dropdown2 from './components/Dropdown2.js';
 import Flag from './components/Flag.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
@@ -154,14 +154,14 @@ export {
   CurrencyInput,
   Datapair,
   DateMonth,
-  Dropdown2, // TODO temp
+//  Dropdown2, // TODO temp
   Flag,
   FormChoice,
   FormRow,
   HelpBubble,
   Icon, // TODO alias is visible in example code?
   PatternInput,
-  Address,
+//  Address,
 // SummaryBox,
 // SummaryBoxItem
 // UnitPropertyCard TODO

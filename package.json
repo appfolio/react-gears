@@ -1,7 +1,7 @@
 {
   "name": "xanthous",
   "version": "0.1.0",
-  "description": "",
+  "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "license": "MIT",
   "main": "dist/bundle.js",
@@ -9,9 +9,8 @@
   "scripts": {
     "dist": "webpack -p",
     "lint": "eslint src; exit 0",
-    "start": "webpack-dashboard -- node dev_server.js",
+    "start": "start-storybook -p 6006",
     "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
