@@ -53,17 +53,17 @@ storiesOf('Buttons', module)
   )
   .addWithInfo('Groups', () => (
     <div>
-      <Row className="m-b-1">
+      <Row className="mb-1">
         <Button size="lg" block>Block level button</Button>
       </Row>
-      <Row className="m-b-1">
+      <Row className="mb-1">
         <ButtonGroup>
           <Button>Left</Button>
           <Button>Middle</Button>
           <Button>Right</Button>
         </ButtonGroup>
       </Row>
-      <Row className="m-b-1">
+      <Row className="mb-1">
         <ButtonToolbar>
           <ButtonGroup>
             <Button>1</Button>
@@ -104,7 +104,8 @@ storiesOf('Buttons', module)
         </ButtonGroup>
       </Row>
     </div>
-  ))
+  ));
+// TODO
 //  .addWithInfo('with dropdowns', () => <h1>TODO</h1>)
 //  .addWithInfo('with split dropdowns', () => <h1>TODO</h1>)
 //  .addWithInfo('with dropups', () => <h1>TODO</h1>);

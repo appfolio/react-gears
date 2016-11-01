@@ -27,7 +27,7 @@ class AlertComponent extends React.Component {
 
     return (
       <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null}>
-        {icon ? <Icon name={iconMap[color]} className="pull-xs-left m-r-1" style={{ lineHeight: 'inherit' }} /> : null}
+        {icon ? <Icon name={iconMap[color]} className="pull-xs-left mr-1" style={{ lineHeight: 'inherit' }} /> : null}
         {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
       </Alert>
     );
