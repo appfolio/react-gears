@@ -13,7 +13,11 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
+        loader: 'style!css!postcss'
+      },
+      {
+        test: /\.scss$/,
         loader: 'style!css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'
       }
     ],
