@@ -6,24 +6,24 @@ import { FormRow, FormChoice, CurrencyInput } from '../src';
 
 storiesOf('Forms', module)
   .addWithInfo('Inputs', () => (
-    <Container className="m-t-3">
-      <h1 className="display-4 m-b-3">Inputs</h1>
+    <Container className="mt-3">
+      <h1 className="display-4 mb-3">Inputs</h1>
       <p className="lead">An <code>Input</code> is the simplest unit for building forms.</p>
 
-      <h2 className="m-y-3">Default (Text) Input</h2>
+      <h2 className="my-3">Default (Text) Input</h2>
       <Input placeholder="I'm a placeholder!" />
 
-      <h2 className="m-y-3">Custom Inputs</h2>
+      <h2 className="my-3">Custom Inputs</h2>
       <p><code>&lt;CurrencyInput/&gt;</code></p>
       <CurrencyInput />
     </Container>
   ))
   .addWithInfo('Form Rows', () => (
-    <Container className="m-t-3">
-      <h1 className="display-4 m-b-3">Form Rows</h1>
+    <Container className="mt-3">
+      <h1 className="display-4 mb-3">Form Rows</h1>
       <p className="lead">A <code>FormRow</code> combines a label and an input with an interface to provide feedback, hints, and can specify whether or not the field is required.</p>
 
-      <h2 className="m-y-3">Example</h2>
+      <h2 className="my-3">Example</h2>
       <FormRow label="First Name" />
       <FormRow label="Last Name" feedback="can't be blank" color="danger" />
       <FormRow label="Nickname" hint="A fun name to describe yourself!" />

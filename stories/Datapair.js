@@ -6,7 +6,7 @@ import { Datapair } from '../src';
 
 storiesOf('Datapair', module)
   .addWithInfo('with props', () => (
-    <Card className="m-t-1">
+    <Card className="mt-1">
       <CardBlock>
         <Datapair label="Key" value="Some simple content would go here" />
         <Datapair label="Another Key" value="More content" />
@@ -14,7 +14,7 @@ storiesOf('Datapair', module)
     </Card>
   ))
   .addWithInfo('with HTML value', () => (
-    <Card className="m-t-1">
+    <Card className="mt-1">
       <CardBlock>
         <Datapair label="Label">
           Custom markup <Button color="primary">can go here</Button>
