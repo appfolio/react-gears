@@ -4,7 +4,8 @@
   "description": "",
   "author": "Appfolio, Inc.",
   "license": "MIT",
-  "main": "dev_server.js",
+  "main": "dist/bundle.js",
+  "files": ["dist"],
   "scripts": {
     "dist": "webpack -p",
     "lint": "eslint src; exit 0",
