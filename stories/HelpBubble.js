@@ -8,7 +8,7 @@ storiesOf('Help Bubble', module)
     <div>
       <p>
         I can be placed in context to provide some contextual help!
-        <HelpBubble title="What does this mean?" className="m-l-1" placement="bottom">
+        <HelpBubble title="What does this mean?" className="ml-1" placement="bottom">
           Help bubbles are a handy way of explaining things.
         </HelpBubble>
       </p>
