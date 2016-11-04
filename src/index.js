@@ -61,26 +61,23 @@ import {
   Table,
   Tag,
   TetherContent,
-  Tooltip } from 'reactstrap';
+  Tooltip
+} from 'reactstrap';
 
 // Gears:
 
-//import Address from './components/Address.js';
+import Address from './components/Address.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
-//import Dropdown2 from './components/Dropdown2.js';
 import Flag from './components/Flag.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import PatternInput from './components/PatternInput.js';
-//import SummaryBox from './components/SummaryBox.js';
-//import SummaryBoxItem from './components/SummaryBoxItem.js';
-//import UnitPropertyCard from './components/UnitPropertyCard.js';
 
 export {
   // reactstrap
@@ -149,20 +146,16 @@ export {
   Tooltip,
 
   // Gears
+  Address,
   Alert,
   BlockPanel,
   CurrencyInput,
   Datapair,
   DateMonth,
-//  Dropdown2, // TODO temp
   Flag,
   FormChoice,
   FormRow,
   HelpBubble,
-  Icon, // TODO alias is visible in example code?
+  Icon,
   PatternInput,
-//  Address,
-// SummaryBox,
-// SummaryBoxItem
-// UnitPropertyCard TODO
 };
