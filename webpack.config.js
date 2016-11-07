@@ -9,6 +9,11 @@ module.exports = {
   entry: [
     path.resolve(__dirname, './src/index')
   ],
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+    reactstrap: 'reactstrap'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',

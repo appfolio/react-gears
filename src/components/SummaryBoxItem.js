@@ -1,12 +1,11 @@
-import CSSModules from 'react-css-modules';
 import React from 'react';
 
 import styles from './SummaryBoxItem.scss';
 
 const SummaryBoxItem = (props) => (
-  <div styleName="summaryBoxItem">
-    <span styleName="summaryBoxItemValue">{props.value}</span>
-    <label styleName="summaryBoxItemLabel">{props.label}</label>
+  <div className={styles.summaryBoxItem}>
+    <span className={styles.summaryBoxItemValue}>{props.value}</span>
+    <label className={styles.summaryBoxItemLabel}>{props.label}</label>
   </div>
 );
 
@@ -20,5 +19,4 @@ SummaryBoxItem.defaultProps = {
   value: '--'
 };
 
-export default CSSModules(SummaryBoxItem, styles);
-
+export default SummaryBoxItem;
