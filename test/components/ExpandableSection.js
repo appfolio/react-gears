@@ -7,7 +7,7 @@ import { mount } from 'enzyme';
 
 import ExpandableSection from '../../src/components/ExpandableSection.js';
 
-describe('<ExpandableSection />', () => {
+describe('<ExpandableSection title="Open sesame" />', () => {
   it('should render correctly', () => {
     const component = mount(<ExpandableSection />);
     assert(component);
