@@ -8,7 +8,7 @@ import styles from './ExpandableSection.scss';
 @observer
 class ExpandableSection extends Component {
 
-  @observable open = !!this.props.open;
+  @observable open = this.props.open;
 
   toggle = () => this.open = !this.open;
 
@@ -29,5 +29,14 @@ class ExpandableSection extends Component {
     );
   }
 }
+
+ExpandableSection.propTypes = {
+  open: React.PropTypes.bool,
+  title: React.PropTypes.string.isRequired
+};
+
+ExpandableSection.defaultProps = {
+  open: false
+};
 
 export default ExpandableSection;
