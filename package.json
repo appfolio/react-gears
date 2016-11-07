@@ -1,5 +1,5 @@
 {
-  "name": "xanthous",
+  "name": "react-gears",
   "version": "0.1.0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
@@ -19,7 +19,8 @@
     "babel-polyfill": "~6.13.0",
     "classnames": "^2.2.5",
     "react": "~15.3.0",
-    "react-dom": "~15.3.0"
+    "react-dom": "~15.3.0",
+    "reactstrap": "^3.7.0"
   },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
@@ -43,7 +44,6 @@
     "ignore-styles": "~5.0.1",
     "jsdom": "~9.4.5",
     "jsdom-global": "~2.1.0",
-    "lodash": "~4.16.1",
     "lodash.clonedeep": "~4.5.0",
     "lodash.includes": "^4.2.0",
     "lodash.range": "~3.2.0",
@@ -57,9 +57,7 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "~15.3.0",
     "react-addons-transition-group": "^15.3.2",
-    "react-css-modules": "^3.7.10",
     "react-fontawesome": "^1.2.0",
-    "reactstrap": "^3.7.0",
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
