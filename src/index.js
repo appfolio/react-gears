@@ -72,6 +72,7 @@ import BlockPanel from './components/BlockPanel.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
+import ExpandableSection from './components/ExpandableSection.js';
 import Flag from './components/Flag.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
@@ -154,6 +155,7 @@ export {
   CurrencyInput,
   Datapair,
   DateMonth,
+  ExpandableSection,
   Flag,
   FormChoice,
   FormRow,
