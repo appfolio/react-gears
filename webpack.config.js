@@ -26,7 +26,7 @@ module.exports = {
         query: {
           babelrc: false,
           presets: [['es2015', { modules: false }], 'react', 'stage-1', 'stage-2'],
-          plugins: ['transform-object-assign']
+          plugins: ['transform-decorators-legacy', 'transform-object-assign']
         }
       },
       {

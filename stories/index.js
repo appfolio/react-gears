@@ -8,6 +8,7 @@ import './Alerts';
 import './BlockPanel';
 import './Datapair';
 import './DateMonth';
+import './ExpandableSection';
 import './Forms';
 import './Address';
 import './HelpBubble';
