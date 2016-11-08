@@ -59,7 +59,6 @@ import {
   TabContent,
   TabPane,
   Table,
-  Tag,
   TetherContent,
   Tooltip
 } from 'reactstrap';
@@ -144,7 +143,6 @@ export {
   TabContent,
   TabPane,
   Table,
-  Tag,
   TetherContent,
   Tooltip,
 
