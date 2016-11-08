@@ -12,7 +12,9 @@ module.exports = {
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
-    reactstrap: 'reactstrap'
+    reactstrap: 'reactstrap',
+    'react-addons-css-transition-group': 'react-addons-css-transition-group',
+    'react-addons-transition-group': 'react-addons-transition-group'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
