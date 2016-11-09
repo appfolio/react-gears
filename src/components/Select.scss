@@ -1,6 +1,8 @@
-// Import and override react-select's SCSS variables to match BS4:
-$select-input-border-width: 0.1rem;
-$select-input-height: 2.4rem !default;
-// TODO correct inner padding, colors to match BS styles
+:global {
+  // Import and override react-select's SCSS variables to match BS4:
+  $select-input-border-width: 0.1rem;
+  $select-input-height: 2.4rem !default;
+  // TODO correct inner padding, colors to match BS styles
 
-@import '~react-select/scss/default.scss';
+  @import '~react-select/scss/default.scss';
+}
