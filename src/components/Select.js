@@ -4,7 +4,7 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 // Disables CSS modules to import as global:
-import '!!style!css!postcss!sass!./Select.scss';
+import './Select.scss';
 
 @observer
 class Select2 extends Component {
