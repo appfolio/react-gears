@@ -7,11 +7,14 @@ import './Icon';
 import './Alerts';
 import './BlockPanel';
 import './Datapair';
-import './DateMonth';
 import './ExpandableSection';
+import './HelpBubble';
+
+// Form fields
 import './Forms';
 import './Address';
-import './HelpBubble';
+import './DateMonth';
+import './InputGroup';
 
 // APM
 import './SummaryBox';
