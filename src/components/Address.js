@@ -49,7 +49,7 @@ class Address extends Component {
       <Input
         type="text"
         placeholder="Address 1"
-        state={this.address.address1}
+        value={this.address.address1}
         onChange={e => this.address.address1 = e.target.value}
       />
     </FormGroup>
@@ -57,7 +57,7 @@ class Address extends Component {
       <Input
         type="text"
         placeholder="Address 2"
-        state={this.address.address2}
+        value={this.address.address2}
         onChange={e => this.address.address2 = e.target.value}
       />
     </FormGroup>
@@ -67,7 +67,7 @@ class Address extends Component {
           <Input
             type="text"
             placeholder="City"
-            state={this.address.city}
+            value={this.address.city}
             onChange={e => this.address.city = e.target.value}
           />
         </Col>
@@ -83,7 +83,7 @@ class Address extends Component {
           <Input
             type="text"
             placeholder="Zip"
-            state={this.address.postal}
+            value={this.address.postal}
             onChange={e => this.address.postal = e.target.value}
           />
         </Col>

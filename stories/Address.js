@@ -13,6 +13,7 @@ storiesOf('Address', module)
     <div>
       <Address
         address1="123 No Way"
+        address2="Suite 16"
         city="Smallsville"
         state="AL"
         postal="12345-1234"
