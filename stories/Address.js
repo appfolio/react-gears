@@ -4,9 +4,21 @@ import { storiesOf } from '@kadira/storybook';
 import { Address } from '../src';
 
 storiesOf('Address', module)
+  .addWithInfo('defaults', () => (
+    <div>
+      <Address onChange={address => console.log('address', address)} />
+    </div>
+  ))
   .addWithInfo('with props', () => (
     <div>
-      <Address />
+      <Address
+        address1="123 No Way"
+        address2="Suite 16"
+        city="Smallsville"
+        state="AL"
+        postal="12345-1234"
+        onChange={address => console.log('a', address)}
+      />
     </div>
   ));
 
