@@ -5,7 +5,7 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 
-import DateMonth from '../../src/components/datemonth/DateMonth.js';
+import { DateMonth } from '../../src';
 
 /**
  * Sample unit test.

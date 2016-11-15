@@ -20,7 +20,8 @@ class ExpandableSection extends Component {
             name='caret-right'
             rotate={this.open ? 90 : undefined}
             fixedWidth
-            style={{ transition: 'transform 200ms ease-in-out' }} />
+            style={{ transition: 'transform 200ms ease-in-out' }}
+          />
           <b style={{ userSelect: 'none' }}>{this.props.title}</b>
           <hr />
         </header>

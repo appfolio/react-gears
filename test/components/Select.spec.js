@@ -3,7 +3,7 @@
 import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Select from '../../src/components/Select.js';
 

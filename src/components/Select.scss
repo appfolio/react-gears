@@ -5,4 +5,8 @@
   // TODO correct inner padding, colors to match BS styles
 
   @import '~react-select/scss/default.scss';
+  
+  .Select-input > input {
+    height: 100%;
+  }
 }

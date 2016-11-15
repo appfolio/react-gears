@@ -10,7 +10,7 @@ storiesOf('ExpandableSection', module)
     </ExpandableSection>
   ))
   .addWithInfo('Open', () => (
-    <ExpandableSection title="Expanded by default" open={true}>
+    <ExpandableSection title="Expanded by default" open>
       <h2>BOO!</h2>
     </ExpandableSection>
   )
