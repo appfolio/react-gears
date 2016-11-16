@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'react-fontawesome';
+import { Icon } from '../';
 import { Alert } from 'reactstrap';
 
 const iconMap = {
@@ -33,6 +33,8 @@ class AlertComponent extends React.Component {
     );
   }
 }
+
+AlertComponent.displayName = 'Alert';
 
 AlertComponent.propTypes = {
   color: React.PropTypes.string,

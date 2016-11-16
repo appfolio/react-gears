@@ -49,7 +49,7 @@ storiesOf('Alerts', module)
       </Alert>
     </div>
   ))
-  .addWithInfo('Bootstrap Extras', () => (
+  .addWithInfo('Extras', () => (
     <div>
       <Alert icon color="info">
         <h4 className="alert-heading">Well done!</h4>

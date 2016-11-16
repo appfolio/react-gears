@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Select from './Select.js';
-import { FormGroup, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Input, Row, Col, Select } from '../';
 import { autorun, reaction, observable } from 'mobx';
 import { observer } from 'mobx-react';
 

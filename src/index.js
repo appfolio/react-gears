@@ -78,6 +78,7 @@ import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import PatternInput from './components/PatternInput.js';
+import Select from './components/Select.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 
@@ -145,6 +146,8 @@ export {
   Table,
   TetherContent,
   Tooltip,
+
+  Select,
 
   // Gears
   Address,
