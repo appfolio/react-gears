@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'react-fontawesome';
+import { Icon } from '../';
 import { Popover, PopoverTitle, PopoverContent } from 'reactstrap';
 
 let count = 0;
