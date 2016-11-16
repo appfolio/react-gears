@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "license": "MIT",
@@ -8,6 +8,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "https://npm-proxy.fury.io/appfolio/"
+  },
   "scripts": {
     "dist": "webpack -p",
     "lint": "eslint src; exit 0",
@@ -59,8 +62,9 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "~15.3.0",
     "react-addons-transition-group": "^15.3.2",
-    "react-fontawesome": "^1.2.0",
+    "react-fontawesome": "^1.4.0",
     "react-select": "^1.0.0-rc.2",
+    "reactstrap": "^3.9.0",
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
