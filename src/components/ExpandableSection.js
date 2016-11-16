@@ -1,5 +1,5 @@
-import Icon from 'react-fontawesome';
 import React, { Component } from 'react';
+import { Icon } from '../';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 

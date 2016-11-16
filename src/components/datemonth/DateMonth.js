@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, ButtonToolbar, Col, Input,
          InputGroupAddon, InputGroup, Row } from 'reactstrap';
-import Icon from 'react-fontawesome';
+import { Icon } from '../../';
 import Label from './DateMonthLabel.js';
 import React, { Component } from 'react';
 import fecha from 'fecha';
