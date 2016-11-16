@@ -4,7 +4,7 @@ import { Alert } from 'reactstrap';
 
 const iconMap = {
   warning: 'bullhorn',
-  success: 'check',
+  success: 'ok',
   info: 'info-sign',
   danger: 'ban-circle'
 };
