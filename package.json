@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "license": "MIT",
@@ -52,6 +52,7 @@
     "jsdom-global": "~2.1.0",
     "lodash.clonedeep": "~4.5.0",
     "lodash.includes": "^4.2.0",
+    "lodash.omit": "^4.5.0",
     "lodash.range": "~3.2.0",
     "mobx": "^2.6.2",
     "mobx-react": "^3.5.9",
