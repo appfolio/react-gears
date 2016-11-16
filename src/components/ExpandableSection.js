@@ -13,8 +13,11 @@ class ExpandableSection extends Component {
   toggle = () => this.open = !this.open;
 
   render() {
+    const className = `${styles.expandableSection} ${this.props.className}`;
+
+    // TODO use reactstrap <Collapse /> component below - resolve animation issue first.
     return (
-      <section className={styles.expandableSection}>
+      <section className={className}>
         <header onClick={this.toggle} style={{ cursor: 'pointer' }}>
           <Icon
             name='caret-right'

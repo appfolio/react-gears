@@ -6,7 +6,7 @@ import { Button, Icon } from '../src';
 storiesOf('Icon', module)
   .addWithInfo('Examples', () => (
     <h1>
-      <Icon name="plus-circle" />
+      <Icon name="plus-sign" />
       <Icon name="minus-circle" />
       <Icon name="caret-up" />
       <Icon name="caret-down" />
@@ -35,7 +35,7 @@ storiesOf('Icon', module)
         <Icon name="print" /> Print
       </p>
       <p>
-        <Icon name="plus-circle" /> Add Item
+        <Icon name="plus-sign" /> Add Item
       </p>
       <p>
         <Icon name="pencil" /> Edit
@@ -49,22 +49,22 @@ storiesOf('Icon', module)
     <div>
       <p>
         <Button>
-          <Icon name="plus-circle" fixedWidth/> Add Item
+          <Icon name="plus-sign" fixedWidth /> Add Item
         </Button>
       </p>
       <p>
         <Button color="primary">
-          <Icon name="print" fixedWidth/> Print
+          <Icon name="print" fixedWidth /> Print
         </Button>
       </p>
       <p>
         <Button color="success">
-          <Icon name="pencil" fixedWidth/> Edit
+          <Icon name="pencil" fixedWidth /> Edit
         </Button>
       </p>
       <p>
         <Button color="info">
-          <Icon name="calendar" fixedWidth/> Lookup
+          <Icon name="calendar" fixedWidth /> Lookup
         </Button>
       </p>
     </div>
@@ -84,24 +84,47 @@ storiesOf('Icon', module)
       <Icon name="circle-o-notch" spin size="3x" />
       <Icon name="refresh" spin size="3x" />
       <Icon name="cog" spin size="3x" />
-      <Icon name="spinner" pulse size="3x" />
     </div>
   ))
-  .addWithInfo('with rotate', () => (
+  .addWithInfo('with rotate & flip', () => (
     <div>
       <Icon name="female" rotate={90} /> 90<br />
       <Icon name="female" rotate={180} /> 180<br />
       <Icon name="female" rotate={270} /> 270<br />
+      <Icon name="music" flip="horizontal" /> horizontal<br />
+      <Icon name="music" flip="vertical" /> vertical<br />
     </div>))
   .addWithInfo('with other props', () => (
     <div className="bg-color-muted">
-      <Icon name="angellist" size="4x" /> Default <br />
-      <Icon name="angellist" size="4x" fixedWidth /> fixedWidth<br />
-      <Icon name="angellist" size="4x" border /> border<br />
-      <Icon name="angellist" size="4x" flip="horizontal" /> flip="horizontal"<br />
-      <Icon name="angellist" size="4x" flip="vertical" /> flip="vertical"<br />
-      <Icon name="angellist" size="4x" inverse /> inverse<br />
+      <p><Icon name="camera" size="2x" /> Default</p>
+      <p><Icon name="camera" size="2x" fixedWidth /> fixedWidth</p>
+      <p><Icon name="camera" size="2x" border /> border</p>
     </div>
+  ))
+  .addWithInfo('version', () => (
+    <h1>
+      <Icon v={4} name="plus-circle" />
+      <Icon v={4} name="minus-circle" />
+      <Icon v={4} name="caret-up" />
+      <Icon v={4} name="caret-down" />
+      <Icon v={4} name="caret-left" />
+      <Icon v={4} name="caret-right" />
+      <Icon v={4} name="info-circle" />
+      <Icon v={4} name="question-circle" />
+      <Icon v={4} name="user" />
+      <Icon v={4} name="print" />
+      <Icon v={4} name="eye" />
+      <Icon v={4} name="search" />
+      <Icon v={4} name="calendar" />
+      <Icon v={4} name="pencil" />
+      <Icon v={4} name="pencil-square-o" />
+      <Icon v={4} name="exclamation-triangle" />
+      <Icon v={4} name="check" />
+      <Icon v={4} name="check-circle" />
+      <Icon v={4} name="times" />
+      <Icon v={4} name="times-circle" />
+      <Icon v={4} name="icon icon-ban" />
+    </h1>
   ));
 
 //  className: React.PropTypes.string,

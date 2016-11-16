@@ -15,6 +15,7 @@ import './Forms';
 import './Address';
 import './DateMonth';
 import './InputGroup';
+import './Select';
 
 // APM
 import './SummaryBox';
