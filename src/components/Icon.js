@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import FontAwesome3 from './FontAwesome3.js';
-import { omit } from 'lodash';
+import omit from 'lodash.omit';
 
 const Icon = (props) => {
   const newProps = omit(props, 'v');
