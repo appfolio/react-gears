@@ -8,6 +8,8 @@ import { Icon } from '../../src/';
 
 import Alert from '../../src/components/Alert';
 
+import { Alert as Inner } from 'reactstrap';
+
 describe('<Alert />', () => {
   it('should not be dismissible', () => {
     const component = mount(<Alert />);
@@ -49,20 +51,27 @@ describe('<Alert />', () => {
     });
   });
 
-  describe.skip('when dismissible', () => {
+  describe('when dismissible', () => {
     it('should toggle state when clicked', () => {
       const component = mount(<Alert dismissible />);
       assert.equal(component.state('visible'), true);
-      assert.equal(component.prop('isOpen'), true);
-      component.instance().toggle();
-      component.update();
+
+      const inner = component.find(Inner);
+      assert.equal(inner.prop('isOpen'), true);
+
+      inner.find('button').simulate('click');
       assert.equal(component.state('visible'), false);
-      assert.equal(component.prop('isOpen'), false);
+      assert.equal(inner.prop('isOpen'), false);
     });
 
-    it('should pass toggle function', () => {
+    it('should become visible when receiving new props', () => {
       const component = mount(<Alert dismissible />);
-      assert.equal(component.prop('toggle'), component.instance().toggle);
+      const inner = component.find(Inner);
+      inner.find('button').simulate('click');
+      assert.equal(component.state('visible'), false);
+
+      component.setProps({ color: 'danger' });
+      assert.equal(component.state('visible'), true);
     });
   });
 });

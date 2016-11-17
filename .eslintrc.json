@@ -1,4 +1,8 @@
 {
   "parser": "babel-eslint",
-  "extends": "appfolio-react"
+  "extends": "appfolio-react",
+  "rules": {
+    "react/prefer-stateless-function": 0,
+    "react/prop-types": 1
+  }
 }
