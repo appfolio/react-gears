@@ -5,7 +5,7 @@ const BlockPanel = (props) => (
   <Card className="bg-faded">
     <CardBlock>
       {props.onEdit ? <a className="float-right" href="#" onClick={props.onEdit}>edit</a> : null}
-      {props.title ? <h6><strong>{props.title}</strong></h6> : null}
+      {props.title ? <h4>{props.title}</h4> : null}
       {props.children || props.value}
     </CardBlock>
   </Card>
