@@ -2,20 +2,39 @@ import React from 'react';
 import { Icon } from '../';
 import { Alert } from 'reactstrap';
 
-const iconMap = {
+const ICON_MAP = {
   warning: 'bullhorn',
   success: 'ok',
   info: 'info-sign',
   danger: 'ban-circle'
 };
 
-class AlertComponent extends React.Component {
+export default class AlertComponent extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+    color: React.PropTypes.string,
+    dismissible: React.PropTypes.bool,
+    icon: React.PropTypes.bool
+  }
+
+  static defaultProps = {
+    color: 'warning',
+    dismissible: false,
+    icon: false
+  }
+
+  static displayName = 'Alert'
+
   constructor(props) {
     super(props);
 
     this.state = {
       visible: true
     };
+  }
+
+  componentWillReceiveProps() {
+    this.setState({ visible: true });
   }
 
   toggle = () => {
@@ -27,25 +46,9 @@ class AlertComponent extends React.Component {
 
     return (
       <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null}>
-        {icon ? <Icon name={iconMap[color]} className="float-left mr-2" style={{ lineHeight: 'inherit' }} /> : null}
+        {icon ? <Icon name={ICON_MAP[color]} className="float-left mr-2" style={{ lineHeight: 'inherit' }} /> : null}
         {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
       </Alert>
     );
   }
 }
-
-AlertComponent.displayName = 'Alert';
-
-AlertComponent.propTypes = {
-  color: React.PropTypes.string,
-  dismissible: React.PropTypes.bool,
-  icon: React.PropTypes.bool
-};
-
-AlertComponent.defaultProps = {
-  color: 'warning',
-  dismissible: false,
-  icon: false
-};
-
-export default AlertComponent;
