@@ -3,7 +3,7 @@ import infoAddon from '@kadira/react-storybook-addon-info';
 import { Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-apm/dist/css/bootstrap.css';
 
 addDecorator((story, info) => (
   <Container className="mt-2">
