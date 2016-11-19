@@ -48,9 +48,6 @@ import {
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Popover,
   PopoverContent,
   PopoverTitle,
@@ -77,6 +74,7 @@ import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
+import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Select from './components/Select.js';
 import SummaryBox from './components/SummaryBox.js';
@@ -133,9 +131,7 @@ export {
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
+  Paginator,
   Popover,
   PopoverContent,
   PopoverTitle,
