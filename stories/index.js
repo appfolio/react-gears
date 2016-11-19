@@ -19,4 +19,5 @@ import './Select';
 
 // APM
 import './SummaryBox';
+import './Paginator';
 

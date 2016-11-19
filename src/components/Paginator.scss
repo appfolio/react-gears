@@ -1,0 +1,89 @@
+@import '../styles/_mixins.scss';
+
+.paginator {
+  border-top: 1px solid #B7B7B7;
+  font-family: 'Open Sans', sans-serif;
+  margin: 1em 0 0 0;
+  overflow: hidden;
+  padding: 1em 0;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.links {
+  display: inline-block;
+  float: none;
+  margin-bottom: 1rem;
+  list-style: none;
+
+  @include small-only {
+    border: 1px solid #B7B7B7;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  @include large-only {
+    float: right;
+    margin-bottom: 0;
+  }
+
+  & > li {
+    display: inline;
+    font-size: 20px;
+
+    @include small-only {
+      border-left: 1px solid #B7B7B7;
+
+      &:first-child {
+        border: none;
+      }
+    }
+
+    @include large-only {
+      font-size: 18px;
+    }
+
+    &.current {
+      background-color: #3179cd;
+      color: #fff;
+      font-weight: bold;
+      padding: 0 .5em;
+
+      @include medium-up {
+        // TODO:LD: we should be using Saffron colors here
+        background-color: #D6E7F3;
+        border: 1px solid #A5CEEB;
+        color: #3179cd;
+        padding: 0 .75em;
+      }
+    }
+
+    &.previous, &.next {
+      @include small-only {
+        display: none;
+      }
+    }
+
+    & > a {
+      padding: 0 .5em;
+
+      @include medium-up {
+        padding: 0 .75em;
+      }
+    }
+  }
+}
+
+.summary {
+  text-align: center;
+  float: none;
+  font-size: 16px;
+  margin: 0;
+
+  @include large-only {
+    float: left;
+  }
+}
