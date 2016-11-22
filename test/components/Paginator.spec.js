@@ -4,9 +4,10 @@ import assert from 'assert';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 
-import Paginator from '../../src/components/Paginator';
-import Page from '../../src/components/paginator/Page';
-import Summary from '../../src/components/paginator/Summary';
+import { Paginator } from '../../src';
+
+import Page from '../../src/components/Paginator/Page';
+import Summary from '../../src/components/Paginator/Summary';
 
 describe('<Paginator />', () => {
   describe('first shortcut', () => {
