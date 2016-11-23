@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Input } from 'reactstrap';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
 import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
@@ -75,7 +75,7 @@ storiesOf('Forms', module)
       <p className="lead">A <code>BoundForm</code> binds a form to a particular object and keeps form data in sync.</p>
 
       <h2 className="m-y-3">Example</h2>
-      <BoundForm object={contactInfo}>
+      <BoundForm object={contactInfo} onSubmit={action('submit')}>
         <FormRow label="First Name" name="firstName" required />
         <FormRow label="Last Name" name="lastName" />
         <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
@@ -91,6 +91,7 @@ storiesOf('Forms', module)
           <FormChoice>Rey</FormChoice>
           <FormChoice>TK-421</FormChoice>
         </FormRow>
+        <button className="btn btn-primary">Submit</button>
       </BoundForm>
     </Container>
   ));

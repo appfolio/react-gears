@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
+import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
@@ -18,6 +19,8 @@ describe('<BoundForm />', () => {
     }
   };
 
+  const submitFunc = sinon.stub();
+
   const compositeInput = (props) => (
     <div>
       <Input name="address1" value={props.address1} />
@@ -26,7 +29,7 @@ describe('<BoundForm />', () => {
   );
 
   const component = shallow(
-    <BoundForm object={data}>
+    <BoundForm object={data} onSubmit={submitFunc}>
       <FormRow label="First Name" name="firstName" />
       <FormRow label="Last Name" name="lastName" />
       <FormRow type="checkbox" label="Foobar" name="checkboxes">
@@ -81,5 +84,12 @@ describe('<BoundForm />', () => {
     row.simulate('change', { target: { name: 'stuff', value: 'here' }}, ['thing']);
     assert.equal(data.thing, undefined);
     assert.equal(component.state('formData').thing.stuff, 'here');
+  });
+
+  it('should submit with formData', () => {
+    const preventDefault = sinon.stub();
+    component.simulate('submit', { preventDefault });
+    assert.equal(preventDefault.calledOnce, true);
+    assert.equal(submitFunc.calledWith({ preventDefault }, component.state('formData')), true);
   });
 });

@@ -1,14 +1,30 @@
 import React from 'react';
 import { Form } from 'reactstrap';
+import noop from 'lodash/noop';
 import set from 'lodash/set';
 
 class BoundForm extends React.Component {
+
+  static propTypes = {
+    object: React.PropTypes.object.isRequired,
+    onSubmit: React.PropTypes.func
+  };
+
+  static defaultProps = {
+    onSubmit: noop
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
       formData: JSON.parse(JSON.stringify(props.object))
     }
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.onSubmit(e, this.state.formData);
   }
 
   handleChange = (event, path = []) => {
@@ -30,13 +46,9 @@ class BoundForm extends React.Component {
     });
 
     return (
-      <Form children={children} />
+      <Form children={children} onSubmit={this.onSubmit} />
     );
   }
-}
-
-BoundForm.propTypes = {
-  object: React.PropTypes.object.isRequired
 }
 
 export default BoundForm;
