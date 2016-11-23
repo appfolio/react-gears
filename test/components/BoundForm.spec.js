@@ -51,18 +51,20 @@ describe('<BoundForm />', () => {
     const row = component.find('[name="checkboxes"]');
     assert.equal(row.prop('value'), '');
     row.simulate('change', { target: { name: 'vader', checked: true }});
-    assert.equal(data.vader, true);
+    assert.equal(data.vader, undefined);
+    assert.equal(component.state('formData').vader, true);
   });
 
   it('should update data on change', () => {
     const row = component.find('[name="firstName"]');
     row.simulate('change', { target: { value: 'Desmond', name: 'firstName' }});
-    assert.equal(data.firstName, 'Desmond');
+    assert.equal(data.firstName, 'Glenn');
+    assert.equal(component.state('formData').firstName, 'Desmond');
   });
 
   it('should support nested data', () => {
     const row = component.find('[name="address"]');
-    assert.equal(row.prop('value'), data.address);
+    assert.equal(row.prop('value'), component.state('formData').address);
     assert.equal(row.prop('address1'), '123 awesome');
     assert.equal(row.prop('city'), 'A city');
   });
@@ -70,12 +72,14 @@ describe('<BoundForm />', () => {
   it('should support updating nested data', () => {
     const row = component.find('[name="address"]');
     row.simulate('change', { target: { name: 'address1', value: '456 cool' }}, ['address']);
-    assert.equal(data.address.address1, '456 cool');
+    assert.equal(data.address.address1, '123 awesome');
+    assert.equal(component.state('formData').address.address1, '456 cool');
   });
 
   it('should create nested data', () => {
     const row = component.find('[name="thing"]');
     row.simulate('change', { target: { name: 'stuff', value: 'here' }}, ['thing']);
-    assert.equal(data.thing.stuff, 'here');
+    assert.equal(data.thing, undefined);
+    assert.equal(component.state('formData').thing.stuff, 'here');
   });
 });

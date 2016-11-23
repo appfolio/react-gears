@@ -7,7 +7,7 @@ class BoundForm extends React.Component {
     super(props);
 
     this.state = {
-      formData: props.object
+      formData: JSON.parse(JSON.stringify(props.object))
     }
   }
 
