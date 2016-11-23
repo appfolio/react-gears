@@ -5,9 +5,6 @@ import './Buttons';
 import './Flag';
 import './Icon';
 import './Alerts';
-import './BlockPanel';
-import './Datapair';
-import './ExpandableSection';
 import './HelpBubble';
 
 // Form fields
@@ -18,6 +15,9 @@ import './InputGroup';
 import './Select';
 
 // APM
+import './BlockPanel';
+import './Datapair';
+import './ExpandableSection';
 import './SummaryBox';
 import './Paginator';
 
