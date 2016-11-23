@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { PaginationItem, PaginationLink } from '../../';
 import styles from '../Paginator.scss';
 
 /**
@@ -22,11 +22,11 @@ export default class ShortcutLink extends Component {
     const { children, name } = this.props;
 
     return (
-      <li className={`js-pagination-${name} ${styles[name]}`}>
-        <a href="#" className="js-pagination-link" onClick={this.onClick}>
+      <PaginationItem>
+        <PaginationLink onClick={this.onClick}>
           {children}
-        </a>
-      </li>
+        </PaginationLink>
+      </PaginationItem>
     );
   }
 }

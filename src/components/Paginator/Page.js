@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import styles from '../Paginator.scss';
+import { PaginationItem, PaginationLink } from '../../';
 
 /**
  * A clickable link to a page in the pagination bar
@@ -20,21 +19,10 @@ export default class Page extends Component {
   render() {
     const { current, page } = this.props;
 
-    let content;
-    if (current) {
-      content = (
-        <li className={styles.current}>
-          {this.props.page}
-        </li>
-      );
-    } else {
-      content = (
-        <li>
-          <a href="#" className="js-pagination-link" onClick={this.onClick}>{page}</a>
-        </li>
-      );
-    }
-
-    return content;
+    return (
+      <PaginationItem active={current}>
+        <PaginationLink onClick={this.onClick}>{page}</PaginationLink>
+      </PaginationItem>
+    );
   }
 }

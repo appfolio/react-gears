@@ -3,6 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 
 import { Paginator } from '../src';
 
+// TODO this wrapper hides the usage example in react-storybook:
 class Wrapper extends Component {
   constructor() {
     super();

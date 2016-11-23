@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Icon from './Icon';
 import Page from './Paginator/Page';
+import React, { Component } from 'react';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
+import { Col, Icon, Pagination, Row } from '../';
 
 import styles from './Paginator.scss';
 
@@ -67,17 +67,21 @@ export default class Paginator extends Component {
     }
 
     return (
-      <div className={styles.paginator}>
-        <ul ref="links" className={styles.links}>
-          {firstPageLink}
-          {prevPageLink}
-          {pages}
-          {nextPageLink}
-          {lastPageLink}
-        </ul>
-
-        <Summary from={from} to={to} totalItems={totalItems} />
-      </div>
+      <Row className={styles.paginator}>
+        <hr />
+        <Col sm={{ size: 7, push: 5 }} className="text-xs-center text-sm-right">
+          <Pagination size="sm" className="my-0">
+            {firstPageLink}
+            {prevPageLink}
+            {pages}
+            {nextPageLink}
+            {lastPageLink}
+          </Pagination>
+        </Col>
+        <Col sm={{ size: 5, pull: 7 }} className="text-xs-center text-sm-left">
+          <Summary from={from} to={to} totalItems={totalItems} className="pt-1" />
+        </Col>
+      </Row>
     );
   }
 }
