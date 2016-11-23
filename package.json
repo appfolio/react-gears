@@ -41,7 +41,6 @@
     "babel-preset-react": "~6.11.1",
     "babel-preset-stage-1": "~6.13.0",
     "babel-preset-stage-2": "~6.13.0",
-    "bootstrap-apm": "^4.0.1",
     "css-loader": "~0.25.0",
     "enzyme": "^2.6.0",
     "eslint-config-appfolio-react": "~0.3.2",
