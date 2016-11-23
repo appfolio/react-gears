@@ -1,4 +1,5 @@
 import {
+  Badge,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -72,7 +73,6 @@ import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
 import ExpandableSection from './components/ExpandableSection.js';
-import Flag from './components/Flag.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
@@ -85,6 +85,7 @@ import SummaryBoxItem from './components/SummaryBoxItem.js';
 
 export {
   // reactstrap
+  Badge,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -159,7 +160,7 @@ export {
   Datapair,
   DateMonth,
   ExpandableSection,
-  Flag,
+  Badge as Flag,
   FormChoice,
   FormRow,
   HelpBubble,
