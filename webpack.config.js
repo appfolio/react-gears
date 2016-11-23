@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        loader: 'style!css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'
+        loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'
       }
     ]
   },
