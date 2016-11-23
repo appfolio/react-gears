@@ -21,11 +21,11 @@
   "dependencies": {
     "babel-polyfill": "~6.13.0",
     "classnames": "^2.2.5",
-    "react": "~15.3.0",
-    "react-addons-css-transition-group": "^15.3.2",
-    "react-addons-transition-group": "^15.3.2",
-    "react-dom": "~15.3.0",
-    "reactstrap": "^3.7.0"
+    "react": "~15.4.0",
+    "react-addons-css-transition-group": "^15.4.0",
+    "react-addons-transition-group": "^15.4.0",
+    "react-dom": "~15.4.0",
+    "reactstrap": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
@@ -44,7 +44,6 @@
     "css-loader": "~0.25.0",
     "enzyme": "^2.6.0",
     "eslint-config-appfolio-react": "~0.3.2",
-    "express": "~4.14.0",
     "fecha": "^2.3.0",
     "ignore-styles": "~5.0.1",
     "jsdom": "~9.4.5",
@@ -61,19 +60,14 @@
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
     "react-addons-css-transition-group": "^15.3.2",
-    "react-addons-test-utils": "~15.3.0",
+    "react-addons-test-utils": "^15.4.0",
     "react-addons-transition-group": "^15.3.2",
     "react-fontawesome": "^1.4.0",
     "react-select": "^1.0.0-rc.2",
-    "reactstrap": "^3.9.0",
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
-    "webpack": "~2.1.0-beta.13",
-    "webpack-dashboard": "~0.1.5",
-    "webpack-dev-middleware": "^1.8.1",
-    "webpack-hot-middleware": "~2.12.1",
-    "webpack-visualizer-plugin": "~0.1.5"
+    "webpack": "~2.1.0-beta.26"
   },
   "nyc": {
     "exclude": [
