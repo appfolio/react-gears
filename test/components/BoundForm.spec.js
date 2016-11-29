@@ -21,7 +21,7 @@ describe('<BoundForm />', () => {
 
   const submitFunc = sinon.stub();
 
-  const compositeInput = (props) => (
+  const Composite = (props) => (
     <div>
       <Input name="address1" value={props.address1} />
       <Input name="city" value={props.city} />
@@ -35,8 +35,8 @@ describe('<BoundForm />', () => {
       <FormRow type="checkbox" label="Foobar" name="checkboxes">
         <FormChoice name="vader">Darth Vader</FormChoice>
       </FormRow>
-      <FormRow type={compositeInput} name="address" />
-      <FormRow type={compositeInput} name="thing" />
+      <FormRow type={Composite} name="address" />
+      <FormRow type={Composite} name="thing" />
     </BoundForm>
   );
 
@@ -50,17 +50,9 @@ describe('<BoundForm />', () => {
     assert.equal(row.prop('value'), '');
   });
 
-  it('should support checkboxes', () => {
-    const row = component.find('[name="checkboxes"]');
-    assert.equal(row.prop('value'), '');
-    row.simulate('change', { target: { name: 'vader', checked: true }});
-    assert.equal(data.vader, undefined);
-    assert.equal(component.state('formData').vader, true);
-  });
-
   it('should update data on change', () => {
     const row = component.find('[name="firstName"]');
-    row.simulate('change', { target: { value: 'Desmond', name: 'firstName' }});
+    row.simulate('change', 'Desmond');
     assert.equal(data.firstName, 'Glenn');
     assert.equal(component.state('formData').firstName, 'Desmond');
   });
@@ -74,16 +66,16 @@ describe('<BoundForm />', () => {
 
   it('should support updating nested data', () => {
     const row = component.find('[name="address"]');
-    row.simulate('change', { target: { name: 'address1', value: '456 cool' }}, ['address']);
+    row.simulate('change', { address1: '456 cool' });
     assert.equal(data.address.address1, '123 awesome');
-    assert.equal(component.state('formData').address.address1, '456 cool');
+    assert.deepEqual(component.state('formData').address, { address1: '456 cool' });
   });
 
   it('should create nested data', () => {
     const row = component.find('[name="thing"]');
-    row.simulate('change', { target: { name: 'stuff', value: 'here' }}, ['thing']);
+    row.simulate('change', { stuff: 'here' });
     assert.equal(data.thing, undefined);
-    assert.equal(component.state('formData').thing.stuff, 'here');
+    assert.deepEqual(component.state('formData').thing, { stuff: 'here' });
   });
 
   it('should submit with formData', () => {

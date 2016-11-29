@@ -91,6 +91,7 @@ storiesOf('Forms', module)
           <FormChoice>Rey</FormChoice>
           <FormChoice>TK-421</FormChoice>
         </FormRow>
+        <FormRow type={Address} name="address" label="Address" />
         <button className="btn btn-primary">Submit</button>
       </BoundForm>
     </Container>
