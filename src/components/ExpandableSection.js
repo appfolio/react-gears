@@ -22,6 +22,7 @@ class ExpandableSection extends Component {
           <Icon
             name='caret-right'
             rotate={this.open ? 90 : undefined}
+            size="lg"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
