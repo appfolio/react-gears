@@ -26,7 +26,6 @@ class ExpandableSection extends Component {
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
           <b style={{ userSelect: 'none' }}>{this.props.title}</b>
-          <hr />
         </header>
         {this.open ? <section>{this.props.children}</section> : null}
       </section>

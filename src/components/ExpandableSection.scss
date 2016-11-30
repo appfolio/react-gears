@@ -1,3 +1,9 @@
-.expandable-section header {
-  user-select: none;
+.expandable-section {
+  & > header {
+    user-select: none;
+  }
+
+  & > section {
+    margin: 1rem 0;
+  }
 }
