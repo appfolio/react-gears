@@ -16,6 +16,7 @@
     "lint": "eslint src; exit 0",
     "start": "start-storybook -p 6006",
     "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles",
+    "prepublish": "npm run dist",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -59,9 +60,7 @@
     "nyc": "~6.6.1",
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
-    "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "^15.4.0",
-    "react-addons-transition-group": "^15.3.2",
     "react-fontawesome": "^1.4.0",
     "react-select": "^1.0.0-rc.2",
     "sass-loader": "~4.0.0",
