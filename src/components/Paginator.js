@@ -18,15 +18,17 @@ export default class Paginator extends Component {
     currentPage: React.PropTypes.number.isRequired,
     onClick: React.PropTypes.func.isRequired,
     perPage: React.PropTypes.number,
+    size: React.PropTypes.oneOf(['sm', 'lg']),
     totalItems: React.PropTypes.number.isRequired,
   }
 
   static defaultProps = {
     perPage: DEFAULT_PER_PAGE,
+    size: 'lg'
   };
 
   render() {
-    const { currentPage, perPage, totalItems, onClick } = this.props;
+    const { currentPage, perPage, size, totalItems, onClick } = this.props;
 
     const paginationState = new State(currentPage, totalItems, perPage);
     const { from, to } = paginationState.currentItemRange();
@@ -66,11 +68,12 @@ export default class Paginator extends Component {
       }
     }
 
+    // TODO Summary isn't same Pagination font, apm-bs does not style it but shouldn't set here either
     return (
       <Row className={styles.paginator}>
         <hr />
         <Col sm={{ size: 7, push: 5 }} className="text-xs-center text-sm-right">
-          <Pagination size="sm" className="my-0">
+          <Pagination size={size} className="my-0">
             {firstPageLink}
             {prevPageLink}
             {pages}
