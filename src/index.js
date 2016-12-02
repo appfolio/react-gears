@@ -59,7 +59,6 @@ import {
   Row,
   TabContent,
   TabPane,
-  Table,
   TetherContent,
   Tooltip
 } from 'reactstrap';
@@ -82,6 +81,7 @@ import PatternInput from './components/PatternInput.js';
 import Select from './components/Select.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
+import Table from './components/Table.js';
 
 export {
   // reactstrap

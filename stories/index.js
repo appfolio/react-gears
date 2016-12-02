@@ -6,6 +6,7 @@ import './Flag';
 import './Icon';
 import './Alerts';
 import './HelpBubble';
+import './Table';
 
 // Form fields
 import './Forms';
