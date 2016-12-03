@@ -6,7 +6,7 @@ import { Button, Icon } from '../src';
 storiesOf('Icon', module)
   .addWithInfo('Examples', () => (
     <h1>
-      <Icon name="plus-sign" />
+      <Icon name="plus-circle" />
       <Icon name="minus-circle" />
       <Icon name="caret-up" />
       <Icon name="caret-down" />
@@ -26,7 +26,7 @@ storiesOf('Icon', module)
       <Icon name="check-circle" />
       <Icon name="times" />
       <Icon name="times-circle" />
-      <Icon name="icon icon-ban" />
+      <Icon name="ban" />
     </h1>
   ))
   .addWithInfo('with inline text', () => (
@@ -35,7 +35,7 @@ storiesOf('Icon', module)
         <Icon name="print" /> Print
       </p>
       <p>
-        <Icon name="plus-sign" /> Add Item
+        <Icon name="plus-circle" /> Add Item
       </p>
       <p>
         <Icon name="pencil" /> Edit
@@ -49,7 +49,7 @@ storiesOf('Icon', module)
     <div>
       <p>
         <Button>
-          <Icon name="plus-sign" fixedWidth /> Add Item
+          <Icon name="plus-circle" fixedWidth /> Add Item
         </Button>
       </p>
       <p>
@@ -84,6 +84,7 @@ storiesOf('Icon', module)
       <Icon name="circle-o-notch" spin size="3x" />
       <Icon name="refresh" spin size="3x" />
       <Icon name="cog" spin size="3x" />
+      <Icon name="spinner" pulse size="3x" />
     </div>
   ))
   .addWithInfo('with rotate & flip', () => (
@@ -100,31 +101,6 @@ storiesOf('Icon', module)
       <p><Icon name="camera" size="2x" fixedWidth /> fixedWidth</p>
       <p><Icon name="camera" size="2x" border /> border</p>
     </div>
-  ))
-  .addWithInfo('version', () => (
-    <h1>
-      <Icon v={4} name="plus-circle" />
-      <Icon v={4} name="minus-circle" />
-      <Icon v={4} name="caret-up" />
-      <Icon v={4} name="caret-down" />
-      <Icon v={4} name="caret-left" />
-      <Icon v={4} name="caret-right" />
-      <Icon v={4} name="info-circle" />
-      <Icon v={4} name="question-circle" />
-      <Icon v={4} name="user" />
-      <Icon v={4} name="print" />
-      <Icon v={4} name="eye" />
-      <Icon v={4} name="search" />
-      <Icon v={4} name="calendar" />
-      <Icon v={4} name="pencil" />
-      <Icon v={4} name="pencil-square-o" />
-      <Icon v={4} name="exclamation-triangle" />
-      <Icon v={4} name="check" />
-      <Icon v={4} name="check-circle" />
-      <Icon v={4} name="times" />
-      <Icon v={4} name="times-circle" />
-      <Icon v={4} name="icon icon-ban" />
-    </h1>
   ));
 
 //  className: React.PropTypes.string,

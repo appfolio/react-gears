@@ -29,17 +29,17 @@ describe('<Alert />', () => {
 
     it('should show ban for danger', () => {
       const icon = mount(<Alert icon color="danger" />).find(Icon);
-      assert.equal(icon.prop('name'), 'ban-circle');
+      assert.equal(icon.prop('name'), 'ban');
     });
 
     it('should show info for info', () => {
       const icon = mount(<Alert icon color="info" />).find(Icon);
-      assert.equal(icon.prop('name'), 'info-sign');
+      assert.equal(icon.prop('name'), 'info-circle');
     });
 
     it('should show check for success', () => {
       const icon = mount(<Alert icon color="success" />).find(Icon);
-      assert.equal(icon.prop('name'), 'ok');
+      assert.equal(icon.prop('name'), 'check');
     });
 
     it('should wrap children with block (for alignment) with icon', () => {

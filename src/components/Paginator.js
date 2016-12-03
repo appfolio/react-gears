@@ -35,7 +35,7 @@ export default class Paginator extends Component {
 
     const firstPageLink = paginationState.showFirst() && (
       <ShortcutLink ref="first" name="first" page={1} onClick={onClick}>
-        <Icon name="double-angle-left" />
+        <Icon name="angle-double-left" />
       </ShortcutLink>
     );
 
@@ -53,7 +53,7 @@ export default class Paginator extends Component {
 
     const lastPageLink = paginationState.showLast() && (
       <ShortcutLink ref="last" name="last" page={paginationState.totalPages} onClick={onClick}>
-        <Icon name="double-angle-right" />
+        <Icon name="angle-double-right" />
       </ShortcutLink>
     );
 
