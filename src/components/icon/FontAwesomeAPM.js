@@ -53,12 +53,6 @@ export default React.createClass({
     tag: React.PropTypes.string,
   },
 
-  getDefaultProps() {
-    return {
-      prefix: 'icon'
-    };
-  },
-
   render() {
     const {
       border,
@@ -68,49 +62,56 @@ export default React.createClass({
       flip,
       inverse,
       name,
-      prefix,
       pulse,
       rotate,
       size,
       spin,
       stack,
-      tag = 'span',
+      tag = 'i',
       ariaLabel,
       ...props,
     } = this.props;
 
-    const classNames = [];
+    let classNames = [];
 
     if (cssModule) {
-      classNames.push(cssModule[prefix])
-      classNames.push(cssModule[prefix + '-' + name])
-      size && classNames.push(cssModule[prefix + '-' + size])
-      spin && classNames.push(cssModule[prefix + '-spin'])
-      pulse && classNames.push(cssModule[prefix + '-pulse'])
-      border && classNames.push(cssModule[prefix + '-border'])
-      fixedWidth && classNames.push(cssModule[prefix + '-fw'])
-      flip && classNames.push(cssModule[prefix + '-flip-' + flip])
-      rotate && classNames.push(cssModule[prefix + '-rotate-' + rotate])
-      stack && classNames.push(cssModule[prefix + '-stack-' + stack])
+      classNames.push(cssModule['fa']);
+      classNames.push(cssModule[`fa-${name}`]);
+      size && classNames.push(cssModule[`fa-${size}`]);
+      spin && classNames.push(cssModule['fa-spin']);
+      pulse && classNames.push(cssModule['fa-pulse']);
+      border && classNames.push(cssModule['fa-border']);
+      fixedWidth && classNames.push(cssModule['fa-fw']);
+      flip && classNames.push(cssModule[`fa-flip-${flip}`]);
+      rotate && classNames.push(cssModule[`fa-rotate-${rotate}`]);
+      stack && classNames.push(cssModule[`fa-stack-${stack}`]);
     } else {
-      classNames.push(prefix)
-      classNames.push(prefix + '-' + name)
-      size && classNames.push(`${prefix}-${size}`);
-      spin && classNames.push(prefix + '-spin')
-      pulse && classNames.push(prefix + '-pulse')
-      border && classNames.push(prefix + '-border')
-      fixedWidth && classNames.push(prefix + '-fw')
-      flip && classNames.push(prefix + '-flip-' + flip)
-      rotate && classNames.push(prefix + '-rotate-' + rotate)
-      stack && classNames.push(prefix + '-stack-' + stack)
+      classNames.push(name);
+      size && classNames.push(size);
+      spin && classNames.push('spin');
+      pulse && classNames.push('pulse');
+      border && classNames.push('border');
+      fixedWidth && classNames.push('fw');
+      flip && classNames.push(`flip-${flip}`);
+      rotate && classNames.push(`rotate-${rotate}`);
+      stack && classNames.push(`stack-${stack}`);
+
+      const icon = classNames.map(iconName => `icon-${iconName}`);
+      icon.push('icon');
+
+      const fa = classNames.map(iconName => `fa-${iconName}`);
+      fa.unshift('fa');
+
+      classNames = fa.concat(icon);
     }
 
     // Add any custom class names at the end.
-    className && classNames.push(className)
+    className && classNames.push(className);
+
     return React.createElement(
       tag, { ...props, 'aria-hidden': true, className: classNames.join(' ') },
       ariaLabel ? React.createElement('span', { style: srOnlyStyle }, ariaLabel) : null
-    )
+    );
   },
 });
 

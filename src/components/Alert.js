@@ -4,9 +4,9 @@ import { Alert } from 'reactstrap';
 
 const ICON_MAP = {
   warning: 'bullhorn',
-  success: 'ok',
-  info: 'info-sign',
-  danger: 'ban-circle'
+  success: 'check',
+  info: 'info-circle',
+  danger: 'ban'
 };
 
 export default class AlertComponent extends React.Component {
