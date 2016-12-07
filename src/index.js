@@ -72,6 +72,7 @@ import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
 import ExpandableSection from './components/ExpandableSection.js';
+import FeatureBanner from './components/FeatureBanner.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
@@ -160,6 +161,7 @@ export {
   Datapair,
   DateMonth,
   ExpandableSection,
+  FeatureBanner,
   Badge as Flag,
   FormChoice,
   FormRow,

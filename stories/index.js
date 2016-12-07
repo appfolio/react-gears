@@ -21,4 +21,5 @@ import './Datapair';
 import './ExpandableSection';
 import './SummaryBox';
 import './Paginator';
+import './FeatureBanner';
 
