@@ -4,11 +4,14 @@ import { Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
 
 addDecorator((story, info) => (
-  <Container className="mt-2">
-    <h1>{info.kind}</h1>
-    <h3 className="text-muted">{info.story}</h3>
-    <hr />
-    {story()}
+  <Container fluid className="m-5">
+    <header className="mb-5">
+      <h1 className="display-4 mb-3">{info.kind}</h1>
+      <h2 className="lead">{info.story}</h2>
+    </header>
+    <section style={{ maxWidth: '700px' }}>
+      {story()}
+    </section>
   </Container>
 ));
 
