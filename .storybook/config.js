@@ -20,18 +20,21 @@ const THEMES = [
   { name: 'Superhero', url: 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css' },
 ];
 
-addDecorator((story, info) => (<div>
+addDecorator((story, info) => (
+<div>
   <ButtonGroup size="sm">
     {THEMES.map(theme => <ThemeLink url={theme.url}>{theme.name}</ThemeLink>)}
   </ButtonGroup>
-  <Container fluid className="p-5">
-    <hr />
-    <h1>{info.kind}</h1>
-    <h3 className="text-muted">{info.story}</h3>
-    <hr />
-    {story()}
+  <Container fluid className="m-5">
+    <header className="mb-5">
+      <h1 className="display-4 mb-3">{info.kind}</h1>
+      <h2 className="lead">{info.story}</h2>
+    </header>
+    <section style={{ maxWidth: '700px' }}>
+      {story()}
+    </section>
   </Container>
-  </div>
+</div>
 ));
 
 setAddon(infoAddon);
