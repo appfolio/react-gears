@@ -42,10 +42,10 @@ export default class AlertComponent extends React.Component {
   }
 
   render() {
-    const { color, children, dismissible, icon } = this.props;
+    const { color, children, className, dismissible, icon } = this.props;
 
     return (
-      <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null}>
+      <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null} className={className || ''}>
         {icon ? <Icon name={ICON_MAP[color]} className="float-left mr-2" style={{ lineHeight: 'inherit' }} /> : null}
         {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
       </Alert>
