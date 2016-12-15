@@ -3,8 +3,23 @@ import { Container, Input } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 
 import { FormRow, FormChoice, CurrencyInput } from '../src';
+import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Forms', module)
+  .addWithInfo('Live example', () => (
+    <div>
+      <FormRow
+        type={select('type', ['select', 'checkbox', 'radio'], 'select')}
+        label={text('label', 'Select a Movie')}
+        color={select('color', ['', 'success', 'warning', 'danger'], '')}
+        feedback={text('feedback', 'You must select a movie')}
+      >
+        <FormChoice value="override">A New Hope</FormChoice>
+        <FormChoice>The Empire Strikes Back</FormChoice>
+        <FormChoice>The Force Awakens</FormChoice>
+      </FormRow>
+    </div>
+  ))
   .addWithInfo('Inputs', () => (
     <div>
       <h2 className="my-3">Default (Text) Input</h2>

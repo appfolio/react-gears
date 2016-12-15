@@ -1,10 +1,24 @@
 import React from 'react';
 import { Button, Container } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
+import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 import { Alert } from '../src/index';
 
 storiesOf('Alerts', module)
+  .addWithInfo('Live example', () => (
+    <Alert
+      color={select('color', ['info', 'success', 'warning', 'danger'], 'info')}
+      icon={boolean('icon', false)}
+      dismissible={boolean('dismissible', false)}
+    >
+      <p>{text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
+elit, sed do eiusmod tempor incididunt ut labore
+et dolore magna aliqua.  Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.`)}</p>
+    </Alert>
+  ))
   .addWithInfo('Colors', () => (
     <div>
       <Alert>

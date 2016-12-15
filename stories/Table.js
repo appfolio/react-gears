@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
 import { Table } from '../src';
+import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 const DATA = [
   {
@@ -21,9 +22,15 @@ const DATA = [
     email: 'jon@walker.com'
   }
 ];
+
 storiesOf('Table', module)
-  .addWithInfo('Examples', () => (
-    <Table>
+  .addWithInfo('Live example', () => (
+    <Table bordered
+      bordered={boolean('bordered', true)}
+      striped={boolean('striped', true)}
+      hover={boolean('hover', true)}
+      size={select('size', ['', 'sm', 'lg'], 'sm')}
+    >
       <thead>
         <tr>
           <th>Name</th>

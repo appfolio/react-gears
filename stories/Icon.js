@@ -2,8 +2,20 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
 import { Button, Icon } from '../src';
+import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Icon', module)
+  .addWithInfo('Live example', () => (
+    <Icon
+      name={text('name', 'motorcycle')}
+      size={select('size', ['', 'lg', '2x', '3x', '4x', '5x'], '4x')}
+      spin={boolean('spin', false)}
+      pulse={boolean('pulse', false)}
+      rotate={select('rotate', ['', '90', '180', '270'], '')}
+      flip={select('flip', ['', 'horizontal', 'vertical'], '')}
+      border={boolean('border', false)}
+    />
+  ))
   .addWithInfo('Examples', () => (
     <h1>
       <Icon name="plus-circle" />

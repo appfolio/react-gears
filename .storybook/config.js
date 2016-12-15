@@ -1,7 +1,19 @@
 import React from 'react';
 import infoAddon from '@kadira/react-storybook-addon-info';
-import { Button,ButtonGroup, Container } from '../src';
+import { Button, ButtonGroup, Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
+import { setOptions } from '@kadira/storybook-addon-options';
+import { withKnobs } from '@kadira/storybook-addon-knobs';
+
+import './addons.js';
+
+setOptions({
+  name: 'react-gears',
+  url: 'https://github.com/gthomas-appfolio/xanthous',
+  showDownPanel: true,
+  downPanelInRight: true,
+  downPanel: 'kadirahq%2Fstorybook-addon-knobs'
+});
 
 const ThemeLink = props => {
   const changeTheme = url => {
@@ -20,6 +32,8 @@ const THEMES = [
   { name: 'Superhero', url: 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css' },
 ];
 
+addDecorator(withKnobs);
+
 addDecorator((story, info) => (
 <div>
   <ButtonGroup size="sm">
@@ -30,7 +44,7 @@ addDecorator((story, info) => (
       <h1 className="display-4 mb-3">{info.kind}</h1>
       <h2 className="lead">{info.story}</h2>
     </header>
-    <section style={{ maxWidth: '700px' }}>
+    <section>
       {story()}
     </section>
   </Container>
