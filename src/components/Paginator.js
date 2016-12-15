@@ -23,8 +23,7 @@ export default class Paginator extends Component {
   }
 
   static defaultProps = {
-    perPage: DEFAULT_PER_PAGE,
-    size: 'lg'
+    perPage: DEFAULT_PER_PAGE
   };
 
   render() {
