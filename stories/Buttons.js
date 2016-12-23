@@ -3,8 +3,6 @@ import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
          DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
-import Todo from './Todo.js';
-
 
 storiesOf('Buttons', module)
   .addWithInfo('Live example', () => (
