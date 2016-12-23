@@ -19,6 +19,7 @@ import './Select';
 import './BlockPanel';
 import './Datapair';
 import './ExpandableSection';
+import './Steps';
 import './SummaryBox';
 import './Paginator';
 
