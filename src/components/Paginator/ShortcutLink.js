@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PaginationItem, PaginationLink } from '../../';
-import styles from '../Paginator.scss';
 
 /**
  * A clickable link to the first/previous/next/last page in the pagination bar

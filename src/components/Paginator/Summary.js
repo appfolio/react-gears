@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import styles from '../Paginator.scss';
-
 /**
  * A text summary of the current pagination state
  */
