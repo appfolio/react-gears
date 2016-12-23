@@ -5,8 +5,6 @@ import State from './Paginator/State';
 import Summary from './Paginator/Summary';
 import { Col, Icon, Pagination, Row } from '../';
 
-import styles from './Paginator.scss';
-
 const DEFAULT_PER_PAGE = 20;
 
 /**
@@ -68,9 +66,8 @@ export default class Paginator extends Component {
       }
     }
 
-    // TODO Summary isn't same Pagination font, apm-bs does not style it but shouldn't set here either
     return (
-      <Row className={styles.paginator}>
+      <Row>
         <hr />
         <Col sm={{ size: 7, push: 5 }} className="text-xs-center text-sm-right">
           <Pagination size={size} className="my-0">

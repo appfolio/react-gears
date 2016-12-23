@@ -5,6 +5,8 @@ import { Paginator } from '../src';
 
 // TODO this wrapper hides the usage example in react-storybook:
 class Wrapper extends Component {
+  displayName = 'Paginator';
+
   constructor() {
     super();
     this.state = { currentPage: 1 };
