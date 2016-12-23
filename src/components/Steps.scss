@@ -1,0 +1,111 @@
+body {
+  margin: 2em;
+}
+
+// TODO these colors need to instead come from Bootstrap classes like muted/info/success/etc for theming:
+$line: 1px;
+$done: #5177B3;
+$active: #5177B3;
+$todo: #767676;
+$complete: #009500;
+$completeText: #b9d1b9;
+
+.steps {
+  align-items: flex-start;
+  counter-reset: step;
+  display: flex;
+  justify-content: space-around;
+
+  .step {
+    background-image: linear-gradient(to right, $todo, $todo);
+    background-size: 100% $line;
+    background-position: center 1.26rem;
+    background-repeat: repeat-x;  
+ 
+    align-items: center;
+    color: #767676;
+    display: inline-flex;
+    flex-direction: column;
+    flex-grow: 1;
+    list-style: square;
+    padding:  0.1rem;
+    text-align: center;
+  
+    &:first-child {
+      background-image: linear-gradient(to right, transparent 50%, $todo 50%, $todo 100%);
+      &.active {
+        background-image: linear-gradient(to right, transparent 50%, $todo 50%, $todo 100%);
+      }
+      &.complete {
+        background-image: linear-gradient(to right, transparent 50%, $done 50%, $done 100%);
+      }
+    }
+    &:last-child {
+      background-image: linear-gradient(to right, $todo 50%, transparent 50%, transparent 100%);
+      &.active {
+        background-image: linear-gradient(to right, $done 50%, transparent 50%, transparent 100%);
+      }
+      &.complete {
+        background-image: linear-gradient(to right, $done 50%, transparent 50%, transparent 100%);
+      }
+    }
+
+    &:before {
+      align-items: center;
+      color: #767676;
+      background-color: white;
+      border: $line solid $todo;
+      border-radius: 100%;
+      content: counters(step,'');
+      counter-increment: step;
+      display: flex;
+      font-size: 1.25rem;
+      font-weight: bold;
+      height: 2.5rem;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      width: 2.5rem;
+    }
+  
+    &.active {
+      background-image: linear-gradient(to right, $done 50%, $todo 50%, $todo 100%);
+      color: black;
+      &:before {
+        border: $line solid $active;
+        background-color: $active;
+        color: white;
+      }
+    }
+ 
+    &.complete {
+      background-image: linear-gradient(to right, $done, $done);
+      color: $done;
+      &:before {
+        border: $line solid $done;
+        color: $done;
+        content: '\f00c';
+        font-family: 'FontAwesome';
+      }
+    }
+  }
+  
+    &.complete {
+      .step {
+        background-image: linear-gradient(to right, $complete, $complete);
+        color: $completeText;
+        &:before {
+          border: $line solid $complete;
+          background-color: white;
+          color: $complete;
+          content: '\f00c';
+          font-family: 'FontAwesome';
+        }
+        &:first-child {
+          background-image: linear-gradient(to right, transparent 50%, $complete 50%, $complete 100%);
+        }
+        &:last-child {
+          background-image: linear-gradient(to right, $complete 50%, transparent 50%, transparent 100%);
+        }
+      }
+    }
+}
