@@ -15,7 +15,7 @@ const Steps = ({ complete, step, steps }) => {
 
 Steps.propTypes = {
   step: React.PropTypes.number,
-  steps: React.PropTypes.array,
+  steps: React.PropTypes.array.isRequired,
   complete: React.PropTypes.bool
 };
 

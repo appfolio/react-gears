@@ -9,7 +9,8 @@ import { Steps } from '../../src';
 
 describe('<Steps />', () => {
   it('should render correctly', () => {
-    const component = mount(<Steps />);
+    const steps = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const component = mount(<Steps steps={steps} />);
     assert(component);
   });
 
