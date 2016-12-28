@@ -5,10 +5,12 @@ import { configure, setAddon, addDecorator } from '@kadira/storybook';
 import { setOptions } from '@kadira/storybook-addon-options';
 import { withKnobs } from '@kadira/storybook-addon-knobs';
 
+import pkg from '../package.json';
+
 import './addons.js';
 
 setOptions({
-  name: 'react-gears',
+  name: `react-gears ${pkg.version}`,
   url: 'https://github.com/gthomas-appfolio/xanthous',
   showDownPanel: true,
   downPanelInRight: true,
