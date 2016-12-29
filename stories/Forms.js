@@ -73,34 +73,28 @@ storiesOf('Forms', module)
     </form>
   ))
   .addWithInfo('Forms with Objects', () => (
-    <Container className="m-t-3">
-      <h1 className="display-4 m-b-3">Bound Forms</h1>
-      <p className="lead">A <code>BoundForm</code> binds a form to a particular object and keeps form data in sync.</p>
-
-      <h2 className="m-y-3">Example</h2>
-      <BoundForm object={contactInfo} onSubmit={action('submit')}>
-        <FormRow label="First Name" name="firstName" required />
-        <FormRow label="Last Name" name="lastName" />
-        <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
-        <FormRow type="select" label="Select Movie" name="movie">
-          <FormChoice>A New Hope</FormChoice>
-          <FormChoice>The Empire Strikes Back</FormChoice>
-          <FormChoice>The Force Awakens</FormChoice>
-        </FormRow>
-        <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
-          <FormChoice>Darth Vader</FormChoice>
-          <FormChoice>Luke Skywalker</FormChoice>
-          <FormChoice disabled>Emperor Palpatine</FormChoice>
-          <FormChoice value="awesome">Rey</FormChoice>
-          <FormChoice>TK-421</FormChoice>
-        </FormRow>
-        <FormRow type="radio" label="Select Ship" name="ship">
-          <FormChoice>Death Star</FormChoice>
-          <FormChoice>Millennium Falcon</FormChoice>
-          <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
-        </FormRow>
-        <FormRow type={Address} name="address" label="Address" />
-        <button className="btn btn-primary">Submit</button>
-      </BoundForm>
-    </Container>
+    <BoundForm object={contactInfo} onSubmit={action('submit')}>
+      <FormRow label="First Name" name="firstName" required />
+      <FormRow label="Last Name" name="lastName" />
+      <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
+      <FormRow type="select" label="Select Movie" name="movie">
+        <FormChoice>A New Hope</FormChoice>
+        <FormChoice>The Empire Strikes Back</FormChoice>
+        <FormChoice>The Force Awakens</FormChoice>
+      </FormRow>
+      <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
+        <FormChoice>Darth Vader</FormChoice>
+        <FormChoice>Luke Skywalker</FormChoice>
+        <FormChoice disabled>Emperor Palpatine</FormChoice>
+        <FormChoice value="awesome">Rey</FormChoice>
+        <FormChoice>TK-421</FormChoice>
+      </FormRow>
+      <FormRow type="radio" label="Select Ship" name="ship">
+        <FormChoice>Death Star</FormChoice>
+        <FormChoice>Millennium Falcon</FormChoice>
+        <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
+      </FormRow>
+      <FormRow type={Address} name="address" label="Address" />
+      <button className="btn btn-primary">Submit</button>
+    </BoundForm>
   ));
