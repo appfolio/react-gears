@@ -60,8 +60,6 @@ describe('<BoundForm />', () => {
   it('should support nested data', () => {
     const row = component.find('[name="address"]');
     assert.equal(row.prop('value'), component.state('formData').address);
-    assert.equal(row.prop('address1'), '123 awesome');
-    assert.equal(row.prop('city'), 'A city');
   });
 
   it('should support updating nested data', () => {

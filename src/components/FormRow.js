@@ -1,8 +1,10 @@
 import React from 'react';
 import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap';
+import RadioInput from './RadioInput';
+import CheckboxInput from './CheckboxInput';
 
 const FormRow = props => {
-  const {
+  let {
     id,
     size,
     label,
@@ -19,12 +21,10 @@ const FormRow = props => {
 
   let content;
 
-  if (type === 'radio' || type === 'checkbox') {
-    content = React.Children.map(children, child => React.cloneElement(child, {
-      type,
-      inline,
-      ...attributes
-    }));
+  type = type === 'checkbox' ? CheckboxInput : type;
+  type = type === 'radio' ? RadioInput : type;
+
+  if (type === 'radio') {
   } else if (type === 'static') {
     content = (
       <Input

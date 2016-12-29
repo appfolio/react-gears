@@ -7,7 +7,10 @@ import { text, boolean, number, object, select } from '@kadira/storybook-addon-k
 
 let contactInfo = {
   firstName: 'Obi-Wan',
-  lastName: 'Kenobi'
+  lastName: 'Kenobi',
+  movie: 'The Force Awakens',
+  ship: 'Millennium Falcon',
+  characters: ['Luke Skywalker', 'awesome']
 };
 
 storiesOf('Forms', module)
@@ -84,12 +87,17 @@ storiesOf('Forms', module)
           <FormChoice>The Empire Strikes Back</FormChoice>
           <FormChoice>The Force Awakens</FormChoice>
         </FormRow>
-        <FormRow type="checkbox" label="Select the character(s) you like">
-          <FormChoice name="foo">Darth Vader</FormChoice>
+        <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
+          <FormChoice>Darth Vader</FormChoice>
           <FormChoice>Luke Skywalker</FormChoice>
           <FormChoice disabled>Emperor Palpatine</FormChoice>
-          <FormChoice>Rey</FormChoice>
+          <FormChoice value="awesome">Rey</FormChoice>
           <FormChoice>TK-421</FormChoice>
+        </FormRow>
+        <FormRow type="radio" label="Select Ship" name="ship">
+          <FormChoice>Death Star</FormChoice>
+          <FormChoice>Millennium Falcon</FormChoice>
+          <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
         </FormRow>
         <FormRow type={Address} name="address" label="Address" />
         <button className="btn btn-primary">Submit</button>
