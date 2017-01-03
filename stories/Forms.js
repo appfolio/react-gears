@@ -5,7 +5,7 @@ import { storiesOf, action } from '@kadira/storybook';
 import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
-let contactInfo = {
+let formData = {
   firstName: 'Obi-Wan',
   lastName: 'Kenobi',
   movie: 'The Force Awakens',
@@ -73,13 +73,13 @@ storiesOf('Forms', module)
     </form>
   ))
   .addWithInfo('Forms with Objects', () => (
-    <BoundForm object={contactInfo} onSubmit={action('submit')}>
+    <BoundForm object={formData} onSubmit={action('submit')}>
       <FormRow label="First Name" name="firstName" required />
       <FormRow label="Last Name" name="lastName" />
       <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
       <FormRow type="select" label="Select Movie" name="movie">
         <FormChoice>A New Hope</FormChoice>
-        <FormChoice>The Empire Strikes Back</FormChoice>
+        <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
       </FormRow>
       <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
