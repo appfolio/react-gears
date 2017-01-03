@@ -17,7 +17,7 @@ const FormChoice = props => {
   } = props;
 
   if (type === 'select') {
-    return <option {...attributes} children={children} />;
+    return <option {...attributes} value={value} children={children} />;
   }
 
   const labelClasses = classname({ 'form-check-inline': inline });
@@ -30,6 +30,8 @@ const FormChoice = props => {
     computedChecked = selected && selected.indexOf(computedValue) > -1;
   } else if (type === 'radio') {
     computedChecked = selected && selected === computedValue;
+  } else {
+    throw new Error(`Type '${type}' is not supported`);
   }
 
   const item = (
