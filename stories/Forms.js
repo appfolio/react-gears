@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Input } from 'reactstrap';
 import { storiesOf, action } from '@kadira/storybook';
 
-import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
+import { BoundForm, FormRow, FormChoice, CurrencyInput, Address, RadioInput } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 let formData = {
@@ -34,8 +34,18 @@ storiesOf('Forms', module)
       <Input placeholder="I'm a placeholder!" />
 
       <h2 className="my-3">Custom Inputs</h2>
-      <p><code>&lt;CurrencyInput/&gt;</code></p>
-      <CurrencyInput />
+
+      <section className="py-3">
+        <p><code>&lt;CurrencyInput/&gt;</code></p>
+        <CurrencyInput />
+      </section>
+
+      <section className="py-3">
+        <p><code>&lt;RadioInput/&gt;</code></p>
+        <RadioInput>
+          <FormChoice>hi</FormChoice>
+        </RadioInput>
+      </section>
     </div>
   ))
   .addWithInfo('Form Rows', () => (

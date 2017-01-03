@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 import React from 'react';
-import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
