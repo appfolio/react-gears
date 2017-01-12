@@ -79,7 +79,6 @@ import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
-import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';
 import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
@@ -146,7 +145,6 @@ export {
   PopoverContent,
   PopoverTitle,
   Progress,
-  RadioInput,
   Row,
   TabContent,
   TabPane,
