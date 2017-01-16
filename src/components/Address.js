@@ -114,4 +114,6 @@ Address.defaultProps = {
   onChange: noop
 };
 
-export default Address;
+const AddressWrapper = ({ value, ...props }) => (<Address {...props} {...value} value={value} />);
+
+export default AddressWrapper;

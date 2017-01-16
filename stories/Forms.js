@@ -10,7 +10,10 @@ let formData = {
   lastName: 'Kenobi',
   movie: 'The Force Awakens',
   ship: 'Millennium Falcon',
-  characters: ['Luke Skywalker', 'awesome']
+  characters: ['Luke Skywalker', 'awesome'],
+  address: {
+    address1: '123 Best Avenue'
+  }
 };
 
 storiesOf('Forms', module)

@@ -34,10 +34,9 @@ class BoundForm extends React.Component {
 
   render() {
     const children = React.Children.map(this.props.children, child => {
-      const value = this.state.formData[child.props.name] || ''
-          , valueObj = {} //(typeof value === 'object') ? value : {};
+      const value = this.state.formData[child.props.name] || '';
 
-      return React.cloneElement(child, { value, ...valueObj, onChange: this.handleChange(child.props.name) });
+      return React.cloneElement(child, { value, onChange: this.handleChange(child.props.name) });
     });
 
     return (
