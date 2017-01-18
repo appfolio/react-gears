@@ -10,7 +10,7 @@ import HelpBubble from '../../src/components/HelpBubble';
 describe('<HelpBubble />', () => {
   it('should have a question mark', () => {
     const icon = mount(<HelpBubble title="hello" />).find(Icon);
-    assert.equal(icon.prop('name'), 'question-sign');
+    assert.equal(icon.prop('name'), 'question-circle');
   });
 
   it('should link popover and icon trigger', () => {
