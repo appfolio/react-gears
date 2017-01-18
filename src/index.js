@@ -79,6 +79,7 @@ import Icon from './components/Icon.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Select from './components/Select.js';
+import Spinner from './components/Spinner.js';
 import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
@@ -167,6 +168,7 @@ export {
   HelpBubble,
   Icon,
   PatternInput,
+  Spinner,
   Steps,
   SummaryBox,
   SummaryBoxItem
