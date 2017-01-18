@@ -37,7 +37,7 @@ class HelpBubble extends React.Component {
 
     return (
       <span className={className} style={style}>
-        <Icon name="question-sign" onClick={this.toggle} id={this.id} />
+        <Icon name="question-circle" onClick={this.toggle} id={this.id} />
         <Popover isOpen={this.state.isOpen} toggle={this.toggle} target={this.id} {...other}>
           <PopoverTitle children={title} />
           <PopoverContent children={children} />
