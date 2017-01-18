@@ -1,6 +1,22 @@
 import React from 'react';
 import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap';
 
+import CheckboxInput from './CheckboxInput';
+import RadioInput from './RadioInput';
+import StaticInput from './StaticInput';
+
+const typeTranslations = {
+  checkbox: CheckboxInput,
+  radio: RadioInput,
+  static: StaticInput
+}
+
+function determineElement(type) {
+  return (typeof type === 'string') ?
+    typeTranslations[type] || Input :
+    type;
+}
+
 const FormRow = props => {
   const {
     id,
@@ -17,38 +33,7 @@ const FormRow = props => {
     ...attributes
   } = props;
 
-  let content;
-
-  if (type === 'radio' || type === 'checkbox') {
-    content = React.Children.map(children, child => React.cloneElement(child, {
-      type,
-      inline,
-      ...attributes
-    }));
-  } else if (type === 'static') {
-    content = (
-      <Input
-        static
-        id={id}
-        children={props.value || props.defaultValue}
-        size={size}
-        state={color || state}
-        {...attributes}
-      />
-    );
-  } else {
-    const InputElement = (typeof type === 'string') ? Input : type;
-    content = (
-      <InputElement
-        id={id}
-        size={size}
-        state={color || state}
-        type={type}
-        children={React.Children.map(children, child => React.cloneElement(child, { type }))}
-        {...attributes}
-      />
-    );
-  }
+  const InputElement = determineElement(type);
 
   return (
     <FormGroup row color={color || state}>
@@ -57,7 +42,14 @@ const FormRow = props => {
         {required && label ? <span className="text-danger"> *</span> : null}
       </Label>
       <Col sm={9}>
-        {content}
+        <InputElement
+          id={id}
+          size={size}
+          state={color || state}
+          type={type}
+          children={React.Children.map(children, child => React.cloneElement(child, { type }))}
+          {...attributes}
+        />
         {hint ? <FormText color="muted" children={hint} /> : null}
         {feedback ? <FormFeedback children={feedback} /> : null}
       </Col>

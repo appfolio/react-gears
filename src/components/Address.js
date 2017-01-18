@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FormGroup, Input, Row, Col, Select } from '../';
-import { autorun, reaction, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import flow from 'lodash/flow';
+import noop from 'lodash/noop';
+import pick from 'lodash/pick';
 
 // TODO Dynamic states based on country:
 import states from './address/USStates.js';
@@ -14,90 +15,82 @@ const US_STATES = states.map(state => {
   }
 });
 
-// TODO field validation
-
-@observer
 class Address extends Component {
-
-  @observable address = {
-    address1: this.props.address1,
-    address2: this.props.address2,
-    city: this.props.city,
-    state: this.props.state,
-    postal: this.props.postal,
-    country: this.props.country
+  componentWillMount() {
+    this.props.onChange(pick(this.props, ['address1', 'address2', 'city', 'state', 'postal', 'country']));
   }
 
-  // Calls onChange handler (if any) whenever internal state changes:
-  changeHandler = autorun(() => {
-    this.props.onChange({
-      address1: this.address.address1,
-      address2: this.address.address2,
-      city: this.address.city,
-      state: this.address.state,
-      postal: this.address.postal,
-      country: this.address.country
-    });
-  });
+  readEvent = e => ({ [e.target.name]: e.target.value })
+
+  onChange = update => {
+    this.props.onChange(Object.assign({}, this.props.value, update));
+  }
 
   render() {
-    const props = this.props;
+    const { address1, address2, city, state, postal, country } = this.props;
+
     return (
-  <div>
-    <FormGroup>
-      <Input
-        type="text"
-        placeholder="Address 1"
-        value={this.address.address1}
-        onChange={e => this.address.address1 = e.target.value}
-      />
-    </FormGroup>
-    <FormGroup>
-      <Input
-        type="text"
-        placeholder="Address 2"
-        value={this.address.address2}
-        onChange={e => this.address.address2 = e.target.value}
-      />
-    </FormGroup>
-    <FormGroup>
-      <Row>
-        <Col sm={6} xs={5} className="pr-0">
+      <div>
+        <FormGroup>
           <Input
+            name="address1"
             type="text"
-            placeholder="City"
-            value={this.address.city}
-            onChange={e => this.address.city = e.target.value}
+            placeholder="Address 1"
+            value={address1}
+            onChange={flow([this.readEvent, this.onChange])}
           />
-        </Col>
-        <Col sm={2} xs={3}>
+        </FormGroup>
+        <FormGroup>
+          <Input
+            name="address2"
+            type="text"
+            placeholder="Address 2"
+            value={address2}
+            onChange={flow([this.readEvent, this.onChange])}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Row>
+            <Col sm={6} xs={5} className="pr-0">
+              <Input
+                type="text"
+                name="city"
+                placeholder="City"
+                value={city}
+                onChange={flow([this.readEvent, this.onChange])}
+              />
+            </Col>
+            <Col sm={2} xs={3}>
+              <Select
+                className="w-100"
+                name="state"
+                options={US_STATES}
+                value={state}
+                onChange={selection => selection ? this.onChange({ state: selection.value }) : null}
+              />
+            </Col>
+            <Col sm={4} xs={4} className="pl-0">
+              <Input
+                type="text"
+                name="postal"
+                placeholder="Zip"
+                value={postal}
+                onChange={flow([this.readEvent, this.onChange])}
+              />
+            </Col>
+          </Row>
+        </FormGroup>
+        <FormGroup>
           <Select
             className="w-100"
-            options={US_STATES}
-            value={this.address.state}
-            onChange={selection => this.address.state = selection ? selection.value : null}
+            name="country"
+            options={COUNTRIES}
+            value={country}
+            onChange={selection => selection ? this.onChange({ country: selection.value }) : null}
           />
-        </Col>
-        <Col sm={4} xs={4} className="pl-0">
-          <Input
-            type="text"
-            placeholder="Zip"
-            value={this.address.postal}
-            onChange={e => this.address.postal = e.target.value}
-          />
-        </Col>
-      </Row>
-    </FormGroup>
-    <FormGroup>
-      <Select
-        className="w-100"
-        options={COUNTRIES}
-        value={this.address.country}
-        onChange={selection => this.address.country = selection ? selection.value : null}
-      />
-    </FormGroup>
-  </div>
-)
+        </FormGroup>
+      </div>
+    )
   }
 }
 
@@ -112,8 +105,15 @@ Address.propTypes = {
 };
 
 Address.defaultProps = {
+  address1: '',
+  address2: '',
+  city: '',
+  state: '',
+  postal: '',
   country: 'US',
-  onChange: () => {}
+  onChange: noop
 };
 
-export default Address;
+const AddressWrapper = ({ value, ...props }) => (<Address {...props} {...value} value={value} />);
+
+export default AddressWrapper;

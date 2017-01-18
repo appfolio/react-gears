@@ -1,9 +1,20 @@
 import React from 'react';
 import { Container, Input } from 'reactstrap';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
-import { FormRow, FormChoice, CurrencyInput } from '../src';
+import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+
+let formData = {
+  firstName: 'Obi-Wan',
+  lastName: 'Kenobi',
+  movie: 'The Force Awakens',
+  ship: 'Millennium Falcon',
+  characters: ['Luke Skywalker', 'awesome'],
+  address: {
+    address1: '123 Best Avenue'
+  }
+};
 
 storiesOf('Forms', module)
   .addWithInfo('Live example', () => (
@@ -26,8 +37,11 @@ storiesOf('Forms', module)
       <Input placeholder="I'm a placeholder!" />
 
       <h2 className="my-3">Custom Inputs</h2>
-      <p><code>&lt;CurrencyInput/&gt;</code></p>
-      <CurrencyInput />
+
+      <section className="py-3">
+        <p><code>&lt;CurrencyInput/&gt;</code></p>
+        <CurrencyInput />
+      </section>
     </div>
   ))
   .addWithInfo('Form Rows', () => (
@@ -63,4 +77,30 @@ storiesOf('Forms', module)
       </FormRow>
       <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" />
     </form>
+  ))
+  .addWithInfo('Forms with Objects', () => (
+    <BoundForm object={formData} onSubmit={action('submit')}>
+      <FormRow label="First Name" name="firstName" required />
+      <FormRow label="Last Name" name="lastName" />
+      <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
+      <FormRow type="select" label="Select Movie" name="movie">
+        <FormChoice>A New Hope</FormChoice>
+        <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
+        <FormChoice>The Force Awakens</FormChoice>
+      </FormRow>
+      <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
+        <FormChoice>Darth Vader</FormChoice>
+        <FormChoice>Luke Skywalker</FormChoice>
+        <FormChoice disabled>Emperor Palpatine</FormChoice>
+        <FormChoice value="awesome">Rey</FormChoice>
+        <FormChoice>TK-421</FormChoice>
+      </FormRow>
+      <FormRow type="radio" label="Select Ship" name="ship">
+        <FormChoice>Death Star</FormChoice>
+        <FormChoice>Millennium Falcon</FormChoice>
+        <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
+      </FormRow>
+      <FormRow type={Address} name="address" label="Address" />
+      <button className="btn btn-primary">Submit</button>
+    </BoundForm>
   ));
