@@ -2,14 +2,15 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
 import { HelpBubble } from '../src';
+import { text, select } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Help Bubble', module)
-  .addWithInfo('Default', () => (
+  .addWithInfo('Live example', () => (
     <div>
       <p>
         I can be placed in context to provide some contextual help!
-        <HelpBubble title="What does this mean?" className="ml-1" placement="bottom">
-          Help bubbles are a handy way of explaining things.
+        <HelpBubble title={text('title', 'What does this mean?')} className="ml-1" placement={select('placement', ['top', 'left', 'bottom', 'right'], 'bottom')}>
+          {text('content', 'Help bubbles are a handy way of explaining things.')}
         </HelpBubble>
       </p>
       <p>
