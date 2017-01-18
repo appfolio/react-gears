@@ -12,12 +12,14 @@
     "registry": "https://npm-proxy.fury.io/appfolio/"
   },
   "scripts": {
-    "dist": "webpack -p",
     "lint": "eslint src; exit 0",
     "start": "start-storybook -p 6006",
     "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles",
+    "docs": "build-storybook -o docs",
+    "version": "npm run docs && git add -A docs",
+    "dist": "webpack -p",
     "prepublish": "npm run dist",
-    "build-storybook": "build-storybook -o docs"
+    "postpublish": "git push && git push --tags"
   },
   "dependencies": {
     "babel-polyfill": "~6.13.0",
