@@ -22,3 +22,4 @@ import './ExpandableSection';
 import './Paginator';
 import './Steps';
 import './SummaryBox';
+import './Spinner';
