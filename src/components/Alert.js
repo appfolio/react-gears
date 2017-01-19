@@ -14,7 +14,8 @@ export default class AlertComponent extends React.Component {
     children: React.PropTypes.node,
     color: React.PropTypes.string,
     dismissible: React.PropTypes.bool,
-    icon: React.PropTypes.bool
+    icon: React.PropTypes.bool,
+    className: React.PropTypes.string
   }
 
   static defaultProps = {
@@ -45,7 +46,12 @@ export default class AlertComponent extends React.Component {
     const { color, children, className, dismissible, icon } = this.props;
 
     return (
-      <Alert color={color} isOpen={this.state.visible} toggle={dismissible ? this.toggle : null} className={className || ''}>
+      <Alert
+        color={color}
+        isOpen={this.state.visible}
+        toggle={dismissible ? this.toggle : null}
+        className={className}
+      >
         {icon ? <Icon name={ICON_MAP[color]} className="float-left mr-2" style={{ lineHeight: 'inherit' }} /> : null}
         {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
       </Alert>
