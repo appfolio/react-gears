@@ -3,6 +3,7 @@
   "extends": "appfolio-react",
   "rules": {
     "react/prefer-stateless-function": 0,
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "require-jsdoc": 0
   }
 }
