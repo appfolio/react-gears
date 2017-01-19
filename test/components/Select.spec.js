@@ -3,7 +3,7 @@
 import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import Select from '../../src/components/Select.js';
 
@@ -17,6 +17,20 @@ describe('<Select />', () => {
   it('should render correctly', () => {
     const component = shallow(<Select options={OPTIONS} />);
     assert(component);
+  });
+
+  it('should return async options correctly', () => {
+    const getOptions = (input, callback) => {
+      callback(null, {
+        options: [
+          { value: 'oogah', label: 'Oogah' },
+          { value: 'chaka', label: 'Chaka' }
+        ],
+        complete: true
+      });
+    };
+    const component = mount(<Select loadOptions={getOptions} />);
+    assert(component); // TODO test async options are rendered
   });
 
   it('should not have a default value if not specified');

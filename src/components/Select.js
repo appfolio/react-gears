@@ -14,13 +14,17 @@ class Select2 extends Component {
   updateValue = value => this.value = value;
 
   render() {
-    return (
-      <Select
-        onChange={this.updateValue}
-        value={this.value}
-        {...this.props}
-      />
-    );
+    return this.props.loadOptions ?
+        (<Select.Async
+          onChange={this.updateValue}
+          value={this.value}
+          {...this.props}
+        />) :
+        (<Select
+          onChange={this.updateValue}
+          value={this.value}
+          {...this.props}
+        />);
   }
 }
 
