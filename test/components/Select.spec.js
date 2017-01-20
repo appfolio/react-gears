@@ -5,7 +5,8 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 
-import Select from '../../src/components/Select.js';
+import Select from 'react-select';
+import Select2 from '../../src/components/Select.js';
 
 const OPTIONS = [
   { label: 'Eeny', value: 1 },
@@ -13,10 +14,43 @@ const OPTIONS = [
   { label: 'Miny', value: 3 },
   { label: 'Moe', value: 4 }
 ];
+
 describe('<Select />', () => {
-  it('should render correctly', () => {
-    const component = shallow(<Select options={OPTIONS} />);
-    assert(component);
+  describe('uncontrolled', () => {
+    describe('without defaultValue', () => {
+      const component = shallow(<Select2 options={OPTIONS} />);
+
+      it('should have a blank default', () => {
+        assert.equal(component.find(Select).length, 1);
+        assert.equal(component.prop('value'), '');
+      });
+    });
+
+    describe('with defaultValue', () => {
+      const component = shallow(<Select2 options={OPTIONS} defaultValue={2} />);
+
+      it('should start with default', () => {
+        assert.equal(component.prop('value'), 2);
+      });
+
+      it('should update the value when changed', () => {
+        component.simulate('change', { value: 4 });
+        assert.equal(component.prop('value'), 4);
+      });
+    });
+
+    describe('controlled', () => {
+      const component = shallow(<Select2 options={OPTIONS} value={3} defaultValue={2} />);
+
+      it('should render with the given value', () => {
+        assert.equal(component.prop('value'), 3);
+      });
+
+      it('should not update the value when changed', () => {
+        component.simulate('change', { value: 4 });
+        assert.equal(component.prop('value'), 3);
+      });
+    });
   });
 
   it('should return async options correctly', () => {
@@ -29,11 +63,7 @@ describe('<Select />', () => {
         complete: true
       });
     };
-    const component = mount(<Select loadOptions={getOptions} />);
+    const component = mount(<Select2 loadOptions={getOptions} />);
     assert(component); // TODO test async options are rendered
   });
-
-  it('should not have a default value if not specified');
-
-  it('should have a default value if specified');
 });
