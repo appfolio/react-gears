@@ -4,13 +4,10 @@ $base-color: #3179CD;
 // Time for one complete spin cycle
 $duration: 1.2s;
 
-// Every other size is in ems so will scale with the font size.
-$font-size: 12px;
-
-$container-size: 5em;
-$segment-width: .5em;
-$segment-length: 1.5em;
-$segment-border-radius: .5em;
+$container-size: 1em;
+$segment-width: .1em;
+$segment-length: .3em;
+$segment-border-radius: .1em;
 
 @keyframes spin {
   to { transform: rotate(1turn); }
@@ -19,9 +16,8 @@ $segment-border-radius: .5em;
 .spinner {
   animation: spin $duration infinite steps(12);
   display: inline-block;
-  font-size: $font-size;
   height: $container-size;
-  margin: 0 .5em;
+  margin: 0 .1em;
   overflow: hidden;
   position: relative;
   width: $container-size;
