@@ -39,7 +39,7 @@ addDecorator(withKnobs);
 addDecorator((story, info) => (
 <div>
   <ButtonGroup size="sm">
-    {THEMES.map(theme => <ThemeLink url={theme.url}>{theme.name}</ThemeLink>)}
+    {THEMES.map((theme, i) => <ThemeLink key={i} url={theme.url}>{theme.name}</ThemeLink>)}
   </ButtonGroup>
   <Container fluid className="m-5">
     <header className="mb-5">

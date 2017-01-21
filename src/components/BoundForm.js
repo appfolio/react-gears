@@ -6,6 +6,7 @@ import set from 'lodash/set';
 class BoundForm extends React.Component {
 
   static propTypes = {
+    children: React.PropTypes.node,
     object: React.PropTypes.object.isRequired,
     onSubmit: React.PropTypes.func
   };
@@ -19,7 +20,7 @@ class BoundForm extends React.Component {
 
     this.state = {
       formData: JSON.parse(JSON.stringify(props.object))
-    }
+    };
   }
 
   onSubmit = e => {
