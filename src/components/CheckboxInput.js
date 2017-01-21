@@ -28,12 +28,12 @@ class CheckboxInput extends React.Component {
 
     return (
       <div>
-        { React.Children.map(children, choice => React.cloneElement(choice, {
+        {React.Children.map(children, choice => React.cloneElement(choice, {
           type: 'checkbox',
           selected: value,
           onChange: this.onChange,
           ...props
-          })) }
+        }))}
       </div>
     );
   }
