@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
 
-@observer
 class Select2 extends Component {
+  static propTypes = {
+    defaultValue: React.PropTypes.any,
+    value: React.PropTypes.any
+  };
 
-  // TODO specifying value prop makes selection impossible:
-  @observable value = this.props.value;
-  updateValue = value => this.value = value;
+  static defaultProps = {
+    defaultValue: ''
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.defaultValue
+    }
+  }
+
+  updateValue = ({ value }) => { this.setState({ value })}
 
   render() {
-    return this.props.loadOptions ?
-        (<Select.Async
-          onChange={this.updateValue}
-          value={this.value}
-          {...this.props}
-        />) :
-        (<Select
-          onChange={this.updateValue}
-          value={this.value}
-          {...this.props}
-        />);
+    const { value, ...props } = this.props;
+    const SelectElement = this.props.loadOptions ? Select.Async : Select;
+
+    return (
+      <SelectElement
+        onChange={this.updateValue}
+        value={value || this.state.value}
+        {...props}
+      />
+    );
   }
 }
 
