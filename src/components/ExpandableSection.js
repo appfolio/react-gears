@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Icon } from '../';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 import styles from './ExpandableSection.scss';
 
-@observer
 class ExpandableSection extends Component {
 
-  @observable open = this.props.open;
+  constructor(props) {
+    super(props);
 
-  toggle = () => this.open = !this.open;
+    this.state = {
+      open: props.open
+    };
+  }
+
+  toggle = () => this.setState({ open: !this.state.open });
 
   render() {
     const className = `${styles.expandableSection} ${this.props.className}`;
@@ -21,14 +24,14 @@ class ExpandableSection extends Component {
         <header onClick={this.toggle} style={{ cursor: 'pointer' }}>
           <Icon
             name='caret-right'
-            rotate={this.open ? 90 : undefined}
+            rotate={this.state.open ? 90 : undefined}
             size="lg"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
           <b style={{ userSelect: 'none' }}>{this.props.title}</b>
         </header>
-        {this.open ? <section>{this.props.children}</section> : null}
+        {this.state.open ? <section>{this.props.children}</section> : null}
       </section>
     );
   }

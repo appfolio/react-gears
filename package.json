@@ -57,8 +57,6 @@
     "lodash.includes": "^4.2.0",
     "lodash.omit": "^4.5.0",
     "lodash.range": "~3.2.0",
-    "mobx": "^2.6.2",
-    "mobx-react": "^3.5.9",
     "mocha": "~3.0.2",
     "node-sass": "~3.10.0",
     "nyc": "~6.6.1",
@@ -70,7 +68,7 @@
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
-    "webpack": "~2.1.0-beta.26"
+    "webpack": "2.2.0"
   },
   "nyc": {
     "exclude": [
