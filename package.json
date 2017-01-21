@@ -28,7 +28,7 @@
     "react-addons-css-transition-group": "^15.4.0",
     "react-addons-transition-group": "^15.4.0",
     "react-dom": "~15.4.0",
-    "reactstrap": "4.0.0-alpha.6"
+    "reactstrap": "4.0.1"
   },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",

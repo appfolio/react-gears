@@ -67,20 +67,19 @@ export default class Paginator extends Component {
     }
 
     return (
-      <Row>
-        <hr />
-        <Col sm={{ size: 7, push: 5 }} className="text-xs-center text-sm-right">
-          <Pagination size={size} className="my-0">
+      <Row className="flex-sm-row-reverse align-items-center">
+        <div className="col-sm-7 text-center text-sm-right">
+          <Pagination size={size} className="my-0 mb-2 d-inline-flex">
             {firstPageLink}
             {prevPageLink}
             {pages}
             {nextPageLink}
             {lastPageLink}
           </Pagination>
-        </Col>
-        <Col sm={{ size: 5, pull: 7 }} className="text-xs-center text-sm-left">
-          <Summary from={from} to={to} totalItems={totalItems} className="pt-1" />
-        </Col>
+        </div>
+        <div className="col-sm-5 text-center text-sm-left">
+          <Summary from={from} to={to} totalItems={totalItems} className="m-0 mb-2" />
+        </div>
       </Row>
     );
   }

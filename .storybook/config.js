@@ -1,5 +1,5 @@
 import React from 'react';
-import infoAddon from '@kadira/react-storybook-addon-info';
+import infoAddon, { setDefaults } from '@kadira/react-storybook-addon-info';
 import { Button, ButtonGroup, Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
 import { setOptions } from '@kadira/storybook-addon-options';
@@ -27,11 +27,11 @@ const ThemeLink = props => {
 }
 
 const THEMES = [
-  { name: 'APM/Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap.css' },
-  { name: 'Bootstrap', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css' },
-  { name: 'Admire', url: 'http://dev.lorvent.com/admire/css/components.css' },
-  { name: 'Paper', url: 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css' },
-  { name: 'Superhero', url: 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css' },
+  { name: 'Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.css' },
+  { name: 'Bootstrap', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
+  { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
+  { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
+  { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }
 ];
 
 addDecorator(withKnobs);
@@ -54,6 +54,10 @@ addDecorator((story, info) => (
 ));
 
 setAddon(infoAddon);
+setDefaults({
+  header: false,
+  inline: true
+});
 
 function loadStories() {
   require('../stories');
