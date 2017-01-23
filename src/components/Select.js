@@ -22,7 +22,7 @@ class Select2 extends Component {
     }
   }
 
-  updateValue = ({ value }) => { this.setState({ value })}
+  updateValue = value => { this.setState({ value }); }
 
   render() {
     const { value, ...props } = this.props;

@@ -3,7 +3,7 @@
 import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Select from 'react-select';
 import Select2 from '../../src/components/Select.js';
@@ -21,8 +21,13 @@ describe('<Select />', () => {
       const component = shallow(<Select2 options={OPTIONS} />);
 
       it('should have a blank default', () => {
-        assert.equal(component.find(Select).length, 1);
+        assert.equal(component.type(), Select);
         assert.equal(component.prop('value'), '');
+      });
+
+      it('should clear input', () => {
+        component.simulate('change', null);
+        assert.equal(component.prop('value'), null);
       });
     });
 
@@ -34,22 +39,22 @@ describe('<Select />', () => {
       });
 
       it('should update the value when changed', () => {
-        component.simulate('change', { value: 4 });
-        assert.equal(component.prop('value'), 4);
+        component.simulate('change', 'stuff');
+        assert.equal(component.prop('value'), 'stuff');
       });
     });
+  });
 
-    describe('controlled', () => {
-      const component = shallow(<Select2 options={OPTIONS} value={3} defaultValue={2} />);
+  describe('controlled', () => {
+    const component = shallow(<Select2 options={OPTIONS} value={3} defaultValue={2} />);
 
-      it('should render with the given value', () => {
-        assert.equal(component.prop('value'), 3);
-      });
+    it('should render with the given value', () => {
+      assert.equal(component.prop('value'), 3);
+    });
 
-      it('should not update the value when changed', () => {
-        component.simulate('change', { value: 4 });
-        assert.equal(component.prop('value'), 3);
-      });
+    it('should not update the value when changed', () => {
+      component.simulate('change', OPTIONS[3]);
+      assert.equal(component.prop('value'), 3);
     });
   });
 
@@ -63,7 +68,8 @@ describe('<Select />', () => {
         complete: true
       });
     };
-    const component = mount(<Select2 loadOptions={getOptions} />);
-    assert(component); // TODO test async options are rendered
+
+    const component = shallow(<Select2 loadOptions={getOptions} />);
+    assert.equal(component.type(), Select.Async);
   });
 });

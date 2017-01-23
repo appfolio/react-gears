@@ -12,7 +12,7 @@ There are two steps to publish changes that are already tested, reviewed, and me
 
 ### Bumping the Version
 
-The `react-gears` package follows [semantic versioning](https://docs.npmjs.com/getting-started/semantic-versioning).  After assessing the extent of the changes bump the version of the package:
+The `react-gears` package follows [semantic versioning](https://docs.npmjs.com/getting-started/semantic-versioning).  After assessing the extent of the changes, bump the version of the package:
 ```
 npm version [ major | minor | patch ]
 ```
@@ -24,4 +24,4 @@ The next step is to actually publish the gem, i.e. push it to our NPM repository
 ```
 npm publish
 ```
-This command, pushes the gem to our private repository and pushes the last commits and tags.
+This command pushes the gem to our private repository and also pushes the last commits and tags.
