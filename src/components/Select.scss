@@ -5,8 +5,13 @@
   // TODO correct inner padding, colors to match BS styles
 
   @import '~react-select/scss/default.scss';
-  
+
   .Select-input > input {
     height: 100%;
+  }
+
+  .Select-value {
+    // Allow space for the "x" and prevent text overlap
+    padding-right: 3rem !important;
   }
 }
