@@ -2,9 +2,21 @@
   // Import and override react-select's SCSS variables to match BS4:
   $select-input-border-width: 0.1rem;
   $select-input-height: 2.4rem !default;
+
+  // Override react-select styles to match Saffron (TODO move to theme?)
+  $select-option-focused-color: #FFF;
+  $select-option-focused-bg: #00AFDB;
+
   // TODO correct inner padding, colors to match BS styles
 
   @import '~react-select/scss/default.scss';
+
+  // The default right padding for the input is 10px, which puts the cursor quite deep into the
+  // component.  By reducing this to 5px the input looks more natural and the cursor does not
+  // overlap any placeholder text.
+  .Select-input {
+    padding-left: 5px;
+  }
 
   .Select-input > input {
     height: 100%;
@@ -13,5 +25,12 @@
   .Select-value {
     // Allow space for the "x" and prevent text overlap
     padding-right: 3rem !important;
+  }
+
+  .is-open .Select-arrow-zone .Select-arrow {
+    // This fixes a bug where the arrow would not flip when the select is opened.  This can be
+    // removed if https://github.com/JedWatson/react-select/pull/1500 gets merged.
+    border-color: transparent transparent $select-arrow-color;
+    border-width: 0 $select-arrow-width $select-arrow-width;
   }
 }
