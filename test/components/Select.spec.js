@@ -4,6 +4,7 @@ import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import Select from 'react-select';
 import Select2 from '../../src/components/Select.js';
@@ -42,6 +43,15 @@ describe('<Select />', () => {
         component.simulate('change', 'stuff');
         assert.equal(component.prop('value'), 'stuff');
       });
+    });
+
+    it('should call additional onChange', () => {
+      const callback = sinon.spy();
+      const component = shallow(<Select2 options={OPTIONS} onChange={callback} />);
+      component.simulate('change', 'stuff');
+
+      assert(callback.calledOnce);
+      assert(callback.calledWith('stuff'));
     });
   });
 
