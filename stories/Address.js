@@ -1,7 +1,9 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 import Select from '../src/components/Select';
+import { text, select } from '@kadira/storybook-addon-knobs';
 import { Address } from '../src';
+import states from '../src/components/address/USStates.js';
 
 storiesOf('Address', module)
   .addWithInfo('uncontrolled', () => (
@@ -15,7 +17,7 @@ storiesOf('Address', module)
           postal: '12345-1234',
           country: 'US'
         }}
-        onChange={address => console.log('address', address)}
+        onChange={action('address onChange')}
       />
     </div>
   ))
@@ -23,14 +25,14 @@ storiesOf('Address', module)
     <div>
       <Address
         value={{
-          address1: '123 No Way',
-          address2: 'Suite 16',
-          city: 'Smallsville',
-          state: 'AL',
-          postal: '12345-1234',
+          address1: text('address1', '123 No Way'),
+          address2: text('address2', 'Suite 16'),
+          city: text('city', 'Smallsville'),
+          state: select('state', states.map(s => s.value), 'AL'),
+          postal: text('postal', '12345-1234'),
           country: 'US'
         }}
-        onChange={address => console.log('address', address)}
+        onChange={action('address onChange')}
       />
     </div>
   ));
