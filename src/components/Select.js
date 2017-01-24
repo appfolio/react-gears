@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import noop from 'lodash/noop';
+import over from 'lodash/over';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
@@ -7,11 +9,13 @@ import './Select.scss';
 class Select2 extends Component {
   static propTypes = {
     defaultValue: React.PropTypes.any,
-    value: React.PropTypes.any
+    value: React.PropTypes.any,
+    onChange: React.PropTypes.func
   };
 
   static defaultProps = {
-    defaultValue: ''
+    defaultValue: '',
+    onChange: noop
   };
 
   constructor(props) {
@@ -19,18 +23,18 @@ class Select2 extends Component {
 
     this.state = {
       value: props.defaultValue
-    }
+    };
   }
 
   updateValue = value => { this.setState({ value }); }
 
   render() {
-    const { value, ...props } = this.props;
+    const { value, onChange, ...props } = this.props;
     const SelectElement = this.props.loadOptions ? Select.Async : Select;
 
     return (
       <SelectElement
-        onChange={this.updateValue}
+        onChange={over([this.updateValue, onChange])}
         value={value || this.state.value}
         {...props}
       />
