@@ -22,9 +22,11 @@ storiesOf('Forms', module)
       <FormRow
         type={select('type', ['select', 'checkbox', 'radio'], 'select')}
         label={text('label', 'Select a Movie')}
-        color={select('color', ['', 'success', 'warning', 'danger'], '')}
+        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
         feedback={text('feedback', 'You must select a movie')}
+        name="live-input"
       >
+        <FormChoice />
         <FormChoice value="override">A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
