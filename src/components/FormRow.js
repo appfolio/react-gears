@@ -9,7 +9,7 @@ const typeTranslations = {
   checkbox: CheckboxInput,
   radio: RadioInput,
   static: StaticInput
-}
+};
 
 function determineElement(type) {
   return (typeof type === 'string') ?
