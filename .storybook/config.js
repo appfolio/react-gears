@@ -1,6 +1,6 @@
 import React from 'react';
 import infoAddon, { setDefaults } from '@kadira/react-storybook-addon-info';
-import { Button, ButtonGroup, Container } from '../src';
+import { Button, ButtonGroup, Col, Container } from '../src';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
 import { setOptions } from '@kadira/storybook-addon-options';
 import { withKnobs } from '@kadira/storybook-addon-knobs';
@@ -42,13 +42,15 @@ addDecorator((story, info) => (
     {THEMES.map((theme, i) => <ThemeLink key={i} url={theme.url}>{theme.name}</ThemeLink>)}
   </ButtonGroup>
   <Container fluid className="m-5">
-    <header className="mb-5">
-      <h1 className="display-4 mb-3">{info.kind}</h1>
-      <h2 className="lead">{info.story}</h2>
-    </header>
-    <section>
-      {story()}
-    </section>
+    <Col xl="7">
+      <header className="mb-5">
+        <h1 className="display-4 mb-3">{info.kind}</h1>
+        <h2 className="lead">{info.story}</h2>
+      </header>
+      <section>
+        {story()}
+      </section>
+    </Col>
   </Container>
 </div>
 ));
