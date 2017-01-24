@@ -63,6 +63,7 @@ class Address extends Component {
               <Select
                 className="w-100"
                 name="state"
+                placeholder="State"
                 options={US_STATES}
                 {...this.propsFor('state')}
                 onChange={selection => this.onChange({ state: selection && selection.value })}
@@ -84,6 +85,7 @@ class Address extends Component {
             className="w-100"
             name="country"
             options={COUNTRIES}
+            placeholder="Country"
             {...this.propsFor('country')}
             onChange={selection => this.onChange({ country: selection && selection.value })}
           />
