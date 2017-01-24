@@ -11,13 +11,13 @@ $completeText: #b9d1b9;
   counter-reset: step;
   display: flex;
   justify-content: space-around;
-
+  padding: 0;
   .step {
     background-image: linear-gradient(to right, $todo, $todo);
     background-size: 100% $line;
     background-position: center 1.26rem;
     background-repeat: repeat-x;  
- 
+
     align-items: center;
     color: #767676;
     display: inline-flex;
@@ -26,7 +26,7 @@ $completeText: #b9d1b9;
     list-style: square;
     padding:  0.1rem;
     text-align: center;
-  
+
     &:first-child {
       background-image: linear-gradient(to right, transparent 50%, $todo 50%, $todo 100%);
       &.active {
@@ -62,7 +62,7 @@ $completeText: #b9d1b9;
       margin-bottom: 0.5rem;
       width: 2.5rem;
     }
-  
+
     &.active {
       background-image: linear-gradient(to right, $done 50%, $todo 50%, $todo 100%);
       color: black;
@@ -72,7 +72,7 @@ $completeText: #b9d1b9;
         color: white;
       }
     }
- 
+
     &.complete {
       background-image: linear-gradient(to right, $done, $done);
       color: $done;
