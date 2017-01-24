@@ -2,33 +2,32 @@ import React, { Component } from 'react';
 import { FormGroup, Input, Row, Col, Select } from '../';
 import flow from 'lodash/flow';
 import noop from 'lodash/noop';
-import pick from 'lodash/pick';
 
 // TODO Dynamic states based on country:
 import states from './address/USStates.js';
 import COUNTRIES from './address/Countries.js';
 
-const US_STATES = states.map(state => {
-  return {
-    label: state.value,
-    value: state.value
-  }
-});
+const US_STATES = states.map(state => ({
+  label: state.value,
+  value: state.value
+}));
+
+const readEvent = e => ({ [e.target.name]: e.target.value });
 
 class Address extends Component {
-  componentWillMount() {
-    this.props.onChange(pick(this.props, ['address1', 'address2', 'city', 'state', 'postal', 'country']));
-  }
-
-  readEvent = e => ({ [e.target.name]: e.target.value })
-
   onChange = update => {
     this.props.onChange(Object.assign({}, this.props.value, update));
   }
 
-  render() {
-    const { address1, address2, city, state, postal, country } = this.props;
+  propsFor = field => {
+    if (this.props.value[field]) {
+      return { value: this.props.value[field] };
+    } else {
+      return { defaultValue: this.props.defaultValue[field] };
+    }
+  }
 
+  render() {
     return (
       <div>
         <FormGroup>
@@ -36,8 +35,8 @@ class Address extends Component {
             name="address1"
             type="text"
             placeholder="Address 1"
-            value={address1}
-            onChange={flow([this.readEvent, this.onChange])}
+            {...this.propsFor('address1')}
+            onChange={flow([readEvent, this.onChange])}
           />
         </FormGroup>
         <FormGroup>
@@ -45,8 +44,8 @@ class Address extends Component {
             name="address2"
             type="text"
             placeholder="Address 2"
-            value={address2}
-            onChange={flow([this.readEvent, this.onChange])}
+            {...this.propsFor('address2')}
+            onChange={flow([readEvent, this.onChange])}
           />
         </FormGroup>
         <FormGroup>
@@ -56,8 +55,8 @@ class Address extends Component {
                 type="text"
                 name="city"
                 placeholder="City"
-                value={city}
-                onChange={flow([this.readEvent, this.onChange])}
+                {...this.propsFor('city')}
+                onChange={flow([readEvent, this.onChange])}
               />
             </Col>
             <Col sm={2} xs={3}>
@@ -65,8 +64,8 @@ class Address extends Component {
                 className="w-100"
                 name="state"
                 options={US_STATES}
-                value={state}
-                onChange={selection => selection ? this.onChange({ state: selection.value }) : null}
+                {...this.propsFor('state')}
+                onChange={selection => this.onChange({ state: selection && selection.value })}
               />
             </Col>
             <Col sm={4} xs={4} className="pl-0">
@@ -74,8 +73,8 @@ class Address extends Component {
                 type="text"
                 name="postal"
                 placeholder="Zip"
-                value={postal}
-                onChange={flow([this.readEvent, this.onChange])}
+                {...this.propsFor('postal')}
+                onChange={flow([readEvent, this.onChange])}
               />
             </Col>
           </Row>
@@ -85,35 +84,34 @@ class Address extends Component {
             className="w-100"
             name="country"
             options={COUNTRIES}
-            value={country}
-            onChange={selection => selection ? this.onChange({ country: selection.value }) : null}
+            {...this.propsFor('country')}
+            onChange={selection => this.onChange({ country: selection && selection.value })}
           />
         </FormGroup>
       </div>
-    )
+    );
   }
 }
 
-Address.propTypes = {
+const fieldTypes = {
   address1: React.PropTypes.string,
   address2: React.PropTypes.string,
   city: React.PropTypes.string,
   state: React.PropTypes.string,
   postal: React.PropTypes.string,
-  country: React.PropTypes.string,
+  country: React.PropTypes.string
+};
+
+Address.propTypes = {
+  value: React.PropTypes.shape(fieldTypes),
+  defaultValue: React.PropTypes.shape(fieldTypes),
   onChange: React.PropTypes.func
 };
 
 Address.defaultProps = {
-  address1: '',
-  address2: '',
-  city: '',
-  state: '',
-  postal: '',
-  country: 'US',
+  value: {},
+  defaultValue: {},
   onChange: noop
 };
 
-const AddressWrapper = ({ value, ...props }) => (<Address {...props} {...value} value={value} />);
-
-export default AddressWrapper;
+export default Address;
