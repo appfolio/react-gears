@@ -4,14 +4,15 @@ import noop from 'lodash/noop';
 import set from 'lodash/set';
 
 class BoundForm extends React.Component {
-
   static propTypes = {
     children: React.PropTypes.node,
+    errors: React.PropTypes.object,
     object: React.PropTypes.object.isRequired,
     onSubmit: React.PropTypes.func
   };
 
   static defaultProps = {
+    errors: {},
     onSubmit: noop
   };
 
@@ -36,8 +37,15 @@ class BoundForm extends React.Component {
   render() {
     const children = React.Children.map(this.props.children, child => {
       const value = this.state.formData[child.props.name] || '';
+      const feedback = this.props.errors[child.props.name];
+      const color = feedback ? 'danger' : null;
 
-      return React.cloneElement(child, { value, onChange: this.handleChange(child.props.name) });
+      return React.cloneElement(child, {
+        feedback,
+        color,
+        value,
+        onChange: this.handleChange(child.props.name)
+      });
     });
 
     return (
