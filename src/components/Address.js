@@ -83,11 +83,11 @@ class Address extends Component {
         <FormGroup>
           <Select
             className="w-100"
-            name="country"
+            name="countryCode"
             options={COUNTRIES}
             placeholder="Country"
-            {...this.propsFor('country')}
-            onChange={selection => this.onChange({ country: selection && selection.value })}
+            {...this.propsFor('countryCode')}
+            onChange={selection => this.onChange({ countryCode: selection && selection.value })}
           />
         </FormGroup>
       </div>
@@ -101,7 +101,7 @@ const fieldTypes = {
   city: React.PropTypes.string,
   state: React.PropTypes.string,
   postal: React.PropTypes.string,
-  country: React.PropTypes.string
+  countryCode: React.PropTypes.string
 };
 
 Address.propTypes = {

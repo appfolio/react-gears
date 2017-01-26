@@ -15,7 +15,7 @@ storiesOf('Address', module)
           city: 'Smallsville',
           state: 'AL',
           postal: '12345-1234',
-          country: 'US'
+          countryCode: 'US'
         }}
         onChange={action('address onChange')}
       />
@@ -30,7 +30,7 @@ storiesOf('Address', module)
           city: text('city', 'Smallsville'),
           state: select('state', states.map(s => s.value), 'AL'),
           postal: text('postal', '12345-1234'),
-          country: 'US'
+          countryCode: 'US'
         }}
         onChange={action('address onChange')}
       />

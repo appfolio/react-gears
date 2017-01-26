@@ -20,7 +20,7 @@ describe('<Address />', () => {
           city: 'Gotham',
           state: 'NJ',
           postal: '07001',
-          country: 'US'
+          countryCode: 'US'
         }}
         onChange={callback}
       />
@@ -82,17 +82,17 @@ describe('<Address />', () => {
     });
 
     it('should have country', () => {
-      const input = component.find('[name="country"]');
+      const input = component.find('[name="countryCode"]');
       assert.equal(input.type(), Select);
       assert.equal(input.prop('placeholder'), 'Country');
       assert.equal(input.prop('defaultValue'), 'US');
       assert.equal(input.prop('value'), undefined);
 
       input.simulate('change', { label: 'USA', value: 'US' });
-      assert(callback.calledWith({ country: 'US' }));
+      assert(callback.calledWith({ countryCode: 'US' }));
 
       input.simulate('change', null);
-      assert(callback.calledWith({ country: null }));
+      assert(callback.calledWith({ countryCode: null }));
     });
   });
 
@@ -104,7 +104,7 @@ describe('<Address />', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      country: 'US'
+      countryCode: 'US'
     }
     const component = shallow(
       <Address
@@ -162,15 +162,15 @@ describe('<Address />', () => {
     });
 
     it('should update country', () => {
-      const input = component.find('[name="country"]');
+      const input = component.find('[name="countryCode"]');
       assert.equal(input.prop('value'), 'US');
       assert.equal(input.prop('defaultValue'), '');
 
       input.simulate('change', { label: 'USA', value: 'US' });
-      assert(callback.calledWith(Object.assign({}, addressData, { country: 'US' })));
+      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: 'US' })));
 
       input.simulate('change', null);
-      assert(callback.calledWith(Object.assign({}, addressData, { country: null })));
+      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
     });
   });
 });
