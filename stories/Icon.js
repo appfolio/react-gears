@@ -17,29 +17,34 @@ storiesOf('Icon', module)
     />
   ))
   .addWithInfo('Examples', () => (
-    <h1>
-      <Icon name="plus-circle" />
-      <Icon name="minus-circle" />
-      <Icon name="caret-up" />
-      <Icon name="caret-down" />
-      <Icon name="caret-left" />
-      <Icon name="caret-right" />
-      <Icon name="info-circle" />
-      <Icon name="question-circle" />
-      <Icon name="user" />
-      <Icon name="print" />
-      <Icon name="eye" />
-      <Icon name="search" />
-      <Icon name="calendar" />
-      <Icon name="pencil" />
-      <Icon name="pencil-square-o" />
-      <Icon name="exclamation-triangle" />
-      <Icon name="check" />
-      <Icon name="check-circle" />
-      <Icon name="times" />
-      <Icon name="times-circle" />
-      <Icon name="ban" />
-    </h1>
+    <div>
+      <p>
+        See full list of icons <a href="http://fontawesome.io/icons/" target="_blank">here</a>.
+      </p>
+      <h1>
+        <Icon name="plus-circle" />
+        <Icon name="minus-circle" />
+        <Icon name="caret-up" />
+        <Icon name="caret-down" />
+        <Icon name="caret-left" />
+        <Icon name="caret-right" />
+        <Icon name="info-circle" />
+        <Icon name="question-circle" />
+        <Icon name="user" />
+        <Icon name="print" />
+        <Icon name="eye" />
+        <Icon name="search" />
+        <Icon name="calendar" />
+        <Icon name="pencil" />
+        <Icon name="pencil-square-o" />
+        <Icon name="exclamation-triangle" />
+        <Icon name="check" />
+        <Icon name="check-circle" />
+        <Icon name="times" />
+        <Icon name="times-circle" />
+        <Icon name="ban" />
+      </h1>
+    </div>
   ))
   .addWithInfo('with inline text', () => (
     <div>

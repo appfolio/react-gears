@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
-import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+import { text, boolean, select } from '@kadira/storybook-addon-knobs';
 
 import { Alert } from '../src/index';
 

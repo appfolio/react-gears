@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
          DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
-import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+import { text, boolean, select } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Buttons', module)
   .addWithInfo('Live example', () => (
@@ -55,11 +55,11 @@ storiesOf('Buttons', module)
     )
   )
   .addWithInfo('Sizes', () => (
-    <ButtonToolbar>
-      <Button color="primary" size="lg">Large button</Button>
-      <Button color="primary" size="md">Medium button</Button>
+    <div>
+      <Button color="primary" size="lg">Large button</Button>&nbsp;
+      <Button color="primary" size="md">Medium button</Button>&nbsp;
       <Button color="primary" size="sm">Small button</Button>
-    </ButtonToolbar>
+    </div>
     )
   )
   .addWithInfo('Groups', () => (

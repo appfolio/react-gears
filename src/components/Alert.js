@@ -24,7 +24,7 @@ export default class AlertComponent extends React.Component {
     icon: false
   }
 
-  static displayName = 'Alert'
+  static displayName = 'Alert';
 
   constructor(props) {
     super(props);

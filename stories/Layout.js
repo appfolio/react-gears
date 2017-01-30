@@ -6,15 +6,6 @@ import { Card, Container, Col, Row } from '../src';
 storiesOf('Layout', module)
   .addWithInfo('Grid', () => (
     <Container fluid className="text-xs-center">
-      <style>{`
-        /* Just to make example clearer, not needed */
-        .row > div {
-          background-color: #F0F0F0;
-          border: 2px solid white;
-          border-radius: 6px;
-          padding: 0.5rem;
-        }
-      `}</style>
       <Row>
         <Col xs={1}>1</Col>
         <Col xs={1}>1</Col>
@@ -55,6 +46,20 @@ storiesOf('Layout', module)
       <Row>
         <Col xs={12}>12</Col>
       </Row>
+      <h3 className="my-5">
+        More information about the layout grid can be read here:&nbsp;
+        <a href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works" target="_blank">Layout</a>
+      </h3>
+      <hr />
+      <style>{`
+        /* Just to make example clearer, not needed */
+        .row > div {
+          background-color: #F0F0F0;
+          border: 2px solid white;
+          border-radius: 6px;
+          padding: 0.5rem;
+        }
+      `}</style>
     </Container>)
   )
   .addWithInfo('Offsets', () => (
