@@ -5,9 +5,8 @@ import { storiesOf, action } from '@kadira/storybook';
 import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
-let formData = {
+const formData = {
   firstName: 'Obi-Wan',
-  lastName: 'Kenobi',
   movie: 'The Force Awakens',
   ship: 'Millennium Falcon',
   characters: ['Luke Skywalker', 'awesome'],
@@ -22,9 +21,11 @@ storiesOf('Forms', module)
       <FormRow
         type={select('type', ['select', 'checkbox', 'radio'], 'select')}
         label={text('label', 'Select a Movie')}
-        color={select('color', ['', 'success', 'warning', 'danger'], '')}
+        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
         feedback={text('feedback', 'You must select a movie')}
+        name="live-input"
       >
+        <FormChoice />
         <FormChoice value="override">A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
@@ -79,9 +80,12 @@ storiesOf('Forms', module)
     </form>
   ))
   .addWithInfo('Forms with Objects', () => (
-    <BoundForm object={formData} onSubmit={action('submit')}>
-      <FormRow label="First Name" name="firstName" required />
-      <FormRow label="Last Name" name="lastName" />
+    <BoundForm
+      object={formData}
+      errors={object('errors', { lastName: "can't be blank" })}
+      onSubmit={action('submit')}>
+      <FormRow label="First Name" name="firstName" />
+      <FormRow label="Last Name" name="lastName" required />
       <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
       <FormRow type="select" label="Select Movie" name="movie">
         <FormChoice>A New Hope</FormChoice>

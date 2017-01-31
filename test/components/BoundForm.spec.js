@@ -11,7 +11,7 @@ import FormRow from '../../src/components/FormRow';
 import FormChoice from '../../src/components/FormChoice';
 
 describe('<BoundForm />', () => {
-  let data = {
+  const data = {
     firstName: 'Glenn',
     address: {
       address1: '123 awesome',
@@ -19,9 +19,13 @@ describe('<BoundForm />', () => {
     }
   };
 
+  const errors = {
+    firstName: "Can't be Glenn"
+  }
+
   const submitFunc = sinon.stub();
 
-  const Composite = (props) => (
+  const Composite = props => (
     <div>
       <Input name="address1" value={props.address1} />
       <Input name="city" value={props.city} />
@@ -29,7 +33,7 @@ describe('<BoundForm />', () => {
   );
 
   const component = shallow(
-    <BoundForm object={data} onSubmit={submitFunc}>
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc}>
       <FormRow label="First Name" name="firstName" />
       <FormRow label="Last Name" name="lastName" />
       <FormRow type="checkbox" label="Foobar" name="checkboxes">
@@ -81,5 +85,17 @@ describe('<BoundForm />', () => {
     component.simulate('submit', { preventDefault });
     assert.equal(preventDefault.calledOnce, true);
     assert.equal(submitFunc.calledWith({ preventDefault }, component.state('formData')), true);
+  });
+
+  it('should append errors', () => {
+    const row = component.find('[name="firstName"]');
+    assert.equal(row.prop('feedback'), errors.firstName);
+    assert.equal(row.prop('color'), 'danger');
+  });
+
+  it('should not have color for valid rows', () => {
+    const row = component.find('[name="address"]');
+    assert.equal(row.prop('feedback'), '');
+    assert.equal(row.prop('color'), null);
   });
 });

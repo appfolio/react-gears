@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "0.1.22",
+  "version": "0.2.1",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "version": "npm run docs && git add -A docs",
     "dist": "webpack -p",
     "prepublish": "npm run dist",
-    "postpublish": "git push && git push --tags"
+    "postpublish": "git push --no-verify && git push --tags"
   },
   "dependencies": {
     "babel-polyfill": "~6.13.0",

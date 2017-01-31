@@ -1,23 +1,38 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-
+import { storiesOf, action } from '@kadira/storybook';
+import Select from '../src/components/Select';
+import { text, select } from '@kadira/storybook-addon-knobs';
 import { Address } from '../src';
+import states from '../src/components/address/USStates.js';
 
 storiesOf('Address', module)
-  .addWithInfo('defaults', () => (
-    <div>
-      <Address onChange={address => console.log('address', address)} />
-    </div>
-  ))
-  .addWithInfo('with props', () => (
+  .addWithInfo('uncontrolled', () => (
     <div>
       <Address
-        address1="123 No Way"
-        address2="Suite 16"
-        city="Smallsville"
-        state="AL"
-        postal="12345-1234"
-        onChange={address => console.log('a', address)}
+        defaultValue={{
+          address1: '123 No Way',
+          address2: 'Suite 16',
+          city: 'Smallsville',
+          state: 'AL',
+          postal: '12345-1234',
+          country: 'US'
+        }}
+        onChange={action('address onChange')}
+      />
+    </div>
+  ))
+  .addWithInfo('controlled', () => (
+    <div>
+      <Address
+        value={{
+          address1: text('address1', '123 No Way'),
+          address2: text('address2', 'Suite 16'),
+          city: text('city', 'Smallsville'),
+          state: select('state', states.map(s => s.value), 'AL'),
+          postal: text('postal', '12345-1234'),
+          country: 'US'
+        }}
+        onChange={action('address onChange')}
       />
     </div>
   ));
