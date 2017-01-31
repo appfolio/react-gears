@@ -8,12 +8,14 @@ class BoundForm extends React.Component {
     children: React.PropTypes.node,
     errors: React.PropTypes.object,
     object: React.PropTypes.object.isRequired,
-    onSubmit: React.PropTypes.func
+    onSubmit: React.PropTypes.func,
+    onChange: React.PropTypes.func
   };
 
   static defaultProps = {
     errors: {},
-    onSubmit: noop
+    onSubmit: noop,
+    onChange: noop
   };
 
   constructor(props) {
@@ -32,6 +34,7 @@ class BoundForm extends React.Component {
   handleChange = name => data => {
     const value = data.target instanceof Element ? data.target.value : data;
     this.setState({ formData: set(this.state.formData, name, value) });
+    this.props.onChange(this.state.formData);
   }
 
   render() {
