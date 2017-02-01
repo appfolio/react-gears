@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'reactstrap';
+import FormRow from './FormRow';
 import noop from 'lodash/noop';
 import set from 'lodash/set';
 
@@ -39,6 +40,8 @@ class BoundForm extends React.Component {
 
   render() {
     const children = React.Children.map(this.props.children, child => {
+      if (child.type !== FormRow) { return child; } // TODO make this better, using Context?
+
       const value = this.state.formData[child.props.name] || '';
       const feedback = this.props.errors[child.props.name];
       const color = feedback ? 'danger' : null;

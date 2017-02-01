@@ -19,6 +19,8 @@ describe('<BoundForm />', () => {
     }
   };
 
+  data[undefined] = 'not good' // For testing items that don't have a name
+
   const errors = {
     firstName: "Can't be Glenn"
   }
@@ -35,6 +37,7 @@ describe('<BoundForm />', () => {
 
   const component = shallow(
     <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc}>
+      <h1>Title</h1>
       <FormRow label="First Name" name="firstName" />
       <FormRow label="Last Name" name="lastName" />
       <FormRow type="checkbox" label="Foobar" name="checkboxes">
@@ -44,6 +47,11 @@ describe('<BoundForm />', () => {
       <FormRow type={Composite} name="thing" />
     </BoundForm>
   );
+
+  it('should not add props to non-FormRows', () => {
+    const title = component.find('h1');
+    assert.equal(title.prop('value'), undefined);
+  });
 
   it('should provide value from data object', () => {
     const row = component.find('[name="firstName"]');
