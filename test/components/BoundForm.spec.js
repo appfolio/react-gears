@@ -24,6 +24,7 @@ describe('<BoundForm />', () => {
   }
 
   const submitFunc = sinon.stub();
+  const changeFunc = sinon.stub();
 
   const Composite = props => (
     <div>
@@ -33,7 +34,7 @@ describe('<BoundForm />', () => {
   );
 
   const component = shallow(
-    <BoundForm object={data} errors={errors} onSubmit={submitFunc}>
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc}>
       <FormRow label="First Name" name="firstName" />
       <FormRow label="Last Name" name="lastName" />
       <FormRow type="checkbox" label="Foobar" name="checkboxes">
@@ -59,6 +60,12 @@ describe('<BoundForm />', () => {
     row.simulate('change', 'Desmond');
     assert.equal(data.firstName, 'Glenn');
     assert.equal(component.state('formData').firstName, 'Desmond');
+  });
+
+  it('should emit onChange when changed', () => {
+    const row = component.find('[name="firstName"]');
+    row.simulate('change', 'Desmond');
+    assert(changeFunc.calledWith(Object.assign({}, data, { firstName: 'Desmond' })));
   });
 
   it('should support nested data', () => {
