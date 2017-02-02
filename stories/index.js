@@ -6,7 +6,9 @@ import './Flag';
 import './Icon';
 import './Alerts';
 import './HelpBubble';
+import './Modal';
 import './Table';
+import './Tooltip';
 
 // Form fields
 import './Forms';
@@ -23,3 +25,5 @@ import './Paginator';
 import './Steps';
 import './SummaryBox';
 import './Spinner';
+
+import './More';

@@ -168,10 +168,10 @@ export default class DateMonth extends Component {
               </Col>
             </Row>
             <footer className="text-xs-center">
-              <ButtonToolbar>
-                <Button id="save" size="md" onClick={close}>OK</Button>
+              <div>
+                <Button id="save" size="md" onClick={close} className="mr-2">OK</Button>
                 <Button id="cancel" size="md" onClick={cancel}>Cancel</Button>
-              </ButtonToolbar>
+              </div>
             </footer>
           </div> : null}
       </div>);
