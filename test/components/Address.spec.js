@@ -6,14 +6,14 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import { Address, Select } from '../../src';
+import { AddressInput, Select } from '../../src';
 import states from '../../src/components/address/USStates';
 
 describe('<Address />', () => {
   describe('uncontrolled', () => {
     const callback = sinon.spy();
     const component = shallow(
-      <Address
+      <AddressInput
         defaultValue={{
           address1: 'Wayne Enterprises',
           address2: '1007 Mountain Drive',
@@ -107,7 +107,7 @@ describe('<Address />', () => {
       countryCode: 'US'
     }
     const component = shallow(
-      <Address
+      <AddressInput
         value={addressData}
         onChange={callback}
       />

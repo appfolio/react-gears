@@ -14,7 +14,7 @@ const US_STATES = states.map(state => ({
 
 const readEvent = e => ({ [e.target.name]: e.target.value });
 
-class Address extends Component {
+class AddressInput extends Component {
   onChange = update => {
     this.props.onChange(Object.assign({}, this.props.value, update));
   }
@@ -104,16 +104,16 @@ const fieldTypes = {
   countryCode: React.PropTypes.string
 };
 
-Address.propTypes = {
+AddressInput.propTypes = {
   value: React.PropTypes.shape(fieldTypes),
   defaultValue: React.PropTypes.shape(fieldTypes),
   onChange: React.PropTypes.func
 };
 
-Address.defaultProps = {
+AddressInput.defaultProps = {
   value: {},
   defaultValue: {},
   onChange: noop
 };
 
-export default Address;
+export default AddressInput;
