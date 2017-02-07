@@ -1,12 +1,10 @@
-import 'jsdom-global/register';
-
 /* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import { AddressInput, Select } from '../../src';
+import { AddressInput, Select, FormGroup, Input, FormFeedback } from '../../src';
 import states from '../../src/components/address/USStates';
 
 describe('<Address />', () => {
@@ -94,6 +92,21 @@ describe('<Address />', () => {
       input.simulate('change', null);
       assert(callback.calledWith({ countryCode: null }));
     });
+
+    it('should not set any color on FormGroups without errors', () => {
+      const groups = component.find(FormGroup);
+      groups.forEach(group => assert.equal(group.prop('color'), undefined));
+    });
+
+    it('should not set the state of non-Select inputs without errors', () => {
+      const groups = component.find(Input);
+      groups.forEach(group => assert.equal(group.prop('state'), undefined));
+    });
+
+    it('should not have any feedback without errors', () => {
+      const feedbacks = component.find(FormFeedback);
+      assert.equal(feedbacks.length, 0);
+    });
   });
 
   describe('controlled', () => {
@@ -171,6 +184,52 @@ describe('<Address />', () => {
 
       input.simulate('change', null);
       assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
+    });
+  });
+
+  describe('with errors', () => {
+    const errors = {
+      address1: 'address1 error',
+      address2: 'address2 error',
+      city: 'city error',
+      state: 'state error',
+      postal: 'postal error',
+      countryCode: 'countryCode error'
+    };
+
+    const component = shallow(
+      <AddressInput
+        defaultValue={{
+          address1: 'Wayne Enterprises',
+          address2: '1007 Mountain Drive',
+          city: 'Gotham',
+          state: 'NJ',
+          postal: '07001',
+          countryCode: 'US'
+        }}
+        error={errors}
+      />
+    );
+
+    it('should set color of each FormGroup', () => {
+      const groups = component.find(FormGroup);
+      groups.forEach(group => assert.equal(group.prop('color'), 'danger'));
+    });
+
+    it('should set the state of non-Select inputs', () => {
+      const inputs = component.find(Input);
+      inputs.forEach(input => assert.equal(input.prop('state'), 'danger'));
+    });
+
+    it('should show the corresponding error for each input', () => {
+      const groups = component.find(FormGroup);
+
+      groups.forEach(group => {
+        const input = group.childAt(0)
+            , feedback = group.find(FormFeedback);
+
+        assert.equal(feedback.render().text(), errors[input.prop('name')]);
+      });
     });
   });
 });

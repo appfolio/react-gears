@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import Select from '../src/components/Select';
-import { text, select } from '@kadira/storybook-addon-knobs';
+import { text, select, object } from '@kadira/storybook-addon-knobs';
 import { AddressInput } from '../src';
 import states from '../src/components/address/USStates.js';
 
@@ -32,6 +32,7 @@ storiesOf('AddressInput', module)
           postal: text('postal', '12345-1234'),
           countryCode: 'US'
         }}
+        error={object('error', { address1: 'bad stuff', state: 'no' })}
         onChange={action('address onChange')}
       />
     </div>
