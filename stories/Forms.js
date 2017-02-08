@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Input } from 'reactstrap';
 import { storiesOf, action } from '@kadira/storybook';
 
-import { BoundForm, FormRow, FormChoice, CurrencyInput, Address } from '../src';
+import { BoundForm, FormRow, FormChoice, CurrencyInput, AddressInput } from '../src';
 import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
 
 const formData = {
@@ -104,7 +104,7 @@ storiesOf('Forms', module)
         <FormChoice>Millennium Falcon</FormChoice>
         <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
       </FormRow>
-      <FormRow type={Address} name="address" label="Address" />
+      <FormRow type={AddressInput} name="address" label="Address" />
       <button className="btn btn-primary">Submit</button>
     </BoundForm>
   ));
