@@ -48,6 +48,13 @@ describe('<BoundForm />', () => {
     </BoundForm>
   );
 
+  it('should provide a context', () => {
+    const context = component.instance().getChildContext();
+    assert.equal(context.value, component.state().formData);
+    assert.equal(context.errors, errors);
+    assert.equal(context.onChange, component.instance().handleChange);
+  });
+
   it('should not add props to non-FormRows', () => {
     const title = component.find('h1');
     assert.equal(title.prop('value'), undefined);

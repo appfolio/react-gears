@@ -19,12 +19,26 @@ class BoundForm extends React.Component {
     onChange: noop
   };
 
+  static childContextTypes = {
+    value: React.PropTypes.object,
+    errors: React.PropTypes.object,
+    onChange: React.PropTypes.func
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
       formData: JSON.parse(JSON.stringify(props.object))
     };
+  }
+
+  getChildContext() {
+    return {
+      value: this.state.formData,
+      errors: this.props.errors,
+      onChange: this.handleChange
+    }
   }
 
   onSubmit = e => {
