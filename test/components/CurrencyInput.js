@@ -9,16 +9,6 @@ import { CurrencyInput } from '../../src';
 describe.only('<CurrencyInput />', () => {
   const callback = sinon.spy();
 
-//  it('should have address1', () => {
-//    const input = component.find('[name="address1"]');
-//    assert.equal(input.prop('placeholder'), 'Address 1');
-//    assert.equal(input.prop('defaultValue'), 'Wayne Enterprises');
-//    assert.equal(input.prop('value'), undefined);
-//
-//    input.simulate('change', { target: { name: 'address1', value: 'Batcave' }});
-//    assert(callback.calledWith({ address1: 'Batcave' }));
-//  });
-
   it('should default to blank', () => {
     const component = mount(<CurrencyInput onChange={callback} />);
     const input = component.find('input');
