@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, Input, Row, Col, Select } from '../';
+import { FormGroup, Input, Row, Col, Select, FormFeedback } from '../';
 import flow from 'lodash/flow';
 import noop from 'lodash/noop';
 
@@ -14,7 +14,7 @@ const US_STATES = states.map(state => ({
 
 const readEvent = e => ({ [e.target.name]: e.target.value });
 
-class Address extends Component {
+class AddressInput extends Component {
   onChange = update => {
     this.props.onChange(Object.assign({}, this.props.value, update));
   }
@@ -28,38 +28,48 @@ class Address extends Component {
   }
 
   render() {
+    const { error } = this.props;
+
     return (
       <div>
-        <FormGroup>
+        <FormGroup color={error['address1'] && 'danger'}>
           <Input
             name="address1"
             type="text"
             placeholder="Address 1"
             {...this.propsFor('address1')}
+            state={error['address1'] && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
+          { error['address1'] && <FormFeedback children={error['address1']} /> }
         </FormGroup>
-        <FormGroup>
+        <FormGroup color={error['address2'] && 'danger'}>
           <Input
             name="address2"
             type="text"
             placeholder="Address 2"
             {...this.propsFor('address2')}
+            state={error['address2'] && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
+          { error['address2'] && <FormFeedback children={error['address2']} /> }
         </FormGroup>
-        <FormGroup>
-          <Row>
-            <Col sm={6} xs={5} className="pr-0">
+        <Row className="no-gutters">
+          <Col sm={6} xs={5}>
+            <FormGroup className="pr-3" color={error['city'] && 'danger'}>
               <Input
                 type="text"
                 name="city"
                 placeholder="City"
                 {...this.propsFor('city')}
+                state={error['city'] && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-            </Col>
-            <Col sm={2} xs={3}>
+              { error['city'] && <FormFeedback children={error['city']} /> }
+            </FormGroup>
+          </Col>
+          <Col sm={2} xs={3}>
+            <FormGroup className="pr-3" color={error['state'] && 'danger'}>
               <Select
                 className="w-100"
                 name="state"
@@ -68,19 +78,24 @@ class Address extends Component {
                 {...this.propsFor('state')}
                 onChange={selection => this.onChange({ state: selection && selection.value })}
               />
-            </Col>
-            <Col sm={4} xs={4} className="pl-0">
+              { error['state'] && <FormFeedback children={error['state']} /> }
+            </FormGroup>
+          </Col>
+          <Col sm={4} xs={4}>
+            <FormGroup color={error['postal'] && 'danger'}>
               <Input
                 type="text"
                 name="postal"
                 placeholder="Zip"
                 {...this.propsFor('postal')}
+                state={error['postal'] && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-            </Col>
-          </Row>
-        </FormGroup>
-        <FormGroup>
+              { error['postal'] && <FormFeedback children={error['postal']} /> }
+            </FormGroup>
+          </Col>
+        </Row>
+        <FormGroup color={error['countryCode'] && 'danger'}>
           <Select
             className="w-100"
             name="countryCode"
@@ -89,6 +104,7 @@ class Address extends Component {
             {...this.propsFor('countryCode')}
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
           />
+          { error['countryCode'] && <FormFeedback children={error['countryCode']} /> }
         </FormGroup>
       </div>
     );
@@ -104,16 +120,18 @@ const fieldTypes = {
   countryCode: React.PropTypes.string
 };
 
-Address.propTypes = {
+AddressInput.propTypes = {
   value: React.PropTypes.shape(fieldTypes),
   defaultValue: React.PropTypes.shape(fieldTypes),
+  error: React.PropTypes.shape(fieldTypes),
   onChange: React.PropTypes.func
 };
 
-Address.defaultProps = {
+AddressInput.defaultProps = {
   value: {},
   defaultValue: {},
+  error: {},
   onChange: noop
 };
 
-export default Address;
+export default AddressInput;

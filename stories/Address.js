@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import Select from '../src/components/Select';
-import { text, select } from '@kadira/storybook-addon-knobs';
-import { Address } from '../src';
+import { text, select, object } from '@kadira/storybook-addon-knobs';
+import { AddressInput } from '../src';
 import states from '../src/components/address/USStates.js';
 
-storiesOf('Address', module)
+storiesOf('AddressInput', module)
   .addWithInfo('uncontrolled', () => (
     <div>
-      <Address
+      <AddressInput
         defaultValue={{
           address1: '123 No Way',
           address2: 'Suite 16',
@@ -23,7 +23,7 @@ storiesOf('Address', module)
   ))
   .addWithInfo('controlled', () => (
     <div>
-      <Address
+      <AddressInput
         value={{
           address1: text('address1', '123 No Way'),
           address2: text('address2', 'Suite 16'),
@@ -32,6 +32,7 @@ storiesOf('Address', module)
           postal: text('postal', '12345-1234'),
           countryCode: 'US'
         }}
+        error={object('error', { address1: 'bad stuff', state: 'no' })}
         onChange={action('address onChange')}
       />
     </div>

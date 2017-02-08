@@ -65,7 +65,7 @@ import {
 
 // Gears:
 
-import Address from './components/Address.js';
+import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
@@ -156,7 +156,7 @@ export {
   Select,
 
   // Gears
-  Address,
+  AddressInput,
   Alert,
   BlockPanel,
   BoundForm,
