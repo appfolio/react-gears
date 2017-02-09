@@ -41,7 +41,7 @@ storiesOf('Forms', module)
 
       <section className="py-3">
         <p><code>&lt;CurrencyInput/&gt;</code></p>
-        <CurrencyInput />
+        <CurrencyInput value={123456.7890} />
       </section>
     </div>
   ))

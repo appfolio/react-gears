@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import MaskedInput from 'react-text-mask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { InputGroup, InputGroupAddon } from 'reactstrap';
-import Input from './PatternInput';
 
-const CurrencyInput = ({ type, size, ...props }) => (
-  <InputGroup size={size}>
+// TODO support I18n
+const CurrencyInput = ({ size, ...props }) => (
+  <InputGroup size={size} className={props.className}>
     <InputGroupAddon>$</InputGroupAddon>
-    <Input {...props} pattern={/[0-9\.]/} />
+    <MaskedInput
+      {...props}
+      className="form-control"
+      mask={createNumberMask({
+        allowDecimal: true,
+        prefix: ''
+      })}
+    />
   </InputGroup>
 );
+
+CurrencyInput.propTypes = {
+  className: PropTypes.number,
+  size: PropTypes.string
+};
+
 
 export default CurrencyInput;
