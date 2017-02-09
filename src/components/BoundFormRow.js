@@ -3,8 +3,8 @@ import FormRow from './FormRow';
 
 const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => (
   <FormRow
-    value={value[props.name]}
-    feedback={errors[props.name]}
+    value={value[props.name] || ''}
+    feedback={errors[props.name] || ''}
     onChange={onChange(props.name)}
     {...props}
   />
