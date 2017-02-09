@@ -34,9 +34,10 @@ const FormRow = props => {
   } = props;
 
   const InputElement = determineElement(type);
+  const rowColor = color || state || (feedback && 'danger');
 
   return (
-    <FormGroup row color={color || state}>
+    <FormGroup row color={rowColor}>
       <Label for={id} sm={3} size={size}>
         {label}
         {required && label ? <span className="text-danger"> *</span> : null}
@@ -45,7 +46,7 @@ const FormRow = props => {
         <InputElement
           id={id}
           size={size}
-          state={color || state}
+          state={rowColor}
           type={type}
           children={React.Children.map(children, child => React.cloneElement(child, { type }))}
           {...attributes}
