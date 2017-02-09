@@ -53,23 +53,8 @@ class BoundForm extends React.Component {
   }
 
   render() {
-    const children = React.Children.map(this.props.children, child => {
-      if (child.type !== FormRow) { return child; } // TODO make this better, using Context?
-
-      const value = this.state.formData[child.props.name] || '';
-      const feedback = this.props.errors[child.props.name];
-      const color = feedback ? 'danger' : null;
-
-      return React.cloneElement(child, {
-        feedback,
-        color,
-        value,
-        onChange: this.handleChange(child.props.name)
-      });
-    });
-
     return (
-      <Form children={children} onSubmit={this.onSubmit} />
+      <Form children={this.props.children} onSubmit={this.onSubmit} />
     );
   }
 }

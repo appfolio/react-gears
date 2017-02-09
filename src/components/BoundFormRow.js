@@ -16,4 +16,8 @@ BoundFormRow.contextTypes = {
   onChange: React.PropTypes.func
 };
 
+BoundFormRow.propTypes = {
+  name: React.PropTypes.string.isRequired
+};
+
 export default BoundFormRow;

@@ -69,6 +69,7 @@ import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
+import BoundFormRow from './components/BoundFormRow';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
@@ -160,6 +161,7 @@ export {
   Alert,
   BlockPanel,
   BoundForm,
+  BoundFormRow,
   CurrencyInput,
   Datapair,
   DateMonth,
