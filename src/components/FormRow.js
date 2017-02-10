@@ -17,6 +17,12 @@ function determineElement(type) {
     type;
 }
 
+function parseFeedback(feedback) {
+  return typeof feedback === 'object' ?
+    [ null, { error: feedback } ] :
+    [ feedback, {} ];
+}
+
 const FormRow = props => {
   const {
     id,
@@ -34,7 +40,9 @@ const FormRow = props => {
   } = props;
 
   const InputElement = determineElement(type);
-  const rowColor = color || state || (feedback && 'danger');
+
+  const [ baseFeedback, childFeedback ]= parseFeedback(feedback);
+  const rowColor = color || state || (baseFeedback && 'danger');
 
   return (
     <FormGroup row color={rowColor}>
@@ -50,9 +58,10 @@ const FormRow = props => {
           type={type}
           children={React.Children.map(children, child => React.cloneElement(child, { type }))}
           {...attributes}
+          {...childFeedback}
         />
         {hint ? <FormText color="muted" children={hint} /> : null}
-        {feedback ? <FormFeedback children={feedback} /> : null}
+        {baseFeedback ? <FormFeedback children={baseFeedback} /> : null}
       </Col>
     </FormGroup>
   );
@@ -61,7 +70,10 @@ const FormRow = props => {
 FormRow.propTypes = {
   label: React.PropTypes.string,
   hint: React.PropTypes.string,
-  feedback: React.PropTypes.string,
+  feedback: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object
+  ]),
   required: React.PropTypes.bool,
   type: React.PropTypes.oneOfType([
     React.PropTypes.string,

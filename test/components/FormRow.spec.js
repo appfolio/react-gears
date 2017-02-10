@@ -85,6 +85,26 @@ describe('<FormRow />', () => {
     });
   });
 
+  describe('with feedback object for children', () => {
+    const feedback = { childField: 'not good' };
+    const component = shallow(
+      <FormRow label="First Name" feedback={feedback} />
+    );
+
+    it('should not be shown', () => {
+      assert.equal(component.find(FormFeedback).length, 0);
+    });
+
+    it('should not add danger color', () => {
+      assert.equal(component.prop('color'), null);
+      assert.equal(component.find(Input).prop('state'), null);
+    });
+
+    it('should forward feedback to input', () => {
+      assert.equal(component.find(Input).prop('error'), feedback);
+    });
+  });
+
   describe('with hint', () => {
     const component = shallow(
       <FormRow label="First Name" hint="hint" />
