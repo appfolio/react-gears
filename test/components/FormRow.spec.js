@@ -42,6 +42,19 @@ describe('<FormRow />', () => {
       assert.equal(component.find(FormText).length, 0);
       assert.equal(component.find(FormFeedback).length, 0);
     });
+
+    it('should sync color and state', () => {
+      assert.equal(component.prop('color'), '');
+      assert.equal(component.find(Input).prop('state'), '');
+
+      component.setProps({ color: 'danger', state: 'warning' });
+      assert.equal(component.prop('color'), 'danger');
+      assert.equal(component.find(Input).prop('state'), 'danger');
+
+      component.setProps({ color: null });
+      assert.equal(component.prop('color'), 'warning');
+      assert.equal(component.find(Input).prop('state'), 'warning');
+    });
   });
 
   describe('when required', () => {
@@ -65,9 +78,34 @@ describe('<FormRow />', () => {
       const feedback = component.find(FormFeedback);
       assert.equal(feedback.prop('children'), 'feedback');
     });
+
+    it('should add danger color', () => {
+      assert.equal(component.prop('color'), 'danger');
+      assert.equal(component.find(Input).prop('state'), 'danger');
+    });
   });
 
-  describe('with feedback', () => {
+  describe('with feedback object for children', () => {
+    const feedback = { childField: 'not good' };
+    const component = shallow(
+      <FormRow label="First Name" feedback={feedback} />
+    );
+
+    it('should not be shown', () => {
+      assert.equal(component.find(FormFeedback).length, 0);
+    });
+
+    it('should not add danger color', () => {
+      assert.equal(component.prop('color'), null);
+      assert.equal(component.find(Input).prop('state'), null);
+    });
+
+    it('should forward feedback to input', () => {
+      assert.equal(component.find(Input).prop('error'), feedback);
+    });
+  });
+
+  describe('with hint', () => {
     const component = shallow(
       <FormRow label="First Name" hint="hint" />
     );
@@ -94,7 +132,7 @@ describe('<FormRow />', () => {
       <FormRow label="First Name" type="checkbox" />
     );
 
-    it('should render a CheckbocInput', () => {
+    it('should render a CheckboxInput', () => {
       assert.equal(component.find(CheckboxInput).length, 1);
     });
   });
