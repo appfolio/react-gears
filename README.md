@@ -15,7 +15,7 @@ https://appfolio.github.io/react-gears
 
 ### Develop
 
-    npm run
+    npm start
 Open [http://localhost:6006](http://localhost:6006) in browser
 
 ### Test
