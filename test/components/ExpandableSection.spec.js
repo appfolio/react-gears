@@ -1,53 +1,51 @@
 /* eslint-env mocha */
 
-import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import ExpandableSection from '../../src/components/ExpandableSection.js';
 
-describe('<ExpandableSection title="Open sesame" />', () => {
-  it('should render correctly', () => {
-    const component = mount(<ExpandableSection />);
-    assert(component);
-  });
-
+describe('<ExpandableSection />', () => {
   it('should be closed by default', () => {
-    const component = mount((
+    const component = shallow(
       <ExpandableSection title="Open">
-        <h1 id="child">Hello World!</h1>
-      </ExpandableSection>)
+        <h1>Hello World!</h1>
+      </ExpandableSection>
     );
-    assert(component.find('#child').length === 0);
+
+    assert.equal(component.find('h1').length, 0);
   });
 
   it('should be closed when false passed as prop', () => {
-    const component = mount((
+    const component = shallow(
       <ExpandableSection title="Open" open={false}>
-        <h1 id="child">Hello World!</h1>
-      </ExpandableSection>)
+        <h1>Hello World!</h1>
+      </ExpandableSection>
     );
-    assert(component.find('#child').length === 0);
+
+    assert.equal(component.find('h1').length, 0);
   });
 
   it('should be open when true passed as prop', () => {
-    const component = mount((
+    const component = shallow(
       <ExpandableSection title="Open" open>
-        <h1 id="child">Hello World!</h1>
-      </ExpandableSection>)
+        <h1>Hello World!</h1>
+      </ExpandableSection>
     );
-    assert(component.find('#child').length === 1);
+
+    assert.equal(component.find('h1').length, 1);
   });
 
   it('should be open when clicked', () => {
-    const component = mount((
+    const component = shallow(
       <ExpandableSection title="Open">
-        <h1 id="child">Hello World!</h1>
-      </ExpandableSection>)
+        <h1>Hello World!</h1>
+      </ExpandableSection>
     );
-    assert(component.find('#child').length === 0, 'inner block should not be visible');
+
+    assert.equal(component.find('h1').length, 0, 'inner block should not be visible');
     component.find('header').simulate('click');
-    assert(component.find('#child').length === 1, 'inner block should be visible');
+    assert.equal(component.find('h1').length, 1, 'inner block should be visible');
   });
 });
