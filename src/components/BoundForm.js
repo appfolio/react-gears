@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'reactstrap';
-import FormRow from './FormRow';
 import noop from 'lodash/noop';
 import set from 'lodash/set';
 
@@ -38,7 +37,7 @@ class BoundForm extends React.Component {
       value: this.state.formData,
       errors: this.props.errors,
       onChange: this.handleChange
-    }
+    };
   }
 
   onSubmit = e => {
