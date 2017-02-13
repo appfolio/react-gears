@@ -32,44 +32,44 @@ class AddressInput extends Component {
 
     return (
       <div>
-        <FormGroup color={error['address1'] && 'danger'}>
+        <FormGroup color={error.address1 && 'danger'}>
           <Input
             name="address1"
             type="text"
             placeholder="Address 1"
             {...this.propsFor('address1')}
-            state={error['address1'] && 'danger'}
+            state={error.address1 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
-          { error['address1'] && <FormFeedback children={error['address1']} /> }
+          {error.address1 && <FormFeedback children={error.address1} />}
         </FormGroup>
-        <FormGroup color={error['address2'] && 'danger'}>
+        <FormGroup color={error.address2 && 'danger'}>
           <Input
             name="address2"
             type="text"
             placeholder="Address 2"
             {...this.propsFor('address2')}
-            state={error['address2'] && 'danger'}
+            state={error.address2 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
-          { error['address2'] && <FormFeedback children={error['address2']} /> }
+          {error.address2 && <FormFeedback children={error.address2} />}
         </FormGroup>
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
-            <FormGroup className="pr-3" color={error['city'] && 'danger'}>
+            <FormGroup className="pr-3" color={error.city && 'danger'}>
               <Input
                 type="text"
                 name="city"
                 placeholder="City"
                 {...this.propsFor('city')}
-                state={error['city'] && 'danger'}
+                state={error.city && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-              { error['city'] && <FormFeedback children={error['city']} /> }
+              {error.city && <FormFeedback children={error.city} />}
             </FormGroup>
           </Col>
           <Col sm={2} xs={3}>
-            <FormGroup className="pr-3" color={error['state'] && 'danger'}>
+            <FormGroup className="pr-3" color={error.state && 'danger'}>
               <Select
                 className="w-100"
                 name="state"
@@ -78,24 +78,24 @@ class AddressInput extends Component {
                 {...this.propsFor('state')}
                 onChange={selection => this.onChange({ state: selection && selection.value })}
               />
-              { error['state'] && <FormFeedback children={error['state']} /> }
+              {error.state && <FormFeedback children={error.state} />}
             </FormGroup>
           </Col>
           <Col sm={4} xs={4}>
-            <FormGroup color={error['postal'] && 'danger'}>
+            <FormGroup color={error.postal && 'danger'}>
               <Input
                 type="text"
                 name="postal"
                 placeholder="Zip"
                 {...this.propsFor('postal')}
-                state={error['postal'] && 'danger'}
+                state={error.postal && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-              { error['postal'] && <FormFeedback children={error['postal']} /> }
+              {error.postal && <FormFeedback children={error.postal} />}
             </FormGroup>
           </Col>
         </Row>
-        <FormGroup color={error['countryCode'] && 'danger'}>
+        <FormGroup color={error.countryCode && 'danger'}>
           <Select
             className="w-100"
             name="countryCode"
@@ -104,7 +104,7 @@ class AddressInput extends Component {
             {...this.propsFor('countryCode')}
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
           />
-          { error['countryCode'] && <FormFeedback children={error['countryCode']} /> }
+          {error.countryCode && <FormFeedback children={error.countryCode} />}
         </FormGroup>
       </div>
     );
