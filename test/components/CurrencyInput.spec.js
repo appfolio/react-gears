@@ -6,7 +6,7 @@ import sinon from 'sinon';
 
 import { CurrencyInput } from '../../src';
 
-describe.only('<CurrencyInput />', () => {
+describe('<CurrencyInput />', () => {
   const callback = sinon.spy();
 
   it('should default to blank', () => {
