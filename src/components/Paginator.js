@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
-import { Col, Icon, Pagination, Row } from '../';
+import { Icon, Pagination, Row } from '../';
 
 const DEFAULT_PER_PAGE = 20;
 
@@ -61,7 +61,13 @@ export default class Paginator extends Component {
     if (rangeEnd > rangeStart) {
       for (let page = rangeStart; page <= rangeEnd; page++) {
         pages.push(
-          <Page key={page} ref={page} page={page} current={currentPage === page} onClick={onClick} />
+          <Page
+            key={page}
+            ref={page}
+            page={page}
+            current={currentPage === page}
+            onClick={onClick}
+          />
         );
       }
     }
