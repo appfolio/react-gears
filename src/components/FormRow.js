@@ -19,8 +19,8 @@ function determineElement(type) {
 
 function parseFeedback(feedback) {
   return typeof feedback === 'object' ?
-    [ null, { error: feedback } ] :
-    [ feedback, {} ];
+    [null, { error: feedback }] :
+    [feedback, {}];
 }
 
 const FormRow = props => {
@@ -41,7 +41,7 @@ const FormRow = props => {
 
   const InputElement = determineElement(type);
 
-  const [ baseFeedback, childFeedback ]= parseFeedback(feedback);
+  const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const rowColor = color || state || (baseFeedback && 'danger');
 
   return (
