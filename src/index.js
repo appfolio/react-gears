@@ -59,8 +59,7 @@ import {
   Row,
   TabContent,
   TabPane,
-  TetherContent,
-  Tooltip
+  TetherContent
 } from 'reactstrap';
 
 // Gears:
@@ -86,6 +85,7 @@ import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
+import Tooltip from './components/Tooltip.js';
 
 export {
   // reactstrap
@@ -152,7 +152,6 @@ export {
   TabPane,
   Table,
   TetherContent,
-  Tooltip,
 
   Select,
 
@@ -175,5 +174,6 @@ export {
   Spinner,
   Steps,
   SummaryBox,
-  SummaryBoxItem
+  SummaryBoxItem,
+  Tooltip
 };
