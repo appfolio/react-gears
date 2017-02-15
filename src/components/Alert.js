@@ -3,7 +3,7 @@ import { Icon } from '../';
 import { Alert } from 'reactstrap';
 
 const ICON_MAP = {
-  warning: 'bullhorn',
+  warning: 'exclamation-circle',
   success: 'check',
   info: 'info-circle',
   danger: 'ban'

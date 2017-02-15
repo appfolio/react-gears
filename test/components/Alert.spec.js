@@ -24,9 +24,9 @@ describe('<Alert />', () => {
   });
 
   describe('with icon', () => {
-    it('should show bullhorn for warning', () => {
+    it('should show exclamation-circle for warning', () => {
       const icon = shallow(<Alert icon color="warning" />).find(Icon);
-      assert.equal(icon.prop('name'), 'bullhorn');
+      assert.equal(icon.prop('name'), 'exclamation-circle');
     });
 
     it('should show ban for danger', () => {
