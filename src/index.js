@@ -55,7 +55,6 @@ import {
   Popover,
   PopoverContent,
   PopoverTitle,
-  Progress,
   Row,
   TabContent,
   TabPane,
@@ -79,6 +78,7 @@ import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
+import Progress from './components/Progress.js';
 import Select from './components/Select.js';
 import Spinner from './components/Spinner.js';
 import Steps from './components/Steps.js';
@@ -146,7 +146,6 @@ export {
   Popover,
   PopoverContent,
   PopoverTitle,
-  Progress,
   Row,
   TabContent,
   TabPane,
@@ -171,6 +170,7 @@ export {
   HelpBubble,
   Icon,
   PatternInput,
+  Progress,
   Spinner,
   Steps,
   SummaryBox,

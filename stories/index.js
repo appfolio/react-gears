@@ -7,6 +7,7 @@ import './Icon';
 import './Alerts';
 import './HelpBubble';
 import './Modal';
+import './Progress';
 import './Table';
 import './Tooltip';
 
