@@ -4,6 +4,7 @@ import styles from './LabelBadge.scss';
 export default class LabelBadge extends React.Component {
 
   static propTypes = {
+    classNames: React.PropTypes.string,
     label: React.PropTypes.string,
     maxWidth: React.PropTypes.number,
     onRemove: React.PropTypes.func,
@@ -17,7 +18,7 @@ export default class LabelBadge extends React.Component {
   };
 
   render() {
-    const { label, maxWidth, onRemove, removable, value } = this.props;
+    const { classNames, label, maxWidth, onRemove, removable, value } = this.props;
     const labelClasses = 'bg-faded text-muted rounded-left d-inline-flex align-self-stretch px-3 py-2';
     const valueClasses = `label-badge-value ${styles.trim} rounded-right px-3 py-2`;
     const style = {
@@ -25,7 +26,7 @@ export default class LabelBadge extends React.Component {
     };
 
     return (
-      <span className="card rounded d-inline-flex flex-row justify-content-between align-items-center">
+      <span className={`card rounded d-inline-flex flex-row justify-content-between align-items-center ${classNames}`}>
         {label ?
           <strong className={labelClasses}>
             <span className={`${styles.trim} align-self-center`} style={style}>{label}</span>
