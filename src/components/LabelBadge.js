@@ -2,43 +2,38 @@ import React from 'react';
 import styles from './LabelBadge.scss';
 
 export default class LabelBadge extends React.Component {
-  constructor(props) {
-    super(props);
+
+  static propTypes = {
+    label: React.PropTypes.string,
+    maxWidth: React.PropTypes.number,
+    onRemove: React.PropTypes.func,
+    removable: React.PropTypes.bool,
+    value: React.PropTypes.string.isRequired
   }
 
-  renderCross() {
-    const { dismissible, onClear } = this.props;
-    let result = null;
-    if (dismissible) {
-      result = (
-        <button
-          type="button"
-          className="close text-muted pull-xs-right ml-2 js-close-button"
-          onClick={onClear}
-        >
-          <span>&times;</span>
-        </button>
-      );
-    }
-    return result;
-  }
+  static defaultProps = {
+    removable: true,
+    maxWidth: 14
+  };
 
   render() {
-    const { label, value } = this.props;
+    const { label, maxWidth, onRemove, removable, value } = this.props;
+    const labelClasses = 'bg-faded text-muted rounded-left d-inline-flex align-self-stretch px-3 py-2';
+    const valueClasses = `label-badge-value ${styles.trim} rounded-right px-3 py-2`;
+    const style = {
+      maxWidth: maxWidth ? `${maxWidth}rem` : null
+    };
+
     return (
-      <span className={`${styles.pairContainer} mr-2 mb-2`}>
-        <span className={`${styles.label} bg-faded text-muted font-weight-bold px-3 py-1 js-label-badge-label`}>
-          {label}:
-        </span>
-        <span className={`${styles.value} pl-2 py-1 mr-2 js-label-badge-value`}>
-          {value}
-          {this.renderCross()}
-        </span>
+      <span className="card rounded d-inline-flex flex-row justify-content-between align-items-center">
+        {label ?
+          <strong className={labelClasses}>
+            <span className={`${styles.trim} align-self-center`} style={style}>{label}</span>
+          </strong>
+          : null}
+        <span className={valueClasses} style={style}>{value}</span>
+        {removable ? <a className="close mr-2" onClick={onRemove}>&times;</a> : null}
       </span>
     );
   }
-}
-
-LabelBadge.defaultProps = {
-  dismissible: true,
 }
