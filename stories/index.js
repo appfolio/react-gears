@@ -6,6 +6,7 @@ import './Flag';
 import './Icon';
 import './Alerts';
 import './HelpBubble';
+import './LabelBadge';
 import './Modal';
 import './Progress';
 import './Table';

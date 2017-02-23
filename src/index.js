@@ -76,6 +76,7 @@ import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
+import LabelBadge from './components/LabelBadge.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
@@ -169,6 +170,7 @@ export {
   FormRow,
   HelpBubble,
   Icon,
+  LabelBadge,
   PatternInput,
   Progress,
   Spinner,
