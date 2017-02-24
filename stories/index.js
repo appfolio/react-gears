@@ -23,6 +23,7 @@ import './Select';
 import './BlockPanel';
 import './Datapair';
 import './ExpandableSection';
+import './FilterList';
 import './Paginator';
 import './Steps';
 import './SummaryBox';
