@@ -1,6 +1,7 @@
 import React from 'react';
 import { FilterList } from '../src';
 import { storiesOf } from '@kadira/storybook';
+import { number } from '@kadira/storybook-addon-knobs';
 
 storiesOf('FilterList', module)
   .addWithInfo('Live example', () => {
@@ -8,25 +9,25 @@ storiesOf('FilterList', module)
       {
         label: 'User',
         value: 'Hello World',
-        maxWidth: 5,
+        removable: false
       },
       {
         label: 'Property',
-        value: '1234 State Street',
-        onRemove: () => alert('remove clicked'),
+        value: '1234 State Street'
       },
       {
         label: 'People',
-        value: 'Lalalala',
-        removable: false,
-      },
+        value: 'Lalalala'
+      }
     ];
     return (
       <div>
         <FilterList
-          filters={ filters }
+          filters={filters}
+          maxWidth={number('maxWidth', 14)}
+          onRemove={filter => alert(`Remove clicked for: ${JSON.stringify(filter)}`)}
         />
       </div>
-    )
+    );
   });
 

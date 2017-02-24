@@ -35,7 +35,7 @@ describe('<LabelBadge />', () => {
   it('renders correct max-width');
 
   it('passes classNames to outer span', () => {
-    const wrapper = mount(<LabelBadge classNames='cc' value="Yep"/>);
+    const wrapper = mount(<LabelBadge className='cc' value="Yep" />);
     assert(wrapper.hasClass('cc'));
   });
 
