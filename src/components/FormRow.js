@@ -4,11 +4,13 @@ import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
 import StaticInput from './StaticInput';
+import FileInput from './FileInput';
 
 const typeTranslations = {
   checkbox: CheckboxInput,
   radio: RadioInput,
-  static: StaticInput
+  static: StaticInput,
+  file: FileInput
 };
 
 function determineElement(type) {
