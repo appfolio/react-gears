@@ -1,0 +1,15 @@
+.body {
+  @media (min-width: 768px) {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 1em;
+  }
+  flex-direction: row;
+}
+
+.info {
+  flex: 1 1 auto;
+}
+
+.alert {
+  font-size: 18px;
+}

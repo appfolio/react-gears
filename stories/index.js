@@ -27,6 +27,7 @@ import './Select';
 import './BlockPanel';
 import './Datapair';
 import './ExpandableSection';
+import './FeatureBanner';
 import './FilterList';
 import './Note';
 import './Notes';
