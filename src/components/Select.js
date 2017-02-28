@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 import noop from 'lodash/noop';
 import over from 'lodash/over';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
 
-class Select2 extends Component {
+class Select extends Component {
   static propTypes = {
     defaultValue: React.PropTypes.any,
+    loadOptions: React.PropTypes.func,
+    onChange: React.PropTypes.func,
     value: React.PropTypes.any,
-    onChange: React.PropTypes.func
   };
 
   static defaultProps = {
@@ -30,7 +31,7 @@ class Select2 extends Component {
 
   render() {
     const { value, onChange, ...props } = this.props;
-    const SelectElement = this.props.loadOptions ? Select.Async : Select;
+    const SelectElement = this.props.loadOptions ? ReactSelect.Async : ReactSelect;
 
     return (
       <SelectElement
@@ -42,4 +43,4 @@ class Select2 extends Component {
   }
 }
 
-export default Select2;
+export default Select;

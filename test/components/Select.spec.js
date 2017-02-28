@@ -6,8 +6,8 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import Select from 'react-select';
-import Select2 from '../../src/components/Select.js';
+import ReactSelect from 'react-select';
+import Select from '../../src/components/Select.js';
 
 const OPTIONS = [
   { label: 'Eeny', value: 1 },
@@ -19,10 +19,10 @@ const OPTIONS = [
 describe('<Select />', () => {
   describe('uncontrolled', () => {
     describe('without defaultValue', () => {
-      const component = shallow(<Select2 options={OPTIONS} />);
+      const component = shallow(<Select options={OPTIONS} />);
 
       it('should have a blank default', () => {
-        assert.equal(component.type(), Select);
+        assert.equal(component.type(), ReactSelect);
         assert.equal(component.prop('value'), '');
       });
 
@@ -33,7 +33,7 @@ describe('<Select />', () => {
     });
 
     describe('with defaultValue', () => {
-      const component = shallow(<Select2 options={OPTIONS} defaultValue={2} />);
+      const component = shallow(<Select options={OPTIONS} defaultValue={2} />);
 
       it('should start with default', () => {
         assert.equal(component.prop('value'), 2);
@@ -47,7 +47,7 @@ describe('<Select />', () => {
 
     it('should call additional onChange', () => {
       const callback = sinon.spy();
-      const component = shallow(<Select2 options={OPTIONS} onChange={callback} />);
+      const component = shallow(<Select options={OPTIONS} onChange={callback} />);
       component.simulate('change', 'stuff');
 
       assert(callback.calledOnce);
@@ -56,7 +56,7 @@ describe('<Select />', () => {
   });
 
   describe('controlled', () => {
-    const component = shallow(<Select2 options={OPTIONS} value={3} defaultValue={2} />);
+    const component = shallow(<Select options={OPTIONS} value={3} defaultValue={2} />);
 
     it('should render with the given value', () => {
       assert.equal(component.prop('value'), 3);
@@ -79,7 +79,7 @@ describe('<Select />', () => {
       });
     };
 
-    const component = shallow(<Select2 loadOptions={getOptions} />);
-    assert.equal(component.type(), Select.Async);
+    const component = shallow(<Select loadOptions={getOptions} />);
+    assert.equal(component.type(), ReactSelect.Async);
   });
 });
