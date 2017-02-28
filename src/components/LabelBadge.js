@@ -26,7 +26,9 @@ export default class LabelBadge extends React.Component {
     };
 
     return (
-      <span className={`card rounded d-inline-flex flex-row justify-content-between align-items-center ${className}`}>
+      //TODO: use '.card' instead of hard coded boarder style for label badge
+      // we aren't doing it right now because apm and bootstrap-apm has a conflict for .card
+      <span className={`rounded d-inline-flex flex-row justify-content-between align-items-center ${className} ${styles.outer}`}>
         {label ?
           <strong className={labelClasses} style={style}>
             <span className={styles.trim}>{label}</span>
