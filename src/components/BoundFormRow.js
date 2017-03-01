@@ -1,14 +1,23 @@
 import React from 'react';
 import FormRow from './FormRow';
 
-const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => (
-  <FormRow
-    value={value[props.name] || ''}
-    feedback={errors[props.name] || ''}
-    onChange={onChange(props.name)}
-    {...props}
-  />
-);
+const noop = () => {};
+
+const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => {
+  const {
+    onChange: onChangeProp,
+    ...rowProps
+  } = props;
+
+  return (
+    <FormRow
+      value={value[props.name] || ''}
+      feedback={errors[props.name] || ''}
+      onChange={e => { onChangeProp(e); onChange(props.name)(e); }}
+      {...rowProps}
+    />
+  );
+};
 
 BoundFormRow.contextTypes = {
   value: React.PropTypes.object,
@@ -17,7 +26,12 @@ BoundFormRow.contextTypes = {
 };
 
 BoundFormRow.propTypes = {
-  name: React.PropTypes.string.isRequired
+  name: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func
+};
+
+BoundFormRow.defaultProps = {
+  onChange: noop
 };
 
 export default BoundFormRow;
