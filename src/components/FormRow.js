@@ -48,9 +48,9 @@ const FormRow = props => {
 
   return (
     <FormGroup row color={rowColor}>
-      <Label for={id} sm={3} size={size}>
+      <Label for={id} sm={3} size={size} className="text-sm-right">
         {label}
-        {required && label ? <span className="text-danger"> *</span> : null}
+        {required && label ? <span className="text-danger">&nbsp;*</span> : null}
       </Label>
       <Col sm={9}>
         <InputElement
