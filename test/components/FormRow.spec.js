@@ -8,6 +8,7 @@ import FormRow from '../../src/components/FormRow';
 import StaticInput from '../../src/components/StaticInput';
 import RadioInput from '../../src/components/RadioInput';
 import CheckboxInput from '../../src/components/CheckboxInput';
+import FileInput from '../../src/components/FileInput';
 
 describe('<FormRow />', () => {
   describe('by default', () => {
@@ -144,6 +145,16 @@ describe('<FormRow />', () => {
 
     it('should render a RadioInput', () => {
       assert.equal(component.find(RadioInput).length, 1);
+    });
+  });
+
+  describe('with file type', () => {
+    const wrapper = shallow(
+      <FormRow type="file" />
+    );
+
+    it('should render a FileInput', () => {
+      assert.equal(wrapper.find(FileInput).length, 1);
     });
   });
 

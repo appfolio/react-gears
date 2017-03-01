@@ -105,6 +105,7 @@ storiesOf('Forms', module)
         <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
       </BoundFormRow>
       <BoundFormRow type={AddressInput} name="address" label="Address" />
+      <BoundFormRow type="file" label="Death Star Schematics" name="deathStarPlans" multiple/>
       <button className="btn btn-primary">Submit</button>
     </BoundForm>
   ));
