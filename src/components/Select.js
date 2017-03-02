@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactSelect from 'react-select';
-import noop from 'lodash/noop';
-import over from 'lodash/over';
+import noop from 'lodash.noop';
+import over from 'lodash.over';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
