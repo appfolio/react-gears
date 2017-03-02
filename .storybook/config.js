@@ -11,7 +11,7 @@ import './addons.js';
 
 setOptions({
   name: `react-gears ${pkg.version}`,
-  url: 'https://github.com/gthomas-appfolio/xanthous',
+  url: 'https://github.com/appfolio/react-gears',
   showDownPanel: true,
   downPanelInRight: true,
   downPanel: 'kadirahq%2Fstorybook-addon-knobs'
