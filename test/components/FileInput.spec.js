@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import assert from 'assert';
+import { Input } from 'reactstrap';
 
 import FileInput from '../../src/components/FileInput';
 
@@ -11,44 +12,51 @@ class MockFileReader {
 
 describe('<FileInput />', () => {
   const sandbox = sinon.sandbox.create();
-  const onChangeStub = sandbox.stub()
-  beforeEach(() => {
-    sandbox.restore();
+  const onChangeStub = sandbox.stub();
+
+  beforeEach(() => sandbox.restore());
+
+  const component = shallow(
+    <FileInput name="aFileInput" onChange={onChangeStub} />
+  );
+
+  it('should be an Input', () => {
+    assert.equal(component.type(), Input);
   });
 
-  const wrapper = shallow(<FileInput name="aFileInput" onChange={onChangeStub} />);
   it('renders an <input> with type file', () => {
-    assert.equal(wrapper.find('Input').prop('type'), 'file');
+    assert.equal(component.prop('type'), 'file');
   });
 
-  it('rendered <input> has correct name', () => {
-    assert.equal(wrapper.find('Input').prop('name'), 'aFileInput');
+  it('should have correct name', () => {
+    assert.equal(component.prop('name'), 'aFileInput');
   });
 
   it('calls supplied onChange function when file selected', () => {
-    wrapper.find('Input').simulate('change', {
+    component.simulate('change', {
       target: { files: [{ name: 'your.mom' }] }
     });
 
-    const expectedValue = [{name: 'your.mom'}];
+    const expectedValue = [{ name: 'your.mom' }];
     assert(onChangeStub.calledWith(expectedValue));
   });
 
   it('calls supplied onChange function when multiple files selected', () => {
-    wrapper.find('Input').simulate('change', {
+    component.simulate('change', {
       target: {
         files: [
-          {name: 'your.mom'},
-          {name: 'karans.mom'},
-          {name: 'justins.mom'},
+          { name: 'your.mom' },
+          { name: 'karans.mom' },
+          { name: 'justins.mom' },
         ]}
     });
 
     const expectedValue = [
-      {name: 'your.mom'},
-      {name: 'karans.mom'},
-      {name: 'justins.mom'}
+      { name: 'your.mom' },
+      { name: 'karans.mom' },
+      { name: 'justins.mom' }
     ];
+
     assert(onChangeStub.calledWith(expectedValue));
   });
 });
