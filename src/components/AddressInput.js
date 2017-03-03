@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, Input, Row, Col, Select, FormFeedback } from '../';
-import flow from 'lodash/flow';
-import noop from 'lodash/noop';
+import flow from 'lodash.flow';
+import noop from 'lodash.noop';
 
 // TODO Dynamic states based on country:
 import states from './address/USStates.js';
