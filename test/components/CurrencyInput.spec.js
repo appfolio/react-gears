@@ -71,6 +71,14 @@ describe('<CurrencyInput />', () => {
       assert.equal(input.get(0).value, '1,234.56');
     });
 
+    it('should ignore additional decimal points', () => {
+      const component = mount(<CurrencyInput value={1234.56} />);
+      const input = component.find('input');
+      input.get(0).value = '1,234.56.';
+      input.simulate('input');
+      assert.equal(input.get(0).value, '1,234.56');
+    });
+
     // TODO skipped pending this issue/question: https://github.com/text-mask/text-mask/issues/372
     it.skip('should zero pad 1 decimal', () => {
       const component = mount(<CurrencyInput onChange={callback} value={1234.5} />);
