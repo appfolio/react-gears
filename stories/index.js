@@ -15,6 +15,7 @@ import './Tooltip';
 // Form fields
 import './Forms';
 import './Address';
+import './CurrencyInput';
 import './DateMonth';
 import './InputGroup';
 import './Select';
