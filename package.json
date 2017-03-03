@@ -4,9 +4,9 @@
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "license": "MIT",
-  "main": "dist/bundle.js",
+  "main": "src/index.js",
   "files": [
-    "dist"
+    "src"
   ],
   "publishConfig": {
     "registry": "https://npm-proxy.fury.io/appfolio/"
@@ -18,7 +18,6 @@
     "docs": "build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist": "webpack -p",
-    "prepublish": "npm run dist",
     "postpublish": "git push --no-verify && git push --tags"
   },
   "dependencies": {
