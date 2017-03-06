@@ -8,9 +8,9 @@
     "url": "https://github.com/appfolio/react-gears.git"
   },
   "license": "MIT",
-  "main": "dist/bundle.js",
+  "main": "src/index.js",
   "files": [
-    "dist"
+    "src"
   ],
   "publishConfig": {
     "registry": "https://npm-proxy.fury.io/appfolio/"
@@ -22,17 +22,28 @@
     "docs": "build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist": "webpack -p",
-    "prepublish": "npm run dist",
     "postpublish": "git push --no-verify && git push --tags"
   },
   "dependencies": {
     "babel-polyfill": "~6.13.0",
     "classnames": "^2.2.5",
+    "fecha": "^2.3.0",
+    "lodash.flow": "^3.5.0",
+    "lodash.includes": "^4.2.0",
+    "lodash.noop": "^3.0.1",
+    "lodash.omit": "^4.5.0",
+    "lodash.over": "^4.7.0",
+    "lodash.range": "~3.2.0",
+    "lodash.set": "^4.3.2",
     "react": "~15.4.0",
     "react-addons-css-transition-group": "^15.4.0",
     "react-addons-transition-group": "^15.4.0",
     "react-dom": "~15.4.0",
-    "reactstrap": "4.0.1"
+    "react-fontawesome": "^1.4.0",
+    "react-select": "^1.0.0-rc.2",
+    "react-text-mask": "^0.19.0",
+    "reactstrap": "4.0.1",
+    "text-mask-addons": "^3.1.0"
   },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
@@ -53,31 +64,18 @@
     "css-loader": "~0.25.0",
     "enzyme": "^2.6.0",
     "eslint-config-appfolio-react": "~0.3.2",
-    "fecha": "^2.3.0",
     "ignore-styles": "~5.0.1",
     "jsdom": "~9.4.5",
     "jsdom-global": "~2.1.0",
-    "lodash.clonedeep": "~4.5.0",
-    "lodash.flow": "^3.5.0",
-    "lodash.includes": "^4.2.0",
-    "lodash.noop": "^3.0.1",
-    "lodash.omit": "^4.5.0",
-    "lodash.over": "^4.7.0",
-    "lodash.range": "~3.2.0",
-    "lodash.set": "^4.3.2",
     "mocha": "~3.0.2",
     "node-sass": "~3.10.0",
     "nyc": "~6.6.1",
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
     "react-addons-test-utils": "^15.4.0",
-    "react-fontawesome": "^1.4.0",
-    "react-select": "^1.0.0-rc.2",
-    "react-text-mask": "^0.19.0",
     "sass-loader": "~4.0.0",
     "sinon": "^1.17.6",
     "style-loader": "~0.13.0",
-    "text-mask-addons": "^3.1.0",
     "webpack": "2.2.0"
   },
   "nyc": {

@@ -1,7 +1,6 @@
 import React from 'react';
 import FormRow from './FormRow';
-
-const noop = () => {};
+import noop from 'lodash.noop';
 
 const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => {
   const {
