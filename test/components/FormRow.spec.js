@@ -27,7 +27,7 @@ describe('<FormRow />', () => {
     });
 
     it('should wrap the input in a column', () => {
-      const col = component.find(Col).first();
+      const col = component.find(Col).at(0);
       assert.equal(col.prop('sm'), 9);
     });
 
@@ -55,6 +55,11 @@ describe('<FormRow />', () => {
       component.setProps({ color: null });
       assert.equal(component.prop('color'), 'warning');
       assert.equal(component.find(Input).prop('state'), 'warning');
+    });
+
+    it('should have an inner column width of 12', () => {
+      const col = component.find(Col).at(1); // inner column
+      assert.equal(col.prop('xs'), 12);
     });
   });
 
@@ -184,8 +189,20 @@ describe('<FormRow />', () => {
     });
 
     it('should make input full-width', () => {
-      const col = component.find(Col).first();
+      const col = component.find(Col).at(0);
       assert.equal(col.prop('sm'), 12);
+    });
+  });
+
+  describe('with custom width', () => {
+    const component = shallow(
+      <FormRow label="First Name" width={{ xs: 6, sm: 7 }} />
+    );
+
+    it('should set the inner column width', () => {
+      const col = component.find(Col).at(1); // inner column
+      assert.equal(col.prop('xs'), 6);
+      assert.equal(col.prop('sm'), 7);
     });
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap';
+import { FormGroup, Input, Label, Col, Row, FormFeedback, FormText } from 'reactstrap';
 
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
@@ -39,6 +39,7 @@ const FormRow = props => {
     children,
     inline,
     stacked,
+    width,
     ...attributes
   } = props;
 
@@ -59,15 +60,19 @@ const FormRow = props => {
         {required && label ? <span className="text-danger">&nbsp;*</span> : null}
       </Label>
       <Col sm={inputContainerWidth}>
-        <InputElement
-          id={id}
-          size={size}
-          state={rowColor}
-          type={type}
-          children={React.Children.map(children, child => React.cloneElement(child, { type }))}
-          {...attributes}
-          {...childFeedback}
-        />
+        <Row>
+          <Col {...width} >
+            <InputElement
+              id={id}
+              size={size}
+              state={rowColor}
+              type={type}
+              children={React.Children.map(children, child => React.cloneElement(child, { type }))}
+              {...attributes}
+              {...childFeedback}
+            />
+          </Col>
+        </Row>
         {hint ? <FormText color="muted" children={hint} /> : null}
         {baseFeedback ? <FormFeedback children={baseFeedback} /> : null}
       </Col>
@@ -89,7 +94,8 @@ FormRow.propTypes = {
     React.PropTypes.func
   ]),
   inline: React.PropTypes.bool,
-  stacked: React.PropTypes.bool
+  stacked: React.PropTypes.bool,
+  width: React.PropTypes.object
 };
 
 FormRow.defaultProps = {
@@ -99,7 +105,8 @@ FormRow.defaultProps = {
   required: false,
   type: 'text',
   inline: false,
-  stacked: false
+  stacked: false,
+  width: { xs: 12 }
 };
 
 export default FormRow;
