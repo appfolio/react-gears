@@ -78,6 +78,7 @@ import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import LabelBadge from './components/LabelBadge.js';
+import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
@@ -173,6 +174,7 @@ export {
   HelpBubble,
   Icon,
   LabelBadge,
+  Notes,
   PatternInput,
   Progress,
   Spinner,
