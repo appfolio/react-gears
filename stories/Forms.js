@@ -23,6 +23,7 @@ storiesOf('Forms', module)
         label={text('label', 'Select a Movie')}
         color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
         feedback={text('feedback', 'You must select a movie')}
+        stacked={boolean('stacked', false)}
         name="live-input"
       >
         <FormChoice />

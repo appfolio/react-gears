@@ -38,6 +38,7 @@ const FormRow = props => {
     type,
     children,
     inline,
+    stacked,
     ...attributes
   } = props;
 
@@ -46,13 +47,18 @@ const FormRow = props => {
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const rowColor = color || state || (baseFeedback && 'danger');
 
+  const labelWidth = stacked ? 12 : 3;
+  const labelAlignment = stacked ? '' : 'text-sm-right';
+
+  const inputContainerWidth = stacked ? 12 : 9;
+
   return (
     <FormGroup row color={rowColor}>
-      <Label for={id} sm={3} size={size} className="text-sm-right">
+      <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
         {label}
         {required && label ? <span className="text-danger">&nbsp;*</span> : null}
       </Label>
-      <Col sm={9}>
+      <Col sm={inputContainerWidth}>
         <InputElement
           id={id}
           size={size}
@@ -82,7 +88,8 @@ FormRow.propTypes = {
     React.PropTypes.element,
     React.PropTypes.func
   ]),
-  inline: React.PropTypes.bool
+  inline: React.PropTypes.bool,
+  stacked: React.PropTypes.bool
 };
 
 FormRow.defaultProps = {
@@ -91,7 +98,8 @@ FormRow.defaultProps = {
   feedback: '',
   required: false,
   type: 'text',
-  inline: false
+  inline: false,
+  stacked: false
 };
 
 export default FormRow;
