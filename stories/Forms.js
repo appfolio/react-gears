@@ -17,7 +17,7 @@ const formData = {
 
 const colKnobOptions = {
   range: true,
-  min: 0,
+  min: 1,
   max: 12
 };
 
@@ -39,7 +39,6 @@ storiesOf('Forms', module)
         }}
         name="live-input"
       >
-        <FormChoice />
         <FormChoice value="override">A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
