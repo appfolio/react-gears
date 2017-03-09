@@ -6,11 +6,11 @@
         "modules": false
       }
     ],
-    "react",
-    "stage-2"
+    "react"
   ],
   "plugins": [
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-class-properties"
   ],
 
   "env": {
