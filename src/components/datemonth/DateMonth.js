@@ -4,7 +4,6 @@ import { Icon } from '../../';
 import Label from './DateMonthLabel.js';
 import React, { Component } from 'react';
 import fecha from 'fecha';
-import includes from 'lodash.includes';
 import path from './path.js';
 import range from 'lodash.range';
 import styles from './DateMonth.scss';
@@ -42,7 +41,7 @@ export default class DateMonth extends Component {
   componentDidMount() {
     this.listener = event => {
       const container = this.base;
-      if (container && !includes(path(event), container)) {
+      if (container && path(event).indexOf(container) === -1) {
         this.setState({ open: false });
       }
       return true;
@@ -122,7 +121,7 @@ export default class DateMonth extends Component {
     const value = state.month && state.year ? `${state.month} ${state.year}` : props.value;
 
     return (
-      <div className={styles.dateMonth}>
+      <div className={styles.dateMonth} ref={el => { this.base = el; }}>
         <header>
           <InputGroup>
             <Input
