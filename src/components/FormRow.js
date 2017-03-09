@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Input, Label, Col, FormFeedback, FormText } from 'reactstrap';
+import { FormGroup, Input, Label, Col, Row, FormFeedback, FormText } from 'reactstrap';
 
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
@@ -38,6 +38,8 @@ const FormRow = props => {
     type,
     children,
     inline,
+    stacked,
+    width,
     ...attributes
   } = props;
 
@@ -46,22 +48,31 @@ const FormRow = props => {
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const rowColor = color || state || (baseFeedback && 'danger');
 
+  const labelWidth = stacked ? 12 : 3;
+  const labelAlignment = stacked ? '' : 'text-sm-right';
+
+  const inputContainerWidth = stacked ? 12 : 9;
+
   return (
     <FormGroup row color={rowColor}>
-      <Label for={id} sm={3} size={size}>
+      <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
         {label}
-        {required && label ? <span className="text-danger"> *</span> : null}
+        {required && label ? <span className="text-danger">&nbsp;*</span> : null}
       </Label>
-      <Col sm={9}>
-        <InputElement
-          id={id}
-          size={size}
-          state={rowColor}
-          type={type}
-          children={React.Children.map(children, child => React.cloneElement(child, { type }))}
-          {...attributes}
-          {...childFeedback}
-        />
+      <Col sm={inputContainerWidth}>
+        <Row>
+          <Col {...width} >
+            <InputElement
+              id={id}
+              size={size}
+              state={rowColor}
+              type={type}
+              children={React.Children.map(children, child => React.cloneElement(child, { type }))}
+              {...attributes}
+              {...childFeedback}
+            />
+          </Col>
+        </Row>
         {hint ? <FormText color="muted" children={hint} /> : null}
         {baseFeedback ? <FormFeedback children={baseFeedback} /> : null}
       </Col>
@@ -82,7 +93,9 @@ FormRow.propTypes = {
     React.PropTypes.element,
     React.PropTypes.func
   ]),
-  inline: React.PropTypes.bool
+  inline: React.PropTypes.bool,
+  stacked: React.PropTypes.bool,
+  width: React.PropTypes.object
 };
 
 FormRow.defaultProps = {
@@ -91,7 +104,9 @@ FormRow.defaultProps = {
   feedback: '',
   required: false,
   type: 'text',
-  inline: false
+  inline: false,
+  stacked: false,
+  width: { xs: 12 }
 };
 
 export default FormRow;

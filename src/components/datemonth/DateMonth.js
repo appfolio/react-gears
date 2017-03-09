@@ -6,11 +6,18 @@ import React, { Component } from 'react';
 import fecha from 'fecha';
 import includes from 'lodash.includes';
 import path from './path.js';
-import range from 'lodash.range';
 import styles from './DateMonth.scss';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const MMM_YYYY_PATTERN = '^\\s*([Jj][Aa][Nn]|[Ff][Ee][Bb]|[Mm][Aa][Rr]|[Aa][Pp][Rr]|[Mm][Aa][Yy]|[Jj][Uu][Nn]|[Jj][Uu][Ll]|[Aa][Uu][Gg]|[Ss][Ee][Pp]|[Oo][Cc][Tt]|[Nn][Oo][Vv]|[Dd][Ee][Cc])\\s+\\d\\d\\d\\d\\s*$';
+
+function range(start, end) {
+  const result = [];
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+  return result;
+}
 
 export default class DateMonth extends Component {
   constructor(props) {

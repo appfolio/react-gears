@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -63,7 +63,6 @@
     "lodash.noop": "^3.0.1",
     "lodash.omit": "^4.5.0",
     "lodash.over": "^4.7.0",
-    "lodash.range": "~3.2.0",
     "lodash.set": "^4.3.2",
     "mocha": "~3.0.2",
     "node-sass": "~3.10.0",
