@@ -59,7 +59,6 @@
     "jsdom-global": "~2.1.0",
     "lodash.clonedeep": "~4.5.0",
     "lodash.flow": "^3.5.0",
-    "lodash.includes": "^4.2.0",
     "lodash.noop": "^3.0.1",
     "lodash.omit": "^4.5.0",
     "lodash.over": "^4.7.0",
