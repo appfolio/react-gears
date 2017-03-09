@@ -18,7 +18,8 @@ function preventMultipleDecimalPoint(conformedValue, config) {
 
 // TODO support I18n
 const CurrencyInput = ({ size, ...props }) => {
-  const inputProps = Object.assign({}, props, {
+  const inputProps = {
+    ...props,
     className: 'form-control',
     // There is a weird bug in the MaskedInput where if the "value" prop gets set to null the
     // input value gets set to "_".  Setting guide to false instead of undefined solves the
@@ -31,7 +32,7 @@ const CurrencyInput = ({ size, ...props }) => {
       prefix: ''
     }),
     pipe: preventMultipleDecimalPoint,
-  });
+  };
   delete inputProps.allowDecimal;
   delete inputProps.allowNegative;
   delete inputProps.includeThousandsSeparator;
