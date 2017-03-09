@@ -19,7 +19,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    library: 'xanthous',
+    library: 'ReactGears',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
