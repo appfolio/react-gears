@@ -28,6 +28,7 @@ const ThemeLink = props => {
 
 const THEMES = [
   { name: 'Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.css' },
+  { name: 'MyCase', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap.mycase.min.css' },
   { name: 'Bootstrap', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
   { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
   { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
