@@ -26,14 +26,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname,
         query: {
-          babelrc: false,
-          presets: [['es2015', { modules: false }], 'react', 'stage-1', 'stage-2'],
-          plugins: ['transform-decorators-legacy', 'transform-object-assign']
+          cacheDirectory: true,
         }
       },
       {
