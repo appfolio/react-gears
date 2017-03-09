@@ -16,7 +16,7 @@ const readEvent = e => ({ [e.target.name]: e.target.value });
 
 class AddressInput extends Component {
   onChange = update => {
-    this.props.onChange(Object.assign({}, this.props.value, update));
+    this.props.onChange({...this.props.value, ...update});
   }
 
   propsFor = field => {
