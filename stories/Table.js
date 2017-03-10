@@ -42,7 +42,7 @@ storiesOf('Table', module)
 
       <tbody>
         {DATA.map(row => (
-          <tr>
+          <tr key={row.name}>
             <td>{row.name}</td>
             <td>{row.company}</td>
             <td>{row.phone}</td>

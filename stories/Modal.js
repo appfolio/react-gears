@@ -27,7 +27,7 @@ class ModalExample extends React.Component {
 
 storiesOf('Modal', module)
   .addWithInfo('Live example', () => (
-    <Modal isOpen={boolean('isOpen', true)}>
+    <Modal isOpen={boolean('isOpen', true)} toggle={() => {}}>
       <ModalHeader>Modal title</ModalHeader>
       <ModalBody>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor

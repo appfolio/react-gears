@@ -18,7 +18,7 @@ export default class ShortcutLink extends Component {
   }
 
   render() {
-    const { children, name } = this.props;
+    const { children } = this.props;
 
     return (
       <PaginationItem>

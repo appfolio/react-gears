@@ -75,7 +75,7 @@ export default React.createClass({
     let classNames = [];
 
     if (cssModule) {
-      classNames.push(cssModule['fa']);
+      classNames.push(cssModule.fa);
       classNames.push(cssModule[`fa-${name}`]);
       size && classNames.push(cssModule[`fa-${size}`]);
       spin && classNames.push(cssModule['fa-spin']);

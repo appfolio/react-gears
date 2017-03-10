@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, ButtonToolbar, Col, Input,
+import { Button, ButtonGroup, Col, Input,
          InputGroupAddon, InputGroup, Row } from 'reactstrap';
 import { Icon } from '../../';
 import Label from './DateMonthLabel.js';
@@ -133,7 +133,7 @@ export default class DateMonth extends Component {
           <InputGroup>
             <Input
               name={props.name}
-              ref={component => this._input = component}
+              ref={component => { this._input = component; }}
               required={props.required}
               value={value}
               type="text"
