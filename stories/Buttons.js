@@ -91,7 +91,7 @@ storiesOf('Buttons', module)
 
           <ButtonGroup>
             <Button>8</Button>
-            <ButtonDropdown>
+            <ButtonDropdown toggle={() => {}}>
               <DropdownToggle caret>
                 Dropdown
               </DropdownToggle>
