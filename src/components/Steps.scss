@@ -1,10 +1,9 @@
 // TODO these colors need to instead come from Bootstrap classes like muted/info/success/etc for theming:
 $line: 1px;
-$done: #5177B3;
-$active: #5177B3;
-$todo: #767676;
-$complete: #009500;
-$completeText: #b9d1b9;
+$done: #0275d8; // Saffron color-primary
+$active: #0275d8;
+$todo: #818a91; // Saffron color-muted
+$complete: #21971d; // Saffron color-success
 
 .steps {
   align-items: flex-start;
@@ -19,7 +18,6 @@ $completeText: #b9d1b9;
     background-repeat: repeat-x;  
 
     align-items: center;
-    color: #767676;
     display: inline-flex;
     flex-direction: column;
     flex-grow: 1;
@@ -46,14 +44,11 @@ $completeText: #b9d1b9;
       }
     }
 
-    &:before {
+    .bubble {
       align-items: center;
-      color: #767676;
       background-color: white;
       border: $line solid $todo;
       border-radius: 100%;
-      content: counters(step,'');
-      counter-increment: step;
       display: flex;
       font-size: 1.25rem;
       font-weight: bold;
@@ -65,22 +60,15 @@ $completeText: #b9d1b9;
 
     &.active {
       background-image: linear-gradient(to right, $done 50%, $todo 50%, $todo 100%);
-      color: black;
-      &:before {
+      .bubble {
         border: $line solid $active;
-        background-color: $active;
-        color: white;
       }
     }
 
     &.complete {
       background-image: linear-gradient(to right, $done, $done);
-      color: $done;
-      &:before {
+      .bubble {
         border: $line solid $done;
-        color: $done;
-        content: '\f00c';
-        font-family: 'FontAwesome';
       }
     }
   }
@@ -88,13 +76,11 @@ $completeText: #b9d1b9;
     &.complete {
       .step {
         background-image: linear-gradient(to right, $complete, $complete);
-        color: $completeText;
-        &:before {
+        .bubble {
           border: $line solid $complete;
-          background-color: white;
-          color: $complete;
-          content: '\f00c';
-          font-family: 'FontAwesome';
+        }
+        .text {
+          opacity: .5;
         }
         &:first-child {
           background-image: linear-gradient(to right, transparent 50%, $complete 50%, $complete 100%);
