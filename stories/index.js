@@ -1,4 +1,5 @@
 import './Welcome';
+import './Demo';
 // Basic
 import './Layout';
 import './Buttons';
