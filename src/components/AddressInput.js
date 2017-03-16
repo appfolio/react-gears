@@ -16,15 +16,14 @@ const readEvent = e => ({ [e.target.name]: e.target.value });
 
 class AddressInput extends Component {
   onChange = update => {
-    this.props.onChange(Object.assign({}, this.props.value, update));
+    this.props.onChange({ ...this.props.value, ...update });
   }
 
   propsFor = field => {
     if (this.props.value[field]) {
       return { value: this.props.value[field] };
-    } else {
-      return { defaultValue: this.props.defaultValue[field] };
     }
+    return { defaultValue: this.props.defaultValue[field] };
   }
 
   render() {

@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+import Icon from './Icon.js';
 import styles from './Steps.scss';
 
 const Steps = ({ complete, step, steps }) => {
@@ -6,8 +8,38 @@ const Steps = ({ complete, step, steps }) => {
   return (
     <ol className={className}>
       {steps.map((name, index) => {
-        const classNames = `${styles.step} ${index < step ? styles.complete : ''} ${index === step ? styles.active : ''}`;
-        return <li key={index} className={classNames}>{name}</li>;
+        const stepComplete = !complete && index < step;
+        const stepActive = !complete && index === step;
+
+        const liClasses = classNames({
+          [styles.step]: true,
+          [styles.complete]: stepComplete,
+          [styles.active]: stepActive,
+        });
+
+        const bubbleClasses = classNames({
+          [styles.bubble]: true,
+          'text-success': complete,
+          'bg-primary': stepActive,
+          'text-primary': stepComplete,
+          'text-white': stepActive,
+        });
+
+        const textClasses = classNames({
+          [styles.text]: true,
+          'text-primary': stepComplete,
+          'text-muted': !complete && index > step,
+          'text-success': complete,
+        });
+
+        return (
+          <li key={index} className={liClasses}>
+            <div className={bubbleClasses}>
+              {complete || stepComplete ? <Icon name="check" /> : index + 1}
+            </div>
+            <div className={textClasses}>{name}</div>
+          </li>
+        );
       })}
     </ol>
   );

@@ -18,7 +18,19 @@ function preventMultipleDecimalPoint(conformedValue, config) {
 
 // TODO support I18n
 const CurrencyInput = ({ size, ...props }) => {
-  const inputProps = Object.assign({}, props, {
+  /* eslint-disable  no-unused-vars */
+  const {
+    state,
+    type,
+    allowDecimal,
+    allowNegative,
+    includeThousandsSeparator,
+    ...inputProps
+  } = props;
+  /* eslint-enable  no-unused-vars */
+
+  const maskedProps = {
+    ...inputProps,
     className: 'form-control',
     // There is a weird bug in the MaskedInput where if the "value" prop gets set to null the
     // input value gets set to "_".  Setting guide to false instead of undefined solves the
@@ -31,15 +43,12 @@ const CurrencyInput = ({ size, ...props }) => {
       prefix: ''
     }),
     pipe: preventMultipleDecimalPoint,
-  });
-  delete inputProps.allowDecimal;
-  delete inputProps.allowNegative;
-  delete inputProps.includeThousandsSeparator;
+  };
 
   return (
     <InputGroup size={size} className={props.className}>
       <InputGroupAddon>$</InputGroupAddon>
-      <MaskedInput {...inputProps} />
+      <MaskedInput {...maskedProps} />
     </InputGroup>
   );
 };

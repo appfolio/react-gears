@@ -7,7 +7,7 @@ import { Progress } from '../src';
 storiesOf('Progress', module)
   .addWithInfo('Live example', () => (
     <Progress
-      color={select('color', ['info', 'success', 'warning', 'danger'], 'info')}
+      color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
       value={number('value', 50, {
         range: true,
         min: 0,

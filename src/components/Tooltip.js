@@ -19,7 +19,7 @@ export default class Tooltip extends React.Component {
   });
 
   render() {
-    const { isOpen, ...props } = this.props;
+    const { isOpen, ...props } = this.props;  // eslint-disable-line no-unused-vars
 
     return (
       <InnerTooltip isOpen={this.state.isOpen} toggle={this.toggle} {...props} />

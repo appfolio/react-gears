@@ -17,19 +17,24 @@ setOptions({
   downPanel: 'kadirahq%2Fstorybook-addon-knobs'
 });
 
-const ThemeLink = props => {
-  const changeTheme = url => {
-    const link = document.getElementById('theme');
-    link.href = url;
+const changeTheme = index => {
+  const link = document.getElementById('theme');
+  link.href = THEMES[index].url;
+  try {
+    localStorage.storybookTheme = index;
+  } catch (err) {
+    // Safari private mode
   }
+}
 
-  return <Button color="link" onClick={() => changeTheme(props.url)}>{props.children}</Button>
+const ThemeLink = props => {
+  return <Button color="link" onClick={() => changeTheme(props.index)}>{props.children}</Button>
 }
 
 const THEMES = [
-  { name: 'Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.css' },
-  { name: 'MyCase', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap.mycase.min.css' },
-  { name: 'Bootstrap', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
+  { name: 'APM/Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.min.css' },
+  { name: 'MyCase', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-mycase.min.css' },
+  { name: 'Bootstrap default', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
   { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
   { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
   { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }
@@ -40,7 +45,7 @@ addDecorator(withKnobs);
 addDecorator((story, info) => (
 <div>
   <ButtonGroup size="sm">
-    {THEMES.map((theme, i) => <ThemeLink key={i} url={theme.url}>{theme.name}</ThemeLink>)}
+    {THEMES.map((theme, i) => <ThemeLink key={i} index={i}>{theme.name}</ThemeLink>)}
   </ButtonGroup>
   <Container fluid className="m-5">
     <Col xl="7">
@@ -64,6 +69,12 @@ setDefaults({
 
 function loadStories() {
   require('../stories');
+
+  const storybookTheme = parseInt(localStorage.storybookTheme);
+
+  if (storybookTheme in THEMES) {
+    changeTheme(storybookTheme);
+  }
 }
 
 configure(loadStories, module);

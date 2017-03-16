@@ -1,7 +1,24 @@
 {
-  "presets": ["es2015", "react", "stage-1", "stage-2"],
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react"
+  ],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-object-assign"
-  ]
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ],
+
+  "env": {
+    "storybook": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
