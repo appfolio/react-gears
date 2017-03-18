@@ -2,6 +2,8 @@ import React from 'react';
 import { Alert, Button, Card, CardBlock, CardHeader, CardText, Flag, Input } from '../';
 
 import fecha from 'fecha';
+import styles from './Note.scss';
+
 // TODO extract to helper:
 const format = date => fecha.format(date, 'ddd, MMMM d, YYYY "at" h:mm A');
 
@@ -28,7 +30,7 @@ const EditableNote = ({ note, onEdit }) => (
 );
 
 const Note = note => {
-  const { from, date, edited, editing, deleted, text, onDelete, onEdit, onUndelete } = note;
+  const { children, from, date, edited, editing, deleted, text, onDelete, onEdit, onUndelete } = note;
   return (
     <div className="mb-3">
       {deleted ?
@@ -47,9 +49,7 @@ const Note = note => {
                 </span>
               </CardHeader>
               <CardBlock>
-                <CardText>
-                  {text}
-                </CardText>
+                <CardText className={styles.text}>{children ? children : text}</CardText>
               </CardBlock>
             </Card>
           )}
