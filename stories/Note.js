@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { Note } from '../src';
-import { boolean, object, select, text } from '@kadira/storybook-addon-knobs';
+import { boolean, date, object, select, text } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Note', module)
   .addWithInfo('Live example', () => (
@@ -31,6 +31,6 @@ storiesOf('Note', module)
       Goodbye cruel world...
       <h3>I'm off to join the circus</h3>
       <hr />
-      <img width="300" height="80" src="https://www.appfolio.com/images/html/apm-logo-v2.png" />
+      <img src="https://www.appfolio.com/images/html/apm-logo-v2.png" />
     </Note>
   ));
