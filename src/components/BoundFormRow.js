@@ -3,6 +3,10 @@ import FormRow from './FormRow';
 
 const noop = () => {};
 
+const withDefault = (value, defaultVal) => (
+  typeof value === 'undefined' ? defaultVal : value
+);
+
 const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => {
   const {
     onChange: onChangeProp,
@@ -11,7 +15,7 @@ const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => {
 
   return (
     <FormRow
-      value={value[props.name] || ''}
+      value={withDefault(value[props.name], '')}
       feedback={errors[props.name] || ''}
       onChange={e => { onChangeProp(e); onChange(props.name)(e); }}
       {...rowProps}
