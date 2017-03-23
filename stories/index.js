@@ -3,6 +3,7 @@ import './Demo';
 // Basic
 import './Layout';
 import './Buttons';
+import './Card';
 import './Flag';
 import './Icon';
 import './Alerts';
