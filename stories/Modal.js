@@ -1,34 +1,16 @@
 import React from 'react';
 import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 import { storiesOf } from '@kadira/storybook';
-import { boolean } from '@kadira/storybook-addon-knobs';
-
-class ModalExample extends React.Component {
-
-  static displayName = 'Modal';
-
-  state = {
-    open: false
-  }
-
-  toggle = () => this.setState({ open: !this.state.open });
-
-  render() {
-    return (
-      <div>
-        <Button color="primary" onClick={this.toggle}>Show Modal</Button>
-        <Modal isOpen={this.props.open} toggle={this.toggle}>
-          {this.props.children}
-        </Modal>
-      </div>
-    );
-  }
-}
+import { boolean, select } from '@kadira/storybook-addon-knobs';
 
 storiesOf('Modal', module)
   .addWithInfo('Live example', () => (
-    <Modal isOpen={boolean('isOpen', true)} toggle={() => {}}>
-      <ModalHeader>Modal title</ModalHeader>
+    <Modal
+      isOpen={boolean('isOpen', true)}
+      backdrop={boolean('backdrop', true)}
+      size={select('size', [null, 'sm', 'md', 'lg'], null)}
+    >
+      <ModalHeader toggle={() => {}}>Modal title</ModalHeader>
       <ModalBody>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
