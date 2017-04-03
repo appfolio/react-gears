@@ -18,6 +18,7 @@ import './Tooltip';
 import './Forms';
 import './Address';
 import './CurrencyInput';
+import './CreditCardNumber';
 import './DateMonth';
 import './InputGroup';
 import './Select';
