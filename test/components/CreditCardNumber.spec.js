@@ -21,6 +21,15 @@ describe('<CreditCardNumber />', () => {
     assert.equal(component.find(Icon).length, 0);
   });
 
+  it('should handle initialValues', () => {
+    const component = mount(<CreditCardNumber initialValue={EXAMPLES.visa} />);
+
+    const input = component.find('input');
+    assert.equal(input.length, 1);
+    assert.equal(input.get(0).value, '4111 1111 1111 1111');
+    assert.equal(component.find(Icon).prop('name'), 'cc-visa');
+  });
+
   it('should render correct icons for valid card numbers', () => {
     Object.keys(EXAMPLES).forEach(key => {
       const expectedIcon = `cc-${key}`;
@@ -30,9 +39,7 @@ describe('<CreditCardNumber />', () => {
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      component.find(Icon).forEach(icon => {
-        assert.equal(icon.prop('name'), expectedIcon);
-      });
+      assert.equal(component.find(Icon).prop('name'), expectedIcon);
     });
   });
 

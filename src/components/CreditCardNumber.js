@@ -23,17 +23,11 @@ function includes(array, value) {
 export default class CreditCardNumber extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      value: props.initialValue,
-    };
+    this.state = { value: '', cardType: undefined };
   }
-  componentWillReceiveProps(props) {
-    if (this.props.initialValue !== props.initialValue) {
-      this.setState({
-        value: props.initialValue,
-      });
-    }
+
+  componentDidMount() {
+    this.handleChange(this.props.initialValue);
   }
 
   handleChange(proposedValue) {
