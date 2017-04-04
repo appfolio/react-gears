@@ -22,4 +22,7 @@ storiesOf('CreditCardNumber', module)
       <CreditCardNumber allowedBrands={['visa']} />
     </div>
   ))
+  .addWithInfo('initial value', () => (
+    <CreditCardNumber initialValue="4111111111111111" />
+  ))
 ;
