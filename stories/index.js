@@ -19,6 +19,7 @@ import './Forms';
 import './Address';
 import './CurrencyInput';
 import './CreditCardNumber';
+import './CreditCardExpiration';
 import './DateMonth';
 import './InputGroup';
 import './Select';
