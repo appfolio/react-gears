@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import autoBind from 'react-autobind';
 import { Icon } from '../';
 import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { number } from 'card-validator';
@@ -23,7 +24,8 @@ function includes(array, value) {
 export default class CreditCardNumber extends Component {
   constructor(props) {
     super(props);
-    this.onInputChange = this.onInputChange.bind(this);
+    autoBind(this);
+
     this.state = { value: '', cardType: undefined };
   }
 
