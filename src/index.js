@@ -69,6 +69,7 @@ import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Close from './components/Close.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
+import CreditCardExpiration from './components/CreditCardExpiration.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
@@ -166,6 +167,7 @@ export {
   BoundFormRow,
   Close,
   CreditCardNumber,
+  CreditCardExpiration,
   CurrencyInput,
   Datapair,
   DateMonth,
