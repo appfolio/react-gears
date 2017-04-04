@@ -38,7 +38,9 @@ export default class CreditCardNumber extends Component {
   setValue(proposedValue) {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      this.setState({ value, cardType: undefined });
+      if (this.props.onChange(value) !== false) {
+        this.setState({ value, cardType: undefined });
+      }
       return;
     }
 
@@ -65,19 +67,21 @@ export default class CreditCardNumber extends Component {
 
     // Only accept the change if we recognize the card type, and it is/may be valid
     if (cardType && (isValid || isPotentiallyValid)) {
-      this.setState({ value, cardType });
+      if (this.props.onChange(value) !== false) {
+        this.setState({ value, cardType });
+      }
     }
   }
 
   render() {
     const { placeholder } = this.props;
-    const { cardType } = this.state;
+    const { cardType, value } = this.state;
 
     return (
       <InputGroup className="credit-card-number-field">
         <Input
           placeholder={placeholder}
-          value={this.state.value}
+          value={value}
           onChange={this.onInputChange}
         />
         {cardType &&
@@ -94,9 +98,13 @@ CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
   placeholder: 'Credit Card Number...',
   initialValue: '',
+
+  onChange: () => true,
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
   placeholder: PropTypes.string,
   initialValue: PropTypes.string,
+
+  onChange: PropTypes.func,
 };

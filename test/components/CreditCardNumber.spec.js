@@ -2,6 +2,7 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import CreditCardNumber from '../../src/components/CreditCardNumber';
 import Icon from '../../src/components/Icon';
@@ -61,5 +62,15 @@ describe('<CreditCardNumber />', () => {
 
     input.simulate('change', { target: { value: EXAMPLES['diners-club'] } });
     assert.equal(input.get(0).value, '3056 930902 5904');
+  });
+
+  it('should cancel updates if onChange returns false', () => {
+    const onChange = sinon.stub().returns(false);
+    const component = mount(<CreditCardNumber onChange={onChange} />);
+    const input = component.find('input');
+
+    input.simulate('change', { target: { value: EXAMPLES.visa } });
+    assert(onChange.called);
+    assert.equal(input.get(0).value, '');
   });
 });
