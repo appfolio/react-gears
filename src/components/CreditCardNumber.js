@@ -23,17 +23,23 @@ function includes(array, value) {
 export default class CreditCardNumber extends Component {
   constructor(props) {
     super(props);
+    this.onInputChange = this.onInputChange.bind(this);
     this.state = { value: '', cardType: undefined };
   }
 
   componentDidMount() {
-    this.handleChange(this.props.initialValue);
+    this.setValue(this.props.initialValue);
   }
 
-  handleChange(proposedValue) {
+  onInputChange(event) {
+    this.setValue(event.target.value);
+  }
+
+  setValue(proposedValue) {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      return this.setState({ value, cardType: undefined });
+      this.setState({ value, cardType: undefined });
+      return;
     }
 
     const { card, isValid, isPotentiallyValid } = number(value);
@@ -54,10 +60,8 @@ export default class CreditCardNumber extends Component {
     }
 
     if (cardType && (isValid || isPotentiallyValid)) {
-      return this.setState({ value, cardType });
+      this.setState({ value, cardType });
     }
-
-    return false;
   }
 
   render() {
@@ -69,7 +73,7 @@ export default class CreditCardNumber extends Component {
         <Input
           placeholder={placeholder}
           value={this.state.value}
-          onChange={(event) => { this.handleChange(event.target.value); }}
+          onChange={this.onInputChange}
         />
         {cardType &&
           <InputGroupAddon>
