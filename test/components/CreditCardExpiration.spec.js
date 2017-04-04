@@ -1,19 +1,67 @@
 /* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import { ButtonDropdown } from 'reactstrap';
+import { InputGroup } from 'reactstrap';
+import { Select } from '../../src/';
 import CreditCardExpiration from '../../src/components/CreditCardExpiration';
 
 describe('<CreditCardExpiration />', () => {
+  const today = new Date();
+
   it('renders current month and year by default', () => {
     const component = mount(<CreditCardExpiration />);
     const cce = component.find(CreditCardExpiration).get(0);
 
-    const today = new Date();
     assert.equal(cce.props.month, today.getMonth());
     assert.equal(cce.props.year, today.getFullYear());
+  });
+
+  it('defaults invalid changes to current date values', () => {
+    const onChange = sinon.spy();
+    const component = mount(<CreditCardExpiration onChange={onChange} />);
+    const cce = component.find(CreditCardExpiration).get(0);
+
+    const { month, year } = CreditCardExpiration.defaultProps;
+    const EXPECTED = { month, year };
+
+    cce.onYearSelection(undefined);
+    assert(onChange.calledWith(EXPECTED));
+    onChange.reset();
+
+    cce.onYearSelection({ value: undefined });
+    assert(onChange.calledWith(EXPECTED));
+    onChange.reset();
+
+    cce.onMonthSelection(undefined);
+    assert(onChange.calledWith(EXPECTED));
+    onChange.reset();
+
+    cce.onMonthSelection({ value: undefined });
+    assert(onChange.calledWith(EXPECTED));
+    onChange.reset();
+  });
+
+  it('creates the correct entries for months and years', () => {
+    const component = mount(<CreditCardExpiration />);
+    const selects = component.find(Select);
+
+    assert.equal(selects.length, 2);
+
+    const months = selects.get(0);
+    const monthOptions = months.props.options;
+    assert.equal(monthOptions.length, 12);
+    assert.deepEqual(monthOptions[0], { label: 'January', value: 1 });
+    assert.deepEqual(monthOptions[11], { label: 'December', value: 12 });
+
+    const years = selects.get(1);
+    const yearsOptions = years.props.options;
+    assert.equal(yearsOptions.length, 11);
+
+    const thisYear = today.getFullYear();
+    assert.deepEqual(yearsOptions[0], { label: thisYear, value: thisYear });
+    assert.deepEqual(yearsOptions[10], { label: thisYear + 10, value: thisYear + 10 });
   });
 });

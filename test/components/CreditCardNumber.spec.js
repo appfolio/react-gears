@@ -73,4 +73,20 @@ describe('<CreditCardNumber />', () => {
     assert(onChange.called);
     assert.equal(input.get(0).value, '');
   });
+
+  it('should not append extra spaces to partial numbers', () => {
+    const component = mount(<CreditCardNumber />);
+    const input = component.find('input');
+
+    input.simulate('change', { target: { value: EXAMPLES.visa.slice(0, 8) } });
+    assert.equal(input.get(0).value, '4111 1111');
+  });
+
+  it('should reject changes that are not even potentially valid', () => {
+    const component = mount(<CreditCardNumber />);
+    const input = component.find('input');
+
+    input.simulate('change', { target: { value: '5' } });
+    assert.equal(input.get(0).value, '');
+  });
 });
