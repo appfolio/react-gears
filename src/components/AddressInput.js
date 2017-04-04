@@ -30,7 +30,7 @@ class AddressInput extends Component {
     const { error } = this.props;
 
     return (
-      <div>
+      <FormGroup sm={this.props.sm}>
         <FormGroup color={error.address1 && 'danger'}>
           <Input
             name="address1"
@@ -105,7 +105,7 @@ class AddressInput extends Component {
           />
           {error.countryCode && <FormFeedback children={error.countryCode} />}
         </FormGroup>
-      </div>
+      </FormGroup>
     );
   }
 }
@@ -116,21 +116,25 @@ const fieldTypes = {
   city: React.PropTypes.string,
   state: React.PropTypes.string,
   postal: React.PropTypes.string,
-  countryCode: React.PropTypes.string
+  countryCode: React.PropTypes.string,
 };
 
 AddressInput.propTypes = {
   value: React.PropTypes.shape(fieldTypes),
   defaultValue: React.PropTypes.shape(fieldTypes),
   error: React.PropTypes.shape(fieldTypes),
-  onChange: React.PropTypes.func
+  onChange: React.PropTypes.func,
+
+  sm: React.PropTypes.number,
 };
 
 AddressInput.defaultProps = {
   value: {},
   defaultValue: {},
   error: {},
-  onChange: noop
+  onChange: noop,
+
+  sm: 12,
 };
 
 export default AddressInput;

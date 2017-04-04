@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import autoBind from 'react-autobind';
-import { Icon } from '../';
-import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Icon, FormGroup } from '../';
+import { Input, InputGroupAddon } from 'reactstrap';
 import { number } from 'card-validator';
 import cardTypeInfo from 'credit-card-type';
 
@@ -80,7 +80,10 @@ export default class CreditCardNumber extends Component {
     const { cardType, value } = this.state;
 
     return (
-      <InputGroup className="credit-card-number-field">
+      <FormGroup
+        className="credit-card-number-field"
+        color={(this.props.error || this.state.error) && 'danger'}
+      >
         <Input
           placeholder={placeholder}
           value={value}
@@ -91,22 +94,24 @@ export default class CreditCardNumber extends Component {
             <Icon name={cardType} />
           </InputGroupAddon>
         }
-      </InputGroup>
+      </FormGroup>
     );
   }
 }
 
 CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
-  placeholder: 'Credit Card Number...',
+  error: null,
   initialValue: '',
+  placeholder: 'Credit Card Number...',
 
   onChange: () => true,
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
-  placeholder: PropTypes.string,
+  error: PropTypes.string,
   initialValue: PropTypes.string,
+  placeholder: PropTypes.string,
 
   onChange: PropTypes.func,
 };

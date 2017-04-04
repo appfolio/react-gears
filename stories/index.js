@@ -24,6 +24,9 @@ import './DateMonth';
 import './InputGroup';
 import './Select';
 
+// Forms
+import './CreditCardForm';
+
 // APM
 import './BlockPanel';
 import './Datapair';
