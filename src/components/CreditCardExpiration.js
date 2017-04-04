@@ -22,11 +22,11 @@ export default class CreditCardExpiration extends Component {
   constructor(props) { super(props); autoBind(this); }
 
   onMonthSelection(option) {
-    const month = option && option.value || today.getMonth();
+    const month = option && option.value || CreditCardExpiration.defaultProps.month;
     this.props.onChange({ month, year: this.props.year });
   }
   onYearSelection(option) {
-    const year = option && option.value || today.getFullYear();
+    const year = option && option.value || CreditCardExpiration.defaultProps.year;
     this.props.onChange({ year, month: this.props.month });
   }
 
