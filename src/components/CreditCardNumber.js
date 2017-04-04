@@ -52,13 +52,18 @@ export default class CreditCardNumber extends Component {
     const typeInfo = cardTypeInfo(value);
     if (typeInfo.length === 1) {
       const spaces = (typeInfo[0] || {}).gaps || [];
-      value = spaces.slice().reverse()
+      value = spaces // For VISA: [4, 8, 12]
+        // Reverse-order, since each space added changes line length
+        .reverse()
+        // Remove any space-positions that occur after the current length
         .filter(position => position < value.length)
+        // Inject spaces into the value at each declared position
         .reduce((cardNumber, position) =>
           `${cardNumber.slice(0, position)} ${cardNumber.slice(position)}`
         , value);
     }
 
+    // Only accept the change if we recognize the card type, and it is/may be valid
     if (cardType && (isValid || isPotentiallyValid)) {
       this.setState({ value, cardType });
     }
