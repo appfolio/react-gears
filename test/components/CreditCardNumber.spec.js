@@ -64,16 +64,6 @@ describe('<CreditCardNumber />', () => {
     assert.equal(input.get(0).value, '3056 930902 5904');
   });
 
-  it('should cancel updates if onChange returns false', () => {
-    const onChange = sinon.stub().returns(false);
-    const component = mount(<CreditCardNumber onChange={onChange} />);
-    const input = component.find('input');
-
-    input.simulate('change', { target: { value: EXAMPLES.visa } });
-    assert(onChange.called);
-    assert.equal(input.get(0).value, '');
-  });
-
   it('should not append extra spaces to partial numbers', () => {
     const component = mount(<CreditCardNumber />);
     const input = component.find('input');
