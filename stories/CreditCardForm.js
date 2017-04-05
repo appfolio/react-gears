@@ -5,6 +5,6 @@ import { CreditCardForm } from '../src';
 
 storiesOf('CreditCardForm', module)
   .addWithInfo('default props', () => (
-    <CreditCardForm />
+    <CreditCardForm onSave={console.log} />
   ))
 ;
