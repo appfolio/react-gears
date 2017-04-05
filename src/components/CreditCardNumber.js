@@ -40,9 +40,8 @@ export default class CreditCardNumber extends Component {
   setValue(proposedValue) {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      if (this.props.onChange(value, false) !== false) {
-        this.setState({ value, cardType: undefined });
-      }
+      this.props.onChange(value, false);
+      this.setState({ value, cardType: undefined });
       return;
     }
 
@@ -69,9 +68,8 @@ export default class CreditCardNumber extends Component {
 
     // Only accept the change if we recognize the card type, and it is/may be valid
     if (cardType && (isValid || isPotentiallyValid)) {
-      if (this.props.onChange(value, isValid) !== false) {
-        this.setState({ value, cardType, isValid });
-      }
+      this.props.onChange(value, isValid);
+      this.setState({ value, cardType, isValid });
     }
   }
 
