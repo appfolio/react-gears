@@ -4,22 +4,21 @@ import assert from 'assert';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import { InputGroup } from 'reactstrap';
 import { Select } from '../../src/';
 import CreditCardExpiration from '../../src/components/CreditCardExpiration';
 
 describe('<CreditCardExpiration />', () => {
   const today = new Date();
 
-  it('renders current month and year by default', () => {
+  it('renders defaults correctly', () => {
     const component = mount(<CreditCardExpiration />);
     const cce = component.find(CreditCardExpiration).get(0);
 
-    assert.equal(cce.props.month, today.getMonth());
-    assert.equal(cce.props.year, today.getFullYear());
+    assert.equal(cce.props.month, CreditCardExpiration.defaultProps.month);
+    assert.equal(cce.props.year, CreditCardExpiration.defaultProps.year);
   });
 
-  it('defaults invalid changes to current date values', () => {
+  it('invalid changes result in resetting to defaults', () => {
     const onChange = sinon.spy();
     const component = mount(<CreditCardExpiration onChange={onChange} />);
     const cce = component.find(CreditCardExpiration).get(0);
