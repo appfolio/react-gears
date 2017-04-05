@@ -3,7 +3,7 @@ import autoBind from 'react-autobind';
 import { Button, Input, Row, Col } from 'reactstrap';
 import {
   AddressInput, CreditCardNumber, CreditCardExpiration,
-  Form, FormFeedback, FormGroup, Icon,
+  FormFeedback, FormGroup, Icon,
 } from '../';
 import { fieldTypes as ADDRESS_PROPTYPES } from './AddressInput';
 
@@ -11,9 +11,8 @@ import STYLES from './CreditCardForm.scss';
 
 const TRACKED_PROPS = [
   'firstName', 'lastName',
-  'cardNumber', 'expirationMonth', 'expirationYear',
-  'address1', 'address2',
-  'city', 'state', 'postal', 'countryCode',
+  'cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear',
+  'address1', 'address2', 'city', 'state', 'postal', 'countryCode',
 ];
 
 function extract(original, fields = []) {
@@ -48,25 +47,37 @@ export default class CreditCardForm extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = { ...extract(props, TRACKED_PROPS), hasSubmitted: true };
+    this.state = {
+      ...extract(props, TRACKED_PROPS),
+      errors: {},
+    };
   }
-  componentWillReceiveProps(props) {
-    this.setState({ ...extract(props, TRACKED_PROPS), hasSubmitted: true });
+
+  handleSave() {
+    const errors = validateForm(this.state);
+    this.setState({ errors });
+
+    if (Object.keys(errors).length === 0) {
+      this.props.onSave(extract(this.state, TRACKED_PROPS));
+    }
+  }
+  handleCancel() {
+    this.setState({ ...extract(this.props, TRACKED_PROPS), errors: {} });
+    this.props.onCancel();
   }
 
   render() {
-    const errors = this.state.hasSubmitted ? validateForm(this.state) : {};
-
     const {
       firstName, lastName, cardNumber, cardCVV,
-      expirationMonth: month, expirationYear: year
+      expirationMonth: month, expirationYear: year,
+      errors,
     } = this.state;
     const addressProps = extract(this.state,
       ['address1', 'address2', 'city', 'state', 'postal', 'countryCode']
     );
 
     return (
-      <Form className={`credit-card-form ${STYLES.creditCardForm}`}>
+      <div className={`credit-card-form ${STYLES.creditCardForm}`}>
         <Row>
           <Col xs={12} sm={6}>
             <FormGroup color={errors.firstName && 'danger'}>
@@ -139,7 +150,7 @@ export default class CreditCardForm extends Component {
         <Row>
           <Col xs={6}>
             <FormGroup className="pull-right">
-              <Button color="success" onClick={this.handleSaveClicked}>
+              <Button color="success" onClick={this.handleSave}>
                 <Icon name="save" /> Save
               </Button>
             </FormGroup>
@@ -152,7 +163,7 @@ export default class CreditCardForm extends Component {
             </FormGroup>
           </Col>
         </Row>
-      </Form>
+      </div>
     );
   }
 }
