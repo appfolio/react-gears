@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import autoBind from 'react-autobind';
-import { Icon, FormGroup } from '../';
+import { Icon, InputGroup } from '../';
 import { Input, InputGroupAddon } from 'reactstrap';
 import { number } from 'card-validator';
 import cardTypeInfo from 'credit-card-type';
@@ -40,7 +40,7 @@ export default class CreditCardNumber extends Component {
   setValue(proposedValue) {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      if (this.props.onChange(value) !== false) {
+      if (this.props.onChange(value, false) !== false) {
         this.setState({ value, cardType: undefined });
       }
       return;
@@ -69,8 +69,8 @@ export default class CreditCardNumber extends Component {
 
     // Only accept the change if we recognize the card type, and it is/may be valid
     if (cardType && (isValid || isPotentiallyValid)) {
-      if (this.props.onChange(value) !== false) {
-        this.setState({ value, cardType });
+      if (this.props.onChange(value, isValid) !== false) {
+        this.setState({ value, cardType, isValid });
       }
     }
   }
@@ -80,13 +80,10 @@ export default class CreditCardNumber extends Component {
     const { cardType, value } = this.state;
 
     return (
-      <FormGroup
-        className="credit-card-number-field"
-        color={(this.props.error || this.state.error) && 'danger'}
-      >
+      <InputGroup className="credit-card-number-field">
         <Input
-          placeholder={placeholder}
-          value={value}
+          name="cardNumber"
+          placeholder={placeholder} value={value}
           onChange={this.onInputChange}
         />
         {cardType &&
@@ -94,22 +91,20 @@ export default class CreditCardNumber extends Component {
             <Icon name={cardType} />
           </InputGroupAddon>
         }
-      </FormGroup>
+      </InputGroup>
     );
   }
 }
 
 CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
-  error: null,
   initialValue: '',
   placeholder: 'Credit Card Number...',
 
-  onChange: () => true,
+  onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
-  error: PropTypes.string,
   initialValue: PropTypes.string,
   placeholder: PropTypes.string,
 

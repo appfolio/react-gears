@@ -110,7 +110,7 @@ class AddressInput extends Component {
   }
 }
 
-const fieldTypes = {
+export const fieldTypes = {
   address1: React.PropTypes.string,
   address2: React.PropTypes.string,
   city: React.PropTypes.string,

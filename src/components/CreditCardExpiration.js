@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import autoBind from 'react-autobind';
 import { Col, Row } from 'reactstrap';
-import { FormGroup, Select } from '../';
+import { Select } from '../';
 
 import STYLES from './CreditCardExpiration.scss';
 
@@ -34,20 +34,16 @@ export default class CreditCardExpiration extends Component {
     return (
       <Row>
         <Col xs={12} sm={6}>
-          <FormGroup>
-            <Select
-              className={STYLES.select} placeholder="Month" defaultValue={this.props.month}
-              options={monthOptions} onChange={this.onMonthSelection}
-            />
-          </FormGroup>
+          <Select
+            className={STYLES.select} placeholder="Month" defaultValue={this.props.month}
+            options={monthOptions} onChange={this.onMonthSelection}
+          />
         </Col>
         <Col xs={12} sm={6}>
-          <FormGroup>
-            <Select
-              className={STYLES.select} placeholder="Year" defaultValue={this.props.year}
-              options={yearsOptions} onChange={this.onYearSelection}
-            />
-          </FormGroup>
+          <Select
+            className={STYLES.select} placeholder="Year" defaultValue={this.props.year}
+            options={yearsOptions} onChange={this.onYearSelection}
+          />
         </Col>
       </Row>
     );
