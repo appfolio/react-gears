@@ -51,8 +51,8 @@ export default class CreditCardExpiration extends Component {
 }
 
 CreditCardExpiration.defaultProps = {
-  month: today.getMonth(),
-  year: today.getFullYear(),
+  month: null,
+  year: null,
 
   onChange: () => true,
 };
