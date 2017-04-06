@@ -1,12 +1,13 @@
 import React from 'react';
-
-import styles from './SummaryBoxItem.scss';
+import { Card, CardBlock } from '../';
 
 const SummaryBoxItem = (props) => (
-  <div className={styles.summaryBoxItem}>
-    <span className={styles.summaryBoxItemValue}>{props.value}</span>
-    <label className={styles.summaryBoxItemLabel}>{props.label}</label>
-  </div>
+  <Card>
+    <CardBlock className="text-center">
+      <h3 className="mb-0 mt-1">{props.value}</h3>
+      <small className="text-muted text-uppercase">{props.label}</small>
+    </CardBlock>
+  </Card>
 );
 
 SummaryBoxItem.propTypes = {
