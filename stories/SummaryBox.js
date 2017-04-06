@@ -7,9 +7,9 @@ const link = <a href="#">Link</a>;
 
 const items = [
   { value: 'Alpha', label: 'Bravo' },
-  { value: 'Charlie', label: 'Delta' },
-  { value: 'Echo', label: 'Foxtrot' },
-  { value: 'Golf', label: 'Hotel' }
+  { value: 'Charlie Brown', label: 'Delta' },
+  { value: 'Echo' },
+  { label: 'Hotel' }
 ];
 
 storiesOf('SummaryBox', module)
