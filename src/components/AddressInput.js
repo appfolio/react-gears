@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { FormGroup, Input, Row, Col, Select, FormFeedback } from '../';
+import {
+  Col,
+  FormGroup,
+  Input,
+  Row,
+  Select,
+  ValidatedFormGroup,
+} from '../';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
 
@@ -31,7 +38,7 @@ class AddressInput extends Component {
 
     return (
       <FormGroup sm={this.props.sm}>
-        <FormGroup color={error.address1 && 'danger'}>
+        <ValidatedFormGroup error={error.address1}>
           <Input
             name="address1"
             type="text"
@@ -40,9 +47,8 @@ class AddressInput extends Component {
             state={error.address1 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
-          {error.address1 && <FormFeedback children={error.address1} />}
-        </FormGroup>
-        <FormGroup color={error.address2 && 'danger'}>
+        </ValidatedFormGroup>
+        <ValidatedFormGroup error={error.address2}>
           <Input
             name="address2"
             type="text"
@@ -51,11 +57,10 @@ class AddressInput extends Component {
             state={error.address2 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
           />
-          {error.address2 && <FormFeedback children={error.address2} />}
-        </FormGroup>
+        </ValidatedFormGroup>
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
-            <FormGroup className="pr-3" color={error.city && 'danger'}>
+            <ValidatedFormGroup className="pr-3" error={error.city}>
               <Input
                 type="text"
                 name="city"
@@ -64,11 +69,10 @@ class AddressInput extends Component {
                 state={error.city && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-              {error.city && <FormFeedback children={error.city} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
           <Col sm={2} xs={3}>
-            <FormGroup className="pr-3" color={error.state && 'danger'}>
+            <ValidatedFormGroup className="pr-3" error={error.state}>
               <Select
                 className="w-100"
                 name="state"
@@ -77,11 +81,10 @@ class AddressInput extends Component {
                 {...this.propsFor('state')}
                 onChange={selection => this.onChange({ state: selection && selection.value })}
               />
-              {error.state && <FormFeedback children={error.state} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
           <Col sm={4} xs={4}>
-            <FormGroup color={error.postal && 'danger'}>
+            <ValidatedFormGroup error={error.postal}>
               <Input
                 type="text"
                 name="postal"
@@ -90,11 +93,10 @@ class AddressInput extends Component {
                 state={error.postal && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
               />
-              {error.postal && <FormFeedback children={error.postal} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
         </Row>
-        <FormGroup color={error.countryCode && 'danger'}>
+        <ValidatedFormGroup error={error.countryCode}>
           <Select
             className="w-100"
             name="countryCode"
@@ -103,8 +105,7 @@ class AddressInput extends Component {
             {...this.propsFor('countryCode')}
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
           />
-          {error.countryCode && <FormFeedback children={error.countryCode} />}
-        </FormGroup>
+        </ValidatedFormGroup>
       </FormGroup>
     );
   }
