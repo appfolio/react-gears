@@ -3,13 +3,15 @@ import { storiesOf } from '@kadira/storybook';
 
 import SummaryBox from '../src/components/SummaryBox';
 import SummaryBoxItem from '../src/components/SummaryBoxItem';
+import { text } from '@kadira/storybook-addon-knobs';
+
 const link = <a href="#">Link</a>;
 
 const items = [
   { value: 'Alpha', label: 'Bravo' },
-  { value: 'Charlie', label: 'Delta' },
-  { value: 'Echo', label: 'Foxtrot' },
-  { value: 'Golf', label: 'Hotel' }
+  { value: 'Charlie Brown', label: 'Delta' },
+  { value: 'Echo' },
+  { label: 'Hotel' }
 ];
 
 storiesOf('SummaryBox', module)
@@ -29,4 +31,10 @@ storiesOf('SummaryBox', module)
       <SummaryBoxItem value="Golf" label="Hotel" />
       <SummaryBoxItem label="Hotel" />
     </SummaryBox>
+  ))
+  .addWithInfo('SummaryBoxItem', () => (
+    <SummaryBoxItem
+      value={text('Live from New York', 'It\'s Saturday Night')}
+      label={text('label', 'World')}
+    />
   ));
