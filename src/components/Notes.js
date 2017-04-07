@@ -9,7 +9,6 @@ export default class Notes extends React.Component {
   }
 
   static defaultProps = {
-    // maxWidth: 14
     notes: []
   }
 

@@ -8,6 +8,7 @@ storiesOf('Note', module)
     <Note
       date={new Date()}
       deleted={boolean('deleted', false)}
+      editable={boolean('editable', true)}
       edited={boolean('edited', false)}
       editing={boolean('editing', false)}
       from={text('from', 'Gary Thomas')}
@@ -19,18 +20,15 @@ storiesOf('Note', module)
   ))
   .addWithInfo('with children', () => (
     <Note
-      date={new Date()}
       deleted={boolean('deleted', false)}
       edited={boolean('edited', false)}
       editing={boolean('editing', false)}
       from={text('from', 'Gary Thomas')}
+      text="Goodbye cruel world...  I'm off to join the circus."
       onDelete={note => alert('Delete: '+ JSON.stringify(note))}
       onEdit={note => alert('Edit: '+ JSON.stringify(note))}
       onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
     >
-      Goodbye cruel world...
-      <h3>I'm off to join the circus</h3>
-      <hr />
-      <img src="https://www.appfolio.com/images/html/apm-logo-v2.png" />
+      <img src="http://lorempixel.com/200/100/sports/" />
     </Note>
   ));

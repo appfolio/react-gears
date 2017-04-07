@@ -79,12 +79,9 @@ import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import LabelBadge from './components/LabelBadge.js';
-<<<<<<< HEAD
+import Modal from './components/Modal.js';
 import Note from './components/Note.js';
 import Notes from './components/Notes.js';
-=======
-import Modal from './components/Modal.js';
->>>>>>> master
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';

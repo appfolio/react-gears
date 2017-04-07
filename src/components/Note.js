@@ -4,7 +4,7 @@ import { Alert, Button, Card, CardBlock, CardHeader, CardText, Flag, Input } fro
 import fecha from 'fecha';
 import styles from './Note.scss';
 
-// TODO extract to helper:
+// TODO extract to date helper, i18n:
 const format = date => fecha.format(date, 'ddd, MMMM d, YYYY "at" h:mm A');
 
 const DeletedNote = ({ note, onUndelete }) => (
@@ -30,29 +30,30 @@ const EditableNote = ({ note, onEdit }) => (
 );
 
 const Note = note => {
-  const { children, from, date, edited, editing, deleted, text, onDelete, onEdit, onUndelete } = note;
+  const { children, from, date, editable, edited, editing, deleted, text, onDelete, onEdit, onUndelete } = note;
   return (
     <div className="mb-3">
-      {deleted ?
-        <DeletedNote note={note} onUndelete={onUndelete} /> : 
-          editing ?
-            <EditableNote note={note} onEdit={onEdit}/> : (
-            <Card>
-              <CardHeader className="d-flex justify-content-start p-2">
-                {edited ? <span><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
-                <span className="text-muted">
-                  Last edited {from ? `by ${from} ` : ' '}on {format(date)}
-                </span>
-                <span className="ml-auto">
-                  <a href="#" onClick={() => onEdit(note)} className="mr-3">edit</a>
-                  <a href="#" onClick={() => onDelete(note)}>delete</a>
-                </span>
-              </CardHeader>
-              <CardBlock>
-                <CardText className={styles.text}>{children ? children : text}</CardText>
-              </CardBlock>
-            </Card>
-          )}
+      {deleted ? <DeletedNote note={note} onUndelete={onUndelete} /> : editing ?
+        <EditableNote note={note} onEdit={onEdit} /> : (
+        <Card className="rounded-top">
+          <CardHeader className="d-flex justify-content-start p-2 rounded-top bg-faded">
+            {edited ? <span><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
+            <span className="text-muted">
+              {edited ? 'Last edited' : 'Posted'} {from ? `by ${from} ` : ' '}on {format(date)}
+            </span>
+            {editable ? (
+              <span className="ml-auto">
+                <a href="#" onClick={() => onEdit(note)} className="mr-3">edit</a>
+                <a href="#" onClick={() => onDelete(note)}>delete</a>
+              </span>
+            ) : null}
+          </CardHeader>
+          <CardBlock>
+            <CardText className={styles.text}>{text}</CardText>
+            {children}
+          </CardBlock>
+        </Card>
+      )}
     </div>
   );
 };
@@ -60,6 +61,7 @@ const Note = note => {
 Note.propTypes = {
   date: React.PropTypes.object,
   deleted: React.PropTypes.bool,
+  editable: React.PropTypes.bool,
   edited: React.PropTypes.bool,
   editing: React.PropTypes.bool,
   from: React.PropTypes.string,
@@ -70,7 +72,9 @@ Note.propTypes = {
 };
 
 Note.defaultProps = {
+  date: new Date(),
   deleted: false,
+  editable: true,
   edited: false,
   editing: false,
 };
