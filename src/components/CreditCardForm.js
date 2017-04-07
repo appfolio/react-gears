@@ -24,16 +24,6 @@ function extract(original, fields = []) {
 
 const TODAY = new Date();
 
-/*
-  cardSecurityCode: /^\d*$/,
-  state: {
-    CA: /^[a-zA-Z]{0,2}$/,
-    MX: /^.{0,30}$/,
-    US: /^[a-zA-Zs]{0,2}$/,
-  },
-  zip: /^[0-9a-zA-Z -]{0,10}$/,
-*/
-
 const ADDRESS = /^[\s\w-]{5,}$/;
 const ERRORS = {
   ADDRESS: 'Please enter a valid address',
