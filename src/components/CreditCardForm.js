@@ -204,8 +204,8 @@ CreditCardForm.defaultProps = {
   postal: '',
   countryCode: 'US',
 
-  onCancel: () => true,
-  onSave: () => true,
+  onCancel: () => {},
+  onSave: () => {},
 };
 CreditCardForm.propTypes = {
   firstName: PropTypes.string,
