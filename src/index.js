@@ -92,6 +92,7 @@ import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
 import Tooltip from './components/Tooltip.js';
+import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 
 export {
   // reactstrap
@@ -187,5 +188,6 @@ export {
   Steps,
   SummaryBox,
   SummaryBoxItem,
-  Tooltip
+  Tooltip,
+  ValidatedFormGroup,
 };
