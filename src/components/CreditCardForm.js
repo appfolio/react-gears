@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import autoBind from 'react-autobind';
 import { Button, Row, Col } from 'reactstrap';
 import {
   AddressInput, CreditCardNumber, CreditCardExpiration,
@@ -53,14 +52,13 @@ function validateForm(form) {
 export default class CreditCardForm extends Component {
   constructor(props) {
     super(props);
-    autoBind(this);
     this.state = {
       ...extract(props, TRACKED_PROPS),
       errors: {},
     };
   }
 
-  handleSave() {
+  handleSave = () => {
     const errors = validateForm(this.state);
     this.setState({ errors });
 
@@ -68,22 +66,22 @@ export default class CreditCardForm extends Component {
       this.props.onSave(extract(this.state, TRACKED_PROPS));
     }
   }
-  handleCancel() {
+  handleCancel = () => {
     this.setState({ ...extract(this.props, TRACKED_PROPS), errors: {} });
     this.props.onCancel();
   }
 
-  handleAddressChange(address) {
+  handleAddressChange = (address) => {
     this.setState(address);
   }
-  handleCardExpirationChange({ month, year }) {
+  handleCardExpirationChange = ({ month, year }) => {
     const expirationIsValid = new Date(year, month) >= TODAY;
     this.setState({ expirationMonth: month, expirationYear: year, expirationIsValid });
   }
-  handleCardNumberChange(updated, isValid) {
-    this.setState({ cardNumber: updated, cardNumberIsValid: isValid });
+  handleCardNumberChange = (cardNumber, cardNumberIsValid) => {
+    this.setState({ cardNumber, cardNumberIsValid });
   }
-  handlePatternInputChange(event, { value, isValid }) {
+  handlePatternInputChange = (event, { value, isValid }) => {
     this.setState({
       [event.target.name]: value,
       [`${event.target.name}IsValid`]: isValid,
