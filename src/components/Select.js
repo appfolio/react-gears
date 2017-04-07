@@ -78,6 +78,7 @@ class Select extends Component {
 
     return (
       <SelectElement
+        inputProps={{ ...props.inputProps, name: props.name || '' }}
         onChange={over([this.updateValue, onChange])}
         value={value || this.state.value}
         {...props}
