@@ -7,7 +7,7 @@ import { mount } from 'enzyme';
 
 import { SummaryBox, SummaryBoxItem } from '../../src';
 
-describe.only('<SummaryBox />', () => {
+describe('<SummaryBox />', () => {
   it('should render correctly', () => {
     const component = mount(<SummaryBox />);
     assert(component);
