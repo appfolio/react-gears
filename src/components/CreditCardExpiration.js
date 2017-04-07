@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Col, Row } from 'reactstrap';
 import { Select } from '../';
 
-import STYLES from './CreditCardExpiration.scss';
-
 const today = new Date();
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -32,13 +30,13 @@ export default class CreditCardExpiration extends Component {
       <Row>
         <Col xs={12} sm={6}>
           <Select
-            className={STYLES.select} placeholder="Month" defaultValue={this.props.month}
+            placeholder="Month" defaultValue={this.props.month}
             options={monthOptions} onChange={this.onMonthSelection}
           />
         </Col>
         <Col xs={12} sm={6}>
           <Select
-            className={STYLES.select} placeholder="Year" defaultValue={this.props.year}
+            placeholder="Year" defaultValue={this.props.year}
             options={yearsOptions} onChange={this.onYearSelection}
           />
         </Col>
