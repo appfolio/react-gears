@@ -182,7 +182,7 @@ export default class CreditCardForm extends Component {
             <FormGroup className="pull-right">
               <Button
                 color="success" onClick={this.handleSave}
-                disabled={Object.keys(errors).length}
+                disabled={Object.keys(errors).length > 0}
               >
                 <Icon name="save" /> Save
               </Button>
