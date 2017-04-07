@@ -18,6 +18,10 @@
     padding-left: 5px;
   }
 
+  .has-danger .Select-control {
+    border-color: #d9534f;
+  }
+
   .Select-input > input {
     height: 100%;
   }
