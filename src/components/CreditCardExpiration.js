@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import autoBind from 'react-autobind';
 import { Col, Row } from 'reactstrap';
 import { Select } from '../';
 
@@ -19,13 +18,11 @@ const monthOptions = MONTHS.map((label, index) => ({ label, value: index + 1 }))
 const yearsOptions = YEARS.map(year => ({ label: year, value: year }));
 
 export default class CreditCardExpiration extends Component {
-  constructor(props) { super(props); autoBind(this); }
-
-  onMonthSelection(option) {
+  onMonthSelection = (option) => {
     const month = option && option.value || CreditCardExpiration.defaultProps.month;
     this.props.onChange({ month, year: this.props.year });
   }
-  onYearSelection(option) {
+  onYearSelection = (option) => {
     const year = option && option.value || CreditCardExpiration.defaultProps.year;
     this.props.onChange({ year, month: this.props.month });
   }

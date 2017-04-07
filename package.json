@@ -70,7 +70,6 @@
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
     "react-addons-test-utils": "^15.4.0",
-    "react-autobind": "^1.0.6",
     "react-fontawesome": "^1.4.0",
     "react-select": "^1.0.0-rc.2",
     "react-text-mask": "^0.19.0",

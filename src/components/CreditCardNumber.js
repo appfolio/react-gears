@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import autoBind from 'react-autobind';
 import { Icon, InputGroup } from '../';
 import { Input, InputGroupAddon } from 'reactstrap';
 import { number } from 'card-validator';
@@ -24,8 +23,6 @@ function includes(array, value) {
 export default class CreditCardNumber extends Component {
   constructor(props) {
     super(props);
-    autoBind(this);
-
     this.state = { value: '', cardType: undefined };
   }
 
@@ -33,11 +30,11 @@ export default class CreditCardNumber extends Component {
     this.setValue(this.props.initialValue);
   }
 
-  onInputChange(event) {
+  onInputChange = (event) => {
     this.setValue(event.target.value);
   }
 
-  setValue(proposedValue) {
+  setValue = (proposedValue) => {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
       this.props.onChange(value, false);
@@ -67,7 +64,7 @@ export default class CreditCardNumber extends Component {
     }
 
     // Only accept the change if we recognize the card type, and it is/may be valid
-    if (cardType && (isValid || isPotentiallyValid)) {
+    if (!this.props.restrictInput || cardType && (isValid || isPotentiallyValid)) {
       this.props.onChange(value, isValid);
       this.setState({ value, cardType, isValid });
     }
@@ -98,6 +95,7 @@ CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
   initialValue: '',
   placeholder: 'Credit Card Number...',
+  restrictInput: false,
 
   onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
 };
@@ -105,6 +103,7 @@ CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
   initialValue: PropTypes.string,
   placeholder: PropTypes.string,
+  restrictInput: PropTypes.bool,
 
   onChange: PropTypes.func,
 };
