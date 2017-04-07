@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Input } from 'reactstrap';
-import autoBind from 'react-autobind';
 
 export default class PatternInput extends Component {
   constructor(props) {
     super(props);
-    autoBind(this);
 
     if (!!props.pattern.exec(props.value || '')) {
       this.lastValidValue = props.value;
@@ -14,7 +12,7 @@ export default class PatternInput extends Component {
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { value } = event.target;
     const { pattern, restrictInput } = this.props;
     const isValid = !!pattern.exec(value);
@@ -27,7 +25,7 @@ export default class PatternInput extends Component {
       this.props.onChange(event, { value, isValid });
     }
   }
-  handleKeyPress(event) {
+  handleKeyPress = (event) => {
     if (!this.props.restrictInput) return;
     if (!this.props.pattern.exec(String.fromCharCode(event.charCode))) {
       event.preventDefault();
