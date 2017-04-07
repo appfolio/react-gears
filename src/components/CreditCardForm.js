@@ -79,7 +79,6 @@ export default class CreditCardForm extends Component {
   handleBlur = (event) => {
     const fieldName = event.target.name;
     if (!fieldName) return;
-    console.log(fieldName)
 
     const error = validateForm(this.state)[fieldName];
     this.setState({
@@ -181,7 +180,10 @@ export default class CreditCardForm extends Component {
         <Row>
           <Col xs={6}>
             <FormGroup className="pull-right">
-              <Button color="success" onClick={this.handleSave}>
+              <Button
+                color="success" onClick={this.handleSave}
+                disabled={Object.keys(errors).length}
+              >
                 <Icon name="save" /> Save
               </Button>
             </FormGroup>
