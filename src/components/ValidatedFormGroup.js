@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { FormFeedback, FormGroup } from '../';
 
-const ValidatedFormGroup = ({ children, error, label, labelTag: Tag }) => (
-  <FormGroup color={error && 'danger'}>
+const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (
+  <FormGroup color={error && 'danger'} {...props}>
     <Tag>{label}</Tag>
     {children}
     {error && <FormFeedback children={error} />}
