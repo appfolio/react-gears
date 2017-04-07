@@ -38,7 +38,6 @@ import {
   Label,
   ListGroup,
   Media,
-  Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -68,6 +67,8 @@ import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
+import Close from './components/Close.js';
+import CreditCardNumber from './components/CreditCardNumber.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
@@ -78,8 +79,12 @@ import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import LabelBadge from './components/LabelBadge.js';
+<<<<<<< HEAD
 import Note from './components/Note.js';
 import Notes from './components/Notes.js';
+=======
+import Modal from './components/Modal.js';
+>>>>>>> master
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
@@ -164,6 +169,8 @@ export {
   BlockPanel,
   BoundForm,
   BoundFormRow,
+  Close,
+  CreditCardNumber,
   CurrencyInput,
   Datapair,
   DateMonth,

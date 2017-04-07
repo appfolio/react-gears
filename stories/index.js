@@ -3,6 +3,7 @@ import './Demo';
 // Basic
 import './Layout';
 import './Buttons';
+import './Card';
 import './Flag';
 import './Icon';
 import './Alerts';
@@ -17,6 +18,7 @@ import './Tooltip';
 import './Forms';
 import './Address';
 import './CurrencyInput';
+import './CreditCardNumber';
 import './DateMonth';
 import './InputGroup';
 import './Select';

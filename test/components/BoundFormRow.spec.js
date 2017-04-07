@@ -39,6 +39,22 @@ describe('<BoundFormRow />', () => {
     });
   });
 
+  describe('with false-like values', () => {
+    const component = shallow(
+      <BoundFormRow name="amount" />, {
+        context: {
+          value: {
+            amount: 0,
+          }
+        }
+      }
+    );
+
+    it('should only use default for undefined', () => {
+      assert.strictEqual(component.prop('value'), 0);
+    });
+  });
+
   describe('with defaults', () => {
     const onChange = sinon.stub()
         , onChangeFactory = name => onChange;
@@ -57,7 +73,7 @@ describe('<BoundFormRow />', () => {
 
   describe('with onChange prop', () => {
     const spy = sinon.stub();
-    const onChangeFactory = name => data => { console.log(data); spy(`${name} and ${data}`) };
+    const onChangeFactory = name => data => { spy(`${name} and ${data}`) };
     const onChange = sinon.stub();
 
     const component = shallow(
