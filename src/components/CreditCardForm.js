@@ -207,8 +207,8 @@ CreditCardForm.defaultProps = {
 
   cardNumber: '',
   cardCVV: '',
-  expirationMonth: TODAY.getMonth(),
-  expirationYear: TODAY.getFullYear(),
+  expirationMonth: null,
+  expirationYear: null,
 
   address1: '',
   address2: '',
