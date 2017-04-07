@@ -37,7 +37,7 @@ class AddressInput extends Component {
     const { error } = this.props;
 
     return (
-      <FormGroup sm={this.props.sm}>
+      <div>
         <ValidatedFormGroup error={error.address1}>
           <Input
             name="address1"
@@ -106,7 +106,7 @@ class AddressInput extends Component {
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
           />
         </ValidatedFormGroup>
-      </FormGroup>
+      </div>
     );
   }
 }
@@ -125,8 +125,6 @@ AddressInput.propTypes = {
   defaultValue: React.PropTypes.shape(fieldTypes),
   error: React.PropTypes.shape(fieldTypes),
   onChange: React.PropTypes.func,
-
-  sm: React.PropTypes.number,
 };
 
 AddressInput.defaultProps = {
@@ -134,8 +132,6 @@ AddressInput.defaultProps = {
   defaultValue: {},
   error: {},
   onChange: noop,
-
-  sm: 12,
 };
 
 export default AddressInput;
