@@ -24,17 +24,12 @@ storiesOf('SummaryBox', module)
       <SummaryBoxItem value="Charlie" />
       <SummaryBoxItem label="Foxtrot" />
       <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem label="Hotel" />
+      <SummaryBoxItem value="India" />
     </SummaryBox>
   ))
   .addWithInfo('SummaryBoxItem', () => (
     <SummaryBoxItem
-      value={text('Live from New York', 'It\'s Saturday Night')}
-      label={text('label', 'World')}
+      value={text('value', 'Live from New York')}
+      label={text('label', 'It\'s Saturday Night')}
     />
   ));
