@@ -24,7 +24,7 @@ export default class PatternInput extends Component {
     } else {
       if (isValid) this.lastValidValue = value;
 
-      this.props.onChange({ value, isValid });
+      this.props.onChange(event, { value, isValid });
     }
   }
   handleKeyPress(event) {
