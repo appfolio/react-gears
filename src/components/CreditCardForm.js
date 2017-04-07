@@ -74,6 +74,13 @@ export default class CreditCardForm extends Component {
   handleAddressChange = (address) => {
     this.setState(address);
   }
+  handleBlur = (event) => {
+    const fieldName = event.target.name;
+    const error = validateForm(this.state)[fieldName];
+    this.setState({
+      errors: { ...this.state.errors, [fieldName]: error },
+    });
+  }
   handleCardExpirationChange = ({ month, year }) => {
     const expirationIsValid = new Date(year, month) >= TODAY;
     this.setState({ expirationMonth: month, expirationYear: year, expirationIsValid });
@@ -99,7 +106,7 @@ export default class CreditCardForm extends Component {
     );
 
     return (
-      <div className={`credit-card-form ${STYLES.creditCardForm}`}>
+      <div className={`credit-card-form ${STYLES.creditCardForm}`} onBlur={this.handleBlur}>
         <Row>
           <Col xs={12} sm={6}>
             <ValidatedFormGroup label="First Name" error={errors.firstName}>
