@@ -1,13 +1,13 @@
 import React from 'react';
+import { CardGroup } from '../';
 import SummaryBoxItem from './SummaryBoxItem.js';
-import styles from './SummaryBox.scss';
 
 const SummaryBox = (props) => (
-  <div className={styles.summaryBox}>
+  <CardGroup>
     {props.items ?
-      props.items.map(item => <SummaryBoxItem value={item.value} label={item.label} />) :
+      props.items.map((item, i) => <SummaryBoxItem key={i} value={item.value} label={item.label} />) :
       props.children}
-  </div>
+  </CardGroup>
 );
 
 SummaryBox.propTypes = {
