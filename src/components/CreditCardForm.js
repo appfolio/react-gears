@@ -33,20 +33,22 @@ const ERRORS = {
 };
 
 function validateForm(form) {
-  return {
-    firstName: form.firstNameIsValid ? undefined : ERRORS.NAME,
-    lastName: form.lastNameIsValid ? undefined : ERRORS.NAME,
+  const errors = {};
 
-    cardNumber: form.cardNumberIsValid ? undefined : ERRORS.CARD_NUMBER,
-    cardCVV: form.cardCVVIsValid ? undefined : ERRORS.CARD_CVV,
-    expiration: form.expirationIsValid ? undefined : ERRORS.CARD_EXPIRATION,
+  if (!form.firstNameIsValid) errors.firstName = ERRORS.NAME;
+  if (!form.lastNameIsValid) errors.lastName = ERRORS.NAME;
 
-    address1: form.address1.match(ADDRESS) ? undefined : ERRORS.ADDRESS,
-    address2: (!form.address2 || form.address2.match(ADDRESS)) ? undefined : ERRORS.ADDRESS,
-    city: form.city.match(ADDRESS) ? undefined : ' ',
-    state: form.state !== '' ? undefined : ' ',
-    postal: form.postal.match(/^[0-9 _]{5,}$/) ? undefined : ' '
-  };
+  if (!form.cardNumberIsValid) errors.cardNumber = ERRORS.CARD_NUMBER;
+  if (!form.cardCVVIsValid) errors.cardCVV = ERRORS.CARD_CVV;
+  if (!form.expirationIsValid) errors.expiration = ERRORS.CARD_EXPIRATION;
+
+  if (!form.address1.match(ADDRESS)) errors.address1 = ERRORS.ADDRESS;
+  if (form.address2 && !form.address2.match(ADDRESS)) errors.address2 = ERRORS.ADDRESS;
+  if (!form.city || (form.city && !form.city.match(ADDRESS))) errors.city = ' ';
+  if (!form.state) errors.state = ' ';
+  if (!form.postal.match(/^[0-9 _]{5,}$/)) errors.postal = ' ';
+
+  return errors;
 }
 
 export default class CreditCardForm extends Component {
@@ -76,9 +78,16 @@ export default class CreditCardForm extends Component {
   }
   handleBlur = (event) => {
     const fieldName = event.target.name;
+    if (!fieldName) return;
+    console.log(fieldName)
+
     const error = validateForm(this.state)[fieldName];
     this.setState({
-      errors: { ...this.state.errors, [fieldName]: error },
+      errors: {
+        ...this.state.errors,
+        [fieldName]: error,
+        [`${fieldName}IsValid`]: !error,
+      },
     });
   }
   handleCardExpirationChange = ({ month, year }) => {
@@ -152,7 +161,9 @@ export default class CreditCardForm extends Component {
           <Col xs={12} sm={6}>
             <ValidatedFormGroup label="Card Expiration" error={errors.expiration}>
               <CreditCardExpiration
-                month={month} year={year} onChange={this.handleCardExpirationChange}
+                month={month} monthName="expiration"
+                year={year} yearName="expiration"
+                onChange={this.handleCardExpirationChange}
               />
             </ValidatedFormGroup>
           </Col>

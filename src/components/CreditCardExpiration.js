@@ -30,12 +30,14 @@ export default class CreditCardExpiration extends Component {
       <Row>
         <Col xs={12} sm={6}>
           <Select
+            name={this.props.monthName}
             placeholder="Month" defaultValue={this.props.month}
             options={monthOptions} onChange={this.onMonthSelection}
           />
         </Col>
         <Col xs={12} sm={6}>
           <Select
+            name={this.props.yearName}
             placeholder="Year" defaultValue={this.props.year}
             options={yearsOptions} onChange={this.onYearSelection}
           />
@@ -47,14 +49,18 @@ export default class CreditCardExpiration extends Component {
 
 CreditCardExpiration.defaultProps = {
   month: null,
+  monthName: 'month',
   year: null,
+  yearName: 'year',
 
   onChange: () => true,
 };
 
 CreditCardExpiration.propTypes = {
   month: PropTypes.number,
+  monthName: PropTypes.string,
   year: PropTypes.number,
+  yearName: PropTypes.string,
 
   onChange: PropTypes.func,
 };
