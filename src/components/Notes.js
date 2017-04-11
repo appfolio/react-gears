@@ -5,6 +5,10 @@ export default class Notes extends React.Component {
 
   static propTypes = {
     className: React.PropTypes.string,
+    onAdd: React.PropTypes.func,
+    onDelete: React.PropTypes.func,
+    onEdit: React.PropTypes.func,
+    onUndelete: React.PropTypes.func,
     notes: React.PropTypes.array,
   }
 
@@ -13,7 +17,7 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    const { className, notes, onDelete, onEdit, onUndelete } = this.props;
+    const { children, className, notes, onAdd, onDelete, onDownload, onEdit, onUndelete } = this.props;
 
     return (
       <div className={className}>
@@ -32,17 +36,24 @@ export default class Notes extends React.Component {
             </h3>
           </Col>
           <Col className="text-right">
-            <Button size="sm" className="mr-1">
-              <Icon name="download" fixedWidth />
-              <span className="hidden-xs-down">Download PDF</span>
-            </Button>
-            <Button size="sm">
-              <Icon name="plus-circle" fixedWidth />
-              <span className="hidden-xs-down">Add Note</span>
-            </Button>
+            {onDownload ?
+              <Button size="sm" className="mr-1" onClick={onDownload}>
+                <Icon name="download" fixedWidth />
+                <span className="hidden-xs-down">Download PDF</span>
+              </Button>
+              : null}
+            {onAdd ?
+              <Button size="sm" onClick={onAdd}>
+                <Icon name="plus-circle" fixedWidth />
+                <span className="hidden-xs-down">Add Note</span>
+              </Button>
+              : null}
           </Col>
         </Row>
-        {notes.map(note => <Note onDelete={onDelete} onEdit={onEdit} onUndelete={onUndelete} {...note} />)}
+        {children ?
+          children :
+          notes.map(note => <Note onDelete={onDelete} onEdit={onEdit} onUndelete={onUndelete} {...note} />)
+        }
       </div>
     );
   }
