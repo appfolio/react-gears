@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { Notes } from '../src';
+import { Note, Notes } from '../src';
 
 
 const notes = [
@@ -24,11 +24,35 @@ const notes = [
 ];
 
 storiesOf('Notes', module)
-  .addWithInfo('Live example', () => (
+  .addWithInfo('With notes prop', () => (
     <Notes
       notes={notes}
+      onAdd={() => alert('Add')}
       onDelete={note => alert('Delete: '+ JSON.stringify(note))}
+      onDownload={() => alert('Download')}
       onEdit={note => alert('Edit: '+ JSON.stringify(note))}
       onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
     />
+  ))
+  .addWithInfo('With children', () => (
+    <Notes
+      onAdd={() => alert('Add')}
+      onDelete={note => alert('Delete: '+ JSON.stringify(note))}
+      onDownload={() => alert('Download')}
+      onEdit={note => alert('Edit: '+ JSON.stringify(note))}
+      onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
+    >
+      {notes.map(note => (
+        <Note
+          deleted={note.deleted}
+          edited={note.edited}
+          editing={note.editing}
+          from={note.from}
+          text={note.text}
+          onDelete={note => alert('Delete: '+ JSON.stringify(note))}
+          onEdit={note => alert('Edit: '+ JSON.stringify(note))}
+          onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
+        />
+      ))}
+    </Notes>
   ));
