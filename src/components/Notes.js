@@ -13,6 +13,7 @@ export default class Notes extends React.Component {
   }
 
   static defaultProps = {
+    className: '',
     notes: []
   }
 

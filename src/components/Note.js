@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Button, Card, CardBlock, CardHeader, CardText, Flag, Input } from '../';
+import { Alert, Card, CardBlock, CardHeader, CardText, Flag } from '../';
+import EditableNote from './EditableNote.js';
 
 import fecha from 'fecha';
 
@@ -13,30 +14,20 @@ const DeletedNote = ({ note, onUndelete }) => (
   </Alert>
 );
 
-const EditableText = ({ note, onEdit }) => (
-  <Card>
-    <CardBlock>
-      <Input type="textarea" value={note.text} rows="5" />
-      <div className="mt-4">
-        <Button
-          color="primary"
-          className="mr-1"
-          onClick={() => onEdit(note)}
-        >Save</Button>
-        <Button>Cancel</Button>
-      </div>
-    </CardBlock>
-  </Card>
-);
-
 const Note = note => {
-  const { children, className, date, deleted, edited, editing, from, text, onDelete, onEdit, onUndelete } = note;
+  const { children, className, date, deleted, edited, editing, from, text,
+         onCancel, onChange, onSave, onDelete, onEdit, onUndelete } = note;
   return (
     <div className={`mb-3 ${className}`}>
       {deleted ?
         <DeletedNote note={note} onUndelete={onUndelete} /> :
         editing ?
-          <EditableText note={note} onEdit={onEdit} /> :
+          <EditableNote
+            note={note}
+            onCancel={onCancel}
+            onChange={onChange}
+            onSave={onSave}
+          /> :
           <Card className="rounded-top">
             <CardHeader className="d-flex justify-content-start p-2 rounded-top bg-faded">
               {edited ? <span><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
@@ -65,16 +56,19 @@ Note.propTypes = {
   edited: React.PropTypes.bool,
   editing: React.PropTypes.bool,
   from: React.PropTypes.string,
+  onCancel: React.PropTypes.func,
+  onChange: React.PropTypes.func,
   onDelete: React.PropTypes.func.isRequired,
   onEdit: React.PropTypes.func.isRequired,
+  onSave: React.PropTypes.func,
   onUndelete: React.PropTypes.func.isRequired,
   text: React.PropTypes.string
 };
 
 Note.defaultProps = {
+  className: '',
   date: new Date(),
   deleted: false,
-  editable: true,
   edited: false,
   editing: false,
 };

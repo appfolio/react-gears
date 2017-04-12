@@ -4,7 +4,7 @@ import assert from 'assert';
 import { Note } from '../../src';
 import { shallow } from 'enzyme';
 
-describe.skip('<Note />', () => {
+describe('<Note />', () => {
   const component = shallow(<Note />);
   it('should render correctly', () => {
     assert(component);
