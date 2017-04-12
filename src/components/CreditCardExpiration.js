@@ -31,14 +31,14 @@ export default class CreditCardExpiration extends Component {
         <Col xs={12} sm={6}>
           <Select
             name={this.props.monthName}
-            placeholder="Month" defaultValue={this.props.month}
+            placeholder="Month" value={this.props.month}
             options={monthOptions} onChange={this.onMonthSelection}
           />
         </Col>
         <Col xs={12} sm={6}>
           <Select
             name={this.props.yearName}
-            placeholder="Year" defaultValue={this.props.year}
+            placeholder="Year" value={this.props.year}
             options={yearsOptions} onChange={this.onYearSelection}
           />
         </Col>
