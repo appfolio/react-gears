@@ -2,7 +2,6 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
-import sinon from 'sinon';
 
 import CreditCardNumber from '../../src/components/CreditCardNumber';
 import Icon from '../../src/components/Icon';

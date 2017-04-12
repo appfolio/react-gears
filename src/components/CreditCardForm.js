@@ -55,10 +55,7 @@ function validateForm(form) {
 export default class CreditCardForm extends Component {
   constructor(props) {
     super(props);
-    this.state = this.resetState(props);
-  }
-  resetState = (props) => {
-    return {
+    this.state = {
       ...extract(props, TRACKED_PROPS),
       hasFullyValidated: false,
       errors: {},
@@ -73,10 +70,6 @@ export default class CreditCardForm extends Component {
     }
 
     this.setState({ hasFullyValidated: true, errors });
-  }
-  handleCancel = () => {
-    this.setState(this.resetState(this.props));
-    this.props.onCancel();
   }
 
   handleAddressChange = (address) => {
@@ -151,7 +144,7 @@ export default class CreditCardForm extends Component {
           </Col>
           <Col xs={6}>
             <FormGroup>
-              <Button name="cancelButton" color="danger" onClick={this.handleCancel}>
+              <Button name="cancelButton" color="danger" onClick={this.props.onCancel}>
                 <Icon name="ban" /> Cancel
               </Button>
             </FormGroup>
