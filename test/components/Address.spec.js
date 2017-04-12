@@ -234,7 +234,7 @@ describe('<Address />', () => {
   });
 
   describe('disabled', () => {
-    it('should disable all the fields when true', () => {
+    function disabledTestCase(disabledProp, expected) {
       const component = shallow(
         <AddressInput
           defaultValue={{
@@ -245,58 +245,27 @@ describe('<Address />', () => {
             postal: '07001',
             countryCode: 'US'
           }}
-          disabled
+          disabled={disabledProp}
         />
       );
 
       const inputs = component.find(Input);
       const selects = component.find(Select);
 
-      inputs.forEach(input => assert.equal(input.prop('disabled'), true));
-      selects.forEach(select => assert.equal(select.prop('disabled'), true));
+      inputs.forEach(input => assert.equal(input.prop('disabled'), expected));
+      selects.forEach(select => assert.equal(select.prop('disabled'), expected));
+    }
+
+    it('should disable all the fields when true', () => {
+      disabledTestCase(true, true);
     });
 
     it('should not disable any fields when false', () => {
-      const component = shallow(
-        <AddressInput
-          defaultValue={{
-            address1: 'Wayne Enterprises',
-            address2: '1007 Mountain Drive',
-            city: 'Gotham',
-            state: 'NJ',
-            postal: '07001',
-            countryCode: 'US'
-          }}
-          disabled={false}
-        />
-      );
-
-      const inputs = component.find(Input);
-      const selects = component.find(Select);
-
-      inputs.forEach(input => assert.equal(input.prop('disabled'), false));
-      selects.forEach(select => assert.equal(select.prop('disabled'), false));
+      disabledTestCase(false, false);
     });
 
     it('should be disabled by default', () => {
-      const component = shallow(
-        <AddressInput
-          defaultValue={{
-            address1: 'Wayne Enterprises',
-            address2: '1007 Mountain Drive',
-            city: 'Gotham',
-            state: 'NJ',
-            postal: '07001',
-            countryCode: 'US'
-          }}
-        />
-      );
-
-      const inputs = component.find(Input);
-      const selects = component.find(Select);
-
-      inputs.forEach(input => assert.equal(input.prop('disabled'), false));
-      selects.forEach(select => assert.equal(select.prop('disabled'), false));
+      disabledTestCase(undefined, false);
     });
   });
 });
