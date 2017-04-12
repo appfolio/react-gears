@@ -27,7 +27,7 @@ class AddressInput extends Component {
   }
 
   render() {
-    const { error } = this.props;
+    const { disabled, error } = this.props;
 
     return (
       <div>
@@ -36,9 +36,10 @@ class AddressInput extends Component {
             name="address1"
             type="text"
             placeholder="Address 1"
-            {...this.propsFor('address1')}
+            {...this.propsFor('address1') }
             state={error.address1 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
+            disabled={disabled}
           />
         </ValidatedFormGroup>
         <ValidatedFormGroup error={error.address2}>
@@ -46,9 +47,10 @@ class AddressInput extends Component {
             name="address2"
             type="text"
             placeholder="Address 2"
-            {...this.propsFor('address2')}
+            {...this.propsFor('address2') }
             state={error.address2 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
+            disabled={disabled}
           />
         </ValidatedFormGroup>
         <Row className="no-gutters">
@@ -58,9 +60,10 @@ class AddressInput extends Component {
                 type="text"
                 name="city"
                 placeholder="City"
-                {...this.propsFor('city')}
+                {...this.propsFor('city') }
                 state={error.city && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
+                disabled={disabled}
               />
             </ValidatedFormGroup>
           </Col>
@@ -71,8 +74,9 @@ class AddressInput extends Component {
                 name="state"
                 placeholder="State"
                 options={US_STATES}
-                {...this.propsFor('state')}
+                {...this.propsFor('state') }
                 onChange={selection => this.onChange({ state: selection && selection.value })}
+                disabled={disabled}
               />
             </ValidatedFormGroup>
           </Col>
@@ -82,9 +86,10 @@ class AddressInput extends Component {
                 type="text"
                 name="postal"
                 placeholder="Zip"
-                {...this.propsFor('postal')}
+                {...this.propsFor('postal') }
                 state={error.postal && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
+                disabled={disabled}
               />
             </ValidatedFormGroup>
           </Col>
@@ -95,8 +100,9 @@ class AddressInput extends Component {
             name="countryCode"
             options={COUNTRIES}
             placeholder="Country"
-            {...this.propsFor('countryCode')}
+            {...this.propsFor('countryCode') }
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
+            disabled={disabled}
           />
         </ValidatedFormGroup>
       </div>
@@ -118,6 +124,7 @@ AddressInput.propTypes = {
   defaultValue: React.PropTypes.shape(addressPropType),
   error: React.PropTypes.shape(addressPropType),
   onChange: React.PropTypes.func,
+  disabled: React.PropTypes.bool
 };
 
 AddressInput.defaultProps = {
@@ -125,6 +132,7 @@ AddressInput.defaultProps = {
   defaultValue: {},
   error: {},
   onChange: noop,
+  disabled: false
 };
 
 export default AddressInput;
