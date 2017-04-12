@@ -30,7 +30,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('defaultValue'), 'Wayne Enterprises');
       assert.equal(input.prop('value'), undefined);
 
-      input.simulate('change', { target: { name: 'address1', value: 'Batcave' }});
+      input.simulate('change', { target: { name: 'address1', value: 'Batcave' } });
       assert(callback.calledWith({ address1: 'Batcave' }));
     });
 
@@ -40,7 +40,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('defaultValue'), '1007 Mountain Drive');
       assert.equal(input.prop('value'), undefined);
 
-      input.simulate('change', { target: { name: 'address2', value: 'Secret Lair' }});
+      input.simulate('change', { target: { name: 'address2', value: 'Secret Lair' } });
       assert(callback.calledWith({ address2: 'Secret Lair' }));
     });
 
@@ -50,7 +50,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('defaultValue'), 'Gotham');
       assert.equal(input.prop('value'), undefined);
 
-      input.simulate('change', { target: { name: 'city', value: 'Metropulos' }});
+      input.simulate('change', { target: { name: 'city', value: 'Metropulos' } });
       assert(callback.calledWith({ city: 'Metropulos' }));
     });
 
@@ -75,7 +75,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('defaultValue'), '07001');
       assert.equal(input.prop('value'), undefined);
 
-      input.simulate('change', { target: { name: 'postal', value: '12345' }});
+      input.simulate('change', { target: { name: 'postal', value: '12345' } });
       assert(callback.calledWith({ postal: '12345' }));
     });
 
@@ -111,14 +111,14 @@ describe('<Address />', () => {
 
   describe('controlled', () => {
     const callback = sinon.spy();
-    let addressData = {
+    const addressData = {
       address1: 'Wayne Enterprises',
       address2: '1007 Mountain Drive',
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
       countryCode: 'US'
-    }
+    };
     const component = shallow(
       <AddressInput
         value={addressData}
@@ -131,7 +131,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), 'Wayne Enterprises');
       assert.equal(input.prop('defaultValue'), undefined);
 
-      input.simulate('change', { target: { name: 'address1', value: 'Batcave' }});
+      input.simulate('change', { target: { name: 'address1', value: 'Batcave' } });
       assert(callback.calledWith(Object.assign({}, addressData, { address1: 'Batcave' })));
     });
 
@@ -140,7 +140,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), '1007 Mountain Drive');
       assert.equal(input.prop('defaultValue'), undefined);
 
-      input.simulate('change', { target: { name: 'address2', value: 'Secret Lair' }});
+      input.simulate('change', { target: { name: 'address2', value: 'Secret Lair' } });
       assert(callback.calledWith(Object.assign({}, addressData, { address2: 'Secret Lair' })));
     });
 
@@ -149,7 +149,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), 'Gotham');
       assert.equal(input.prop('defaultValue'), undefined);
 
-      input.simulate('change', { target: { name: 'city', value: 'Metropulos' }});
+      input.simulate('change', { target: { name: 'city', value: 'Metropulos' } });
       assert(callback.calledWith(Object.assign({}, addressData, { city: 'Metropulos' })));
     });
 
@@ -170,7 +170,7 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), '07001');
       assert.equal(input.prop('defaultValue'), undefined);
 
-      input.simulate('change', { target: { name: 'postal', value: '12345' }});
+      input.simulate('change', { target: { name: 'postal', value: '12345' } });
       assert(callback.calledWith(Object.assign({}, addressData, { postal: '12345' })));
     });
 
@@ -225,11 +225,47 @@ describe('<Address />', () => {
       const groups = component.find(FormGroup);
 
       groups.forEach(group => {
-        const input = group.childAt(0)
-            , feedback = group.find(FormFeedback);
+        const input = group.childAt(0);
+        const feedback = group.find(FormFeedback);
 
         assert.equal(feedback.render().text(), errors[input.prop('name')]);
       });
+    });
+  });
+
+  describe('disabled', () => {
+    function disabledTestCase(disabledProp, expected) {
+      const component = shallow(
+        <AddressInput
+          defaultValue={{
+            address1: 'Wayne Enterprises',
+            address2: '1007 Mountain Drive',
+            city: 'Gotham',
+            state: 'NJ',
+            postal: '07001',
+            countryCode: 'US'
+          }}
+          disabled={disabledProp}
+        />
+      );
+
+      const inputs = component.find(Input);
+      const selects = component.find(Select);
+
+      inputs.forEach(input => assert.equal(input.prop('disabled'), expected));
+      selects.forEach(select => assert.equal(select.prop('disabled'), expected));
+    }
+
+    it('should disable all the fields when true', () => {
+      disabledTestCase(true, true);
+    });
+
+    it('should not disable any fields when false', () => {
+      disabledTestCase(false, false);
+    });
+
+    it('should be disabled by default', () => {
+      disabledTestCase(undefined, false);
     });
   });
 });

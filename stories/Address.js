@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import Select from '../src/components/Select';
-import { text, select, object } from '@kadira/storybook-addon-knobs';
+import { boolean, text, select, object } from '@kadira/storybook-addon-knobs';
 import { AddressInput } from '../src';
 import states from '../src/components/address/USStates.js';
 
@@ -18,6 +18,7 @@ storiesOf('AddressInput', module)
           countryCode: 'US'
         }}
         onChange={action('address onChange')}
+        disabled={boolean('disabled')}
       />
     </div>
   ))
@@ -34,6 +35,7 @@ storiesOf('AddressInput', module)
         }}
         error={object('error', { address1: 'bad stuff', state: 'no' })}
         onChange={action('address onChange')}
+        disabled={boolean('disabled')}
       />
     </div>
   ));
