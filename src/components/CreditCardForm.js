@@ -23,21 +23,22 @@ function extract(original, fields = []) {
   }), {});
 }
 
-const ERRORS = {
+export const ERRORS = {
   CARD_NUMBER: 'Card number is invalid',
-  CARD_EXPIRATION: 'Card is expired',
+  CARD_EXPIRATION: 'Expiration is invalid',
   REQUIRED: 'Required',
 };
 
 function validateForm(form) {
   const errors = {};
 
-  if (!form.firstName || !form.firstNameIsValid) errors.firstName = ERRORS.REQUIRED;
-  if (!form.lastName || form.lastNameIsValid) errors.lastName = ERRORS.REQUIRED;
+  if (!form.firstName || form.firstNameIsValid === false) errors.firstName = ERRORS.REQUIRED;
+  if (!form.lastName || form.lastNameIsValid === false) errors.lastName = ERRORS.REQUIRED;
 
-  if (!form.cardNumber || !form.cardNumberIsValid) errors.cardNumber = ERRORS.CARD_NUMBER;
-  if (!form.cardCVV || !form.cardCVVIsValid) errors.cardCVV = ERRORS.REQUIRED;
-  if (!form.expirationMonth || !form.expirationYear || !form.expirationIsValid) {
+  if (!form.cardNumber || form.cardNumberIsValid === false) errors.cardNumber = ERRORS.CARD_NUMBER;
+  if (!form.cardCVV || form.cardCVVIsValid === false) errors.cardCVV = ERRORS.REQUIRED;
+  const expirationIsValid = new Date(form.expirationYear, form.expirationMonth + 1) >= new Date();
+  if (!form.expirationMonth || !form.expirationYear || !expirationIsValid) {
     errors.expiration = ERRORS.CARD_EXPIRATION;
   }
 
@@ -65,11 +66,12 @@ export default class CreditCardForm extends Component {
 
   handleSave = () => {
     const errors = validateForm(this.state);
-    this.setState({ hasFullyValidated: true, errors });
 
     if (Object.keys(errors).length === 0) {
       this.props.onSave(extract(this.state, TRACKED_PROPS));
     }
+
+    this.setState({ hasFullyValidated: true, errors });
   }
   handleCancel = () => {
     this.setState(this.resetState(this.props));
@@ -91,8 +93,8 @@ export default class CreditCardForm extends Component {
       errors: {
         ...this.state.errors,
         [fieldName]: error,
-        [`${fieldName}IsValid`]: !error,
       },
+      [`${fieldName}IsValid`]: !error,
     });
   }
   handlePatternInputChange = (event, { value, isValid }) => {
@@ -104,6 +106,7 @@ export default class CreditCardForm extends Component {
 
   render() {
     const { firstName, lastName, errors } = this.state;
+    const hasErrors = Object.keys(errors).length > 0;
     const cardInfoProps = extract(this.state,
       ['cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear']
     );
@@ -117,8 +120,8 @@ export default class CreditCardForm extends Component {
           <Col xs={12} sm={6}>
             <ValidatedFormGroup label="First Name" error={errors.firstName}>
               <PatternInput
-                name="firstName" placeholder="First Name" type="text" value={firstName}
-                restrictInput={false} pattern={/^[\w\s]{1,}$/g}
+                name="firstName" placeholder="First Name" type="text"
+                value={firstName} restrictInput={false} pattern={/^[\w\s]{1,}$/g}
                 onChange={this.handlePatternInputChange}
               />
             </ValidatedFormGroup>
@@ -126,8 +129,8 @@ export default class CreditCardForm extends Component {
           <Col xs={12} sm={6}>
             <ValidatedFormGroup label="Last Name" error={errors.lastName}>
               <PatternInput
-                name="lastName" placeholder="Last Name" type="text" value={lastName}
-                restrictInput={false} pattern={/^[\w\s]{1,}$/g}
+                name="lastName" placeholder="Last Name" type="text"
+                value={lastName} restrictInput={false} pattern={/^[\w\s]{1,}$/g}
                 onChange={this.handlePatternInputChange}
               />
             </ValidatedFormGroup>
@@ -151,8 +154,8 @@ export default class CreditCardForm extends Component {
           <Col xs={6}>
             <FormGroup className="pull-right">
               <Button
-                color="success" onClick={this.handleSave}
-                disabled={this.state.hasFullyValidated && Object.keys(errors).length > 0}
+                name="saveButton" color="success" onClick={this.handleSave}
+                disabled={this.state.hasFullyValidated && hasErrors}
               >
                 <Icon name="save" /> Save
               </Button>
@@ -160,7 +163,7 @@ export default class CreditCardForm extends Component {
           </Col>
           <Col xs={6}>
             <FormGroup>
-              <Button color="danger" onClick={this.handleCancel}>
+              <Button name="cancelButton" color="danger" onClick={this.handleCancel}>
                 <Icon name="ban" /> Cancel
               </Button>
             </FormGroup>
@@ -185,7 +188,7 @@ CreditCardForm.defaultProps = {
   city: '',
   state: '',
   postal: '',
-  countryCode: 'US',
+  countryCode: '',
 
   onCancel: () => {},
   onSave: () => {},
