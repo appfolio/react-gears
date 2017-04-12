@@ -11,7 +11,7 @@ storiesOf('CreditCardForm', module)
   ))
   .addWithInfo('pre-filled props', () => (
     <CreditCardForm
-      firstName="John" lastName="Doe"
+      cardHolderName="John Q. Cardholder"
       cardNumber="4111 1111 1111 1111" cardCVV="12345"
       expirationMonth={TODAY.getMonth() + 1} expirationYear={TODAY.getFullYear() + 1}
       address1="123 Main St." address2=""

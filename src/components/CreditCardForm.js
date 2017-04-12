@@ -10,7 +10,7 @@ import { creditCardPropTypes } from './CreditCardInput';
 import STYLES from './CreditCardForm.scss';
 
 const TRACKED_PROPS = [
-  'firstName', 'lastName',
+  'cardHolderName',
   'cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear',
   'address1', 'address2', 'city', 'state', 'postal', 'countryCode',
 ];
@@ -32,8 +32,9 @@ export const ERRORS = {
 function validateForm(form) {
   const errors = {};
 
-  if (!form.firstName || form.firstNameIsValid === false) errors.firstName = ERRORS.REQUIRED;
-  if (!form.lastName || form.lastNameIsValid === false) errors.lastName = ERRORS.REQUIRED;
+  if (!form.cardHolderName || form.cardHolderNameIsValid === false) {
+    errors.cardHolderName = ERRORS.REQUIRED;
+  }
 
   if (!form.cardNumber || form.cardNumberIsValid === false) errors.cardNumber = ERRORS.CARD_NUMBER;
   if (!form.cardCVV || form.cardCVVIsValid === false) errors.cardCVV = ERRORS.REQUIRED;
@@ -105,8 +106,7 @@ export default class CreditCardForm extends Component {
   }
 
   render() {
-    const { firstName, lastName, errors } = this.state;
-    const hasErrors = Object.keys(errors).length > 0;
+    const { cardHolderName, errors } = this.state;
     const cardInfoProps = extract(this.state,
       ['cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear']
     );
@@ -117,20 +117,11 @@ export default class CreditCardForm extends Component {
     return (
       <div className={`credit-card-form ${STYLES.creditCardForm}`} onBlur={this.handleBlur}>
         <Row>
-          <Col xs={12} sm={6}>
-            <ValidatedFormGroup label="First Name" error={errors.firstName}>
+          <Col xs={12}>
+            <ValidatedFormGroup label="Cardholder Name" error={errors.cardHolderName}>
               <PatternInput
-                name="firstName" placeholder="First Name" type="text"
-                value={firstName} restrictInput={false} pattern={/^[\w\s]{1,}$/g}
-                onChange={this.handlePatternInputChange}
-              />
-            </ValidatedFormGroup>
-          </Col>
-          <Col xs={12} sm={6}>
-            <ValidatedFormGroup label="Last Name" error={errors.lastName}>
-              <PatternInput
-                name="lastName" placeholder="Last Name" type="text"
-                value={lastName} restrictInput={false} pattern={/^[\w\s]{1,}$/g}
+                name="cardHolderName" placeholder="Name on Card" type="text"
+                value={cardHolderName} restrictInput={false}
                 onChange={this.handlePatternInputChange}
               />
             </ValidatedFormGroup>
@@ -172,8 +163,7 @@ export default class CreditCardForm extends Component {
 }
 
 CreditCardForm.defaultProps = {
-  firstName: '',
-  lastName: '',
+  cardHolderName: '',
 
   cardNumber: '',
   cardCVV: '',
@@ -191,8 +181,7 @@ CreditCardForm.defaultProps = {
   onSave: () => {},
 };
 CreditCardForm.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
+  cardHolderName: PropTypes.string,
 
   ...addressPropType,
   ...creditCardPropTypes,
