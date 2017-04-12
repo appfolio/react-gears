@@ -71,6 +71,7 @@ import Close from './components/Close.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
 import CreditCardExpiration from './components/CreditCardExpiration.js';
 import CreditCardForm from './components/CreditCardForm.js';
+import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
@@ -171,6 +172,7 @@ export {
   CreditCardNumber,
   CreditCardExpiration,
   CreditCardForm,
+  CreditCardInput,
   CurrencyInput,
   Datapair,
   DateMonth,

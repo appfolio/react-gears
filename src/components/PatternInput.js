@@ -4,8 +4,9 @@ import { Input } from 'reactstrap';
 export default class PatternInput extends Component {
   constructor(props) {
     super(props);
+    const isValid = props.pattern.exec(props.value || '') !== null;
 
-    if (!!props.pattern.exec(props.value || '')) {
+    if (isValid) {
       this.lastValidValue = props.value;
     } else {
       this.lastValidValue = '';
@@ -15,7 +16,7 @@ export default class PatternInput extends Component {
   handleChange = (event) => {
     const { value } = event.target;
     const { pattern, restrictInput } = this.props;
-    const isValid = !!pattern.exec(value);
+    const isValid = pattern.exec(value) !== null;
 
     if (!isValid && restrictInput) {
       this.input.value = this.lastValidValue || '';
@@ -23,12 +24,6 @@ export default class PatternInput extends Component {
       if (isValid) this.lastValidValue = value;
 
       this.props.onChange(event, { value, isValid });
-    }
-  }
-  handleKeyPress = (event) => {
-    if (!this.props.restrictInput) return;
-    if (!this.props.pattern.exec(String.fromCharCode(event.charCode))) {
-      event.preventDefault();
     }
   }
 

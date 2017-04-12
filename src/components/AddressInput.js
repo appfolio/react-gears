@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Col,
-  FormGroup,
-  Input,
-  Row,
-  Select,
-  ValidatedFormGroup,
-} from '../';
+import { Col, Input, Row, Select, ValidatedFormGroup } from '../';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
 
@@ -111,7 +104,7 @@ class AddressInput extends Component {
   }
 }
 
-export const fieldTypes = {
+export const addressPropType = {
   address1: React.PropTypes.string,
   address2: React.PropTypes.string,
   city: React.PropTypes.string,
@@ -121,9 +114,9 @@ export const fieldTypes = {
 };
 
 AddressInput.propTypes = {
-  value: React.PropTypes.shape(fieldTypes),
-  defaultValue: React.PropTypes.shape(fieldTypes),
-  error: React.PropTypes.shape(fieldTypes),
+  value: React.PropTypes.shape(addressPropType),
+  defaultValue: React.PropTypes.shape(addressPropType),
+  error: React.PropTypes.shape(addressPropType),
   onChange: React.PropTypes.func,
 };
 

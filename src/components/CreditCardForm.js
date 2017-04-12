@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Row, Col } from 'reactstrap';
 import {
-  AddressInput, CreditCardNumber, CreditCardExpiration,
-  FormGroup, Icon, PatternInput, ValidatedFormGroup,
+  AddressInput, CreditCardInput, PatternInput,
+  FormGroup, Icon, ValidatedFormGroup,
 } from '../';
-import { fieldTypes as ADDRESS_PROPTYPES } from './AddressInput';
+import { addressPropType } from './AddressInput';
+import { creditCardPropTypes } from './CreditCardInput';
 
 import STYLES from './CreditCardForm.scss';
 
@@ -15,38 +16,36 @@ const TRACKED_PROPS = [
 ];
 
 function extract(original, fields = []) {
+  // eslint-disable-next-line arrow-body-style
   return fields.reduce((extracted, field) => ({
     ...extracted,
     [field]: original[field],
   }), {});
 }
 
-const TODAY = new Date();
-
-const ADDRESS = /^[\s\w-]{5,}$/;
 const ERRORS = {
-  ADDRESS: 'Please enter a valid address',
-  NAME: 'Please enter a valid name',
   CARD_NUMBER: 'Card number is invalid',
-  CARD_CVV: ' ',
-  CARD_EXPIRATION: 'Card is expired'
+  CARD_EXPIRATION: 'Card is expired',
+  REQUIRED: 'Required',
 };
 
 function validateForm(form) {
   const errors = {};
 
-  if (!form.firstNameIsValid) errors.firstName = ERRORS.NAME;
-  if (!form.lastNameIsValid) errors.lastName = ERRORS.NAME;
+  if (!form.firstName || !form.firstNameIsValid) errors.firstName = ERRORS.REQUIRED;
+  if (!form.lastName || form.lastNameIsValid) errors.lastName = ERRORS.REQUIRED;
 
-  if (!form.cardNumberIsValid) errors.cardNumber = ERRORS.CARD_NUMBER;
-  if (!form.cardCVVIsValid) errors.cardCVV = ERRORS.CARD_CVV;
-  if (!form.expirationIsValid) errors.expiration = ERRORS.CARD_EXPIRATION;
+  if (!form.cardNumber || !form.cardNumberIsValid) errors.cardNumber = ERRORS.CARD_NUMBER;
+  if (!form.cardCVV || !form.cardCVVIsValid) errors.cardCVV = ERRORS.REQUIRED;
+  if (!form.expirationMonth || !form.expirationYear || !form.expirationIsValid) {
+    errors.expiration = ERRORS.CARD_EXPIRATION;
+  }
 
-  if (!form.address1.match(ADDRESS)) errors.address1 = ERRORS.ADDRESS;
-  if (form.address2 && !form.address2.match(ADDRESS)) errors.address2 = ERRORS.ADDRESS;
-  if (!form.city || (form.city && !form.city.match(ADDRESS))) errors.city = ' ';
-  if (!form.state) errors.state = ' ';
-  if (!form.postal.match(/^[0-9 _]{5,}$/)) errors.postal = ' ';
+  if (!form.address1) errors.address1 = ERRORS.REQUIRED;
+  if (!form.city) errors.city = ERRORS.REQUIRED;
+  if (!form.state) errors.state = ERRORS.REQUIRED;
+  if (!form.postal) errors.postal = ERRORS.REQUIRED;
+  if (!form.countryCode) errors.countryCode = ERRORS.REQUIRED;
 
   return errors;
 }
@@ -54,27 +53,34 @@ function validateForm(form) {
 export default class CreditCardForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = this.resetState(props);
+  }
+  resetState = (props) => {
+    return {
       ...extract(props, TRACKED_PROPS),
+      hasFullyValidated: false,
       errors: {},
     };
   }
 
   handleSave = () => {
     const errors = validateForm(this.state);
-    this.setState({ errors });
+    this.setState({ hasFullyValidated: true, errors });
 
     if (Object.keys(errors).length === 0) {
       this.props.onSave(extract(this.state, TRACKED_PROPS));
     }
   }
   handleCancel = () => {
-    this.setState({ ...extract(this.props, TRACKED_PROPS), errors: {} });
+    this.setState(this.resetState(this.props));
     this.props.onCancel();
   }
 
   handleAddressChange = (address) => {
     this.setState(address);
+  }
+  handleCardInfoChange = (cardInfo) => {
+    this.setState(cardInfo);
   }
   handleBlur = (event) => {
     const fieldName = event.target.name;
@@ -89,13 +95,6 @@ export default class CreditCardForm extends Component {
       },
     });
   }
-  handleCardExpirationChange = ({ month, year }) => {
-    const expirationIsValid = new Date(year, month) >= TODAY;
-    this.setState({ expirationMonth: month, expirationYear: year, expirationIsValid });
-  }
-  handleCardNumberChange = (cardNumber, cardNumberIsValid) => {
-    this.setState({ cardNumber, cardNumberIsValid });
-  }
   handlePatternInputChange = (event, { value, isValid }) => {
     this.setState({
       [event.target.name]: value,
@@ -104,11 +103,10 @@ export default class CreditCardForm extends Component {
   }
 
   render() {
-    const {
-      firstName, lastName, cardNumber, cardCVV,
-      expirationMonth: month, expirationYear: year,
-      errors,
-    } = this.state;
+    const { firstName, lastName, errors } = this.state;
+    const cardInfoProps = extract(this.state,
+      ['cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear']
+    );
     const addressProps = extract(this.state,
       ['address1', 'address2', 'city', 'state', 'postal', 'countryCode']
     );
@@ -135,38 +133,10 @@ export default class CreditCardForm extends Component {
             </ValidatedFormGroup>
           </Col>
         </Row>
-        <Row>
-          <Col xs={12} sm={6}>
-            <Row>
-              <Col xs={8}>
-                <ValidatedFormGroup label="Card Number" error={errors.cardNumber}>
-                  <CreditCardNumber
-                    initialValue={cardNumber} placeholder="Card Number"
-                    onChange={this.handleCardNumberChange}
-                  />
-                </ValidatedFormGroup>
-              </Col>
-              <Col xs={4}>
-                <ValidatedFormGroup label="CVV" error={errors.cardCVV}>
-                  <PatternInput
-                    name="cardCVV" placeholder="CVV" type="text" value={cardCVV}
-                    restrictInput={false} pattern={/^[0-9]{3,5}$/}
-                    onChange={this.handlePatternInputChange}
-                  />
-                </ValidatedFormGroup>
-              </Col>
-            </Row>
-          </Col>
-          <Col xs={12} sm={6}>
-            <ValidatedFormGroup label="Card Expiration" error={errors.expiration}>
-              <CreditCardExpiration
-                month={month} monthName="expiration"
-                year={year} yearName="expiration"
-                onChange={this.handleCardExpirationChange}
-              />
-            </ValidatedFormGroup>
-          </Col>
-        </Row>
+        <CreditCardInput
+          {...cardInfoProps} errors={errors}
+          onChange={this.handleCardInfoChange}
+        />
         <Row>
           <Col xs={12}>
             <ValidatedFormGroup label="Billing Address">
@@ -182,7 +152,7 @@ export default class CreditCardForm extends Component {
             <FormGroup className="pull-right">
               <Button
                 color="success" onClick={this.handleSave}
-                disabled={Object.keys(errors).length > 0}
+                disabled={this.state.hasFullyValidated && Object.keys(errors).length > 0}
               >
                 <Icon name="save" /> Save
               </Button>
@@ -224,20 +194,9 @@ CreditCardForm.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
 
-  cardNumber: PropTypes.string,
-  cardCVV: PropTypes.string,
-  expirationMonth: (props, propName) => {
-    const value = props[propName];
-    if (value === null) return null;
-    return typeof value === 'number' && value >= 1 && value <= 12
-      ? null : new Error('Expiration Month must be a number between 1 and 12');
-  },
-  expirationYear: (props, propName) => {
-    const value = props[propName];
-    if (value === null) return null;
-    return typeof value === 'number' && value >= TODAY.getFullYear()
-      ? null : new Error('Expiration Year must be this year or later');
-  },
+  ...addressPropType,
+  ...creditCardPropTypes,
 
-  ...ADDRESS_PROPTYPES,
+  onSave: PropTypes.func,
+  onCancel: PropTypes.func,
 };
