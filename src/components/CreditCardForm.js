@@ -7,8 +7,6 @@ import {
 import { addressPropType } from './AddressInput';
 import { creditCardPropTypes } from './CreditCardInput';
 
-import STYLES from './CreditCardForm.scss';
-
 const TRACKED_PROPS = [
   'cardHolderName',
   'cardNumber', 'cardCVV', 'expirationMonth', 'expirationYear',
@@ -108,7 +106,7 @@ export default class CreditCardForm extends Component {
     );
 
     return (
-      <div className={`credit-card-form ${STYLES.creditCardForm}`} onBlur={this.handleBlur}>
+      <div className="credit-card-form" onBlur={this.handleBlur}>
         <Row>
           <Col xs={12}>
             <ValidatedFormGroup label="Cardholder Name" error={errors.cardHolderName}>
