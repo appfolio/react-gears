@@ -2,30 +2,11 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import PatternInput from '../../src/components/PatternInput';
 
 describe('<PatternInput />', () => {
-  it('should block non allowed characters', () => {
-    const input = shallow(<PatternInput pattern={/[a7]/} />);
-    const preventDefault = sinon.spy();
-    assert(input.prop('onKeyPress'));
-
-    input.simulate('keyPress', { charCode: 'a'.charCodeAt(0), preventDefault });
-    assert(!preventDefault.called);
-
-    input.simulate('keyPress', { charCode: 'b'.charCodeAt(0), preventDefault });
-    assert(preventDefault.calledOnce);
-  });
-
-  it('should not block input if restrictInput is false', () => {
-    const preventDefault = sinon.spy();
-    const input = shallow(<PatternInput restrictInput={false} pattern={/^[0-9]*$/} />);
-    input.simulate('keyPress', { charCode: 'a'.charCodeAt(0), preventDefault });
-    assert(!preventDefault.called);
-  });
-
   it('restrictInput should only prevent onChange for invalid input', () => {
     const onChange = sinon.spy();
     const component = mount(
