@@ -23,6 +23,6 @@ storiesOf('CreditCardNumber', module)
     </div>
   ))
   .addWithInfo('initial value', () => (
-    <CreditCardNumber initialValue="4111111111111111" />
+    <CreditCardNumber value="4111111111111111" />
   ))
 ;

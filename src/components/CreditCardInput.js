@@ -30,7 +30,7 @@ export default class CreditCardInput extends Component {
             <Col xs={8}>
               <ValidatedFormGroup label="Card Number" error={errors.cardNumber}>
                 <CreditCardNumber
-                  initialValue={cardNumber} placeholder="Card Number"
+                  value={cardNumber} placeholder="Card Number"
                   onChange={this.handleCardNumberChange}
                 />
               </ValidatedFormGroup>

@@ -27,7 +27,13 @@ export default class CreditCardNumber extends Component {
   }
 
   componentDidMount() {
-    this.setValue(this.props.initialValue);
+    this.setValue(this.props.value);
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.value !== this.props.value) {
+      this.setValue(props.value);
+    }
   }
 
   onInputChange = (event) => {
@@ -93,17 +99,17 @@ export default class CreditCardNumber extends Component {
 
 CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
-  initialValue: '',
   placeholder: 'Credit Card Number...',
   restrictInput: false,
+  value: '',
 
   onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
-  initialValue: PropTypes.string,
   placeholder: PropTypes.string,
   restrictInput: PropTypes.bool,
+  value: PropTypes.string,
 
   onChange: PropTypes.func,
 };

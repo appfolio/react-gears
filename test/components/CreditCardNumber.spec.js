@@ -22,8 +22,8 @@ describe('<CreditCardNumber />', () => {
     assert.equal(component.find(Icon).length, 0);
   });
 
-  it('should handle initialValues', () => {
-    const component = mount(<CreditCardNumber initialValue={EXAMPLES.visa} />);
+  it('should handle specified values', () => {
+    const component = mount(<CreditCardNumber value={EXAMPLES.visa} />);
 
     const input = component.find('input');
     assert.equal(input.length, 1);
