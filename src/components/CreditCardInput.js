@@ -26,30 +26,37 @@ export default class CreditCardInput extends Component {
     return (
       <Row>
         <Col xs={12} sm={6}>
-          <Row>
-            <Col xs={8}>
-              <ValidatedFormGroup label="Card Number" error={errors.cardNumber}>
+          <Row className="no-gutters">
+            <Col xs={9} sm={10}>
+              <ValidatedFormGroup className="pr-3" error={errors.cardNumber}>
                 <CreditCardNumber
-                  value={cardNumber} placeholder="Card Number"
+                  value={cardNumber}
+                  placeholder="Card Number"
                   onChange={this.handleCardNumberChange}
                 />
               </ValidatedFormGroup>
             </Col>
-            <Col xs={4}>
-              <ValidatedFormGroup label="CVV" error={errors.cardCVV}>
+            <Col xs={3} sm={2}>
+              <ValidatedFormGroup error={errors.cardCVV}>
                 <PatternInput
-                  name="cardCVV" placeholder="CVV" type="text" value={cardCVV}
-                  pattern={/^[0-9]{0,5}$/} onChange={this.handleCardCVVChange}
+                  name="cardCVV"
+                  placeholder="CVV"
+                  type="text"
+                  value={cardCVV}
+                  pattern={/^[0-9]{0,5}$/}
+                  onChange={this.handleCardCVVChange}
                 />
               </ValidatedFormGroup>
             </Col>
           </Row>
         </Col>
         <Col xs={12} sm={6}>
-          <ValidatedFormGroup label="Card Expiration" error={errors.expiration}>
+          <ValidatedFormGroup error={errors.expiration}>
             <CreditCardExpiration
-              month={month} monthName="expiration"
-              year={year} yearName="expiration"
+              month={month}
+              monthName="expiration"
+              year={year}
+              yearName="expiration"
               onChange={this.handleCardExpirationChange}
             />
           </ValidatedFormGroup>

@@ -18,14 +18,10 @@ import './Tooltip';
 import './Forms';
 import './Address';
 import './CurrencyInput';
-import './CreditCardNumber';
-import './CreditCardExpiration';
+import './CreditCardInput';
 import './DateMonth';
 import './InputGroup';
 import './Select';
-
-// Forms
-import './CreditCardForm';
 
 // APM
 import './BlockPanel';

@@ -27,15 +27,18 @@ export default class CreditCardExpiration extends Component {
 
   render() {
     return (
-      <Row>
-        <Col xs={12} sm={6}>
+      <Row className="no-gutters">
+        <Col xs={7} sm={8}>
           <Select
             name={this.props.monthName}
-            placeholder="Month" value={this.props.month}
-            options={monthOptions} onChange={this.onMonthSelection}
+            placeholder="Month"
+            value={this.props.month}
+            options={monthOptions}
+            onChange={this.onMonthSelection}
+            className="pr-3"
           />
         </Col>
-        <Col xs={12} sm={6}>
+        <Col xs={5} sm={4}>
           <Select
             name={this.props.yearName}
             placeholder="Year" value={this.props.year}
