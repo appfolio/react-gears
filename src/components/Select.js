@@ -59,7 +59,7 @@ class Select extends Component {
 
   static defaultProps = {
     defaultValue: '',
-    onChange: noop
+    onChange: noop,
   };
 
   constructor(props) {
@@ -68,6 +68,11 @@ class Select extends Component {
     this.state = {
       value: props.defaultValue
     };
+  }
+  componentWillReceiveProps(props) {
+    if (props.value !== this.props.value) {
+      this.setState({ value: props.value });
+    }
   }
 
   updateValue = value => { this.setState({ value }); }
@@ -78,6 +83,7 @@ class Select extends Component {
 
     return (
       <SelectElement
+        inputProps={{ ...props.inputProps, name: props.name || '' }}
         onChange={over([this.updateValue, onChange])}
         value={value || this.state.value}
         {...props}
