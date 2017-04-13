@@ -89,7 +89,7 @@ export default class CreditCardNumber extends Component {
         />
         {cardType &&
           <InputGroupAddon>
-            <Icon name={cardType} />
+            <Icon name={cardType} size="lg" />
           </InputGroupAddon>
         }
       </InputGroup>
