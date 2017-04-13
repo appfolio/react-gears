@@ -99,7 +99,7 @@ export default class CreditCardNumber extends Component {
 
 CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
-  placeholder: 'Credit Card Number...',
+  placeholder: 'Credit Card Number',
   restrictInput: false,
   value: '',
 
