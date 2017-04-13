@@ -6,7 +6,7 @@ import { array, number, text } from '@kadira/storybook-addon-knobs';
 const TODAY = new Date();
 
 storiesOf('CreditCardInput', module)
-  .addWithInfo('pre-filled props', () => (
+  .addWithInfo('Live example', () => (
     <CreditCardInput
       cardNumber={text('cardNumber', '4111 1111 1111 1111')}
       cardCVV={text('cardCVV', '12345')}
