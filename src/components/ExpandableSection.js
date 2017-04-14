@@ -4,7 +4,6 @@ import { Icon } from '../';
 import styles from './ExpandableSection.scss';
 
 class ExpandableSection extends Component {
-
   constructor(props) {
     super(props);
 
@@ -23,7 +22,7 @@ class ExpandableSection extends Component {
       <section className={className}>
         <header onClick={this.toggle} style={{ cursor: 'pointer' }}>
           <Icon
-            name='caret-right'
+            name="caret-right"
             rotate={this.state.open ? 90 : undefined}
             size="lg"
             fixedWidth
@@ -39,7 +38,7 @@ class ExpandableSection extends Component {
 
 ExpandableSection.propTypes = {
   open: React.PropTypes.bool,
-  title: React.PropTypes.string.isRequired
+  title: React.PropTypes.node.isRequired
 };
 
 ExpandableSection.defaultProps = {
