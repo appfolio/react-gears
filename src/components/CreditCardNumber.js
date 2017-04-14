@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Icon } from '../';
-import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Icon, InputGroup } from '../';
+import { Input, InputGroupAddon } from 'reactstrap';
 import { number } from 'card-validator';
 import cardTypeInfo from 'credit-card-type';
 
@@ -27,13 +27,25 @@ export default class CreditCardNumber extends Component {
   }
 
   componentDidMount() {
-    this.handleChange(this.props.initialValue);
+    this.setValue(this.props.value);
   }
 
-  handleChange(proposedValue) {
+  componentWillReceiveProps(props) {
+    if (props.value !== this.props.value) {
+      this.setValue(props.value);
+    }
+  }
+
+  onInputChange = (event) => {
+    this.setValue(event.target.value);
+  }
+
+  setValue = (proposedValue) => {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      return this.setState({ value, cardType: undefined });
+      this.props.onChange(value, false);
+      this.setState({ value, cardType: undefined });
+      return;
     }
 
     const { card, isValid, isPotentiallyValid } = number(value);
@@ -46,34 +58,38 @@ export default class CreditCardNumber extends Component {
     const typeInfo = cardTypeInfo(value);
     if (typeInfo.length === 1) {
       const spaces = (typeInfo[0] || {}).gaps || [];
-      value = spaces.slice().reverse()
+      value = spaces // For VISA: [4, 8, 12]
+        // Reverse-order, since each space added changes line length
+        .reverse()
+        // Remove any space-positions that occur after the current length
         .filter(position => position < value.length)
+        // Inject spaces into the value at each declared position
         .reduce((cardNumber, position) =>
           `${cardNumber.slice(0, position)} ${cardNumber.slice(position)}`
         , value);
     }
 
-    if (cardType && (isValid || isPotentiallyValid)) {
-      return this.setState({ value, cardType });
+    // Only accept the change if we recognize the card type, and it is/may be valid
+    if (!this.props.restrictInput || cardType && (isValid || isPotentiallyValid)) {
+      this.props.onChange(value, isValid);
+      this.setState({ value, cardType, isValid });
     }
-
-    return false;
   }
 
   render() {
     const { placeholder } = this.props;
-    const { cardType } = this.state;
+    const { cardType, value } = this.state;
 
     return (
       <InputGroup className="credit-card-number-field">
         <Input
-          placeholder={placeholder}
-          value={this.state.value}
-          onChange={(event) => { this.handleChange(event.target.value); }}
+          name="cardNumber"
+          placeholder={placeholder} value={value}
+          onChange={this.onInputChange}
         />
         {cardType &&
           <InputGroupAddon>
-            <Icon name={cardType} />
+            <Icon name={cardType} size="lg" />
           </InputGroupAddon>
         }
       </InputGroup>
@@ -83,11 +99,17 @@ export default class CreditCardNumber extends Component {
 
 CreditCardNumber.defaultProps = {
   allowedBrands: Object.keys(TYPES),
-  placeholder: 'Credit Card Number...',
-  initialValue: '',
+  placeholder: 'Credit Card Number',
+  restrictInput: false,
+  value: '',
+
+  onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
   placeholder: PropTypes.string,
-  initialValue: PropTypes.string,
+  restrictInput: PropTypes.bool,
+  value: PropTypes.string,
+
+  onChange: PropTypes.func,
 };

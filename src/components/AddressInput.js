@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, Input, Row, Col, Select, FormFeedback } from '../';
+import { Col, Input, Row, Select, ValidatedFormGroup } from '../';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
 
@@ -27,110 +27,112 @@ class AddressInput extends Component {
   }
 
   render() {
-    const { error } = this.props;
+    const { disabled, error } = this.props;
 
     return (
       <div>
-        <FormGroup color={error.address1 && 'danger'}>
+        <ValidatedFormGroup error={error.address1}>
           <Input
             name="address1"
             type="text"
             placeholder="Address 1"
-            {...this.propsFor('address1')}
+            {...this.propsFor('address1') }
             state={error.address1 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
+            disabled={disabled}
           />
-          {error.address1 && <FormFeedback children={error.address1} />}
-        </FormGroup>
-        <FormGroup color={error.address2 && 'danger'}>
+        </ValidatedFormGroup>
+        <ValidatedFormGroup error={error.address2}>
           <Input
             name="address2"
             type="text"
             placeholder="Address 2"
-            {...this.propsFor('address2')}
+            {...this.propsFor('address2') }
             state={error.address2 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
+            disabled={disabled}
           />
-          {error.address2 && <FormFeedback children={error.address2} />}
-        </FormGroup>
+        </ValidatedFormGroup>
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
-            <FormGroup className="pr-3" color={error.city && 'danger'}>
+            <ValidatedFormGroup className="pr-3" error={error.city}>
               <Input
                 type="text"
                 name="city"
                 placeholder="City"
-                {...this.propsFor('city')}
+                {...this.propsFor('city') }
                 state={error.city && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
+                disabled={disabled}
               />
-              {error.city && <FormFeedback children={error.city} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
           <Col sm={2} xs={3}>
-            <FormGroup className="pr-3" color={error.state && 'danger'}>
+            <ValidatedFormGroup className="pr-3" error={error.state}>
               <Select
                 className="w-100"
                 name="state"
                 placeholder="State"
                 options={US_STATES}
-                {...this.propsFor('state')}
+                {...this.propsFor('state') }
                 onChange={selection => this.onChange({ state: selection && selection.value })}
+                disabled={disabled}
               />
-              {error.state && <FormFeedback children={error.state} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
           <Col sm={4} xs={4}>
-            <FormGroup color={error.postal && 'danger'}>
+            <ValidatedFormGroup error={error.postal}>
               <Input
                 type="text"
                 name="postal"
                 placeholder="Zip"
-                {...this.propsFor('postal')}
+                {...this.propsFor('postal') }
                 state={error.postal && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
+                disabled={disabled}
               />
-              {error.postal && <FormFeedback children={error.postal} />}
-            </FormGroup>
+            </ValidatedFormGroup>
           </Col>
         </Row>
-        <FormGroup color={error.countryCode && 'danger'}>
+        <ValidatedFormGroup error={error.countryCode}>
           <Select
             className="w-100"
             name="countryCode"
             options={COUNTRIES}
             placeholder="Country"
-            {...this.propsFor('countryCode')}
+            {...this.propsFor('countryCode') }
             onChange={selection => this.onChange({ countryCode: selection && selection.value })}
+            disabled={disabled}
           />
-          {error.countryCode && <FormFeedback children={error.countryCode} />}
-        </FormGroup>
+        </ValidatedFormGroup>
       </div>
     );
   }
 }
 
-const fieldTypes = {
+export const addressPropType = {
   address1: React.PropTypes.string,
   address2: React.PropTypes.string,
   city: React.PropTypes.string,
   state: React.PropTypes.string,
   postal: React.PropTypes.string,
-  countryCode: React.PropTypes.string
+  countryCode: React.PropTypes.string,
 };
 
 AddressInput.propTypes = {
-  value: React.PropTypes.shape(fieldTypes),
-  defaultValue: React.PropTypes.shape(fieldTypes),
-  error: React.PropTypes.shape(fieldTypes),
-  onChange: React.PropTypes.func
+  value: React.PropTypes.shape(addressPropType),
+  defaultValue: React.PropTypes.shape(addressPropType),
+  error: React.PropTypes.shape(addressPropType),
+  onChange: React.PropTypes.func,
+  disabled: React.PropTypes.bool
 };
 
 AddressInput.defaultProps = {
   value: {},
   defaultValue: {},
   error: {},
-  onChange: noop
+  onChange: noop,
+  disabled: false
 };
 
 export default AddressInput;

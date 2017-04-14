@@ -69,6 +69,8 @@ import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Close from './components/Close.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
+import CreditCardExpiration from './components/CreditCardExpiration.js';
+import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
@@ -93,6 +95,7 @@ import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
 import Tooltip from './components/Tooltip.js';
+import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 
 export {
   // reactstrap
@@ -170,6 +173,8 @@ export {
   BoundFormRow,
   Close,
   CreditCardNumber,
+  CreditCardExpiration,
+  CreditCardInput,
   CurrencyInput,
   Datapair,
   DateMonth,
@@ -189,5 +194,6 @@ export {
   Steps,
   SummaryBox,
   SummaryBoxItem,
-  Tooltip
+  Tooltip,
+  ValidatedFormGroup,
 };
