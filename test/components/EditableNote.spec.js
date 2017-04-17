@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import { EditableNote } from '../../src';
 import { mount } from 'enzyme';
 
-describe.only('<EditableNote />', () => {
+describe('<EditableNote />', () => {
   const note = {
     text: 'Hello World!'
   };
@@ -22,11 +22,21 @@ describe.only('<EditableNote />', () => {
 
   it('should render correctly', () => {
     assert(component);
+    assert.equal(note.text, component.ref('text').text());
   });
 
   it('should call onCancel on click', () => {
-    component.refs('cancel').simulate('click');
+    component.ref('cancel').simulate('click');
+    assert.equal(onCancel.calledOnce, true);
   });
 
-  // TODO
+  it('should call onSave on click', () => {
+    component.ref('save').simulate('click');
+    assert.equal(onSave.calledOnce, true);
+  });
+
+  it('should call onChange on text change', () => {
+    component.ref('text').simulate('change', { target: { value: 'Yikes!' } });
+    assert.equal(onChange.calledOnce, true);
+  });
 });

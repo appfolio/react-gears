@@ -74,6 +74,7 @@ import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
+import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FilterList from './components/FilterList.js';
@@ -125,6 +126,7 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  DeletedNote,
   EditableNote,
   Fade,
   Form,
