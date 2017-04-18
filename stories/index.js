@@ -23,6 +23,7 @@ import './DateMonth';
 import './InputGroup';
 import './EmailInput';
 import './NameInput';
+import './PhoneInput';
 import './Select';
 
 // APM

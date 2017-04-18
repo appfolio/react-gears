@@ -86,6 +86,7 @@ import Modal from './components/Modal.js';
 import NameInput from './components/NameInput.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
+import PhoneInput from './components/PhoneInput.js';
 import Progress from './components/Progress.js';
 import Select from './components/Select.js';
 import Spinner from './components/Spinner.js';
@@ -185,6 +186,7 @@ export {
   LabelBadge,
   NameInput,
   PatternInput,
+  PhoneInput,
   Progress,
   Spinner,
   Steps,
