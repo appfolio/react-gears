@@ -74,6 +74,7 @@ import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
+import EmailInput from './components/EmailInput.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
@@ -173,6 +174,7 @@ export {
   CurrencyInput,
   Datapair,
   DateMonth,
+  EmailInput,
   ExpandableSection,
   Badge as Flag,
   FilterList,

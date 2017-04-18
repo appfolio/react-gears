@@ -21,6 +21,7 @@ import './CurrencyInput';
 import './CreditCardInput';
 import './DateMonth';
 import './InputGroup';
+import './EmailInput';
 import './NameInput';
 import './Select';
 
