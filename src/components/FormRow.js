@@ -39,6 +39,8 @@ const FormRow = props => {
     children,
     inline,
     stacked,
+    labelWidth,
+    inputContainerWidth,
     width,
     ...attributes
   } = props;
@@ -48,18 +50,19 @@ const FormRow = props => {
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const rowColor = color || state || (baseFeedback && 'danger');
 
-  const labelWidth = stacked ? 12 : 3;
+  const labelWidthNumber = stacked ? 12 : labelWidth;
   const labelAlignment = stacked ? '' : 'text-sm-right';
 
-  const inputContainerWidth = stacked ? 12 : 9;
+  const inputContainerWidthNumber = stacked ? 12 : inputContainerWidth;
 
   return (
     <FormGroup row color={rowColor}>
-      <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
+      <Label for={id} sm={labelWidthNumber} size={size} className={`pr-0 ${labelAlignment}`}>
+        {required && label && !stacked ? <span className="text-danger">*&nbsp;</span> : null}
         {label}
-        {required && label ? <span className="text-danger">&nbsp;*</span> : null}
+        {required && label && stacked ? <span className="text-danger">&nbsp;*</span> : null}
       </Label>
-      <Col sm={inputContainerWidth}>
+      <Col sm={inputContainerWidthNumber}>
         <Row>
           <Col {...width} >
             <InputElement
@@ -95,6 +98,8 @@ FormRow.propTypes = {
   ]),
   inline: React.PropTypes.bool,
   stacked: React.PropTypes.bool,
+  labelWidth: React.PropTypes.number,
+  inputContainerWidth: React.PropTypes.number,
   width: React.PropTypes.object
 };
 
@@ -106,6 +111,8 @@ FormRow.defaultProps = {
   type: 'text',
   inline: false,
   stacked: false,
+  labelWidth: 3,
+  inputContainerWidth: 9,
   width: { xs: 12 }
 };
 
