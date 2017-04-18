@@ -2,17 +2,22 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import CreditCardNumber from '../../src/components/CreditCardNumber';
 import Icon from '../../src/components/Icon';
 
 const EXAMPLES = {
+  'american-express': '378282246310005',
   'diners-club': '30569309025904',
-  amex: '378282246310005',
+  'master-card': '5555555555554444',
   discover: '6011111111111117',
   jcb: '3530111333300000',
-  mastercard: '5555555555554444',
   visa: '4111111111111111',
+};
+const ICON_MAP = {
+  'american-express': 'amex',
+  'master-card': 'mastercard',
 };
 
 describe('<CreditCardNumber />', () => {
@@ -30,16 +35,22 @@ describe('<CreditCardNumber />', () => {
     assert.equal(component.find(Icon).prop('name'), 'cc-visa');
   });
 
-  it('should render correct icons for valid card numbers', () => {
+  it('should report/render icon for correct cardType for valid numbers', () => {
     Object.keys(EXAMPLES).forEach(key => {
-      const expectedIcon = `cc-${key}`;
       const cardNumber = EXAMPLES[key];
+      const onChange = sinon.spy();
 
-      const component = mount(<CreditCardNumber />);
+      const component = mount(<CreditCardNumber onChange={onChange} />);
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert.equal(component.find(Icon).prop('name'), expectedIcon);
+      assert(onChange.called);
+      const [returnedCardNumber, returnedIsValid, returnedType] = [...onChange.lastCall.args];
+      assert.equal(returnedCardNumber.replace(/ /g, ''), cardNumber);
+      assert.equal(returnedIsValid, true);
+      assert.equal(returnedType, key);
+
+      assert.equal(component.find(Icon).prop('name'), `cc-${ICON_MAP[key] || key}`);
     });
   });
 
@@ -65,7 +76,7 @@ describe('<CreditCardNumber />', () => {
   it('restrictInput prop should reject numbers for invalid card types', () => {
     const component = mount(<CreditCardNumber restrictInput allowedBrands={['visa']} />);
     const input = component.find('input');
-    input.simulate('change', { target: { value: EXAMPLES.mastercard } });
+    input.simulate('change', { target: { value: EXAMPLES['master-card'] } });
 
     assert.equal(input.get(0).value, '');
     assert.equal(component.find(Icon).length, 0);

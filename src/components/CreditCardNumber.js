@@ -43,7 +43,7 @@ export default class CreditCardNumber extends Component {
   setValue = (proposedValue) => {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      this.props.onChange(value, false);
+      this.props.onChange(value, false, undefined);
       this.setState({ value, cardType: undefined });
       return;
     }
@@ -71,7 +71,7 @@ export default class CreditCardNumber extends Component {
 
     // Only accept the change if we recognize the card type, and it is/may be valid
     if (!this.props.restrictInput || cardType && (isValid || isPotentiallyValid)) {
-      this.props.onChange(value, isValid);
+      this.props.onChange(value, isValid, card.type);
       this.setState({ value, cardType, isValid });
     }
   }
@@ -103,7 +103,7 @@ CreditCardNumber.defaultProps = {
   restrictInput: false,
   value: '',
 
-  onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
+  onChange: (cardNumber, isValid, cardType) => true, // eslint-disable-line no-unused-vars
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
