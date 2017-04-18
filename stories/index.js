@@ -21,6 +21,7 @@ import './CurrencyInput';
 import './CreditCardInput';
 import './DateMonth';
 import './InputGroup';
+import './NameInput';
 import './Select';
 
 // APM

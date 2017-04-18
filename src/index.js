@@ -82,6 +82,7 @@ import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import LabelBadge from './components/LabelBadge.js';
 import Modal from './components/Modal.js';
+import NameInput from './components/NameInput.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
@@ -158,9 +159,7 @@ export {
   TabPane,
   Table,
   TetherContent,
-
   Select,
-
   // Gears
   AddressInput,
   Alert,
@@ -182,6 +181,7 @@ export {
   HelpBubble,
   Icon,
   LabelBadge,
+  NameInput,
   PatternInput,
   Progress,
   Spinner,
@@ -189,5 +189,5 @@ export {
   SummaryBox,
   SummaryBoxItem,
   Tooltip,
-  ValidatedFormGroup,
+  ValidatedFormGroup
 };
