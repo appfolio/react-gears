@@ -13,8 +13,8 @@ export default class CreditCardInput extends Component {
     const expirationIsValid = new Date(year, month) >= TODAY;
     this.props.onChange({ expirationMonth: month, expirationYear: year, expirationIsValid });
   }
-  handleCardNumberChange = (cardNumber, cardNumberIsValid) => {
-    this.props.onChange({ cardNumber, cardNumberIsValid });
+  handleCardNumberChange = ({ cardNumber, cardType }, cardNumberIsValid) => {
+    this.props.onChange({ cardNumber, cardType, cardNumberIsValid });
   }
 
   render() {

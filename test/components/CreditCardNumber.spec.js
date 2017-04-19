@@ -45,10 +45,10 @@ describe('<CreditCardNumber />', () => {
       input.simulate('change', { target: { value: cardNumber } });
 
       assert(onChange.called);
-      const [returnedCardNumber, returnedIsValid, returnedType] = [...onChange.lastCall.args];
-      assert.equal(returnedCardNumber.replace(/ /g, ''), cardNumber);
+      const [values, returnedIsValid] = [...onChange.lastCall.args];
+      assert.equal(values.cardNumber.replace(/ /g, ''), cardNumber);
+      assert.equal(values.cardType, key);
       assert.equal(returnedIsValid, true);
-      assert.equal(returnedType, key);
 
       assert.equal(component.find(Icon).prop('name'), `cc-${ICON_MAP[key] || key}`);
     });
