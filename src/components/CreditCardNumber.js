@@ -43,16 +43,19 @@ export default class CreditCardNumber extends Component {
   setValue = (proposedValue) => {
     let value = proposedValue.replace(/[^0-9]/g, '');
     if (proposedValue === '') {
-      this.props.onChange(value, false);
+      this.props.onChange(value, false, undefined);
       this.setState({ value, cardType: undefined });
       return;
     }
 
     const { card, isValid, isPotentiallyValid } = number(value);
 
-    let cardType = undefined;
-    if (card && card.type && includes(this.props.allowedBrands, card.type)) {
-      cardType = typeToIconName(card.type);
+    let cardTypeIconName = undefined;
+    let cardTypeIsAllowed = false;
+
+    if (card && card.type) {
+      cardTypeIconName = typeToIconName(card.type);
+      cardTypeIsAllowed = includes(this.props.allowedBrands, card.type);
     }
 
     const typeInfo = cardTypeInfo(value);
@@ -70,15 +73,15 @@ export default class CreditCardNumber extends Component {
     }
 
     // Only accept the change if we recognize the card type, and it is/may be valid
-    if (!this.props.restrictInput || cardType && (isValid || isPotentiallyValid)) {
-      this.props.onChange(value, isValid);
-      this.setState({ value, cardType, isValid });
+    if (!this.props.restrictInput || cardTypeIsAllowed && (isValid || isPotentiallyValid)) {
+      this.props.onChange({ cardNumber: value, cardType: card.type }, isValid);
+      this.setState({ value, cardTypeIconName, isValid });
     }
   }
 
   render() {
     const { placeholder } = this.props;
-    const { cardType, value } = this.state;
+    const { cardTypeIconName, value } = this.state;
 
     return (
       <InputGroup className="credit-card-number-field">
@@ -87,9 +90,9 @@ export default class CreditCardNumber extends Component {
           placeholder={placeholder} value={value}
           onChange={this.onInputChange}
         />
-        {cardType &&
+        {cardTypeIconName &&
           <InputGroupAddon>
-            <Icon name={cardType} size="lg" />
+            <Icon name={cardTypeIconName} size="lg" />
           </InputGroupAddon>
         }
       </InputGroup>
@@ -103,7 +106,7 @@ CreditCardNumber.defaultProps = {
   restrictInput: false,
   value: '',
 
-  onChange: (cardNumber, isValid) => true, // eslint-disable-line no-unused-vars
+  onChange: (cardNumber, isValid, cardType) => true, // eslint-disable-line no-unused-vars
 };
 CreditCardNumber.propTypes = {
   allowedBrands: PropTypes.arrayOf(PropTypes.string),
