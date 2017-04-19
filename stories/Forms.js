@@ -2,8 +2,21 @@ import React from 'react';
 import { Container, Input } from 'reactstrap';
 import { storiesOf, action } from '@kadira/storybook';
 
-import { BoundForm, BoundFormRow, FormRow, FormChoice, CurrencyInput, AddressInput } from '../src';
-import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+import {
+  BoundForm,
+  BoundFormRow,
+  FormRow,
+  FormChoice,
+  CurrencyInput,
+  AddressInput
+} from '../src';
+import {
+  text,
+  boolean,
+  number,
+  object,
+  select
+} from '@kadira/storybook-addon-knobs';
 
 const formData = {
   firstName: 'Obi-Wan',
@@ -35,7 +48,7 @@ storiesOf('Forms', module)
           sm: number('sm width', 12, colKnobOptions),
           md: number('md width', 12, colKnobOptions),
           lg: number('lg width', 12, colKnobOptions),
-          xl: number('xl width', 12, colKnobOptions )
+          xl: number('xl width', 12, colKnobOptions)
         }}
         name="live-input"
       >
@@ -65,15 +78,32 @@ storiesOf('Forms', module)
       <FormRow label="Nickname" hint="A fun name to describe yourself!" />
       <FormRow label="DOB" required />
       <FormRow label="Disabled Field" disabled />
-      <FormRow label="Who is Luke's Father?" value="Darth Vader" type="static" />
-      <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
+      <FormRow
+        label="Who is Luke's Father?"
+        value="Darth Vader"
+        type="static"
+      />
+      <FormRow
+        state="warning"
+        placeholder="Labels can be omitted but that may be bad"
+      />
       <FormRow type="textarea" label="Notes" />
-      <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
+      <FormRow
+        type="select"
+        label="Select Movie"
+        color="success"
+        feedback="Awesome!"
+      >
         <FormChoice value="override">A New Hope</FormChoice>
         <FormChoice>The Empire Strikes Back</FormChoice>
         <FormChoice>The Force Awakens</FormChoice>
       </FormRow>
-      <FormRow type="radio" label="Select Ship" hint="Some ships are unreliable..." name="ship">
+      <FormRow
+        type="radio"
+        label="Select Ship"
+        hint="Some ships are unreliable..."
+        name="ship"
+      >
         <FormChoice color="danger">Death Star</FormChoice>
         <FormChoice color="warning">Millennium Falcon</FormChoice>
         <FormChoice color="success">Imperial Shuttle</FormChoice>
@@ -89,36 +119,73 @@ storiesOf('Forms', module)
         <FormChoice>Yes</FormChoice>
         <FormChoice disabled>No</FormChoice>
       </FormRow>
-      <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" />
+      <FormRow
+        type={CurrencyInput}
+        label="How much would you pay to meet the cast?"
+      />
     </form>
   ))
-  .addWithInfo('Forms with Objects', () => (
-    <BoundForm
-      object={formData}
-      errors={object('errors', { lastName: "can't be blank" })}
-      onSubmit={action('submit')}>
-      <BoundFormRow label="First Name" name="firstName" />
-      <BoundFormRow label="Last Name" name="lastName" required />
-      <BoundFormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
-      <BoundFormRow type="select" label="Select Movie" name="movie">
-        <FormChoice>A New Hope</FormChoice>
-        <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
-        <FormChoice>The Force Awakens</FormChoice>
-      </BoundFormRow>
-      <BoundFormRow type="checkbox" label="Select the character(s) you like" name="characters">
-        <FormChoice>Darth Vader</FormChoice>
-        <FormChoice>Luke Skywalker</FormChoice>
-        <FormChoice disabled>Emperor Palpatine</FormChoice>
-        <FormChoice value="awesome">Rey</FormChoice>
-        <FormChoice>TK-421</FormChoice>
-      </BoundFormRow>
-      <BoundFormRow type="radio" label="Select Ship" name="ship">
-        <FormChoice>Death Star</FormChoice>
-        <FormChoice>Millennium Falcon</FormChoice>
-        <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
-      </BoundFormRow>
-      <BoundFormRow type={AddressInput} name="address" label="Address" />
-      <BoundFormRow type="file" label="Death Star Schematics" name="deathStarPlans" multiple/>
-      <button className="btn btn-primary">Submit</button>
-    </BoundForm>
-  ));
+  .addWithInfo('Forms with Objects', () => {
+    class TestContainer extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          a: 1
+        };
+      }
+
+      render() {
+        return (
+          <BoundForm
+            object={formData}
+            errors={object('errors', { lastName: "can't be blank" })}
+            onSubmit={(x, formState) => {
+              formState.firstName = 'whatever you want';
+              this.setState({
+                a: this.state.a + 1
+              });
+            }}
+          >
+            <BoundFormRow label="First Name" name="firstName" />
+            <BoundFormRow label="Last Name" name="lastName" required />
+            <BoundFormRow
+              type={CurrencyInput}
+              label="How much would you pay to meet the cast?"
+              name="amount"
+            />
+            <BoundFormRow type="select" label="Select Movie" name="movie">
+              <FormChoice>A New Hope</FormChoice>
+              <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
+              <FormChoice>The Force Awakens</FormChoice>
+            </BoundFormRow>
+            <BoundFormRow
+              type="checkbox"
+              label="Select the character(s) you like"
+              name="characters"
+            >
+              <FormChoice>Darth Vader</FormChoice>
+              <FormChoice>Luke Skywalker</FormChoice>
+              <FormChoice disabled>Emperor Palpatine</FormChoice>
+              <FormChoice value="awesome">Rey</FormChoice>
+              <FormChoice>TK-421</FormChoice>
+            </BoundFormRow>
+            <BoundFormRow type="radio" label="Select Ship" name="ship">
+              <FormChoice>Death Star</FormChoice>
+              <FormChoice>Millennium Falcon</FormChoice>
+              <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
+            </BoundFormRow>
+            <BoundFormRow type={AddressInput} name="address" label="Address" />
+            <BoundFormRow
+              type="file"
+              label="Death Star Schematics"
+              name="deathStarPlans"
+              multiple
+            />
+            <button className="btn btn-primary">Submit</button>
+          </BoundForm>
+        );
+      }
+    }
+
+    return <TestContainer />;
+  });
