@@ -6,8 +6,12 @@ export default class Notes extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
     onAdd: React.PropTypes.func,
+    onCancel: React.PropTypes.func,
+    onChange: React.PropTypes.func,
     onDelete: React.PropTypes.func,
+    onDownload: React.PropTypes.func,
     onEdit: React.PropTypes.func,
+    onSave: React.PropTypes.func,
     onUndelete: React.PropTypes.func,
     notes: React.PropTypes.array,
   }
@@ -18,7 +22,7 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    const { children, className, notes, onAdd, onDelete, onDownload, onEdit, onUndelete } = this.props;
+    const { children, className, notes, onAdd, onDownload, onCancel, onChange, onDelete, onEdit, onSave, onUndelete } = this.props;
 
     return (
       <div className={className}>
@@ -53,7 +57,18 @@ export default class Notes extends React.Component {
         </Row>
         {children ?
           children :
-          notes.map(note => <Note onDelete={onDelete} onEdit={onEdit} onUndelete={onUndelete} note={note} />)
+          notes.map(note =>
+            <Note
+              note={note}
+              onCancel={onCancel}
+              onChange={onChange}
+              onDelete={onDelete}
+              onDelete={onDelete}
+              onEdit={onEdit}
+              onSave={onSave}
+              onUndelete={onUndelete}
+            />
+          )
         }
       </div>
     );
