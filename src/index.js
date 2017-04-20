@@ -74,6 +74,8 @@ import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateMonth from './components/datemonth/DateMonth.js';
+import DeletedNote from './components/DeletedNote.js';
+import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
@@ -82,6 +84,8 @@ import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import LabelBadge from './components/LabelBadge.js';
 import Modal from './components/Modal.js';
+import Note from './components/Note.js';
+import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
@@ -122,6 +126,8 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  DeletedNote,
+  EditableNote,
   Fade,
   Form,
   FormFeedback,
@@ -182,6 +188,8 @@ export {
   HelpBubble,
   Icon,
   LabelBadge,
+  Note,
+  Notes,
   PatternInput,
   Progress,
   Spinner,

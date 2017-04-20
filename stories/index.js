@@ -28,6 +28,8 @@ import './BlockPanel';
 import './Datapair';
 import './ExpandableSection';
 import './FilterList';
+import './Note';
+import './Notes';
 import './Paginator';
 import './Steps';
 import './SummaryBox';
