@@ -15,7 +15,6 @@ describe('<HelpBubble />', () => {
 
   it('should link popover and icon trigger', () => {
     const component = mount(<HelpBubble title="hi" />);
-    assert.equal(component.instance().id, 'help-bubble-1');
     assert.equal(
       component.find(Popover).prop('target'),
       component.find(Icon).prop('id')
