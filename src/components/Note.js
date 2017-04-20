@@ -11,18 +11,14 @@ const format = date => fecha.format(date, 'ddd, MMMM d, YYYY "at" h:mm A');
 class Note extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
-    date: React.PropTypes.object,
-    deleted: React.PropTypes.bool,
-    edited: React.PropTypes.bool,
     editing: React.PropTypes.bool,
-    from: React.PropTypes.string,
+    note: React.PropTypes.object,
     onCancel: React.PropTypes.func,
     onChange: React.PropTypes.func,
-    onDelete: React.PropTypes.func.isRequired,
-    onEdit: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func,
+    onEdit: React.PropTypes.func,
     onSave: React.PropTypes.func,
-    onUndelete: React.PropTypes.func.isRequired,
-    text: React.PropTypes.string
+    onUndelete: React.PropTypes.func
   };
 
   static defaultProps = {
@@ -34,8 +30,9 @@ class Note extends React.Component {
   };
 
   render() {
-    const { children, className, date, deleted, edited, editing, from, text,
-            onCancel, onChange, onSave, onDelete, onEdit, onUndelete } = this.props;
+    const { children, className, note, onCancel, onChange, onSave, onDelete, onEdit, onUndelete } = this.props;
+    const { date, deleted, edited, editing, from, text } = note;
+
     return (
       <div className={`mb-3 ${className}`}>
         {deleted ?
@@ -52,15 +49,15 @@ class Note extends React.Component {
               onChange={onChange}
               onSave={onSave}
             /> :
-            <Card ref="note" className="rounded-top">
+            <Card ref="note" className="rounded">
               <CardHeader className="d-flex justify-content-start p-2 rounded-top bg-faded">
-                {edited ? <span><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
+                {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
                 <span className="text-muted">
-                  {edited ? 'Last edited' : 'Posted'} {from ? `by ${from} ` : ' '}on {format(date)}
+                  {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '}on <span ref="date">{format(date)}</span>
                 </span>
                 <span className="ml-auto">
-                  {onEdit ? <a href="#" onClick={() => onEdit(note)} className="mr-3">edit</a> : null}
-                  {onDelete ? <a href="#" onClick={() => onDelete(note)}>delete</a> : null}
+                  {onEdit ? <a href="#" ref="edit" onClick={() => onEdit(note)} className="mr-3">edit</a> : null}
+                  {onDelete ? <a href="#" ref="delete" onClick={() => onDelete(note)}>delete</a> : null}
                 </span>
               </CardHeader>
               <CardBlock>

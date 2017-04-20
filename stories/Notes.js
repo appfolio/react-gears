@@ -28,30 +28,26 @@ storiesOf('Notes', module)
     <Notes
       notes={notes}
       onAdd={() => alert('Add')}
-      onDelete={note => alert('Delete: '+ JSON.stringify(note))}
+      onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
       onDownload={() => alert('Download')}
-      onEdit={note => alert('Edit: '+ JSON.stringify(note))}
-      onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
+      onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
+      onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
     />
   ))
   .addWithInfo('With children', () => (
     <Notes
       onAdd={() => alert('Add')}
-      onDelete={note => alert('Delete: '+ JSON.stringify(note))}
+      onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
       onDownload={() => alert('Download')}
-      onEdit={note => alert('Edit: '+ JSON.stringify(note))}
-      onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
+      onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
+      onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
     >
       {notes.map(note => (
         <Note
-          deleted={note.deleted}
-          edited={note.edited}
-          editing={note.editing}
-          from={note.from}
-          text={note.text}
-          onDelete={note => alert('Delete: '+ JSON.stringify(note))}
-          onEdit={note => alert('Edit: '+ JSON.stringify(note))}
-          onUndelete={note => alert('onUndelete: '+ JSON.stringify(note))}
+          note={note}
+          onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
+          onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
+          onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
         />
       ))}
     </Notes>

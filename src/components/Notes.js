@@ -53,7 +53,7 @@ export default class Notes extends React.Component {
         </Row>
         {children ?
           children :
-          notes.map(note => <Note onDelete={onDelete} onEdit={onEdit} onUndelete={onUndelete} {...note} />)
+          notes.map(note => <Note onDelete={onDelete} onEdit={onEdit} onUndelete={onUndelete} note={note} />)
         }
       </div>
     );
