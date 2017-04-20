@@ -6,12 +6,11 @@ import EditableNote from './EditableNote.js';
 import fecha from 'fecha';
 
 // TODO extract to date helper, i18n:
-const format = date => fecha.format(date, 'ddd, MMMM d, YYYY "at" h:mm A');
+const dateFormat = (date, format) => fecha.format(date, format);
 
 class Note extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
-    editing: React.PropTypes.bool,
     note: React.PropTypes.object,
     onCancel: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -22,11 +21,7 @@ class Note extends React.Component {
   };
 
   static defaultProps = {
-    className: '',
-    date: new Date(),
-    deleted: false,
-    edited: false,
-    editing: false,
+    className: ''
   };
 
   render() {
@@ -53,7 +48,12 @@ class Note extends React.Component {
               <CardHeader className="d-flex justify-content-start p-2 rounded-top bg-faded">
                 {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
                 <span className="text-muted">
-                  {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '}on <span ref="date">{format(date)}</span>
+                  <span className="hidden-xs-down">
+                    {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM d, YYYY "at" h:mm A')}</span>
+                  </span>
+                  <span className="hidden-sm-up">
+                    {from ? <span>{from} </span> : null}<span ref="shortDate">{dateFormat(date, 'M/d/YY h:mm A')}</span>
+                  </span>
                 </span>
                 <span className="ml-auto">
                   {onEdit ? <a href="#" ref="edit" onClick={() => onEdit(note)} className="mr-3">edit</a> : null}
