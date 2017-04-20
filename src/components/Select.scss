@@ -12,14 +12,15 @@
   @import '~react-select/scss/default.scss';
 
   // The default right padding for the input is 10px, which puts the cursor quite deep into the
-  // component.  By reducing this to 5px the input looks more natural and the cursor does not
+  // component.  By reducing this to 0.5rem the input looks more natural and the cursor does not
   // overlap any placeholder text.
   .Select-input {
-    padding-left: 5px;
+    padding-left: 0.5rem;
   }
 
   .Select-input > input {
     height: 100%;
+    padding: 0;
   }
 
   .Select-value {
