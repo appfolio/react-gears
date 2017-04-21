@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardBlock } from 'reactstrap';
+import { Button, Card, CardBlock } from 'reactstrap';
 
 const BlockPanel = (props) => (
   <Card className="bg-faded">
     <CardBlock>
-      {props.onEdit ? <a className="float-right" href="#" onClick={props.onEdit}>edit</a> : null}
-      {props.title ? <h4>{props.title}</h4> : null}
+      {props.onEdit ? <Button color="link" className="float-right p-0" onClick={props.onEdit}>edit</Button> : null}
+      {props.title ? <h3>{props.title}</h3> : null}
       {props.children || props.value}
     </CardBlock>
   </Card>
