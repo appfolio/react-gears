@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBlock, CardHeader, CardText, Flag } from '../';
+import { Button, Card, CardBlock, CardHeader, CardText, Flag } from '../';
 import DeletedNote from './DeletedNote.js';
 import EditableNote from './EditableNote.js';
 
@@ -44,8 +44,8 @@ class Note extends React.Component {
               onChange={onChange}
               onSave={onSave}
             /> :
-            <Card ref="note" className="rounded">
-              <CardHeader className="d-flex justify-content-start p-2 rounded-top bg-faded">
+            <Card ref="note" color="info" outline>
+              <CardHeader className="d-flex justify-content-start p-2 bg-info">
                 {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
                 <span className="text-muted">
                   <span className="hidden-xs-down">
@@ -56,8 +56,8 @@ class Note extends React.Component {
                   </span>
                 </span>
                 <span className="ml-auto">
-                  {onEdit ? <a href="#" ref="edit" onClick={() => onEdit(note)} className="mr-3">edit</a> : null}
-                  {onDelete ? <a href="#" ref="delete" onClick={() => onDelete(note)}>delete</a> : null}
+                  {onEdit ? <Button color="link" ref="edit" onClick={() => onEdit(note)} className="mr-3 p-0">edit</Button> : null}
+                  {onDelete ? <Button color="link" ref="delete" onClick={() => onDelete(note)} className="p-0">delete</Button> : null}
                 </span>
               </CardHeader>
               <CardBlock>
