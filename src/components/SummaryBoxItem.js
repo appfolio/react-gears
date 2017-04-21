@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBlock } from '../';
 
 const SummaryBoxItem = (props) => (
-  <Card>
+  <Card color="secondary" outline className="rounded-0">
     <CardBlock className="text-center">
       <h3 className="mb-0 mt-1">{props.value}</h3>
       <small className="text-muted text-uppercase">{props.label}</small>
