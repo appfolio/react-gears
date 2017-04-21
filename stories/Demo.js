@@ -77,7 +77,9 @@ storiesOf('Style', module)
 
         {demoHeader('PANEL / CARD')}
         <Card>
-          <CardHeader className='mc-primary'>Card Title</CardHeader>
+          <CardHeader className='mc-primary'>
+            <CardTitle>Card Title</CardTitle>
+          </CardHeader>
           <CardBlock>
             <CardTitle>Card title</CardTitle>
             <CardSubtitle>Card subtitle</CardSubtitle>
