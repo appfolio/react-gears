@@ -77,6 +77,7 @@ import DateMonth from './components/datemonth/DateMonth.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
+import FeatureBanner from './components/FeatureBanner.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
@@ -182,6 +183,7 @@ export {
   DateMonth,
   ExpandableSection,
   Badge as Flag,
+  FeatureBanner,
   FilterList,
   FormChoice,
   FormRow,
