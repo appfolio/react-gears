@@ -1,22 +1,18 @@
 import React from 'react';
-import { Button, FeatureBanner } from '../src';
+import { Button, FeatureBanner, Icon } from '../src';
 import { storiesOf } from '@kadira/storybook';
 import { text } from '@kadira/storybook-addon-knobs';
 
 storiesOf('FeatureBanner', module)
-  .addWithInfo('Live example', () => {
-    const button = (
-      <Button className="mr-1 mt-1" color="primary" outline disabled={false}>
-        Click Me
-      </Button>
-    );
-    const children = [button, button];
-    const subtitle = text('subtitle', 'View all text messages sent by your company from this page.');
-    return (
+  .addWithInfo('Live example', () => (
       <FeatureBanner
-        title="Company-Wide View of Text Messages"
-        subtitle={subtitle}
-        children={children}
-      />
-    );
-  });
+        alertText={text('alertText', 'New')}
+        title={text('title', 'Company-Wide View of Text Messages')}
+        subtitle={text('subtitle', 'View all text messages sent by your company from this page.')}
+      >
+        <Button className="font-weight-bold text-uppercase bg-muted text-primary" outline>
+          <Icon name="envelope" className="mr-2" />
+          Feedback
+        </Button>
+      </FeatureBanner>
+    ));

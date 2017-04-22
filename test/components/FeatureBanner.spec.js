@@ -1,13 +1,14 @@
+/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import { Alert, Button, FeatureBanner } from '../../src';
+import { FeatureBanner } from '../../src';
 
 describe('<FeatureBanner />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<FeatureBanner title='test' subtitle='is fun'/>);
+    wrapper = mount(<FeatureBanner title='test' subtitle='is fun' />);
   });
 
   it('should have the correct props', () => {
@@ -15,26 +16,21 @@ describe('<FeatureBanner />', () => {
     assert.equal(wrapper.prop('subtitle'), 'is fun');
   });
 
-  it('renders an Alert with color info', () => {
-    assert.equal(wrapper.find(Alert).length, 1);
-    assert.equal(wrapper.find(Alert).prop('color'), 'info');
-  });
-
   it('renders default alertText', () => {
-    assert.equal(wrapper.find('span').first().text(), 'new');
+    assert.equal(wrapper.ref('alertText').text(), FeatureBanner.defaultProps.alertText);
   });
 
   it('renders passed in alertText', () => {
-    wrapper = mount(<FeatureBanner title='test' subtitle='is fun' alertText='whatever'/>);
-    assert.equal(wrapper.find('span').first().text(), 'whatever');
+    wrapper = mount(<FeatureBanner title='test' subtitle='is fun' alertText='whatever' />);
+    assert.equal(wrapper.ref('alertText').text(), 'whatever');
   });
 
   it('renders passed in title', () => {
-    assert.equal(wrapper.find('.js-title').text(), 'test');
+    assert.equal(wrapper.ref('title').text(), 'test');
   });
 
   it('renders passed in subtitle', () => {
-    assert.equal(wrapper.find('.js-subtitle').text(), 'is fun');
+    assert.equal(wrapper.ref('subtitle').text(), 'is fun');
   });
 });
 
