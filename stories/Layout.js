@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
-import { Card, Container, Col, Row } from '../src';
+import { Container, Col, Row } from '../src';
 
 storiesOf('Layout', module)
   .addWithInfo('Grid', () => (
