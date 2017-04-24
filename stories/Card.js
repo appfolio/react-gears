@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { storiesOf } from '@kadira/storybook';
 import { text, boolean, select } from '@kadira/storybook-addon-knobs';
 

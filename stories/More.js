@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { Alert, Col, Row } from '../src';
+import { Alert } from '../src';
 
 storiesOf('and more...', module)
   .add('', () => (

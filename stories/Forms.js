@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 import { storiesOf, action } from '@kadira/storybook';
 
 import { BoundForm, BoundFormRow, FormRow, FormChoice, CurrencyInput, AddressInput } from '../src';
@@ -35,7 +35,7 @@ storiesOf('Forms', module)
           sm: number('sm width', 12, colKnobOptions),
           md: number('md width', 12, colKnobOptions),
           lg: number('lg width', 12, colKnobOptions),
-          xl: number('xl width', 12, colKnobOptions )
+          xl: number('xl width', 12, colKnobOptions)
         }}
         name="live-input"
       >
@@ -66,7 +66,7 @@ storiesOf('Forms', module)
       <FormRow label="DOB" required />
       <FormRow label="Disabled Field" disabled />
       <FormRow label="Who is Luke's Father?" value="Darth Vader" type="static" />
-      <FormRow state="warning" placeholder="Labels can be omitted but that may be bad"/>
+      <FormRow state="warning" placeholder="Labels can be omitted but that may be bad" />
       <FormRow type="textarea" label="Notes" />
       <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!">
         <FormChoice value="override">A New Hope</FormChoice>
@@ -96,7 +96,8 @@ storiesOf('Forms', module)
     <BoundForm
       object={formData}
       errors={object('errors', { lastName: "can't be blank" })}
-      onSubmit={action('submit')}>
+      onSubmit={action('submit')}
+    >
       <BoundFormRow label="First Name" name="firstName" />
       <BoundFormRow label="Last Name" name="lastName" required />
       <BoundFormRow type={CurrencyInput} label="How much would you pay to meet the cast?" name="amount" />
@@ -118,7 +119,7 @@ storiesOf('Forms', module)
         <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
       </BoundFormRow>
       <BoundFormRow type={AddressInput} name="address" label="Address" />
-      <BoundFormRow type="file" label="Death Star Schematics" name="deathStarPlans" multiple/>
+      <BoundFormRow type="file" label="Death Star Schematics" name="deathStarPlans" multiple />
       <button className="btn btn-primary">Submit</button>
     </BoundForm>
   ));

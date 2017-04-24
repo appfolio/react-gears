@@ -46,7 +46,7 @@ storiesOf('Note', module)
         onSave={() => alert('Save')}
         onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
       >
-        <img src="http://lorempixel.com/200/100/sports/" />
+        <img src="http://lorempixel.com/200/100/sports/" alt="Sample" />
       </Note>
     );
   });
