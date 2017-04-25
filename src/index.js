@@ -83,6 +83,7 @@ import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
+import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
 import Modal from './components/Modal.js';
 import Note from './components/Note.js';
@@ -189,6 +190,7 @@ export {
   FormRow,
   HelpBubble,
   Icon,
+  InfoBox,
   LabelBadge,
   Note,
   Notes,
