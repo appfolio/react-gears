@@ -12,6 +12,7 @@ export default class InfoBox extends Component {
   };
 
   static defaultProps = {
+    className: '',
     color: 'info'
   };
 
@@ -25,7 +26,7 @@ export default class InfoBox extends Component {
         {title ?
           <h1 ref="title" className={headerClasses}>
             {title}
-            {icon ? <Icon ref="icon" name={icon} /> : null}
+            {icon ? <Icon name={icon} /> : null}
           </h1>
           : null}
         <div ref="children" className="text-gray-dark">

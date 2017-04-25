@@ -9,7 +9,7 @@ describe.only('<InfoBox />', () => {
     const wrapper = mount(<InfoBox title='Bravo' color="success" icon='check' className="slick">Charlie</InfoBox>);
 
     assert.equal(wrapper.ref('title').text(), 'Bravo');
-    assert(wrapper.ref('icon'));
+    assert(wrapper.find('Icon').exists());
     assert.equal(wrapper.ref('children').text(), 'Charlie');
     assert(wrapper.hasClass('slick'));
     assert(wrapper.hasClass('text-success')); // TODO assumes internal details
@@ -18,12 +18,12 @@ describe.only('<InfoBox />', () => {
   it('does not render header if title not specified', () => {
     const wrapper = mount(<InfoBox icon='check'>Delta</InfoBox>);
     assert.equal(wrapper.ref('title').nodes.length, 0);
-    assert.equal(wrapper.ref('icon').nodes.length, 0);
+    assert.equal(wrapper.find('Icon').exists(), false);
   });
 
   it('does not render icon if not specified', () => {
     const wrapper = mount(<InfoBox title='Foxtrot'>Delta</InfoBox>);
-    assert.equal(wrapper.ref('icon').nodes.length, 0);
+    assert.equal(wrapper.find('Icon').exists(), false);
   });
 });
 
