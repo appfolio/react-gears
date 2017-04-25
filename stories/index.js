@@ -29,6 +29,7 @@ import './Datapair';
 import './ExpandableSection';
 import './FeatureBanner';
 import './FilterList';
+import './InfoBox';
 import './Note';
 import './Notes';
 import './Paginator';
