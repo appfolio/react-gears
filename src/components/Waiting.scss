@@ -1,0 +1,26 @@
+@import './Spinner';
+
+.waiting {
+  color: #fff;
+  margin: 8% auto;
+  max-width: 10em;
+  min-width: 9em;
+
+  h4 {
+    font-size: 1rem;
+    display: inline-block;
+    width: 100%;
+    font-weight: normal;
+  }
+
+  > div {
+    background-color: rgba(0, 0, 0, .7);
+    border-radius: 1em;
+    border-width: 0;
+  }
+
+  .spinner {
+    font-size: 40px;
+    @include spinner-color(#fff);
+  }
+}
