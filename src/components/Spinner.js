@@ -4,9 +4,9 @@ import classnames from 'classnames';
 
 // TODO allow spinner color as a prop
 const Spinner = props => (
-  <div className={classnames(styles.spinner, props.className)} style={props.style}>
-    <div className={styles.a}></div>
-    <div className={styles.b}></div>
+  <div className={classnames('spinner', styles.spinner, props.className)} style={props.style}>
+    <div></div>
+    <div></div>
   </div>
 );
 

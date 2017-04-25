@@ -13,6 +13,44 @@ $segment-border-radius: .1em;
   to { transform: rotate(1turn); }
 }
 
+@mixin spinner-color($color) {
+  &:before,
+  &:after,
+  > *:before,
+  > *:after {
+    background: $color;
+    box-shadow: 0 ($container-size - $segment-length) $color;
+  }
+
+  &:before {
+    background: rgba($color, 0);
+  }
+
+  &:after {
+    background: rgba($color, 0);
+  }
+
+  > div:nth-child(1) {
+    &:before {
+      background: rgba($color, .2);
+    }
+
+    &:after {
+      background: rgba($color, .4);
+    }
+  }
+
+  > div:nth-child(2) {
+    &:before {
+      background: rgba($color, .6);
+    }
+
+    &:after {
+      background: rgba($color, .8);
+    }
+  }
+}
+
 .spinner {
   animation: spin $duration infinite steps(12);
   display: inline-block;
@@ -26,9 +64,7 @@ $segment-border-radius: .1em;
   &:after,
   > *:before,
   > *:after {
-    background: $base-color;
     border-radius: $segment-border-radius;
-    box-shadow: 0 ($container-size - $segment-length) $base-color;
     content: '';
     height: $segment-length;
     left: ($container-size - $segment-width) / 2;
@@ -38,32 +74,29 @@ $segment-border-radius: .1em;
     width: $segment-width;
   }
 
-  &:before {
-    background: rgba($base-color, 0);
-  }
-
   &:after {
-    background: rgba($base-color, 0);
     transform: rotate(30deg);
   }
 
-  > .a:before {
-    background: rgba($base-color, .2);
-    transform: rotate(60deg);
+  > div:nth-child(1) {
+    &:before {
+      transform: rotate(60deg);
+    }
+
+    &:after {
+      transform: rotate(90deg);
+    }
   }
 
-  > .a:after {
-    background: rgba($base-color, .4);
-    transform: rotate(90deg);
+  > div:nth-child(2) {
+    &:before {
+      transform: rotate(120deg);
+    }
+
+    &:after {
+      transform: rotate(150deg);
+    }
   }
 
-  > .b:before {
-    background: rgba($base-color, .6);
-    transform: rotate(120deg);
-  }
-
-  > .b:after {
-    background: rgba($base-color, .8);
-    transform: rotate(150deg);
-  }
+  @include spinner-color($base-color);
 }
