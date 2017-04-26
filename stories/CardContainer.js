@@ -33,5 +33,9 @@ storiesOf('CardContainer', module)
         </Col>
       </Row>
     </CardContainer>
-  )
-);
+  ))
+  .addWithInfo('with searchBar', () => (
+    <CardContainer title="Search" open icon searchBar onSearch={(event) => alert(`The value you type: ${event.target.value}`)}>
+      <p>You found me.</p>
+    </CardContainer>
+  ));
