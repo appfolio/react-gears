@@ -37,8 +37,14 @@ class CardContainer extends Component {
       <section className={classnames(className, styles.cardContainer)} id={id}>
         <header className={styles.cardContainerTitle}>
           <Row>
-            <Col xs={12} sm={gridNumber} className='text-sm-left' onClick={expandable ? this.toggle : null} style={{ cursor: cursorStyle }}>
-              {expandable ? <Icon name={iconName} className={styles.iconCaretRight}/> : null} {title}
+            <Col
+              xs={12}
+              sm={gridNumber}
+              className='text-sm-left text-uppercase'
+              onClick={expandable ? this.toggle : null}
+              style={{ cursor: cursorStyle }}
+            >
+              {expandable ? <Icon name={iconName} className={styles.iconCaretRight} /> : null} {title}
             </Col>
             {searchBar ?
               <Col xs={12} sm={4} className={searchBarClassName}>
