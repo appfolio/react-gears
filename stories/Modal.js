@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
+import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter, Input } from '../src';
 import { storiesOf } from '@kadira/storybook';
 import { boolean, select } from '@kadira/storybook-addon-knobs';
 
@@ -26,5 +26,23 @@ storiesOf('Modal', module)
         </ButtonToolbar>
       </ModalFooter>
     </Modal>
-    )
-);
+  ))
+  .addWithInfo('Autofocus', () => (
+    <Modal
+      isOpen={boolean('isOpen', true)}
+      backdrop={boolean('backdrop', true)}
+      size={select('size', [null, 'sm', 'md', 'lg'], null)}
+      autoFocus={false}
+    >
+      <ModalHeader toggle={() => {}}>Modal title</ModalHeader>
+      <ModalBody>
+        This input should have focus: <Input autoFocus />
+      </ModalBody>
+      <ModalFooter>
+        <ButtonToolbar>
+          <Button color="primary">Do Something</Button>
+          <Button>Cancel</Button>
+        </ButtonToolbar>
+      </ModalFooter>
+    </Modal>
+  ));
