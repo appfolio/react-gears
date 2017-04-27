@@ -4,9 +4,9 @@ import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import { Modal, Waiting } from '../../src';
+import { Modal, Spinner, Waiting } from '../../src';
 
-describe('<Waiting />', () => {
+describe.only('<Waiting />', () => {
   it('should render a modal', () => {
     const wrapper = mount(<Waiting />);
     const modal = wrapper.find(Modal);
@@ -21,13 +21,18 @@ describe('<Waiting />', () => {
     assert.equal(true, modal.prop('isOpen'));
     assert.equal(true, modal.prop('backdrop'));
     assert.equal('something', modal.prop('className'));
+    assert.equal('Please Wait', wrapper.ref('title').text('Please Wait'));
+  });
+
+  it('uses passed in children', () => {
+    const wrapper = mount(<Waiting isOpen backdrop><div id="yo">YO...</div></Waiting>);
+    console.log(wrapper.find('#yo').exists());
+    assert.equal(false, wrapper.find(Spinner).exists());
   });
 
   it('renders correctly when open', () => {
     mount(<Waiting isOpen />);
 
-    const content = document.getElementsByClassName('modal-dialog')[0];
-    assert(content.innerHTML.includes('<h4 class="modal-title">Please Wait</h4>'));
-    assert(content.innerHTML.includes('<div class="text-center modal-body"><div class="spinner"><div></div><div></div></div>'));
+    assert(document.getElementsByClassName('modal-dialog')[0]);
   });
 });

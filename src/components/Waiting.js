@@ -14,6 +14,7 @@ const noop = () => {};
 export default class Waiting extends Component {
   static propTypes = {
     backdrop: React.PropTypes.bool,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     isOpen: React.PropTypes.bool,
     title: React.PropTypes.string,
@@ -25,6 +26,7 @@ export default class Waiting extends Component {
 
   render() {
     const {
+      children,
       className,
       title,
       ...props
@@ -32,12 +34,14 @@ export default class Waiting extends Component {
 
     return (
       <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
-        <ModalHeader className="text-center">
-          {title}
-        </ModalHeader>
-        <ModalBody className="text-center">
-          <Spinner className={styles.spinner} />
-        </ModalBody>
+        {title ?
+          <header ref="title" className="text-center text-white px-4 pt-4">
+            {title}
+          </header>
+          : null}
+        <div className="text-center p-4">
+          {children || <Spinner className={styles.spinner} />}
+        </div>
       </Modal>
     );
   }
