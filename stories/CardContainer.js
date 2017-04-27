@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 
-import { CardContainer, Row, Col, InfoBox } from '../src';
+import { CardContainer, Row, Col, InfoBox, Input, InputGroup, InputGroupAddon, Icon } from '../src';
 
 storiesOf('CardContainer', module)
   .addWithInfo('Not expandable', () => (
@@ -49,13 +49,18 @@ storiesOf('CardContainer', module)
       </Row>
     </CardContainer>
   ))
-  .addWithInfo('with searchBar', () => (
+  .addWithInfo('with headerComponent', () => (
     <CardContainer
       title="Search"
-      onSearch={(event) => alert(`The value you type: ${event.target.value}`)}
       open
       expandable
       searchBar
+      headerComponent={<InputGroup>
+                        <Input placeholder='Search' onChange={(event) => alert(`The value you type: ${event.target.value}`)} />
+                        <InputGroupAddon>
+                          <Icon name='search' />
+                        </InputGroupAddon>
+                      </InputGroup>}
     >
       <p>You found me.</p>
     </CardContainer>

@@ -3,7 +3,7 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import { Col, InputGroup } from 'reactstrap';
+import { Col } from 'reactstrap';
 
 import CardContainer from '../../src/components/CardContainer.js';
 
@@ -77,18 +77,16 @@ describe('<CardContainer />', () => {
     });
   });
 
-  context('contains searchBar', () => {
-    it('should render searchBar', () => {
+  context('contains headerComponent', () => {
+    it('should render headerComponent', () => {
       const component = shallow(
-        <CardContainer title="Open" searchBar>
+        <CardContainer title="Open" headerComponent={<p>Edit</p>}>
           <h1>Hello World!</h1>
         </CardContainer>
       );
 
       assert.equal(component.find('h1').length, 1);
-      assert.equal(component.find(InputGroup).length, 1);
-      assert.equal(component.find({placeholder: 'Search'}).length, 1);
-      assert.equal(component.find({name: 'search'}).length, 1);
+      assert.equal(component.find('p').length, 1);
     });
   });
 });
