@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ModalHeader, ModalBody } from 'reactstrap';
 import classnames from 'classnames';
 import Modal from './Modal';
 import Spinner from './Spinner';

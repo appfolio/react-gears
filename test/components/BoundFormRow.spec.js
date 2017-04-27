@@ -5,10 +5,11 @@ import { shallow } from 'enzyme';
 
 import BoundFormRow from '../../src/components/BoundFormRow';
 
+/* eslint-env mocha */
 describe('<BoundFormRow />', () => {
   describe('with context', () => {
-    const onChange = sinon.stub()
-        , onChangeFactory = name => onChange;
+    const onChange = sinon.stub();
+    const onChangeFactory = () => onChange;
 
     const component = shallow(
       <BoundFormRow name="firstName" />, {
@@ -56,8 +57,8 @@ describe('<BoundFormRow />', () => {
   });
 
   describe('with defaults', () => {
-    const onChange = sinon.stub()
-        , onChangeFactory = name => onChange;
+    const onChange = sinon.stub();
+    const onChangeFactory = () => onChange;
     const component = shallow(
       <BoundFormRow name="firstName" />, { context: { onChange: onChangeFactory } }
     );
@@ -73,7 +74,7 @@ describe('<BoundFormRow />', () => {
 
   describe('with onChange prop', () => {
     const spy = sinon.stub();
-    const onChangeFactory = name => data => { spy(`${name} and ${data}`) };
+    const onChangeFactory = name => data => { spy(`${name} and ${data}`); };
     const onChange = sinon.stub();
 
     const component = shallow(

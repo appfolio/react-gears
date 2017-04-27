@@ -6,7 +6,7 @@ import assert from 'assert';
 import { mount } from 'enzyme';
 import { Modal, Spinner, Waiting } from '../../src';
 
-describe.only('<Waiting />', () => {
+describe('<Waiting />', () => {
   it('should render a modal', () => {
     const wrapper = mount(<Waiting />);
     const modal = wrapper.find(Modal);
@@ -26,7 +26,6 @@ describe.only('<Waiting />', () => {
 
   it('uses passed in children', () => {
     const wrapper = mount(<Waiting isOpen backdrop><div id="yo">YO...</div></Waiting>);
-    console.log(wrapper.find('#yo').exists());
     assert.equal(false, wrapper.find(Spinner).exists());
   });
 
