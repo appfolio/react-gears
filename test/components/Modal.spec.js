@@ -10,7 +10,7 @@ import { Modal } from '../../src';
 
 const noop = () => {};
 
-describe.only('<Modal />', () => {
+describe('<Modal />', () => {
   let component;
 
   afterEach(done => {
