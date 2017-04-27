@@ -1,7 +1,7 @@
 @import './Spinner';
 
 .waiting {
-  margin: 40vh auto;
+  margin: 40vh auto; // TODO flexbox may be better for exact centering
   width: 9rem;
 
   > div {
