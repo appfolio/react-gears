@@ -1,0 +1,17 @@
+@import './Spinner';
+
+.waiting {
+  margin: 40vh auto; // TODO flexbox may be better for exact centering
+  width: 9rem;
+
+  > div {
+    background-color: rgba(0, 0, 0, .7);
+    border-radius: 1rem;
+    border-width: 0;
+  }
+
+  .spinner {
+    font-size: 30px;
+    @include spinner-color(#fff);
+  }
+}

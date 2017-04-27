@@ -36,5 +36,6 @@ import './Paginator';
 import './Steps';
 import './SummaryBox';
 import './Spinner';
+import './Waiting';
 
 import './More';
