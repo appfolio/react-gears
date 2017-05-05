@@ -1,7 +1,7 @@
 import React from 'react';
 import { InfoBox } from '../src';
 import { storiesOf } from '@kadira/storybook';
-import { select, text } from '@kadira/storybook-addon-knobs';
+import { boolean, select, text } from '@kadira/storybook-addon-knobs';
 
 storiesOf('InfoBox', module)
   .addWithInfo('Live example', () => (
@@ -13,6 +13,7 @@ storiesOf('InfoBox', module)
         color={select('color', [null, 'primary', 'info', 'success', 'warning', 'danger', 'muted'], 'success')}
         title={text('title', '$86,753.09')}
         icon={text('icon', 'check')}
+        vertical={boolean('vertical', false)}
       >
         {text('children', 'Jenny, I got your number')}
       </InfoBox>
