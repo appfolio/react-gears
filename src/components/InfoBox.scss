@@ -1,10 +1,15 @@
 .infobox {
   background-color: white; // TODO do not hard code, should be BS4 background color
-  border-width: 0 0 0 7px;
+  border-color: currentColor; // Fixes a Safari issue with color not updating
+  border-width: 0 0 0 0.55rem; 
   border-style: solid;
   flex: 1 1 auto;
 
   h1 {
     font-family: 'Open Sans', sans-serif;  // TODO do not hard code, move to theme
   }
+}
+
+.vertical {
+  border-width: 0.55rem 0 0 0; 
 }
