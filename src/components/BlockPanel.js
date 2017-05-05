@@ -3,7 +3,7 @@ import { Button, Card, CardBlock, CardHeader, CardTitle } from 'reactstrap';
 import styles from './BlockPanel.scss';
 
 const BlockPanel = ({ children, className, title, value, onEdit, ...props }) => (
-  <Card className={`${styles.blockpanel} rounded-0 border-0 ${className}`} {...props}>
+  <Card className={`${styles.blockpanel} rounded-0 border-0 shadow-1 ${className}`} {...props}>
     <CardHeader className={`${styles.header} border-0 d-flex justify-content-end`}>
       {title ? <CardTitle className="m-0 mr-auto">{title}</CardTitle> : null}
       {onEdit ? <Button color="link" className="p-0" onClick={onEdit}>edit</Button> : null}
