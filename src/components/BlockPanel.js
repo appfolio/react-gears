@@ -57,7 +57,7 @@ class BlockPanel extends Component {
           >
             {title}
           </CardTitle>
-          {onEdit ? <Button color="link" className="p-0" onClick={onEdit}>edit</Button> : controls}
+          {onEdit ? <Button color="link" className="p-0" ref="edit" onClick={onEdit}>edit</Button> : controls}
         </CardHeader>
         {!expandable || open ?
           <CardBlock>
