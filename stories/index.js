@@ -4,7 +4,6 @@ import './Welcome';
 import './Layout';
 import './Buttons';
 import './Card';
-import './CardContainer';
 import './Flag';
 import './Icon';
 import './Alerts';

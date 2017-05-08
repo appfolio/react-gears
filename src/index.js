@@ -67,7 +67,6 @@ import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
-import CardContainer from './components/CardContainer';
 import Close from './components/Close.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
 import CreditCardExpiration from './components/CreditCardExpiration.js';
@@ -176,7 +175,6 @@ export {
   BlockPanel,
   BoundForm,
   BoundFormRow,
-  CardContainer,
   Close,
   CreditCardNumber,
   CreditCardExpiration,
