@@ -45,10 +45,9 @@ describe('<Alert />', () => {
     });
 
     it('should wrap children with block (for alignment) with icon', () => {
-      const component = shallow(<Alert icon>Stuff Here</Alert>);
-      const wrapper = component.children().find('div');
-      assert.equal(wrapper.length, 1);
-      assert.deepEqual(wrapper.prop('style'), { overflow: 'hidden' });
+      const component = mount(<Alert icon>Stuff Here</Alert>);
+      const wrapper = component.ref('wrapper');
+      assert.equal(wrapper.exists(), true);
       assert.equal(wrapper.text(), 'Stuff Here');
     });
   });

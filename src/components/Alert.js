@@ -54,7 +54,7 @@ export default class AlertComponent extends React.Component {
       >
         <div className="d-flex align-items-start">
           {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
-          {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
+          {icon ? <div ref="wrapper" style={{ overflow: 'hidden' }}>{children}</div> : children}
         </div>
       </Alert>
     );
