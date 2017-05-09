@@ -12,6 +12,7 @@ import './LabelBadge';
 import './Modal';
 import './Progress';
 import './Table';
+import './Tabs';
 import './Tooltip';
 
 // Form fields
