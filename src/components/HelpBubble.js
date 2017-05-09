@@ -37,7 +37,7 @@ class HelpBubble extends React.Component {
 
     return (
       <span className={className} style={style}>
-        <Icon name="question-circle" onClick={this.toggle} id={this.id} />
+        <Icon name="question-circle" onClick={this.toggle} id={this.id} className="text-primary" />
         <Popover isOpen={this.state.isOpen} toggle={this.toggle} target={this.id} {...other}>
           <PopoverTitle children={title} />
           <PopoverContent children={children} />
@@ -49,6 +49,7 @@ class HelpBubble extends React.Component {
 
 HelpBubble.propTypes = {
   title: React.PropTypes.string.isRequired,
+  children: React.PropTypes.node,
   className: React.PropTypes.any
 };
 
