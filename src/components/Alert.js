@@ -52,8 +52,10 @@ export default class AlertComponent extends React.Component {
         toggle={dismissible ? this.toggle : null}
         className={className}
       >
-        {icon ? <Icon name={ICON_MAP[color]} className="float-left mr-2" style={{ lineHeight: 'inherit' }} /> : null}
-        {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
+        <div className="d-flex align-items-start">
+          {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
+          {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : children}
+        </div>
       </Alert>
     );
   }
