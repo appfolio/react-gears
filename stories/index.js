@@ -10,9 +10,9 @@ import './Alerts';
 import './HelpBubble';
 import './LabelBadge';
 import './Modal';
+import './Nav';
 import './Progress';
 import './Table';
-import './Tabs';
 import './Tooltip';
 
 // Form fields
