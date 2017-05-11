@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert } from '../';
+import { Alert } from 'reactstrap';
 import styles from './FeatureBanner.scss';
 
 export default class FeatureBanner extends Component {
