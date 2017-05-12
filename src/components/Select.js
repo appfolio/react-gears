@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactSelect from 'react-select';
 import noop from 'lodash.noop';
-import over from 'lodash.over';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
@@ -75,16 +74,20 @@ class Select extends Component {
     }
   }
 
-  updateValue = value => { this.setState({ value }); }
+  onChange = value => {
+    this.setState({ value });
+    this.props.onChange(value);
+  }
 
   render() {
-    const { value, onChange, ...props } = this.props;
+    const { value, ...props } = this.props;
+    delete props.onChange; // don't pass onChange prop to react-select
     const SelectElement = this.props.loadOptions ? ReactSelect.Async : ReactSelect;
 
     return (
       <SelectElement
         inputProps={{ ...props.inputProps, name: props.name || '' }}
-        onChange={over([this.updateValue, onChange])}
+        onChange={this.onChange}
         value={value || this.state.value}
         {...props}
         ref={element => { monkeyPatchReactSelectGetFocusableOptionIndex(element); }}
