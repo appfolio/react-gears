@@ -35,7 +35,7 @@ class BlockPanel extends Component {
     return (
       <Card className={`rounded-0 border-0 shadow-1 ${className}`} {...props}>
         <CardHeader
-          className={`border-0 d-flex align-items-center justify-content-end py-2 ${expandable ? 'pl-2' : ''}`}
+          className={`border-0 d-flex align-items-center py-2 ${expandable ? 'pl-2' : ''}`}
           style={{ borderRadius: 0 }}
         >
           {expandable ?
