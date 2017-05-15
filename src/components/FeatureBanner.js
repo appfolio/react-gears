@@ -21,7 +21,7 @@ export default class FeatureBanner extends Component {
     return (
       <Alert color="info" className="align-items-center d-flex p-0">
         {alertText ?
-          <h2 ref="alertText" className={`${alertStyle} m-0 px-3 hidden-xs-down`}>
+          <h2 ref="alertText" className={`${alertStyle} text-center m-0 px-3 hidden-xs-down`}>
             {alertText}
           </h2> : null}
         <div className={`${styles.body} d-flex flex-wrap p-3 w-100`}>

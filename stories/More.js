@@ -32,5 +32,14 @@ storiesOf('and more...', module)
         </Alert>
 
       </p>
+      <h3>Optional add-ons</h3>
+      <p>
+        We also offer optional gears components that are separately installable:
+      </p>
+      <ul>
+        <li>
+          <a href="http://appfolio.github.io/react-gears-calendar">react-gears-calendar</a>
+        </li>
+      </ul>
     </section>
   ));

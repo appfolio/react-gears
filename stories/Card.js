@@ -11,7 +11,7 @@ storiesOf('Card', module)
     return (
       <div>
         <Card
-          color={select('color', [null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger'], 'info')}
+          color={select('color', [null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger'], null)}
           inverse={boolean('inverse', false)}
           outline={outline}
         >
@@ -42,7 +42,7 @@ storiesOf('Card', module)
     </div>
   ))
   .addWithInfo('Outline', () => {
-    const squareCorners = boolean('square corners', false);
+    const squareCorners = boolean('square corners', true);
 
     return (
       <div>
