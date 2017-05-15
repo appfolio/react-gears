@@ -5,7 +5,7 @@ import styles from './FeatureBanner.scss';
 export default class FeatureBanner extends Component {
   static propTypes = {
     alertText: React.PropTypes.string,
-    children: React.PropTypes.array,
+    children: React.PropTypes.node,
     subtitle: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired,
   };
