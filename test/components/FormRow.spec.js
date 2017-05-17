@@ -22,7 +22,7 @@ describe('<FormRow />', () => {
       assert.equal(label.prop('for'), 'someID');
       assert.equal(label.prop('size'), 'sm');
       assert.equal(label.prop('sm'), 3);
-      assert.equal(label.prop('className'), 'text-sm-right');
+      assert.equal(label.prop('className'), 'pr-0 text-sm-right');
       assert.equal(label.render().text(), 'First Name');
     });
 
@@ -64,11 +64,23 @@ describe('<FormRow />', () => {
   });
 
   describe('when required', () => {
-    const component = shallow(
-      <FormRow label="First Name" required />
-    );
+    it('should show a star on the left when not stacked', () => {
+      const component = shallow(
+        <FormRow label="First Name" required />
+      );
 
-    it('should show a star', () => {
+      const label = component.find(Label);
+      const star = label.find('span');
+
+      assert.equal(star.hasClass('text-danger'), true);
+      assert.equal(star.text(), '* ');
+    });
+
+    it('should show a star on the right when stacked', () => {
+      const component = shallow(
+        <FormRow label="First Name" required stacked />
+      );
+
       const label = component.find(Label);
       const star = label.find('span');
 
@@ -185,7 +197,7 @@ describe('<FormRow />', () => {
       const label = component.find(Label);
       assert.equal(label.prop('sm'), 12);
       assert.equal(label.render().text(), 'First Name');
-      assert.equal(label.prop('className'), '');
+      assert.equal(label.prop('className'), 'pr-0 ');
     });
 
     it('should make input full-width', () => {
@@ -203,6 +215,22 @@ describe('<FormRow />', () => {
       const col = component.find(Col).at(1); // inner column
       assert.equal(col.prop('xs'), 6);
       assert.equal(col.prop('sm'), 7);
+    });
+  });
+
+  describe('with custom label width and input container width', () => {
+    const component = shallow(
+      <FormRow label="First Name" labelWidth={4} inputContainerWidth={8} />
+    );
+
+    it('should set the label width', () => {
+      const label = component.find(Label);
+      assert.equal(label.prop('sm'), 4);
+    });
+
+    it('should set the input container width', () => {
+      const col = component.find(Col).at(0);
+      assert.equal(col.prop('sm'), 8);
     });
   });
 });

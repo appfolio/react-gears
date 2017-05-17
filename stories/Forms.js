@@ -90,6 +90,8 @@ storiesOf('Forms', module)
         <FormChoice disabled>No</FormChoice>
       </FormRow>
       <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" />
+      <FormRow label="Stack Me" stacked />
+      <FormRow label="Different Label/Input Ratio" labelWidth={6} inputContainerWidth={6} />
     </form>
   ))
   .addWithInfo('Forms with Objects', () => (
