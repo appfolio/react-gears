@@ -26,6 +26,7 @@ import './Select';
 
 // APM
 import './BlockPanel';
+import './Callout';
 import './Datapair';
 import './ExpandableSection';
 import './FeatureBanner';
