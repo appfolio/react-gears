@@ -64,6 +64,20 @@ describe('<BlockPanel />', () => {
       component.find(Icon).simulate('click');
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
     });
+
+    it('should call onToggle when clicked', () => {
+      const onToggle = sinon.spy();
+
+      const component = mount(
+        <BlockPanel title="Open" expandable onToggle={onToggle}>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+      component.find(CardTitle).simulate('click');
+      assert.equal(onToggle.calledWith(false), true);
+      component.find(CardTitle).simulate('click');
+      assert.equal(onToggle.calledWith(true), true);
+    });
   });
 
   context('contains headerComponent', () => {
