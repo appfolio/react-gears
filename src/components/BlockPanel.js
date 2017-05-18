@@ -9,13 +9,15 @@ class BlockPanel extends Component {
     className: React.PropTypes.string,
     expandable: React.PropTypes.bool,
     onEdit: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
     title: React.PropTypes.string.isRequired
   };
 
   static defaultProps = {
     className: '',
     open: true,
-    expandable: false
+    expandable: false,
+    onToggle: () => {}
   };
 
   constructor(props) {
@@ -26,10 +28,15 @@ class BlockPanel extends Component {
     };
   }
 
-  toggle = () => this.setState({ open: !this.state.open });
+  toggle = () => {
+    const open = !this.state.open;
+    this.setState({ open });
+    this.props.onToggle(open);
+  };
 
   render() {
-    const { children, className, controls, expandable, title, onEdit, ...props } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const { children, className, controls, expandable, title, onEdit, onToggle, ...props } = this.props;
     const { open } = this.state;
 
     return (

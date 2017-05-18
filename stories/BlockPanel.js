@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { action, storiesOf } from '@kadira/storybook';
 
 import { BlockPanel, Button, Icon, HelpBubble } from '../src';
 import { boolean, text } from '@kadira/storybook-addon-knobs';
@@ -20,6 +20,15 @@ storiesOf('BlockPanel', module)
       onEdit={() => alert('Edit clicked!')}
       expandable={boolean('expandable', true)}
       open={false}
+    >
+      Now you don't.
+    </BlockPanel>
+  ))
+  .addWithInfo('onToggle', () => (
+    <BlockPanel
+      title={text('title', 'Click me you fool')}
+      onToggle={action('onToggle')}
+      expandable={boolean('expandable', true)}
     >
       Now you don't.
     </BlockPanel>
