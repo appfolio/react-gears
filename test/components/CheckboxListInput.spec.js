@@ -4,19 +4,19 @@ import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import CheckboxInput from '../../src/components/CheckboxInput';
+import CheckboxListInput from '../../src/components/CheckboxListInput';
 import FormChoice from '../../src/components/FormChoice';
 
-describe('<CheckboxInput />', () => {
+describe('<CheckboxListInput />', () => {
   let onChange = sinon.stub();
 
   const value = [ 'A', 'stuff', 'C' ];
   const component = shallow(
-    <CheckboxInput value={value} onChange={onChange}>
+    <CheckboxListInput value={value} onChange={onChange}>
       <FormChoice>A</FormChoice>
       <FormChoice value="stuff">B</FormChoice>
       <FormChoice>Other</FormChoice>
-    </CheckboxInput>
+    </CheckboxListInput>
   );
 
   it('should render with correct type', () => {
