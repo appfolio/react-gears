@@ -1,4 +1,11 @@
 import React from 'react';
+
+import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';
 
-export default CheckboxListInput;
+const CheckboxInput = props =>
+  props.children ?
+    <CheckboxListInput {...props} /> :
+    <CheckboxBooleanInput {...props} />
+
+export default CheckboxInput;
