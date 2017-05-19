@@ -12,7 +12,8 @@ const formData = {
   characters: ['Luke Skywalker', 'awesome'],
   address: {
     address1: '123 Best Avenue'
-  }
+  },
+  mindTricks: true
 };
 
 const colKnobOptions = {
@@ -85,6 +86,7 @@ storiesOf('Forms', module)
         <FormChoice>Rey</FormChoice>
         <FormChoice>TK-421</FormChoice>
       </FormRow>
+      <FormRow type="checkbox" label="Use Jedi mind tricks?" />
       <FormRow type="radio" label="Do you like Star Wars?" inline name="movie">
         <FormChoice>Yes</FormChoice>
         <FormChoice disabled>No</FormChoice>
@@ -113,6 +115,7 @@ storiesOf('Forms', module)
         <FormChoice value="awesome">Rey</FormChoice>
         <FormChoice>TK-421</FormChoice>
       </BoundFormRow>
+      <BoundFormRow type="checkbox" label="Use Jedi mind tricks?" name="mindTricks" />
       <BoundFormRow type="radio" label="Select Ship" name="ship">
         <FormChoice>Death Star</FormChoice>
         <FormChoice>Millennium Falcon</FormChoice>
