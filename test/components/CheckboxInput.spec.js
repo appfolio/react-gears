@@ -1,43 +1,27 @@
 /* eslint-env mocha */
 import React from 'react';
-import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import CheckboxInput from '../../src/components/CheckboxInput';
+import CheckboxBooleanInput from '../../src/components/CheckboxBooleanInput';
+import CheckboxListInput from '../../src/components/CheckboxListInput';
 import FormChoice from '../../src/components/FormChoice';
 
 describe('<CheckboxInput />', () => {
-  let onChange = sinon.stub();
+  it('should be a CheckboxListInput when there are children (choices)', () => {
+    const component = shallow(
+      <CheckboxInput>
+        <FormChoice>A</FormChoice>
+      </CheckboxInput>
+    );
 
-  const value = [ 'A', 'stuff', 'C' ];
-  const component = shallow(
-    <CheckboxInput value={value} onChange={onChange}>
-      <FormChoice>A</FormChoice>
-      <FormChoice value="stuff">B</FormChoice>
-      <FormChoice>Other</FormChoice>
-    </CheckboxInput>
-  );
-
-  it('should render with correct type', () => {
-    assert.equal(component.type(), 'div');
+    assert.equal(component.type(), CheckboxListInput);
   });
 
-  it('should set up children', () => {
-    component.find(FormChoice).forEach(choice => {
-      assert.equal(choice.prop('type'), 'checkbox');
-      assert.equal(choice.prop('selected'), value);
-      assert.equal(choice.prop('onChange'), component.instance().onChange);
-    });
-  });
+  it('should be a CheckboxBooleanInput when there are no children', () => {
+    const component = shallow(<CheckboxInput />);
 
-  it('should deselect unchecked choice', () => {
-    component.childAt(0).simulate('change', { target: { checked: false, value: 'A' }});
-    assert(onChange.calledWith([ 'stuff', 'C' ]));
-  });
-
-  it('should select checked choice', () => {
-    component.childAt(2).simulate('change', { target: { checked: true, value: 'Other' }});
-    assert(onChange.calledWith([ 'A', 'stuff', 'C', 'Other' ]));
+    assert.equal(component.type(), CheckboxBooleanInput);
   });
 });
