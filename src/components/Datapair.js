@@ -3,8 +3,8 @@ import { Col, Row } from 'reactstrap';
 
 const Datapair = props => (
   <Row className="mb-1">
-    <Col sm="4" className="text-sm-right text-muted">{props.label}</Col>
-    <Col sm="8">{props.children || props.value}</Col>
+    <Col xs={12} sm={4} className="text-sm-right text-muted">{props.label}</Col>
+    <Col xs={12} sm={8}>{props.children || props.value}</Col>
   </Row>
 );
 
