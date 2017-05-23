@@ -3,7 +3,7 @@ import { FormFeedback, FormGroup } from '../';
 
 const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (
   <FormGroup color={error && 'danger'} {...props}>
-    <Tag>{label}</Tag>
+    {label && <Tag>{label}</Tag>}
     {children}
     {error && <FormFeedback children={error} />}
   </FormGroup>
