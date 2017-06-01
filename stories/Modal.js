@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter, Input } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { boolean, select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { boolean, select } from '@storybook/addon-knobs';
 
 storiesOf('Modal', module)
   .addWithInfo('Live example', () => (

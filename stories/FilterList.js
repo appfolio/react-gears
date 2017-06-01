@@ -1,7 +1,7 @@
 import React from 'react';
 import { FilterList } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { number } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { number } from '@storybook/addon-knobs';
 
 storiesOf('FilterList', module)
   .addWithInfo('Live example', () => {

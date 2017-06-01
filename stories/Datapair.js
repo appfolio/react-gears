@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, CardBlock } from 'reactstrap';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 import { Datapair } from '../src';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputGroup, InputGroupAddon, InputGroupButton, Input } from 'reactstrap';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 storiesOf('InputGroup', module)
   .addWithInfo('with props', () => (

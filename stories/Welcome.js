@@ -21,7 +21,7 @@ import {
   Table,
   Tooltip,
 } from '../src';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 const demoHeader = (caption) => <h2 className="text-muted text-uppercase mt-5 mb-4">{caption}</h2>;
 

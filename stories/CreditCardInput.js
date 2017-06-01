@@ -1,7 +1,7 @@
 import React from 'react';
 import { CreditCardExpiration, CreditCardInput, CreditCardNumber } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { array, number, text } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { array, number, text } from '@storybook/addon-knobs';
 
 const TODAY = new Date();
 

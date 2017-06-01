@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FeatureBanner, Icon } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { text } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
 
 storiesOf('FeatureBanner', module)
   .addWithInfo('Live example', () => (

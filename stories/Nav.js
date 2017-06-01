@@ -1,7 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import { Nav, NavItem, NavLink } from '../src';
-import { number } from '@kadira/storybook-addon-knobs';
+import { number } from '@storybook/addon-knobs';
 
 const onClick = () => alert('Clicked!');
 

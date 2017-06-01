@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../src';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 storiesOf('Spinner', module)
   .addWithInfo('Default', () => (

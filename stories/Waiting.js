@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Waiting } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { boolean, text } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { boolean, text } from '@storybook/addon-knobs';
 
 storiesOf('Waiting', module)
   .addWithInfo('Default', () => (

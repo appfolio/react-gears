@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
          DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
-import { storiesOf } from '@kadira/storybook';
-import { text, boolean, select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { text, boolean, select } from '@storybook/addon-knobs';
 
 storiesOf('Buttons', module)
   .addWithInfo('Live example', () => (

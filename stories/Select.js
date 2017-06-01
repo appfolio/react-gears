@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { select } from '@storybook/addon-knobs';
 
 import COUNTRIES from '../src/components/address/Countries.js';
 
