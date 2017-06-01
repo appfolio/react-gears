@@ -1,7 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import { Note } from '../src';
-import { boolean, text } from '@kadira/storybook-addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 storiesOf('Note', module)
   .addWithInfo('Live example', () => {

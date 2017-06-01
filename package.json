@@ -34,10 +34,6 @@
     "reactstrap": "4.6.2"
   },
   "devDependencies": {
-    "@kadira/react-storybook-addon-info": "^3.3.0",
-    "@kadira/storybook": "^2.34.0",
-    "@kadira/storybook-addon-knobs": "^1.7.1",
-    "@kadira/storybook-addon-options": "^1.0.1",
     "assert": "~1.4.1",
     "autoprefixer": "~7.1.1",
     "babel-core": "~6.24.1",
@@ -75,7 +71,11 @@
     "sinon": "~2.3.2",
     "style-loader": "~0.18.1",
     "text-mask-addons": "^3.1.0",
-    "webpack": "~2.6.1"
+    "webpack": "~2.6.1",
+    "@storybook/react": "3.0.0",
+    "@storybook/addon-info": "3.0.0",
+    "@storybook/addon-knobs": "3.0.0",
+    "@storybook/addon-options": "3.0.0"
   },
   "nyc": {
     "exclude": [

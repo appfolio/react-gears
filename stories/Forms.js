@@ -1,9 +1,9 @@
 import React from 'react';
 import { Input } from 'reactstrap';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 
 import { BoundForm, BoundFormRow, FormRow, FormChoice, CurrencyInput, AddressInput } from '../src';
-import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+import { text, boolean, number, object, select } from '@storybook/addon-knobs';
 
 const formData = {
   firstName: 'Obi-Wan',

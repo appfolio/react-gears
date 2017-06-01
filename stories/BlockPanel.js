@@ -1,8 +1,8 @@
 import React from 'react';
-import { action, storiesOf } from '@kadira/storybook';
+import { action, storiesOf } from '@storybook/react';
 
 import { BlockPanel, Button, Icon, HelpBubble } from '../src';
-import { boolean, text } from '@kadira/storybook-addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 storiesOf('BlockPanel', module)
   .addWithInfo('Live example', () => (

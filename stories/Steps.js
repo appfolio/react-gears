@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { boolean, number } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { boolean, number } from '@storybook/addon-knobs';
 
 import { Steps } from '../src';
 

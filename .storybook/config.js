@@ -1,9 +1,9 @@
 import React from 'react';
-import infoAddon, { setDefaults } from '@kadira/react-storybook-addon-info';
+import infoAddon, { setDefaults } from '@storybook/addon-info';
 import { Button, ButtonGroup, Col, Container } from '../src';
-import { configure, setAddon, addDecorator } from '@kadira/storybook';
-import { setOptions } from '@kadira/storybook-addon-options';
-import { withKnobs } from '@kadira/storybook-addon-knobs';
+import { configure, setAddon, addDecorator } from '@storybook/react';
+import { setOptions } from '@storybook/addon-options';
+import { withKnobs } from '@storybook/addon-knobs';
 
 import pkg from '../package.json';
 

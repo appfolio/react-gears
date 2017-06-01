@@ -1,7 +1,7 @@
 import React from 'react';
 import { InfoBox } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { boolean, select, text } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 storiesOf('InfoBox', module)
   .addWithInfo('Live example', () => (

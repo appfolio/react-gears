@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { number, select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { number, select } from '@storybook/addon-knobs';
 
 import { Progress } from '../src';
 

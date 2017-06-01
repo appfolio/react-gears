@@ -1,7 +1,7 @@
 import React from 'react';
 import { LabelBadge } from '../src';
-import { storiesOf } from '@kadira/storybook';
-import { boolean, number, text } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
 storiesOf('LabelBadge', module)
   .addWithInfo('Live example', () => (

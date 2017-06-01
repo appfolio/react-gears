@@ -1,9 +1,9 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 import SummaryBox from '../src/components/SummaryBox';
 import SummaryBoxItem from '../src/components/SummaryBoxItem';
-import { text } from '@kadira/storybook-addon-knobs';
+import { text } from '@storybook/addon-knobs';
 
 const link = <a href="#">Link</a>;
 

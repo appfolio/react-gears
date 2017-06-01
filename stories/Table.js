@@ -1,8 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 import { Table } from '../src';
-import { text, boolean, number, object, select } from '@kadira/storybook-addon-knobs';
+import { text, boolean, number, object, select } from '@storybook/addon-knobs';
 
 const DATA = [
   {

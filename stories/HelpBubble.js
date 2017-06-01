@@ -1,8 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 import { HelpBubble } from '../src';
-import { text, select } from '@kadira/storybook-addon-knobs';
+import { text, select } from '@storybook/addon-knobs';
 
 storiesOf('Help Bubble', module)
   .addWithInfo('Live example', () => (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
-import { boolean, text, select, object } from '@kadira/storybook-addon-knobs';
+import { storiesOf, action } from '@storybook/react';
+import { boolean, text, select, object } from '@storybook/addon-knobs';
 import { AddressInput } from '../src';
 import states from '../src/components/address/USStates.js';
 

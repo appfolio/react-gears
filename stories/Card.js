@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { text, boolean, select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { text, boolean, select } from '@storybook/addon-knobs';
 
 import { Card, CardBlock, CardTitle } from '../src/index';
 
