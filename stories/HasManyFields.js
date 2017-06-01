@@ -1,14 +1,20 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 
-import { HasManyFieldsAdd, HasManyFieldsRow, Icon } from '../src';
-import { Input, Button } from 'reactstrap';
+import { AddressInput, HasManyFieldsAdd, HasManyFieldsRow } from '../src';
+import { Input } from 'reactstrap';
 
-const items = [
-  'Chocolate Chip',
-  'Oatmeal Raisin',
-  'Snickerdoodle'
-];
+const items = [{
+  address1: '50 Castilian Dr.',
+  city: 'Goleta',
+  state: 'CA',
+  postal: 93117,
+  countryCode: 'US'
+}];
+
+const updateItem = i => e => {
+  items[i] = e.target.value;
+}
 
 class HasManyFields extends React.Component {
   constructor(props) {
@@ -19,15 +25,17 @@ class HasManyFields extends React.Component {
     }
   }
 
-  updateItem = i => e => {
+  updateItem = i => update => {
     let items = this.state.items.slice();
-    items[i] = e.target.value;
+    items[i] = update;
     this.setState({ items });
   }
 
   addItem = () => {
     let items = this.state.items.slice();
-    items.push('');
+    items.push({
+      countryCode: 'US'
+    });
     this.setState({ items });
   }
 
@@ -41,12 +49,12 @@ class HasManyFields extends React.Component {
     return (
       <div>
         { this.state.items.map((item, i, items) => (
-          <HasManyFieldsRow onDelete={this.deleteItem(i)} key={i + '.' + items.length}>
-            <Input value={item} onChange={this.updateItem(i)} />
+          <HasManyFieldsRow onDelete={this.deleteItem(i)} key={i + '/' + items.length}>
+            <AddressInput value={item} onChange={this.updateItem(i)} />
           </HasManyFieldsRow>
         )) }
 
-        <HasManyFieldsAdd onClick={this.addItem}>Add A Cookie</HasManyFieldsAdd>
+        <HasManyFieldsAdd onClick={this.addItem}>Add An Address</HasManyFieldsAdd>
       </div>
     );
   }
@@ -54,5 +62,13 @@ class HasManyFields extends React.Component {
 
 storiesOf('HasManyFields', module)
   .addWithInfo('Row Wrapper', () => (
-    <HasManyFields items={items}/>
+    <HasManyFieldsRow onDelete={action('onDelete')}>
+      <Input defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow" readOnly />
+    </HasManyFieldsRow>
+  ))
+  .addWithInfo('Add Item Button', () => (
+    <HasManyFieldsAdd onClick={action('onClick')}>Button Label Content</HasManyFieldsAdd>
+  ))
+  .addWithInfo('Full Example', () => (
+    <HasManyFields items={items} />
   ));
