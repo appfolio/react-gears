@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 
-import { HasManyFieldsRow, Icon } from '../src';
+import { HasManyFieldsAdd, HasManyFieldsRow, Icon } from '../src';
 import { Input, Button } from 'reactstrap';
 
 const items = [
@@ -45,10 +45,8 @@ class HasManyFields extends React.Component {
             <Input value={item} onChange={this.updateItem(i)} />
           </HasManyFieldsRow>
         )) }
-        <Button outline color="success" onClick={this.addItem}>
-          <Icon name="plus" className="mr-2" />
-          <span>Add A Cookie</span>
-        </Button>
+
+        <HasManyFieldsAdd onClick={this.addItem}>Add A Cookie</HasManyFieldsAdd>
       </div>
     );
   }
