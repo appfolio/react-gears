@@ -6,6 +6,6 @@ import CheckboxListInput from './CheckboxListInput';
 const CheckboxInput = props =>
   props.children ?
     <CheckboxListInput {...props} /> :
-    <CheckboxBooleanInput {...props} />
+    <CheckboxBooleanInput {...props} />;
 
 export default CheckboxInput;

@@ -3,10 +3,7 @@ import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import CheckboxInput from '../../src/components/CheckboxInput';
-import CheckboxBooleanInput from '../../src/components/CheckboxBooleanInput';
-import CheckboxListInput from '../../src/components/CheckboxListInput';
-import FormChoice from '../../src/components/FormChoice';
+import { CheckboxInput, CheckboxBooleanInput, CheckboxListInput, FormChoice } from '../../src';
 
 describe('<CheckboxInput />', () => {
   it('should be a CheckboxListInput when there are children (choices)', () => {
