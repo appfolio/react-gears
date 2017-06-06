@@ -2,16 +2,14 @@
 import React from 'react';
 import sinon from 'sinon';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
-import { Input } from 'reactstrap';
-
-import CheckboxBooleanInput from '../../src/components/CheckboxBooleanInput';
+import { CheckboxBooleanInput, Input } from '../../src';
 
 describe('<CheckboxBooleanInput />', () => {
   let onChange = sinon.stub();
 
-  const wrapper = shallow(
+  const wrapper = mount(
     <CheckboxBooleanInput value={true} onChange={onChange} />
   );
 
@@ -25,6 +23,10 @@ describe('<CheckboxBooleanInput />', () => {
     assert.equal(component.children().length, 0);
   });
 
+  it('should not render checkboxLabel', () => {
+    assert.equal(wrapper.ref('label').exists(), false);
+  });
+
   it('should use value for checked state', () => {
     assert.strictEqual(component.prop('checked'), true);
   });
@@ -32,5 +34,13 @@ describe('<CheckboxBooleanInput />', () => {
   it('should call onChange with checked state', () => {
     component.simulate('change', { target: { checked: false }});
     assert(onChange.calledWith(false));
+  });
+
+  it('should render checkboxLabel if specified', () => {
+    const wrapped = mount(
+      <CheckboxBooleanInput checkboxLabel="Yowza" />
+    );
+    assert.equal(wrapped.ref('label').text(), 'Yowza');
+    assert.equal(wrapped.ref('label').exists(), true);
   });
 });

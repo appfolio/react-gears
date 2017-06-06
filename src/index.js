@@ -69,6 +69,9 @@ import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Callout from './components/Callout.js';
 import Close from './components/Close.js';
+import CheckboxInput from './components/CheckboxInput.js';
+import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
+import CheckboxListInput from './components/CheckboxListInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
 import CreditCardExpiration from './components/CreditCardExpiration.js';
 import CreditCardInput from './components/CreditCardInput.js';
@@ -179,6 +182,9 @@ export {
   BoundFormRow,
   Callout,
   Close,
+  CheckboxInput,
+  CheckboxBooleanInput,
+  CheckboxListInput,
   CreditCardNumber,
   CreditCardExpiration,
   CreditCardInput,

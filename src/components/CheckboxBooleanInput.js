@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
-const CheckboxBooleanInput = props => (
-  <FormGroup check>
-    <Label check>
-      <Input
-        type="checkbox"
-        checked={props.value}
-        onChange={e => props.onChange && props.onChange(e.target.checked)}
-        />
-    </Label>
-  </FormGroup>
-);
+class CheckboxBooleanInput extends Component {
+  static propTypes = {
+    checkboxLabel: React.PropTypes.node,
+    value: React.PropTypes.bool
+  };
 
-CheckboxBooleanInput.propTypes = {
-  value: React.PropTypes.bool
+  render() {
+    const { checkboxLabel, onChange, value } = this.props;
+
+    return (
+      <FormGroup check>
+        <Label check>
+          <Input
+            type="checkbox"
+            checked={value}
+            onChange={e => onChange && onChange(e.target.checked)}
+          />
+          {checkboxLabel && <span className="ml-1" ref="label">{checkboxLabel}</span>}
+        </Label>
+      </FormGroup>
+    );
+  }
 }
 
 export default CheckboxBooleanInput;
