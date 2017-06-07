@@ -8,8 +8,10 @@ class BlockPanel extends Component {
     controls: React.PropTypes.node,
     className: React.PropTypes.string,
     expandable: React.PropTypes.bool,
+    hideOnToggle: React.PropTypes.bool,
     onEdit: React.PropTypes.func,
     onToggle: React.PropTypes.func,
+    open: React.PropTypes.bool,
     title: React.PropTypes.string.isRequired
   };
 
@@ -17,6 +19,7 @@ class BlockPanel extends Component {
     className: '',
     open: true,
     expandable: false,
+    hideOnToggle: false,
     onToggle: () => {}
   };
 
@@ -36,13 +39,13 @@ class BlockPanel extends Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { children, className, controls, expandable, title, onEdit, onToggle, ...props } = this.props;
+    const { children, className, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
     const { open } = this.state;
 
     return (
       <Card className={`rounded-0 border-0 shadow-1 ${className}`} {...props}>
         <CardHeader
-          className={`border-0 d-flex align-items-center py-2 ${expandable ? 'pl-2' : ''}`}
+          className={`border-0 d-flex flex-wrap align-items-center justify-content-start py-2 pr-2 ${expandable ? 'pl-2' : ''}`}
           style={{ borderRadius: 0 }}
         >
           {expandable ?
@@ -64,10 +67,17 @@ class BlockPanel extends Component {
           >
             {title}
           </CardTitle>
-          {onEdit ? <Button color="link" className="p-0" ref="edit" onClick={onEdit}>edit</Button> : controls}
+          <div className="d-flex">
+            <div className="d-inline-flex">
+              {onEdit ?
+                <Button color="link" className="p-0" ref="edit" onClick={onEdit}>edit</Button> :
+                controls
+              }
+            </div>
+          </div>
         </CardHeader>
-        {!expandable || open ?
-          <CardBlock>
+        {!expandable || open || hideOnToggle ?
+          <CardBlock hidden={expandable && !open && hideOnToggle}>
             {children}
           </CardBlock>
           : null}
