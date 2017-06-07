@@ -1,7 +1,7 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
 
-import { BlockPanel, Button, Icon, HelpBubble } from '../src';
+import { BlockPanel, Button, ButtonGroup, Icon, Input, InputGroup, InputGroupAddon, HelpBubble } from '../src';
 import { boolean, text } from '@storybook/addon-knobs';
 
 storiesOf('BlockPanel', module)
@@ -10,6 +10,7 @@ storiesOf('BlockPanel', module)
       title={text('title', 'Some simple content would go here')}
       onEdit={() => alert('Edit clicked!')}
       expandable={boolean('expandable', true)}
+      hideOnToggle={boolean('hideOnToggle', false)}
     >
       Now you see me.
     </BlockPanel>
@@ -35,17 +36,30 @@ storiesOf('BlockPanel', module)
   ))
   .addWithInfo('components for title and controls', () => (
     <BlockPanel
+      expandable
       title={
         <span className="text-uppercase">
           {text('title', 'Invoices')} <HelpBubble className="text-primary" title="What does this mean?">It means nothing.</HelpBubble>
         </span>
       }
       controls={[
-        <Button size="sm" color="link" onClick={() => alert('Cool I passed this in.')}><Icon name="upload" /> Upload</Button>,
-        <Button size="sm" color="link" onClick={() => alert('This one too.')}><Icon name="plus-circle" /> Add Activity</Button>
+        <InputGroup>
+          <Input placeholder="Search" />
+          <InputGroupAddon>
+            <Icon name="search" />
+          </InputGroupAddon>
+        </InputGroup>,
+        <ButtonGroup className="ml-1">
+          <Button active>
+            <Icon name="list" />
+          </Button>
+          <Button>
+            <Icon name="th-list" />
+          </Button>
+        </ButtonGroup>
       ]}
     >
-      Hello.
+      Hello
     </BlockPanel>
   ));
 

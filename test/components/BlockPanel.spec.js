@@ -3,7 +3,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { Button, CardTitle, Icon } from '../../src';
+import { Button, CardBlock, CardTitle, Icon } from '../../src';
 import { mount, shallow } from 'enzyme';
 
 
@@ -51,7 +51,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1);
     });
 
-    it('should be open and close when clicked', () => {
+    it('should open and close when clicked', () => {
       const component = shallow(
         <BlockPanel title="Open" expandable>
           <h1 id="hi">Hello World!</h1>
@@ -59,10 +59,29 @@ describe('<BlockPanel />', () => {
       );
 
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
+      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
       component.find(CardTitle).simulate('click');
       assert.equal(component.find('#hi').length, 0, 'inner block should not be visible');
       component.find(Icon).simulate('click');
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
+      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
+    });
+
+    it('should show and hide when hideOnToggle is true', () => {
+      const component = shallow(
+        <BlockPanel title="Open" expandable hideOnToggle>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+
+      assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
+      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
+      component.find(CardTitle).simulate('click');
+      assert.equal(component.find('#hi').length, 1, 'inner block should be present');
+      assert.equal(component.find(CardBlock).prop('hidden'), true, 'inner block should be hidden');
+      component.find(Icon).simulate('click');
+      assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
+      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
     });
 
     it('should call onToggle when clicked', () => {
