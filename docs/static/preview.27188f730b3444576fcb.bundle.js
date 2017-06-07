@@ -79879,10 +79879,11 @@ var BlockPanel = function (_Component) {
           className = _props.className,
           controls = _props.controls,
           expandable = _props.expandable,
+          hideOnToggle = _props.hideOnToggle,
           title = _props.title,
           onEdit = _props.onEdit,
           onToggle = _props.onToggle,
-          props = _objectWithoutProperties(_props, ['children', 'className', 'controls', 'expandable', 'title', 'onEdit', 'onToggle']);
+          props = _objectWithoutProperties(_props, ['children', 'className', 'controls', 'expandable', 'hideOnToggle', 'title', 'onEdit', 'onToggle']);
 
       var open = this.state.open;
 
@@ -79893,7 +79894,7 @@ var BlockPanel = function (_Component) {
         _react2.default.createElement(
           _.CardHeader,
           {
-            className: 'border-0 d-flex align-items-center py-2 ' + (expandable ? 'pl-2' : ''),
+            className: 'border-0 d-flex flex-wrap align-items-center justify-content-start py-2 pr-2 ' + (expandable ? 'pl-2' : ''),
             style: { borderRadius: 0 }
           },
           expandable ? _react2.default.createElement(_.Icon, _defineProperty({
@@ -79915,15 +79916,23 @@ var BlockPanel = function (_Component) {
             },
             title
           ),
-          onEdit ? _react2.default.createElement(
-            _.Button,
-            { color: 'link', className: 'p-0', ref: 'edit', onClick: onEdit },
-            'edit'
-          ) : controls
+          _react2.default.createElement(
+            'div',
+            { className: 'd-flex' },
+            _react2.default.createElement(
+              'div',
+              { className: 'd-inline-flex' },
+              onEdit ? _react2.default.createElement(
+                _.Button,
+                { color: 'link', className: 'p-0', ref: 'edit', onClick: onEdit },
+                'edit'
+              ) : controls
+            )
+          )
         ),
-        !expandable || open ? _react2.default.createElement(
+        !expandable || open || hideOnToggle ? _react2.default.createElement(
           _.CardBlock,
-          null,
+          { hidden: expandable && !open && hideOnToggle },
           children
         ) : null
       );
@@ -79938,14 +79947,17 @@ BlockPanel.propTypes = {
   controls: _react2.default.PropTypes.node,
   className: _react2.default.PropTypes.string,
   expandable: _react2.default.PropTypes.bool,
+  hideOnToggle: _react2.default.PropTypes.bool,
   onEdit: _react2.default.PropTypes.func,
   onToggle: _react2.default.PropTypes.func,
+  open: _react2.default.PropTypes.bool,
   title: _react2.default.PropTypes.string.isRequired
 };
 BlockPanel.defaultProps = {
   className: '',
   open: true,
   expandable: false,
+  hideOnToggle: false,
   onToggle: function onToggle() {}
 };
 exports.default = BlockPanel;
@@ -79988,6 +80000,17 @@ BlockPanel.__docgenInfo = {
         'computed': false
       }
     },
+    'hideOnToggle': {
+      'type': {
+        'name': 'bool'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': 'false',
+        'computed': false
+      }
+    },
     'onEdit': {
       'type': {
         'name': 'func'
@@ -80006,18 +80029,23 @@ BlockPanel.__docgenInfo = {
         'computed': false
       }
     },
+    'open': {
+      'type': {
+        'name': 'bool'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': 'true',
+        'computed': false
+      }
+    },
     'title': {
       'type': {
         'name': 'string'
       },
       'required': true,
       'description': ''
-    },
-    'open': {
-      'defaultValue': {
-        'value': 'true',
-        'computed': false
-      }
     }
   }
 };
@@ -85651,7 +85679,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       onEdit: function onEdit() {
         return alert('Edit clicked!');
       },
-      expandable: (0, _addonKnobs.boolean)('expandable', true)
+      expandable: (0, _addonKnobs.boolean)('expandable', true),
+      hideOnToggle: (0, _addonKnobs.boolean)('hideOnToggle', false)
     },
     'Now you see me.'
   );
@@ -85682,6 +85711,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   return _react2.default.createElement(
     _src.BlockPanel,
     {
+      expandable: true,
       title: _react2.default.createElement(
         'span',
         { className: 'text-uppercase' },
@@ -85694,22 +85724,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         )
       ),
       controls: [_react2.default.createElement(
-        _src.Button,
-        { size: 'sm', color: 'link', onClick: function onClick() {
-            return alert('Cool I passed this in.');
-          } },
-        _react2.default.createElement(_src.Icon, { name: 'upload' }),
-        ' Upload'
+        _src.InputGroup,
+        null,
+        _react2.default.createElement(_src.Input, { placeholder: 'Search' }),
+        _react2.default.createElement(
+          _src.InputGroupAddon,
+          null,
+          _react2.default.createElement(_src.Icon, { name: 'search' })
+        )
       ), _react2.default.createElement(
-        _src.Button,
-        { size: 'sm', color: 'link', onClick: function onClick() {
-            return alert('This one too.');
-          } },
-        _react2.default.createElement(_src.Icon, { name: 'plus-circle' }),
-        ' Add Activity'
+        _src.ButtonGroup,
+        { className: 'ml-1' },
+        _react2.default.createElement(
+          _src.Button,
+          { active: true },
+          _react2.default.createElement(_src.Icon, { name: 'list' })
+        ),
+        _react2.default.createElement(
+          _src.Button,
+          null,
+          _react2.default.createElement(_src.Icon, { name: 'th-list' })
+        )
       )]
     },
-    'Hello.'
+    'Hello'
   );
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
@@ -97228,7 +97266,7 @@ function symbolObservablePonyfill(root) {
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.15.0",
+	"version": "1.15.1",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -97326,4 +97364,4 @@ module.exports = __webpack_require__(860);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.099074e232a2789c49b4.bundle.js.map
+//# sourceMappingURL=preview.27188f730b3444576fcb.bundle.js.map
