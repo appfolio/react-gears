@@ -17,7 +17,7 @@ describe('<HasManyFields />', () => {
       <HasManyFields
         defaultValue={items}
         template={Input}
-        blank={'foo'}
+        blank={values => values.length.toString()}
         onChange={onChange}
         label="Add an Animal"
       />
@@ -46,17 +46,17 @@ describe('<HasManyFields />', () => {
     });
 
     it('should add a row when add button is clicked', () => {
-      const expectedItems = [ 'monkey', 'cat', 'mouse', 'foo' ];
+      const expectedItems = [ 'monkey', 'cat', 'mouse', '3' ];
       addItem.simulate('click');
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
-      assert.equal(component.find(Input).last().prop('value'), 'foo');
+      assert.equal(component.find(Input).last().prop('value'), '3');
       assert.deepEqual(component.state('value'), expectedItems);
       assert.equal(onChange.calledWith(expectedItems), true);
       assert.equal(items.length, 3);
     });
 
     it('should remove an item', () => {
-      const expectedItems = [ 'monkey', 'mouse', 'foo' ];
+      const expectedItems = [ 'monkey', 'mouse', '3' ];
       component.find(HasManyFieldsRow).at(1).simulate('delete');
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.deepEqual(component.state('value'), expectedItems);
@@ -65,7 +65,7 @@ describe('<HasManyFields />', () => {
     });
 
     it('should update an item', () => {
-      const expectedItems = [ 'monkey', 'la souris est sous la table', 'foo' ];
+      const expectedItems = [ 'monkey', 'la souris est sous la table', '3' ];
       component.find(Input).at(1).simulate('change', expectedItems[1]);
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.equal(component.find(Input).at(1).prop('value'), expectedItems[1]);

@@ -52,7 +52,12 @@ class HasManyFields extends React.Component {
   }
 
   updateItem = i => update => this.withCopiedValue(v => v[i] = update)
-  addItem = () => this.withCopiedValue(v => v.push(this.props.blank))
+  addItem = () => this.withCopiedValue(v => {
+    const blank = typeof this.props.blank === 'function' ?
+      this.props.blank(v) :
+      this.props.blank;
+    v.push(blank);
+  })
   deleteItem = i => () => this.withCopiedValue(v => v.splice(i, 1))
 
   render() {
