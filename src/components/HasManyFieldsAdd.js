@@ -12,9 +12,10 @@ const HasManyFieldsAdd = ({ children, outline, color, className, ...props }) => 
       <span children={children} />
     </Button>
   );
-}
+};
 
 HasManyFieldsAdd.propTypes = {
+  className: React.PropTypes.string,
   children: React.PropTypes.node.isRequired
 };
 

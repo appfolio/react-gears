@@ -8,6 +8,7 @@ const deepCopy = val => JSON.parse(JSON.stringify(val));
 
 class HasManyFields extends React.Component {
   static propTypes = {
+    blank: React.PropTypes.any,
     defaultValue: React.PropTypes.array,
     label: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
@@ -31,7 +32,7 @@ class HasManyFields extends React.Component {
     if (this.isUncontrolled) {
       this.state = {
         value: deepCopy(props.defaultValue)
-      }
+      };
     }
   }
 
@@ -59,11 +60,14 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        { this.value.map((item, i, items) => (
-          <HasManyFieldsRow onDelete={this.deleteItem(i)} key={i + '/' + items.length}>
+        {this.value.map((item, i, items) => (
+          <HasManyFieldsRow
+            onDelete={this.deleteItem(i)}
+            key={`${i}/${items.length}`}
+          >
             <Template value={item} onChange={this.updateItem(i)} />
           </HasManyFieldsRow>
-        )) }
+        ))}
 
         <HasManyFieldsAdd onClick={this.addItem}>{label}</HasManyFieldsAdd>
       </div>

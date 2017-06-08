@@ -8,18 +8,19 @@ const HasManyFieldsRow = ({ children, onDelete }) => (
     <Col children={children} />
     <Col xs="auto" className="pl-3">
       <Button outline color="danger" onClick={onDelete} className="h-100 rounded-0 p-2">
-        <Icon name="trash-o" size="lg"/>
+        <Icon name="trash-o" size="lg" />
       </Button>
     </Col>
   </Row>
 );
 
 HasManyFieldsRow.propTypes = {
+  children: React.PropTypes.node.isRequired,
   onDelete: React.PropTypes.func
 };
 
 HasManyFieldsRow.defaultProps = {
   onDelete: noop
-}
+};
 
 export default HasManyFieldsRow;
