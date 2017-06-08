@@ -31,6 +31,7 @@ import './Datapair';
 import './ExpandableSection';
 import './FeatureBanner';
 import './FilterList';
+import './HasManyFields';
 import './InfoBox';
 import './Note';
 import './Notes';

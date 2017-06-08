@@ -85,6 +85,9 @@ import FeatureBanner from './components/FeatureBanner.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
+import HasManyFields from './components/HasManyFields.js';
+import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
+import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Icon from './components/Icon.js';
 import InfoBox from './components/InfoBox.js';
@@ -197,6 +200,9 @@ export {
   FilterList,
   FormChoice,
   FormRow,
+  HasManyFields,
+  HasManyFieldsAdd,
+  HasManyFieldsRow,
   HelpBubble,
   Icon,
   InfoBox,

@@ -94,7 +94,7 @@ class AddressInput extends Component {
             </ValidatedFormGroup>
           </Col>
         </Row>
-        <ValidatedFormGroup error={error.countryCode}>
+        <ValidatedFormGroup error={error.countryCode} className="mb-0">
           <Select
             className="w-100"
             name="countryCode"
