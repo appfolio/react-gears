@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import { Button, Card, CardBlock, CardHeader, CardTitle, Icon } from '../';
 
 class BlockPanel extends Component {
@@ -42,38 +43,45 @@ class BlockPanel extends Component {
     const { children, className, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
     const { open } = this.state;
 
+    const headerClassNames = classnames(
+      'border-0',
+      'd-flex',
+      'flex-wrap',
+      'align-items-center',
+      'justify-content-between',
+      'py-2',
+      'pr-2',
+      { 'pl-2': expandable }
+    );
+
     return (
       <Card className={`rounded-0 border-0 shadow-1 ${className}`} {...props}>
         <CardHeader
-          className={`border-0 d-flex flex-wrap align-items-center justify-content-start py-2 pr-2 ${expandable ? 'pl-2' : ''}`}
+          className={headerClassNames}
           style={{ borderRadius: 0 }}
         >
-          {expandable ?
-            <Icon
-              className="text-muted mr-1"
-              name="caret-right"
-              rotate={open ? 90 : undefined}
-              fixedWidth
-              style={{ transition: 'transform 200ms ease-in-out' }}
-              onClick={this.toggle}
-              ref="icon"
-              style={{ cursor: expandable ? 'pointer' : 'default' }}
-            /> : null}
-          <CardTitle
-            className="m-0 my-1 mr-auto"
+          <div
+            className="d-inline-flex align-items-center"
             onClick={this.toggle}
             ref="title"
             style={{ cursor: expandable ? 'pointer' : 'default' }}
           >
-            {title}
-          </CardTitle>
-          <div className="d-flex">
-            <div className="d-inline-flex">
-              {onEdit ?
-                <Button color="link" className="p-0" ref="edit" onClick={onEdit}>edit</Button> :
-                controls
-              }
-            </div>
+            {expandable ?
+              <Icon
+                className="text-muted mr-1"
+                name="caret-right"
+                rotate={open ? 90 : undefined}
+                fixedWidth
+                style={{ transition: 'transform 200ms ease-in-out' }}
+                ref="icon"
+              /> : null}
+            <CardTitle className="m-0 my-1 mr-auto">
+              {title}
+            </CardTitle>
+          </div>
+          <div className="d-inline-flex blockpanel-controls">
+            {controls && controls}
+            {onEdit && <Button color="link" className="p-0 ml-2 mr-1" ref="edit" onClick={onEdit}>edit</Button>}
           </div>
         </CardHeader>
         {!expandable || open || hideOnToggle ?
