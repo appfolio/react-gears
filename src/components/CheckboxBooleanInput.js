@@ -4,6 +4,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 class CheckboxBooleanInput extends Component {
   static propTypes = {
     checkboxLabel: React.PropTypes.node,
+    onChange: React.PropTypes.func,
     value: React.PropTypes.bool
   };
 
