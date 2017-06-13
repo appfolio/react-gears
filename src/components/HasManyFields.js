@@ -15,7 +15,7 @@ class HasManyFields extends React.Component {
     template: React.PropTypes.oneOfType([
       React.PropTypes.func,
       React.PropTypes.element
-    ]),
+    ]).isRequired,
     value: React.PropTypes.array
   }
 
