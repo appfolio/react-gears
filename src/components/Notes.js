@@ -55,14 +55,12 @@ export default class Notes extends React.Component {
               : null}
           </Col>
         </Row>
-        {children ?
-          children :
+        {children ||
           notes.map(note =>
             <Note
               note={note}
               onCancel={onCancel}
               onChange={onChange}
-              onDelete={onDelete}
               onDelete={onDelete}
               onEdit={onEdit}
               onSave={onSave}
