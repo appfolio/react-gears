@@ -3,13 +3,13 @@ import 'jsdom-global/register';
 /* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { SummaryBox, SummaryBoxItem } from '../../src';
 
 describe('<SummaryBox />', () => {
   it('should render correctly', () => {
-    const component = mount(<SummaryBox />);
+    const component = shallow(<SummaryBox />);
     assert(component);
   });
 
@@ -19,9 +19,14 @@ describe('<SummaryBox />', () => {
       { value: 'Bravo', label: 'Johnny' },
       { value: 'Charlie', label: 'Brown' }
     ];
-    const component = mount(<SummaryBox items={items} />);
+    const component = shallow(
+      <SummaryBox items={items}>
+        <span>Hi</span>
+      </SummaryBox>
+    );
     const children = component.find(SummaryBoxItem);
-    assert(children.length, items.length);
+    assert.equal(children.length, items.length);
+    assert.equal(component.find('span').length, 0);
 
     children.forEach((child, i) => {
       assert.equal(child.prop('value'), items[i].value);
@@ -30,22 +35,14 @@ describe('<SummaryBox />', () => {
   });
 
   it('should render children', () => {
-    const items = [
-      { value: 'Oogah', label: 'Chaka' },
-      { value: 'Milli', label: 'Vanilli' },
-      { value: 'Ray', label: 'Charles' }
-    ];
-    const component = mount(
-      <SummaryBox items={items}>
-        {items.map(({ value, label }) => <SummaryBoxItem value={value} label={label} />)}
+    const component = shallow(
+      <SummaryBox>
+        <span>foo</span>
       </SummaryBox>
     );
-    const children = component.find(SummaryBoxItem);
-    assert(children.length, items.length);
 
-    children.forEach((child, i) => {
-      assert.equal(child.prop('value'), items[i].value);
-      assert.equal(child.prop('label'), items[i].label);
-    });
+    const children = component.find(SummaryBoxItem);
+    assert.equal(children.length, 0);
+    assert.equal(component.find('span').text(), 'foo');
   });
 });
