@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Col, Input,
-         InputGroupAddon, InputGroup, Row } from 'reactstrap';
-import { Icon } from '../../';
+         InputGroupButton, InputGroup, Row } from 'reactstrap';
+import { Dropdown, DropdownMenu, Icon } from '../../';
 import Label from './DateMonthLabel.js';
 import React, { Component } from 'react';
 import fecha from 'fecha';
@@ -144,42 +144,48 @@ export default class DateMonth extends Component {
               onKeyDown={tabListener}
               pattern={MMM_YYYY_PATTERN}
             />
-            <InputGroupAddon className={styles.toggle} onClick={toggle}>
-              <Icon name="calendar" />
-            </InputGroupAddon>
+            <InputGroupButton className={styles.toggle} onClick={toggle}>
+              <Button className="px-2">
+                <Icon name="calendar-o" fixedWidth />
+              </Button>
+            </InputGroupButton>
           </InputGroup>
         </header>
 
-        {state.open ?
-          <div className={styles.picker}>
-            <Row>
+        <Dropdown
+          className={styles.picker}
+          isOpen={state.open}
+        >
+          <DropdownMenu>
+            <Row className="no-gutters">
               <Col xs="6" className={styles.month}>
-                <ul>
+                <ul className="p-1 m-0">
                   {MONTHS.map(month => <Label selected={state.month === month} label={month} onClick={() => this.setMonth(month)} />)}
                 </ul>
               </Col>
 
               <Col xs="6" className={styles.year}>
-                <ButtonGroup size="sm">
-                  <Button id="prev" onClick={prev}>
-                    <Icon name="caret-left" />
+                <ButtonGroup size="sm" className="d-flex px-1 pb-1">
+                  <Button id="prev" className="w-100" onClick={prev}>
+                    <Icon name="angle-double-left" />
                   </Button>
-                  <Button id="next" onClick={next} disabled={!canAdvanceYear}>
-                    <Icon name="caret-right" />
+                  <Button id="next" className="w-100" onClick={next} disabled={!canAdvanceYear}>
+                    <Icon name="angle-double-right" />
                   </Button>
                 </ButtonGroup>
-                <ul>
+                <ul className="p-1 m-0">
                   {YEARS.map(year => <Label selected={state.year === year} label={year} onClick={() => this.setYear(year)} />)}
                 </ul>
               </Col>
             </Row>
-            <footer className="text-xs-center">
+            <footer className="text-center pt-1">
               <div>
-                <Button id="save" size="md" onClick={close} className="mr-2">OK</Button>
-                <Button id="cancel" size="md" onClick={cancel}>Cancel</Button>
+                <Button id="save" onClick={close} className="mr-2">OK</Button>
+                <Button id="cancel" onClick={cancel}>Cancel</Button>
               </div>
             </footer>
-          </div> : null}
+          </DropdownMenu>
+        </Dropdown>
       </div>);
   }
 }

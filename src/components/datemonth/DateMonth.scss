@@ -1,33 +1,24 @@
 .date_month {
   display: inline-block;
-  font-family: sans-serif;
   min-width: 150px;
   position: relative;
   width: 100%;
   input:invalid {
-    border-color: #c61a0c;
+    border-color: #c61a0c; // TODO remove with bs4 hasFeedback, etc
   }
   footer {
     border-top: 1px solid lightgrey;
-    padding: 8px;
-    text-align: center;
   }
   .picker {
-    background-color: white;
-    border: 1px solid rgb(192, 192, 192);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    width: 300px;
-    z-index: 1000;
+    min-width: 20em;
     li {
       cursor: pointer;
       list-style: none;
-      padding: 4px;
-      text-align: center;
       transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
     }
     ul {
       column-count: 2;
+      column-gap: 0;
     }
   }
   .year {
@@ -46,14 +37,5 @@
   header {
     display: block
   }
-  ul {
-    margin-top: 0;
-    margin-bottom: 10px
-  }
 }
 
-.date_month .picker ul,
-.date_month .picker header {
-  margin: 0;
-  padding: 4px;
-}
