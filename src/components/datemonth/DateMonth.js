@@ -166,10 +166,10 @@ export default class DateMonth extends Component {
 
               <Col xs="6" className={styles.year}>
                 <ButtonGroup size="sm" className="d-flex px-1 pb-1">
-                  <Button id="prev" size="sm" className="w-100" onClick={prev}>
+                  <Button id="prev" className="w-100" onClick={prev}>
                     <Icon name="angle-double-left" />
                   </Button>
-                  <Button id="next" size="sm" className="w-100" onClick={next} disabled={!canAdvanceYear}>
+                  <Button id="next" className="w-100" onClick={next} disabled={!canAdvanceYear}>
                     <Icon name="angle-double-right" />
                   </Button>
                 </ButtonGroup>
