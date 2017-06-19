@@ -20,6 +20,7 @@ import './Forms';
 import './Address';
 import './CurrencyInput';
 import './CreditCardInput';
+import './DateInput';
 import './DateMonth';
 import './InputGroup';
 import './Select';
