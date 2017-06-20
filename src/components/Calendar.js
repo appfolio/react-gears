@@ -90,13 +90,13 @@ class Calendar extends Component {
       >
         <thead>
           <tr>
-            {weeks[0].map(day => <th className="text-center">{format(day.date, weekDayFormat)}</th>)}
+            {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat)}</th>)}
           </tr>
         </thead>
         <tbody>
-          {weeks.map(days => (
-            <tr>
-              {days.map(day => <Day day={day} dateFormat={dateFormat} onClick={() => onSelect(day.date)} />)}
+          {weeks.map((days, w) => (
+            <tr key={w}>
+              {days.map((day, d) => <Day day={day} dateFormat={dateFormat} key={d} onClick={() => onSelect(day.date)} />)}
             </tr>
           ))}
         </tbody>
