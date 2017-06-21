@@ -179,7 +179,7 @@ export default class DateInput extends Component {
 
           <DropdownMenu
             className="p-1"
-            onKeyDown={this.tabListener}
+            onKeyDown={this.onKeyDown}
             style={{ minWidth: '19rem' }}
           >
             <header className="d-flex pb-2">
