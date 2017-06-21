@@ -9,6 +9,7 @@ storiesOf('DateInput', module)
       dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
       defaultValue={text('defaultValue')}
       showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
+      onChange={action('onChange')}
     />
   ))
   .addWithInfo('defaultValue', () => (
