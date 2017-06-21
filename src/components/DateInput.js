@@ -11,6 +11,16 @@ import { parse } from 'fecha'; // TODO replace with date-fns/parse after v2 is r
 import format from 'date-fns/format';
 import debounce from 'lodash.debounce';
 
+/**
+ * Given a defaultValue, return the corresponding calendar date and input string value:
+ *
+ * | defaultValue   | date  | string         |
+ * |----------------|-------|----------------|
+ * | null,          | today | ''             |
+ * | Date           | Date  | 'M/D/YYYY'     |
+ * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
+ * | invalid string | today | invalid string |
+ */
 function parseDefaultValue(defaultValue, dateFormat) {
   let date;
   let inputValue = '';
@@ -94,29 +104,32 @@ export default class DateInput extends Component {
   };
 
   onKeyDown = event => {
-    // Ignore keys if modifier are down
-    if (!(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)) {
-      switch (event.keyCode) {
-        case 9: // TAB
-        case 13: // Enter
-        case 27: // Esc
-          this.setState({ open: false });
-          break;
-        case 37: // Left
-          if (this.props.keyboard) this.setDate(addDays(this.state.date, -1));
-          break;
-        case 38: // Up
-          if (this.props.keyboard) this.setDate(addWeeks(this.state.date, -1));
-          break;
-        case 39: // Right
-          if (this.props.keyboard) this.setDate(addDays(this.state.date, 1));
-          break;
-        case 40: // Down
-          if (this.props.keyboard) this.setDate(addWeeks(this.state.date, 1));
-          break;
-        default:
-      }
+    // Ignore arrows if closed, disabled, or modifiers are down:
+    const allowArrows = this.state.open &&
+                        this.props.keyboard &&
+                        !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
+
+    switch (event.keyCode) {
+      case 9: // TAB
+      case 13: // Enter
+      case 27: // Esc
+        this.setState({ open: false });
+        break;
+      case 37: // Left
+        if (allowArrows) this.setDate(addDays(this.state.date, -1));
+        break;
+      case 38: // Up
+        if (allowArrows) this.setDate(addWeeks(this.state.date, -1));
+        break;
+      case 39: // Right
+        if (allowArrows) this.setDate(addDays(this.state.date, 1));
+        break;
+      case 40: // Down
+        if (allowArrows) this.setDate(addWeeks(this.state.date, 1));
+        break;
+      default:
     }
+
     return true;
   };
 
@@ -143,7 +156,10 @@ export default class DateInput extends Component {
   prevMonth = date => this.setDate(addMonths(date, -1));
   prevYear = date => this.setDate(addYears(date, -1));
   show = () => this.setState({ open: true });
-  today = () => this.setDate(new Date());
+  today = () => {
+    this.setDate(new Date());
+    this.close();
+  }
   toggle = () => this.setState({ open: !this.state.open }); // TODO focus input?
 
   render() {
@@ -184,10 +200,10 @@ export default class DateInput extends Component {
           >
             <header className="d-flex pb-2">
               <ButtonGroup size="sm">
-                <Button color="link" onClick={() => this.prevYear(date)}>
+                <Button ref="prevYear" color="link" onClick={() => this.prevYear(date)}>
                   <Icon name="angle-double-left" fixedWidth />
                 </Button>
-                <Button color="link" onClick={() => this.prevMonth(date)}>
+                <Button ref="prevMonth" color="link" onClick={() => this.prevMonth(date)}>
                   <Icon name="angle-left" fixedWidth />
                 </Button>
               </ButtonGroup>
@@ -197,10 +213,10 @@ export default class DateInput extends Component {
               </span>
 
               <ButtonGroup size="sm">
-                <Button color="link" onClick={() => this.nextMonth(date)}>
+                <Button ref="nextMonth" color="link" onClick={() => this.nextMonth(date)}>
                   <Icon name="angle-right" fixedWidth />
                 </Button>
-                <Button color="link" onClick={() => this.nextYear(date)}>
+                <Button ref="nextYear" color="link" onClick={() => this.nextYear(date)}>
                   <Icon name="angle-double-right" fixedWidth />
                 </Button>
               </ButtonGroup>
@@ -214,8 +230,7 @@ export default class DateInput extends Component {
 
             <footer className="text-center py-1">
               <div>
-                <Button onClick={this.today} className="mr-2">Today</Button>
-                <Button onClick={this.close}>Close</Button>
+                <Button ref="today" onClick={this.today} className="mr-2">Today</Button>
               </div>
             </footer>
           </DropdownMenu>
