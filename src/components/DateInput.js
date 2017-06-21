@@ -1,19 +1,47 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, DropdownMenu, Icon, Input, InputGroupButton, InputGroup } from '../';
-import { UncontrolledDropdown } from 'reactstrap'; // TODO export from react-gears
+import { Dropdown } from 'reactstrap';
 import Calendar from './Calendar.js';
 import addMonths from 'date-fns/add_months';
 import addYears from 'date-fns/add_years';
+import isValid from 'date-fns/is_valid';
 import { parse } from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
+import debounce from 'lodash.debounce';
+
+function parseDefaultValue(defaultValue, dateFormat) {
+  let date;
+  let inputValue = '';
+
+  if (defaultValue) {
+    if (defaultValue instanceof Date) {
+      date = defaultValue;
+    } else {
+      date = parse(defaultValue, dateFormat);
+      try {
+        if (!isValid(date)) {
+          date = new Date();
+          inputValue = defaultValue;
+        }
+      } catch (e) {
+        date = new Date();
+        inputValue = defaultValue;
+      }
+    }
+  } else {
+    date = new Date();
+    inputValue = '';
+  }
+
+  return {
+    date,
+    inputValue
+  };
+}
 
 export default class DateInput extends Component {
 
   static propTypes = {
-    date: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.object
-    ]),
     dateFormat: React.PropTypes.string,
     defaultValue: React.PropTypes.oneOfType([
       React.PropTypes.string,
@@ -32,99 +60,112 @@ export default class DateInput extends Component {
   constructor(props) {
     super(props);
 
-    let date = props.defaultValue; // TODO not working?
-
-    if (!date) {
-      date = new Date();
-    } else {
-      // TODO check typeof == string
-      date = parse(date, props.dateFormat);
-    }
+    const { date, inputValue } = parseDefaultValue(props.defaultValue, props.dateFormat);
 
     this.state = {
       open: false,
-      date
+      date,
+      inputValue
     };
   }
 
-  // TODO onChange, esc/clickout hide, focus+keyboard navigation, Today button, header/footer, date/header/day format
+  // TODO blank/null input, onChange (value, valid?)
+  // TODO esc hide, focus+keyboard navigation
+  // TODO allow custom header/footer, date/header/day format?
 
   onChange = event => {
     const value = event.target.value;
-    const date = parse(value, this.props.dateFormat);
-
-    if (date) {
-      this.setState({
-        date
-      });
-    }
-    // TODO invalid text
+    this.setState({
+      inputValue: value
+    });
+    this.parseInput();
   }
 
   onSelect = newDate => {
     this.setState({
       date: newDate,
+      inputValue: false,
       open: false
     });
   };
 
-  close = () => this.setState({ open: false });
+  parseInput = debounce(() => {
+    const inputValue = this.state.inputValue;
+
+    const date = parse(inputValue, this.props.dateFormat);
+
+    if (date) {
+      this.setState({
+        date,
+        inputValue: false
+      });
+    } else {
+      this.setState({
+        inputValue
+      });
+    }
+  }, 500); // TODO use prop
+
+  close = () => this.setState({ open: false, inputValue: false });
   prevMonth = date => this.setState({ date: addMonths(date, -1) });
   nextMonth = date => this.setState({ date: addMonths(date, 1) });
   prevYear = date => this.setState({ date: addYears(date, -1) });
   nextYear = date => this.setState({ date: addYears(date, 1) });
-
   tabListener = event => {
     if (event.keyCode === 9) { // TAB
       this.setState({ open: false });
     }
     return true;
-  }
+  };
+
+  today = () => this.setState({
+    date: new Date(),
+    open: false,
+  });
+
+  toggle = () => this.setState({
+    open: !this.state.open,
+    undo: this.state.date
+  });
 
   render() {
-    const { dateFormat, defaultValue, showOnFocus, ...props } = this.props;
-    const { date, open, undo } = this.state;
+    const { dateFormat, showOnFocus, ...props } = this.props;
+    const { date, inputValue, open, undo } = this.state;
+    delete props.defaultValue; // Remove to avoid setting on InputGroup
 
     const show = () => this.setState({
       open: true,
-      undo: { date }
+      undo: date
     });
     const cancel = () => this.setState({
       open: false,
-      date: undo.date
-    });
-    const toggle = () => this.setState({
-      open: !open,
-      undo: { date }
+      date: undo,
+      inputValue: false
     });
 
-    const formattedValue = date ? format(date, dateFormat) : defaultValue;
-
+    const displayValue = inputValue || (date && format(date, dateFormat));
     return (
       <div ref={el => { this.base = el; }}>
-        <header>
+        <Dropdown isOpen={open} toggle={this.toggle}>
           <InputGroup>
             <Input
-              ref={component => { this._input = component; }}
-              value={formattedValue}
               type="text"
-              onClick={showOnFocus ? show : () => {}}
-              onFocus={showOnFocus ? show : () => {}}
-              onKeyDown={this.tabListener}
+              value={displayValue}
               onChange={this.onChange}
+              onClick={showOnFocus && show}
+              onFocus={showOnFocus && show}
               onInput={this.onChange}
+              onKeyDown={this.tabListener}
               {...props}
             />
-            <InputGroupButton onClick={toggle}>
+            <InputGroupButton onClick={this.toggle}>
               <Button className="px-2" active={open}>
                 <Icon name="calendar" fixedWidth />
               </Button>
             </InputGroupButton>
           </InputGroup>
-        </header>
 
-        <UncontrolledDropdown isOpen={open}>
-          <DropdownMenu className="p-1" style={{ minWidth: '19em' }}>
+          <DropdownMenu className="p-1" style={{ minWidth: '19rem' }}>
             <header className="d-flex pb-2">
               <ButtonGroup size="sm">
                 <Button color="link" onClick={() => this.prevYear(date)}>
@@ -150,19 +191,19 @@ export default class DateInput extends Component {
             </header>
 
             <Calendar
-              date={date}
+              date={date || new Date()}
               onSelect={this.onSelect}
               className="m-0"
             />
 
             <footer className="text-center py-1">
               <div>
-                <Button id="save" onClick={this.close} className="mr-2">OK</Button>
+                <Button id="today" onClick={this.today} className="mr-2">Today</Button>
                 <Button id="cancel" onClick={cancel}>Cancel</Button>
               </div>
             </footer>
           </DropdownMenu>
-        </UncontrolledDropdown>
+        </Dropdown>
       </div>);
   }
 }
