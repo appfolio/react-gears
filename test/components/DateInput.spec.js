@@ -8,7 +8,7 @@ import isToday from 'date-fns/is_today';
 
 import { DateInput } from '../../src';
 
-describe.only('<DateInput />', () => {
+describe('<DateInput />', () => {
   const callback = sinon.spy();
 
   context('defaultValue', () => {
@@ -41,5 +41,19 @@ describe.only('<DateInput />', () => {
       assert.equal(input.get(0).value, 'Veni, Vedi, Vici');
       assert(isToday(component.state().date));
     });
+  });
+
+  context('user input', () => {
+    it('should should set date after entering a valid date string');
+    it('should should reset date after entering an invalid date string');
+  });
+
+  context('date picker', () => {
+    it('should should set date after clicking a date');
+    it('should should set date after clicking today');
+    it('should should set date after clicking prev year');
+    it('should should set date after clicking prev month');
+    it('should should set date after clicking next month');
+    it('should should set date after clicking next year');
   });
 });
