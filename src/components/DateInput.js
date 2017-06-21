@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, DropdownMenu, Icon, Input, InputGroupButton, InputGroup } from '../';
 import { Dropdown } from 'reactstrap';
 import Calendar from './Calendar.js';
+import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
+import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isValid from 'date-fns/is_valid';
 import { parse } from 'fecha'; // TODO replace with date-fns/parse after v2 is released
@@ -16,8 +18,10 @@ function parseDefaultValue(defaultValue, dateFormat) {
   if (defaultValue) {
     if (defaultValue instanceof Date) {
       date = defaultValue;
+      inputValue = format(date, dateFormat);
     } else {
       date = parse(defaultValue, dateFormat);
+      inputValue = format(date, dateFormat);
       try {
         if (!isValid(date)) {
           date = new Date();
@@ -47,14 +51,18 @@ export default class DateInput extends Component {
       React.PropTypes.string,
       React.PropTypes.object
     ]),
+    keyboard: React.PropTypes.bool,
     onChange: React.PropTypes.func,
-    showOnFocus: React.PropTypes.bool
+    showOnFocus: React.PropTypes.bool,
+    wait: React.PropTypes.number
   }
 
   static defaultProps = {
     dateFormat: 'M/D/YYYY',
+    keyboard: true,
     onChange: () => {},
-    showOnFocus: true
+    showOnFocus: true,
+    wait: 500
   }
 
   constructor(props) {
@@ -69,8 +77,7 @@ export default class DateInput extends Component {
     };
   }
 
-  // TODO blank/null input, onChange (value, valid?)
-  // TODO esc hide, focus+keyboard navigation
+  // TODO clear, bold hover glitches
   // TODO allow custom header/footer, date/header/day format?
 
   onChange = event => {
@@ -82,80 +89,85 @@ export default class DateInput extends Component {
   }
 
   onSelect = newDate => {
+    this.setDate(newDate);
+    this.close();
+  };
+
+  onKeyDown = event => {
+    // Ignore keys if modifier are down
+    if (!(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)) {
+      switch (event.keyCode) {
+        case 9: // TAB
+        case 13: // Enter
+        case 27: // Esc
+          this.setState({ open: false });
+          break;
+        case 37: // Left
+          if (this.props.keyboard) this.setDate(addDays(this.state.date, -1));
+          break;
+        case 38: // Up
+          if (this.props.keyboard) this.setDate(addWeeks(this.state.date, -1));
+          break;
+        case 39: // Right
+          if (this.props.keyboard) this.setDate(addDays(this.state.date, 1));
+          break;
+        case 40: // Down
+          if (this.props.keyboard) this.setDate(addWeeks(this.state.date, 1));
+          break;
+        default:
+      }
+    }
+    return true;
+  };
+
+  setDate = date => {
     this.setState({
-      date: newDate,
-      inputValue: false,
-      open: false
+      date,
+      inputValue: format(date, this.props.dateFormat)
     });
   };
 
   parseInput = debounce(() => {
     const inputValue = this.state.inputValue;
-
     const date = parse(inputValue, this.props.dateFormat);
 
     if (date) {
-      this.setState({
-        date,
-        inputValue: false
-      });
-    } else {
-      this.setState({
-        inputValue
-      });
+      this.setDate(date);
     }
-  }, 500); // TODO use prop
+    this.props.onChange(date);
+  }, this.props.wait);
 
-  close = () => this.setState({ open: false, inputValue: false });
-  prevMonth = date => this.setState({ date: addMonths(date, -1) });
-  nextMonth = date => this.setState({ date: addMonths(date, 1) });
-  prevYear = date => this.setState({ date: addYears(date, -1) });
-  nextYear = date => this.setState({ date: addYears(date, 1) });
-  tabListener = event => {
-    if (event.keyCode === 9) { // TAB
-      this.setState({ open: false });
-    }
-    return true;
-  };
-
-  today = () => this.setState({
-    date: new Date(),
-    open: false,
-  });
-
-  toggle = () => this.setState({
-    open: !this.state.open,
-    undo: this.state.date
-  });
+  close = () => this.setState({ open: false });
+  nextMonth = date => this.setDate(addMonths(date, 1));
+  nextYear = date => this.setDate(addYears(date, 1));
+  prevMonth = date => this.setDate(addMonths(date, -1));
+  prevYear = date => this.setDate(addYears(date, -1));
+  show = () => this.setState({ open: true });
+  today = () => this.setDate(new Date());
+  toggle = () => this.setState({ open: !this.state.open }); // TODO focus input?
 
   render() {
-    const { dateFormat, showOnFocus, ...props } = this.props;
-    const { date, inputValue, open, undo } = this.state;
-    delete props.defaultValue; // Remove to avoid setting on InputGroup
+    const { showOnFocus, ...props } = this.props; // TODO ...props needed?
+    const { date, inputValue, open } = this.state;
+    // Remove to avoid setting on InputGroup:
+    delete props.dateFormat;
+    delete props.defaultValue;
+    delete props.keyboard;
+    delete props.onChange;
+    delete props.wait;
 
-    const show = () => this.setState({
-      open: true,
-      undo: date
-    });
-    const cancel = () => this.setState({
-      open: false,
-      date: undo,
-      inputValue: false
-    });
-
-    const displayValue = inputValue || (date && format(date, dateFormat));
     return (
-      <div ref={el => { this.base = el; }}>
+      <div>
         <Dropdown isOpen={open} toggle={this.toggle}>
           <InputGroup>
             <Input
               type="text"
-              value={displayValue}
+              value={inputValue}
               onChange={this.onChange}
-              onClick={showOnFocus && show}
-              onFocus={showOnFocus && show}
+              onClick={showOnFocus && this.show}
+              onFocus={showOnFocus && this.show}
               onInput={this.onChange}
-              onKeyDown={this.tabListener}
+              onKeyDown={this.onKeyDown}
               {...props}
             />
             <InputGroupButton onClick={this.toggle}>
@@ -165,7 +177,11 @@ export default class DateInput extends Component {
             </InputGroupButton>
           </InputGroup>
 
-          <DropdownMenu className="p-1" style={{ minWidth: '19rem' }}>
+          <DropdownMenu
+            className="p-1"
+            onKeyDown={this.tabListener}
+            style={{ minWidth: '19rem' }}
+          >
             <header className="d-flex pb-2">
               <ButtonGroup size="sm">
                 <Button color="link" onClick={() => this.prevYear(date)}>
@@ -198,8 +214,8 @@ export default class DateInput extends Component {
 
             <footer className="text-center py-1">
               <div>
-                <Button id="today" onClick={this.today} className="mr-2">Today</Button>
-                <Button id="cancel" onClick={cancel}>Cancel</Button>
+                <Button onClick={this.today} className="mr-2">Today</Button>
+                <Button onClick={this.close}>Close</Button>
               </div>
             </footer>
           </DropdownMenu>
