@@ -1,6 +1,6 @@
 .date {
   cursor: pointer;
   &:hover {
-    font-weight: bolder;
+    font-weight: bolder; // TODO causes slight visual resizing in some themes.
   }   
 }
