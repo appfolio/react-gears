@@ -37,6 +37,7 @@ const Day = ({ day, dateFormat, ...props }) => {
 class Calendar extends Component {
 
   static propTypes = {
+    className: React.PropTypes.string,
     date: React.PropTypes.object,
     dateFormat: React.PropTypes.string,
     onSelect: React.PropTypes.func,
@@ -44,11 +45,14 @@ class Calendar extends Component {
   };
 
   static defaultProps = {
+    className: '',
     date: new Date(),
     dateFormat: 'D',
     weekDayFormat: 'dd',
     onSelect: () => {}
   };
+
+  // TODO extract as module to share or test easier?:
 
   visibleDays(currentDate) {
     const start = startOfWeek(startOfMonth(currentDate));
@@ -83,7 +87,7 @@ class Calendar extends Component {
 
     return (
       <Table
-        bordered
+        bordered={false}
         hover={false}
         striped={false}
         {...props}

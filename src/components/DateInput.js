@@ -196,11 +196,11 @@ export default class DateInput extends Component {
           </InputGroup>
 
           <DropdownMenu
-            className="p-1"
+            className="p-0"
             onKeyDown={this.onKeyDown}
             style={{ minWidth: '19rem' }}
           >
-            <header className="d-flex pb-2">
+            <header className="d-flex py-2">
               <ButtonGroup size="sm">
                 <Button ref="prevYear" color="link" onClick={() => this.prevYear(date)}>
                   <Icon name="angle-double-left" fixedWidth />
@@ -230,7 +230,7 @@ export default class DateInput extends Component {
               className="m-0"
             />
 
-            <footer className="text-center py-1">
+            <footer className="text-center pb-2 pt-1">
               <div>
                 <Button ref="today" onClick={this.today} className="mr-2">Today</Button>
               </div>
