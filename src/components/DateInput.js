@@ -138,6 +138,7 @@ export default class DateInput extends Component {
       date,
       inputValue: format(date, this.props.dateFormat)
     });
+    this.props.onChange(date);
   };
 
   parseInput = debounce(() => {
@@ -146,8 +147,9 @@ export default class DateInput extends Component {
 
     if (date) {
       this.setDate(date);
+    } else {
+      this.props.onChange(inputValue);
     }
-    this.props.onChange(date);
   }, this.props.wait);
 
   close = () => this.setState({ open: false });
