@@ -2,16 +2,17 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import sinon from 'sinon';
+import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
+import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isToday from 'date-fns/is_today';
+import sinon from 'sinon';
 
 import { DateInput } from '../../src';
 
-describe.only('<DateInput />', () => {
-
+describe('<DateInput />', () => {
   context('defaultValue', () => {
     it('should default to blank and today', () => {
       const component = mount(<DateInput />);
@@ -123,7 +124,7 @@ describe.only('<DateInput />', () => {
       input.simulate('input', { target: { value: '' } });
       setTimeout(() => {
         assert(isToday(component.state().date));
-        assert(callback.calledWith(''));
+        assert(callback.calledWith('', false));
         done();
       });
     });
@@ -134,7 +135,7 @@ describe.only('<DateInput />', () => {
       const input = component.find('input');
       input.simulate('input', { target: { value: 'Grape Jelly' } });
       setTimeout(() => {
-        assert(callback.calledWith('Grape Jelly'));
+        assert(callback.calledWith('Grape Jelly', false));
         done();
       });
     });
@@ -142,7 +143,7 @@ describe.only('<DateInput />', () => {
 
   context('date picker', () => {
     const callback = sinon.spy();
-    const component = mount(<DateInput wait={0} onChange={callback} />);
+    const component = mount(<DateInput wait={0} onChange={callback} showOnFocus />);
     const toggle = component.find('InputGroupButton');
     toggle.simulate('click');
 
@@ -152,7 +153,7 @@ describe.only('<DateInput />', () => {
       const expectedDate = firstDate.props().day.date;
       firstDate.simulate('click');
       assert(isSameDay(component.state().date, expectedDate));
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should call onChange after clicking a date', () => {
@@ -160,7 +161,7 @@ describe.only('<DateInput />', () => {
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
       lastDate.simulate('click');
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking prev year', () => {
@@ -168,7 +169,7 @@ describe.only('<DateInput />', () => {
       const expectedDate = addYears(component.state().date, -1);
       component.ref('prevYear').simulate('click');
       assert(isSameDay(component.state().date, expectedDate));
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking next year', () => {
@@ -176,7 +177,7 @@ describe.only('<DateInput />', () => {
       const expectedDate = addYears(component.state().date, 1);
       component.ref('nextYear').simulate('click');
       assert(isSameDay(component.state().date, expectedDate));
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking prev month', () => {
@@ -184,7 +185,7 @@ describe.only('<DateInput />', () => {
       const expectedDate = addMonths(component.state().date, -1);
       component.ref('prevMonth').simulate('click');
       assert(isSameDay(component.state().date, expectedDate));
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking next month', () => {
@@ -192,7 +193,7 @@ describe.only('<DateInput />', () => {
       const expectedDate = addMonths(component.state().date, 1);
       component.ref('nextMonth').simulate('click');
       assert(isSameDay(component.state().date, expectedDate));
-      assert(callback.calledWith(expectedDate));
+      assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking today', () => {
@@ -200,6 +201,25 @@ describe.only('<DateInput />', () => {
       assert(isToday(component.state().date));
     });
 
-    it('should should set date when using arrow keys'); // TODO
+    it('should should set date when using arrow keys', () => {
+      const input = component.find('input');
+      input.simulate('focus');
+
+      let expectedDate = addWeeks(component.state().date, -1);
+      input.simulate('keydown', { key: 'ArrowUp', keyCode: 38, which: 38 });
+      assert(isSameDay(component.state().date, expectedDate));
+
+      expectedDate = addDays(component.state().date, -1);
+      input.simulate('keydown', { key: 'ArrowLeft', keyCode: 37, which: 37 });
+      assert(isSameDay(component.state().date, expectedDate));
+
+      expectedDate = addWeeks(component.state().date, 1);
+      input.simulate('keydown', { key: 'ArrowDown', keyCode: 40, which: 40 });
+      assert(isSameDay(component.state().date, expectedDate));
+
+      expectedDate = addDays(component.state().date, 1);
+      input.simulate('keydown', { key: 'ArrowRight', keyCode: 39, which: 39 });
+      assert(isSameDay(component.state().date, expectedDate));
+    });
   });
 });

@@ -38,7 +38,7 @@ class Calendar extends Component {
 
   static propTypes = {
     className: React.PropTypes.string,
-    date: React.PropTypes.object,
+    date: React.PropTypes.instanceOf(Date),
     dateFormat: React.PropTypes.string,
     onSelect: React.PropTypes.func,
     weekDayFormat: React.PropTypes.string

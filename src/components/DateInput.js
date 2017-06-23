@@ -56,6 +56,7 @@ function parseDefaultValue(defaultValue, dateFormat) {
 export default class DateInput extends Component {
 
   static propTypes = {
+    className: React.PropTypes.string,
     dateFormat: React.PropTypes.string,
     defaultValue: React.PropTypes.oneOfType([
       React.PropTypes.string,
@@ -65,9 +66,11 @@ export default class DateInput extends Component {
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
     wait: React.PropTypes.number
+    // TODO allow custom header/footer, header & day format?
   }
 
   static defaultProps = {
+    className: '',
     dateFormat: 'M/D/YYYY',
     keyboard: true,
     onChange: () => {},
@@ -86,9 +89,6 @@ export default class DateInput extends Component {
       inputValue
     };
   }
-
-  // TODO clear, bold hover glitches
-  // TODO allow custom header/footer, date/header/day format?
 
   onChange = event => {
     const value = event.target.value;
@@ -138,7 +138,7 @@ export default class DateInput extends Component {
       date,
       inputValue: format(date, this.props.dateFormat)
     });
-    this.props.onChange(date);
+    this.props.onChange(date, true);
   };
 
   parseInput = debounce(() => {
@@ -148,7 +148,7 @@ export default class DateInput extends Component {
     if (date) {
       this.setDate(date);
     } else {
-      this.props.onChange(inputValue);
+      this.props.onChange(inputValue, false);
     }
   }, this.props.wait);
 
@@ -162,22 +162,16 @@ export default class DateInput extends Component {
     this.setDate(new Date());
     this.close();
   }
-  toggle = () => this.setState({ open: !this.state.open }); // TODO focus input?
+  toggle = () => (this.state.open ? this.close() : this.show());
 
   render() {
-    const { showOnFocus, ...props } = this.props; // TODO ...props needed?
+    const { className, showOnFocus } = this.props;
     const { date, inputValue, open } = this.state;
-    // Remove to avoid setting on InputGroup:
-    delete props.dateFormat;
-    delete props.defaultValue;
-    delete props.keyboard;
-    delete props.onChange;
-    delete props.wait;
 
     return (
       <div>
         <Dropdown isOpen={open} toggle={this.toggle}>
-          <InputGroup>
+          <InputGroup className={className}>
             <Input
               type="text"
               value={inputValue}
@@ -186,7 +180,6 @@ export default class DateInput extends Component {
               onFocus={showOnFocus && this.show}
               onInput={this.onChange}
               onKeyDown={this.onKeyDown}
-              {...props}
             />
             <InputGroupButton onClick={this.toggle}>
               <Button className="px-2" active={open}>
