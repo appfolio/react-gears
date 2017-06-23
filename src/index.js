@@ -67,6 +67,7 @@ import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
+import Calendar from './components/Calendar.js';
 import Callout from './components/Callout.js';
 import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
@@ -77,6 +78,7 @@ import CreditCardExpiration from './components/CreditCardExpiration.js';
 import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
+import DateInput from './components/DateInput.js';
 import DateMonth from './components/datemonth/DateMonth.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
@@ -183,6 +185,7 @@ export {
   BlockPanel,
   BoundForm,
   BoundFormRow,
+  Calendar,
   Callout,
   Close,
   CheckboxInput,
@@ -193,6 +196,7 @@ export {
   CreditCardInput,
   CurrencyInput,
   Datapair,
+  DateInput,
   DateMonth,
   ExpandableSection,
   Badge as Flag,
