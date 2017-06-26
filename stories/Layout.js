@@ -141,8 +141,8 @@ storiesOf('Layout', module)
           Sides default to all sides when left blank.
         </p>
         <div className="bg-warning text-warning" style={{ border: '1px solid transparent' }}>
-          <div className={`bg-info text-info ${margin} ${padding}`} style={{ border: '1px solid transparent' }}>
-            <div style={{ border: '1px dashed grey', backgroundColor: 'white', color: 'black', fontFamily: 'monospace' }}>
+          <div className={`bg-info text-info ${margin} ${padding}`} style={{ border: '1px dashed grey' }}>
+            <div style={{ backgroundColor: 'white', color: 'black', fontFamily: 'monospace' }}>
               {`className="${margin} ${padding}"`}
             </div>
           </div>
