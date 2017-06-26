@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { Container, Col, Row } from '../src';
+import { select } from '@storybook/addon-knobs';
 
 storiesOf('Layout', module)
   .addWithInfo('Grid', () => (
@@ -129,5 +130,27 @@ storiesOf('Layout', module)
         </Col>
       </Row>
     </Container>
-  ));
-
+  ))
+  .addWithInfo('Spacing', () => {
+    const margin = `m${select('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('margin amount', [0, 1, 2, 3, 4, 5], 3)}`;
+    const padding = `p${select('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('padding amount', [0, 1, 2, 3, 4, 5], 3)}`;
+    return (
+      <div>
+        <p>
+          Adjust 'knobs' in right sidebar →→→<br />
+          Sides default to all sides when left blank.
+        </p>
+        <div className="bg-warning text-warning" style={{ border: '1px solid transparent' }}>
+          <div className={`bg-info text-info ${margin} ${padding}`} style={{ border: '1px solid transparent' }}>
+            <div style={{ border: '1px dashed grey', backgroundColor: 'white', color: 'black', fontFamily: 'monospace' }}>
+              {`className="${margin} ${padding}"`}
+            </div>
+          </div>
+        </div>
+        <br />
+        <h4>
+          <span className="text-warning">Margin</span> <span className="text-info">Padding</span> <span style={{ border: '1px dashed grey' }}>Element</span>
+        </h4>
+      </div>
+    );
+  });
