@@ -83541,7 +83541,7 @@ var DateInput = function (_Component) {
               { onClick: this.toggle },
               _react2.default.createElement(
                 _.Button,
-                { className: 'px-2', active: open },
+                { className: 'px-2', active: open, type: 'button' },
                 _react2.default.createElement(_.Icon, { name: 'calendar', fixedWidth: true })
               )
             )
@@ -87580,7 +87580,7 @@ var DateMonth = function (_Component) {
               { className: _DateMonth2.default.toggle, onClick: toggle },
               _react2.default.createElement(
                 _reactstrap.Button,
-                { className: 'px-2' },
+                { className: 'px-2', active: state.open, type: 'button' },
                 _react2.default.createElement(_.Icon, { name: 'calendar-o', fixedWidth: true })
               )
             )
@@ -100758,7 +100758,7 @@ function symbolObservablePonyfill(root) {
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.17.1",
+	"version": "1.17.2",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -100858,4 +100858,4 @@ module.exports = __webpack_require__(877);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.dd7f809803cb512c0824.bundle.js.map
+//# sourceMappingURL=preview.ab1b438df60b0df15bae.bundle.js.map
