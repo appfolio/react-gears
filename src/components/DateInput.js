@@ -21,36 +21,27 @@ import debounce from 'lodash.debounce';
  * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
  * | invalid string | today | invalid string |
  */
-function parseDefaultValue(defaultValue, dateFormat) {
+function parseValue(defaultValue, dateFormat) {
   let date;
-  let inputValue = '';
 
   if (defaultValue) {
     if (defaultValue instanceof Date) {
       date = defaultValue;
-      inputValue = format(date, dateFormat);
     } else {
       date = parse(defaultValue, dateFormat);
-      inputValue = format(date, dateFormat);
       try {
         if (!isValid(date)) {
           date = new Date();
-          inputValue = defaultValue;
         }
       } catch (e) {
         date = new Date();
-        inputValue = defaultValue;
       }
     }
   } else {
     date = new Date();
-    inputValue = '';
   }
 
-  return {
-    date,
-    inputValue
-  };
+  return date;
 }
 
 export default class DateInput extends Component {
@@ -59,6 +50,10 @@ export default class DateInput extends Component {
     className: React.PropTypes.string,
     dateFormat: React.PropTypes.string,
     defaultValue: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.object
+    ]),
+    value: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object
     ]),
@@ -81,19 +76,21 @@ export default class DateInput extends Component {
   constructor(props) {
     super(props);
 
-    const { date, inputValue } = parseDefaultValue(props.defaultValue, props.dateFormat);
+    let value = props.defaultValue || '';
+    if (props.defaultValue instanceof Date) {
+      value = format(value, props.dateFormat);
+    }
 
     this.state = {
       open: false,
-      date,
-      inputValue
+      value
     };
   }
 
   onChange = event => {
     const value = event.target.value;
     this.setState({
-      inputValue: value
+      value
     });
     this.parseInput();
   }
@@ -116,16 +113,16 @@ export default class DateInput extends Component {
         this.setState({ open: false });
         break;
       case 37: // Left
-        if (allowArrows) this.setDate(addDays(this.state.date, -1));
+        if (allowArrows) this.setDate(addDays(this.getCurrentDate(), -1));
         break;
       case 38: // Up
-        if (allowArrows) this.setDate(addWeeks(this.state.date, -1));
+        if (allowArrows) this.setDate(addWeeks(this.getCurrentDate(), -1));
         break;
       case 39: // Right
-        if (allowArrows) this.setDate(addDays(this.state.date, 1));
+        if (allowArrows) this.setDate(addDays(this.getCurrentDate(), 1));
         break;
       case 40: // Down
-        if (allowArrows) this.setDate(addWeeks(this.state.date, 1));
+        if (allowArrows) this.setDate(addWeeks(this.getCurrentDate(), 1));
         break;
       default:
     }
@@ -135,28 +132,39 @@ export default class DateInput extends Component {
 
   setDate = date => {
     this.setState({
-      date,
-      inputValue: format(date, this.props.dateFormat)
+      value: format(date, this.props.dateFormat)
     });
     this.props.onChange(date, true);
   };
 
+  getCurrentValue = () => {
+    if (this.props.value !== undefined) {
+      if (this.props.value instanceof Date) {
+        return format(this.props.value, this.props.dateFormat);
+      }
+      return this.props.value;
+    }
+    return this.state.value;
+  };
+
+  getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat);
+
   parseInput = debounce(() => {
-    const inputValue = this.state.inputValue;
-    const date = parse(inputValue, this.props.dateFormat);
+    const value = this.state.value;
+    const date = parse(value, this.props.dateFormat);
 
     if (date) {
-      this.setDate(date);
+      this.props.onChange(date, true);
     } else {
-      this.props.onChange(inputValue, false);
+      this.props.onChange(value, false);
     }
   }, this.props.wait);
 
   close = () => this.setState({ open: false });
-  nextMonth = date => this.setDate(addMonths(date, 1));
-  nextYear = date => this.setDate(addYears(date, 1));
-  prevMonth = date => this.setDate(addMonths(date, -1));
-  prevYear = date => this.setDate(addYears(date, -1));
+  nextMonth = () => this.setDate(addMonths(this.getCurrentDate(), 1));
+  nextYear = () => this.setDate(addYears(this.getCurrentDate(), 1));
+  prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
+  prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
   show = () => this.setState({ open: true });
   today = () => {
     this.setDate(new Date());
@@ -166,15 +174,18 @@ export default class DateInput extends Component {
 
   render() {
     const { className, showOnFocus } = this.props;
-    const { date, inputValue, open } = this.state;
+    const { open } = this.state;
+    const value = this.getCurrentValue();
+    const date = this.getCurrentDate();
 
+    // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
         <Dropdown isOpen={open} toggle={this.toggle}>
           <InputGroup className={className}>
             <Input
               type="text"
-              value={inputValue}
+              value={value}
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
@@ -195,10 +206,10 @@ export default class DateInput extends Component {
           >
             <header className="d-flex py-2">
               <ButtonGroup size="sm">
-                <Button ref="prevYear" color="link" onClick={() => this.prevYear(date)}>
+                <Button ref="prevYear" color="link" onClick={() => this.prevYear()}>
                   <Icon name="angle-double-left" fixedWidth />
                 </Button>
-                <Button ref="prevMonth" color="link" onClick={() => this.prevMonth(date)}>
+                <Button ref="prevMonth" color="link" onClick={() => this.prevMonth()}>
                   <Icon name="angle-left" fixedWidth />
                 </Button>
               </ButtonGroup>
@@ -208,17 +219,17 @@ export default class DateInput extends Component {
               </span>
 
               <ButtonGroup size="sm">
-                <Button ref="nextMonth" color="link" onClick={() => this.nextMonth(date)}>
+                <Button ref="nextMonth" color="link" onClick={() => this.nextMonth()}>
                   <Icon name="angle-right" fixedWidth />
                 </Button>
-                <Button ref="nextYear" color="link" onClick={() => this.nextYear(date)}>
+                <Button ref="nextYear" color="link" onClick={() => this.nextYear()}>
                   <Icon name="angle-double-right" fixedWidth />
                 </Button>
               </ButtonGroup>
             </header>
 
             <Calendar
-              date={date || new Date()}
+              date={date}
               onSelect={this.onSelect}
               className="m-0"
             />

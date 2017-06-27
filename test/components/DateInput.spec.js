@@ -19,7 +19,6 @@ describe('<DateInput />', () => {
       const input = component.find('input');
 
       assert.equal(input.get(0).value, '');
-      assert(isToday(component.state().date));
     });
 
     it('should format defaultValue Date prop', () => {
@@ -34,14 +33,14 @@ describe('<DateInput />', () => {
       const input = component.find('input');
 
       assert.equal(input.get(0).value, '1/23/1983');
-      assert(isSameDay(component.state().date, new Date(1983, 0, 23)));
+      assert(isSameDay(component.instance().getCurrentDate(), new Date(1983, 0, 23)));
     });
 
     it('should not format invalid defaultValue and default to today', () => {
       const component = mount(<DateInput defaultValue="Veni, Vedi, Vici" />);
       const input = component.find('input');
       assert.equal(input.get(0).value, 'Veni, Vedi, Vici');
-      assert(isToday(component.state().date));
+      assert(isToday(component.instance().getCurrentDate()));
     });
   });
 
@@ -102,7 +101,7 @@ describe('<DateInput />', () => {
       const input = component.find('input');
       input.simulate('input', { target: { value: '12/3/2014' } });
       setTimeout(() => {
-        assert(isSameDay(component.state().date, new Date(2014, 11, 3)));
+        assert(isSameDay(component.instance().getCurrentDate(), new Date(2014, 11, 3)));
         done();
       });
     });
@@ -112,7 +111,7 @@ describe('<DateInput />', () => {
       const input = component.find('input');
       input.simulate('input', { target: { value: 'Sandwiches' } });
       setTimeout(() => {
-        assert(isToday(component.state().date));
+        assert(isToday(component.instance().getCurrentDate()));
         done();
       });
     });
@@ -123,7 +122,7 @@ describe('<DateInput />', () => {
       const input = component.find('input');
       input.simulate('input', { target: { value: '' } });
       setTimeout(() => {
-        assert(isToday(component.state().date));
+        assert(isToday(component.instance().getCurrentDate()));
         assert(callback.calledWith('', false));
         done();
       });
@@ -152,7 +151,7 @@ describe('<DateInput />', () => {
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
       firstDate.simulate('click');
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
@@ -166,60 +165,60 @@ describe('<DateInput />', () => {
 
     it('should should set date after clicking prev year', () => {
       callback.reset();
-      const expectedDate = addYears(component.state().date, -1);
+      const expectedDate = addYears(component.instance().getCurrentDate(), -1);
       component.ref('prevYear').simulate('click');
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking next year', () => {
       callback.reset();
-      const expectedDate = addYears(component.state().date, 1);
+      const expectedDate = addYears(component.instance().getCurrentDate(), 1);
       component.ref('nextYear').simulate('click');
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking prev month', () => {
       callback.reset();
-      const expectedDate = addMonths(component.state().date, -1);
+      const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
       component.ref('prevMonth').simulate('click');
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking next month', () => {
       callback.reset();
-      const expectedDate = addMonths(component.state().date, 1);
+      const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
       component.ref('nextMonth').simulate('click');
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking today', () => {
       component.ref('today').simulate('click');
-      assert(isToday(component.state().date));
+      assert(isToday(component.instance().getCurrentDate()));
     });
 
     it('should should set date when using arrow keys', () => {
       const input = component.find('input');
       input.simulate('focus');
 
-      let expectedDate = addWeeks(component.state().date, -1);
+      let expectedDate = addWeeks(component.instance().getCurrentDate(), -1);
       input.simulate('keydown', { key: 'ArrowUp', keyCode: 38, which: 38 });
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
 
-      expectedDate = addDays(component.state().date, -1);
+      expectedDate = addDays(component.instance().getCurrentDate(), -1);
       input.simulate('keydown', { key: 'ArrowLeft', keyCode: 37, which: 37 });
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
 
-      expectedDate = addWeeks(component.state().date, 1);
+      expectedDate = addWeeks(component.instance().getCurrentDate(), 1);
       input.simulate('keydown', { key: 'ArrowDown', keyCode: 40, which: 40 });
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
 
-      expectedDate = addDays(component.state().date, 1);
+      expectedDate = addDays(component.instance().getCurrentDate(), 1);
       input.simulate('keydown', { key: 'ArrowRight', keyCode: 39, which: 39 });
-      assert(isSameDay(component.state().date, expectedDate));
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
     });
   });
 });
