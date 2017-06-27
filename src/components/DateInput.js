@@ -193,7 +193,7 @@ export default class DateInput extends Component {
               onKeyDown={this.onKeyDown}
             />
             <InputGroupButton onClick={this.toggle}>
-              <Button className="px-2" active={open}>
+              <Button className="px-2" active={open} type="button">
                 <Icon name="calendar" fixedWidth />
               </Button>
             </InputGroupButton>

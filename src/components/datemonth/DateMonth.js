@@ -147,7 +147,7 @@ export default class DateMonth extends Component {
               pattern={MMM_YYYY_PATTERN}
             />
             <InputGroupButton className={styles.toggle} onClick={toggle}>
-              <Button className="px-2">
+              <Button className="px-2" active={state.open} type="button">
                 <Icon name="calendar-o" fixedWidth />
               </Button>
             </InputGroupButton>
