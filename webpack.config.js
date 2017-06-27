@@ -6,6 +6,7 @@ const webpack = require('webpack');
  * Production webpack settings.
  */
 module.exports = {
+  devtool: 'source-map',
   entry: [
     path.resolve(__dirname, './src/index')
   ],
@@ -55,6 +56,7 @@ module.exports = {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compressor: {
         warnings: false
       }
