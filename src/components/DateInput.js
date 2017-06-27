@@ -177,6 +177,8 @@ export default class DateInput extends Component {
     const { open } = this.state;
     const value = this.getCurrentValue();
     const date = this.getCurrentDate();
+
+    // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
         <Dropdown isOpen={open} toggle={this.toggle}>

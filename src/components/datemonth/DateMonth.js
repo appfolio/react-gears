@@ -18,6 +18,8 @@ function range(start, end) {
   return result;
 }
 
+// TODO refactor this component to match DateInput behavior, e.g. a new "DropdownInput" component.
+
 export default class DateMonth extends Component {
   constructor(props) {
     super(props);
