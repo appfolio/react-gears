@@ -83459,36 +83459,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
  * | invalid string | today | invalid string |
  */
-function parseDefaultValue(defaultValue, dateFormat) {
+function parseValue(defaultValue, dateFormat) {
   var date = void 0;
-  var inputValue = '';
 
   if (defaultValue) {
     if (defaultValue instanceof Date) {
       date = defaultValue;
-      inputValue = (0, _format2.default)(date, dateFormat);
     } else {
       date = (0, _fecha.parse)(defaultValue, dateFormat);
-      inputValue = (0, _format2.default)(date, dateFormat);
       try {
         if (!(0, _is_valid2.default)(date)) {
           date = new Date();
-          inputValue = defaultValue;
         }
       } catch (e) {
         date = new Date();
-        inputValue = defaultValue;
       }
     }
   } else {
     date = new Date();
-    inputValue = '';
   }
 
-  return {
-    date: date,
-    inputValue: inputValue
-  };
+  return date;
 }
 
 var DateInput = function (_Component) {
@@ -83501,14 +83492,14 @@ var DateInput = function (_Component) {
 
     _initialiseProps.call(_this);
 
-    var _parseDefaultValue = parseDefaultValue(props.defaultValue, props.dateFormat),
-        date = _parseDefaultValue.date,
-        inputValue = _parseDefaultValue.inputValue;
+    var value = props.defaultValue || '';
+    if (props.defaultValue instanceof Date) {
+      value = (0, _format2.default)(value, props.dateFormat);
+    }
 
     _this.state = {
       open: false,
-      date: date,
-      inputValue: inputValue
+      value: value
     };
     return _this;
   }
@@ -83521,12 +83512,12 @@ var DateInput = function (_Component) {
       var _props = this.props,
           className = _props.className,
           showOnFocus = _props.showOnFocus;
-      var _state = this.state,
-          date = _state.date,
-          inputValue = _state.inputValue,
-          open = _state.open;
+      var open = this.state.open;
 
+      var value = this.getCurrentValue();
+      var date = this.getCurrentDate();
 
+      // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
       return _react2.default.createElement(
         'div',
         null,
@@ -83538,7 +83529,7 @@ var DateInput = function (_Component) {
             { className: className },
             _react2.default.createElement(_.Input, {
               type: 'text',
-              value: inputValue,
+              value: value,
               onChange: this.onChange,
               onClick: showOnFocus && this.show,
               onFocus: showOnFocus && this.show,
@@ -83571,14 +83562,14 @@ var DateInput = function (_Component) {
                 _react2.default.createElement(
                   _.Button,
                   { ref: 'prevYear', color: 'link', onClick: function onClick() {
-                      return _this2.prevYear(date);
+                      return _this2.prevYear();
                     } },
                   _react2.default.createElement(_.Icon, { name: 'angle-double-left', fixedWidth: true })
                 ),
                 _react2.default.createElement(
                   _.Button,
                   { ref: 'prevMonth', color: 'link', onClick: function onClick() {
-                      return _this2.prevMonth(date);
+                      return _this2.prevMonth();
                     } },
                   _react2.default.createElement(_.Icon, { name: 'angle-left', fixedWidth: true })
                 )
@@ -83594,21 +83585,21 @@ var DateInput = function (_Component) {
                 _react2.default.createElement(
                   _.Button,
                   { ref: 'nextMonth', color: 'link', onClick: function onClick() {
-                      return _this2.nextMonth(date);
+                      return _this2.nextMonth();
                     } },
                   _react2.default.createElement(_.Icon, { name: 'angle-right', fixedWidth: true })
                 ),
                 _react2.default.createElement(
                   _.Button,
                   { ref: 'nextYear', color: 'link', onClick: function onClick() {
-                      return _this2.nextYear(date);
+                      return _this2.nextYear();
                     } },
                   _react2.default.createElement(_.Icon, { name: 'angle-double-right', fixedWidth: true })
                 )
               )
             ),
             _react2.default.createElement(_Calendar2.default, {
-              date: date || new Date(),
+              date: date,
               onSelect: this.onSelect,
               className: 'm-0'
             }),
@@ -83638,6 +83629,7 @@ DateInput.propTypes = {
   className: _react2.default.PropTypes.string,
   dateFormat: _react2.default.PropTypes.string,
   defaultValue: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
+  value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
   keyboard: _react2.default.PropTypes.bool,
   onChange: _react2.default.PropTypes.func,
   showOnFocus: _react2.default.PropTypes.bool,
@@ -83659,7 +83651,7 @@ var _initialiseProps = function _initialiseProps() {
   this.onChange = function (event) {
     var value = event.target.value;
     _this3.setState({
-      inputValue: value
+      value: value
     });
     _this3.parseInput();
   };
@@ -83682,19 +83674,19 @@ var _initialiseProps = function _initialiseProps() {
         break;
       case 37:
         // Left
-        if (allowArrows) _this3.setDate((0, _add_days2.default)(_this3.state.date, -1));
+        if (allowArrows) _this3.setDate((0, _add_days2.default)(_this3.getCurrentDate(), -1));
         break;
       case 38:
         // Up
-        if (allowArrows) _this3.setDate((0, _add_weeks2.default)(_this3.state.date, -1));
+        if (allowArrows) _this3.setDate((0, _add_weeks2.default)(_this3.getCurrentDate(), -1));
         break;
       case 39:
         // Right
-        if (allowArrows) _this3.setDate((0, _add_days2.default)(_this3.state.date, 1));
+        if (allowArrows) _this3.setDate((0, _add_days2.default)(_this3.getCurrentDate(), 1));
         break;
       case 40:
         // Down
-        if (allowArrows) _this3.setDate((0, _add_weeks2.default)(_this3.state.date, 1));
+        if (allowArrows) _this3.setDate((0, _add_weeks2.default)(_this3.getCurrentDate(), 1));
         break;
       default:
     }
@@ -83704,20 +83696,33 @@ var _initialiseProps = function _initialiseProps() {
 
   this.setDate = function (date) {
     _this3.setState({
-      date: date,
-      inputValue: (0, _format2.default)(date, _this3.props.dateFormat)
+      value: (0, _format2.default)(date, _this3.props.dateFormat)
     });
     _this3.props.onChange(date, true);
   };
 
+  this.getCurrentValue = function () {
+    if (_this3.props.value !== undefined) {
+      if (_this3.props.value instanceof Date) {
+        return (0, _format2.default)(_this3.props.value, _this3.props.dateFormat);
+      }
+      return _this3.props.value;
+    }
+    return _this3.state.value;
+  };
+
+  this.getCurrentDate = function () {
+    return parseValue(_this3.props.value !== undefined ? _this3.props.value : _this3.state.value, _this3.props.dateFormat);
+  };
+
   this.parseInput = (0, _lodash2.default)(function () {
-    var inputValue = _this3.state.inputValue;
-    var date = (0, _fecha.parse)(inputValue, _this3.props.dateFormat);
+    var value = _this3.state.value;
+    var date = (0, _fecha.parse)(value, _this3.props.dateFormat);
 
     if (date) {
-      _this3.setDate(date);
+      _this3.props.onChange(date, true);
     } else {
-      _this3.props.onChange(inputValue, false);
+      _this3.props.onChange(value, false);
     }
   }, this.props.wait);
 
@@ -83725,20 +83730,20 @@ var _initialiseProps = function _initialiseProps() {
     return _this3.setState({ open: false });
   };
 
-  this.nextMonth = function (date) {
-    return _this3.setDate((0, _add_months2.default)(date, 1));
+  this.nextMonth = function () {
+    return _this3.setDate((0, _add_months2.default)(_this3.getCurrentDate(), 1));
   };
 
-  this.nextYear = function (date) {
-    return _this3.setDate((0, _add_years2.default)(date, 1));
+  this.nextYear = function () {
+    return _this3.setDate((0, _add_years2.default)(_this3.getCurrentDate(), 1));
   };
 
-  this.prevMonth = function (date) {
-    return _this3.setDate((0, _add_months2.default)(date, -1));
+  this.prevMonth = function () {
+    return _this3.setDate((0, _add_months2.default)(_this3.getCurrentDate(), -1));
   };
 
-  this.prevYear = function (date) {
-    return _this3.setDate((0, _add_years2.default)(date, -1));
+  this.prevYear = function () {
+    return _this3.setDate((0, _add_years2.default)(_this3.getCurrentDate(), -1));
   };
 
   this.show = function () {
@@ -83782,6 +83787,18 @@ DateInput.__docgenInfo = {
       }
     },
     'defaultValue': {
+      'type': {
+        'name': 'union',
+        'value': [{
+          'name': 'string'
+        }, {
+          'name': 'object'
+        }]
+      },
+      'required': false,
+      'description': ''
+    },
+    'value': {
       'type': {
         'name': 'union',
         'value': [{
@@ -87392,6 +87409,8 @@ function range(start, end) {
   return result;
 }
 
+// TODO refactor this component to match DateInput behavior, e.g. a new "DropdownInput" component.
+
 var DateMonth = function (_Component) {
   _inherits(DateMonth, _Component);
 
@@ -88827,21 +88846,44 @@ var _addonKnobs = __webpack_require__(24);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _react3.storiesOf)('DateInput', module).addWithInfo('with props', function () {
-  return _react2.default.createElement(_src.DateInput, {
-    dateFormat: (0, _addonKnobs.text)('dateFormat', _src.DateInput.defaultProps.dateFormat),
-    defaultValue: (0, _addonKnobs.text)('defaultValue'),
-    showOnFocus: (0, _addonKnobs.boolean)('showOnFocus', _src.DateInput.defaultProps.showOnFocus),
-    onChange: (0, _react3.action)('onChange')
-  });
-}).addWithInfo('defaultValue', function () {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: 'null' }),
-    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: 'new Date()', defaultValue: new Date() }),
-    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: 'new Date(2000, 0, 1)', defaultValue: new Date(2000, 0, 1) }),
-    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: '\'1/23/2004\'', defaultValue: '1/23/2004' }),
-    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: '\'Garbage in\'', defaultValue: 'Garbage in' })
+    _react2.default.createElement(_src.DateInput, {
+      dateFormat: (0, _addonKnobs.text)('dateFormat', _src.DateInput.defaultProps.dateFormat),
+      showOnFocus: (0, _addonKnobs.boolean)('showOnFocus', _src.DateInput.defaultProps.showOnFocus),
+      onChange: (0, _react3.action)('onChange')
+    })
+  );
+}).addWithInfo('defaultValue (uncontrolled)', function () {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      null,
+      'When defaultValue is set, component is \'uncontrolled\' and maintains its own state. onChange events will be emitted with the current value.'
+    ),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'null' }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'new Date()', defaultValue: new Date() }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'new Date(2000, 0, 1)', defaultValue: new Date(2000, 0, 1) }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'1/23/2004\'', defaultValue: '1/23/2004' }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'Garbage in\'', defaultValue: 'Garbage in' })
+  );
+}).addWithInfo('value (controlled)', function () {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      null,
+      'When value is set, component is \'controlled\' and does not maintain its own state. onChange events will be emitted with the current value, and parent components using the DateInput must update the value prop with the current date.'
+    ),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'null', value: null }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'new Date()', value: new Date() }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'new Date(2000, 0, 1)', value: new Date(2000, 0, 1) }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'1/23/2004\'', value: '1/23/2004' }),
+    _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'Garbage in\'', value: 'Garbage in' })
   );
 }).addWithInfo('Calendar', function () {
   return _react2.default.createElement(
@@ -90001,6 +90043,8 @@ var _react3 = __webpack_require__(19);
 
 var _src = __webpack_require__(10);
 
+var _addonKnobs = __webpack_require__(24);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _react3.storiesOf)('Layout', module).addWithInfo('Grid', function () {
@@ -90350,6 +90394,55 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
           { className: 'hidden-md-up' },
           'xs=12'
         )
+      )
+    )
+  );
+}).addWithInfo('Spacing', function () {
+  var margin = 'm' + (0, _addonKnobs.select)('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '') + '-' + (0, _addonKnobs.select)('margin amount', [0, 1, 2, 3, 4, 5], 3);
+  var padding = 'p' + (0, _addonKnobs.select)('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '') + '-' + (0, _addonKnobs.select)('padding amount', [0, 1, 2, 3, 4, 5], 3);
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      null,
+      'Adjust \'knobs\' in right sidebar \u2192\u2192\u2192',
+      _react2.default.createElement('br', null),
+      'Sides default to all sides when left blank.'
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'bg-warning text-warning', style: { border: '1px solid transparent' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'bg-info text-info ' + margin + ' ' + padding, style: { border: '1px dashed grey' } },
+        _react2.default.createElement(
+          'div',
+          { style: { backgroundColor: 'white', color: 'black', fontFamily: 'monospace' } },
+          'className="' + margin + ' ' + padding + '"'
+        )
+      )
+    ),
+    _react2.default.createElement('br', null),
+    _react2.default.createElement(
+      'h4',
+      null,
+      _react2.default.createElement(
+        'span',
+        { className: 'text-warning' },
+        'Margin'
+      ),
+      ' ',
+      _react2.default.createElement(
+        'span',
+        { className: 'text-info' },
+        'Padding'
+      ),
+      ' ',
+      _react2.default.createElement(
+        'span',
+        { style: { border: '1px dashed grey' } },
+        'Element'
       )
     )
   );
@@ -100665,7 +100758,7 @@ function symbolObservablePonyfill(root) {
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.17.0",
+	"version": "1.17.1",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -100765,4 +100858,4 @@ module.exports = __webpack_require__(877);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.30ef81ae1e5373d0c345.bundle.js.map
+//# sourceMappingURL=preview.dd7f809803cb512c0824.bundle.js.map
