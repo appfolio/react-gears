@@ -2,6 +2,7 @@ import React from 'react';
 import { Form } from 'reactstrap';
 import noop from 'lodash.noop';
 import set from 'lodash.set';
+import cloneDeep from 'lodash.clonedeep';
 
 class BoundForm extends React.Component {
   static propTypes = {
@@ -28,7 +29,7 @@ class BoundForm extends React.Component {
     super(props);
 
     this.state = {
-      formData: JSON.parse(JSON.stringify(props.object))
+      formData: cloneDeep(props.object)
     };
   }
 
