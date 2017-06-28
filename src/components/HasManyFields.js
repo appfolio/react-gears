@@ -1,5 +1,5 @@
 import React from 'react';
-import noop from 'lodash/noop';
+import noop from 'lodash.noop';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';

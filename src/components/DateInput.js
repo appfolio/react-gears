@@ -7,9 +7,11 @@ import addMonths from 'date-fns/add_months';
 import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isValid from 'date-fns/is_valid';
-import { parse } from 'fecha'; // TODO replace with date-fns/parse after v2 is released
+import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
 import debounce from 'lodash.debounce';
+
+const { parse } = Fecha;
 
 /**
  * Given a defaultValue, return the corresponding calendar date and input string value:

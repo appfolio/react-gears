@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon, InputGroup } from '../';
 import { Input, InputGroupAddon } from 'reactstrap';
-import { number } from 'card-validator';
+import CardValidator from 'card-validator';
 import cardTypeInfo from 'credit-card-type';
+
+const { number } = CardValidator;
 
 const TYPES = {
   'american-express': 'cc-amex',
