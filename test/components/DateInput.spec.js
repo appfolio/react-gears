@@ -124,7 +124,7 @@ describe('<DateInput />', () => {
       const component = mount(<DateInput onChange={callback} />);
       const input = component.find('input');
       input.simulate('change', { target: { value: 'Grape Jelly' } });
-      assert(callback.calledWith('Grape Jelly', false), 'dinna call');
+      assert(callback.calledWith('Grape Jelly', false));
     });
   });
 
