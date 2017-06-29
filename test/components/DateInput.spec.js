@@ -96,53 +96,41 @@ describe('<DateInput />', () => {
   });
 
   context('user input', () => {
-    it('should should set date after entering a valid date string', done => {
-      const component = mount(<DateInput wait={0} />);
+    it('should should set date after entering a valid date string', () => {
+      const component = mount(<DateInput />);
       const input = component.find('input');
-      input.simulate('input', { target: { value: '12/3/2014' } });
-      setTimeout(() => {
-        assert(isSameDay(component.instance().getCurrentDate(), new Date(2014, 11, 3)));
-        done();
-      });
+      input.simulate('change', { target: { value: '12/3/2014' } });
+      assert(isSameDay(component.instance().getCurrentDate(), new Date(2014, 11, 3)));
     });
 
-    it('should should reset date after entering an invalid date string', done => {
-      const component = mount(<DateInput wait={0} />);
+    it('should should reset date after entering an invalid date string', () => {
+      const component = mount(<DateInput />);
       const input = component.find('input');
-      input.simulate('input', { target: { value: 'Sandwiches' } });
-      setTimeout(() => {
-        assert(isToday(component.instance().getCurrentDate()));
-        done();
-      });
+      input.simulate('change', { target: { value: 'Sandwiches' } });
+      assert(isToday(component.instance().getCurrentDate()));
     });
 
-    it('should should reset date after clearing input', done => {
+    it('should should reset date after clearing input', () => {
       const callback = sinon.spy();
-      const component = mount(<DateInput wait={0} onChange={callback} />);
+      const component = mount(<DateInput onChange={callback} />);
       const input = component.find('input');
-      input.simulate('input', { target: { value: '' } });
-      setTimeout(() => {
-        assert(isToday(component.instance().getCurrentDate()));
-        assert(callback.calledWith('', false));
-        done();
-      });
+      input.simulate('change', { target: { value: '' } });
+      assert(isToday(component.instance().getCurrentDate()));
+      assert(callback.calledWith('', false));
     });
 
-    it('should should call onChange after entering an invalid date string', done => {
+    it('should should call onChange after entering an invalid date string', () => {
       const callback = sinon.spy();
-      const component = mount(<DateInput wait={0} onChange={callback} />);
+      const component = mount(<DateInput onChange={callback} />);
       const input = component.find('input');
-      input.simulate('input', { target: { value: 'Grape Jelly' } });
-      setTimeout(() => {
-        assert(callback.calledWith('Grape Jelly', false));
-        done();
-      });
+      input.simulate('change', { target: { value: 'Grape Jelly' } });
+      assert(callback.calledWith('Grape Jelly', false));
     });
   });
 
   context('date picker', () => {
     const callback = sinon.spy();
-    const component = mount(<DateInput wait={0} onChange={callback} showOnFocus />);
+    const component = mount(<DateInput onChange={callback} showOnFocus />);
     const toggle = component.find('InputGroupButton');
     toggle.simulate('click');
 

@@ -9,7 +9,6 @@ import addYears from 'date-fns/add_years';
 import isValid from 'date-fns/is_valid';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
-import debounce from 'lodash.debounce';
 
 const { parse } = Fecha;
 
@@ -62,7 +61,6 @@ export default class DateInput extends Component {
     keyboard: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
-    wait: React.PropTypes.number
     // TODO allow custom header/footer, header & day format?
   }
 
@@ -71,8 +69,7 @@ export default class DateInput extends Component {
     dateFormat: 'M/D/YYYY',
     keyboard: true,
     onChange: () => {},
-    showOnFocus: true,
-    wait: 500
+    showOnFocus: true
   }
 
   constructor(props) {
@@ -94,7 +91,7 @@ export default class DateInput extends Component {
     this.setState({
       value
     });
-    this.parseInput();
+    this.parseInput(value);
   }
 
   onSelect = newDate => {
@@ -151,8 +148,7 @@ export default class DateInput extends Component {
 
   getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat);
 
-  parseInput = debounce(() => {
-    const value = this.state.value;
+  parseInput = value => {
     const date = parse(value, this.props.dateFormat);
 
     if (date) {
@@ -160,7 +156,7 @@ export default class DateInput extends Component {
     } else {
       this.props.onChange(value, false);
     }
-  }, this.props.wait);
+  };
 
   close = () => this.setState({ open: false });
   nextMonth = () => this.setDate(addMonths(this.getCurrentDate(), 1));
@@ -191,7 +187,6 @@ export default class DateInput extends Component {
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
-              onInput={this.onChange}
               onKeyDown={this.onKeyDown}
             />
             <InputGroupButton onClick={this.toggle}>
