@@ -1,5 +1,12 @@
 import React from 'react';
-import styles from './LabelBadge.scss';
+
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  Icon,
+  Button,
+} from '..';
 
 export default class LabelBadge extends React.Component {
 
@@ -19,24 +26,20 @@ export default class LabelBadge extends React.Component {
 
   render() {
     const { className, label, maxWidth, onRemove, removable, value } = this.props;
-    const labelClasses = 'bg-faded text-muted rounded-left d-inline-flex align-self-center h-100 px-3 py-2';
-    const valueClasses = `label-badge-value ${styles.trim} rounded-right px-3 py-2`;
-    const style = {
-      maxWidth: maxWidth ? `${maxWidth}rem` : null
-    };
+    const style = { display: 'block' };  // to make truncation work.
+    if (maxWidth !== undefined) {
+      // this shouldn't be hardcoded to rem. Leave up to user to define units.
+      style.maxWidth = `${maxWidth}rem`;
+    }
 
     return (
-      //TODO: use '.card' instead of hard coded boarder style for label badge
-      // we aren't doing it right now because apm and bootstrap-apm has a conflict for .card
-      <span className={`rounded d-inline-flex flex-row justify-content-between align-items-center ${className} ${styles.outer}`}>
-        {label ?
-          <strong className={labelClasses} style={style}>
-            <span className={styles.trim}>{label}</span>
-          </strong>
-          : null}
-        <span className={valueClasses} style={style}>{value}</span>
-        {removable ? <a className="close mr-2" onClick={onRemove}>&times;</a> : null}
-      </span>
+      <InputGroup className={className}>
+        {label && <InputGroupAddon>{label}</InputGroupAddon>}
+        <div className="form-control text-truncate label-badge-value" style={style}>{value}</div>
+        {removable && <InputGroupButton>
+          <Button onClick={onRemove}><Icon name="remove" /></Button>
+        </InputGroupButton>}
+      </InputGroup>
     );
   }
 }
