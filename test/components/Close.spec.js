@@ -1,4 +1,3 @@
-import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';

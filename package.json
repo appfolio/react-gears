@@ -18,7 +18,7 @@
   "scripts": {
     "lint": "eslint src; exit 0",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
-    "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register --require ignore-styles",
+    "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha",
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist": "webpack -p",
