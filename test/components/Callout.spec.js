@@ -1,9 +1,7 @@
-/* eslint-env mocha */
-
 import React from 'react';
 import assert from 'assert';
-import { Callout } from '../../src';
 import { mount } from 'enzyme';
+import { Callout } from '../../src';
 
 describe('<Callout />', () => {
   it('should render correctly', () => {

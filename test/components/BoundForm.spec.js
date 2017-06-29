@@ -1,14 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import { Input } from 'reactstrap';
-
-import BoundForm from '../../src/components/BoundForm';
-import BoundFormRow from '../../src/components/BoundFormRow';
-import FormChoice from '../../src/components/FormChoice';
+import { BoundForm } from '../../src';
 
 describe('<BoundForm />', () => {
   const data = {

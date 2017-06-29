@@ -1,11 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import { Icon } from '../../src';
 import { Popover, PopoverTitle, PopoverContent } from 'reactstrap';
+import { Icon, HelpBubble } from '../../src';
 
-import HelpBubble from '../../src/components/HelpBubble';
 
 describe('<HelpBubble />', () => {
   it('should have a question mark', () => {

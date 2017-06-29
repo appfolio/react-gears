@@ -1,11 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import CheckboxListInput from '../../src/components/CheckboxListInput';
-import FormChoice from '../../src/components/FormChoice';
+import { CheckboxListInput, FormChoice } from '../../src';
 
 describe('<CheckboxListInput />', () => {
   let onChange = sinon.stub();

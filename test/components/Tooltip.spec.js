@@ -1,9 +1,8 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import Tooltip from '../../src/components/Tooltip';
+import { Tooltip } from '../../src';
 
 describe('<Tooltip />', () => {
   describe('by default', () => {

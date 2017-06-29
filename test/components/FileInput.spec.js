@@ -3,12 +3,8 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import assert from 'assert';
 import { Input } from 'reactstrap';
+import { FileInput } from '../../src';
 
-import FileInput from '../../src/components/FileInput';
-
-class MockFileReader {
-  readAsDataURL = stub();
-}
 
 describe('<FileInput />', () => {
   const sandbox = sinon.sandbox.create();

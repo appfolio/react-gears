@@ -1,10 +1,8 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import RadioInput from '../../src/components/RadioInput';
-import FormChoice from '../../src/components/FormChoice';
+import { FormChoice, RadioInput } from '../../src';
 
 describe('<RadioInput />', () => {
   const component = shallow(

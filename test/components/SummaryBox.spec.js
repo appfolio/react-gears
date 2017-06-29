@@ -1,6 +1,5 @@
 import 'jsdom-global/register';
 
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';

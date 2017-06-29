@@ -1,11 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import { Button } from 'reactstrap';
-import Icon from '../../src/components/Icon';
-import HasManyFieldsAdd from '../../src/components/HasManyFieldsAdd';
+import { Icon, HasManyFieldsAdd } from '../../src';
 
 describe('<HasManyFieldsAdd />', () => {
   const component = shallow(

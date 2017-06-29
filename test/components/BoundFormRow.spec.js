@@ -3,9 +3,8 @@ import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import BoundFormRow from '../../src/components/BoundFormRow';
+import { BoundFormRow } from '../../src';
 
-/* eslint-env mocha */
 describe('<BoundFormRow />', () => {
   describe('with context', () => {
     const onChange = sinon.stub();

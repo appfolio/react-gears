@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
@@ -7,7 +5,7 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import ReactSelect from 'react-select';
-import Select from '../../src/components/Select.js';
+import { Select } from '../../src';
 
 const OPTIONS = [
   { label: 'Eeny', value: 1 },

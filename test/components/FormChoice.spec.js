@@ -1,10 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import { Input, Label, FormGroup } from 'reactstrap';
-import FormChoice from '../../src/components/FormChoice';
+import { FormChoice } from '../../src';
 
 describe('<FormChoice />', () => {
   describe('unknown type', () => {

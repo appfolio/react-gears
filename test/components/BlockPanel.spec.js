@@ -1,13 +1,9 @@
-/* eslint-env mocha */
-
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { Button, CardBlock, CardTitle, Icon } from '../../src';
+import { Button, CardBlock, CardTitle, Icon, BlockPanel } from '../../src';
 import { mount, shallow } from 'enzyme';
 
-
-import BlockPanel from '../../src/components/BlockPanel.js';
 
 describe('<BlockPanel />', () => {
   context('is expandable', () => {
