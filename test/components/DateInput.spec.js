@@ -76,6 +76,21 @@ describe('<DateInput />', () => {
     assert.equal(dropdown.props().isOpen, false);
   });
 
+  it('should should not open when disabled is ture', () => {
+    const component = mount(<DateInput disabled />);
+
+    const dropdown = component.find('Dropdown');
+    assert.equal(dropdown.props().isOpen, false);
+
+    const toggle = component.find('InputGroupButton');
+    toggle.simulate('click');
+    assert.equal(dropdown.props().isOpen, false);
+
+    const input = component.find('input');
+    input.simulate('focus');
+    assert.equal(dropdown.props().isOpen, false);
+  });
+
   it('should should close when tab or esc pressed', () => {
     const component = mount(<DateInput showOnFocus />);
     const input = component.find('input');
