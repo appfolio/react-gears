@@ -9,6 +9,7 @@ storiesOf('DateInput', module)
       <DateInput
         dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
         showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
+        disabled={boolean('disabled', DateInput.defaultProps.disabled)}
         onChange={action('onChange')}
       />
     </div>

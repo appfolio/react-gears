@@ -61,6 +61,7 @@ export default class DateInput extends Component {
     keyboard: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     // TODO allow custom header/footer, header & day format?
   }
 
@@ -69,7 +70,8 @@ export default class DateInput extends Component {
     dateFormat: 'M/D/YYYY',
     keyboard: true,
     onChange: () => {},
-    showOnFocus: true
+    showOnFocus: true,
+    disabled: false
   }
 
   constructor(props) {
@@ -188,6 +190,7 @@ export default class DateInput extends Component {
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
               onKeyDown={this.onKeyDown}
+              disabled={this.props.disabled}
             />
             <InputGroupButton onClick={this.toggle}>
               <Button className="px-2" active={open} type="button">
