@@ -51,7 +51,6 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-  Popover,
   PopoverContent,
   PopoverTitle,
   Row,
@@ -100,6 +99,7 @@ import Note from './components/Note.js';
 import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
+import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';

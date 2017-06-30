@@ -11,6 +11,7 @@ import './HelpBubble';
 import './LabelBadge';
 import './Modal';
 import './Nav';
+import './Popover';
 import './Progress';
 import './Table';
 import './Tooltip';
