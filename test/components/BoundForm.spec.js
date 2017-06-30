@@ -11,7 +11,8 @@ describe('<BoundForm />', () => {
     address: {
       address1: '123 awesome',
       city: 'A city'
-    }
+    },
+    birthday: new Date('July 9, 1986 08:32:00')
   };
 
   const errors = {
