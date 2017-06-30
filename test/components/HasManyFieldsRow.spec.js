@@ -1,12 +1,10 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 
 import { Button, Col } from 'reactstrap';
-import Icon from '../../src/components/Icon';
-import HasManyFieldsRow from '../../src/components/HasManyFieldsRow';
+import { Icon, HasManyFieldsRow } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   const onDelete = sinon.spy();

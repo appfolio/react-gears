@@ -1,10 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 
-import PatternInput from '../../src/components/PatternInput';
+import { PatternInput } from '../../src';
 
 describe('<PatternInput />', () => {
   it('restrictInput should only prevent onChange for invalid input', () => {

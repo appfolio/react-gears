@@ -1,11 +1,8 @@
-/* eslint-env mocha */
-
-import 'jsdom-global/register';
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import Table from '../../src/components/Table.js';
+import { Table } from '../../src';
 
 describe('<Table />', () => {
   it('should render correctly', () => {

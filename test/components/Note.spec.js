@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { Note } from '../../src';

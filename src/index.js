@@ -84,6 +84,7 @@ import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FeatureBanner from './components/FeatureBanner.js';
+import FileInput from './components/FileInput.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
@@ -100,8 +101,10 @@ import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Progress from './components/Progress.js';
+import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';
 import Spinner from './components/Spinner.js';
+import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
@@ -141,6 +144,7 @@ export {
   DeletedNote,
   EditableNote,
   Fade,
+  FileInput,
   Form,
   FormFeedback,
   FormGroup,
@@ -215,7 +219,9 @@ export {
   Notes,
   PatternInput,
   Progress,
+  RadioInput,
   Spinner,
+  StaticInput,
   Steps,
   SummaryBox,
   SummaryBoxItem,

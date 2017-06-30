@@ -1,11 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import { Select } from '../../src/';
-import CreditCardExpiration from '../../src/components/CreditCardExpiration';
+import { Select, CreditCardExpiration } from '../../src';
 
 describe('<CreditCardExpiration />', () => {
   const today = new Date();

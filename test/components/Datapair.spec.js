@@ -1,10 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 import { Col } from 'reactstrap';
 
-import Datapair from '../../src/components/Datapair';
+import { Datapair } from '../../src';
 
 describe('<Datapair />', () => {
   const component = shallow(<Datapair label="stuff" value="something" />);

@@ -1,12 +1,7 @@
-import 'jsdom-global/register';
-
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
-import { Icon } from '../../src/';
-
-import Alert from '../../src/components/Alert';
+import { Icon, Alert } from '../../src';
 
 import { Alert as Inner } from 'reactstrap';
 

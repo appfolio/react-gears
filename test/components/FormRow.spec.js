@@ -1,14 +1,9 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import { Input, Label, Col, FormText, FormFeedback } from 'reactstrap';
-import FormRow from '../../src/components/FormRow';
-import StaticInput from '../../src/components/StaticInput';
-import RadioInput from '../../src/components/RadioInput';
-import CheckboxInput from '../../src/components/CheckboxInput';
-import FileInput from '../../src/components/FileInput';
+import { FormRow, StaticInput, RadioInput, CheckboxInput, FileInput } from '../../src';
 
 describe('<FormRow />', () => {
   describe('by default', () => {

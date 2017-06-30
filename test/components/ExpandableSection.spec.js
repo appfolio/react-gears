@@ -1,10 +1,8 @@
-/* eslint-env mocha */
-
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import ExpandableSection from '../../src/components/ExpandableSection.js';
+import { ExpandableSection } from '../../src';
 
 describe('<ExpandableSection />', () => {
   it('should be closed by default', () => {

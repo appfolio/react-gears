@@ -1,14 +1,13 @@
-/* eslint-env mocha */
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import { Calendar } from '../../src';
 import addWeeks from 'date-fns/add_weeks';
 import endOfWeek from 'date-fns/end_of_week';
 import isSameDay from 'date-fns/is_same_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
+import { Calendar } from '../../src';
 
 describe('<Calendar />', () => {
   it('should render correctly', () => {
