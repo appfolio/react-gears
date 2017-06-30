@@ -1,7 +1,9 @@
-import path from 'path';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import css from 'modular-css-rollup';
+import scssSyntax from 'postcss-scss';
+
 
 // `require` understands JSON
 const packageJSON = require('./package.json');
@@ -27,18 +29,17 @@ const config = {
   entry: 'src/index.js',
   exports: 'named',
   plugins: [
+    css({
+      ext: '.scss',
+      parser: scssSyntax,
+      css: 'dist/reactgears.css',
+    }),
     babel({
       exclude: 'node_modules/**',
       plugins: ['external-helpers'],
     }),
     nodeResolve(),
     commonjs(),
-    // Rollup plugin that replaces scss imports with empty files.
-    {
-      load(id) {
-        return path.extname(id) === '.scss' ? 'export default {}' : null;
-      }
-    },
   ],
   external: isExternal,
   targets: [
