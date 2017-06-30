@@ -9,6 +9,8 @@ import fecha from 'fecha';
 const dateFormat = (date, format) => fecha.format(date, format);
 
 class Note extends React.Component {
+  static displayName = 'Note';
+
   static propTypes = {
     className: React.PropTypes.string,
     note: React.PropTypes.object,
@@ -44,7 +46,7 @@ class Note extends React.Component {
               onChange={onChange}
               onSave={onSave}
             /> :
-            <Card ref="note" color="info" outline>
+            <Card color="info" outline>
               <CardHeader className="d-flex justify-content-start p-2 bg-info">
                 {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
                 <span className="text-muted">

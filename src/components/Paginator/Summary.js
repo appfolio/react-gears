@@ -4,6 +4,8 @@ import React, { Component } from 'react';
  * A text summary of the current pagination state
  */
 export default class Summary extends Component {
+  static displayName = 'Summary';
+
   static propTypes = {
     className: React.PropTypes.string,
     from: React.PropTypes.number.isRequired,

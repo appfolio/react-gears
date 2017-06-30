@@ -142,7 +142,7 @@ describe('<BlockPanel />', () => {
     it('should render title components when passed', () => {
       const component = mount(
         <BlockPanel
-          title={<h1 id="title">WE ARE THE CHAMPIONS</h1>}
+          title={<span id="title">WE ARE THE CHAMPIONS</span>}
           controls={<Button id="action">Go!</Button>}
         >
           <h1 id="hi">Hello World!</h1>
