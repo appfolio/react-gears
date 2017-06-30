@@ -88336,6 +88336,7 @@ var DateInput = function (_Component) {
 
       var _props = this.props,
           className = _props.className,
+          disabled = _props.disabled,
           showOnFocus = _props.showOnFocus;
       var open = this.state.open;
 
@@ -88348,7 +88349,7 @@ var DateInput = function (_Component) {
         null,
         _react2.default.createElement(
           _reactstrap.Dropdown,
-          { isOpen: open, toggle: this.toggle },
+          { isOpen: !disabled && open, toggle: this.toggle },
           _react2.default.createElement(
             _.InputGroup,
             { className: className },
@@ -88359,14 +88360,14 @@ var DateInput = function (_Component) {
               onClick: showOnFocus && this.show,
               onFocus: showOnFocus && this.show,
               onKeyDown: this.onKeyDown,
-              disabled: this.props.disabled
+              disabled: disabled
             }),
             _react2.default.createElement(
               _.InputGroupButton,
               { onClick: this.toggle },
               _react2.default.createElement(
                 _.Button,
-                { className: 'px-2', active: open, type: 'button' },
+                { className: 'px-2', disabled: disabled, active: open, type: 'button' },
                 _react2.default.createElement(_.Icon, { name: 'calendar', fixedWidth: true })
               )
             )
@@ -110123,7 +110124,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.19.1",
+	"version": "1.19.2",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -110221,4 +110222,4 @@ module.exports = __webpack_require__(885);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.05a3770ce9500a76ba4e.bundle.js.map
+//# sourceMappingURL=preview.8cc3742d65af274c3cb0.bundle.js.map
