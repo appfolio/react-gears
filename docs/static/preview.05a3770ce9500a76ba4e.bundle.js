@@ -88358,7 +88358,8 @@ var DateInput = function (_Component) {
               onChange: this.onChange,
               onClick: showOnFocus && this.show,
               onFocus: showOnFocus && this.show,
-              onKeyDown: this.onKeyDown
+              onKeyDown: this.onKeyDown,
+              disabled: this.props.disabled
             }),
             _react2.default.createElement(
               _.InputGroupButton,
@@ -88456,7 +88457,8 @@ DateInput.propTypes = {
   value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
   keyboard: _react2.default.PropTypes.bool,
   onChange: _react2.default.PropTypes.func,
-  showOnFocus: _react2.default.PropTypes.bool
+  showOnFocus: _react2.default.PropTypes.bool,
+  disabled: _react2.default.PropTypes.bool
   // TODO allow custom header/footer, header & day format?
 };
 DateInput.defaultProps = {
@@ -88464,7 +88466,8 @@ DateInput.defaultProps = {
   dateFormat: 'M/D/YYYY',
   keyboard: true,
   onChange: function onChange() {},
-  showOnFocus: true
+  showOnFocus: true,
+  disabled: false
 };
 
 var _initialiseProps = function _initialiseProps() {
@@ -88661,6 +88664,17 @@ DateInput.__docgenInfo = {
       'description': '',
       'defaultValue': {
         'value': 'true',
+        'computed': false
+      }
+    },
+    'disabled': {
+      'type': {
+        'name': 'bool'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': 'false',
         'computed': false
       }
     }
@@ -93492,6 +93506,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _react2.default.createElement(_src.DateInput, {
       dateFormat: (0, _addonKnobs.text)('dateFormat', _src.DateInput.defaultProps.dateFormat),
       showOnFocus: (0, _addonKnobs.boolean)('showOnFocus', _src.DateInput.defaultProps.showOnFocus),
+      disabled: (0, _addonKnobs.boolean)('disabled', _src.DateInput.defaultProps.disabled),
       onChange: (0, _react3.action)('onChange')
     })
   );
@@ -110108,7 +110123,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.19.0",
+	"version": "1.19.1",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -110206,4 +110221,4 @@ module.exports = __webpack_require__(885);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.38b3c36dbbcef3bdcefe.bundle.js.map
+//# sourceMappingURL=preview.05a3770ce9500a76ba4e.bundle.js.map
