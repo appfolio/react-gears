@@ -173,7 +173,7 @@ export default class DateInput extends Component {
   toggle = () => (this.state.open ? this.close() : this.show());
 
   render() {
-    const { className, showOnFocus } = this.props;
+    const { className, disabled, showOnFocus } = this.props;
     const { open } = this.state;
     const value = this.getCurrentValue();
     const date = this.getCurrentDate();
@@ -181,7 +181,7 @@ export default class DateInput extends Component {
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
-        <Dropdown isOpen={open} toggle={this.toggle}>
+        <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
           <InputGroup className={className}>
             <Input
               type="text"
@@ -190,10 +190,10 @@ export default class DateInput extends Component {
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
               onKeyDown={this.onKeyDown}
-              disabled={this.props.disabled}
+              disabled={disabled}
             />
             <InputGroupButton onClick={this.toggle}>
-              <Button className="px-2" active={open} type="button">
+              <Button className="px-2" disabled={disabled} active={open} type="button">
                 <Icon name="calendar" fixedWidth />
               </Button>
             </InputGroupButton>
