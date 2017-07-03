@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'reactstrap';
 import noop from 'lodash.noop';
 import set from 'lodash.set';
-import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from 'deep-clone-simple';
 
 class BoundForm extends React.Component {
   static propTypes = {
