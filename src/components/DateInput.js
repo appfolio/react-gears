@@ -59,6 +59,7 @@ export default class DateInput extends Component {
       React.PropTypes.object
     ]),
     keyboard: React.PropTypes.bool,
+    onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
