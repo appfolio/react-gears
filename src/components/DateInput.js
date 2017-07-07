@@ -69,6 +69,7 @@ export default class DateInput extends Component {
     className: '',
     dateFormat: 'M/D/YYYY',
     keyboard: true,
+    onBlur: () => {},
     onChange: () => {},
     showOnFocus: true,
     disabled: false
@@ -86,6 +87,17 @@ export default class DateInput extends Component {
       open: false,
       value
     };
+  }
+
+  onBlur = event => {
+    const value = event.target.value;
+    const date = parse(value, this.props.dateFormat);
+
+    if (date) {
+      this.props.onBlur(date, true);
+    } else {
+      this.props.onBlur(value, false);
+    }
   }
 
   onChange = event => {
@@ -186,6 +198,7 @@ export default class DateInput extends Component {
             <Input
               type="text"
               value={value}
+              onBlur={this.onBlur}
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
