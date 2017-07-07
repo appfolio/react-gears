@@ -140,6 +140,14 @@ describe('<DateInput />', () => {
       input.simulate('change', { target: { value: 'Grape Jelly' } });
       assert(callback.calledWith('Grape Jelly', false));
     });
+
+    it('should should call onBlur after losing focus', () => {
+      const callback = sinon.spy();
+      const component = mount(<DateInput onBlur={callback} />);
+      const input = component.find('input');
+      input.simulate('blur');
+      assert(callback.calledOnce);
+    });
   });
 
   context('date picker', () => {

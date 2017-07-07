@@ -59,6 +59,7 @@ export default class DateInput extends Component {
       React.PropTypes.object
     ]),
     keyboard: React.PropTypes.bool,
+    onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
@@ -69,6 +70,7 @@ export default class DateInput extends Component {
     className: '',
     dateFormat: 'M/D/YYYY',
     keyboard: true,
+    onBlur: () => {},
     onChange: () => {},
     showOnFocus: true,
     disabled: false
@@ -173,7 +175,7 @@ export default class DateInput extends Component {
   toggle = () => (this.state.open ? this.close() : this.show());
 
   render() {
-    const { className, disabled, showOnFocus } = this.props;
+    const { className, disabled, onBlur, showOnFocus } = this.props;
     const { open } = this.state;
     const value = this.getCurrentValue();
     const date = this.getCurrentDate();
@@ -186,6 +188,7 @@ export default class DateInput extends Component {
             <Input
               type="text"
               value={value}
+              onBlur={onBlur}
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
