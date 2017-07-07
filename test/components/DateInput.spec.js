@@ -143,11 +143,10 @@ describe('<DateInput />', () => {
 
     it('should should call onBlur after losing focus', () => {
       const callback = sinon.spy();
-      const garbage = 'yadda yadda';
-      const component = mount(<DateInput onBlur={callback} value={garbage} />);
+      const component = mount(<DateInput onBlur={callback} />);
       const input = component.find('input');
       input.simulate('blur');
-      assert(callback.calledWith(garbage, false));
+      assert(callback.calledOnce);
     });
   });
 

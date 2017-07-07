@@ -90,17 +90,6 @@ export default class DateInput extends Component {
     };
   }
 
-  onBlur = event => {
-    const value = event.target.value;
-    const date = parse(value, this.props.dateFormat);
-
-    if (date) {
-      this.props.onBlur(date, true);
-    } else {
-      this.props.onBlur(value, false);
-    }
-  }
-
   onChange = event => {
     const value = event.target.value;
     this.setState({
@@ -186,7 +175,7 @@ export default class DateInput extends Component {
   toggle = () => (this.state.open ? this.close() : this.show());
 
   render() {
-    const { className, disabled, showOnFocus } = this.props;
+    const { className, disabled, onBlur, showOnFocus } = this.props;
     const { open } = this.state;
     const value = this.getCurrentValue();
     const date = this.getCurrentDate();
@@ -199,7 +188,7 @@ export default class DateInput extends Component {
             <Input
               type="text"
               value={value}
-              onBlur={this.onBlur}
+              onBlur={onBlur}
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
