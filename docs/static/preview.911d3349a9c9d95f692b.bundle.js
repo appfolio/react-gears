@@ -88337,6 +88337,7 @@ var DateInput = function (_Component) {
       var _props = this.props,
           className = _props.className,
           disabled = _props.disabled,
+          onBlur = _props.onBlur,
           showOnFocus = _props.showOnFocus;
       var open = this.state.open;
 
@@ -88356,6 +88357,7 @@ var DateInput = function (_Component) {
             _react2.default.createElement(_.Input, {
               type: 'text',
               value: value,
+              onBlur: onBlur,
               onChange: this.onChange,
               onClick: showOnFocus && this.show,
               onFocus: showOnFocus && this.show,
@@ -88457,6 +88459,7 @@ DateInput.propTypes = {
   defaultValue: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
   value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
   keyboard: _react2.default.PropTypes.bool,
+  onBlur: _react2.default.PropTypes.func,
   onChange: _react2.default.PropTypes.func,
   showOnFocus: _react2.default.PropTypes.bool,
   disabled: _react2.default.PropTypes.bool
@@ -88466,6 +88469,7 @@ DateInput.defaultProps = {
   className: '',
   dateFormat: 'M/D/YYYY',
   keyboard: true,
+  onBlur: function onBlur() {},
   onChange: function onChange() {},
   showOnFocus: true,
   disabled: false
@@ -88643,6 +88647,17 @@ DateInput.__docgenInfo = {
       'description': '',
       'defaultValue': {
         'value': 'true',
+        'computed': false
+      }
+    },
+    'onBlur': {
+      'type': {
+        'name': 'func'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': '() => {}',
         'computed': false
       }
     },
@@ -93508,6 +93523,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       dateFormat: (0, _addonKnobs.text)('dateFormat', _src.DateInput.defaultProps.dateFormat),
       showOnFocus: (0, _addonKnobs.boolean)('showOnFocus', _src.DateInput.defaultProps.showOnFocus),
       disabled: (0, _addonKnobs.boolean)('disabled', _src.DateInput.defaultProps.disabled),
+      onBlur: (0, _react3.action)('onBlur'),
       onChange: (0, _react3.action)('onChange')
     })
   );
@@ -108393,7 +108409,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.19.3",
+	"version": "1.19.4",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -108492,4 +108508,4 @@ module.exports = __webpack_require__(885);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.1384e1975c351fbae954.bundle.js.map
+//# sourceMappingURL=preview.911d3349a9c9d95f692b.bundle.js.map
