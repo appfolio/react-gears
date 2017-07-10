@@ -11,6 +11,7 @@ class HasManyFields extends React.Component {
   static propTypes = {
     blank: React.PropTypes.any,
     defaultValue: React.PropTypes.array,
+    disabled: React.PropTypes.bool,
     label: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
     template: React.PropTypes.oneOfType([
@@ -89,7 +90,7 @@ class HasManyFields extends React.Component {
   }
 
   render() {
-    const { template: Template, label } = this.props;
+    const { template: Template, label, disabled } = this.props;
 
     return (
       <div>
@@ -97,16 +98,23 @@ class HasManyFields extends React.Component {
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
+            disabled={disabled}
           >
             <Template
               value={item}
               onChange={this.updateItem(i)}
               ref={this.setRowReference(i)}
+              disabled={disabled}
             />
           </HasManyFieldsRow>
         ))}
 
-        <HasManyFieldsAdd onClick={this.addItem}>{label}</HasManyFieldsAdd>
+        <HasManyFieldsAdd
+          onClick={this.addItem}
+          disabled={disabled}
+        >
+          {label}
+        </HasManyFieldsAdd>
       </div>
     );
   }

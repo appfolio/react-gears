@@ -3,6 +3,7 @@ import { storiesOf, action } from '@storybook/react';
 
 import { AddressInput, HasManyFields, HasManyFieldsAdd, HasManyFieldsRow } from '../src';
 import { Input } from 'reactstrap';
+import { boolean } from '@storybook/addon-knobs';
 
 const items = [{
   address1: '50 Castilian Dr.',
@@ -22,5 +23,5 @@ storiesOf('HasManyFields', module)
     <HasManyFieldsAdd onClick={action('onClick')}>Button Label Content</HasManyFieldsAdd>
   ))
   .addWithInfo('Full Example', () => (
-    <HasManyFields defaultValue={items} template={AddressInput} blank={{ countryCode: 'US' }} label="Add an Address" />
+    <HasManyFields defaultValue={items} template={AddressInput} blank={{ countryCode: 'US' }} label="Add an Address" disabled={boolean('disabled', false)} />
   ));
