@@ -1,5 +1,6 @@
-import React from 'react';
 import noop from 'lodash.noop';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
@@ -34,6 +35,8 @@ class HasManyFields extends React.Component {
         value: deepCopy(props.defaultValue)
       };
     }
+
+    this.rowRefs = [];
   }
 
   get value() {
@@ -52,13 +55,38 @@ class HasManyFields extends React.Component {
   }
 
   updateItem = i => update => this.withCopiedValue(v => v[i] = update)
+
   addItem = () => this.withCopiedValue(v => {
     const blank = typeof this.props.blank === 'function' ?
       this.props.blank(v) :
       this.props.blank;
     v.push(blank);
+
+    setTimeout(() => this.focusRow(this.rowRefs.length - 1));
   })
-  deleteItem = i => () => this.withCopiedValue(v => v.splice(i, 1))
+
+  deleteItem = i => () => this.withCopiedValue(v => {
+    v.splice(i, 1);
+    setTimeout(() => this.focusRow(v.length > i ? i : i - 1));
+  })
+
+  setRowReference = index => rowTemplate => {
+    this.rowRefs[index] = rowTemplate;
+
+    if (this.rowRefs.every(row => row === null)) {
+      this.rowRefs = [];
+    }
+  }
+
+  focusRow = index => {
+    const row = this.rowRefs[index];
+    if (!row) {
+      return;
+    }
+    const el = ReactDOM.findDOMNode(row);
+    const firstInput = el.getElementsByTagName('input')[0];
+    firstInput && firstInput.focus();
+  }
 
   render() {
     const { template: Template, label } = this.props;
@@ -70,7 +98,11 @@ class HasManyFields extends React.Component {
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
           >
-            <Template value={item} onChange={this.updateItem(i)} />
+            <Template
+              value={item}
+              onChange={this.updateItem(i)}
+              ref={this.setRowReference(i)}
+            />
           </HasManyFieldsRow>
         ))}
 
