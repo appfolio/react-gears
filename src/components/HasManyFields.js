@@ -95,7 +95,7 @@ class HasManyFields extends Component {
       return;
     }
     const el = ReactDOM.findDOMNode(row);
-    const firstInput = el.getElementsByTagName('input')[0];
+    const firstInput = el.querySelectorAll('input, select, textarea')[0];
     firstInput && firstInput.focus();
   };
 
