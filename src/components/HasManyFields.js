@@ -1,30 +1,33 @@
+import deepCopy from 'deep-clone-simple';
 import noop from 'lodash.noop';
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
 
-const deepCopy = val => JSON.parse(JSON.stringify(val));
-
-class HasManyFields extends React.Component {
+class HasManyFields extends Component {
   static propTypes = {
-    blank: React.PropTypes.any,
-    defaultValue: React.PropTypes.array,
-    disabled: React.PropTypes.bool,
-    label: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func,
-    template: React.PropTypes.oneOfType([
-      React.PropTypes.func,
-      React.PropTypes.element
-    ]).isRequired,
-    value: React.PropTypes.array
-  }
+    blank: PropTypes.any,
+    defaultValue: PropTypes.array,
+    disabled: PropTypes.bool,
+    label: PropTypes.string.isRequired,
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    onUpdate: PropTypes.func,
+    onChange: PropTypes.func,
+    template: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
+      .isRequired,
+    value: PropTypes.array
+  };
 
   static defaultProps = {
     defaultValue: [],
+    onAdd: noop,
+    onRemove: noop,
+    onUpdate: noop,
     onChange: noop
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -53,23 +56,30 @@ class HasManyFields extends React.Component {
     const val = deepCopy(this.value);
     func(val);
     this.value = val;
-  }
+  };
 
-  updateItem = i => update => this.withCopiedValue(v => v[i] = update)
+  updateItem = i => update => {
+    this.props.onUpdate(i, update);
+    this.withCopiedValue(v => (v[i] = update));
+  };
 
-  addItem = () => this.withCopiedValue(v => {
-    const blank = typeof this.props.blank === 'function' ?
-      this.props.blank(v) :
-      this.props.blank;
-    v.push(blank);
-
+  addItem = () => {
+    this.props.onAdd();
+    this.withCopiedValue(v => {
+      const blank =
+        typeof this.props.blank === 'function'
+          ? this.props.blank(v)
+          : this.props.blank;
+      v.push(blank);
+    });
     setTimeout(() => this.focusRow(this.rowRefs.length - 1));
-  })
+  };
 
-  deleteItem = i => () => this.withCopiedValue(v => {
-    v.splice(i, 1);
-    setTimeout(() => this.focusRow(v.length > i ? i : i - 1));
-  })
+  deleteItem = i => () => {
+    this.props.onRemove(i);
+    this.withCopiedValue(v => v.splice(i, 1));
+    setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
+  };
 
   setRowReference = index => rowTemplate => {
     this.rowRefs[index] = rowTemplate;
@@ -77,7 +87,7 @@ class HasManyFields extends React.Component {
     if (this.rowRefs.every(row => row === null)) {
       this.rowRefs = [];
     }
-  }
+  };
 
   focusRow = index => {
     const row = this.rowRefs[index];
@@ -87,14 +97,14 @@ class HasManyFields extends React.Component {
     const el = ReactDOM.findDOMNode(row);
     const firstInput = el.getElementsByTagName('input')[0];
     firstInput && firstInput.focus();
-  }
+  };
 
   render() {
     const { template: Template, label, disabled } = this.props;
 
     return (
       <div>
-        {this.value.map((item, i, items) => (
+        {this.value.map((item, i, items) =>
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
@@ -107,12 +117,9 @@ class HasManyFields extends React.Component {
               disabled={disabled}
             />
           </HasManyFieldsRow>
-        ))}
+        )}
 
-        <HasManyFieldsAdd
-          onClick={this.addItem}
-          disabled={disabled}
-        >
+        <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
           {label}
         </HasManyFieldsAdd>
       </div>
