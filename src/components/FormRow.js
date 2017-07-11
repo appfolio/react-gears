@@ -55,10 +55,12 @@ const FormRow = props => {
 
   return (
     <FormGroup row color={rowColor}>
-      <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
-        {label}
-        {required && label ? <span className="text-danger">&nbsp;*</span> : null}
-      </Label>
+      {label && (
+        <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
+          {label}
+          {required && label ? <span className="text-danger">&nbsp;*</span> : null}
+        </Label>
+      )}
       <Col sm={inputContainerWidth}>
         <Row>
           <Col {...width} >
