@@ -38,4 +38,3 @@ storiesOf('AddressInput', module)
       />
     </div>
   ));
-

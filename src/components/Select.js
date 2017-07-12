@@ -14,7 +14,6 @@ class Select extends Component {
   };
 
   static defaultProps = {
-    defaultValue: '',
     onChange: noop,
   };
 
