@@ -20,7 +20,7 @@ describe('<Select />', () => {
 
       it('should have a blank default', () => {
         assert.equal(component.type(), ReactSelect);
-        assert.equal(component.prop('value'), '');
+        assert.equal(component.prop('value'), null);
       });
 
       it('should clear input', () => {
