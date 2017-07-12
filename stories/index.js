@@ -23,6 +23,7 @@ import './CurrencyInput';
 import './CreditCardInput';
 import './DateInput';
 import './DateMonth';
+import './FormRow';
 import './InputGroup';
 import './Select';
 
