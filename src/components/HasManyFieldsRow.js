@@ -9,11 +9,10 @@ const HasManyFieldsRow = ({ children, onDelete, disabled }) => (
     <Col children={children} />
     <Col xs="auto" className="pl-3 d-flex">
       <Button
-        outline
-        color={disabled ? 'secondary' : 'danger'}
+        color="danger"
         onClick={onDelete}
         disabled={disabled}
-        className="rounded-0 p-2"
+        className="p-2"
       >
         <Icon name="trash-o" size="lg" />
       </Button>

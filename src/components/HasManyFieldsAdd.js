@@ -4,12 +4,11 @@ import { Button } from 'reactstrap';
 
 import Icon from './Icon';
 
-const HasManyFieldsAdd = ({ children, outline, color, className, ...props }) => {
-  const classes = classNames('w-100 rounded-0', className);
-  const { disabled } = props;
+const HasManyFieldsAdd = ({ children, className, ...props }) => {
+  const classes = classNames('w-100 bg-success', className);
 
   return (
-    <Button outline color={disabled ? 'secondary' : 'success'} {...props} className={classes}>
+    <Button color="success" {...props} className={classes}>
       <Icon name="plus-circle" className="mr-2" />
       <span children={children} />
     </Button>
