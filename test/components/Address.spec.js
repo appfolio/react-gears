@@ -155,7 +155,7 @@ describe('<Address />', () => {
     it('should update state', () => {
       const input = component.find('[name="state"]');
       assert.equal(input.prop('value'), 'NJ');
-      assert.equal(input.prop('defaultValue'), '');
+      assert.equal(input.prop('defaultValue'), null);
 
       input.simulate('change', { label: 'New York', value: 'NY' });
       assert(callback.calledWith(Object.assign({}, addressData, { state: 'NY' })));
@@ -176,7 +176,7 @@ describe('<Address />', () => {
     it('should update country', () => {
       const input = component.find('[name="countryCode"]');
       assert.equal(input.prop('value'), 'US');
-      assert.equal(input.prop('defaultValue'), '');
+      assert.equal(input.prop('defaultValue'), null);
 
       input.simulate('change', { label: 'USA', value: 'US' });
       assert(callback.calledWith(Object.assign({}, addressData, { countryCode: 'US' })));

@@ -1,11 +1,14 @@
 :global {
   // Import and override react-select's SCSS variables to match BS4:
-  $select-input-border-width: 0.1rem;
-  $select-input-height: 2.4rem !default;
+  $select-input-height: 2.35rem !default;
+  $select-input-internal-height: 2.25rem !default;
 
   // Override react-select styles to match Saffron (TODO move to theme?)
+  $select-input-bg-disabled: #eceeef;
+  $select-input-border-color: #d9d9d9;
+  $select-option-focused-bg: #3179cd;
   $select-option-focused-color: #FFF;
-  $select-option-focused-bg: #00AFDB;
+  $select-text-color: #55595c;
 
   // TODO correct inner padding, colors to match BS styles
 
