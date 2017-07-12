@@ -108490,7 +108490,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.20.0",
+	"version": "1.20.1",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -108588,4 +108588,4 @@ module.exports = __webpack_require__(885);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.34b90edf2398ef2de771.bundle.js.map
+//# sourceMappingURL=preview.33ff7f39156e086696e6.bundle.js.map
