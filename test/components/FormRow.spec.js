@@ -21,6 +21,11 @@ describe('<FormRow />', () => {
       assert.equal(label.render().text(), 'First Name');
     });
 
+    it('should not create a Label if the label prop is blank', () => {
+      const wrapper = shallow(<FormRow id="someID" size="sm" />);
+      assert.equal(wrapper.find(Label).length, 0);
+    });
+
     it('should wrap the input in a column', () => {
       const col = component.find(Col).at(0);
       assert.equal(col.prop('sm'), 9);
