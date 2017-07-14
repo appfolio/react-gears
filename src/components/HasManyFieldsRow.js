@@ -14,7 +14,7 @@ const HasManyFieldsRow = ({ children, onDelete, disabled }) => (
         disabled={disabled}
         className="p-2"
       >
-        <Icon name="trash-o" size="lg" />
+        <Icon name="times-circle-o" size="lg" />
       </Button>
     </Col>
   </Row>
