@@ -9,22 +9,17 @@ import { HasManyFieldsAdd, Icon } from '../../src';
 describe('<HasManyFieldsAdd />', () => {
   const component = shallow(
     <HasManyFieldsAdd
-      outline={false}
+      outline
       color="danger"
-      className="foo"
+      className="foobar"
       random="prop"
     >
       Custom Label!
     </HasManyFieldsAdd>
   );
 
-  it('should ignore outline and color props', () => {
-    assert.equal(component.prop('outline'), true);
-    assert.equal(component.prop('color'), 'success');
-  });
-
   it('should merge classNames', () => {
-    assert.equal(component.prop('className'), 'w-100 rounded-0 foo');
+    assert(component.prop('className').indexOf('foobar') >= 0);
   });
 
   it('should forward props', () =>
@@ -54,6 +49,5 @@ describe('<HasManyFieldsAdd />', () => {
     );
 
     assert.equal(disabledComponent.prop('disabled'), true);
-    assert.equal(disabledComponent.prop('color'), 'secondary');
   });
 });

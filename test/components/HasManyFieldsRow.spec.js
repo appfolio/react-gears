@@ -5,7 +5,7 @@ import React from 'react';
 import { Button, Col } from 'reactstrap';
 import sinon from 'sinon';
 
-import { HasManyFieldsRow, Icon } from '../../src';
+import { HasManyFieldsRow } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
@@ -23,9 +23,7 @@ describe('<HasManyFieldsRow />', () => {
     });
 
     it('should have a delete button', () => {
-      assert.equal(deleteButton.prop('outline'), true);
-      assert.equal(deleteButton.prop('color'), 'danger');
-      assert.equal(deleteButton.find(Icon).prop('name'), 'trash-o');
+      assert(deleteButton);
     });
 
     it('should call onDelete', () => {
@@ -50,10 +48,7 @@ describe('<HasManyFieldsRow />', () => {
     });
 
     it('should have a disabled delete button', () => {
-      assert.equal(deleteButton.prop('outline'), true);
-      assert.equal(deleteButton.prop('color'), 'secondary');
       assert.equal(deleteButton.prop('disabled'), true);
-      assert.equal(deleteButton.find(Icon).prop('name'), 'trash-o');
     });
 
     it('should not call onDelete', () => {
