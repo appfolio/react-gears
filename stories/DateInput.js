@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, DateInput, FormRow } from '../src';
+import { Calendar, DateInput, Icon, FormRow } from '../src';
 import { action, storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
 
@@ -39,6 +39,21 @@ storiesOf('DateInput', module)
       <FormRow type={DateInput} onChange={action('onChange')} label="new Date(2000, 0, 1)" value={new Date(2000, 0, 1)} />
       <FormRow type={DateInput} onChange={action('onChange')} label="'1/23/2004'" value="1/23/2004" />
       <FormRow type={DateInput} onChange={action('onChange')} label="'Garbage in'" value="Garbage in" />
+    </div>
+  ))
+  .addWithInfo('Custom header and footer', () => (
+    <div className="d-inline-flex">
+      <DateInput
+        header={<h2 className="text-center text-danger p-2 font-italic">PIRELLI</h2>}
+        footer={(
+          <div className="d-flex justify-content-around p-3">
+            <Icon name="flag-checkered" />
+            <Icon name="flag-checkered" />
+            <Icon name="flag-checkered" />
+            <Icon name="flag-checkered" />
+            <Icon name="flag-checkered" />
+          </div>)}
+      />
     </div>
   ))
   .addWithInfo('Calendar', () => (
