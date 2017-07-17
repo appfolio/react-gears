@@ -231,4 +231,43 @@ describe('<DateInput />', () => {
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
     });
   });
+
+  context('date picker with controlled visible dates', () => {
+    const callback = sinon.spy();
+    const defaultDate = new Date(2017, 7, 14);
+    const dateVisible = (date) => isSameDay(date, defaultDate);
+    const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
+    const toggle = component.find('InputGroupButton');
+    toggle.simulate('click');
+
+    it('should pass dateVisible func to Calendar component', () => {
+      const calendar = component.find('Calendar');
+      assert.equal(calendar.props().dateVisible, dateVisible);
+    });
+
+    it('should not allow to pick invisible date', () => {
+      callback.reset();
+      const currentDate = component.instance().getCurrentDate();
+      const firstDate = component.find('Day').first();
+      assert.equal(isSameDay(currentDate, firstDate.props().day.date), false);
+
+      firstDate.simulate('click');
+      assert(callback.notCalled);
+      assert(isSameDay(currentDate, component.instance().getCurrentDate()));
+    });
+  });
+
+  it('should render custom header prop', () => {
+    const Custom = () => (<div className='custom-header'>Custom Header</div>);
+    const component = mount(<DateInput header={<Custom />} />);
+    assert.equal(component.find('div.custom-header').length, 1);
+    assert.equal(component.find('header.py-2').length, 0);
+  });
+
+  it('should render custom footer prop', () => {
+    const Custom = () => (<div className='custom-footer'>Custom Footer</div>);
+    const component = mount(<DateInput footer={<Custom />} />);
+    assert.equal(component.find('div.custom-footer').length, 1);
+    assert.equal(component.find('footer.pb-2').length, 0);
+  });
 });
