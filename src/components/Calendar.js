@@ -105,7 +105,7 @@ class Calendar extends Component {
         <tbody>
           {weeks.map((days, w) => (
             <tr key={w}>
-              {days.map((day, d) => <Day day={day} dateFormat={dateFormat} key={d} onClick={() => onSelect(day.date)} />)}
+              {days.map((day, d) => <Day day={day} dateFormat={dateFormat} key={d} onClick={() => day.visible && onSelect(day.date)} />)}
             </tr>
           ))}
         </tbody>
