@@ -1,31 +1,59 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
 
+import { mount, shallow } from 'enzyme';
+import React from 'react';
 import { Button, Col } from 'reactstrap';
-import { Icon, HasManyFieldsRow } from '../../src';
+import sinon from 'sinon';
+
+import { HasManyFieldsRow } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
-  const onDelete = sinon.spy();
-  const component = shallow(
-    <HasManyFieldsRow onDelete={onDelete}>Stuff</HasManyFieldsRow>
-  );
+  let onDelete;
+  let component;
+  let deleteButton;
 
-  const deleteButton = component.find(Button);
+  describe('when enabled', () => {
+    beforeEach(() => {
+      onDelete = sinon.spy();
+      component = shallow(
+        <HasManyFieldsRow onDelete={onDelete}>Stuff</HasManyFieldsRow>
+      );
 
-  it('should have a delete button', () => {
-    assert.equal(deleteButton.prop('outline'), true);
-    assert.equal(deleteButton.prop('color'), 'danger');
-    assert.equal(deleteButton.find(Icon).prop('name'), 'trash-o');
+      deleteButton = component.find(Button);
+    });
+
+    it('should have a delete button', () => {
+      assert(deleteButton);
+    });
+
+    it('should call onDelete', () => {
+      deleteButton.simulate('click');
+      assert.equal(onDelete.calledOnce, true);
+    });
+
+    it('should put content in first column', () =>
+      assert.equal(component.find(Col).first().render().text(), 'Stuff'));
   });
 
-  it('should call onDelete', () => {
-    deleteButton.simulate('click');
-    assert.equal(onDelete.calledOnce, true);
-  });
+  describe('when disabled', () => {
+    beforeEach(() => {
+      onDelete = sinon.spy();
+      component = mount(
+        <HasManyFieldsRow onDelete={onDelete} disabled>
+          Stuff
+        </HasManyFieldsRow>
+      );
 
-  it('should put content in first column', () =>
-    assert.equal(component.find(Col).first().render().text(), 'Stuff')
-  );
+      deleteButton = component.find(Button);
+    });
+
+    it('should have a disabled delete button', () => {
+      assert.equal(deleteButton.prop('disabled'), true);
+    });
+
+    it('should not call onDelete', () => {
+      deleteButton.simulate('click');
+      assert.equal(onDelete.calledOnce, false);
+    });
+  });
 });

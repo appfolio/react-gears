@@ -1,9 +1,9 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
 
+import { shallow } from 'enzyme';
+import React from 'react';
 import { Input } from 'reactstrap';
+import sinon, { spy } from 'sinon';
 
 import { HasManyFields, HasManyFieldsAdd, HasManyFieldsRow } from '../../src';
 
@@ -11,12 +11,18 @@ const items = [ 'monkey', 'cat', 'mouse' ];
 
 describe('<HasManyFields />', () => {
   describe('uncontrolled', () => {
-    const onChange = sinon.spy();
+    const onAdd = spy();
+    const onRemove = spy();
+    const onUpdate = spy();
+    const onChange = spy();
     const component = shallow(
       <HasManyFields
         defaultValue={items}
         template={Input}
         blank={values => values.length.toString()}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
         onChange={onChange}
         label="Add an Animal"
       />
@@ -50,8 +56,9 @@ describe('<HasManyFields />', () => {
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.equal(component.find(Input).last().prop('value'), '3');
       assert.deepEqual(component.state('value'), expectedItems);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledOnce(onAdd);
     });
 
     it('should remove an item', () => {
@@ -59,8 +66,9 @@ describe('<HasManyFields />', () => {
       component.find(HasManyFieldsRow).at(1).simulate('delete');
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.deepEqual(component.state('value'), expectedItems);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledWith(onRemove, 1);
     });
 
     it('should update an item', () => {
@@ -69,18 +77,25 @@ describe('<HasManyFields />', () => {
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.equal(component.find(Input).at(1).prop('value'), expectedItems[1]);
       assert.deepEqual(component.state('value'), expectedItems);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledWith(onUpdate, 1, expectedItems[1]);
     });
   });
 
   describe('controlled', () => {
-    const onChange = sinon.spy();
+    const onAdd = spy();
+    const onRemove = spy();
+    const onUpdate = spy();
+    const onChange = spy();
     const component = shallow(
       <HasManyFields
         value={items}
         template={Input}
         blank={'foo'}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
         onChange={onChange}
         label="Add an Animal"
       />
@@ -107,24 +122,27 @@ describe('<HasManyFields />', () => {
       const expectedItems = [ 'monkey', 'cat', 'mouse', 'foo' ];
       addItem.simulate('click');
       assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledOnce(onAdd);
     });
 
     it('should remove an item', () => {
       const expectedItems = [ 'monkey', 'mouse' ];
       component.find(HasManyFieldsRow).at(1).simulate('delete');
       assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledWith(onRemove, 1);
     });
 
     it('should update an item', () => {
       const expectedItems = [ 'monkey', 'cat', 'la souris est sous la table' ];
       component.find(Input).at(2).simulate('change', expectedItems[2]);
       assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
-      assert.equal(onChange.calledWith(expectedItems), true);
+      sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
+      sinon.assert.calledWith(onUpdate, 2, expectedItems[2]);
     });
   });
 });
