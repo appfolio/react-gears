@@ -49,25 +49,29 @@ export default class DateInput extends Component {
 
   static propTypes = {
     className: React.PropTypes.string,
+    dateVisible: React.PropTypes.func,
     dateFormat: React.PropTypes.string,
     defaultValue: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object
     ]),
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.object
-    ]),
+    disabled: React.PropTypes.bool,
+    header: React.PropTypes.node,
+    footer: React.PropTypes.node,
     keyboard: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     showOnFocus: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
+    value: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.object
+    ])
     // TODO allow custom header/footer, header & day format?
   }
 
   static defaultProps = {
     className: '',
+    dateVisible: () => true,
     dateFormat: 'M/D/YYYY',
     keyboard: true,
     onBlur: () => {},
@@ -175,7 +179,7 @@ export default class DateInput extends Component {
   toggle = () => (this.state.open ? this.close() : this.show());
 
   render() {
-    const { className, disabled, onBlur, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, onBlur, showOnFocus } = this.props;
     const { open } = this.state;
     const value = this.getCurrentValue();
     const date = this.getCurrentDate();
@@ -207,41 +211,46 @@ export default class DateInput extends Component {
             onKeyDown={this.onKeyDown}
             style={{ minWidth: '19rem' }}
           >
-            <header className="d-flex py-2">
-              <ButtonGroup size="sm">
-                <Button ref="prevYear" color="link" onClick={() => this.prevYear()}>
-                  <Icon name="angle-double-left" fixedWidth />
-                </Button>
-                <Button ref="prevMonth" color="link" onClick={() => this.prevMonth()}>
-                  <Icon name="angle-left" fixedWidth />
-                </Button>
-              </ButtonGroup>
+            {header || (
+              <header className="d-flex py-2">
+                <ButtonGroup size="sm">
+                  <Button ref="prevYear" color="link" onClick={() => this.prevYear()}>
+                    <Icon name="angle-double-left" fixedWidth />
+                  </Button>
+                  <Button ref="prevMonth" color="link" onClick={() => this.prevMonth()}>
+                    <Icon name="angle-left" fixedWidth />
+                  </Button>
+                </ButtonGroup>
 
-              <span className="m-auto">
-                {format(date, 'MMMM YYYY')}
-              </span>
+                <span className="m-auto">
+                  {format(date, 'MMMM YYYY')}
+                </span>
 
-              <ButtonGroup size="sm">
-                <Button ref="nextMonth" color="link" onClick={() => this.nextMonth()}>
-                  <Icon name="angle-right" fixedWidth />
-                </Button>
-                <Button ref="nextYear" color="link" onClick={() => this.nextYear()}>
-                  <Icon name="angle-double-right" fixedWidth />
-                </Button>
-              </ButtonGroup>
-            </header>
+                <ButtonGroup size="sm">
+                  <Button ref="nextMonth" color="link" onClick={() => this.nextMonth()}>
+                    <Icon name="angle-right" fixedWidth />
+                  </Button>
+                  <Button ref="nextYear" color="link" onClick={() => this.nextYear()}>
+                    <Icon name="angle-double-right" fixedWidth />
+                  </Button>
+                </ButtonGroup>
+              </header>
+            )}
 
             <Calendar
               date={date}
+              dateVisible={dateVisible}
               onSelect={this.onSelect}
               className="m-0"
             />
 
-            <footer className="text-center pb-2 pt-1">
-              <div>
-                <Button ref="today" onClick={this.today} className="mr-2">Today</Button>
-              </div>
-            </footer>
+            {footer || (
+              <footer className="text-center pb-2 pt-1">
+                <div>
+                  <Button ref="today" onClick={this.today} className="mr-2">Today</Button>
+                </div>
+              </footer>
+            )}
           </DropdownMenu>
         </Dropdown>
       </div>);

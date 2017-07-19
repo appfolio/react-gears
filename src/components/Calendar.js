@@ -20,8 +20,10 @@ import style from './Calendar.scss';
 const Day = ({ day, dateFormat, ...props }) => {
   const classNames = classnames(
     'text-center',
-    { 'bg-primary text-white': day.selected },
-    { 'text-muted': !day.sameMonth },
+    { 'bg-faded text-muted': !day.sameMonth }, // Lighten days in months before & after
+    { 'bg-primary text-white': day.selected }, // Highlight selected date
+    { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
+    { invisible: !day.visible }, // If date is (optionally) filtered out
     style.date
   );
   return (
@@ -40,6 +42,7 @@ class Calendar extends Component {
     className: React.PropTypes.string,
     date: React.PropTypes.instanceOf(Date),
     dateFormat: React.PropTypes.string,
+    dateVisible: React.PropTypes.func,
     onSelect: React.PropTypes.func,
     weekDayFormat: React.PropTypes.string
   };
@@ -48,6 +51,7 @@ class Calendar extends Component {
     className: '',
     date: new Date(),
     dateFormat: 'D',
+    dateVisible: () => true,
     weekDayFormat: 'dd',
     onSelect: () => {}
   };
@@ -63,6 +67,7 @@ class Calendar extends Component {
       return {
         selected: isSameDay(currentDate, date),
         date: startOfDay(date),
+        visible: this.props.dateVisible(date),
         past: isPast(date),
         today: isToday(date),
         sameMonth: isSameMonth(currentDate, date),
@@ -84,6 +89,7 @@ class Calendar extends Component {
   render() {
     const { date, dateFormat, onSelect, weekDayFormat, ...props } = this.props;
     const weeks = this.visibleWeeks(date);
+    delete props.dateVisible; // Table doesn't need dateVisible
 
     return (
       <Table
@@ -100,7 +106,7 @@ class Calendar extends Component {
         <tbody>
           {weeks.map((days, w) => (
             <tr key={w}>
-              {days.map((day, d) => <Day day={day} dateFormat={dateFormat} key={d} onClick={() => onSelect(day.date)} />)}
+              {days.map((day, d) => <Day day={day} dateFormat={dateFormat} key={d} onClick={() => day.visible && onSelect(day.date)} />)}
             </tr>
           ))}
         </tbody>
