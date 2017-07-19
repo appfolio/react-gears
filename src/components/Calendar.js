@@ -89,6 +89,7 @@ class Calendar extends Component {
   render() {
     const { date, dateFormat, onSelect, weekDayFormat, ...props } = this.props;
     const weeks = this.visibleWeeks(date);
+    delete props.dateVisible; // Table doesn't need dateVisible
 
     return (
       <Table
