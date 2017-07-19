@@ -79737,7 +79737,11 @@ var Day = function Day(_ref) {
       dateFormat = _ref.dateFormat,
       props = _objectWithoutProperties(_ref, ['day', 'dateFormat']);
 
-  var classNames = (0, _classnames2.default)('text-center', { 'bg-primary text-white': day.selected }, { 'text-muted': !day.sameMonth }, _Calendar2.default.date);
+  var classNames = (0, _classnames2.default)('text-center', { 'bg-faded text-muted': !day.sameMonth }, // Lighten days in months before & after
+  { 'bg-primary text-white': day.selected }, // Highlight selected date
+  { 'text-primary font-weight-bold': !day.selected && (0, _is_today2.default)(day.date) }, // Highlight today's date
+  { invisible: !day.visible }, // If date is (optionally) filtered out
+  _Calendar2.default.date);
   return _react2.default.createElement(
     'td',
     _extends({
@@ -79763,6 +79767,8 @@ var Calendar = function (_Component) {
     // TODO extract as module to share or test easier?:
 
     value: function visibleDays(currentDate) {
+      var _this2 = this;
+
       var start = (0, _start_of_week2.default)((0, _start_of_month2.default)(currentDate));
       var end = (0, _end_of_week2.default)((0, _add_weeks2.default)(start, 5));
 
@@ -79771,6 +79777,7 @@ var Calendar = function (_Component) {
         return {
           selected: (0, _is_same_day2.default)(currentDate, date),
           date: (0, _start_of_day2.default)(date),
+          visible: _this2.props.dateVisible(date),
           past: (0, _is_past2.default)(date),
           today: (0, _is_today2.default)(date),
           sameMonth: (0, _is_same_month2.default)(currentDate, date),
@@ -79800,6 +79807,7 @@ var Calendar = function (_Component) {
           props = _objectWithoutProperties(_props, ['date', 'dateFormat', 'onSelect', 'weekDayFormat']);
 
       var weeks = this.visibleWeeks(date);
+      delete props.dateVisible; // Table doesn't need dateVisible
 
       return _react2.default.createElement(
         _.Table,
@@ -79832,7 +79840,7 @@ var Calendar = function (_Component) {
               { key: w },
               days.map(function (day, d) {
                 return _react2.default.createElement(Day, { day: day, dateFormat: dateFormat, key: d, onClick: function onClick() {
-                    return onSelect(day.date);
+                    return day.visible && onSelect(day.date);
                   } });
               })
             );
@@ -79849,6 +79857,7 @@ Calendar.propTypes = {
   className: _react2.default.PropTypes.string,
   date: _react2.default.PropTypes.instanceOf(Date),
   dateFormat: _react2.default.PropTypes.string,
+  dateVisible: _react2.default.PropTypes.func,
   onSelect: _react2.default.PropTypes.func,
   weekDayFormat: _react2.default.PropTypes.string
 };
@@ -79856,6 +79865,9 @@ Calendar.defaultProps = {
   className: '',
   date: new Date(),
   dateFormat: 'D',
+  dateVisible: function dateVisible() {
+    return true;
+  },
   weekDayFormat: 'dd',
   onSelect: function onSelect() {}
 };
@@ -79894,6 +79906,17 @@ Calendar.__docgenInfo = {
       'description': '',
       'defaultValue': {
         'value': '\'D\'',
+        'computed': false
+      }
+    },
+    'dateVisible': {
+      'type': {
+        'name': 'func'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': '() => true',
         'computed': false
       }
     },
@@ -88531,7 +88554,10 @@ var DateInput = function (_Component) {
 
       var _props = this.props,
           className = _props.className,
+          dateVisible = _props.dateVisible,
           disabled = _props.disabled,
+          footer = _props.footer,
+          header = _props.header,
           onBlur = _props.onBlur,
           showOnFocus = _props.showOnFocus;
       var open = this.state.open;
@@ -88576,7 +88602,7 @@ var DateInput = function (_Component) {
               onKeyDown: this.onKeyDown,
               style: { minWidth: '19rem' }
             },
-            _react2.default.createElement(
+            header || _react2.default.createElement(
               'header',
               { className: 'd-flex py-2' },
               _react2.default.createElement(
@@ -88623,10 +88649,11 @@ var DateInput = function (_Component) {
             ),
             _react2.default.createElement(_Calendar2.default, {
               date: date,
+              dateVisible: dateVisible,
               onSelect: this.onSelect,
               className: 'm-0'
             }),
-            _react2.default.createElement(
+            footer || _react2.default.createElement(
               'footer',
               { className: 'text-center pb-2 pt-1' },
               _react2.default.createElement(
@@ -88650,18 +88677,24 @@ var DateInput = function (_Component) {
 
 DateInput.propTypes = {
   className: _react2.default.PropTypes.string,
+  dateVisible: _react2.default.PropTypes.func,
   dateFormat: _react2.default.PropTypes.string,
   defaultValue: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
-  value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]),
+  disabled: _react2.default.PropTypes.bool,
+  header: _react2.default.PropTypes.node,
+  footer: _react2.default.PropTypes.node,
   keyboard: _react2.default.PropTypes.bool,
   onBlur: _react2.default.PropTypes.func,
   onChange: _react2.default.PropTypes.func,
   showOnFocus: _react2.default.PropTypes.bool,
-  disabled: _react2.default.PropTypes.bool
+  value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object])
   // TODO allow custom header/footer, header & day format?
 };
 DateInput.defaultProps = {
   className: '',
+  dateVisible: function dateVisible() {
+    return true;
+  },
   dateFormat: 'M/D/YYYY',
   keyboard: true,
   onBlur: function onBlur() {},
@@ -88799,6 +88832,17 @@ DateInput.__docgenInfo = {
         'computed': false
       }
     },
+    'dateVisible': {
+      'type': {
+        'name': 'func'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': '() => true',
+        'computed': false
+      }
+    },
     'dateFormat': {
       'type': {
         'name': 'string'
@@ -88822,14 +88866,27 @@ DateInput.__docgenInfo = {
       'required': false,
       'description': ''
     },
-    'value': {
+    'disabled': {
       'type': {
-        'name': 'union',
-        'value': [{
-          'name': 'string'
-        }, {
-          'name': 'object'
-        }]
+        'name': 'bool'
+      },
+      'required': false,
+      'description': '',
+      'defaultValue': {
+        'value': 'false',
+        'computed': false
+      }
+    },
+    'header': {
+      'type': {
+        'name': 'node'
+      },
+      'required': false,
+      'description': ''
+    },
+    'footer': {
+      'type': {
+        'name': 'node'
       },
       'required': false,
       'description': ''
@@ -88878,16 +88935,17 @@ DateInput.__docgenInfo = {
         'computed': false
       }
     },
-    'disabled': {
+    'value': {
       'type': {
-        'name': 'bool'
+        'name': 'union',
+        'value': [{
+          'name': 'string'
+        }, {
+          'name': 'object'
+        }]
       },
       'required': false,
-      'description': '',
-      'defaultValue': {
-        'value': 'false',
-        'computed': false
-      }
+      'description': ''
     }
   }
 };
@@ -93837,6 +93895,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: 'new Date(2000, 0, 1)', value: new Date(2000, 0, 1) }),
     _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'1/23/2004\'', value: '1/23/2004' }),
     _react2.default.createElement(_src.FormRow, { type: _src.DateInput, onChange: (0, _react3.action)('onChange'), label: '\'Garbage in\'', value: 'Garbage in' })
+  );
+}).addWithInfo('Custom header and footer', function () {
+  return _react2.default.createElement(
+    'div',
+    { className: 'd-inline-flex' },
+    _react2.default.createElement(_src.DateInput, {
+      header: _react2.default.createElement(
+        'h2',
+        { className: 'text-center text-danger p-2 font-italic' },
+        'PIRELLI'
+      ),
+      footer: _react2.default.createElement(
+        'div',
+        { className: 'd-flex justify-content-around p-3' },
+        _react2.default.createElement(_src.Icon, { name: 'flag-checkered' }),
+        _react2.default.createElement(_src.Icon, { name: 'flag-checkered' }),
+        _react2.default.createElement(_src.Icon, { name: 'flag-checkered' }),
+        _react2.default.createElement(_src.Icon, { name: 'flag-checkered' }),
+        _react2.default.createElement(_src.Icon, { name: 'flag-checkered' })
+      )
+    })
   );
 }).addWithInfo('Calendar', function () {
   return _react2.default.createElement(
@@ -108719,7 +108798,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.21.0",
+	"version": "1.22.0",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -108817,4 +108896,4 @@ module.exports = __webpack_require__(889);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.596a9e5dd5b8fb2284c4.bundle.js.map
+//# sourceMappingURL=preview.dcb98b58cb7d46d0e08c.bundle.js.map
