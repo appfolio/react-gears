@@ -200,7 +200,13 @@ export default class DateInput extends Component {
               disabled={disabled}
             />
             <InputGroupButton onClick={this.toggle}>
-              <Button className="px-2" disabled={disabled} active={open} type="button">
+              <Button
+                className="px-2"
+                disabled={disabled}
+                active={open}
+                type="button"
+                tabIndex={-1}
+              >
                 <Icon name="calendar" fixedWidth />
               </Button>
             </InputGroupButton>
