@@ -1,4 +1,3 @@
-import deepCopy from 'deep-clone-simple';
 import noop from 'lodash.noop';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
@@ -36,7 +35,7 @@ class HasManyFields extends Component {
 
     if (this.isUncontrolled) {
       this.state = {
-        value: deepCopy(props.defaultValue)
+        value: props.defaultValue
       };
     }
 
@@ -52,32 +51,28 @@ class HasManyFields extends Component {
     this.isUncontrolled && this.setState({ value });
   }
 
-  withCopiedValue = func => {
-    const val = deepCopy(this.value);
-    func(val);
-    this.value = val;
-  };
-
   updateItem = i => update => {
     this.props.onUpdate(i, update);
-    this.withCopiedValue(v => (v[i] = update));
+    this.value = [
+      ...this.value.slice(0, i),
+      update,
+      ...this.value.slice(i + 1)
+    ];
   };
 
   addItem = () => {
     this.props.onAdd();
-    this.withCopiedValue(v => {
-      const blank =
-        typeof this.props.blank === 'function'
-          ? this.props.blank(v)
-          : this.props.blank;
-      v.push(blank);
-    });
+    const blank =
+      typeof this.props.blank === 'function'
+        ? this.props.blank(this.value)
+        : this.props.blank;
+    this.value = this.value.concat(blank);
     setTimeout(() => this.focusRow(this.rowRefs.length - 1));
   };
 
   deleteItem = i => () => {
     this.props.onRemove(i);
-    this.withCopiedValue(v => v.splice(i, 1));
+    this.value = [...this.value.slice(0, i), ...this.value.slice(i + 1)];
     setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
   };
 

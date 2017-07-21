@@ -31,7 +31,6 @@ describe('<HasManyFields />', () => {
     const addItem = component.find(HasManyFieldsAdd);
 
     it('should copy the defaultValue to state', () => {
-      assert.notStrictEqual(component.state('value'), items);
       assert.deepEqual(component.state('value'), items);
     });
 
