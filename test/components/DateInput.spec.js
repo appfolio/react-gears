@@ -43,6 +43,14 @@ describe('<DateInput />', () => {
     });
   });
 
+  it('should not tab to the calendar button', () => {
+    const component = mount(<DateInput />);
+
+    const toggle = component.find('InputGroupButton');
+    const calendarButton = toggle.find('Button');
+    assert.equal(calendarButton.props().tabIndex, -1);
+  });
+
   it('should should open and close when input addon clicked', () => {
     const component = mount(<DateInput />);
     const dropdown = component.find('Dropdown');
