@@ -88590,7 +88590,13 @@ var DateInput = function (_Component) {
               { onClick: this.toggle },
               _react2.default.createElement(
                 _.Button,
-                { className: 'px-2', disabled: disabled, active: open, type: 'button' },
+                {
+                  className: 'px-2',
+                  disabled: disabled,
+                  active: open,
+                  type: 'button',
+                  tabIndex: -1
+                },
                 _react2.default.createElement(_.Icon, { name: 'calendar', fixedWidth: true })
               )
             )
@@ -108798,7 +108804,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.22.0",
+	"version": "1.23.0",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -108896,4 +108902,4 @@ module.exports = __webpack_require__(889);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.dcb98b58cb7d46d0e08c.bundle.js.map
+//# sourceMappingURL=preview.f8c51e6155bed7febacd.bundle.js.map
