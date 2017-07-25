@@ -22,6 +22,7 @@ import './Address';
 import './CurrencyInput';
 import './CreditCardInput';
 import './DateInput';
+import './DatePicker';
 import './DateMonth';
 import './FormRow';
 import './InputGroup';
