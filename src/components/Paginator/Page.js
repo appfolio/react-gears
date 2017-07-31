@@ -5,6 +5,8 @@ import { PaginationItem, PaginationLink } from '../../';
  * A clickable link to a page in the pagination bar
  */
 export default class Page extends Component {
+  static displayName = 'Page';
+
   static propTypes = {
     current: React.PropTypes.bool.isRequired,
     onClick: React.PropTypes.func.isRequired,

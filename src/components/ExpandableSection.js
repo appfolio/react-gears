@@ -16,7 +16,7 @@ class ExpandableSection extends Component {
   toggle = () => this.setState({ open: !this.state.open });
 
   render() {
-    const className = `${styles.expandableSection} ${this.props.className}`;
+    const className = `${styles.expandable_section} ${this.props.className}`;
 
     // TODO use reactstrap <Collapse /> component below - resolve animation issue first.
     return (

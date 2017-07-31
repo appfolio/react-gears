@@ -13,7 +13,7 @@ class BlockPanel extends Component {
     onEdit: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     open: React.PropTypes.bool,
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]).isRequired
   };
 
   static defaultProps = {
@@ -73,7 +73,6 @@ class BlockPanel extends Component {
                 rotate={open ? 90 : undefined}
                 fixedWidth
                 style={{ transition: 'transform 200ms ease-in-out' }}
-                ref="icon"
               /> : null}
             <CardTitle className="m-0 my-1 mr-auto">
               {title}
