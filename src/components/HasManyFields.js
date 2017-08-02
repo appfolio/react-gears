@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import asUncontrolled from '../asUncontrolled';
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
 
@@ -31,50 +32,28 @@ class HasManyFields extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.isUncontrolled = typeof props.value === 'undefined';
-
-    if (this.isUncontrolled) {
-      this.state = {
-        value: props.defaultValue
-      };
-    }
-
     this.rowRefs = [];
   }
 
-  get value() {
-    return this.isUncontrolled ? this.state.value : this.props.value;
-  }
-
-  set value(value) {
-    this.props.onChange(value);
-    this.isUncontrolled && this.setState({ value });
-  }
-
   updateItem = i => update => {
-    this.props.onUpdate(i, update);
-    this.value = [
-      ...this.value.slice(0, i),
-      update,
-      ...this.value.slice(i + 1)
-    ];
+    const { onChange, onUpdate, value } = this.props;
+    onUpdate(i, update);
+    onChange([...value.slice(0, i), update, ...value.slice(i + 1)]);
   };
 
   addItem = () => {
-    this.props.onAdd();
-    const blank =
-      typeof this.props.blank === 'function'
-        ? this.props.blank(this.value)
-        : this.props.blank;
-    this.value = this.value.concat(blank);
+    const { blank, onChange, onAdd, value } = this.props;
+    onAdd();
+    const blankVal = typeof blank === 'function' ? blank(value) : blank;
+    onChange([...value, blankVal]);
     setTimeout(() => this.focusRow(this.rowRefs.length - 1));
   };
 
   deleteItem = i => () => {
-    this.props.onRemove(i);
-    this.value = [...this.value.slice(0, i), ...this.value.slice(i + 1)];
-    setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
+    const { onRemove, onChange, value } = this.props;
+    onRemove(i);
+    onChange([...value.slice(0, i), ...value.slice(i + 1)]);
+    setTimeout(() => this.focusRow(value.length > i ? i : i - 1));
   };
 
   setRowReference = index => rowTemplate => {
@@ -96,11 +75,11 @@ class HasManyFields extends React.Component {
   };
 
   render() {
-    const { template: Template, label, disabled } = this.props;
+    const { template: Template, label, disabled, value } = this.props;
 
     return (
       <div>
-        {this.value.map((item, i, items) =>
+        {value.map((item, i, items) =>
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
@@ -123,4 +102,4 @@ class HasManyFields extends React.Component {
   }
 }
 
-export default HasManyFields;
+export default asUncontrolled(HasManyFields);
