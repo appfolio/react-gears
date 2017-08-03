@@ -70,10 +70,10 @@ CurrencyInput.defaultProps = {
 };
 
 CurrencyInput.propTypes = {
-  allowDecimal: React.PropTypes.bool,
-  allowNegative: React.PropTypes.bool,
-  className: PropTypes.number,
-  includeThousandsSeparator: React.PropTypes.bool,
+  allowDecimal: PropTypes.bool,
+  allowNegative: PropTypes.bool,
+  className: PropTypes.string,
+  includeThousandsSeparator: PropTypes.bool,
   size: PropTypes.string
 };
 
