@@ -80819,7 +80819,7 @@ var HasManyFieldsAdd = function HasManyFieldsAdd(_ref) {
       className = _ref.className,
       props = _objectWithoutProperties(_ref, ['children', 'className']);
 
-  var classes = (0, _classnames2.default)('w-100 bg-success', className);
+  var classes = (0, _classnames2.default)('w-100', className);
 
   return _react2.default.createElement(
     _reactstrap.Button,
@@ -83121,7 +83121,7 @@ var ThemeLink = function ThemeLink(props) {
   );
 };
 
-var THEMES = [{ name: 'APM/Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.min.css' }, { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' }, { name: 'Bootstrap default', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' }, { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' }, { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' }, { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }];
+var THEMES = [{ name: 'APM/Saffron', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/bootstrap-saffron.min.css' }, { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' }, { name: 'APM/Saffron 3 Preview', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/preview/bootstrap-saffron.min.css' }, { name: 'Bootstrap default', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' }, { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' }, { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' }, { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }];
 
 (0, _react3.addDecorator)(_addonKnobs.withKnobs);
 
@@ -88086,10 +88086,10 @@ CurrencyInput.defaultProps = {
 };
 
 CurrencyInput.propTypes = {
-  allowDecimal: _react2.default.PropTypes.bool,
-  allowNegative: _react2.default.PropTypes.bool,
-  className: _react.PropTypes.number,
-  includeThousandsSeparator: _react2.default.PropTypes.bool,
+  allowDecimal: _react.PropTypes.bool,
+  allowNegative: _react.PropTypes.bool,
+  className: _react.PropTypes.string,
+  includeThousandsSeparator: _react.PropTypes.bool,
   size: _react.PropTypes.string
 };
 
@@ -88121,7 +88121,7 @@ CurrencyInput.__docgenInfo = {
     },
     'className': {
       'type': {
-        'name': 'number'
+        'name': 'string'
       },
       'required': false,
       'description': ''
@@ -96077,62 +96077,25 @@ var notes = [{
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _react3 = __webpack_require__(18);
 
+var _addonKnobs = __webpack_require__(20);
+
 var _src = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// TODO this wrapper hides the usage example in react-storybook:
-var Wrapper = function (_Component) {
-  _inherits(Wrapper, _Component);
-
-  function Wrapper() {
-    _classCallCheck(this, Wrapper);
-
-    var _this = _possibleConstructorReturn(this, (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).call(this));
-
-    _this.displayName = 'Paginator';
-
-    _this.onClick = function (currentPage) {
-      (0, _react3.action)('clicked', currentPage);
-      _this.setState({ currentPage: currentPage });
-    };
-
-    _this.state = { currentPage: 1 };
-    return _this;
-  }
-
-  _createClass(Wrapper, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(props) {
-      this.setState(props);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var currentPage = this.state.currentPage;
-      return _react2.default.createElement(_src.Paginator, { currentPage: currentPage, totalItems: 256, onClick: this.onClick });
-    }
-  }]);
-
-  return Wrapper;
-}(_react.Component);
-
-(0, _react3.storiesOf)('Paginator', module).addWithInfo('Default', function () {
-  return _react2.default.createElement(Wrapper, { currentPage: 1 });
+(0, _react3.storiesOf)('Paginator', module).addWithInfo('Live example', function () {
+  return _react2.default.createElement(_src.Paginator, {
+    currentPage: (0, _addonKnobs.number)('currentPage', 1, { min: 1, max: 19 }),
+    onClick: (0, _react3.action)('onClick'),
+    perPage: (0, _addonKnobs.select)('perPage', [5, 10, 20, 25], 20),
+    totalItems: 100
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
@@ -96903,8 +96866,8 @@ var demoHeader = function demoHeader(caption) {
         _react2.default.createElement(_src.FormRow, { label: 'Label', defaultValue: 'Text', required: true }),
         _react2.default.createElement(_src.FormRow, { label: 'Label', placeholder: 'Default' }),
         _react2.default.createElement(_src.FormRow, { label: 'Disabled', disabled: true }),
-        _react2.default.createElement(_src.FormRow, { type: _src.DateMonth, label: 'Date' }),
-        _react2.default.createElement(_src.FormRow, { label: 'Password' }),
+        _react2.default.createElement(_src.FormRow, { type: _src.DateInput, label: 'Date' }),
+        _react2.default.createElement(_src.FormRow, { type: 'password', label: 'Password' }),
         _react2.default.createElement(
           _src.FormRow,
           { label: 'Select', type: 'select', hint: 'Example help text' },
@@ -96934,7 +96897,7 @@ var demoHeader = function demoHeader(caption) {
         _react2.default.createElement(_src.FormRow, { stacked: true, label: 'Label above', defaultValue: 'Text', required: true, size: '12' }),
         _react2.default.createElement(_src.FormRow, { stacked: true, label: 'Label above', placeholder: 'Default' }),
         _react2.default.createElement(_src.FormRow, { stacked: true, label: 'Disabled above', disabled: true }),
-        _react2.default.createElement(_src.FormRow, { stacked: true, type: _src.DateMonth, label: 'Date' })
+        _react2.default.createElement(_src.FormRow, { stacked: true, type: _src.DateInput, label: 'Date' })
       ),
       demoHeader('TABLES'),
       _react2.default.createElement(
@@ -108800,7 +108763,7 @@ module.exports = warning;
 
 module.exports = {
 	"name": "react-gears",
-	"version": "1.24.0",
+	"version": "1.24.1",
 	"description": "React-based version of Gears",
 	"author": "Appfolio, Inc.",
 	"repository": {
@@ -108901,4 +108864,4 @@ module.exports = __webpack_require__(888);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.8950d7cf3992d2e9c3f0.bundle.js.map
+//# sourceMappingURL=preview.fa8cf0b8cefd64e17583.bundle.js.map
