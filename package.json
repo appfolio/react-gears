@@ -79,13 +79,13 @@
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-addons-test-utils": "^15.4.0",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "sass-loader": "~6.0.5",
     "sinon": "~2.3.2",
     "style-loader": "~0.18.1",
-    "rollup": "^0.41.6",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^2.0.0",
     "webpack": "~2.6.1"
   },
   "nyc": {
