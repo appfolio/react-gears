@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Button, Card, CardBlock, CardHeader, CardTitle, Icon } from '../';
@@ -5,15 +6,15 @@ import { Button, Card, CardBlock, CardHeader, CardTitle, Icon } from '../';
 class BlockPanel extends Component {
 
   static propTypes = {
-    children: React.PropTypes.node,
-    controls: React.PropTypes.node,
-    className: React.PropTypes.string,
-    expandable: React.PropTypes.bool,
-    hideOnToggle: React.PropTypes.bool,
-    onEdit: React.PropTypes.func,
-    onToggle: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    title: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]).isRequired
+    children: PropTypes.node,
+    controls: PropTypes.node,
+    className: PropTypes.string,
+    expandable: PropTypes.bool,
+    hideOnToggle: PropTypes.bool,
+    onEdit: PropTypes.func,
+    onToggle: PropTypes.func,
+    open: PropTypes.bool,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
   };
 
   static defaultProps = {

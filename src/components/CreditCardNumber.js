@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Icon, InputGroup } from '../';
 import { Input, InputGroupAddon } from 'reactstrap';
 import CardValidator from 'card-validator';

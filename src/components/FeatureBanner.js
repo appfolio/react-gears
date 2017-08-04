@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Alert } from 'reactstrap';
 import styles from './FeatureBanner.scss';
 
 export default class FeatureBanner extends Component {
   static propTypes = {
-    alertText: React.PropTypes.string,
-    children: React.PropTypes.node,
-    subtitle: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
+    alertText: PropTypes.string,
+    children: PropTypes.node,
+    subtitle: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   };
 
   static defaultProps = {

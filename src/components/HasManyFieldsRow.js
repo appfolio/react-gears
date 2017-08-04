@@ -1,4 +1,5 @@
 import noop from 'lodash.noop';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Col, Row } from 'reactstrap';
 
@@ -21,9 +22,9 @@ const HasManyFieldsRow = ({ children, onDelete, disabled }) => (
 );
 
 HasManyFieldsRow.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  onDelete: React.PropTypes.func,
-  disabled: React.PropTypes.bool
+  children: PropTypes.node.isRequired,
+  onDelete: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 HasManyFieldsRow.defaultProps = {

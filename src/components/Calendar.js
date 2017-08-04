@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Table } from '../';
 import classnames from 'classnames';
@@ -39,12 +40,12 @@ const Day = ({ day, dateFormat, ...props }) => {
 class Calendar extends Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    date: React.PropTypes.instanceOf(Date),
-    dateFormat: React.PropTypes.string,
-    dateVisible: React.PropTypes.func,
-    onSelect: React.PropTypes.func,
-    weekDayFormat: React.PropTypes.string
+    className: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
+    dateFormat: PropTypes.string,
+    dateVisible: PropTypes.func,
+    onSelect: PropTypes.func,
+    weekDayFormat: PropTypes.string
   };
 
   static defaultProps = {

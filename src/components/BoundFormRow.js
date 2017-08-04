@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import FormRow from './FormRow';
 
@@ -24,14 +25,14 @@ const BoundFormRow = (props, { value = {}, errors = {}, onChange }) => {
 };
 
 BoundFormRow.contextTypes = {
-  value: React.PropTypes.object,
-  errors: React.PropTypes.object,
-  onChange: React.PropTypes.func
+  value: PropTypes.object,
+  errors: PropTypes.object,
+  onChange: PropTypes.func
 };
 
 BoundFormRow.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func
 };
 
 BoundFormRow.defaultProps = {

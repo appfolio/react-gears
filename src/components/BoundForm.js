@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'reactstrap';
 import noop from 'lodash.noop';
@@ -6,11 +7,11 @@ import cloneDeep from 'deep-clone-simple';
 
 class BoundForm extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    errors: React.PropTypes.object,
-    object: React.PropTypes.object.isRequired,
-    onSubmit: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    children: PropTypes.node,
+    errors: PropTypes.object,
+    object: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -20,9 +21,9 @@ class BoundForm extends React.Component {
   };
 
   static childContextTypes = {
-    value: React.PropTypes.object,
-    errors: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    value: PropTypes.object,
+    errors: PropTypes.object,
+    onChange: PropTypes.func
   }
 
   constructor(props) {

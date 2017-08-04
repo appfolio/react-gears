@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './Callout.scss';
 
 class Callout extends Component {
 
   static propTypes = {
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    color: React.PropTypes.string,
-    background: React.PropTypes.string,
-    placement: React.PropTypes.oneOf([
+    children: PropTypes.node,
+    className: PropTypes.string,
+    color: PropTypes.string,
+    background: PropTypes.string,
+    placement: PropTypes.oneOf([
       'top',
       'bottom',
       'left',

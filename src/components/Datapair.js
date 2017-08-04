@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 
@@ -9,9 +10,9 @@ const Datapair = props => (
 );
 
 Datapair.propTypes = {
-  children: React.PropTypes.node,
-  label: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string
 };
 
 export default Datapair;

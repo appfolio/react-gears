@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Col, Input, Row, Select, ValidatedFormGroup } from '../';
 import flow from 'lodash.flow';
@@ -111,20 +112,20 @@ class AddressInput extends Component {
 }
 
 export const addressPropType = {
-  address1: React.PropTypes.string,
-  address2: React.PropTypes.string,
-  city: React.PropTypes.string,
-  state: React.PropTypes.string,
-  postal: React.PropTypes.string,
-  countryCode: React.PropTypes.string,
+  address1: PropTypes.string,
+  address2: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  postal: PropTypes.string,
+  countryCode: PropTypes.string,
 };
 
 AddressInput.propTypes = {
-  value: React.PropTypes.shape(addressPropType),
-  defaultValue: React.PropTypes.shape(addressPropType),
-  error: React.PropTypes.shape(addressPropType),
-  onChange: React.PropTypes.func,
-  disabled: React.PropTypes.bool
+  value: PropTypes.shape(addressPropType),
+  defaultValue: PropTypes.shape(addressPropType),
+  error: PropTypes.shape(addressPropType),
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 AddressInput.defaultProps = {

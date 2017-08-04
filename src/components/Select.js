@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactSelect from 'react-select';
 import noop from 'lodash.noop';
@@ -7,10 +8,10 @@ import './Select.scss';
 
 class Select extends Component {
   static propTypes = {
-    defaultValue: React.PropTypes.any,
-    loadOptions: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.any,
+    defaultValue: PropTypes.any,
+    loadOptions: PropTypes.func,
+    onChange: PropTypes.func,
+    value: PropTypes.any,
   };
 
   static defaultProps = {

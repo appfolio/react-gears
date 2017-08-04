@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon.js';
@@ -46,9 +47,9 @@ const Steps = ({ complete, step, steps }) => {
 };
 
 Steps.propTypes = {
-  step: React.PropTypes.number,
-  steps: React.PropTypes.array.isRequired,
-  complete: React.PropTypes.bool
+  step: PropTypes.number,
+  steps: PropTypes.array.isRequired,
+  complete: PropTypes.bool
 };
 
 export default Steps;

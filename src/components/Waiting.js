@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Modal from './Modal';
@@ -12,11 +13,11 @@ const noop = () => {};
  */
 export default class Waiting extends Component {
   static propTypes = {
-    backdrop: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    isOpen: React.PropTypes.bool,
-    title: React.PropTypes.string,
+    backdrop: PropTypes.bool,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    isOpen: PropTypes.bool,
+    title: PropTypes.string,
   }
 
   static defaultProps = {

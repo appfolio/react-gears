@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Icon } from '../';
 import styles from './InfoBox.scss';
 
 export default class InfoBox extends Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    color: React.PropTypes.string,
-    children: React.PropTypes.node,
-    icon: React.PropTypes.string,
-    title: React.PropTypes.string,
-    vertical: React.PropTypes.bool
+    className: PropTypes.string,
+    color: PropTypes.string,
+    children: PropTypes.node,
+    icon: PropTypes.string,
+    title: PropTypes.string,
+    vertical: PropTypes.bool
   };
 
   static defaultProps = {

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Tooltip as InnerTooltip } from 'reactstrap';
 
 export default class Tooltip extends React.Component {
   static propTypes = {
-    isOpen: React.PropTypes.bool
+    isOpen: PropTypes.bool
   };
 
   static defaultProps = {

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { FormFeedback, FormGroup } from '../';
 
 const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (

@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './LabelBadge.scss';
 
 export default class LabelBadge extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    label: React.PropTypes.string,
-    maxWidth: React.PropTypes.number,
-    onRemove: React.PropTypes.func,
-    removable: React.PropTypes.bool,
-    value: React.PropTypes.string.isRequired
+    className: PropTypes.string,
+    label: PropTypes.string,
+    maxWidth: PropTypes.number,
+    onRemove: PropTypes.func,
+    removable: PropTypes.bool,
+    value: PropTypes.string.isRequired
   }
 
   static defaultProps = {
