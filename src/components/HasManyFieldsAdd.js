@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import Icon from './Icon';
 
 const HasManyFieldsAdd = ({ children, className, ...props }) => {
-  const classes = classNames('w-100 bg-success', className);
+  const classes = classNames('w-100', className);
 
   return (
     <Button color="success" {...props} className={classes}>
