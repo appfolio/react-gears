@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, ButtonToolbar, Card, CardBlock, Input } from '../';
 
 class EditableNote extends React.Component {
   static propTypes = {
-    note: React.PropTypes.object.isRequired,
-    onCancel: React.PropTypes.func.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onSave: React.PropTypes.func.isRequired
+    note: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired
   };
 
   render() {

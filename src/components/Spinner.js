@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './Spinner.scss';
 import classnames from 'classnames';
@@ -12,8 +13,8 @@ const Spinner = props => (
 );
 
 Spinner.propTypes = {
-  className: React.PropTypes.string,
-  style: React.PropTypes.object,
+  className: PropTypes.string,
+  style: PropTypes.object,
   // TODO add size prop in lieu of style
 };
 

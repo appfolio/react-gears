@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, CardBlock } from '../';
 
@@ -11,8 +12,8 @@ const SummaryBoxItem = (props) => (
 );
 
 SummaryBoxItem.propTypes = {
-  label: React.PropTypes.string,
-  value: React.PropTypes.string // TODO support links
+  label: PropTypes.string,
+  value: PropTypes.string // TODO support links
 };
 
 SummaryBoxItem.defaultProps = {

@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { PaginationItem, PaginationLink } from '../../';
 
 /**
  * A clickable link to a page in the pagination bar
  */
-export default class Page extends Component {
+export default class Page extends React.Component {
   static displayName = 'Page';
 
   static propTypes = {
-    current: React.PropTypes.bool.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    page: React.PropTypes.number.isRequired,
+    current: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
   }
 
   onClick = event => {

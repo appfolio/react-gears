@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Icon } from '../';
 import { Popover, PopoverTitle, PopoverContent } from 'reactstrap';
@@ -48,9 +49,9 @@ class HelpBubble extends React.Component {
 }
 
 HelpBubble.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  children: React.PropTypes.node,
-  className: React.PropTypes.any
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  className: PropTypes.any
 };
 
 export default HelpBubble;

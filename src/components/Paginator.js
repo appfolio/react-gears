@@ -1,4 +1,5 @@
 import Page from './Paginator/Page';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
@@ -13,11 +14,11 @@ const DEFAULT_PER_PAGE = 20;
  */
 export default class Paginator extends Component {
   static propTypes = {
-    currentPage: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    perPage: React.PropTypes.number,
-    size: React.PropTypes.oneOf(['sm', 'lg']),
-    totalItems: React.PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+    perPage: PropTypes.number,
+    size: PropTypes.oneOf(['sm', 'lg']),
+    totalItems: PropTypes.number.isRequired,
   }
 
   static defaultProps = {

@@ -39,6 +39,7 @@
     "lodash.flow": "^3.5.0",
     "lodash.noop": "^3.0.1",
     "lodash.set": "^4.3.2",
+    "prop-types": "^15.5.10",
     "react-fontawesome": "^1.4.0",
     "react-select": "^1.0.0-rc.4",
     "react-text-mask": "~5.0.2",

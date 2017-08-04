@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Card, CardBlock, CardHeader, CardText, Flag } from '../';
 import DeletedNote from './DeletedNote.js';
@@ -12,14 +13,14 @@ class Note extends React.Component {
   static displayName = 'Note';
 
   static propTypes = {
-    className: React.PropTypes.string,
-    note: React.PropTypes.object,
-    onCancel: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onDelete: React.PropTypes.func,
-    onEdit: React.PropTypes.func,
-    onSave: React.PropTypes.func,
-    onUndelete: React.PropTypes.func
+    className: PropTypes.string,
+    note: PropTypes.object,
+    onCancel: PropTypes.func,
+    onChange: PropTypes.func,
+    onDelete: PropTypes.func,
+    onEdit: PropTypes.func,
+    onSave: PropTypes.func,
+    onUndelete: PropTypes.func
   };
 
   static defaultProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Icon } from '../';
 
@@ -38,8 +39,8 @@ class ExpandableSection extends Component {
 }
 
 ExpandableSection.propTypes = {
-  open: React.PropTypes.bool,
-  title: React.PropTypes.string.isRequired
+  open: PropTypes.bool,
+  title: PropTypes.string.isRequired
 };
 
 ExpandableSection.defaultProps = {

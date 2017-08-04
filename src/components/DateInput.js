@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Button, ButtonGroup, DropdownMenu, Icon, Input, InputGroupButton, InputGroup } from '../';
 import { Dropdown } from 'reactstrap';
@@ -48,23 +49,23 @@ function parseValue(defaultValue, dateFormat) {
 export default class DateInput extends Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    dateVisible: React.PropTypes.func,
-    dateFormat: React.PropTypes.string,
-    defaultValue: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.object
+    className: PropTypes.string,
+    dateVisible: PropTypes.func,
+    dateFormat: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
     ]),
-    disabled: React.PropTypes.bool,
-    header: React.PropTypes.node,
-    footer: React.PropTypes.node,
-    keyboard: React.PropTypes.bool,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    showOnFocus: React.PropTypes.bool,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.object
+    disabled: PropTypes.bool,
+    header: PropTypes.node,
+    footer: PropTypes.node,
+    keyboard: PropTypes.bool,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    showOnFocus: PropTypes.bool,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
     ])
     // TODO allow custom header/footer, header & day format?
   }

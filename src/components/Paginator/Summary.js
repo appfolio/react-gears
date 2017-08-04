@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * A text summary of the current pagination state
  */
-export default class Summary extends Component {
+export default class Summary extends React.Component {
   static displayName = 'Summary';
 
   static propTypes = {
-    className: React.PropTypes.string,
-    from: React.PropTypes.number.isRequired,
-    to: React.PropTypes.number.isRequired,
-    totalItems: React.PropTypes.number.isRequired,
+    className: PropTypes.string,
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+    totalItems: PropTypes.number.isRequired,
   }
 
   static defaultProps = {

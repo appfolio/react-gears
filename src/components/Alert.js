@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Icon } from '../';
 import { Alert } from 'reactstrap';
@@ -11,11 +12,11 @@ const ICON_MAP = {
 
 export default class AlertComponent extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    color: React.PropTypes.string,
-    dismissible: React.PropTypes.bool,
-    icon: React.PropTypes.bool,
-    className: React.PropTypes.string
+    children: PropTypes.node,
+    color: PropTypes.string,
+    dismissible: PropTypes.bool,
+    icon: PropTypes.bool,
+    className: PropTypes.string
   }
 
   static defaultProps = {

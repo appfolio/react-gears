@@ -1,19 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { HelpBubble, Row, Col, Button, Icon, Note } from '../';
 
 export default class Notes extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    onAdd: React.PropTypes.func,
-    onCancel: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onDelete: React.PropTypes.func,
-    onDownload: React.PropTypes.func,
-    onEdit: React.PropTypes.func,
-    onSave: React.PropTypes.func,
-    onUndelete: React.PropTypes.func,
-    notes: React.PropTypes.array,
+    className: PropTypes.string,
+    onAdd: PropTypes.func,
+    onCancel: PropTypes.func,
+    onChange: PropTypes.func,
+    onDelete: PropTypes.func,
+    onDownload: PropTypes.func,
+    onEdit: PropTypes.func,
+    onSave: PropTypes.func,
+    onUndelete: PropTypes.func,
+    notes: PropTypes.array,
   }
 
   static defaultProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Input } from 'reactstrap';
 
@@ -22,7 +23,7 @@ class FileInput extends Component {
 }
 
 FileInput.propTypes = {
-  onChange: React.PropTypes.func
+  onChange: PropTypes.func
 };
 
 export default FileInput;

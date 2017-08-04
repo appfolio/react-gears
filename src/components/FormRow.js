@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FormGroup, Input, Label, Col, Row, FormFeedback, FormText } from 'reactstrap';
 
@@ -83,21 +84,21 @@ const FormRow = props => {
 };
 
 FormRow.propTypes = {
-  label: React.PropTypes.string,
-  hint: React.PropTypes.string,
-  feedback: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object
+  label: PropTypes.string,
+  hint: PropTypes.string,
+  feedback: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
   ]),
-  required: React.PropTypes.bool,
-  type: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
-    React.PropTypes.func
+  required: PropTypes.bool,
+  type: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.func
   ]),
-  inline: React.PropTypes.bool,
-  stacked: React.PropTypes.bool,
-  width: React.PropTypes.object
+  inline: PropTypes.bool,
+  stacked: PropTypes.bool,
+  width: PropTypes.object
 };
 
 FormRow.defaultProps = {

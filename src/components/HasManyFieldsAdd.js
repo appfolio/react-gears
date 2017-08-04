@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button } from 'reactstrap';
 
@@ -16,9 +17,9 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
 };
 
 HasManyFieldsAdd.propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.node.isRequired,
-  disabled: React.PropTypes.bool
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool
 };
 
 export default HasManyFieldsAdd;
