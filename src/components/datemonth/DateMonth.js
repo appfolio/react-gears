@@ -70,20 +70,42 @@ export default class DateMonth extends React.Component {
     document.removeEventListener('keydown', this.escListener);
   }
 
-  setMonth(month) {
+  setMonth = month => () => {
     this.setState({ month });
   }
 
-  setYear(year) {
+  setYear = year => () => {
     this.setState({ year });
+  }
+
+  renderMonths = () => MONTHS.map(month => (
+    <Label
+      selected={this.state.month === month}
+      label={month}
+      key={month}
+      onClick={this.setMonth(month)}
+    />
+  ));
+
+  renderYears = () => {
+    const now = new Date();
+    const { year: currentYear } = this.state;
+    const end = currentYear + (now.getFullYear() - currentYear) % 10 + 1;
+    const start = end - 10;
+    const YEARS = range(start, end);
+    return YEARS.map(year => (
+      <Label
+        selected={currentYear === year}
+        label={year}
+        key={year}
+        onClick={this.setYear(year)}
+      />
+    ));
   }
 
   render() {
     const { props, state } = this;
     const now = new Date();
-    const end = state.year + (now.getFullYear() - state.year) % 10 + 1;
-    const start = end - 10;
-    const YEARS = range(start, end);
     const canAdvanceYear = now.getFullYear() - state.year > 9;
 
     const open = () => this.setState({
@@ -162,7 +184,7 @@ export default class DateMonth extends React.Component {
             <Row className="no-gutters">
               <Col xs="6" className={styles.month}>
                 <ul className="p-1 m-0">
-                  {MONTHS.map(month => <Label selected={state.month === month} label={month} onClick={() => this.setMonth(month)} />)}
+                  {this.renderMonths()}
                 </ul>
               </Col>
 
@@ -176,7 +198,7 @@ export default class DateMonth extends React.Component {
                   </Button>
                 </ButtonGroup>
                 <ul className="p-1 m-0">
-                  {YEARS.map(year => <Label selected={state.year === year} label={year} onClick={() => this.setYear(year)} />)}
+                  {this.renderYears()}
                 </ul>
               </Col>
             </Row>
