@@ -57,9 +57,10 @@ export default class Notes extends React.Component {
           </Col>
         </Row>
         {children ||
-          notes.map(note =>
+          notes.map((note, i) =>
             <Note
               note={note}
+              key={i}
               onCancel={onCancel}
               onChange={onChange}
               onDelete={onDelete}
