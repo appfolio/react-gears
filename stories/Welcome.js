@@ -3,13 +3,12 @@ import {
   Button,
   Card,
   CardBlock,
-  CardHeader,
   CardSubtitle,
   CardText,
   CardTitle,
   Col,
   CurrencyInput,
-  DateMonth,
+  DateInput,
   FormChoice,
   FormRow,
   Icon,
@@ -140,8 +139,8 @@ storiesOf('react-gears', module)
           <FormRow label="Label" defaultValue="Text" required />
           <FormRow label="Label" placeholder="Default" />
           <FormRow label="Disabled" disabled />
-          <FormRow type={DateMonth} label="Date" />
-          <FormRow label="Password" />
+          <FormRow type={DateInput} label="Date" />
+          <FormRow type="password" label="Password" />
           <FormRow label="Select" type="select" hint="Example help text">
             <FormChoice>A New Hope</FormChoice>
             <FormChoice>The Empire Strikes Back</FormChoice>
@@ -156,7 +155,7 @@ storiesOf('react-gears', module)
           <FormRow stacked label="Label above" defaultValue="Text" required size="12" />
           <FormRow stacked label="Label above" placeholder="Default" />
           <FormRow stacked label="Disabled above" disabled />
-          <FormRow stacked type={DateMonth} label="Date" />
+          <FormRow stacked type={DateInput} label="Date" />
         </form>
 
         {demoHeader('TABLES')}
