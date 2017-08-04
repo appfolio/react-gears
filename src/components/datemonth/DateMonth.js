@@ -179,6 +179,7 @@ export default class DateMonth extends React.Component {
         <Dropdown
           className={styles.picker}
           isOpen={state.open}
+          toggle={toggle}
         >
           <DropdownMenu>
             <Row className="no-gutters">
