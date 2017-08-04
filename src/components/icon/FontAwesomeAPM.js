@@ -32,11 +32,9 @@ export const srOnlyStyle = {
  * @module FontAwesome
  * @type {ReactClass}
  */
-export default React.createClass({
+export default class FontAwesomeAPM extends React.Component {
 
-  displayName: 'Icon',
-
-  propTypes: {
+  static propTypes = {
     ariaLabel: React.PropTypes.string,
     border: React.PropTypes.bool,
     className: React.PropTypes.string,
@@ -51,7 +49,7 @@ export default React.createClass({
     spin: React.PropTypes.bool,
     stack: React.PropTypes.oneOf(['1x', '2x']),
     tag: React.PropTypes.string,
-  },
+  }
 
   render() {
     const {
@@ -67,7 +65,7 @@ export default React.createClass({
       size,
       spin,
       stack,
-      tag = 'i',
+      tag: Tag = 'i',
       ariaLabel,
       ...props,
     } = this.props;
@@ -108,10 +106,14 @@ export default React.createClass({
     // Add any custom class names at the end.
     className && classNames.push(className);
 
-    return React.createElement(
-      tag, { ...props, 'aria-hidden': true, className: classNames.join(' ') },
-      ariaLabel ? React.createElement('span', { style: srOnlyStyle }, ariaLabel) : null
+    return (
+      <Tag
+        {...props}
+        aria-hidden
+        className={classNames.join(' ')}
+      >
+        {ariaLabel && <span style={srOnlyStyle}>ariaLabel</span>}
+      </Tag>
     );
-  },
-});
-
+  }
+};
