@@ -1,12 +1,12 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
 
-class HasManyFields extends Component {
+class HasManyFields extends React.Component {
   static propTypes = {
     blank: PropTypes.any,
     defaultValue: PropTypes.array,

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { Button, Card, CardBlock, CardHeader, CardTitle, Icon } from '../';
 
-class BlockPanel extends Component {
+class BlockPanel extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,

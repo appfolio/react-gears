@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Row, Col, PatternInput, ValidatedFormGroup,
   CreditCardExpiration, CreditCardNumber,
 } from '../';
 
-export default class CreditCardInput extends Component {
+export default class CreditCardInput extends React.Component {
   handleCardCVVChange = (event, { value, isValid }) => {
     this.props.onChange({ cardCVV: value, cardCVVIsValid: isValid });
   }
