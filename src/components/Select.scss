@@ -1,4 +1,4 @@
-:global {
+:global(html) {
   // Import and override react-select's SCSS variables to match BS4:
   $select-input-height: 2.35rem !default;
   $select-input-internal-height: 2.25rem !default;
