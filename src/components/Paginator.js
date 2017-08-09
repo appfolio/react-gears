@@ -1,6 +1,6 @@
 import Page from './Paginator/Page';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
@@ -12,7 +12,7 @@ const DEFAULT_PER_PAGE = 20;
  * A component that generates a set of links that can be used for pagination.  Link selection is
  * communicated via the `onClick` callback.
  */
-export default class Paginator extends Component {
+export default class Paginator extends React.Component {
   static propTypes = {
     currentPage: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,

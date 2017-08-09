@@ -2,7 +2,7 @@ import { Button, ButtonGroup, Col, Input,
          InputGroupButton, InputGroup, Row } from 'reactstrap';
 import { Dropdown, DropdownMenu, Icon } from '../../';
 import Label from './DateMonthLabel.js';
-import React, { Component } from 'react';
+import React from 'react';
 import fecha from 'fecha';
 import path from './path.js';
 import styles from './DateMonth.scss';
@@ -20,7 +20,7 @@ function range(start, end) {
 
 // TODO refactor this component to match DateInput behavior, e.g. a new "DropdownInput" component.
 
-export default class DateMonth extends Component {
+export default class DateMonth extends React.Component {
   constructor(props) {
     super(props);
 
