@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import Modal from './Modal';
 import Spinner from './Spinner';
@@ -11,7 +11,7 @@ const noop = () => {};
 /**
  * A 'Waiting' indicator for unknown durations. See https://qa.qa.appfolio.com/gears/waiting
  */
-export default class Waiting extends Component {
+export default class Waiting extends React.Component {
   static propTypes = {
     backdrop: PropTypes.bool,
     children: PropTypes.node,

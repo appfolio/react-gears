@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Input } from 'reactstrap';
 
-export default class PatternInput extends Component {
+export default class PatternInput extends React.Component {
   constructor(props) {
     super(props);
     const isValid = props.pattern.exec(props.value || '') !== null;

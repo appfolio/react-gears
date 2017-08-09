@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Icon, InputGroup } from '../';
 import { Input, InputGroupAddon } from 'reactstrap';
 import CardValidator from 'card-validator';
@@ -23,7 +23,7 @@ function includes(array, value) {
   return Array.isArray(array) && array.indexOf(value) !== -1;
 }
 
-export default class CreditCardNumber extends Component {
+export default class CreditCardNumber extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '', cardType: undefined };

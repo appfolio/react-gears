@@ -8,7 +8,7 @@ import fecha from 'fecha';
 
 describe('<Note />', () => {
   const note = {
-    date: new Date(),
+    date: new Date("November 5, 1605 00:00:00"),
     from: 'Jim Nabors',
     text: 'Hello World!',
     edited: true
@@ -27,8 +27,8 @@ describe('<Note />', () => {
     });
 
     it('should render date', () => {
-      const date = fecha.format(note.date, 'ddd, MMMM d, YYYY "at" h:mm A');
-      assert.equal(date, component.ref('date').text());
+      const expectedDate = 'Sat, November 5, 1605 at 12:00 AM'
+      assert.equal(expectedDate, component.ref('date').text());
     });
 
     it('should render edited', () => {

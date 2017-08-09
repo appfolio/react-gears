@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, ButtonGroup, DropdownMenu, Icon, Input, InputGroupButton, InputGroup } from '../';
 import { Dropdown } from 'reactstrap';
 import Calendar from './Calendar.js';
@@ -46,7 +46,7 @@ function parseValue(defaultValue, dateFormat) {
   return date;
 }
 
-export default class DateInput extends Component {
+export default class DateInput extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,

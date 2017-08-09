@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import ReactSelect from 'react-select-plus';
 import { Close, Icon } from '../';
+=======
+import React from 'react';
+import ReactSelect from 'react-select';
+>>>>>>> master
 import noop from 'lodash.noop';
 import Option from './SelectOption.js';
 
 // Disables CSS modules to import as global:
 import './Select.scss';
 
-class Select extends Component {
+class Select extends React.Component {
   static propTypes = {
     defaultValue: PropTypes.any,
     loadOptions: PropTypes.func,

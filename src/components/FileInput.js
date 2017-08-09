@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Input } from 'reactstrap';
 
-class FileInput extends Component {
+class FileInput extends React.Component {
   onChange = changeEvent => {
     if (this.props.onChange) {
       this.props.onChange(changeEvent.target.files);

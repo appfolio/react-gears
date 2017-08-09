@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Col, Row } from 'reactstrap';
 import { Select } from '../';
 
@@ -16,7 +16,7 @@ const monthOptions = MONTHS.map((label, index) => ({ label, value: index + 1 }))
 // eslint-disable-next-line arrow-body-style
 const yearsOptions = YEARS.map(year => ({ label: year, value: year }));
 
-export default class CreditCardExpiration extends Component {
+export default class CreditCardExpiration extends React.Component {
   onMonthSelection = (option) => {
     const month = option && option.value || CreditCardExpiration.defaultProps.month;
     this.props.onChange({ month, year: this.props.year });

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Icon } from '../';
 
 import styles from './ExpandableSection.scss';
 
-class ExpandableSection extends Component {
+class ExpandableSection extends React.Component {
 
   constructor(props) {
     super(props);

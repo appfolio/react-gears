@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Table } from '../';
 import classnames from 'classnames';
 import addWeeks from 'date-fns/add_weeks';
@@ -37,7 +37,7 @@ const Day = ({ day, dateFormat, ...props }) => {
   );
 };
 
-class Calendar extends Component {
+class Calendar extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Col, Input, Row, Select, ValidatedFormGroup } from '../';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
@@ -15,7 +15,7 @@ const US_STATES = states.map(state => ({
 
 const readEvent = e => ({ [e.target.name]: e.target.value });
 
-class AddressInput extends Component {
+class AddressInput extends React.Component {
   onChange = update => {
     this.props.onChange({ ...this.props.value, ...update });
   }
