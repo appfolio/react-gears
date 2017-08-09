@@ -14,10 +14,12 @@ class Select extends React.Component {
     loadOptions: PropTypes.func,
     onChange: PropTypes.func,
     value: PropTypes.any,
+    ...ReactSelect.propTypes
   };
 
   static defaultProps = {
-    onChange: noop
+    onChange: noop,
+    ...ReactSelect.defaultProps
   };
 
   constructor(props) {
