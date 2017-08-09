@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-import React, { Component } from 'react';
+import React from 'react';
 import ReactSelect from 'react-select-plus';
 import { Close, Icon } from '../';
-=======
-import React from 'react';
-import ReactSelect from 'react-select';
->>>>>>> master
 import noop from 'lodash.noop';
 import Option from './SelectOption.js';
 
