@@ -7,11 +7,16 @@ import COUNTRIES from '../src/components/address/Countries.js';
 
 storiesOf('Select', module)
   .addWithInfo('with options', () => (
-    <Select
-      className="w-100"
-      options={COUNTRIES}
-      onChange={action('onChange')}
-    />
+    <div>
+      <Select
+        className="w-100"
+        options={COUNTRIES}
+        onChange={action('onChange')}
+      />
+      <p className="pt-5">
+        Please see <a href="http://github.hubspot.com/react-select-plus/" target="_blank">react-select-plus documentation</a> for full usage and options.
+      </p>
+    </div>
   ))
   .addWithInfo('with initial selection (uncontrolled)', () => (
     <Select
