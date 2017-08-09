@@ -18,7 +18,7 @@ class Select extends React.Component {
   };
 
   static defaultProps = {
-    onChange: noop,
+    onChange: noop
   };
 
   constructor(props) {
