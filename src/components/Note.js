@@ -52,7 +52,7 @@ class Note extends React.Component {
                 {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
                 <span className="text-muted">
                   <span className="hidden-xs-down">
-                    {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM d, YYYY "at" h:mm A')}</span>
+                    {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM D, YYYY "at" h:mm A')}</span>
                   </span>
                   <span className="hidden-sm-up">
                     {from ? <span>{from} </span> : null}<span ref="shortDate">{dateFormat(date, 'M/d/YY h:mm A')}</span>
