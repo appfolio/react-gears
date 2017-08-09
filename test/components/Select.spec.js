@@ -3,7 +3,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import ReactSelect from 'react-select';
+import ReactSelect from 'react-select-plus';
 import { Select } from '../../src';
 
 const OPTIONS = [
