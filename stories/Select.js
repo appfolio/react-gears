@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from '../src';
-import { storiesOf } from '@storybook/react';
+import { action, storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 
 import COUNTRIES from '../src/components/address/Countries.js';
@@ -10,6 +10,7 @@ storiesOf('Select', module)
     <Select
       className="w-100"
       options={COUNTRIES}
+      onChange={action('onChange')}
     />
   ))
   .addWithInfo('with initial selection (uncontrolled)', () => (
@@ -17,6 +18,7 @@ storiesOf('Select', module)
       className="w-100"
       defaultValue="US"
       options={COUNTRIES}
+      onChange={action('onChange')}
     />
   ))
   .addWithInfo('as a controlled input', () => (
@@ -24,6 +26,7 @@ storiesOf('Select', module)
       className="w-100"
       value={select('value', COUNTRIES.map(c => c.value), 'US')}
       options={COUNTRIES}
+      onChange={action('onChange')}
     />
   ))
   .addWithInfo('with async options', () => {
@@ -42,5 +45,6 @@ storiesOf('Select', module)
     return (<Select
       className="w-100"
       loadOptions={getOptions}
+      onChange={action('onChange')}
     />);
   });
