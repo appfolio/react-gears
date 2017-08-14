@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'reactstrap';
 import noop from 'lodash.noop';
-import set from 'lodash.set';
-import cloneDeep from 'deep-clone-simple';
 
 class BoundForm extends React.Component {
   static propTypes = {
@@ -30,7 +28,7 @@ class BoundForm extends React.Component {
     super(props);
 
     this.state = {
-      formData: cloneDeep(props.object)
+      formData: props.object
     };
   }
 
@@ -49,7 +47,7 @@ class BoundForm extends React.Component {
 
   handleChange = name => data => {
     const value = data.target instanceof Element ? data.target.value : data;
-    this.setState({ formData: set(this.state.formData, name, value) });
+    this.setState({ formData: { ...this.state.formData, [name]: value } });
     this.props.onChange(this.state.formData);
   }
 
