@@ -19,7 +19,7 @@ describe('<Select />', () => {
       const component = shallow(<Select options={OPTIONS} />);
 
       it('should have a blank default', () => {
-        assert.equal(component.type(), ReactSelect);
+        assert.equal(component.dive().type(), ReactSelect);
         assert.equal(component.prop('value'), null);
       });
 
@@ -77,6 +77,6 @@ describe('<Select />', () => {
     };
 
     const component = shallow(<Select loadOptions={getOptions} />);
-    assert.equal(component.type(), ReactSelect.Async);
+    assert.equal(component.dive().type(), ReactSelect.Async);
   });
 });
