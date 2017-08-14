@@ -8,8 +8,8 @@ import packageImporter from 'node-sass-package-importer';
 
 // `require` understands JSON
 const packageJSON = require('./package.json');
-const dependencies = Object.keys(packageJSON.dependencies);
-
+const dependencies = Object.keys(packageJSON.dependencies).concat(
+  Object.keys(packageJSON.peerDependencies));
 const dateFnsRoot = 'date-fns/';
 
 function isExternal(dependency) {
