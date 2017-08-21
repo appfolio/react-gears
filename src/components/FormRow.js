@@ -28,19 +28,19 @@ function parseFeedback(feedback) {
 
 const FormRow = props => {
   const {
-    className,
-    id,
-    size,
-    label,
-    color,
-    state,
-    hint,
-    feedback,
-    required,
-    type,
     children,
+    color,
+    feedback,
+    hint,
+    id,
     inline,
+    label,
+    required,
+    rowClassName,
+    size,
     stacked,
+    state,
+    type,
     width,
     ...attributes
   } = props;
@@ -58,7 +58,7 @@ const FormRow = props => {
   return (
     <FormGroup
       row
-      className={className}
+      className={rowClassName}
       color={rowColor}
     >
       {label && (
@@ -89,7 +89,6 @@ const FormRow = props => {
 };
 
 FormRow.propTypes = {
-  className: PropTypes.string,
   label: PropTypes.string,
   hint: PropTypes.string,
   feedback: PropTypes.oneOfType([
@@ -97,6 +96,7 @@ FormRow.propTypes = {
     PropTypes.object
   ]),
   required: PropTypes.bool,
+  rowClassName: PropTypes.string,
   type: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
@@ -108,12 +108,12 @@ FormRow.propTypes = {
 };
 
 FormRow.defaultProps = {
-  className: '',
   feedback: '',
   hint: '',
   inline: false,
   label: '',
   required: false,
+  rowClassName: '',
   stacked: false,
   type: 'text',
   width: { xs: 12 }
