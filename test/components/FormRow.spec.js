@@ -113,6 +113,13 @@ describe('<FormRow />', () => {
     });
   });
 
+  describe('with className', () => {
+    const component = shallow(
+      <FormRow label="First Name" rowClassName="balloob" />
+    );
+    assert(component.hasClass('balloob'));
+  });
+
   describe('with hint', () => {
     const component = shallow(
       <FormRow label="First Name" hint="hint" />
