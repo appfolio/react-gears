@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Card, CardBlock, CardHeader, CardText, Flag } from '../';
+import { Button, Card, CardBlock, CardHeader, CardText, Badge } from 'reactstrap';
 import DeletedNote from './DeletedNote.js';
 import EditableNote from './EditableNote.js';
 
@@ -49,7 +49,7 @@ class Note extends React.Component {
             /> :
             <Card color="info" outline>
               <CardHeader className="d-flex justify-content-start p-2 bg-info">
-                {edited ? <span ref="edited"><Flag color="primary text-uppercase mr-2">Edited</Flag></span> : null}
+                {edited ? <span ref="edited"><Badge color="primary text-uppercase mr-2">Edited</Badge></span> : null}
                 <span className="text-muted">
                   <span className="hidden-xs-down">
                     {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM D, YYYY "at" h:mm A')}</span>

@@ -1,6 +1,15 @@
-import { Button, ButtonGroup, Col, Input,
-         InputGroupButton, InputGroup, Row } from 'reactstrap';
-import { Dropdown, DropdownMenu, Icon } from '../../';
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Dropdown,
+  DropdownMenu,
+  Input,
+  InputGroupButton,
+  InputGroup,
+  Row
+} from 'reactstrap';
+import Icon from '../Icon';
 import Label from './DateMonthLabel.js';
 import React from 'react';
 import fecha from 'fecha';

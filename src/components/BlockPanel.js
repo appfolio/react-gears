@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { Button, Card, CardBlock, CardHeader, CardTitle, Icon } from '../';
+import {
+  Button,
+  Card,
+  CardBlock,
+  CardHeader,
+  CardTitle
+} from 'reactstrap';
+import Icon from './Icon';
 
 class BlockPanel extends React.Component {
 

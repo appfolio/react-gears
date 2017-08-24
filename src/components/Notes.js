@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { HelpBubble, Row, Col, Button, Icon, Note } from '../';
+import { Row, Col, Button } from 'reactstrap';
+import HelpBubble from './HelpBubble';
+import Icon from './Icon';
+import Note from './Note';
 
 export default class Notes extends React.Component {
 

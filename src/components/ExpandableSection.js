@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Icon } from '../';
+import Icon from './Icon';
 
 import styles from './ExpandableSection.scss';
 

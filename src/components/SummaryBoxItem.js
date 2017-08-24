@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, CardBlock } from '../';
+import { Card, CardBlock } from 'reactstrap';
 
 const SummaryBoxItem = (props) => (
   <Card color="secondary" outline className="rounded-0">

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Table } from '../';
+import { Table } from 'reactstrap';
 import classnames from 'classnames';
 import addWeeks from 'date-fns/add_weeks';
 import eachDay from 'date-fns/each_day';
