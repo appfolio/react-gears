@@ -1,3 +1,4 @@
+const glob = require('glob');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -5,7 +6,7 @@ const webpack = require('webpack');
 /**
  * Production webpack settings.
  */
-module.exports = {
+const config = {
   devtool: 'source-map',
   entry: [
     path.resolve(__dirname, './src/index')
@@ -63,3 +64,45 @@ module.exports = {
     })
   ]
 };
+
+/*
+  Generate a config per file.
+*/
+const sourceRoot = path.resolve(__dirname, './src');
+const getFileConfig = (file) => {
+  const relativePath = path.relative(sourceRoot, file);
+  const parts = path.parse(relativePath);
+  const chunkName = path.join(parts.dir, parts.name);
+
+  return {
+    context: sourceRoot,
+    devtool: 'source-map',
+    entry: {
+      [chunkName]: file,
+    },
+    externals: [
+      function(context, request, callback) {
+        if (
+          context.indexOf('node_modules') !== -1 || // inline node modules (style-loader stuff)
+          request.indexOf('.scss') !== -1 || // inline SCSS files
+          request == file // inline the entry point
+        ) {
+          return callback();
+        }
+        return callback(null, 'commonjs ' + request);
+      }
+    ],
+    output: {
+      path: path.resolve(__dirname, './lib'),
+      filename: '[name].js',
+    },
+    module: config.module,
+    plugins: config.plugins,
+  };
+}
+
+const configs = glob.sync(`${sourceRoot}/**/*.js`).map(getFileConfig)
+
+configs.push(config)
+
+module.exports = configs;
