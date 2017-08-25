@@ -10,7 +10,8 @@
   "license": "MIT",
   "main": "dist/bundle.js",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "publishConfig": {
     "registry": "https://npm-proxy.fury.io/appfolio/"
