@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Alert } from '../';
+import Alert from './Alert';
 
 class DeletedNote extends React.Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Icon } from '../';
 import { Alert } from 'reactstrap';
+import Icon from './Icon';
 
 const ICON_MAP = {
   warning: 'exclamation-circle',

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { Select } from '../';
+import Select from './Select';
 
 const today = new Date();
 const MONTHS = [

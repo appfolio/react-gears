@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { CardGroup } from '../';
+import { CardGroup } from 'reactstrap';
 import SummaryBoxItem from './SummaryBoxItem.js';
 
 const SummaryBox = (props) => (

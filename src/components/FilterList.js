@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { LabelBadge } from '../';
+import LabelBadge from './LabelBadge';
 
 export default class FilterList extends React.Component {
 

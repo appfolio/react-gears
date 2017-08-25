@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSelect from 'react-select-plus';
-import { Close, Icon } from '../';
+import Close from './Close';
+import Icon from './Icon';
 import noop from 'lodash.noop';
 import Option from './SelectOption.js';
 

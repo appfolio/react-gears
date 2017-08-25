@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Icon, InputGroup } from '../';
-import { Input, InputGroupAddon } from 'reactstrap';
+import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import CardValidator from 'card-validator';
 import cardTypeInfo from 'credit-card-type';
+import Icon from './Icon';
 
 const { number } = CardValidator;
 
