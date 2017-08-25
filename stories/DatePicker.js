@@ -8,14 +8,33 @@ import { boolean } from '@storybook/addon-knobs';
 const UncontrolledDatePicker = asUncontrolled(DatePicker);
 
 storiesOf('DatePicker', module)
-  .addWithInfo('with props', () =>
+  .addWithInfo('uncontrolled', () =>
     <UncontrolledDatePicker
       disabled={boolean('disabled', false)}
       onChange={action('onChange')}
     />
   )
   .addWithInfo('controlled', () => {
-    class X extends React.Component {
+    class ControlledDatePicker extends React.Component {
+      state = {
+        value: ''
+      };
+
+      onChange = value => {
+        this.setState({ value });
+      };
+
+      render() {
+        return (
+          <DatePicker value={this.state.value} onChange={this.onChange} />
+        );
+      }
+    }
+
+    return <ControlledDatePicker />;
+  })
+  .addWithInfo('controlled with custom date parsing', () => {
+    class ControlledDatePickerWithDate extends React.Component {
       state = {
         value: ''
       };
@@ -23,7 +42,7 @@ storiesOf('DatePicker', module)
       onChange = (value, date) => {
         this.setState({
           value,
-          date: value === 'test' ? new Date('1991/01/01') : date
+          date: value === 'christmas' ? new Date('2017/12/25') : date
         });
       };
 
@@ -35,5 +54,5 @@ storiesOf('DatePicker', module)
       }
     }
 
-    return <X />;
-  });
+    return <ControlledDatePickerWithDate />;
+  });;

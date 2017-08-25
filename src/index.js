@@ -79,7 +79,7 @@ import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateInput from './components/DateInput.js';
 import DateMonth from './components/datemonth/DateMonth.js';
-import DatePicker from './components/DatePicker/DatePicker.js';
+import DatePicker from './components/DatePicker/index.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
