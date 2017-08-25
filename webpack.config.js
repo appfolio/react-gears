@@ -80,6 +80,8 @@ const getFileConfig = (file) => {
     entry: {
       [chunkName]: file,
     },
+    // When transpiling individual files, we only want to include the file itself and
+    // the component stylesheet if it uses one.
     externals: [
       function(context, request, callback) {
         if (
@@ -87,22 +89,29 @@ const getFileConfig = (file) => {
           request.indexOf('.scss') !== -1 || // inline SCSS files
           request == file // inline the entry point
         ) {
+          // Inline it.
           return callback();
         }
+        // Keep it as commonjs require.
         return callback(null, 'commonjs ' + request);
       }
     ],
+    // The output has the same path as the input, just under the lib dir.
     output: {
       path: path.resolve(__dirname, './lib'),
       filename: '[name].js',
     },
+    // Use the same loaders and plugins as the original config.
     module: config.module,
     plugins: config.plugins,
   };
 }
 
-const configs = glob.sync(`${sourceRoot}/**/*.js`).map(getFileConfig)
+// Create a Webpack configuration for each file
+const configs = glob.sync(`${sourceRoot}/**/*.js`).map(getFileConfig);
 
-configs.push(config)
+// Add the global config to the array
+configs.push(config);
 
+// Export the array of configs for Webpack to build.
 module.exports = configs;
