@@ -39,6 +39,7 @@ import './InfoBox';
 import './Note';
 import './Notes';
 import './Paginator';
+import './Sidebar';
 import './Steps';
 import './SummaryBox';
 import './Spinner';
