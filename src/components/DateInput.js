@@ -1,14 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  Button,
-  ButtonGroup,
-  Dropdown,
-  DropdownMenu,
-  Input,
-  InputGroupButton,
-  InputGroup
-} from 'reactstrap';
 import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
 import addWeeks from 'date-fns/add_weeks';
@@ -17,7 +8,14 @@ import isValid from 'date-fns/is_valid';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
 import Icon from './Icon';
+import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 import Calendar from './Calendar.js';
+import Dropdown from './Dropdown';
+import DropdownMenu from './DropdownMenu';
+import Input from './Input';
+import InputGroupButton from './InputGroupButton';
+import InputGroup from './InputGroup';
 
 const { parse } = Fecha;
 

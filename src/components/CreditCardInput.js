@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  Row,
-  Col
-} from 'reactstrap';
+import Col from './Col';
+import Row from './Row';
 import PatternInput from './PatternInput';
 import ValidatedFormGroup from './ValidatedFormGroup';
 import CreditCardExpiration from './CreditCardExpiration';

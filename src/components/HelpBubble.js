@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from './Icon';
-import { Popover, PopoverTitle, PopoverContent } from 'reactstrap';
+import Popover from './Popover';
+import PopoverTitle from './PopoverTitle';
+import PopoverContent from './PopoverContent';
 
 let count = 0;
 

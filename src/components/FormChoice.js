@@ -1,6 +1,8 @@
 import React from 'react';
 import classname from 'classnames';
-import { FormGroup, Input, Label } from 'reactstrap';
+import FormGroup from './FormGroup';
+import Input from './Input';
+import Label from './Label';
 
 const FormChoice = props => {
   const {

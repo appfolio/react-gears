@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import {
-  Button,
-  Card,
-  CardBlock,
-  CardHeader,
-  CardTitle
-} from 'reactstrap';
+import Button from './Button';
+import Card from './Card';
+import CardBlock from './CardBlock';
+import CardHeader from './CardHeader';
+import CardTitle from './CardTitle';
 import Icon from './Icon';
 
 class BlockPanel extends React.Component {

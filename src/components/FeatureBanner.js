@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Alert } from 'reactstrap';
+import Alert from 'reactstrap/lib/Alert';
 import styles from './FeatureBanner.scss';
 
 export default class FeatureBanner extends React.Component {

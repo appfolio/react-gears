@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Table } from 'reactstrap';
+import Table from './Table';
 
 class TableComponent extends React.Component {
   static displayName = 'Table';

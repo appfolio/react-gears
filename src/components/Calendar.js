@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Table } from 'reactstrap';
 import classnames from 'classnames';
 import addWeeks from 'date-fns/add_weeks';
 import eachDay from 'date-fns/each_day';
@@ -15,6 +14,7 @@ import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
 import style from './Calendar.scss';
+import Table from './Table';
 
 // TODO locale/localize
 

@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, ButtonToolbar, Card, CardBlock, Input } from 'reactstrap';
+import Button from './Button';
+import ButtonToolbar from './ButtonToolbar';
+import Card from './Card';
+import CardBlock from './CardBlock';
+import Input from './Input';
 
 class EditableNote extends React.Component {
   static propTypes = {

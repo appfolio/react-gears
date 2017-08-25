@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'reactstrap';
+import Input from './Input';
 
 const StaticInput = ({ type, value, defaultValue, children, color, state, ...props }) => (
   <Input

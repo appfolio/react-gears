@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Input } from 'reactstrap';
+import Input from './Input';
 
 class FileInput extends React.Component {
   onChange = changeEvent => {

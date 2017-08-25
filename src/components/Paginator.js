@@ -1,11 +1,12 @@
 import Page from './Paginator/Page';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Pagination, Row } from 'reactstrap';
+import Icon from './Icon';
+import Pagination from './Pagination';
+import Row from './Row';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
-import Icon from './Icon';
 
 const DEFAULT_PER_PAGE = 20;
 

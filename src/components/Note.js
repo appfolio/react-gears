@@ -1,10 +1,15 @@
+import fecha from 'fecha';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Card, CardBlock, CardHeader, CardText, Badge } from 'reactstrap';
+
+import Badge from './Badge';
+import Button from './Button';
+import Card from './Card';
+import CardBlock from './CardBlock';
+import CardHeader from './CardHeader';
+import CardText from './CardText';
 import DeletedNote from './DeletedNote.js';
 import EditableNote from './EditableNote.js';
-
-import fecha from 'fecha';
 
 // TODO extract to date helper, i18n:
 const dateFormat = (date, format) => fecha.format(date, format);

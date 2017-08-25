@@ -12,7 +12,8 @@ import MaskedInput from 'react-text-mask';
 //import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import createNumberMask from './CurrencyInput/createNumberMaskMonkeyPatch';
 
-import { InputGroup, InputGroupAddon } from 'reactstrap';
+import InputGroup from './InputGroup';
+import InputGroupAddon from './InputGroupAddon';
 
 /**
  * In the case where the user enters an extra "." at the end of the input the default behavior will
