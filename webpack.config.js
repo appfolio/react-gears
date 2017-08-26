@@ -2,6 +2,8 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
+const packageJson = require('./package.json');
+
 /**
  * Production webpack settings.
  */
@@ -10,19 +12,27 @@ module.exports = {
   entry: [
     path.resolve(__dirname, './src/index')
   ],
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
-    reactstrap: 'reactstrap',
-    'react-addons-css-transition-group': 'react-addons-css-transition-group',
-    'react-addons-transition-group': 'react-addons-transition-group'
-  },
+  externals: [
+    // Externalize all packages that are peerDependencies
+    ...Object.keys(packageJson.peerDependencies),
+    // Externalize all packages that are dependencies. They get installed during installation
+    // of this package and externalizing will keep them as ie require('fecha'), which will
+    // still resolve.
+    ...Object.keys(packageJson.dependencies),
+    // Externalize all the subimports from reactstrap and date-fns
+    function(context, request, callback) {
+      if (['reactstrap', 'date-fns'].some(check => request.indexOf(check) !== -1)) {
+        // Keep it as commonjs require.
+        return callback(null, 'commonjs ' + request);
+      }
+      // Inline it.
+      return callback();
+    }
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    library: 'xanthous',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
