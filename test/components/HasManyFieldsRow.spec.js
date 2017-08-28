@@ -2,10 +2,9 @@ import assert from 'assert';
 
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { Button, Col } from 'reactstrap';
 import sinon from 'sinon';
 
-import { HasManyFieldsRow } from '../../src';
+import { Button, Col, HasManyFieldsRow } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;

@@ -1,9 +1,8 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import { Input } from 'reactstrap';
 
-import { StaticInput } from '../../src';
+import { Input, StaticInput } from '../../src';
 
 describe('<StaticInput />', () => {
   const component = shallow(

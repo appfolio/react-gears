@@ -1,9 +1,8 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import { Button } from 'reactstrap';
 
-import { Modal } from '../../src';
+import { Button, Modal } from '../../src';
 
 const noop = () => {};
 

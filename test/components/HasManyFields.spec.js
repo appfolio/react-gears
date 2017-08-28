@@ -2,10 +2,14 @@ import assert from 'assert';
 
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Input } from 'reactstrap';
 import sinon, { spy } from 'sinon';
 
-import { HasManyFields, HasManyFieldsAdd, HasManyFieldsRow } from '../../src';
+import {
+  HasManyFields,
+  HasManyFieldsAdd,
+  HasManyFieldsRow,
+  Input
+} from '../../src';
 
 const items = [ 'monkey', 'cat', 'mouse' ];
 

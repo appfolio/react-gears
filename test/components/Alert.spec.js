@@ -3,7 +3,7 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import { Icon, Alert } from '../../src';
 
-import { Alert as Inner } from 'reactstrap';
+import Inner from 'reactstrap/lib/Alert';
 
 describe('<Alert />', () => {
   describe('default', () => {

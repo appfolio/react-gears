@@ -2,8 +2,18 @@ import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import { Input, Label, Col, FormText, FormFeedback } from 'reactstrap';
-import { FormRow, StaticInput, RadioInput, CheckboxInput, FileInput } from '../../src';
+import {
+  CheckboxInput,
+  Col,
+  FileInput,
+  FormFeedback,
+  FormRow,
+  FormText,
+  Input,
+  Label,
+  RadioInput,
+  StaticInput
+} from '../../src';
 
 describe('<FormRow />', () => {
   describe('by default', () => {
