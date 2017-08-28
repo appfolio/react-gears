@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import Col from './Col';
+import Row from './Row';
 import Select from './Select';
 
 const today = new Date();

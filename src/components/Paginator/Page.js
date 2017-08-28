@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PaginationItem, PaginationLink } from 'reactstrap';
+import PaginationItem from '../PaginationItem';
+import PaginationLink from '../PaginationLink';
 
 /**
  * A clickable link to a page in the pagination bar

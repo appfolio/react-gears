@@ -2,8 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import { Input, Label, FormGroup } from 'reactstrap';
-import { FormChoice } from '../../src';
+import { Input, Label, FormGroup, FormChoice } from '../../src';
 
 describe('<FormChoice />', () => {
   describe('unknown type', () => {

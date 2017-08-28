@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormGroup, Input, Label } from 'reactstrap';
+import FormGroup from './FormGroup';
+import Input from './Input';
+import Label from './Label';
 
 class CheckboxBooleanInput extends React.Component {
   static propTypes = {

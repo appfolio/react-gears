@@ -1,9 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import { Col } from 'reactstrap';
-
-import { Datapair } from '../../src';
+import { Col, Datapair } from '../../src';
 
 describe('<Datapair />', () => {
   const component = shallow(<Datapair label="stuff" value="something" />);

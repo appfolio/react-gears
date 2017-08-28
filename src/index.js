@@ -1,63 +1,61 @@
-import {
-  Badge,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  ButtonDropdown,
-  ButtonGroup,
-  ButtonToolbar,
-  Card,
-  CardBlock,
-  CardColumns,
-  CardDeck,
-  CardFooter,
-  CardGroup,
-  CardHeader,
-  CardImg,
-  CardImgOverlay,
-  CardLink,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Col,
-  Container,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Fade,
-  Form,
-  FormFeedback,
-  FormGroup,
-  FormText,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  Jumbotron,
-  Label,
-  ListGroup,
-  Media,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Nav,
-  NavDropdown,
-  NavItem,
-  NavLink,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  PopoverContent,
-  PopoverTitle,
-  Row,
-  TabContent,
-  TabPane,
-  TetherContent
-} from 'reactstrap';
+import Badge from './components/Badge';
+import Breadcrumb from './components/Breadcrumb';
+import BreadcrumbItem from './components/BreadcrumbItem';
+import Button from './components/Button';
+import ButtonDropdown from './components/ButtonDropdown';
+import ButtonGroup from './components/ButtonGroup';
+import ButtonToolbar from './components/ButtonToolbar';
+import Card from './components/Card';
+import CardBlock from './components/CardBlock';
+import CardColumns from './components/CardColumns';
+import CardDeck from './components/CardDeck';
+import CardFooter from './components/CardFooter';
+import CardGroup from './components/CardGroup';
+import CardHeader from './components/CardHeader';
+import CardImg from './components/CardImg';
+import CardImgOverlay from './components/CardImgOverlay';
+import CardLink from './components/CardLink';
+import CardSubtitle from './components/CardSubtitle';
+import CardText from './components/CardText';
+import CardTitle from './components/CardTitle';
+import Col from './components/Col';
+import Container from './components/Container';
+import Dropdown from './components/Dropdown';
+import DropdownItem from './components/DropdownItem';
+import DropdownMenu from './components/DropdownMenu';
+import DropdownToggle from './components/DropdownToggle';
+import Fade from './components/Fade';
+import Form from './components/Form';
+import FormFeedback from './components/FormFeedback';
+import FormGroup from './components/FormGroup';
+import FormText from './components/FormText';
+import Input from './components/Input';
+import InputGroup from './components/InputGroup';
+import InputGroupAddon from './components/InputGroupAddon';
+import InputGroupButton from './components/InputGroupButton';
+import Jumbotron from './components/Jumbotron';
+import Label from './components/Label';
+import ListGroup from './components/ListGroup';
+import Media from './components/Media';
+import ModalBody from './components/ModalBody';
+import ModalFooter from './components/ModalFooter';
+import ModalHeader from './components/ModalHeader';
+import Nav from './components/Nav';
+import NavDropdown from './components/NavDropdown';
+import NavItem from './components/NavItem';
+import NavLink from './components/NavLink';
+import Navbar from './components/Navbar';
+import NavbarBrand from './components/NavbarBrand';
+import NavbarToggler from './components/NavbarToggler';
+import Pagination from './components/Pagination';
+import PaginationItem from './components/PaginationItem';
+import PaginationLink from './components/PaginationLink';
+import PopoverContent from './components/PopoverContent';
+import PopoverTitle from './components/PopoverTitle';
+import Row from './components/Row';
+import TabContent from './components/TabContent';
+import TabPane from './components/TabPane';
+import TetherContent from './components/TetherContent';
 
 // Gears:
 

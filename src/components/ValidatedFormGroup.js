@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormFeedback, FormGroup } from 'reactstrap';
+import FormFeedback from './FormFeedback';
+import FormGroup from './FormGroup';
 
 const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (
   <FormGroup color={error && 'danger'} {...props}>

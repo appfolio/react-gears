@@ -1,8 +1,13 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import { Popover, PopoverTitle, PopoverContent } from 'reactstrap';
-import { Icon, HelpBubble } from '../../src';
+import {
+  Popover,
+  PopoverTitle,
+  PopoverContent,
+  Icon,
+  HelpBubble
+} from '../../src';
 
 
 describe('<HelpBubble />', () => {

@@ -1,4 +1,4 @@
-import { Modal } from 'reactstrap';
+import Modal from 'reactstrap/lib/Modal';
 
 Modal.defaultProps = {
   ...Modal.defaultProps,

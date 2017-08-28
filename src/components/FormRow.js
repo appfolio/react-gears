@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormGroup, Input, Label, Col, Row, FormFeedback, FormText } from 'reactstrap';
-
 import CheckboxInput from './CheckboxInput';
-import RadioInput from './RadioInput';
-import StaticInput from './StaticInput';
+import Col from './Col';
 import FileInput from './FileInput';
+import FormFeedback from './FormFeedback';
+import FormGroup from './FormGroup';
+import FormText from './FormText';
+import Input from './Input';
+import Label from './Label';
+import RadioInput from './RadioInput';
+import Row from './Row';
+import StaticInput from './StaticInput';
 
 const typeTranslations = {
   checkbox: CheckboxInput,

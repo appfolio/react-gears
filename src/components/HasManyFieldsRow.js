@@ -1,9 +1,11 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Col, Row } from 'reactstrap';
-
+import Button from './Button';
+import Col from './Col';
 import Icon from './Icon';
+import Row from './Row';
+
 
 const HasManyFieldsRow = ({ children, onDelete, disabled }) => (
   <Row className="mb-3" noGutters>

@@ -2,9 +2,8 @@ import assert from 'assert';
 
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Button } from 'reactstrap';
 
-import { HasManyFieldsAdd, Icon } from '../../src';
+import { Button, HasManyFieldsAdd, Icon } from '../../src';
 
 describe('<HasManyFieldsAdd />', () => {
   const component = shallow(

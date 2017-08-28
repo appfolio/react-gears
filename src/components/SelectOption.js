@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DropdownItem } from 'reactstrap';
 import classNames from 'classnames';
+import DropdownItem from './DropdownItem';
 
 /**
  * Custom option component that adds Bootstrap/reactstrap components and theming support to

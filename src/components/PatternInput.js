@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Input } from 'reactstrap';
+import Input from './Input';
 
 export default class PatternInput extends React.Component {
   constructor(props) {

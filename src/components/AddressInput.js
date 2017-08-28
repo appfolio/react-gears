@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Col, Input, Row } from 'reactstrap';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
 
 import Select from './Select';
 import ValidatedFormGroup from './ValidatedFormGroup';
+import Col from './Col';
+import Input from './Input';
+import Row from './Row';
 
 // TODO Dynamic states based on country:
 import states from './address/USStates.js';

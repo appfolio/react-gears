@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Form } from 'reactstrap';
+import Form from './Form';
 import noop from 'lodash.noop';
 
 class BoundForm extends React.Component {

@@ -2,8 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import assert from 'assert';
-import { Input } from 'reactstrap';
-import { FileInput } from '../../src';
+import { FileInput, Input } from '../../src';
 
 
 describe('<FileInput />', () => {
