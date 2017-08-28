@@ -10,7 +10,7 @@ import format from 'date-fns/format';
 import Icon from './Icon';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
-import Calendar from './Calendar.js';
+import Calendar from './Calendar';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
 import Input from './Input';

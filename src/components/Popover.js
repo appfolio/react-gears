@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Popover from './Popover';
+import Popover from 'reactstrap/lib/Popover';
 
 Popover.propTypes = {
   ...Popover.propTypes,
