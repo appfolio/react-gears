@@ -4,6 +4,7 @@ import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
 import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
+import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
@@ -13,7 +14,6 @@ import ButtonGroup from './ButtonGroup';
 import Calendar from './Calendar';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
-import Input from './Input';
 import InputGroupButton from './InputGroupButton';
 import InputGroup from './InputGroup';
 
@@ -185,10 +185,42 @@ export default class DateInput extends React.Component {
   }
   toggle = () => (this.state.open ? this.close() : this.show());
 
+  setInputValue = () => {
+    if (!this.inputEl) {
+      return;
+    }
+    const currentValue = this.getCurrentValue();
+    const inputValue = this.inputEl.value;
+    const currentValueAsDate = currentValue && parse(currentValue, this.props.dateFormat);
+    const inputValueAsDate = parse(inputValue || '', this.props.dateFormat);
+    const isSame = (currentValueAsDate && inputValueAsDate) &&
+                    isSameDay(currentValueAsDate, inputValueAsDate) || (inputValue == currentValue);
+
+    if (!isSame) {
+      this.inputEl.value = currentValue;
+    }
+  }
+
+  componentDidMount() {
+    this.setInputValue();
+  }
+
+  componentDidUpdate() {
+    this.setInputValue();
+  }
+
+  onBlur = (e) => {
+    this.props.onBlur(e);
+
+    const parsedDate = parse(this.inputEl.value, this.props.dateFormat);
+    if (parsedDate) {
+      this.inputEl.value = format(parsedDate, this.props.dateFormat);
+    }
+  }
+
   render() {
-    const { className, dateVisible, disabled, footer, header, onBlur, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, showOnFocus } = this.props;
     const { open } = this.state;
-    const value = this.getCurrentValue();
     const date = this.getCurrentDate();
 
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
@@ -196,10 +228,11 @@ export default class DateInput extends React.Component {
       <div>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
           <InputGroup className={className}>
-            <Input
+            <input
+              className="form-control"
+              ref={el => { this.inputEl = el; }}
               type="text"
-              value={value}
-              onBlur={onBlur}
+              onBlur={this.onBlur}
               onChange={this.onChange}
               onClick={showOnFocus && this.show}
               onFocus={showOnFocus && this.show}
