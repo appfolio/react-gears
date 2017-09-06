@@ -29,14 +29,14 @@ const { parse } = Fecha;
  * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
  * | invalid string | today | invalid string |
  */
-function parseValue(defaultValue, dateFormat) {
+function parseValue(defaultValue, dateFormat, parseDate) {
   let date;
 
   if (defaultValue) {
     if (defaultValue instanceof Date) {
       date = defaultValue;
     } else {
-      date = parse(defaultValue, dateFormat);
+      date = parseDate(defaultValue, dateFormat);
       try {
         if (!isValid(date)) {
           date = new Date();
@@ -63,11 +63,12 @@ export default class DateInput extends React.Component {
       PropTypes.object
     ]),
     disabled: PropTypes.bool,
-    header: PropTypes.node,
     footer: PropTypes.node,
+    header: PropTypes.node,
     keyboard: PropTypes.bool,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    parse: PropTypes.func,
     showOnFocus: PropTypes.bool,
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -78,13 +79,14 @@ export default class DateInput extends React.Component {
 
   static defaultProps = {
     className: '',
-    dateVisible: () => true,
     dateFormat: 'M/D/YYYY',
+    dateVisible: () => true,
+    disabled: false,
     keyboard: true,
     onBlur: () => {},
     onChange: () => {},
-    showOnFocus: true,
-    disabled: false
+    parse: (value, dateFormat) => parse(value, dateFormat),
+    showOnFocus: true
   }
 
   constructor(props) {
@@ -161,10 +163,10 @@ export default class DateInput extends React.Component {
     return this.state.value;
   };
 
-  getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat);
+  getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat, this.props.parse);
 
   parseInput = value => {
-    const date = parse(value, this.props.dateFormat);
+    const date = this.props.parse(value, this.props.dateFormat);
 
     if (date) {
       this.props.onChange(date, true);
@@ -191,8 +193,8 @@ export default class DateInput extends React.Component {
     }
     const currentValue = this.getCurrentValue();
     const inputValue = this.inputEl.value;
-    const currentValueAsDate = currentValue && parse(currentValue, this.props.dateFormat);
-    const inputValueAsDate = parse(inputValue || '', this.props.dateFormat);
+    const currentValueAsDate = currentValue && this.props.parse(currentValue, this.props.dateFormat);
+    const inputValueAsDate = this.props.parse(inputValue || '', this.props.dateFormat);
     const isSame = (currentValueAsDate && inputValueAsDate) &&
                     isSameDay(currentValueAsDate, inputValueAsDate) || (inputValue == currentValue);
 
@@ -212,7 +214,7 @@ export default class DateInput extends React.Component {
   onBlur = (e) => {
     this.props.onBlur(e);
 
-    const parsedDate = parse(this.inputEl.value, this.props.dateFormat);
+    const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
       this.inputEl.value = format(parsedDate, this.props.dateFormat);
     }
