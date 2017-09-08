@@ -278,4 +278,10 @@ describe('<DateInput />', () => {
     assert.equal(component.find('div.custom-footer').length, 1);
     assert.equal(component.find('footer.pb-2').length, 0);
   });
+
+  it('should call custom parse function', () => {
+    const callback = sinon.spy(() => new Date(2003, 0, 2));
+    mount(<DateInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
+    assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
+  });
 });
