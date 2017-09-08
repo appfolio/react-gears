@@ -120,6 +120,7 @@ const fileConfigs = {
   output: {
     path: path.resolve(__dirname, './lib'),
     filename: '[name].js',
+    libraryTarget: 'commonjs2',
   },
   // Use the same loaders and plugins as the original config.
   module: config.module,
