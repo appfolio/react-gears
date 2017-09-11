@@ -20,7 +20,7 @@ import './Tooltip';
 import './Forms';
 import './Address';
 import './CurrencyInput';
-import './CreditCardInput';
+import './CreditCardNumber';
 import './DateInput';
 import './DateMonth';
 import './FormRow';
