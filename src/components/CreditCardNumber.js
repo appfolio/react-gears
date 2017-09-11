@@ -29,7 +29,7 @@ export default class CreditCardNumber extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,
-    icon: PropTypes.func,
+    icon: PropTypes.func, // TODO
     types: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
     onChange: PropTypes.func,
@@ -46,39 +46,38 @@ export default class CreditCardNumber extends React.Component {
     type: null
   };
 
-  onChange = (e) => {
-    const value = e.target.value;
+  getType = (value) => {
     let type = undefined;
 
     if (!value || (value && value.trim().length === 0)) {
-      this.props.onChange(value, false, type);
-      this.setState({ type });
-      return;
+      return type;
     }
 
-    const { card, isValid, isPotentiallyValid } = number(value);
-    if (isValid && card) {
-      type = card.type;
-    } else if (isPotentiallyValid) {
-      const typeInfo = cardTypeInfo(value)[0]; // Get only first if more than 1 guess
-      if (typeInfo) {
-        type = typeInfo.type;
-      }
+    const typeInfo = cardTypeInfo(value); // Get only first if more than 1 guess
+    if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
+      type = typeInfo[0].type;
     }
 
-    // Filter out disallowed card types
-    type = includes(this.props.types, type) ? type : undefined;
-    // TODO should isValid be false here?
+    return type;
+  }
 
-    this.props.onChange(value, isValid, type);
-    this.setState({ type });
+  onChange = (e) => {
+    const value = e.target.value;
+    let type = this.getType(value);
+
+    this.props.onChange(value, {}); // TODO
   }
 
   render() {
-    const { type } = this.state;
     const { className, value, ...inputProps } = this.props;
     delete inputProps.types;
     delete inputProps.onChange;
+
+    let type = undefined;
+    const typeInfo = cardTypeInfo(value); // Get only first if more than 1 guess
+    if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
+      type = typeInfo[0].type;
+    }
 
     return (
       <InputGroup className={className}>
@@ -89,7 +88,7 @@ export default class CreditCardNumber extends React.Component {
         />
         <InputGroupAddon className="p-0 px-2">
           <Icon
-            name={type ? this.props.icon(type) : 'credit-card'}
+            name={this.props.icon(type)}
             fixedWidth
             size="lg"
           />
