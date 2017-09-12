@@ -31,7 +31,6 @@
     "react-dom": "15.x"
   },
   "dependencies": {
-    "card-validator": "^4.0.0",
     "classnames": "^2.2.5",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.28.5",
