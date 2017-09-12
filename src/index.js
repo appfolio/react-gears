@@ -71,8 +71,6 @@ import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
-import CreditCardExpiration from './components/CreditCardExpiration.js';
-import CreditCardInput from './components/CreditCardInput.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateInput from './components/DateInput.js';
@@ -194,8 +192,6 @@ export {
   CheckboxBooleanInput,
   CheckboxListInput,
   CreditCardNumber,
-  CreditCardExpiration,
-  CreditCardInput,
   CurrencyInput,
   Datapair,
   DateInput,

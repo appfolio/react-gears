@@ -13,78 +13,67 @@ const EXAMPLES = {
   jcb: '3530111333300000',
   visa: '4111111111111111',
 };
-const ICON_MAP = {
-  'american-express': 'amex',
-  'master-card': 'mastercard',
-};
 
 describe('<CreditCardNumber />', () => {
-  it('should render no icon, by default', () => {
+  it('should render default icon', () => {
     const component = shallow(<CreditCardNumber />);
-    assert.equal(component.find(Icon).length, 0);
+    assert.equal(component.find(Icon).prop('name'), 'credit-card');
   });
 
   it('should handle specified values', () => {
-    const component = mount(<CreditCardNumber value={EXAMPLES.visa} />);
+    const onChange = sinon.spy();
+    const component = mount(<CreditCardNumber onChange={onChange} />);
 
     const input = component.find('input');
-    assert.equal(input.length, 1);
-    assert.equal(input.get(0).value, '4111 1111 1111 1111');
-    assert.equal(component.find(Icon).prop('name'), 'cc-visa');
+    input.simulate('change', { target: { value: EXAMPLES.visa } });
+    sinon.assert.calledWith(onChange, EXAMPLES.visa, 'visa');
   });
 
   it('should report/render icon for correct cardType for valid numbers', () => {
-    Object.keys(EXAMPLES).forEach(key => {
-      const cardNumber = EXAMPLES[key];
+    Object.keys(EXAMPLES).forEach(type => {
+      const cardNumber = EXAMPLES[type];
       const onChange = sinon.spy();
 
       const component = mount(<CreditCardNumber onChange={onChange} />);
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert(onChange.called);
-      const [values, returnedIsValid] = [...onChange.lastCall.args];
-      assert.equal(values.cardNumber.replace(/ /g, ''), cardNumber);
-      assert.equal(values.cardType, key);
-      assert.equal(returnedIsValid, true);
-
-      assert.equal(component.find(Icon).prop('name'), `cc-${ICON_MAP[key] || key}`);
+      sinon.assert.calledWith(onChange, cardNumber, type);
     });
   });
 
-  it('should insert spaces where appropriate, based on card type', () => {
-    const component = mount(<CreditCardNumber />);
+  it('should not report/render icon for ambiguous cardType for partial numbers', () => {
+    const cardNumber = '3'; // Could be amex or diners
+    const onChange = sinon.spy();
+
+    const component = mount(<CreditCardNumber onChange={onChange} />);
     const input = component.find('input');
+    input.simulate('change', { target: { value: cardNumber } });
 
-    input.simulate('change', { target: { value: EXAMPLES.visa } });
-    assert.equal(input.get(0).value, '4111 1111 1111 1111');
-
-    input.simulate('change', { target: { value: EXAMPLES['diners-club'] } });
-    assert.equal(input.get(0).value, '3056 930902 5904');
+    sinon.assert.calledWith(onChange, cardNumber, undefined);
   });
 
-  it('should not append extra spaces to partial numbers', () => {
-    const component = mount(<CreditCardNumber />);
-    const input = component.find('input');
+  it('should report/render icon for unambiguous cardType for partial numbers', () => {
+    const cardNumber = '37';
+    const onChange = sinon.spy();
 
-    input.simulate('change', { target: { value: EXAMPLES.visa.slice(0, 8) } });
-    assert.equal(input.get(0).value, '4111 1111');
+    const component = mount(<CreditCardNumber onChange={onChange} />);
+    const input = component.find('input');
+    input.simulate('change', { target: { value: cardNumber } });
+
+    sinon.assert.calledWith(onChange, cardNumber, 'american-express');
   });
 
-  it('restrictInput prop should reject numbers for invalid card types', () => {
-    const component = mount(<CreditCardNumber restrictInput allowedBrands={['visa']} />);
-    const input = component.find('input');
-    input.simulate('change', { target: { value: EXAMPLES['master-card'] } });
+  it('should not report/render icon for disallowed card types', () => {
+    Object.keys(EXAMPLES).forEach(type => {
+      const cardNumber = EXAMPLES[type];
+      const onChange = sinon.spy();
 
-    assert.equal(input.get(0).value, '');
-    assert.equal(component.find(Icon).length, 0);
-  });
+      const component = mount(<CreditCardNumber onChange={onChange} types={[]} />);
+      const input = component.find('input');
+      input.simulate('change', { target: { value: cardNumber } });
 
-  it('restrictInput prop should reject changes that are not even potentially valid', () => {
-    const component = mount(<CreditCardNumber restrictInput />);
-    const input = component.find('input');
-
-    input.simulate('change', { target: { value: '5' } });
-    assert.equal(input.get(0).value, '');
+      sinon.assert.calledWith(onChange, cardNumber, undefined);
+    });
   });
 });

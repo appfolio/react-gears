@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import CardValidator from 'card-validator';
+import PropTypes from 'prop-types';
 import cardTypeInfo from 'credit-card-type';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-const { number } = CardValidator;
-
-const TYPES = {
+const ICONS = {
   'american-express': 'cc-amex',
   'diners-club': 'cc-diners-club',
   'master-card': 'cc-mastercard',
@@ -19,105 +16,64 @@ const TYPES = {
 };
 
 function typeToIconName(type = '') {
-  return TYPES[type.toLowerCase()] || null;
+  return ICONS[type.toLowerCase()] || 'credit-card';
 }
 function includes(array, value) {
   return Array.isArray(array) && array.indexOf(value) !== -1;
 }
 
 export default class CreditCardNumber extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '', cardType: undefined };
+
+  static propTypes = {
+    className: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    className: '',
+    types: Object.keys(ICONS),
+    onChange: () => {},
+  };
+
+  onChange = (e) => {
+    const value = e.target.value;
+    const type = this.getType(value);
+    this.props.onChange(value, type);
   }
 
-  componentDidMount() {
-    this.setValue(this.props.value);
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.value !== this.props.value) {
-      this.setValue(props.value);
-    }
-  }
-
-  onInputChange = (event) => {
-    this.setValue(event.target.value);
-  }
-
-  setValue = (proposedValue) => {
-    let value = proposedValue.replace(/[^0-9]/g, '');
-    if (proposedValue === '') {
-      this.props.onChange(value, false, undefined);
-      this.setState({ value, cardType: undefined });
-      return;
-    }
-
-    const { card, isValid, isPotentiallyValid } = number(value);
-
-    let cardTypeIconName = undefined;
-    let cardTypeIsAllowed = false;
-
-    if (card && card.type) {
-      cardTypeIconName = typeToIconName(card.type);
-      cardTypeIsAllowed = includes(this.props.allowedBrands, card.type);
-    }
-
+  getType = (value) => {
     const typeInfo = cardTypeInfo(value);
-    if (typeInfo.length === 1) {
-      const spaces = (typeInfo[0] || {}).gaps || [];
-      value = spaces // For VISA: [4, 8, 12]
-        // Reverse-order, since each space added changes line length
-        .reverse()
-        // Remove any space-positions that occur after the current length
-        .filter(position => position < value.length)
-        // Inject spaces into the value at each declared position
-        .reduce((cardNumber, position) =>
-          `${cardNumber.slice(0, position)} ${cardNumber.slice(position)}`
-        , value);
+    // Return type if only one CC pattern matches and if allowed types includes type
+    if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
+      return typeInfo[0].type;
     }
 
-    // Only accept the change if we recognize the card type, and it is/may be valid
-    if (!this.props.restrictInput || cardTypeIsAllowed && (isValid || isPotentiallyValid)) {
-      this.props.onChange({ cardNumber: value, cardType: card.type }, isValid);
-      this.setState({ value, cardTypeIconName, isValid });
-    }
+    return undefined;
   }
 
   render() {
-    const { placeholder } = this.props;
-    const { cardTypeIconName, value } = this.state;
+    /* eslint-disable  no-unused-vars */
+    const { className, onChange, types, value, ...inputProps } = this.props;
+
+    const type = this.getType(value);
 
     return (
-      <InputGroup className="credit-card-number-field">
+      <InputGroup className={className}>
         <Input
-          name="cardNumber"
-          placeholder={placeholder} value={value}
-          onChange={this.onInputChange}
+          value={value || ''}
+          onChange={this.onChange}
+          {...inputProps}
         />
-        {cardTypeIconName &&
-          <InputGroupAddon>
-            <Icon name={cardTypeIconName} size="lg" />
-          </InputGroupAddon>
-        }
+        <InputGroupAddon className="p-0 px-2">
+          <Icon
+            name={typeToIconName(type)}
+            fixedWidth
+            size="lg"
+          />
+        </InputGroupAddon>
       </InputGroup>
     );
   }
 }
-
-CreditCardNumber.defaultProps = {
-  allowedBrands: Object.keys(TYPES),
-  placeholder: 'Credit Card Number',
-  restrictInput: false,
-  value: '',
-
-  onChange: (cardNumber, isValid, cardType) => true, // eslint-disable-line no-unused-vars
-};
-CreditCardNumber.propTypes = {
-  allowedBrands: PropTypes.arrayOf(PropTypes.string),
-  placeholder: PropTypes.string,
-  restrictInput: PropTypes.bool,
-  value: PropTypes.string,
-
-  onChange: PropTypes.func,
-};
