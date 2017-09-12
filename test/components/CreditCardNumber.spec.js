@@ -13,23 +13,20 @@ const EXAMPLES = {
   jcb: '3530111333300000',
   visa: '4111111111111111',
 };
-const ICON_MAP = {
-  'american-express': 'amex',
-  'master-card': 'mastercard',
-};
 
 describe('<CreditCardNumber />', () => {
-  it('should render defalt icon', () => {
+  it('should render default icon', () => {
     const component = shallow(<CreditCardNumber />);
     assert.equal(component.find(Icon).prop('name'), 'credit-card');
   });
 
   it('should handle specified values', () => {
-    const component = mount(<CreditCardNumber value={EXAMPLES.visa} />);
+    const onChange = sinon.spy();
+    const component = mount(<CreditCardNumber onChange={onChange} />);
 
     const input = component.find('input');
-    input.simulate('change', { target: { value: '4111111111111111' } });
-    assert.equal(component.state('type'), 'visa');
+    input.simulate('change', { target: { value: EXAMPLES.visa } });
+    assert(onChange.calledWith(EXAMPLES.visa, 'visa'));
   });
 
   it('should report/render icon for correct cardType for valid numbers', () => {
@@ -41,9 +38,30 @@ describe('<CreditCardNumber />', () => {
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert(onChange.calledWith(cardNumber, true, type));
-      assert.equal(component.state('type'), type);
+      assert(onChange.calledWith(cardNumber, type));
     });
+  });
+
+  it('should not report/render icon for ambiguous cardType for partial numbers', () => {
+    const cardNumber = '3'; // Could be amex or diners
+    const onChange = sinon.spy();
+
+    const component = mount(<CreditCardNumber onChange={onChange} />);
+    const input = component.find('input');
+    input.simulate('change', { target: { value: cardNumber } });
+
+    assert(onChange.calledWith(cardNumber, undefined));
+  });
+
+  it('should report/render icon for unambiguous cardType for partial numbers', () => {
+    const cardNumber = '37';
+    const onChange = sinon.spy();
+
+    const component = mount(<CreditCardNumber onChange={onChange} />);
+    const input = component.find('input');
+    input.simulate('change', { target: { value: cardNumber } });
+
+    assert(onChange.calledWith(cardNumber, 'american-express'));
   });
 
   it('should not report/render icon for disallowed card types', () => {
@@ -55,8 +73,7 @@ describe('<CreditCardNumber />', () => {
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert(onChange.calledWith(cardNumber, true, undefined));
-      assert.equal(component.state('type'), undefined);
+      assert(onChange.calledWith(cardNumber, undefined));
     });
   });
 });
