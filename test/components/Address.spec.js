@@ -25,7 +25,7 @@ describe('<Address />', () => {
 
     it('should have address1', () => {
       const input = component.find('[name="address1"]');
-      assert.equal(input.prop('placeholder'), 'Address 1');
+      assert.equal(input.prop('placeholder'), 'Address');
       assert.equal(input.prop('defaultValue'), 'Wayne Enterprises');
       assert.equal(input.prop('value'), undefined);
 

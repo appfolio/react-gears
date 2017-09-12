@@ -134,7 +134,7 @@ class AddressInput extends React.Component {
               <Input
                 type="text"
                 name="postal"
-                placeholder={labels.zip}
+                placeholder={labels.postal}
                 {...this.propsFor('postal')}
                 state={error.postal && 'danger'}
                 onChange={flow([readEvent, this.onChange])}
