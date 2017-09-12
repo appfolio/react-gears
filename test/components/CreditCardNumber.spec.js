@@ -26,7 +26,7 @@ describe('<CreditCardNumber />', () => {
 
     const input = component.find('input');
     input.simulate('change', { target: { value: EXAMPLES.visa } });
-    assert(onChange.calledWith(EXAMPLES.visa, 'visa'));
+    sinon.assert.calledWith(onChange, EXAMPLES.visa, 'visa');
   });
 
   it('should report/render icon for correct cardType for valid numbers', () => {
@@ -38,7 +38,7 @@ describe('<CreditCardNumber />', () => {
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert(onChange.calledWith(cardNumber, type));
+      sinon.assert.calledWith(onChange, cardNumber, type);
     });
   });
 
@@ -50,7 +50,7 @@ describe('<CreditCardNumber />', () => {
     const input = component.find('input');
     input.simulate('change', { target: { value: cardNumber } });
 
-    assert(onChange.calledWith(cardNumber, undefined));
+    sinon.assert.calledWith(onChange, cardNumber, undefined);
   });
 
   it('should report/render icon for unambiguous cardType for partial numbers', () => {
@@ -61,7 +61,7 @@ describe('<CreditCardNumber />', () => {
     const input = component.find('input');
     input.simulate('change', { target: { value: cardNumber } });
 
-    assert(onChange.calledWith(cardNumber, 'american-express'));
+    sinon.assert.calledWith(onChange, cardNumber, 'american-express');
   });
 
   it('should not report/render icon for disallowed card types', () => {
@@ -73,7 +73,7 @@ describe('<CreditCardNumber />', () => {
       const input = component.find('input');
       input.simulate('change', { target: { value: cardNumber } });
 
-      assert(onChange.calledWith(cardNumber, undefined));
+      sinon.assert.calledWith(onChange, cardNumber, undefined);
     });
   });
 });

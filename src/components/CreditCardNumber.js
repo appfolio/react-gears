@@ -45,10 +45,6 @@ export default class CreditCardNumber extends React.Component {
   }
 
   getType = (value) => {
-    if (!value || (value && value.trim().length === 0)) {
-      return undefined;
-    }
-
     const typeInfo = cardTypeInfo(value);
     // Return type if only one CC pattern matches and if allowed types includes type
     if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
@@ -59,9 +55,8 @@ export default class CreditCardNumber extends React.Component {
   }
 
   render() {
-    const { className, value, ...inputProps } = this.props;
-    delete inputProps.types;
-    delete inputProps.onChange;
+    /* eslint-disable  no-unused-vars */
+    const { className, onChange, types, value, ...inputProps } = this.props;
 
     const type = this.getType(value);
 
