@@ -6,7 +6,7 @@ import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-const TYPES = {
+const ICONS = {
   'american-express': 'cc-amex',
   'diners-club': 'cc-diners-club',
   'master-card': 'cc-mastercard',
@@ -16,7 +16,7 @@ const TYPES = {
 };
 
 function typeToIconName(type = '') {
-  return TYPES[type.toLowerCase()] || 'credit-card';
+  return ICONS[type.toLowerCase()] || 'credit-card';
 }
 function includes(array, value) {
   return Array.isArray(array) && array.indexOf(value) !== -1;
@@ -33,14 +33,13 @@ export default class CreditCardNumber extends React.Component {
 
   static defaultProps = {
     className: '',
-    types: Object.keys(TYPES),
+    types: Object.keys(ICONS),
     onChange: () => {},
   };
 
   onChange = (e) => {
     const value = e.target.value;
     const type = this.getType(value);
-    // TODO include validity?
     this.props.onChange(value, type);
   }
 
