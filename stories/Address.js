@@ -18,6 +18,8 @@ storiesOf('AddressInput', module)
         }}
         onChange={action('address onChange')}
         disabled={boolean('disabled')}
+        showLabels={boolean('showLabels', false)}
+        labels={object('labels', AddressInput.defaultProps.labels)}
       />
     </div>
   ))
