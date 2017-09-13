@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
-         DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
+         DropdownToggle, DropdownMenu, DropdownItem, Row } from '../src';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
@@ -11,6 +11,7 @@ storiesOf('Buttons', module)
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       size={select('size', ['', 'sm', 'lg'])}
+      onClick={() => console.log('do something')}
     >
       {text('Label', 'Click Me')}
     </Button>
