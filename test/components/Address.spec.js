@@ -1,9 +1,9 @@
 import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import { AddressInput, Select, FormGroup, Input, FormFeedback } from '../../src';
+import { AddressInput, Select, FormFeedback, FormGroup, Input, Label } from '../../src';
 import states from '../../src/components/address/USStates';
 
 describe('<Address />', () => {
@@ -25,7 +25,7 @@ describe('<Address />', () => {
 
     it('should have address1', () => {
       const input = component.find('[name="address1"]');
-      assert.equal(input.prop('placeholder'), 'Address 1');
+      assert.equal(input.prop('placeholder'), 'Address');
       assert.equal(input.prop('defaultValue'), 'Wayne Enterprises');
       assert.equal(input.prop('value'), undefined);
 
@@ -265,6 +265,38 @@ describe('<Address />', () => {
 
     it('should be disabled by default', () => {
       disabledTestCase(undefined, false);
+    });
+  });
+
+  describe('labels', () => {
+    it('should not show labels by default', () => {
+      const component = mount(<AddressInput showLabels />);
+      assert(component.find('label').length, 0);
+    });
+
+    it('should show labels when enabled', () => {
+      const component = mount(<AddressInput showLabels />);
+      assert.equal(component.find('label').length, 6);
+    });
+
+    it('should show custom when enabled', () => {
+      const labels = {
+        address1: 'Alpha',
+        address2: 'Bravo',
+        city: 'Charlie',
+        state: 'Delta',
+        postal: 'Echo',
+        countryCode: 'Foxtrot'
+      };
+      const component = mount(<AddressInput showLabels labels={labels} />);
+      Object.keys(labels).forEach(key => {
+        assert(component.contains(<Label>{labels[key]}</Label>));
+      });
+    });
+
+    it('should not show custom labels when disabled', () => {
+      const component = mount(<AddressInput showLabels={false} />);
+      assert.equal(component.find('label').length, 0);
     });
   });
 });

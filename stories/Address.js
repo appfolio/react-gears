@@ -5,7 +5,7 @@ import { AddressInput } from '../src';
 import states from '../src/components/address/USStates.js';
 
 storiesOf('AddressInput', module)
-  .addWithInfo('uncontrolled', () => (
+  .addWithInfo('Live Example', () => (
     <div>
       <AddressInput
         defaultValue={{
@@ -18,6 +18,9 @@ storiesOf('AddressInput', module)
         }}
         onChange={action('address onChange')}
         disabled={boolean('disabled')}
+        error={object('error', {})}
+        showLabels={boolean('showLabels', false)}
+        labels={object('labels', AddressInput.defaultProps.labels)}
       />
     </div>
   ))
