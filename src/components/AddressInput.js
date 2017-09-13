@@ -64,7 +64,7 @@ class AddressInput extends React.Component {
     return (
       <div>
         <ValidatedFormGroup
-          label={showLabels && labels.address1}
+          label={showLabels ? labels.address1 : null}
           error={error.address1}
         >
           <Input
@@ -78,7 +78,7 @@ class AddressInput extends React.Component {
           />
         </ValidatedFormGroup>
         <ValidatedFormGroup
-          label={showLabels && labels.address2}
+          label={showLabels ? labels.address2 : null}
           error={error.address2}
         >
           <Input
@@ -96,7 +96,7 @@ class AddressInput extends React.Component {
             <ValidatedFormGroup
               className="pr-3"
               error={error.city}
-              label={showLabels && labels.city}
+              label={showLabels ? labels.city : null}
             >
               <Input
                 type="text"
@@ -113,7 +113,7 @@ class AddressInput extends React.Component {
             <ValidatedFormGroup
               className="pr-3"
               error={error.state}
-              label={showLabels && labels.state}
+              label={showLabels ? labels.state : null}
             >
               <Select
                 className="w-100"
@@ -128,7 +128,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col sm={4} xs={4}>
             <ValidatedFormGroup
-              label={showLabels && labels.postal}
+              label={showLabels ? labels.postal : null}
               error={error.postal}
             >
               <Input
@@ -146,7 +146,7 @@ class AddressInput extends React.Component {
         <ValidatedFormGroup
           error={error.countryCode}
           className="mb-0"
-          label={showLabels && labels.countryCode}
+          label={showLabels ? labels.countryCode : null}
         >
           <Select
             className="w-100"
