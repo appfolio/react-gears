@@ -16,7 +16,6 @@ export default ValidatedFormGroup;
 ValidatedFormGroup.defaultProps = {
   children: [],
   error: null,
-  label: '',
   labelTag: Label,
 };
 ValidatedFormGroup.propTypes = {
@@ -25,6 +24,9 @@ ValidatedFormGroup.propTypes = {
     PropTypes.node,
   ]),
   error: PropTypes.string,
-  label: PropTypes.string,
-  labelTag: PropTypes.string,
+  label: PropTypes.node,
+  labelTag: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string
+  ]),
 };
