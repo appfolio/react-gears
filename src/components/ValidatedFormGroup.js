@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
+import Label from './Label';
 
 const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (
   <FormGroup color={error && 'danger'} {...props}>
@@ -16,7 +17,7 @@ ValidatedFormGroup.defaultProps = {
   children: [],
   error: null,
   label: '',
-  labelTag: 'h6',
+  labelTag: Label,
 };
 ValidatedFormGroup.propTypes = {
   children: PropTypes.oneOfType([
