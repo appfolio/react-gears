@@ -7,9 +7,11 @@ function range(size) {
   return result;
 }
 
+// const since these don't behave well as live props, some animation issues:
+const DURATION = '1s';
 const SEGMENTS = 12;
 
-const Spinner = ({ color, duration, size, ...props }) => (
+const Spinner = ({ color, size, ...props }) => (
   <svg
     width={size}
     height={size}
@@ -21,15 +23,15 @@ const Spinner = ({ color, duration, size, ...props }) => (
       <path id="shape" d="M20,10 A10,10 0 1 0 20,-10 L-20,-10 A10,10 0 1 0 -20,10" fill={color} />
     </defs>
     <style>{`
-      .spinner {
-        animation: spin ${duration} infinite steps(${SEGMENTS});
+      .gears-spinner {
+        animation: spin ${DURATION} infinite steps(${SEGMENTS});
       }
       @keyframes spin {
         100% { transform: rotate(360deg); }
       }
     `}</style>
     <g transform="translate(-100,-100)">
-      <g className="spinner">
+      <g className="gears-spinner">
         {range(SEGMENTS).map(i => {
           const opacity = (i / SEGMENTS).toFixed(2);
           const rotate = i * (360 / SEGMENTS).toFixed(2);
@@ -51,13 +53,11 @@ const Spinner = ({ color, duration, size, ...props }) => (
 Spinner.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
-  duration: PropTypes.string,
   size: PropTypes.string
 };
 
 Spinner.defaultProps = {
   color: 'currentColor',
-  duration: '1.2s',
   size: '1em'
 };
 
