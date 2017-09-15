@@ -1,5 +1,3 @@
-@import './Spinner';
-
 .waiting {
   margin: 40vh auto; // TODO flexbox may be better for exact centering
   width: 9rem;
@@ -12,6 +10,5 @@
 
   .spinner {
     font-size: 30px;
-    @include spinner-color(#fff);
   }
 }

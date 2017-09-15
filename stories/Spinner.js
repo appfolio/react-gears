@@ -1,28 +1,31 @@
 import React from 'react';
-import { Spinner } from '../src';
+import { Button, Spinner } from '../src';
 import { storiesOf } from '@storybook/react';
+import { number, select } from '@storybook/addon-knobs';
 
 storiesOf('Spinner', module)
-  .addWithInfo('Default', () => (
-    <div>The <Spinner /> will scale with the font size</div>
-  ))
-  .addWithInfo('Scaled', () => (
-    <div>
-      <Spinner style={{ fontSize: 10 }} />
-      <Spinner style={{ fontSize: 20 }} />
-      <Spinner style={{ fontSize: 40 }} />
-      <Spinner style={{ fontSize: 60 }} />
-      <Spinner style={{ fontSize: 80 }} />
-      <Spinner style={{ fontSize: 100 }} />
-    </div>
-  ))
-  .addWithInfo('This is what it used to look like', () => (
-    <div>
-      <img width="10" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-      <img width="20" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-      <img width="40" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-      <img width="60" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-      <img width="80" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-      <img width="100" src="https://qa.qa.appfolio.com/assets/saffron/blue_spinner-4cde7d33f280e9454273abe82e4674f90959e137f28f2c195b28fb184e9e9ead.gif" />
-    </div>
-  ));
+  .addWithInfo('Default', () => {
+    const color = select('color', ['text-primary', 'text-muted', 'text-info', 'text-success', 'text-warning', 'text-danger'], 'text-primary');
+    return (
+      <div>
+        <p style={{ fontSize: `${number('fontSize', 1, { range: true, min: 1, max: 5, step: 0.25 })}rem` }}>
+          The <Spinner /> will scale with the font size of its container,
+        </p>
+
+        <hr />
+        <p>
+          <h3>...and inherit color from it's container:</h3>
+          <Button color="secondary" size="lg" className="mr-3">
+            <Spinner /> Loading
+          </Button>
+          <Button color="primary" outline size="lg">
+            <Spinner /> Loading
+          </Button>
+        </p>
+        <h1 className={color}>
+          {color}: <Spinner className={color} />
+        </h1>
+      </div>
+    );
+  }
+);
