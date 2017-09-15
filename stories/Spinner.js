@@ -13,8 +13,8 @@ storiesOf('Spinner', module)
         </p>
 
         <hr />
+        <h3>...and inherit color from it's container:</h3>
         <p>
-          <h3>...and inherit color from it's container:</h3>
           <Button color="secondary" size="lg" className="mr-3">
             <Spinner /> Loading
           </Button>
