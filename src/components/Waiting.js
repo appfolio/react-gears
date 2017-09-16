@@ -32,6 +32,7 @@ export default class Waiting extends React.Component {
       ...props
     } = this.props;
 
+    const spinnerClasses = classnames('text-white', styles.spinner);
     return (
       <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
         {title ?
@@ -40,7 +41,7 @@ export default class Waiting extends React.Component {
           </header>
           : null}
         <div className="text-center p-4">
-          {children || <Spinner className={styles.spinner} />}
+          {children || <Spinner className={spinnerClasses} />}
         </div>
       </Modal>
     );

@@ -1,21 +1,65 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './Spinner.scss';
-import classnames from 'classnames';
 
-// TODO allow spinner color as a prop and/or respect the text-* classes
-// TODO consider SVG for spinner
-const Spinner = props => (
-  <div className={classnames('spinner', styles.spinner, props.className)} style={props.style}>
-    <div></div>
-    <div></div>
-  </div>
+function range(size) {
+  const result = [];
+  for (let i = 0; i < size; i++) result.push(i);
+  return result;
+}
+
+// const since these don't behave well as live props, some animation issues:
+const DURATION = '1s';
+const SEGMENTS = 12;
+
+const Spinner = ({ color, size, ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="-200 -200 200 200"
+    version="1.1"
+    {...props}
+  >
+    <defs>
+      <path id="shape" d="M20,10 A10,10 0 1 0 20,-10 L-20,-10 A10,10 0 1 0 -20,10" fill={color} />
+    </defs>
+    <style>{`
+      .gears-spinner {
+        animation: gears-spinner-spin ${DURATION} infinite steps(${SEGMENTS});
+      }
+      @keyframes gears-spinner-spin {
+        100% { transform: rotate(360deg); }
+      }
+    `}</style>
+    <g transform="translate(-100,-100)">
+      <g className="gears-spinner">
+        {range(SEGMENTS).map(i => {
+          const opacity = (i / SEGMENTS).toFixed(2);
+          const rotate = i * (360 / SEGMENTS).toFixed(2);
+
+          return (
+            <use
+              key={i}
+              xlinkHref="#shape"
+              transform={`rotate(${rotate}) translate(70, 0)`}
+              opacity={opacity}
+            />
+          );
+        })}
+      </g>
+    </g>
+  </svg>
 );
 
 Spinner.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.object,
-  // TODO add size prop in lieu of style
+  color: PropTypes.string,
+  size: PropTypes.string
+};
+
+Spinner.defaultProps = {
+  color: 'currentColor',
+  size: '1em'
 };
 
 export default Spinner;
+
