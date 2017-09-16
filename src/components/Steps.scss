@@ -3,7 +3,6 @@ $line: 1px;
 $done: #0275d8; // Saffron color-primary
 $active: #0275d8;
 $todo: #818a91; // Saffron color-muted
-$complete: #21971d; // Saffron color-success
 
 .steps {
   align-items: flex-start;
@@ -75,18 +74,15 @@ $complete: #21971d; // Saffron color-success
   
     &.complete {
       .step {
-        background-image: linear-gradient(to right, $complete, $complete);
+        background-image: linear-gradient(to right, currentColor, currentColor);
         .bubble {
-          border: $line solid $complete;
-        }
-        .text {
-          opacity: .5;
+          border: $line solid currentColor;
         }
         &:first-child {
-          background-image: linear-gradient(to right, transparent 50%, $complete 50%, $complete 100%);
+          background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 100%);
         }
         &:last-child {
-          background-image: linear-gradient(to right, $complete 50%, transparent 50%, transparent 100%);
+          background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
         }
       }
     }
