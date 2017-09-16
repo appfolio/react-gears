@@ -24,9 +24,9 @@ const Spinner = ({ color, size, ...props }) => (
     </defs>
     <style>{`
       .gears-spinner {
-        animation: spin ${DURATION} infinite steps(${SEGMENTS});
+        animation: gears-spinner-spin ${DURATION} infinite steps(${SEGMENTS});
       }
-      @keyframes spin {
+      @keyframes gears-spinner-spin {
         100% { transform: rotate(360deg); }
       }
     `}</style>
