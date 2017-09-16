@@ -1,8 +1,6 @@
 // TODO these colors need to instead come from Bootstrap classes like muted/info/success/etc for theming:
 $line: 1px;
-$done: #0275d8; // Saffron color-primary
-$active: #0275d8;
-$todo: #818a91; // Saffron color-muted
+$todo: #818a91; // Saffron color-muted, needs to be text-muted
 
 .steps {
   align-items: flex-start;
@@ -30,16 +28,16 @@ $todo: #818a91; // Saffron color-muted
         background-image: linear-gradient(to right, transparent 50%, $todo 50%, $todo 100%);
       }
       &.complete {
-        background-image: linear-gradient(to right, transparent 50%, $done 50%, $done 100%);
+        background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 100%);
       }
     }
     &:last-child {
       background-image: linear-gradient(to right, $todo 50%, transparent 50%, transparent 100%);
       &.active {
-        background-image: linear-gradient(to right, $done 50%, transparent 50%, transparent 100%);
+        background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
       }
       &.complete {
-        background-image: linear-gradient(to right, $done 50%, transparent 50%, transparent 100%);
+        background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
       }
     }
 
@@ -58,16 +56,16 @@ $todo: #818a91; // Saffron color-muted
     }
 
     &.active {
-      background-image: linear-gradient(to right, $done 50%, $todo 50%, $todo 100%);
+      background-image: linear-gradient(to right, currentColor 50%, $todo 50%, $todo 100%);
       .bubble {
-        border: $line solid $active;
+        border: $line solid currentColor;
       }
     }
 
     &.complete {
-      background-image: linear-gradient(to right, $done, $done);
+      background-image: linear-gradient(to right, currentColor, currentColor);
       .bubble {
-        border: $line solid $done;
+        border: $line solid currentColor;
       }
     }
   }
