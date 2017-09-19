@@ -4,52 +4,88 @@ import classNames from 'classnames';
 import Icon from './Icon.js';
 import styles from './Steps.scss';
 
-const Steps = ({ complete, step, steps }) => {
-  const className = `${styles.steps} ${complete ? styles.complete : ''}`;
+const Steps = ({ collapse, complete, step, steps }) => {
+  const className = classNames({
+    [styles.complete]: complete,
+    [styles.steps]: true,
+    'm-0': true
+  });
+  const activeStep = steps[step];
+  const activeStepClasses = classNames({
+    'text-gray-dark': !complete,
+    'text-success': complete,
+    'hidden-sm-up': collapse !== true,
+    'text-center': true
+  });
+
   return (
-    <ol className={className}>
-      {steps.map((name, index) => {
-        const stepComplete = !complete && index < step;
-        const stepActive = !complete && index === step;
+    <div className="mb-3">
+      <ol className={className}>
+        {steps.map((name, index) => {
+          const stepComplete = !complete && index < step;
+          const stepActive = !complete && index === step;
 
-        const liClasses = classNames({
-          [styles.step]: true,
-          [styles.complete]: stepComplete,
-          [styles.active]: stepActive,
-        });
+          const liClasses = classNames({
+            [styles.step]: true,
+            [styles.complete]: stepComplete,
+            [styles.active]: stepActive,
+            'text-success': complete,
+            'text-primary': !complete && (stepComplete || stepActive),
+            'text-muted': !(stepComplete || stepActive || complete)
+          });
 
-        const bubbleClasses = classNames({
-          [styles.bubble]: true,
-          'text-success': complete,
-          'bg-primary': stepActive,
-          'text-primary': stepComplete,
-          'text-white': stepActive,
-        });
+          const bubbleClasses = classNames({
+            [styles.bubble]: true,
+            'text-success': complete,
+            'bg-primary': stepActive,
+            'text-primary': stepActive || stepComplete,
+            'text-muted': !stepComplete && !stepActive
+          });
 
-        const textClasses = classNames({
-          [styles.text]: true,
-          'text-primary': stepComplete,
-          'text-muted': !complete && index > step,
-          'text-success': complete,
-        });
+          const iconClasses = classNames({
+            'text-primary': stepComplete,
+            'text-white': stepActive,
+            'text-gray-dark': !(complete || stepComplete || stepActive),
+            'text-success': complete
+          });
 
-        return (
-          <li key={index} className={liClasses}>
-            <div className={bubbleClasses}>
-              {complete || stepComplete ? <Icon name="check" /> : index + 1}
-            </div>
-            <div className={textClasses}>{name}</div>
-          </li>
-        );
-      })}
-    </ol>
+          const textClasses = classNames({
+            'hidden-xs-down': collapse !== false,
+            'text-primary': stepComplete,
+            'text-muted': !complete && index > step,
+            'text-success': complete,
+            'text-gray-dark': stepActive,
+          });
+
+          return (
+            <li key={index} className={liClasses}>
+              <div className={bubbleClasses}>
+                <span className={iconClasses}>{complete || stepComplete ? <Icon name="check" /> : index + 1}</span>
+              </div>
+              {collapse !== true ? <label className={textClasses}>{name}</label> : null}
+            </li>
+          );
+        })}
+      </ol>
+      {collapse !== false ?
+        <div className={activeStepClasses}>
+          <label>{activeStep}</label>
+        </div> : null}
+    </div>
   );
 };
 
 Steps.propTypes = {
-  step: PropTypes.number,
-  steps: PropTypes.array.isRequired,
-  complete: PropTypes.bool
+  collapse: PropTypes.bool,
+  complete: PropTypes.bool,
+  step: PropTypes.number.isRequired,
+  steps: PropTypes.array.isRequired
+};
+
+Steps.defaultProps = {
+  complete: false,
+  step: 0,
+  steps: []
 };
 
 export default Steps;
