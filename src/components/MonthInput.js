@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
-import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import format from 'date-fns/format';
@@ -10,7 +8,7 @@ import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
-import Calendar from './Calendar';
+import Calendar from './MonthCalendar';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
@@ -19,14 +17,16 @@ import InputGroupButton from './InputGroupButton';
 
 const { parse } = Fecha;
 
+// TODO this is almost identical code as DateInput - should be able to extend DateInput with MonthCalendar as Dropdown
+
 /**
  * Given a defaultValue, return the corresponding calendar date and input string value:
  *
  * | defaultValue   | date  | string         |
  * |----------------|-------|----------------|
  * | null,          | today | ''             |
- * | Date           | Date  | 'M/D/YYYY'     |
- * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
+ * | Date           | Date  | 'MMM YYYY'     |
+ * | 'MMM YYYY'     | Date  | 'MMM YYYY'     |
  * | invalid string | today | invalid string |
  */
 function parseValue(defaultValue, dateFormat, parseDate) {
@@ -52,12 +52,14 @@ function parseValue(defaultValue, dateFormat, parseDate) {
   return date;
 }
 
-export default class DateInput extends React.Component {
+export default class MonthInput extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
+    monthFormat: PropTypes.string,
+    yearFormat: PropTypes.string,
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
@@ -79,10 +81,12 @@ export default class DateInput extends React.Component {
 
   static defaultProps = {
     className: '',
-    dateFormat: 'M/D/YYYY',
+    dateFormat: 'MMM YYYY',
     dateVisible: () => true,
     disabled: false,
     keyboard: true,
+    monthFormat: 'MMM',
+    yearFormat: 'YYYY',
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
@@ -129,16 +133,16 @@ export default class DateInput extends React.Component {
         this.setState({ open: false });
         break;
       case 37: // Left
-        if (allowArrows) this.setDate(addDays(this.getCurrentDate(), -1));
+        if (allowArrows) this.setDate(addMonths(this.getCurrentDate(), -1));
         break;
       case 38: // Up
-        if (allowArrows) this.setDate(addWeeks(this.getCurrentDate(), -1));
+        if (allowArrows) this.setDate(addYears(this.getCurrentDate(), -1));
         break;
       case 39: // Right
-        if (allowArrows) this.setDate(addDays(this.getCurrentDate(), 1));
+        if (allowArrows) this.setDate(addMonths(this.getCurrentDate(), 1));
         break;
       case 40: // Down
-        if (allowArrows) this.setDate(addWeeks(this.getCurrentDate(), 1));
+        if (allowArrows) this.setDate(addYears(this.getCurrentDate(), 1));
         break;
       default:
     }
@@ -221,7 +225,7 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
@@ -249,7 +253,7 @@ export default class DateInput extends React.Component {
                 type="button"
                 tabIndex={-1}
               >
-                <Icon name="calendar" fixedWidth />
+                <Icon name="calendar-o" fixedWidth />
               </Button>
             </InputGroupButton>
           </InputGroup>
@@ -288,6 +292,8 @@ export default class DateInput extends React.Component {
             <Calendar
               date={date}
               dateVisible={dateVisible}
+              monthFormat={monthFormat}
+              yearFormat={yearFormat}
               onSelect={this.onSelect}
               className="m-0"
             />
