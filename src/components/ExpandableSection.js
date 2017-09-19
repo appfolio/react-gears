@@ -39,11 +39,13 @@ class ExpandableSection extends React.Component {
 }
 
 ExpandableSection.propTypes = {
+  className: PropTypes.string,
   open: PropTypes.bool,
   title: PropTypes.string.isRequired
 };
 
 ExpandableSection.defaultProps = {
+  className: '',
   open: false
 };
 

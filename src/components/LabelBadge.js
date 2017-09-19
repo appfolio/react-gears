@@ -14,6 +14,7 @@ export default class LabelBadge extends React.Component {
   }
 
   static defaultProps = {
+    className: '',
     removable: true,
     maxWidth: 14
   };
