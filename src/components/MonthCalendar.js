@@ -14,8 +14,8 @@ function range(start, end) {
 
 const { format } = Fecha;
 
-const Label = ({ selected, label, onClick }) => (
-  <li className={`px-0 py-1 text-center ${selected ? 'bg-primary text-white' : ''}`} onClick={onClick}>
+const Label = ({ selected, label, onClick, visible = true }) => (
+  <li className={`px-0 py-1 text-center ${selected ? 'bg-primary text-white' : ''} ${!visible ? 'invisible' : ''}`} onClick={onClick}>
     {label}
   </li>
 );
@@ -24,6 +24,7 @@ export default class MonthCalendar extends React.Component {
 
   static propTypes = {
     date: PropTypes.instanceOf(Date),
+    dateVisible: PropTypes.func,
     monthFormat: PropTypes.string.isRequired,
     yearFormat: PropTypes.string.isRequired,
     onSelect: PropTypes.func,
@@ -31,6 +32,7 @@ export default class MonthCalendar extends React.Component {
 
   static defaultProps = {
     date: new Date(),
+    dateVisible: () => true,
     monthFormat: 'MMM',
     yearFormat: 'YYYY',
     onSelect: () => {}
@@ -61,6 +63,7 @@ export default class MonthCalendar extends React.Component {
                   date={monthYear}
                   key={i}
                   onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
+                  visible={dateVisible(monthYear)}
                 />
               ))}
             </ul>
@@ -75,6 +78,7 @@ export default class MonthCalendar extends React.Component {
                   date={monthYear}
                   key={i}
                   onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
+                  visible={dateVisible(monthYear)}
                 />
               ))}
             </ul>
