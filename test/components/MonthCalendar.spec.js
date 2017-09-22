@@ -7,7 +7,7 @@ import isBefore from 'date-fns/is_before';
 import isSameDay from 'date-fns/is_same_day';
 import { MonthCalendar } from '../../src';
 
-describe.only('<MonthCalendar />', () => {
+describe('<MonthCalendar />', () => {
   it('should render correctly', () => {
     const component = mount(<MonthCalendar />);
 
