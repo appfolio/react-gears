@@ -17,7 +17,7 @@ import InputGroupButton from './InputGroupButton';
 
 const { parse } = Fecha;
 
-// TODO this is almost identical code as DateInput - should be able to extend DateInput with MonthCalendar as Dropdown
+// This is basically same as DateInput - maybe consider Dropdown+Input that encapsulates focus/blur/dropdown behavior?
 
 /**
  * Given a defaultValue, return the corresponding calendar date and input string value:
