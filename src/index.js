@@ -79,6 +79,7 @@ import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FeatureBanner from './components/FeatureBanner.js';
+import FeedbackModal from './components/FeedbackModal.js';
 import FileInput from './components/FileInput.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
@@ -199,6 +200,7 @@ export {
   ExpandableSection,
   Badge as Flag,
   FeatureBanner,
+  FeedbackModal,
   FilterList,
   FormChoice,
   FormRow,

@@ -33,6 +33,7 @@ import './Callout';
 import './Datapair';
 import './ExpandableSection';
 import './FeatureBanner';
+import './FeedbackModal';
 import './FilterList';
 import './HasManyFields';
 import './InfoBox';
