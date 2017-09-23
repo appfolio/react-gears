@@ -74,7 +74,6 @@ import CreditCardNumber from './components/CreditCardNumber.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
 import DateInput from './components/DateInput.js';
-import DateMonth from './components/datemonth/DateMonth.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
 import ExpandableSection from './components/ExpandableSection.js';
@@ -91,6 +90,8 @@ import Icon from './components/Icon.js';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
 import Modal from './components/Modal.js';
+import MonthCalendar from './components/MonthCalendar.js';
+import MonthInput from './components/MonthInput.js';
 import Note from './components/Note.js';
 import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
@@ -195,7 +196,6 @@ export {
   CurrencyInput,
   Datapair,
   DateInput,
-  DateMonth,
   ExpandableSection,
   Badge as Flag,
   FeatureBanner,
@@ -209,6 +209,8 @@ export {
   Icon,
   InfoBox,
   LabelBadge,
+  MonthCalendar,
+  MonthInput,
   Note,
   Notes,
   PatternInput,

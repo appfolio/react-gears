@@ -22,9 +22,9 @@ import './Address';
 import './CurrencyInput';
 import './CreditCardNumber';
 import './DateInput';
-import './DateMonth';
 import './FormRow';
 import './InputGroup';
+import './MonthInput';
 import './Select';
 
 // APM
