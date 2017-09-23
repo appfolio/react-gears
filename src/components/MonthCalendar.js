@@ -3,17 +3,14 @@ import React from 'react';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import Col from './Col';
 import Row from './Row';
+import mod from '../util/mod.js';
+import range from '../util/range.js';
 
 import styles from './MonthCalendar.scss';
 
-function range(start, end) {
-  const result = [];
-  for (let i = start; i < end; i++) result.push(i);
-  return result;
-}
-
 const { format } = Fecha;
 
+// TODO use links for label to allow keyboard nav:
 const Label = ({ selected, label, onClick, visible = true }) => (
   <li className={`px-0 py-1 text-center ${selected ? 'bg-primary text-white' : ''} ${!visible ? 'invisible' : ''}`} onClick={onClick}>
     {label}
@@ -43,14 +40,14 @@ export default class MonthCalendar extends React.Component {
     const now = new Date();
     const currentYear = date.getFullYear();
     const month = date.getMonth();
-    const end = currentYear + (now.getFullYear() - currentYear) % 12 + 1;
+    const end = currentYear + mod((now.getFullYear() - currentYear), 12) + 1;
     const start = end - 12;
     return range(start, end).map(year => new Date(year, month, 1));
   }
 
   render() {
     const { date, dateVisible, monthFormat, onSelect, yearFormat } = this.props;
-  
+
     return (
       <div className={styles.picker}>
         <Row className="no-gutters">

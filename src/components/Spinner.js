@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-function range(size) {
-  const result = [];
-  for (let i = 0; i < size; i++) result.push(i);
-  return result;
-}
+import range from '../util/range.js';
 
 // const since these don't behave well as live props, some animation issues:
 const DURATION = '1s';
