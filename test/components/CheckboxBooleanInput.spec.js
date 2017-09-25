@@ -31,15 +31,23 @@ describe('<CheckboxBooleanInput />', () => {
   });
 
   it('should call onChange with checked state', () => {
-    component.simulate('change', { target: { checked: false }});
+    component.simulate('change', { target: { checked: false } });
     assert(onChange.calledWith(false));
   });
 
   it('should render checkboxLabel if specified', () => {
-    const wrapped = mount(
-      <CheckboxBooleanInput checkboxLabel="Yowza" />
-    );
+    const wrapped = mount(<CheckboxBooleanInput checkboxLabel="Yowza" />);
     assert.equal(wrapped.ref('label').text(), 'Yowza');
     assert.equal(wrapped.ref('label').exists(), true);
+  });
+
+  it('should allow you to pass through other props to the input', () => {
+    const checkbox = mount(
+      <CheckboxBooleanInput value onChange={onChange} disabled />
+    );
+
+    const input = checkbox.find(Input);
+
+    assert.equal(input.props().disabled, true);
   });
 });
