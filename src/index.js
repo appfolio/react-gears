@@ -58,7 +58,8 @@ import TabPane from './components/TabPane';
 import TetherContent from './components/TetherContent';
 
 // Gears:
-
+import Activity from './components/Activity.js';
+import ActivityLog from './components/ActivityLog.js';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
@@ -181,6 +182,8 @@ export {
   Select,
 
   // Gears
+  Activity,
+  ActivityLog,
   AddressInput,
   Alert,
   BlockPanel,
