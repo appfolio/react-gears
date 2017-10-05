@@ -100,6 +100,7 @@ import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';
+import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps.js';
@@ -218,6 +219,7 @@ export {
   RadioInput,
   Spinner,
   StaticInput,
+  SortableTable,
   Steps,
   SummaryBox,
   SummaryBoxItem,

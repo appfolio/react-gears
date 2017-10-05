@@ -1,0 +1,81 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Header from './SortableTable/Header.js';
+import Table from './Table.js';
+
+class SortableTable extends React.Component {
+  static propTypes = {
+    ...Table.propTypes,
+    columns: PropTypes.arrayOf(
+      PropTypes.shape({
+        active: PropTypes.bool,
+        ascending: PropTypes.bool,
+        cell: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+        footer: PropTypes.node,
+        header: PropTypes.node,
+        onSort: PropTypes.func,
+        width: PropTypes.string
+      })
+    ),
+    rows: PropTypes.array
+    // TODO prop to add class to tr for each row
+    // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
+  };
+
+  static defaultProps = {
+    ...Table.defaultProps,
+    columns: [],
+    rows: []
+  };
+
+  render() {
+    const { columns, rows, ...props } = this.props;
+    const showColgroup = columns.some(column => column.width);
+    const showFooter = columns.some(column => column.footer);
+
+    return (
+      <Table {...props}>
+        {showColgroup &&
+          <colgroup>
+            {columns.map((column, index) => (
+              <col key={index} style={{ width: column.width }} />
+            ))}
+          </colgroup>
+        }
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <Header
+                active={column.active}
+                ascending={column.ascending}
+                key={index}
+                onSort={column.onSort ? () => column.onSort(column.ascending) : null}
+              >
+                {column.header}
+              </Header>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => (
+            <tr key={index}>
+              {columns.map((column, key) => <td key={key}>{column.cell(row)}</td>)}
+            </tr>
+          ))}
+        </tbody>
+        {showFooter &&
+          <tfoot>
+            <tr>
+              {columns.map((column, index) => (
+                <th key={index}>
+                  {column.footer}
+                </th>
+              ))}
+            </tr>
+          </tfoot>
+        }
+      </Table>
+    );
+  }
+}
+export default SortableTable;
