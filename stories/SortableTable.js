@@ -8,16 +8,16 @@ import fecha from 'fecha';
 import { orderBy } from 'lodash';
 
 const DATA = [
-  { first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
-  { first: 'Alberto', last: 'Kennedy', email: 'alberto.kennedy@example.com', dob: new Date(1972, 7, 17) },
-  { first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
-  { first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
-  { first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
-  { first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
-  { first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
-  { first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
-  { first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
-  { first: 'Reginald', last: 'Rice', email: 'reginald.rice@example.com', dob: new Date(1984, 4, 15) }
+  { key: '111', first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
+  { key: '222', first: 'Alberto', last: 'Kennedy', email: 'alberto.kennedy@example.com', dob: new Date(1972, 7, 17) },
+  { key: '333', first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
+  { key: '444', first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
+  { key: '555', first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
+  { key: '666', first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
+  { key: '777', first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
+  { key: '888', first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
+  { key: '999', first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
+  { key: '000', first: 'Reginald', last: 'Rice', email: 'reginald.rice@example.com', dob: new Date(1984, 4, 15) }
 ];
 
 class StatefulExample extends React.Component {
@@ -62,6 +62,7 @@ class StatefulExample extends React.Component {
             active: column === 'first',
             ascending,
             header: 'First',
+            key: 'first',
             cell: row => row.first,
             onSort: () => this.sortBy('first', ascending),
             width: '20%'
@@ -70,6 +71,7 @@ class StatefulExample extends React.Component {
             active: column === 'last',
             ascending,
             header: 'Last',
+            key: 'last',
             cell: row => row.last,
             onSort: () => this.sortBy('last', ascending),
             width: '30%'
@@ -78,6 +80,7 @@ class StatefulExample extends React.Component {
             active: column === 'dob',
             ascending,
             header: 'DOB',
+            key: 'dob',
             cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
             onSort: () => this.sortBy('dob', ascending),
             width: '15%'
@@ -86,6 +89,7 @@ class StatefulExample extends React.Component {
             active: column === 'email',
             ascending,
             header: <span>Email</span>,
+            key: 'email',
             cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
             onSort: () => this.sortBy('email', ascending),
             width: '35%'
@@ -116,6 +120,7 @@ storiesOf('SortableTable', module)
               active: column === 'first',
               ascending,
               header: 'First',
+              key: 'first',
               cell: row => row.first,
               onSort: action('onSort', 'First')
             },
@@ -123,6 +128,7 @@ storiesOf('SortableTable', module)
               active: column === 'last',
               ascending,
               header: 'Last',
+              key: 'last',
               cell: row => row.last,
               onSort: action('onSort', 'Last')
             },
@@ -130,13 +136,15 @@ storiesOf('SortableTable', module)
               active: column === 'dob',
               ascending,
               header: 'DOB',
-              cell: row => row.dob,
+              key: 'dob',
+              cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
               onSort: action('onSort', 'DOB')
             },
             {
               active: column === 'email',
               ascending,
               header: <span>Email</span>,
+              key: 'email',
               cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
               onSort: action('onSort', 'Email')
             }
@@ -199,6 +207,7 @@ class StatefulExample extends React.Component {
             active: column === 'first',
             ascending,
             header: 'First',
+            key: 'first',
             cell: row => row.first,
             onSort: () => this.sortBy('first', ascending),
             width: '20%'
@@ -207,6 +216,7 @@ class StatefulExample extends React.Component {
             active: column === 'last',
             ascending,
             header: 'Last',
+            key: 'last',
             cell: row => row.last,
             onSort: () => this.sortBy('last', ascending),
             width: '30%'
@@ -215,6 +225,7 @@ class StatefulExample extends React.Component {
             active: column === 'dob',
             ascending,
             header: 'DOB',
+            key: 'dob',
             cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
             onSort: () => this.sortBy('dob', ascending),
             width: '15%'
@@ -223,6 +234,7 @@ class StatefulExample extends React.Component {
             active: column === 'email',
             ascending,
             header: <span>Email</span>,
+            key: 'email',
             cell: row => <a href={\`mailto:\${row.email}\`}>{row.email}</a>,
             onSort: () => this.sortBy('email', ascending),
             width: '35%'
@@ -238,4 +250,3 @@ class StatefulExample extends React.Component {
     </div>
   )
 );
-console.log(StatefulExample.toString())

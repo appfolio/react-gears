@@ -13,6 +13,7 @@ class SortableTable extends React.Component {
         cell: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
         footer: PropTypes.node,
         header: PropTypes.node,
+        key: PropTypes.string,
         onSort: PropTypes.func,
         width: PropTypes.string
       })
@@ -37,8 +38,8 @@ class SortableTable extends React.Component {
       <Table {...props}>
         {showColgroup &&
           <colgroup>
-            {columns.map((column, index) => (
-              <col key={index} style={{ width: column.width }} />
+            {columns.map(column => (
+              <col key={column.key} style={{ width: column.width }} />
             ))}
           </colgroup>
         }
@@ -57,17 +58,17 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
-            <tr key={index}>
-              {columns.map((column, key) => <td key={key}>{column.cell(row)}</td>)}
+          {rows.map(row => (
+            <tr key={row.key}>
+              {columns.map(column => <td key={column.key}>{column.cell(row)}</td>)}
             </tr>
           ))}
         </tbody>
         {showFooter &&
           <tfoot>
             <tr>
-              {columns.map((column, index) => (
-                <th key={index}>
+              {columns.map(column => (
+                <th key={column.key}>
                   {column.footer}
                 </th>
               ))}
