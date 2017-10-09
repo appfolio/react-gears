@@ -18,19 +18,20 @@ class SortableTable extends React.Component {
         width: PropTypes.string
       })
     ),
-    rows: PropTypes.array
-    // TODO prop to add class to tr for each row
+    rows: PropTypes.array,
+    rowClassName: PropTypes.func
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
   static defaultProps = {
     ...Table.defaultProps,
     columns: [],
-    rows: []
+    rows: [],
+    rowClassName: () => undefined
   };
 
   render() {
-    const { columns, rows, ...props } = this.props;
+    const { columns, rowClassName, rows, ...props } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
 
@@ -59,7 +60,7 @@ class SortableTable extends React.Component {
         </thead>
         <tbody>
           {rows.map(row => (
-            <tr key={row.key}>
+            <tr key={row.key} className={rowClassName(row)}>
               {columns.map(column => <td key={column.key}>{column.cell(row)}</td>)}
             </tr>
           ))}

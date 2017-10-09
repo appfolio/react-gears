@@ -175,4 +175,21 @@ describe('<SortableTable />', () => {
     const col = wrapper.find('col');
     columns.forEach((column, i) => assert.equal(col.get(i).style.width, column.width));
   });
+
+  it('should render row className when specified', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const wrapper = mount(
+      <SortableTable
+        columns={columns}
+        rows={rows}
+        rowClassName={row => row}
+      />
+    );
+    const trs = wrapper.find('tbody tr');
+    assert.equal(trs.length, rows.length);
+    trs.forEach((tr, i) => {
+      assert(tr.hasClass(rows[i]));
+    });
+  });
 });
