@@ -17,7 +17,7 @@ class SortableTable extends React.Component {
         onSort: PropTypes.func,
         width: PropTypes.string
       })
-    ),
+    ).isRequired,
     rows: PropTypes.array,
     rowClassName: PropTypes.func
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
@@ -25,7 +25,6 @@ class SortableTable extends React.Component {
 
   static defaultProps = {
     ...Table.defaultProps,
-    columns: [],
     rows: [],
     rowClassName: () => undefined
   };
@@ -51,7 +50,7 @@ class SortableTable extends React.Component {
                 active={column.active}
                 ascending={column.ascending}
                 key={index}
-                onSort={column.onSort ? () => column.onSort(column.ascending) : null}
+                onSort={column.onSort ? () => column.onSort(!column.ascending) : null}
               >
                 {column.header}
               </Header>

@@ -36,7 +36,7 @@ class StatefulExample extends React.Component {
   sortBy = (column, ascending) => {
     if (this.state.column === column) {
       this.setState({
-        ascending: !ascending
+        ascending
       });
     } else {
       this.setState({
@@ -64,7 +64,7 @@ class StatefulExample extends React.Component {
             header: 'First',
             key: 'first',
             cell: row => row.first,
-            onSort: () => this.sortBy('first', ascending),
+            onSort: asc => this.sortBy('first', asc),
             width: '20%'
           },
           {
@@ -73,7 +73,7 @@ class StatefulExample extends React.Component {
             header: 'Last',
             key: 'last',
             cell: row => row.last,
-            onSort: () => this.sortBy('last', ascending),
+            onSort: asc => this.sortBy('last', asc),
             width: '30%'
           },
           {
@@ -82,7 +82,7 @@ class StatefulExample extends React.Component {
             header: 'DOB',
             key: 'dob',
             cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-            onSort: () => this.sortBy('dob', ascending),
+            onSort: asc => this.sortBy('dob', asc),
             width: '15%'
           },
           {
@@ -91,7 +91,7 @@ class StatefulExample extends React.Component {
             header: <span>Email</span>,
             key: 'email',
             cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-            onSort: () => this.sortBy('email', ascending),
+            onSort: asc => this.sortBy('email', asc),
             width: '35%'
           }
         ]}
@@ -181,7 +181,7 @@ class StatefulExample extends React.Component {
   sortBy = (column, ascending) => {
     if (this.state.column === column) {
       this.setState({
-        ascending: !ascending
+        ascending
       });
     } else {
       this.setState({
@@ -209,7 +209,7 @@ class StatefulExample extends React.Component {
             header: 'First',
             key: 'first',
             cell: row => row.first,
-            onSort: () => this.sortBy('first', ascending),
+            onSort: asc => this.sortBy('first', asc),
             width: '20%'
           },
           {
@@ -218,7 +218,7 @@ class StatefulExample extends React.Component {
             header: 'Last',
             key: 'last',
             cell: row => row.last,
-            onSort: () => this.sortBy('last', ascending),
+            onSort: asc=> this.sortBy('last', asc),
             width: '30%'
           },
           {
@@ -227,7 +227,7 @@ class StatefulExample extends React.Component {
             header: 'DOB',
             key: 'dob',
             cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-            onSort: () => this.sortBy('dob', ascending),
+            onSort: asc => this.sortBy('dob', asc),
             width: '15%'
           },
           {
@@ -236,7 +236,7 @@ class StatefulExample extends React.Component {
             header: <span>Email</span>,
             key: 'email',
             cell: row => <a href={\`mailto:\${row.email}\`}>{row.email}</a>,
-            onSort: () => this.sortBy('email', ascending),
+            onSort: asc => this.sortBy('email', asc),
             width: '35%'
           }
         ]}

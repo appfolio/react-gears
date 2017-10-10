@@ -16,7 +16,7 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { active = false, ascending = true, children, onSort, ...props } = this.props;
+    const { active, ascending, children, onSort, ...props } = this.props;
 
     return (
       <th
