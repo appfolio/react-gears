@@ -13,6 +13,7 @@ import './Modal';
 import './Nav';
 import './Popover';
 import './Progress';
+import './SortableTable';
 import './Table';
 import './Tooltip';
 
