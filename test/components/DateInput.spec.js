@@ -288,6 +288,8 @@ describe('<DateInput />', () => {
   it('should support focus', () => {
     const wrapper = mount(<DateInput defaultValue="1/23/1983" />);
     const component = wrapper.instance();
-    assert.equal(typeof component.focus, 'function');
+    sinon.spy(component.inputEl, 'focus');
+    component.focus();
+    assert.equal(component.inputEl.focus.calledOnce, true);
   });
 });
