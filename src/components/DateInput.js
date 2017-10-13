@@ -220,6 +220,10 @@ export default class DateInput extends React.Component {
     }
   }
 
+  focus() {
+    this.inputEl.focus();
+  }
+
   render() {
     const { className, dateVisible, disabled, footer, header, showOnFocus } = this.props;
     const { open } = this.state;
