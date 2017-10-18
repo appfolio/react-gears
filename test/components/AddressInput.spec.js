@@ -6,7 +6,7 @@ import sinon from 'sinon';
 import { AddressInput, Select, FormFeedback, FormGroup, Input, Label } from '../../src';
 import states from '../../src/components/address/USStates';
 
-describe('<Address />', () => {
+describe('<AddressInput />', () => {
   describe('uncontrolled', () => {
     const callback = sinon.spy();
     const component = shallow(
@@ -298,6 +298,14 @@ describe('<Address />', () => {
       const component = mount(<AddressInput showLabels={false} />);
       assert.equal(component.find('label').length, 0);
     });
+  });
+
+  it('should support focus', () => {
+    const wrapper = mount(<AddressInput />);
+    const component = wrapper.instance();
+    sinon.spy(component.inputAddress1, 'focus');
+    component.focus();
+    sinon.assert.calledOnce(component.inputAddress1.focus);
   });
 
   describe('ids', () => {

@@ -59,6 +59,10 @@ class AddressInput extends React.Component {
     return { defaultValue: this.props.defaultValue[field] };
   }
 
+  bindAddress1 = el => this.inputAddress1 = el;
+
+  focus = () => this.inputAddress1.focus();
+
   render() {
     const { disabled, error, id, labels, showLabels } = this.props;
 
@@ -77,6 +81,7 @@ class AddressInput extends React.Component {
             state={error.address1 && 'danger'}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
+            getRef={this.bindAddress1}
           />
         </ValidatedFormGroup>
         <ValidatedFormGroup
