@@ -69,7 +69,7 @@ class AddressInput extends React.Component {
           error={error.address1}
         >
           <Input
-            id={id ? `${id}[address1]` : null}
+            id={id ? `${id}_address1` : null}
             name="address1"
             type="text"
             placeholder={labels.address1}
@@ -84,7 +84,7 @@ class AddressInput extends React.Component {
           error={error.address2}
         >
           <Input
-            id={id ? `${id}[address2]` : null}
+            id={id ? `${id}_address2` : null}
             name="address2"
             type="text"
             placeholder={labels.address2}
@@ -102,7 +102,7 @@ class AddressInput extends React.Component {
               label={showLabels ? labels.city : null}
             >
               <Input
-                id={id ? `${id}[city]` : null}
+                id={id ? `${id}_city` : null}
                 type="text"
                 name="city"
                 placeholder={labels.city}
@@ -121,7 +121,7 @@ class AddressInput extends React.Component {
             >
               <Select
                 className="w-100"
-                id={id ? `${id}[state]` : null}
+                inputProps={{ id: id ? `${id}_state` : null }}
                 name="state"
                 placeholder={labels.state}
                 options={US_STATES}
@@ -137,7 +137,7 @@ class AddressInput extends React.Component {
               error={error.postal}
             >
               <Input
-                id={id ? `${id}[postal]` : null}
+                id={id ? `${id}_postal` : null}
                 type="text"
                 name="postal"
                 placeholder={labels.postal}
@@ -156,7 +156,7 @@ class AddressInput extends React.Component {
         >
           <Select
             className="w-100"
-            id={id ? `${id}[countryCode]` : null}
+            inputProps={{ id: id ? `${id}_countryCode` : null }}
             name="countryCode"
             options={COUNTRIES}
             placeholder={labels.countryCode}

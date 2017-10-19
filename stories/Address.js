@@ -26,7 +26,7 @@ storiesOf('AddressInput', module)
   ))
   .addWithInfo('with id', () => (
     <div>
-      <Label for="myid[address1]">Click This Label to Focus First Input:</Label>
+      <Label for="myid_address1">Click This Label to Focus First Input:</Label>
       <AddressInput
         defaultValue={{
           address1: '123 No Way',
