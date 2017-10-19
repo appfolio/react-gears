@@ -61,7 +61,9 @@ class AddressInput extends React.Component {
 
   bindAddress1 = el => this.inputAddress1 = el;
 
-  focus = () => this.inputAddress1.focus();
+  focus() {
+    this.inputAddress1.focus();
+  }
 
   render() {
     const { disabled, error, id, labels, showLabels } = this.props;
