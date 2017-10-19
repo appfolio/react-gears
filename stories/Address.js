@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import { boolean, text, select, object } from '@storybook/addon-knobs';
-import { AddressInput } from '../src';
+import { AddressInput, Label } from '../src';
 import states from '../src/components/address/USStates.js';
 
 storiesOf('AddressInput', module)
@@ -21,6 +21,22 @@ storiesOf('AddressInput', module)
         error={object('error', {})}
         showLabels={boolean('showLabels', false)}
         labels={object('labels', AddressInput.defaultProps.labels)}
+      />
+    </div>
+  ))
+  .addWithInfo('with id', () => (
+    <div>
+      <Label for="myid[address1]">Click This Label to Focus First Input:</Label>
+      <AddressInput
+        defaultValue={{
+          address1: '123 No Way',
+          address2: 'Suite 16',
+          city: 'Smallsville',
+          state: 'AL',
+          postal: '12345-1234',
+          countryCode: 'US'
+        }}
+        id="myid"
       />
     </div>
   ))

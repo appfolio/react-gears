@@ -24,6 +24,7 @@ class AddressInput extends React.Component {
     defaultValue: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
+    id: PropTypes.string,
     labels: PropTypes.shape(addressPropType),
     onChange: PropTypes.func,
     showLabels: PropTypes.bool,
@@ -59,15 +60,16 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, labels, showLabels } = this.props;
+    const { disabled, error, id, labels, showLabels } = this.props;
 
     return (
-      <div>
+      <div id={id}>
         <ValidatedFormGroup
           label={showLabels ? labels.address1 : null}
           error={error.address1}
         >
           <Input
+            id={id ? `${id}[address1]` : null}
             name="address1"
             type="text"
             placeholder={labels.address1}
@@ -82,6 +84,7 @@ class AddressInput extends React.Component {
           error={error.address2}
         >
           <Input
+            id={id ? `${id}[address2]` : null}
             name="address2"
             type="text"
             placeholder={labels.address2}
@@ -99,6 +102,7 @@ class AddressInput extends React.Component {
               label={showLabels ? labels.city : null}
             >
               <Input
+                id={id ? `${id}[city]` : null}
                 type="text"
                 name="city"
                 placeholder={labels.city}
@@ -117,6 +121,7 @@ class AddressInput extends React.Component {
             >
               <Select
                 className="w-100"
+                id={id ? `${id}[state]` : null}
                 name="state"
                 placeholder={labels.state}
                 options={US_STATES}
@@ -132,6 +137,7 @@ class AddressInput extends React.Component {
               error={error.postal}
             >
               <Input
+                id={id ? `${id}[postal]` : null}
                 type="text"
                 name="postal"
                 placeholder={labels.postal}
@@ -150,6 +156,7 @@ class AddressInput extends React.Component {
         >
           <Select
             className="w-100"
+            id={id ? `${id}[countryCode]` : null}
             name="countryCode"
             options={COUNTRIES}
             placeholder={labels.countryCode}
