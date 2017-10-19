@@ -299,4 +299,29 @@ describe('<Address />', () => {
       assert.equal(component.find('label').length, 0);
     });
   });
+
+  describe('ids', () => {
+    it('should not show id by default', () => {
+      const component = mount(<AddressInput />);
+      assert.equal(component.find('div#yo').length, 0, 'div id visible');
+      assert.equal(component.find('#yo_address1').length, 0, 'address1 id visible');
+      assert.equal(component.find('#yo_address2').length, 0, 'address2 id visible');
+      assert.equal(component.find('#yo_city').length, 0, 'city id visible');
+      assert.equal(component.find('#yo_state').length, 0, 'state id visible');
+      assert.equal(component.find('#yo_postal').length, 0, 'postal id visible');
+      assert.equal(component.find('#yo_countryCode').length, 0, 'countryCode id visible');
+    });
+
+    it('should show id by when specified', () => {
+      const component = mount(<AddressInput id="yo" />);
+      assert.equal(component.find('div#yo').length, 1, 'div id missing');
+      assert.equal(component.find('#yo_address1').length, 1, 'address1 id missing');
+      assert.equal(component.find('#yo_address2').length, 1, 'address2 id missing');
+      assert.equal(component.find('#yo_city').length, 1, 'city id missing');
+      assert.equal(component.find('#yo_state').length, 1, 'state id missing');
+      assert.equal(component.find('#yo_postal').length, 1, 'postal id missing');
+      assert.equal(component.find('#yo_countryCode').length, 1, 'countryCode id missing');
+    });
+  });
 });
+
