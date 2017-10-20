@@ -17,7 +17,7 @@ storiesOf('DateInput', module)
   ))
   .addWithInfo('with id', () => (
     <div>
-      <Label for="calendar_input">Click this label to Focus Calendar Input:</Label>
+      <Label for="calendar">Click this label to Focus Calendar Input:</Label>
       <DateInput
         id="calendar"
         dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}

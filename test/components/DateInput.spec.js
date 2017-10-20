@@ -296,14 +296,12 @@ describe('<DateInput />', () => {
   context('id', () => {
     it('should not show id by default', () => {
       const component = mount(<DateInput />);
-      assert.equal(component.find('div#yo').length, 0, 'div id visible');
-      assert.equal(component.find('#yo_input').length, 0, 'input id visible');
+      assert.equal(component.find('input#yo').length, 0, 'div id visible');
     });
 
     it('should show id by when specified', () => {
       const component = mount(<DateInput id="yo" />);
-      assert.equal(component.find('div#yo').length, 1, 'div id missing');
-      assert.equal(component.find('#yo_input').length, 1, 'input id missing');
+      assert.equal(component.find('input#yo').length, 1, 'input id missing');
     });
   });
 });
