@@ -85,6 +85,6 @@ describe('<Select />', () => {
     const component = wrapper.instance();
     sinon.spy(component.selectEl, 'focus');
     component.focus();
-    assert.equal(component.selectEl.focus.calledOnce, true);
+    sinon.assert.calledOnce(component.selectEl.focus);
   });
 });

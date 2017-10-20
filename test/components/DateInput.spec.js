@@ -290,6 +290,6 @@ describe('<DateInput />', () => {
     const component = wrapper.instance();
     sinon.spy(component.inputEl, 'focus');
     component.focus();
-    assert.equal(component.inputEl.focus.calledOnce, true);
+    sinon.assert.calledOnce(component.inputEl.focus);
   });
 });
