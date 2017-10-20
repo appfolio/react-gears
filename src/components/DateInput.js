@@ -232,11 +232,11 @@ export default class DateInput extends React.Component {
 
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
-      <div id={id}>
+      <div>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
           <InputGroup className={className}>
             <input
-              id={id ? `${id}_input` : null}
+              id={id}
               className="form-control"
               ref={el => { this.inputEl = el; }}
               type="text"
