@@ -65,6 +65,7 @@ export default class DateInput extends React.Component {
     disabled: PropTypes.bool,
     footer: PropTypes.node,
     header: PropTypes.node,
+    id: PropTypes.string,
     keyboard: PropTypes.bool,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -225,16 +226,17 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, id, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
-      <div>
+      <div id={id}>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
           <InputGroup className={className}>
             <input
+              id={id ? `${id}_input` : null}
               className="form-control"
               ref={el => { this.inputEl = el; }}
               type="text"
