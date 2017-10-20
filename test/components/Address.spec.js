@@ -323,5 +323,17 @@ describe('<Address />', () => {
       assert.equal(component.find('#yo_countryCode').length, 1, 'countryCode id missing');
     });
   });
+
+  describe('autocomplete', () => {
+    it('should not show id by default', () => {
+      const component = mount(<AddressInput />);
+      assert.equal(component.find('[autocomplete]').length, 0, 'autocomplete visible');
+    });
+
+    it('should show autocomplete by when specified', () => {
+      const component = mount(<AddressInput id="yo" autocomplete="on" />);
+      assert.equal(component.find('[autocomplete="on"]').length, 6, 'autocomplete is missing');
+    });
+  });
 });
 

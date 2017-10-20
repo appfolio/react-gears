@@ -21,6 +21,7 @@ const readEvent = e => ({ [e.target.name]: e.target.value });
 
 class AddressInput extends React.Component {
   static propTypes = {
+    autocomplete: PropTypes.string,
     defaultValue: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
@@ -60,7 +61,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, id, labels, showLabels } = this.props;
+    const { autocomplete, disabled, error, id, labels, showLabels } = this.props;
 
     return (
       <div id={id}>
@@ -69,6 +70,7 @@ class AddressInput extends React.Component {
           error={error.address1}
         >
           <Input
+            autocomplete={autocomplete}
             id={id ? `${id}_address1` : null}
             name="address1"
             type="text"
@@ -84,6 +86,7 @@ class AddressInput extends React.Component {
           error={error.address2}
         >
           <Input
+            autocomplete={autocomplete}
             id={id ? `${id}_address2` : null}
             name="address2"
             type="text"
@@ -102,6 +105,7 @@ class AddressInput extends React.Component {
               label={showLabels ? labels.city : null}
             >
               <Input
+                autocomplete={autocomplete}
                 id={id ? `${id}_city` : null}
                 type="text"
                 name="city"
@@ -121,7 +125,10 @@ class AddressInput extends React.Component {
             >
               <Select
                 className="w-100"
-                inputProps={{ id: id ? `${id}_state` : null }}
+                inputProps={{
+                  autocomplete,
+                  id: id ? `${id}_state` : null
+                }}
                 name="state"
                 placeholder={labels.state}
                 options={US_STATES}
@@ -137,6 +144,7 @@ class AddressInput extends React.Component {
               error={error.postal}
             >
               <Input
+                autocomplete={autocomplete}
                 id={id ? `${id}_postal` : null}
                 type="text"
                 name="postal"
@@ -156,7 +164,10 @@ class AddressInput extends React.Component {
         >
           <Select
             className="w-100"
-            inputProps={{ id: id ? `${id}_countryCode` : null }}
+            inputProps={{
+              autocomplete,
+              id: id ? `${id}_countryCode` : null
+            }}
             name="countryCode"
             options={COUNTRIES}
             placeholder={labels.countryCode}
