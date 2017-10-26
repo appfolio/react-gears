@@ -24,6 +24,12 @@
   .Select-input > input {
     height: 100%;
     padding: 0;
+
+    &::-webkit-contacts-auto-fill-button {
+      visibility: hidden;
+      position: absolute;
+      right: 0;
+    }
   }
 
   .Select-value {
