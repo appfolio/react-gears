@@ -12,7 +12,7 @@ const Datapair = props => (
 
 Datapair.propTypes = {
   children: PropTypes.node,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   value: PropTypes.string
 };
 
