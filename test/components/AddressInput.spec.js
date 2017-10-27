@@ -55,12 +55,9 @@ describe('<AddressInput />', () => {
 
     it('should have state', () => {
       const input = component.find('[name="state"]');
-      assert.equal(input.type(), Select);
       assert.equal(input.prop('placeholder'), 'State');
       assert.equal(input.prop('defaultValue'), 'NJ');
       assert.equal(input.prop('value'), undefined);
-      assert.deepEqual(input.prop('options').map(s => s.value), states.map(s => s.value));
-
       input.simulate('change', { label: 'New York', value: 'NY' });
       assert(callback.calledWith({ state: 'NY' }));
 
@@ -80,7 +77,6 @@ describe('<AddressInput />', () => {
 
     it('should have country', () => {
       const input = component.find('[name="countryCode"]');
-      assert.equal(input.type(), Select);
       assert.equal(input.prop('placeholder'), 'Country');
       assert.equal(input.prop('defaultValue'), 'US');
       assert.equal(input.prop('value'), undefined);
