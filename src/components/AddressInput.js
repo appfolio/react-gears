@@ -124,7 +124,7 @@ class AddressInput extends React.Component {
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}
-                onChange={selection => this.onChange({ state: selection && selection.value })}
+                onChange={state => this.onChange({ state })}
                 disabled={disabled}
               />
             </ValidatedFormGroup>
@@ -158,7 +158,7 @@ class AddressInput extends React.Component {
             name="countryCode"
             placeholder={labels.countryCode}
             {...this.propsFor('countryCode')}
-            onChange={selection => this.onChange({ countryCode: selection && selection.value })}
+            onChange={countryCode => this.onChange({ countryCode })}
             disabled={disabled}
           />
         </ValidatedFormGroup>
