@@ -6,7 +6,7 @@ export default [
   { label: 'California', value: 'CA' },
   { label: 'Colorado', value: 'CO' },
   { label: 'Connecticut', value: 'CT' },
-  { label: 'Deleware', value: 'DE' },
+  { label: 'Delaware', value: 'DE' },
   { label: 'Washington, D.C.', value: 'DC' },
   { label: 'Florida', value: 'FL' },
   { label: 'Georgia', value: 'GA' },
