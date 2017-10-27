@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBlock } from 'reactstrap';
+import { Button, Card, CardBlock, Badge } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
 
 import { Datapair } from '../src';
@@ -23,6 +23,15 @@ storiesOf('Datapair', module)
           label="This is a really long label that probably shouldn't be this long"
           value="Stuff"
         />
+      </CardBlock>
+    </Card>
+  ))
+  .addWithInfo('with node in label', () => (
+    <Card className="mt-1">
+      <CardBlock>
+        <Datapair label={<span>Name <Badge>awesome</Badge></span>}>
+          Stuff
+        </Datapair>
       </CardBlock>
     </Card>
   ));

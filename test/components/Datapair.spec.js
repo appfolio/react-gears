@@ -31,4 +31,10 @@ describe('<Datapair />', () => {
     const valCol = fancyComponent.find(Col).last();
     assert.equal(valCol.childAt(0).html(), '<span>Special</span>');
   });
+
+  it('should support node in label', () => {
+    const fancyComponent = shallow(<Datapair label={<span>stuff</span>}>Special</Datapair>);
+    const valCol = fancyComponent.find(Col).first();
+    assert.equal(valCol.childAt(0).html(), '<span>stuff</span>');
+  });
 });
