@@ -94,7 +94,7 @@ const FormRow = props => {
 };
 
 FormRow.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.node,
   hint: PropTypes.string,
   feedback: PropTypes.oneOfType([
     PropTypes.string,
