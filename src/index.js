@@ -70,6 +70,7 @@ import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
+import CountryInput from './components/CountryInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
 import CurrencyInput from './components/CurrencyInput.js';
 import Datapair from './components/Datapair.js';
@@ -102,6 +103,7 @@ import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
+import StateInput from './components/StateInput.js';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
@@ -193,6 +195,7 @@ export {
   CheckboxInput,
   CheckboxBooleanInput,
   CheckboxListInput,
+  CountryInput,
   CreditCardNumber,
   CurrencyInput,
   Datapair,
@@ -218,6 +221,7 @@ export {
   Progress,
   RadioInput,
   Spinner,
+  StateInput,
   StaticInput,
   SortableTable,
   Steps,
