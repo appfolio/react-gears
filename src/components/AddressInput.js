@@ -58,14 +58,13 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, id, labels, showLabels, stacked } = this.props;
+    const { disabled, error, id, labels, showLabels } = this.props;
 
     return (
       <div id={id}>
         <ValidatedFormGroup
           label={showLabels ? labels.address1 : null}
           error={error.address1}
-          stacked={stacked}
         >
           <Input
             id={id ? `${id}_address1` : null}
@@ -82,7 +81,6 @@ class AddressInput extends React.Component {
         <ValidatedFormGroup
           label={showLabels ? labels.address2 : null}
           error={error.address2}
-          stacked={stacked}
         >
           <Input
             id={id ? `${id}_address2` : null}
@@ -153,7 +151,6 @@ class AddressInput extends React.Component {
           error={error.countryCode}
           className="mb-0"
           label={showLabels ? labels.countryCode : null}
-          stacked={stacked}
         >
           <CountryInput
             className="w-100"
