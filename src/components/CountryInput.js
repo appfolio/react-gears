@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
-import COUNTRIES from './address/Countries.js';
+import COUNTRIES from './address/Countries.js'; // TODO i18n country names based on locale
 
 export default class CountryInput extends React.Component {
   static propTypes = {
