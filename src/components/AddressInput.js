@@ -119,8 +119,8 @@ class AddressInput extends React.Component {
               label={showLabels ? labels.state : null}
             >
               <StateInput
-                id={id ? `${id}_state` : null}
                 className="w-100"
+                id={id ? `${id}_state` : null}
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}

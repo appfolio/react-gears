@@ -6,12 +6,12 @@ import COUNTRIES from './address/Countries.js';
 export default class CountryInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    disabled: PropTypes.bool,
     id: PropTypes.string,
-    locale: PropTypes.string,
     name: PropTypes.string,
-    placeholder: PropTypes.string,
     onChange: PropTypes.func,
-    disabled: PropTypes.bool
+    placeholder: PropTypes.string,
+    value: PropTypes.string
   }
 
   static defaultProps = {
@@ -37,9 +37,9 @@ export default class CountryInput extends React.Component {
         disabled={disabled}
         id={id}
         name={name}
-        onChange={e => onChange(e.target.value)}
-        placeholder={placeholder}
+        onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
       >
+        <option value="">{placeholder}</option>
         {COUNTRIES.map(country =>
           <option value={country.value} key={country.value}>{country.label}</option>)}
       </Input>
