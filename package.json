@@ -69,7 +69,7 @@
     "jsdom-global": "~3.0.2",
     "mocha": "~3.5.3",
     "node-sass": "~4.5.3",
-    "nyc": "~10.3.2",
+    "nyc": "^11.2.1",
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
     "react": "^15.4.0",
@@ -80,12 +80,5 @@
     "style-loader": "~0.18.1",
     "uncontrollable": "^4.1.0",
     "webpack": "~2.6.1"
-  },
-  "nyc": {
-    "exclude": [
-      "**/*.spec.js",
-      "dev_server.js",
-      "webpack.*config.js"
-    ]
   }
 }
