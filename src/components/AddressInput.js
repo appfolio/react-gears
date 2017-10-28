@@ -2,20 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import flow from 'lodash.flow';
 
-import Select from './Select';
+import CountryInput from './CountryInput';
+import StateInput from './StateInput';
 import ValidatedFormGroup from './ValidatedFormGroup';
 import Col from './Col';
 import Input from './Input';
 import Row from './Row';
-
-// TODO Dynamic states based on country:
-import states from './address/USStates.js';
-import COUNTRIES from './address/Countries.js';
-
-const US_STATES = states.map(state => ({
-  label: state.value,
-  value: state.value
-}));
 
 const readEvent = e => ({ [e.target.name]: e.target.value });
 
@@ -48,11 +40,11 @@ class AddressInput extends React.Component {
     value: {},
   };
 
-  onChange = update => {
+  onChange = (update) => {
     this.props.onChange({ ...this.props.value, ...update });
   }
 
-  propsFor = field => {
+  propsFor = (field) => {
     if (this.props.value[field]) {
       return { value: this.props.value[field] };
     }
@@ -126,14 +118,13 @@ class AddressInput extends React.Component {
               error={error.state}
               label={showLabels ? labels.state : null}
             >
-              <Select
+              <StateInput
                 className="w-100"
-                inputProps={{ id: id ? `${id}_state` : null }}
+                id={id ? `${id}_state` : null}
                 name="state"
                 placeholder={labels.state}
-                options={US_STATES}
                 {...this.propsFor('state')}
-                onChange={selection => this.onChange({ state: selection && selection.value })}
+                onChange={state => this.onChange({ state })}
                 disabled={disabled}
               />
             </ValidatedFormGroup>
@@ -161,14 +152,13 @@ class AddressInput extends React.Component {
           className="mb-0"
           label={showLabels ? labels.countryCode : null}
         >
-          <Select
+          <CountryInput
             className="w-100"
-            inputProps={{ id: id ? `${id}_countryCode` : null }}
+            id={id ? `${id}_countryCode` : null}
             name="countryCode"
-            options={COUNTRIES}
             placeholder={labels.countryCode}
             {...this.propsFor('countryCode')}
-            onChange={selection => this.onChange({ countryCode: selection && selection.value })}
+            onChange={countryCode => this.onChange({ countryCode })}
             disabled={disabled}
           />
         </ValidatedFormGroup>

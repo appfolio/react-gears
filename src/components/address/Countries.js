@@ -1,4 +1,6 @@
 export default [
+  { label: 'United States of America', value: 'US' },
+  { label: 'Canada', value: 'CA' },
   { label: 'Afghanistan', value: 'AF' },
   { label: 'Åland Islands', value: 'AX' },
   { label: 'Albania', value: 'AL' },
@@ -39,7 +41,6 @@ export default [
   { label: 'Cabo Verde', value: 'CV' },
   { label: 'Cambodia', value: 'KH' },
   { label: 'Cameroon', value: 'CM' },
-  { label: 'Canada', value: 'CA' },
   { label: 'Cayman Islands', value: 'KY' },
   { label: 'Central African Republic', value: 'CF' },
   { label: 'Chad', value: 'TD' },
@@ -234,7 +235,6 @@ export default [
   { label: 'Ukraine', value: 'UA' },
   { label: 'United Arab Emirates', value: 'AE' },
   { label: 'United Kingdom of Great Britain and Northern Ireland', value: 'GB' },
-  { label: 'United States of America', value: 'US' },
   { label: 'United States Minor Outlying Islands', value: 'UM' },
   { label: 'Uruguay', value: 'UY' },
   { label: 'Uzbekistan', value: 'UZ' },

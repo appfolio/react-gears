@@ -49,7 +49,7 @@ storiesOf('AddressInput', module)
           city: text('city', 'Smallsville'),
           state: select('state', states.map(s => s.value), 'AL'),
           postal: text('postal', '12345-1234'),
-          countryCode: 'US'
+          countryCode: text('countryCode', 'US'),
         }}
         error={object('error', { address1: 'bad stuff', state: 'no' })}
         onChange={action('address onChange')}
