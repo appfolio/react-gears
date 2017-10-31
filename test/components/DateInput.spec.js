@@ -284,4 +284,24 @@ describe('<DateInput />', () => {
     mount(<DateInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
     assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
   });
+
+  it('should support focus', () => {
+    const wrapper = mount(<DateInput defaultValue="1/23/1983" />);
+    const component = wrapper.instance();
+    sinon.spy(component.inputEl, 'focus');
+    component.focus();
+    sinon.assert.calledOnce(component.inputEl.focus);
+  });
+
+  context('id', () => {
+    it('should not show id by default', () => {
+      const component = mount(<DateInput />);
+      assert.equal(component.find('input#yo').length, 0, 'div id visible');
+    });
+
+    it('should show id by when specified', () => {
+      const component = mount(<DateInput id="yo" />);
+      assert.equal(component.find('input#yo').length, 1, 'input id missing');
+    });
+  });
 });

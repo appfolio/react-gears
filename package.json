@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "2.0.0",
+  "version": "2.5.0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -61,15 +61,15 @@
     "babel-preset-react": "~6.24.1",
     "css-loader": "~0.28.4",
     "enzyme": "^2.6.0",
-    "eslint": "^3.17.1",
-    "eslint-config-appfolio-react": "~0.3.2",
+    "eslint": "^4.9.0",
+    "eslint-config-appfolio-react": "^1.0.3",
     "glob": "^7.1.2",
     "ignore-styles": "~5.0.1",
     "jsdom": "~11.0.0",
     "jsdom-global": "~3.0.2",
     "mocha": "~3.5.3",
     "node-sass": "~4.5.3",
-    "nyc": "~10.3.2",
+    "nyc": "^11.2.1",
     "postcss": "~5.2.0",
     "postcss-loader": "~0.13.0",
     "react": "^15.4.0",
@@ -80,12 +80,5 @@
     "style-loader": "~0.18.1",
     "uncontrollable": "^4.1.0",
     "webpack": "~2.6.1"
-  },
-  "nyc": {
-    "exclude": [
-      "**/*.spec.js",
-      "dev_server.js",
-      "webpack.*config.js"
-    ]
   }
 }

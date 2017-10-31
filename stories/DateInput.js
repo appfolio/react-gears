@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, DateInput, Icon, FormRow } from '../src';
+import { Calendar, DateInput, Icon, FormRow, Label } from '../src';
 import { action, storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
 
@@ -7,6 +7,19 @@ storiesOf('DateInput', module)
   .addWithInfo('with props', () => (
     <div>
       <DateInput
+        dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
+        showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
+        disabled={boolean('disabled', DateInput.defaultProps.disabled)}
+        onBlur={action('onBlur')}
+        onChange={action('onChange')}
+      />
+    </div>
+  ))
+  .addWithInfo('with id', () => (
+    <div>
+      <Label for="calendar">Click this label to Focus Calendar Input:</Label>
+      <DateInput
+        id="calendar"
         dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
         showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
         disabled={boolean('disabled', DateInput.defaultProps.disabled)}

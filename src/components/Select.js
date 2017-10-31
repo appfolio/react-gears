@@ -41,6 +41,12 @@ class Select extends React.Component {
     this.props.onChange(value);
   }
 
+  bindInput = el => this.selectEl = el;
+
+  focus() {
+    this.selectEl.focus();
+  }
+
   render() {
     const { value, ...props } = this.props;
     delete props.onChange; // don't pass onChange prop to react-select
@@ -54,6 +60,7 @@ class Select extends React.Component {
         inputProps={{ ...props.inputProps, name: props.name || '' }}
         onChange={this.onChange}
         value={value || this.state.value}
+        ref={this.bindInput}
         {...props}
       />
     );

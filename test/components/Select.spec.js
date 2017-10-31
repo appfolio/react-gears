@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 import ReactSelect from 'react-select-plus';
@@ -78,5 +78,13 @@ describe('<Select />', () => {
 
     const component = shallow(<Select loadOptions={getOptions} />);
     assert.equal(component.type(), ReactSelect.Async);
+  });
+
+  it('should support focus', () => {
+    const wrapper = mount(<Select />);
+    const component = wrapper.instance();
+    sinon.spy(component.selectEl, 'focus');
+    component.focus();
+    sinon.assert.calledOnce(component.selectEl.focus);
   });
 });

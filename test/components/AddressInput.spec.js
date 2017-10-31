@@ -4,12 +4,11 @@ import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import { AddressInput, Select, FormFeedback, FormGroup, Input, Label } from '../../src';
-import states from '../../src/components/address/USStates';
 
-describe('<Address />', () => {
+describe('<AddressInput />', () => {
   describe('uncontrolled', () => {
     const callback = sinon.spy();
-    const component = shallow(
+    const component = mount(
       <AddressInput
         defaultValue={{
           address1: 'Wayne Enterprises',
@@ -54,17 +53,14 @@ describe('<Address />', () => {
     });
 
     it('should have state', () => {
-      const input = component.find('[name="state"]');
-      assert.equal(input.type(), Select);
-      assert.equal(input.prop('placeholder'), 'State');
+      const input = component.find('select[name="state"]');
+      // assert.equal(input.prop('placeholder'), 'State');  TODO selects don't have placeholders
       assert.equal(input.prop('defaultValue'), 'NJ');
       assert.equal(input.prop('value'), undefined);
-      assert.deepEqual(input.prop('options').map(s => s.value), states.map(s => s.value));
-
-      input.simulate('change', { label: 'New York', value: 'NY' });
+      input.simulate('change', { target: { value: 'NY' } });
       assert(callback.calledWith({ state: 'NY' }));
 
-      input.simulate('change', null);
+      input.simulate('change', { target: { value: null } });
       assert(callback.calledWith({ state: null }));
     });
 
@@ -80,15 +76,14 @@ describe('<Address />', () => {
 
     it('should have country', () => {
       const input = component.find('[name="countryCode"]');
-      assert.equal(input.type(), Select);
-      assert.equal(input.prop('placeholder'), 'Country');
+      // assert.equal(input.prop('placeholder'), 'Country'); TODO selects don't have placeholders
       assert.equal(input.prop('defaultValue'), 'US');
       assert.equal(input.prop('value'), undefined);
 
-      input.simulate('change', { label: 'USA', value: 'US' });
+      input.simulate('change', { target: { value: 'US' } });
       assert(callback.calledWith({ countryCode: 'US' }));
 
-      input.simulate('change', null);
+      input.simulate('change', { target: { value: null } });
       assert(callback.calledWith({ countryCode: null }));
     });
 
@@ -118,7 +113,7 @@ describe('<Address />', () => {
       postal: '07001',
       countryCode: 'US'
     };
-    const component = shallow(
+    const component = mount(
       <AddressInput
         value={addressData}
         onChange={callback}
@@ -157,10 +152,10 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), 'NJ');
       assert.equal(input.prop('defaultValue'), null);
 
-      input.simulate('change', { label: 'New York', value: 'NY' });
+      input.simulate('change', { target: { value: 'NY' } });
       assert(callback.calledWith(Object.assign({}, addressData, { state: 'NY' })));
 
-      input.simulate('change', null);
+      input.simulate('change', { target: { value: null } });
       assert(callback.calledWith(Object.assign({}, addressData, { state: null })));
     });
 
@@ -178,10 +173,10 @@ describe('<Address />', () => {
       assert.equal(input.prop('value'), 'US');
       assert.equal(input.prop('defaultValue'), null);
 
-      input.simulate('change', { label: 'USA', value: 'US' });
+      input.simulate('change', { target: { value: 'US' } });
       assert(callback.calledWith(Object.assign({}, addressData, { countryCode: 'US' })));
 
-      input.simulate('change', null);
+      input.simulate('change', { target: { value: null } });
       assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
     });
   });
@@ -299,4 +294,37 @@ describe('<Address />', () => {
       assert.equal(component.find('label').length, 0);
     });
   });
+
+  it('should support focus', () => {
+    const wrapper = mount(<AddressInput />);
+    const component = wrapper.instance();
+    sinon.spy(component.inputAddress1, 'focus');
+    component.focus();
+    sinon.assert.calledOnce(component.inputAddress1.focus);
+  });
+
+  describe('ids', () => {
+    it('should not show id by default', () => {
+      const component = mount(<AddressInput />);
+      assert.equal(component.find('div#yo').length, 0, 'div id visible');
+      assert.equal(component.find('#yo_address1').length, 0, 'address1 id visible');
+      assert.equal(component.find('#yo_address2').length, 0, 'address2 id visible');
+      assert.equal(component.find('#yo_city').length, 0, 'city id visible');
+      assert.equal(component.find('#yo_state').length, 0, 'state id visible');
+      assert.equal(component.find('#yo_postal').length, 0, 'postal id visible');
+      assert.equal(component.find('#yo_countryCode').length, 0, 'countryCode id visible');
+    });
+
+    it('should show id by when specified', () => {
+      const component = mount(<AddressInput id="yo" />);
+      assert.equal(component.find('div#yo').length, 1, 'div id missing');
+      assert.equal(component.find('#yo_address1').length, 1, 'address1 id missing');
+      assert.equal(component.find('#yo_address2').length, 1, 'address2 id missing');
+      assert.equal(component.find('#yo_city').length, 1, 'city id missing');
+      assert.equal(component.find('#yo_state').length, 1, 'state id missing');
+      assert.equal(component.find('#yo_postal').length, 1, 'postal id missing');
+      assert.equal(component.find('#yo_countryCode').length, 1, 'countryCode id missing');
+    });
+  });
 });
+

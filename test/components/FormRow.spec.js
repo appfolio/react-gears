@@ -87,6 +87,18 @@ describe('<FormRow />', () => {
     });
   });
 
+  describe('with node label', () => {
+    const component = shallow(
+      <FormRow label={<span>name</span>}/>
+    );
+
+    it('should create a node label', () => {
+      const label = component.find(Label);
+
+      assert.equal(label.render().text(), 'name');
+    });
+  });
+
   describe('with feedback', () => {
     const component = shallow(
       <FormRow label="First Name" feedback="feedback" />
