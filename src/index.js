@@ -36,6 +36,7 @@ import InputGroupButton from './components/InputGroupButton';
 import Jumbotron from './components/Jumbotron';
 import Label from './components/Label';
 import ListGroup from './components/ListGroup';
+import ListGroupItem from './components/ListGroup';
 import Media from './components/Media';
 import ModalBody from './components/ModalBody';
 import ModalFooter from './components/ModalFooter';
