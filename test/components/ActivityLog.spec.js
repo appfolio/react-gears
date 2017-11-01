@@ -8,10 +8,9 @@ describe('<ActivityLog />', () => {
   it('should render each <Activity /> correctly', () => {
     const component = mount(
       <ActivityLog>
-        <Activity createdAt={new Date()} action='Edited' createdBy='Jane Doe' />
-        <Activity createdAt={new Date()} action='Created' createdBy='John Doe' />
-      </ActivityLog>
-    );
+        <Activity date={new Date()} action="Edited" by="Jane Doe" />
+        <Activity date={new Date()} action="Created" by="John Doe" />
+      </ActivityLog>);
     assert(component);
     const activities = component.find(Activity).nodes;
     assert.equal(2, activities.length);
@@ -20,9 +19,7 @@ describe('<ActivityLog />', () => {
   });
 
   it('should render an empty component', () => {
-    const component = mount(
-      <ActivityLog />
-    );
+    const component = mount(<ActivityLog />);
     assert(component);
     assert.equal(0, component.find(Activity).nodes.length);
   });

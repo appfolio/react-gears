@@ -1,33 +1,49 @@
 import React from 'react';
 import assert from 'assert';
-import fecha from 'fecha';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
-import { Activity, Col } from '../../src';
+import { Activity } from '../../src';
 
 describe('<Activity />', () => {
   const props = {
-    createdAt: new Date(),
+    date: new Date(),
     action: 'Created',
-    createdBy: 'services'
+    by: 'services'
   };
-  const TIME_FORMAT = 'MM/DD/YYYY hh:mm A';
 
   it('should render correctly', () => {
     const component = shallow(<Activity {...props} />);
     assert(component);
-    assert.equal(fecha.format(props.createdAt, TIME_FORMAT), component.find(Col).nodes[0].props.children);
-    assert.equal(props.action, component.find('span.font-weight-bold').text());
-    assert.equal(` by ${props.createdBy}`, component.find('span.font-italic').text());
   });
 
-  it('should render the children correctly', () => {
+  it('should render date', () => {
+    const component = mount(<Activity date={new Date(2015, 1, 13, 12, 30)} />);
+    assert.equal(component.ref('date').text(), '02/13/2015 12:30PM');
+  });
+
+  it('should render action', () => {
+    const component = mount(<Activity date={new Date()} action="Eat" />);
+    assert.equal(component.ref('action').text(), 'Eat');
+  });
+
+  it('should render by', () => {
+    const component = mount(<Activity date={new Date()} action="Sleep" by="Gary Thomas" />);
+    assert.equal(component.ref('by').text(), 'Gary Thomas');
+  });
+
+  it('should render children correctly', () => {
     const component = shallow(
       <Activity {...props}>
-        Please contact HR for details.
-      </Activity>
-    );
+        <div id="inner">Please contact HR for details.</div>
+      </Activity>);
     assert(component);
-    assert.equal('Please contact HR for details.', component.find('.test-activity_children').text());
+    const inner = component.find('#inner');
+    assert(inner.exists());
+    assert.equal(inner.text(), 'Please contact HR for details.');
+  });
+
+  it('should support custom date formats', () => {
+    const component = mount(<Activity dateFormat="M/D/YYYY" date={new Date(2010, 4, 9)} />);
+    assert.equal(component.ref('date').text(), '5/9/2010');
   });
 });
