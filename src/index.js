@@ -36,6 +36,7 @@ import InputGroupButton from './components/InputGroupButton';
 import Jumbotron from './components/Jumbotron';
 import Label from './components/Label';
 import ListGroup from './components/ListGroup';
+import ListGroupItem from './components/ListGroup';
 import Media from './components/Media';
 import ModalBody from './components/ModalBody';
 import ModalFooter from './components/ModalFooter';
@@ -58,7 +59,8 @@ import TabPane from './components/TabPane';
 import TetherContent from './components/TetherContent';
 
 // Gears:
-
+import Activity from './components/Activity.js';
+import ActivityLog from './components/ActivityLog.js';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
@@ -184,6 +186,8 @@ export {
   Select,
 
   // Gears
+  Activity,
+  ActivityLog,
   AddressInput,
   Alert,
   BlockPanel,

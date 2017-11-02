@@ -29,6 +29,7 @@ import './MonthInput';
 import './Select';
 
 // APM
+import './ActivityLog';
 import './BlockPanel';
 import './Callout';
 import './Datapair';
