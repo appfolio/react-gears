@@ -28,20 +28,31 @@ class HelpBubble extends React.Component {
 
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
+
+  close = () => {
+    setTimeout(() => {
+      this.setState({ isOpen: false });
+    });
+  };
 
   render() {
-    const {
-      title,
-      children,
-      className,
-      ...other
-    } = this.props;
+    const { title, children, className, ...other } = this.props;
 
     return (
       <span className={className} style={style}>
-        <Icon name="question-circle" onClick={this.toggle} id={this.id} className="text-primary" />
-        <Popover isOpen={this.state.isOpen} toggle={this.toggle} target={this.id} {...other}>
+        <Icon
+          name="question-circle"
+          onClick={this.toggle}
+          id={this.id}
+          className="text-primary"
+        />
+        <Popover
+          isOpen={this.state.isOpen}
+          toggle={this.close}
+          target={this.id}
+          {...other}
+        >
           <PopoverTitle children={title} />
           <PopoverContent children={children} />
         </Popover>
