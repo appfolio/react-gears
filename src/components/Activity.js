@@ -30,7 +30,7 @@ export default class Activity extends React.Component {
             <span ref="date">{fecha.format(date, dateFormat)}</span>
           </Col>
           <Col>
-            {action || date ? (
+            {(action || date) && (
               <div>
                 {action && <strong ref="action">{action}</strong>}
                 {by && (
@@ -40,7 +40,7 @@ export default class Activity extends React.Component {
                   </span>
                 )}
               </div>
-            ) : null}
+            )}
             {children}
           </Col>
         </Row>

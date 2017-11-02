@@ -3,17 +3,15 @@ import { action, storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { ActivityLog, Activity } from '../src';
 
-const r = n => Math.ceil(Math.random() * n);
-
 storiesOf('ActivityLog', module)
   .addWithInfo('with props', () => (
-    <ActivityLog>
-      <Activity date={new Date(2017, r(12), r(28), r(24), r(60))} action="Created" by="Services" />
-      <Activity date={new Date(2017, r(12), r(28), r(24), r(60))} action="Edited" />
-      <Activity date={new Date(2017, r(12), r(28), r(24), r(60))} action="Edited" by="Gary">
+    <ActivityLog flush={boolean('flush', false)}>
+      <Activity date={new Date(2017, 10, 31, 23, 15)} action="Created" by="Services" />
+      <Activity date={new Date(2017, 9, 13, 13, 0)} action="Edited" />
+      <Activity date={new Date(2017, 4, 1, 6, 0)} action="Edited" by="Gary">
         He messed this up
       </Activity>
-      <Activity date={new Date(2017, r(12), r(28), r(24), r(60))} />
+      <Activity date={new Date(2017, 2, 28, 12, 1)} />
       <Activity date={new Date()}>
         Nothing to see here, move on
       </Activity>
