@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import {
   Popover,
   PopoverTitle,
@@ -8,7 +8,6 @@ import {
   Icon,
   HelpBubble
 } from '../../src';
-
 
 describe('<HelpBubble />', () => {
   it('should have a question mark', () => {
@@ -29,29 +28,43 @@ describe('<HelpBubble />', () => {
     assert.equal(component.find(Popover).prop('isOpen'), false);
   });
 
-  it.skip('should open popover when toggled', () => {
-    const component = mount(<HelpBubble title="hi" />);
+  it('should open popover when toggled', () => {
+    const component = shallow(<HelpBubble title="hi" />);
     assert.equal(component.find(Popover).prop('isOpen'), false);
     component.find(Icon).simulate('click');
     assert.equal(component.find(Popover).prop('isOpen'), true);
   });
 
   it('should forward props to Popover', () => {
-    const component = mount(<HelpBubble title="hi" placement="bottom" other="stuff" />);
+    const component = mount(
+      <HelpBubble title="hi" placement="bottom" other="stuff" />
+    );
     const popover = component.find(Popover);
     assert.equal(popover.prop('placement'), 'bottom');
     assert.equal(popover.prop('other'), 'stuff');
   });
 
-  it.skip('should place title and content in popover', () => {
-    const component = mount(<HelpBubble title="Title">Content</HelpBubble>);
+  it('should place title and content in popover', () => {
+    const component = shallow(<HelpBubble title="Title">Content</HelpBubble>);
     assert.equal(component.find(PopoverTitle).prop('children'), 'Title');
     assert.equal(component.find(PopoverContent).prop('children'), 'Content');
   });
 
-  it.skip('should accept className', () => {
-    const component = mount(<HelpBubble title="Title" className="foo" />);
-    console.log('component.debug():', component.debug());
+  it('should accept className', () => {
+    const component = shallow(<HelpBubble title="Title" className="foo" />);
     assert.equal(component.hasClass('foo'), true);
+  });
+
+  it('should be closed after you toggle both the icon and the popover', done => {
+    const component = shallow(<HelpBubble title="hi" />);
+    assert.equal(component.find(Popover).prop('isOpen'), false);
+    component.find(Icon).simulate('click');
+    assert.equal(component.find(Popover).prop('isOpen'), true);
+    component.find(Popover).prop('toggle')();
+    component.find(Icon).simulate('click');
+    setTimeout(() => {
+      assert.equal(component.find(Popover).prop('isOpen'), false);
+      done();
+    }, 0);
   });
 });
