@@ -76,4 +76,10 @@ describe('<CreditCardNumber />', () => {
       sinon.assert.calledWith(onChange, cardNumber, undefined);
     });
   });
+
+  it('should remain type="text"', () => {
+    const component = mount(<CreditCardNumber type="wth" />);
+    const input = component.find('Input');
+    assert.equal(input.prop('type'), 'text');
+  });
 });
