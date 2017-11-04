@@ -79,7 +79,7 @@ const FormRow = props => {
               id={id}
               size={size}
               state={rowColor}
-              type={type}
+              type={typeof type === 'string' ? type : null}
               children={React.Children.map(children, child => React.cloneElement(child, { type }))}
               {...attributes}
               {...childFeedback}
