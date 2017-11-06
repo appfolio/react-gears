@@ -201,7 +201,9 @@ describe('<FormRow />', () => {
     );
 
     it('should render custom input', () => {
-      assert.equal(component.find(Custom).length, 1);
+      const custom = component.find(Custom);
+      assert.equal(custom.length, 1);
+      assert.equal(custom.first().prop('type'), null);
     });
   });
 

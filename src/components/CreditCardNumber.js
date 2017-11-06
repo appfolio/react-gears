@@ -25,6 +25,7 @@ function includes(array, value) {
 export default class CreditCardNumber extends React.Component {
 
   static propTypes = {
+    ...Input.propTypes,
     className: PropTypes.string,
     types: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
@@ -32,6 +33,7 @@ export default class CreditCardNumber extends React.Component {
   };
 
   static defaultProps = {
+    ...Input.defaultProps,
     className: '',
     types: Object.keys(ICONS),
     onChange: () => {},
@@ -55,9 +57,9 @@ export default class CreditCardNumber extends React.Component {
 
   render() {
     /* eslint-disable  no-unused-vars */
-    const { className, onChange, types, value, ...inputProps } = this.props;
+    const { className, onChange, type, types, value, ...inputProps } = this.props;
 
-    const type = this.getType(value);
+    const ccType = this.getType(value);
 
     return (
       <InputGroup className={className}>
@@ -68,7 +70,7 @@ export default class CreditCardNumber extends React.Component {
         />
         <InputGroupAddon className="p-0 px-2">
           <Icon
-            name={typeToIconName(type)}
+            name={typeToIconName(ccType)}
             fixedWidth
             size="lg"
           />
