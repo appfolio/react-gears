@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import Form from './Form';
+import PropTypes from 'prop-types';
 import noop from 'lodash.noop';
+
+import Form from './Form';
 
 class BoundForm extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
     errors: PropTypes.object,
     object: PropTypes.object.isRequired,
     onSubmit: PropTypes.func,
@@ -32,6 +32,17 @@ class BoundForm extends React.Component {
     };
   }
 
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.onSubmit(e, this.state.formData);
+  }
+
+  handleChange = name => (data) => {
+    const value = data.target instanceof Element ? data.target.value : data;
+    this.setState({ formData: { ...this.state.formData, [name]: value } });
+    this.props.onChange(this.state.formData);
+  }
+
   getChildContext() {
     return {
       value: this.state.formData,
@@ -40,20 +51,11 @@ class BoundForm extends React.Component {
     };
   }
 
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(e, this.state.formData);
-  }
-
-  handleChange = name => data => {
-    const value = data.target instanceof Element ? data.target.value : data;
-    this.setState({ formData: { ...this.state.formData, [name]: value } });
-    this.props.onChange(this.state.formData);
-  }
-
   render() {
+    const { onSubmit, ...props } = this.props;
+
     return (
-      <Form children={this.props.children} onSubmit={this.onSubmit} />
+      <Form onSubmit={this.onSubmit} {...props} />
     );
   }
 }
