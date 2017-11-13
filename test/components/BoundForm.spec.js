@@ -22,7 +22,7 @@ describe('<BoundForm />', () => {
   const changeFunc = sinon.stub();
 
   const component = shallow(
-    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} />
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff"/>
   );
 
   it('should provide a context', () => {
@@ -75,5 +75,9 @@ describe('<BoundForm />', () => {
     component.simulate('submit', { preventDefault });
     assert.equal(preventDefault.calledOnce, true);
     assert.equal(submitFunc.calledWith({ preventDefault }, component.state('formData')), true);
+  });
+
+  it('should forward other props to child form', () => {
+    assert.equal(component.prop('other'), 'stuff');
   });
 });

@@ -6,7 +6,6 @@ import Form from './Form';
 
 class BoundForm extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
     errors: PropTypes.object,
     object: PropTypes.object.isRequired,
     onSubmit: PropTypes.func,
@@ -53,10 +52,10 @@ class BoundForm extends React.Component {
   }
 
   render() {
+    const { onSubmit, ...props } = this.props;
+
     return (
-      <Form onSubmit={this.onSubmit}>
-        {this.props.children}
-      </Form>
+      <Form onSubmit={this.onSubmit} {...props} />
     );
   }
 }
