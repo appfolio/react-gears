@@ -52,7 +52,7 @@ class BoundForm extends React.Component {
   }
 
   render() {
-    const { onSubmit, ...props } = this.props;
+    const { errors, object, onChange, onSubmit, ...props } = this.props;
 
     return (
       <Form onSubmit={this.onSubmit} {...props} />
