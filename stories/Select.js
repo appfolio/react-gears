@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from '../src';
 import { action, storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 
 import COUNTRIES from '../src/components/address/Countries.js';
 
@@ -10,6 +10,7 @@ storiesOf('Select', module)
     <div>
       <Select
         className="w-100"
+        disabled={boolean('disabled', false)}
         options={COUNTRIES}
         onChange={action('onChange')}
       />
