@@ -1,3 +1,5 @@
---require jsdom-global/register babel-core/register ignore-styles
+--require jsdom-global/register
+--require babel-core/register
+--require ignore-styles
 --recursive
 --timeout 10000
