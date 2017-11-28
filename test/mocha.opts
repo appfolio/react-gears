@@ -1,5 +1,5 @@
--r jsdom-global/register
---compilers js:babel-register
+--require jsdom-global/register
+--require babel-core/register
 --require ignore-styles
 --recursive
 --timeout 10000
