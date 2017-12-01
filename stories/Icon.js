@@ -3,7 +3,10 @@ import { storiesOf } from '@storybook/react';
 
 import { Button, Icon } from '../src';
 import { text, boolean, select } from '@storybook/addon-knobs';
-
+import icons from './icons.js';
+const colors = [
+  'primary', 'info', 'success', 'warning', 'danger', 'muted', 'gray-dark'
+];
 storiesOf('Icon', module)
   .addWithInfo('Live example', () => (
     <Icon
@@ -16,36 +19,15 @@ storiesOf('Icon', module)
       border={boolean('border', false)}
     />
   ))
-  .addWithInfo('Examples', () => (
-    <div>
-      <p>
-        See full list of icons <a href="http://fontawesome.io/icons/" target="_blank">here</a>.
-      </p>
-      <h1>
-        <Icon name="plus-circle" />
-        <Icon name="minus-circle" />
-        <Icon name="caret-up" />
-        <Icon name="caret-down" />
-        <Icon name="caret-left" />
-        <Icon name="caret-right" />
-        <Icon name="info-circle" />
-        <Icon name="question-circle" />
-        <Icon name="user" />
-        <Icon name="print" />
-        <Icon name="eye" />
-        <Icon name="search" />
-        <Icon name="calendar" />
-        <Icon name="pencil" />
-        <Icon name="pencil-square-o" />
-        <Icon name="exclamation-triangle" />
-        <Icon name="check" />
-        <Icon name="check-circle" />
-        <Icon name="times" />
-        <Icon name="times-circle" />
-        <Icon name="ban" />
-      </h1>
-    </div>
-  ))
+  .add('Available Icons', () => {
+    const size = select('size', ['', 'lg', '2x', '3x', '4x', '5x'], '4x');
+    return (
+      <div>
+        <em>Hover over icon to view name:</em><br />
+        {icons.map((name, i) => <Icon name={name} fixedWidth size={size} title={name} className={`py-2 text-${colors[i % colors.length]}`} />)}
+      </div>
+    );
+  })
   .addWithInfo('with inline text', () => (
     <div>
       <p>
@@ -111,12 +93,19 @@ storiesOf('Icon', module)
       <Icon name="female" rotate={270} /> 270<br />
       <Icon name="music" flip="horizontal" /> horizontal<br />
       <Icon name="music" flip="vertical" /> vertical<br />
-    </div>))
+    </div>
+  ))
   .addWithInfo('with other props', () => (
     <div className="bg-color-muted">
-      <p><Icon name="camera" size="2x" /> Default</p>
-      <p><Icon name="camera" size="2x" fixedWidth /> fixedWidth</p>
-      <p><Icon name="camera" size="2x" border /> border</p>
+      <p>
+        <Icon name="camera" size="2x" /> Default
+      </p>
+      <p>
+        <Icon name="camera" size="2x" fixedWidth /> fixedWidth
+      </p>
+      <p>
+        <Icon name="camera" size="2x" border /> border
+      </p>
     </div>
   ));
 
