@@ -5,6 +5,7 @@ import COUNTRIES from './address/Countries.js'; // TODO i18n country names based
 
 export default class CountryInput extends React.Component {
   static propTypes = {
+    autoComplete: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     id: PropTypes.string,
@@ -12,14 +13,15 @@ export default class CountryInput extends React.Component {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     value: PropTypes.string
-  }
+  };
 
   static defaultProps = {
     onChange: () => {}
-  }
+  };
 
   render() {
     const {
+      autoComplete,
       className,
       disabled,
       id,
@@ -38,10 +40,14 @@ export default class CountryInput extends React.Component {
         id={id}
         name={name}
         onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+        autoComplete={autoComplete ? 'country-name' : null}
       >
         <option value="">{placeholder}</option>
-        {COUNTRIES.map(country =>
-          <option value={country.value} key={country.value}>{country.label}</option>)}
+        {COUNTRIES.map(country => (
+          <option value={country.value} key={country.value}>
+            {country.label}
+          </option>
+        ))}
       </Input>
     );
   }

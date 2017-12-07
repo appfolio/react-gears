@@ -45,6 +45,22 @@ describe('<CountryInput />', () => {
 
   it('should render specified placeholder', () => {
     const component = mount(<CountryInput placeholder="Pick a Country..." />);
-    assert.equal(component.find('option').first().text(), 'Pick a Country...');
+    assert.equal(
+      component
+        .find('option')
+        .first()
+        .text(),
+      'Pick a Country...'
+    );
+  });
+
+  it('should have autocomplete undefined if autoComplete is falsey', () => {
+    const component = mount(<CountryInput />);
+    assert.equal(component.find('select').props().autoComplete, null);
+  });
+
+  it('should add autocomplete address-level1 if autoComplete is true', () => {
+    const component = mount(<CountryInput autoComplete />);
+    assert.equal(component.find('select').props().autoComplete, 'country-name');
   });
 });
