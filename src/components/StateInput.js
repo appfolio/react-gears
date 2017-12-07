@@ -5,6 +5,7 @@ import STATES from './address/USStates.js'; // TODO Dynamic states based on coun
 
 export default class StateInput extends React.Component {
   static propTypes = {
+    autoComplete: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     id: PropTypes.string,
@@ -12,14 +13,15 @@ export default class StateInput extends React.Component {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     value: PropTypes.string
-  }
+  };
 
   static defaultProps = {
     onChange: () => {}
-  }
+  };
 
   render() {
     const {
+      autoComplete,
       className,
       disabled,
       id,
@@ -38,10 +40,14 @@ export default class StateInput extends React.Component {
         id={id}
         name={name}
         onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+        autoComplete={autoComplete ? 'address-level1' : null}
       >
         <option value="">{placeholder}</option>
-        {STATES.map(state =>
-          <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
+        {STATES.map(state => (
+          <option title={state.label} value={state.value} key={state.value}>
+            {state.value}
+          </option>
+        ))}
       </Input>
     );
   }
