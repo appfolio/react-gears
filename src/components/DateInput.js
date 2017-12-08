@@ -129,7 +129,7 @@ export default class DateInput extends React.Component {
         break;
       case 13: // Enter
       case 27: // Esc
-        ev.preventDefault();
+        event.preventDefault();
         this.setState({ open: false });
         break;
       case 37: // Left
