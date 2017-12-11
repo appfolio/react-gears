@@ -21,6 +21,7 @@ describe('<Select />', () => {
       it('should have a blank default', () => {
         assert.equal(component.type(), ReactSelect);
         assert.equal(component.prop('value'), null);
+        assert(!component.hasClass('select-async'));
       });
 
       it('should clear input', () => {
@@ -78,6 +79,25 @@ describe('<Select />', () => {
 
     const component = shallow(<Select loadOptions={getOptions} />);
     assert.equal(component.type(), ReactSelect.Async);
+    assert(component.hasClass('select-async'));
+  });
+
+  it('should append the async class to the className prop', () => {
+    const getOptions = (input, callback) => {
+      callback(null, {
+        options: [
+          { value: 'oogah', label: 'Oogah' },
+          { value: 'chaka', label: 'Chaka' }
+        ],
+        complete: true
+      });
+    };
+
+    const component = shallow(<Select loadOptions={getOptions} className="foo bar" />);
+    assert.equal(component.type(), ReactSelect.Async);
+    assert(component.hasClass('foo'));
+    assert(component.hasClass('bar'));
+    assert(component.hasClass('select-async'));
   });
 
   it('should support focus', () => {

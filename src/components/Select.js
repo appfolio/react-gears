@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSelect from 'react-select-plus';
+import classnames from 'classnames';
 import Close from './Close';
 import Icon from './Icon';
 import noop from 'lodash.noop';
@@ -11,6 +12,7 @@ import './Select.scss';
 
 class Select extends React.Component {
   static propTypes = {
+    className: PropTypes.string,
     defaultValue: PropTypes.any,
     loadOptions: PropTypes.func,
     onChange: PropTypes.func,
@@ -48,9 +50,10 @@ class Select extends React.Component {
   }
 
   render() {
-    const { value, ...props } = this.props;
+    const { className, value, ...props } = this.props;
     delete props.onChange; // don't pass onChange prop to react-select
     const SelectElement = this.props.loadOptions ? ReactSelect.Async : ReactSelect;
+    const classNames = classnames(className, {'select-async': this.props.loadOptions});
 
     return (
       <SelectElement
@@ -61,6 +64,7 @@ class Select extends React.Component {
         onChange={this.onChange}
         value={value || this.state.value}
         ref={this.bindInput}
+        className={classNames}
         {...props}
       />
     );
