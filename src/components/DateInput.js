@@ -127,10 +127,19 @@ export default class DateInput extends React.Component {
       case 9: // TAB
         this.setState({ open: false });
         break;
-      case 13: // Enter
       case 27: // Esc
-        event.preventDefault();
-        this.setState({ open: false });
+        if (this.state.open) {
+          // To avoid parent elements handling the ESC key (like modals closing)
+          event.stopPropagation();
+          this.setState({ open: false });
+        }
+        break;
+      case 13: // Enter
+        if (this.state.open) {
+          // To avoid submitting the form if DateInput is contained in a form
+          event.preventDefault();
+          this.setState({ open: false });
+        }
         break;
       case 37: // Left
         if (allowArrows) this.setDate(addDays(this.getCurrentDate(), -1));
