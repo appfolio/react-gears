@@ -1,23 +1,22 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import { Card, SortableTable } from '../src';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import fecha from 'fecha';
 import { orderBy } from 'lodash';
+import { Card, SortableTable } from '../src';
 
 const DATA = [
-  { key: '111', first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
-  { key: '222', first: 'Alberto', last: 'Kennedy', email: 'alberto.kennedy@example.com', dob: new Date(1972, 7, 17) },
-  { key: '333', first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
-  { key: '444', first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
-  { key: '555', first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
-  { key: '666', first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
-  { key: '777', first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
-  { key: '888', first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
-  { key: '999', first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
-  { key: '000', first: 'Reginald', last: 'Rice', email: 'reginald.rice@example.com', dob: new Date(1984, 4, 15) }
+  { key: '111', expanded: false, first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
+  { key: '222', expanded: false, first: 'Alberto', last: 'Kennedy', email: 'alberto.kennedy@example.com', dob: new Date(1972, 7, 17) },
+  { key: '333', expanded: false, first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
+  { key: '444', expanded: false, first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
+  { key: '555', expanded: false, first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
+  { key: '666', expanded: false, first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
+  { key: '777', expanded: true, first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
+  { key: '888', expanded: false, first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
+  { key: '999', expanded: false, first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
+  { key: '000', expanded: false, first: 'Reginald', last: 'Rice', email: 'reginald.rice@example.com', dob: new Date(1984, 4, 15) }
 ];
 
 class StatefulExample extends React.Component {
@@ -96,6 +95,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
+        rowExpanded={row => row.expanded && <div><hr className="m-0" /><a>Hey Look it&apos;s an expanded table row.</a></div>}
       />
     );
   }
@@ -241,6 +241,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
+        rowExpanded={row => row.expanded && <div><hr /><b>Hey Look it's an expanded table row.</b></div>}
       />
     );
   }

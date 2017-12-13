@@ -192,4 +192,24 @@ describe('<SortableTable />', () => {
       assert(tr.hasClass(rows[i]));
     });
   });
+
+  it('should render expandable row when specified', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const wrapper = mount(
+      <SortableTable
+        columns={columns}
+        rows={rows}
+        rowExpanded={row => row === 'Charlie' && <span className="expando">Hey</span>}
+      />
+    );
+    const trs = wrapper.find('tbody tr');
+    assert.equal(trs.length, rows.length + 2); // For expanded and hidden for stripeing
+
+    const td = wrapper.find(`td[colSpan=${columns.length}]`);
+    assert.equal(td.length, 1);
+
+    const span = wrapper.find('span.expando');
+    assert(span.exists());
+  });
 });
