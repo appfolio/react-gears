@@ -4,7 +4,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import fecha from 'fecha';
 import { orderBy } from 'lodash';
-import { Card, SortableTable } from '../src';
+import { Button, Card, SortableTable } from '../src';
 
 const DATA = [
   { key: '111', expanded: false, first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
@@ -95,7 +95,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div><hr className="m-0" /><a>Hey Look it&apos;s an expanded table row.</a></div>}
+        rowExpanded={row => row.expanded && <div className="py-2"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
@@ -241,12 +241,13 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div><hr /><b>Hey Look it's an expanded table row.</b></div>}
+        rowExpanded={row => row.expanded && <div className="py-2"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
 }  
-        `}</pre>
+        `}
+        </pre>
       </Card>
     </div>
   )
