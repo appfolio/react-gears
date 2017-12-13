@@ -18,19 +18,38 @@ class SortableTable extends React.Component {
         width: PropTypes.string
       })
     ).isRequired,
-    rows: PropTypes.array,
-    rowClassName: PropTypes.func
+    rows: PropTypes.object,
+    rowClassName: PropTypes.func,
+    rowExpanded: PropTypes.func,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
   static defaultProps = {
     ...Table.defaultProps,
     rows: [],
-    rowClassName: () => undefined
+    rowClassName: () => undefined,
+    rowExpanded: () => false
   };
 
+  renderRow(row, columns, rowClassName, rowExpanded) {
+    const expanded = rowExpanded(row);
+    return [
+      <tr key={row.key} className={rowClassName(row)}>
+        {columns.map(column => <td key={column.key}>{column.cell(row)}</td>)}
+      </tr>,
+      expanded && <tr hidden />,
+      expanded && (
+        <tr>
+          <td colSpan={columns.length}>
+            {expanded}
+          </td>
+        </tr>
+      ),
+    ];
+  }
+
   render() {
-    const { columns, rowClassName, rows, ...props } = this.props;
+    const { columns, rowClassName, rowExpanded, rows, ...props } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
 
@@ -58,11 +77,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => (
-            <tr key={row.key} className={rowClassName(row)}>
-              {columns.map(column => <td key={column.key}>{column.cell(row)}</td>)}
-            </tr>
-          ))}
+          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded))}
         </tbody>
         {showFooter &&
           <tfoot>
