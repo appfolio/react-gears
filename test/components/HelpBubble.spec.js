@@ -1,5 +1,6 @@
 import React from 'react';
 import assert from 'assert';
+import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 import {
   Popover,
@@ -29,9 +30,10 @@ describe('<HelpBubble />', () => {
   });
 
   it('should open popover when toggled', () => {
+    const event = { stopPropagation: sinon.stub() };
     const component = shallow(<HelpBubble title="hi" />);
     assert.equal(component.find(Popover).prop('isOpen'), false);
-    component.find(Icon).simulate('click');
+    component.find(Icon).simulate('click', event);
     assert.equal(component.find(Popover).prop('isOpen'), true);
   });
 
@@ -56,12 +58,13 @@ describe('<HelpBubble />', () => {
   });
 
   it('should be closed after you toggle both the icon and the popover', done => {
+    const event = { stopPropagation: sinon.stub() };
     const component = shallow(<HelpBubble title="hi" />);
     assert.equal(component.find(Popover).prop('isOpen'), false);
-    component.find(Icon).simulate('click');
+    component.find(Icon).simulate('click', event);
     assert.equal(component.find(Popover).prop('isOpen'), true);
     component.find(Popover).prop('toggle')();
-    component.find(Icon).simulate('click');
+    component.find(Icon).simulate('click', event);
     setTimeout(() => {
       assert.equal(component.find(Popover).prop('isOpen'), false);
       done();
