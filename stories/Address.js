@@ -19,6 +19,7 @@ storiesOf('AddressInput', module)
         onChange={action('address onChange')}
         disabled={boolean('disabled')}
         error={object('error', {})}
+        showCountry={boolean('showCountry', true)}
         showLabels={boolean('showLabels', false)}
         labels={object('labels', AddressInput.defaultProps.labels)}
       />

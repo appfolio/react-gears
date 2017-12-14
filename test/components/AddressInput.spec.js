@@ -326,5 +326,15 @@ describe('<AddressInput />', () => {
       assert.equal(component.find('#yo_countryCode').length, 1, 'countryCode id missing');
     });
   });
+
+  it('should show country when enabled', () => {
+    const component = mount(<AddressInput showCountry />);
+    assert.equal(component.find('CountryInput').length, 1);
+  });
+
+  it('should not show country when disabled', () => {
+    const component = mount(<AddressInput showCountry={false} />);
+    assert.equal(component.find('CountryInput').length, 0);
+  });
 });
 
