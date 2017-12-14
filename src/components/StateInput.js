@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Input from './Input';
 import STATES from './address/USStates.js'; // TODO Dynamic states based on country
 
@@ -29,11 +30,13 @@ export default class StateInput extends React.Component {
       ...props
     } = this.props;
 
+    const classNames = classnames('custom-select', className);
+
     return (
       <Input
         type="select"
         {...props}
-        className={className}
+        className={classNames}
         disabled={disabled}
         id={id}
         name={name}

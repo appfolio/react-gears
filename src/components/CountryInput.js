@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Input from './Input';
 import COUNTRIES from './address/Countries.js'; // TODO i18n country names based on locale
 
@@ -29,11 +30,13 @@ export default class CountryInput extends React.Component {
       ...props
     } = this.props;
 
+    const classNames = classnames('custom-select', className);
+
     return (
       <Input
         type="select"
         {...props}
-        className={className}
+        className={classNames}
         disabled={disabled}
         id={id}
         name={name}

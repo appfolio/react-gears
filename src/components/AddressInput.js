@@ -19,6 +19,7 @@ class AddressInput extends React.Component {
     id: PropTypes.string,
     labels: PropTypes.shape(addressPropType),
     onChange: PropTypes.func,
+    showCountry: PropTypes.bool,
     showLabels: PropTypes.bool,
     value: PropTypes.shape(addressPropType),
   };
@@ -36,6 +37,7 @@ class AddressInput extends React.Component {
       countryCode: 'Country',
     },
     onChange: () => {},
+    showCountry: true,
     showLabels: false,
     value: {},
   };
@@ -58,7 +60,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, id, labels, showLabels } = this.props;
+    const { disabled, error, id, labels, showCountry, showLabels } = this.props;
 
     return (
       <div id={id}>
@@ -147,21 +149,23 @@ class AddressInput extends React.Component {
             </ValidatedFormGroup>
           </Col>
         </Row>
-        <ValidatedFormGroup
-          error={error.countryCode}
-          className="mb-0"
-          label={showLabels ? labels.countryCode : null}
-        >
-          <CountryInput
-            className="w-100"
-            id={id ? `${id}_countryCode` : null}
-            name="countryCode"
-            placeholder={labels.countryCode}
-            {...this.propsFor('countryCode')}
-            onChange={countryCode => this.onChange({ countryCode })}
-            disabled={disabled}
-          />
-        </ValidatedFormGroup>
+        {showCountry &&
+          <ValidatedFormGroup
+            error={error.countryCode}
+            className="mb-0"
+            label={showLabels ? labels.countryCode : null}
+          >
+            <CountryInput
+              className="w-100"
+              id={id ? `${id}_countryCode` : null}
+              name="countryCode"
+              placeholder={labels.countryCode}
+              {...this.propsFor('countryCode')}
+              onChange={countryCode => this.onChange({ countryCode })}
+              disabled={disabled}
+            />
+          </ValidatedFormGroup>
+        }
       </div>
     );
   }
