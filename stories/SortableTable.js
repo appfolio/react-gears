@@ -95,7 +95,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div className="py-2"><Button color="danger" size="sm">Delete</Button></div>}
+        rowExpanded={row => row.expanded && <div className="py-1"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
@@ -111,7 +111,7 @@ storiesOf('SortableTable', module)
           <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'Stateful Example' story.
         </p>
         <SortableTable
-          bordered={boolean('bordered', true)}
+          bordered={boolean('bordered', false)}
           hover={boolean('hover', true)}
           size={select('size', ['', 'sm', 'lg'], 'sm')}
           striped={boolean('striped', true)}
@@ -157,7 +157,7 @@ storiesOf('SortableTable', module)
   .add('Stateful example', () => (
     <div>
       <StatefulExample
-        bordered={boolean('bordered', true)}
+        bordered={boolean('bordered', false)}
         hover={boolean('hover', true)}
         size={select('size', ['', 'sm', 'lg'], 'sm')}
         striped={boolean('striped', true)}
@@ -241,7 +241,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div className="py-2"><Button color="danger" size="sm">Delete</Button></div>}
+        rowExpanded={row => row.expanded && <div className="py-1"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
