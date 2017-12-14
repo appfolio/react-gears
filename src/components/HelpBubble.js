@@ -26,7 +26,8 @@ class HelpBubble extends React.Component {
     };
   }
 
-  toggle = () => {
+  toggle = (e) => {
+    e.stopPropagation();
     this.setState({ isOpen: !this.state.isOpen });
   };
 
@@ -45,7 +46,7 @@ class HelpBubble extends React.Component {
       <span className={className} style={style}>
         <Icon
           name="question-circle"
-          onClick={this.toggle}
+          onClick={e => this.toggle(e)}
           id={this.id}
           className="text-primary"
         />
