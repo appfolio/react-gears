@@ -4,7 +4,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import fecha from 'fecha';
 import { orderBy } from 'lodash';
-import { Card, SortableTable } from '../src';
+import { Button, Card, SortableTable } from '../src';
 
 const DATA = [
   { key: '111', expanded: false, first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
@@ -95,7 +95,7 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div><hr className="m-0" /><a>Hey Look it&apos;s an expanded table row.</a></div>}
+        rowExpanded={row => row.expanded && <div className="py-1"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
@@ -111,7 +111,7 @@ storiesOf('SortableTable', module)
           <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'Stateful Example' story.
         </p>
         <SortableTable
-          bordered={boolean('bordered', true)}
+          bordered={boolean('bordered', false)}
           hover={boolean('hover', true)}
           size={select('size', ['', 'sm', 'lg'], 'sm')}
           striped={boolean('striped', true)}
@@ -157,7 +157,7 @@ storiesOf('SortableTable', module)
   .add('Stateful example', () => (
     <div>
       <StatefulExample
-        bordered={boolean('bordered', true)}
+        bordered={boolean('bordered', false)}
         hover={boolean('hover', true)}
         size={select('size', ['', 'sm', 'lg'], 'sm')}
         striped={boolean('striped', true)}
@@ -241,12 +241,13 @@ class StatefulExample extends React.Component {
           }
         ]}
         rows={this.sortedData(column, ascending)}
-        rowExpanded={row => row.expanded && <div><hr /><b>Hey Look it's an expanded table row.</b></div>}
+        rowExpanded={row => row.expanded && <div className="py-1"><Button color="danger" size="sm">Delete</Button></div>}
       />
     );
   }
 }  
-        `}</pre>
+        `}
+        </pre>
       </Card>
     </div>
   )
