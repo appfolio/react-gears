@@ -3,15 +3,17 @@ import React from 'react';
 import CardGroup from './CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
 
-const SummaryBox = (props) => (
-  <CardGroup>
-    {props.items ?
-      props.items.map((item, i) => <SummaryBoxItem key={i} value={item.value} label={item.label} />) :
-      props.children}
+const SummaryBox = ({ children, className, items }) => (
+  <CardGroup className={className}>
+    {items ?
+      items.map((item, i) => <SummaryBoxItem key={i} value={item.value} label={item.label} />) :
+      children}
   </CardGroup>
 );
 
 SummaryBox.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
   items: PropTypes.array
 };
 
