@@ -3,10 +3,10 @@ import React from 'react';
 import CardGroup from './CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
 
-const SummaryBox = ({ children, className, items }) => (
-  <CardGroup className={className}>
+const SummaryBox = ({ children, className, items, ...props }) => (
+  <CardGroup className={className} {...props}>
     {items ?
-      items.map((item, i) => <SummaryBoxItem key={i} value={item.value} label={item.label} />) :
+      items.map((item, i) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} />) :
       children}
   </CardGroup>
 );

@@ -4,8 +4,13 @@ import classnames from 'classnames';
 import Card from './Card';
 import CardBlock from './CardBlock';
 
-const SummaryBoxItem = ({ className, label, value }) => (
-  <Card color="secondary" outline className={classnames('rounded-0', className)}>
+const SummaryBoxItem = ({ className, label, value, ...props }) => (
+  <Card
+    color="secondary"
+    outline
+    className={classnames('rounded-0', className)}
+    {...props}
+  >
     <CardBlock className="text-center">
       <h3 className="mb-0 mt-1">{value}</h3>
       <small className="text-muted text-uppercase">{label}</small>
@@ -15,8 +20,8 @@ const SummaryBoxItem = ({ className, label, value }) => (
 
 SummaryBoxItem.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.string,
-  value: PropTypes.string // TODO support links
+  label: PropTypes.node,
+  value: PropTypes.node
 };
 
 SummaryBoxItem.defaultProps = {

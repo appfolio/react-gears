@@ -10,6 +10,12 @@ describe('<SummaryBox />', () => {
     assert(component);
   });
 
+  it('should allow arbitrary props', () => {
+    const component = shallow(<SummaryBox id="fred" />);
+
+    assert(component.find('#fred').exists());
+  });
+
   it('should render items as SummaryBoxItems', () => {
     const items = [
       { value: 'Alpha', label: 'Team' },
