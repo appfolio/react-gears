@@ -212,4 +212,26 @@ describe('<SortableTable />', () => {
     const span = wrapper.find('span.expando');
     assert(span.exists());
   });
+
+  it('should render correct align when present', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', align: 'left' },
+      { header: 'Center', cell: () => '-', footer: '-', align: 'center' },
+      { header: 'Right', cell: () => '-', footer: '-', align: 'right' },
+    ];
+    const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+
+    assert.equal(wrapper.find('thead th.text-left').length, 1, 'thead th.text-left incorrect');
+    assert.equal(wrapper.find('thead th.text-center').length, 1, 'thead th.text-center incorrect');
+    assert.equal(wrapper.find('thead th.text-right').length, 1, 'thead th.text-right incorrect');
+
+    assert.equal(wrapper.find('td.text-left').length, 3, 'td.text-left incorrect');
+    assert.equal(wrapper.find('td.text-center').length, 3, 'td.text-center incorrect');
+    assert.equal(wrapper.find('td.text-right').length, 3, 'td.text-right incorrect');
+
+    assert.equal(wrapper.find('tfoot th.text-left').length, 1, 'tfoot th.text-left incorrect');
+    assert.equal(wrapper.find('tfoot th.text-center').length, 1, 'tfoot th.text-center incorrect');
+    assert.equal(wrapper.find('tfoot th.text-right').length, 1, 'tfoot th.text-right incorrect');
+  });
 });
