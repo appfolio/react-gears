@@ -18,4 +18,9 @@ describe('<SummaryBoxItem />', () => {
     assert(component.find('h3').text(), '--');
     assert(component.find('small').text(), '--');
   });
+
+  it('should allow arbitrary props', () => {
+    const component = mount(<SummaryBoxItem id="mertz" />);
+    assert(component.find('#mertz').exists());
+  });
 });
