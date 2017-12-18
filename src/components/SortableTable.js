@@ -8,6 +8,7 @@ class SortableTable extends React.Component {
     ...Table.propTypes,
     columns: PropTypes.arrayOf(
       PropTypes.shape({
+        align: PropTypes.oneOf(['left', 'center', 'right']),
         active: PropTypes.bool,
         ascending: PropTypes.bool,
         cell: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
@@ -18,7 +19,7 @@ class SortableTable extends React.Component {
         width: PropTypes.string
       })
     ).isRequired,
-    rows: PropTypes.object,
+    rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     rowClassName: PropTypes.func,
     rowExpanded: PropTypes.func,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
@@ -35,7 +36,7 @@ class SortableTable extends React.Component {
     const expanded = rowExpanded(row);
     return [
       <tr key={row.key} className={rowClassName(row)}>
-        {columns.map(column => <td key={column.key}>{column.cell(row)}</td>)}
+        {columns.map(column => <td key={column.key} className={column.align && `text-${column.align}`}>{column.cell(row)}</td>)}
       </tr>,
       expanded && <tr hidden />,
       expanded && (
@@ -68,6 +69,7 @@ class SortableTable extends React.Component {
               <Header
                 active={column.active}
                 ascending={column.ascending}
+                className={column.align && `text-${column.align}`}
                 key={index}
                 onSort={column.onSort ? () => column.onSort(!column.ascending) : null}
               >
@@ -83,7 +85,7 @@ class SortableTable extends React.Component {
           <tfoot>
             <tr>
               {columns.map(column => (
-                <th key={column.key}>
+                <th key={column.key} className={column.align && `text-${column.align}`}>
                   {column.footer}
                 </th>
               ))}

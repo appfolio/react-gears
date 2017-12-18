@@ -250,5 +250,40 @@ class StatefulExample extends React.Component {
         </pre>
       </Card>
     </div>
-  )
-);
+  ))
+  .addWithInfo('Align column', () => (
+    <div>
+      <p className="text-warning">
+        <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'Stateful Example' story.
+      </p>
+      <SortableTable
+        columns={[
+          {
+            header: 'Default Align',
+            key: 'name',
+            cell: row => row.first,
+          },
+          {
+            align: 'left',
+            header: 'Left Align',
+            key: 'last',
+            cell: row => row.last,
+          },
+          {
+            align: 'center',
+            header: 'Center Align',
+            key: 'dob',
+            cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+          },
+          {
+            align: 'right',
+            header: 'Right Align',
+            key: 'email',
+            cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+          }
+        ]}
+        rows={DATA}
+      />
+    </div>
+  ));
+
