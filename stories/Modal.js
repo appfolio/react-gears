@@ -8,6 +8,7 @@ storiesOf('Modal', module)
     <Modal
       isOpen={boolean('isOpen', true)}
       backdrop={boolean('backdrop', true)}
+      fade={boolean('fade', false)}
       size={select('size', [null, 'sm', 'md', 'lg'], null)}
     >
       <ModalHeader toggle={() => {}}>Modal title</ModalHeader>
