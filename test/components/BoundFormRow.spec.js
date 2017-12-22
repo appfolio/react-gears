@@ -69,6 +69,11 @@ describe('<BoundFormRow />', () => {
     it('should set the default context errors', () => {
       assert.equal(component.prop('feedback'), '');
     });
+
+    it('should call context onChange', () => {
+      component.simulate('change', 'stuff');
+      sinon.assert.calledWith(onChange, 'stuff');
+    });
   });
 
   describe('with onChange prop', () => {
