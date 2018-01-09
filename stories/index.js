@@ -38,6 +38,7 @@ import './Spinner';
 import './Steps';
 import './SummaryBox';
 import './Table';
+import './TimePicker';
 import './Tooltip';
 import './Waiting';
 

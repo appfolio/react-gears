@@ -111,6 +111,7 @@ import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
+import TimePicker from './components/TimePicker.js';
 import Tooltip from './components/Tooltip.js';
 import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 import Waiting from './components/Waiting.js';
@@ -182,6 +183,7 @@ export {
   TabContent,
   TabPane,
   Table,
+  TimePicker,
   TetherContent,
 
   Select,
