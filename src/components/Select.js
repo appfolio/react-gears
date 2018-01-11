@@ -58,7 +58,7 @@ class Select extends React.Component {
     return (
       <SelectElement
         arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
-        clearRenderer={() => <Close style={{ fontSize: '1rem' }} />}
+        clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
         optionComponent={Option}
         inputProps={{ ...props.inputProps, name: props.name || '' }}
         onChange={this.onChange}
