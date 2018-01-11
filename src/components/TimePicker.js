@@ -1,38 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Select from './Select';
-
-function convertTimeToInt(time) {
-  const hour = parseInt(time.substring(0, 2), 10);
-  const minute = parseInt(time.substring(3, 5), 10);
-
-  return minute + (hour * 60);
-}
-
-function convertIntToTime(timeInInt, format) {
-  let hour = Math.floor(timeInInt / 60);
-  const minute = timeInInt % 60;
-
-  if (format === 24) {
-    const hourInString = hour.toString().padStart(2, '0');
-    const minuteInString = minute.toString().padStart(2, '0');
-
-    return `${hourInString}:${minuteInString}`;
-  }
-
-  const amPM = hour < 12 ? 'AM' : 'PM';
-
-  if (hour === 0) {
-    hour = 12;
-  } else if (hour > 12) {
-    hour -= 12;
-  }
-
-  const hourInString = hour.toString().padStart(2, '0');
-  const minuteInString = minute.toString().padStart(2, '0');
-
-  return `${hourInString}:${minuteInString} ${amPM}`;
-}
+import { convertTimeToInt,
+         convertIntToValue,
+         convertIntToLabel } from '../util/time_picker_helper';
 
 export default class TimePicker extends React.Component {
   static propTypes = {
@@ -41,12 +12,13 @@ export default class TimePicker extends React.Component {
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
     endTime: PropTypes.string,
-    format: PropTypes.Number,
+    timeFormat: PropTypes.number,
     id: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     startTime: PropTypes.string,
     step: PropTypes.number,
+    value: PropTypes.any,
   }
 
   static defaultProps = {
@@ -62,7 +34,7 @@ export default class TimePicker extends React.Component {
 
     this.state = {
       endTime: props.endTime || '23:59',
-      format: props.format || 12,
+      timeFormat: props.timeFormat || 12,
       startTime: props.startTime || '00:00',
       step: props.step || 30,
       options: [],
@@ -70,9 +42,9 @@ export default class TimePicker extends React.Component {
     };
   }
 
-  updateValue(newValue) {
-    this.setState({ value: newValue });
-    this.props.onChange(newValue);
+  onChange = (value) => {
+    this.setState({ value });
+    this.props.onChange(value);
   }
 
   createDropdownOptions() {
@@ -80,9 +52,11 @@ export default class TimePicker extends React.Component {
     const end = convertTimeToInt(this.state.endTime);
     const options = [];
 
-    while (start < end) {
-      const timeString = convertIntToTime(start, this.state.format);
-      options.push({ label: timeString, value: timeString });
+    while (start <= end) {
+      const timeLabel = convertIntToLabel(start, this.state.timeFormat);
+      const timeValue = convertIntToValue(start);
+
+      options.push({ label: timeLabel, value: timeValue });
       start += this.state.step;
     }
 
@@ -93,10 +67,13 @@ export default class TimePicker extends React.Component {
     this.createDropdownOptions();
 
     if (this.props.defaultValue) {
-      const defaultTimeInInt = convertTimeToInt(this.props.defaultValue);
-      const defaultTimeFormatted = convertIntToTime(defaultTimeInInt, this.props.format);
+      this.setState({ value: this.props.defaultValue });
+    }
+  }
 
-      this.setState({ value: defaultTimeFormatted });
+  componentWillReceiveProps(props) {
+    if (props.value !== this.props.value) {
+      this.setState({ value: props.value });
     }
   }
 
@@ -110,7 +87,7 @@ export default class TimePicker extends React.Component {
           disabled={this.props.disabled}
           id={this.props.id}
           name="time-picker"
-          onChange={this.updateValue}
+          onChange={this.onChange}
           options={this.state.options}
           placeholder={this.props.placeholder}
           value={this.state.value}
