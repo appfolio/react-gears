@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import moment from 'moment';
 import Select from './Select';
-import { convertTimeToInt,
-         convertIntToValue,
-         convertIntToLabel } from '../util/time_picker_helper';
 
 export default class TimePicker extends React.Component {
   static propTypes = {
@@ -48,16 +46,17 @@ export default class TimePicker extends React.Component {
   }
 
   createDropdownOptions() {
-    let start = convertTimeToInt(this.state.startTime);
-    const end = convertTimeToInt(this.state.endTime);
+    const start = moment(this.state.startTime, ['hh:mm A']);
+    const end = moment(this.state.endTime, ['hh:mm A']);
     const options = [];
 
-    while (start <= end) {
-      const timeLabel = convertIntToLabel(start, this.state.timeFormat);
-      const timeValue = convertIntToValue(start);
+    while (start.diff(end, 'minutes') <= 0) {
+      const optionValue = start.format('HH:mm');
+      const optionLabel = this.state.timeFormat === 24 ? optionValue : start.format('hh:mm A');
 
-      options.push({ label: timeLabel, value: timeValue });
-      start += this.state.step;
+      options.push({ label: optionLabel, value: optionValue });
+
+      start.add(this.state.step, 'minutes');
     }
 
     this.setState({ options });
