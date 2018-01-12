@@ -46,8 +46,8 @@ export default class TimePicker extends React.Component {
   }
 
   createDropdownOptions() {
-    const start = moment(this.state.startTime, ['hh:mm A']);
-    const end = moment(this.state.endTime, ['hh:mm A']);
+    const start = moment(this.state.startTime, ['HH:mm']);
+    const end = moment(this.state.endTime, ['HH:mm']);
     const options = [];
 
     while (start.diff(end, 'minutes') <= 0) {
