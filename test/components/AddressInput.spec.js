@@ -336,5 +336,16 @@ describe('<AddressInput />', () => {
     const component = mount(<AddressInput showCountry={false} />);
     assert.equal(component.find('CountryInput').length, 0);
   });
+
+  it('should call onBlur for each input', () => {
+    const callback = sinon.spy();
+    const component = mount(<AddressInput onBlur={callback} />);
+    const fields = ['address1', 'address2', 'city', 'state', 'postal', 'countryCode'];
+    fields.forEach((field) => {
+      const input = component.find(`[name="${field}"]`);
+      input.simulate('blur');
+      assert(callback.calledWith(field));
+    });
+  });
 });
 
