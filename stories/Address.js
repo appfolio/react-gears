@@ -16,6 +16,7 @@ storiesOf('AddressInput', module)
           postal: '12345-1234',
           countryCode: 'US'
         }}
+        onBlur={action('address onBlur')}
         onChange={action('address onChange')}
         disabled={boolean('disabled')}
         error={object('error', {})}

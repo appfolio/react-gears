@@ -18,6 +18,7 @@ class AddressInput extends React.Component {
     error: PropTypes.shape(addressPropType),
     id: PropTypes.string,
     labels: PropTypes.shape(addressPropType),
+    onBlur: PropTypes.func,
     onChange: PropTypes.func,
     showCountry: PropTypes.bool,
     showLabels: PropTypes.bool,
@@ -36,6 +37,7 @@ class AddressInput extends React.Component {
       postal: 'Zip',
       countryCode: 'Country',
     },
+    onBlur: () => {},
     onChange: () => {},
     showCountry: true,
     showLabels: false,
@@ -60,7 +62,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, id, labels, showCountry, showLabels } = this.props;
+    const { disabled, error, id, labels, onBlur, showCountry, showLabels } = this.props;
 
     return (
       <div id={id}>
@@ -75,6 +77,7 @@ class AddressInput extends React.Component {
             placeholder={labels.address1}
             {...this.propsFor('address1')}
             state={error.address1 && 'danger'}
+            onBlur={() => onBlur('address1')}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
             getRef={this.bindAddress1}
@@ -91,6 +94,7 @@ class AddressInput extends React.Component {
             placeholder={labels.address2}
             {...this.propsFor('address2')}
             state={error.address2 && 'danger'}
+            onBlur={() => onBlur('address2')}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
           />
@@ -109,6 +113,7 @@ class AddressInput extends React.Component {
                 placeholder={labels.city}
                 {...this.propsFor('city')}
                 state={error.city && 'danger'}
+                onBlur={() => onBlur('city')}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
@@ -126,6 +131,7 @@ class AddressInput extends React.Component {
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}
+                onBlur={() => onBlur('state')}
                 onChange={state => this.onChange({ state })}
                 disabled={disabled}
               />
@@ -143,6 +149,7 @@ class AddressInput extends React.Component {
                 placeholder={labels.postal}
                 {...this.propsFor('postal')}
                 state={error.postal && 'danger'}
+                onBlur={() => onBlur('postal')}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
@@ -161,6 +168,7 @@ class AddressInput extends React.Component {
               name="countryCode"
               placeholder={labels.countryCode}
               {...this.propsFor('countryCode')}
+              onBlur={() => onBlur('countryCode')}
               onChange={countryCode => this.onChange({ countryCode })}
               disabled={disabled}
             />
