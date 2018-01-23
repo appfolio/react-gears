@@ -10,31 +10,31 @@ export default class TimePicker extends React.Component {
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
     endTime: PropTypes.string,
-    timeFormat: PropTypes.number,
     id: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     startTime: PropTypes.string,
     step: PropTypes.number,
+    timeFormat: PropTypes.number,
     value: PropTypes.any,
   }
 
   static defaultProps = {
     className: '',
     clearable: false,
+    endTime: '23:59',
     disabled: false,
     onChange: () => {},
-    placeholder: 'Select time...'
+    placeholder: 'Select time...',
+    startTime: '00:00',
+    step: 30,
+    timeFormat: 12,
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      endTime: props.endTime || '23:59',
-      timeFormat: props.timeFormat || 12,
-      startTime: props.startTime || '00:00',
-      step: props.step || 30,
       options: [],
       value: ''
     };
@@ -46,17 +46,17 @@ export default class TimePicker extends React.Component {
   }
 
   createDropdownOptions() {
-    const start = moment(this.state.startTime, ['HH:mm']);
-    const end = moment(this.state.endTime, ['HH:mm']);
+    const start = moment(this.props.startTime, ['HH:mm']);
+    const end = moment(this.props.endTime, ['HH:mm']);
     const options = [];
 
     while (start.diff(end, 'minutes') <= 0) {
       const optionValue = start.format('HH:mm');
-      const optionLabel = this.state.timeFormat === 24 ? optionValue : start.format('hh:mm A');
+      const optionLabel = this.props.timeFormat === 24 ? optionValue : start.format('hh:mm A');
 
       options.push({ label: optionLabel, value: optionValue });
 
-      start.add(this.state.step, 'minutes');
+      start.add(this.props.step, 'minutes');
     }
 
     this.setState({ options });
