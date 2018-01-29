@@ -111,6 +111,7 @@ import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
+import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 import Waiting from './components/Waiting.js';
@@ -232,6 +233,7 @@ export {
   Steps,
   SummaryBox,
   SummaryBoxItem,
+  TimeInput,
   Tooltip,
   ValidatedFormGroup,
   Waiting,
