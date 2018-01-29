@@ -94,7 +94,7 @@ export default class TimeInput extends React.Component {
       ...props
     } = this.props;
 
-    const classNames = classnames('custom-select', className);
+    const classNames = classnames('custom-select', 'pt-2', className);
     const times = this.visibleTimes(step, timeFormat, min, max);
 
     return (
