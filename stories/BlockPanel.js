@@ -11,6 +11,7 @@ storiesOf('BlockPanel', module)
       onEdit={() => alert('Edit clicked!')}
       expandable={boolean('expandable', true)}
       hideOnToggle={boolean('hideOnToggle', false)}
+      open={boolean('open', true)}
     >
       Now you see me.
     </BlockPanel>
