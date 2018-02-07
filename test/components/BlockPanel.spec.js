@@ -63,6 +63,20 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
     });
 
+    it('should honor state of open if state passed as prop', () => {
+      const component = mount(
+        <BlockPanel title="Open" expandable>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+
+      assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
+
+      component.setProps({ open: false });
+
+      assert.equal(component.find('#hi').length, 0);
+    });
+
     it('should show and hide when hideOnToggle is true', () => {
       const component = mount(
         <BlockPanel title="Open" expandable hideOnToggle>

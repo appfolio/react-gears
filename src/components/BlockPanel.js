@@ -38,6 +38,12 @@ class BlockPanel extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ('open' in nextProps) {
+      this.setState({ open: nextProps.open });
+    }
+  }
+
   toggle = () => {
     const open = !this.state.open;
     this.setState({ open });
