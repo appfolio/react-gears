@@ -293,6 +293,11 @@ describe('<DateInput />', () => {
     sinon.assert.calledOnce(component.inputEl.focus);
   });
 
+  it('should support whatever props', () => {
+    const component = mount(<DateInput rando="yadda" />);
+    assert.equal(component.find('input[rando="yadda"]').length, 1);
+  });
+
   context('id', () => {
     it('should not show id by default', () => {
       const component = mount(<DateInput />);
