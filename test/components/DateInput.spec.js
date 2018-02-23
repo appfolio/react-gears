@@ -294,7 +294,7 @@ describe('<DateInput />', () => {
   });
 
   it('should support whatever props', () => {
-    const component = mount(<DateInput defaultValue="1/23/1983" rando="yadda" />);
+    const component = mount(<DateInput rando="yadda" />);
     assert.equal(component.find('input[rando="yadda"]').length, 1);
   });
 
