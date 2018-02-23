@@ -10,6 +10,7 @@ storiesOf('DateInput', module)
         dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
         showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
         disabled={boolean('disabled', DateInput.defaultProps.disabled)}
+        readOnly={boolean('readOnly', false)}
         onBlur={action('onBlur')}
         onChange={action('onChange')}
       />

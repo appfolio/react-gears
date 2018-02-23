@@ -238,7 +238,8 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, id, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, id, showOnFocus,
+      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, ...props } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
@@ -258,6 +259,7 @@ export default class DateInput extends React.Component {
               onFocus={showOnFocus && this.show}
               onKeyDown={this.onKeyDown}
               disabled={disabled}
+              {...props}
             />
             <InputGroupButton onClick={this.toggle}>
               <Button
