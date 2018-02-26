@@ -1,5 +1,6 @@
 import React from 'react';
 import assert from 'assert';
+import sinon from 'sinon';
 import { mount } from 'enzyme';
 
 import { SortableTable } from '../../src';
@@ -211,6 +212,21 @@ describe('<SortableTable />', () => {
 
     const span = wrapper.find('span.expando');
     assert(span.exists());
+  });
+
+  it('should supply onClick row handler when specified', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const onClick = sinon.stub();
+    const wrapper = mount(
+      <SortableTable
+        columns={columns}
+        rows={rows}
+        rowOnClick={onClick}
+      />
+    );
+    wrapper.find('tbody tr').first().simulate('click');
+    sinon.assert.calledWith(onClick, 'Alpha');
   });
 
   it('should render correct align when present', () => {

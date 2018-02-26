@@ -22,6 +22,7 @@ class SortableTable extends React.Component {
     rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     rowClassName: PropTypes.func,
     rowExpanded: PropTypes.func,
+    rowOnClick: PropTypes.func,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
@@ -29,13 +30,14 @@ class SortableTable extends React.Component {
     ...Table.defaultProps,
     rows: [],
     rowClassName: () => undefined,
-    rowExpanded: () => false
+    rowExpanded: () => false,
+    rowOnClick: () => {}
   };
 
-  renderRow(row, columns, rowClassName, rowExpanded) {
+  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick) {
     const expanded = rowExpanded(row);
     return [
-      <tr key={row.key} className={rowClassName(row)}>
+      <tr key={row.key} className={rowClassName(row)} onClick={() => rowOnClick(row)}>
         {columns.map(column => <td key={column.key} className={column.align && `text-${column.align}`}>{column.cell(row)}</td>)}
       </tr>,
       expanded && <tr hidden />,
@@ -50,7 +52,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, rowClassName, rowExpanded, rows, ...props } = this.props;
+    const { columns, rowClassName, rowExpanded, rowOnClick, rows, ...props } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
 
@@ -79,7 +81,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded))}
+          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded, rowOnClick))}
         </tbody>
         {showFooter &&
           <tfoot>
