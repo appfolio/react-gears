@@ -19,6 +19,7 @@ import CardSubtitle from './components/CardSubtitle';
 import CardText from './components/CardText';
 import CardTitle from './components/CardTitle';
 import Col from './components/Col';
+import Collapse from './components/Collapse';
 import Container from './components/Container';
 import Dropdown from './components/Dropdown';
 import DropdownItem from './components/DropdownItem';
@@ -139,6 +140,7 @@ export {
   CardText,
   CardTitle,
   Col,
+  Collapse,
   Container,
   Dropdown,
   DropdownItem,
