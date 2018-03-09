@@ -1,7 +1,20 @@
-import { ListGroupItemProps } from 'reactstrap/lib/ListGroupItem';
+import Omit from '../util/omit';
 
-type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T];
-type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;  
+interface ListGroupItemProps {
+  tag?: React.ReactType;
+  active?: boolean;
+  disabled?: boolean;
+  color?: string;
+  action?: boolean;
+  className?: string;
+  cssModule?: {
+    [className: string]: string;
+  }
+  href?: string;
+
+  onClick?: React.MouseEventHandler<any>;
+}
+
 
 export interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   action?: JSX.Element | string;

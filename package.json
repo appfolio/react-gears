@@ -19,6 +19,7 @@
   "scripts": {
     "lint": "eslint src; exit 0",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
+    "ts-test": "NODE_ENV=test ./node_modules/.bin/tsc ./test/typesafety.tsx --jsx react",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha",
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
@@ -51,6 +52,8 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-options": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "@types/react": "^16.0.40",
+    "@types/reactstrap": "4.6.6",
     "assert": "~1.4.1",
     "autoprefixer": "~7.1.1",
     "babel-core": "~6.26.0",
@@ -79,6 +82,7 @@
     "sass-loader": "~6.0.5",
     "sinon": "~3.2.1",
     "style-loader": "~0.18.1",
+    "typescript": "~2.7.1",
     "uncontrollable": "^4.1.0",
     "webpack": "~2.6.1"
   }

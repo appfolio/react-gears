@@ -7,6 +7,7 @@ import BlockPanel from '../src/components/BlockPanel';
 import Breadcrumb from '../src/components/Breadcrumb';
 import Button from '../src/components/Button';
 import Callout from '../src/components/Callout';
+import CreditCardNumber from '../src/components/CreditCardNumber';
 import * as React from 'react';
 
 const ActivityExample = () => {
@@ -99,4 +100,10 @@ const CalloutExample = () => {
     <h3>Hello World</h3>
     Hello
   </Callout>
+}
+
+const CreditCardNumberExample = () => {
+  <CreditCardNumber
+    types={['visa', 'master-card']}
+  />
 }
