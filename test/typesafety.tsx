@@ -7,7 +7,20 @@ import BlockPanel from '../src/components/BlockPanel';
 import Breadcrumb from '../src/components/Breadcrumb';
 import Button from '../src/components/Button';
 import Callout from '../src/components/Callout';
+import Card from '../src/components/Card';
+import CardBlock from '../src/components/CardBlock';
+import Datapair from '../src/components/Datapair';
 import CreditCardNumber from '../src/components/CreditCardNumber';
+import DateInput from '../src/components/DateInput';
+import ExpandableSection from '../src/components/ExpandableSection';
+import FeatureBanner from '../src/components/FeatureBanner';
+import FilterList from '../src/components/FilterList';
+import FormRow from '../src/components/FormRow';
+import HasManyFields from '../src/components/HasManyFields';
+import HelpBubble from '../src/components/HelpBubble';
+import Icon from '../src/components/Icon';
+import InfoBox from '../src/components/InfoBox';
+import LabelBadge from '../src/components/LabelBadge';
 import * as React from 'react';
 
 const ActivityExample = () => {
@@ -105,5 +118,148 @@ const CalloutExample = () => {
 const CreditCardNumberExample = () => {
   <CreditCardNumber
     types={['visa', 'master-card']}
+  />
+}
+
+const DatapairExample = () => {
+  <Card className="mt-1">
+    <CardBlock>
+      <Datapair label="Label">
+        Custom markup <Button color="primary">can go here</Button>
+      </Datapair>
+      <Datapair
+        label="This is a really long label that probably shouldn't be this long"
+        value="Stuff"
+      />
+    </CardBlock>
+  </Card>
+}
+
+const DateInputExample = () => {
+  <DateInput
+    id="calendar"
+    dateFormat="someFOrmat"
+    showOnFocus={true}
+    disabled={false}
+    onBlur={() =>{}}
+    onChange={() => { }}
+  />
+}
+
+const ExpandableSectionExample = () => {
+  <ExpandableSection title="Click to expand me">
+    <h2>BOO!</h2>
+  </ExpandableSection>
+}
+
+const FeatureBannerExample = () => {
+  <FeatureBanner
+    alertText={'New'}
+    title={'Hi'}
+    subtitle={'Some title'}
+  >
+    <div>
+      <Button className="font-weight-bold text-uppercase bg-muted text-primary" outline>
+        Test
+    </Button>
+    </div>
+  </FeatureBanner>
+}
+
+
+const filters = [
+  {
+    label: 'User',
+    value: 'Hello World',
+    removable: false
+  },
+  {
+    label: 'Property',
+    value: '1234 State Street'
+  },
+  {
+    label: 'People',
+    value: 'Lalalala'
+  }
+];
+const FilterListExample = () => {
+  <div>
+    <FilterList
+      filters={filters}
+      maxWidth={14}
+      onRemove={(filter) => { console.log('filter'); } }
+    />
+  </div>
+}
+
+const FormRowExample = () => {
+  return (
+    <FormRow
+      label={'First name'}
+      feedback={'Feedback'}
+      color={'danger'}
+      hint={'some hint'}
+      required={false}
+      inline={false}
+      stacked={false}
+    />
+  );
+}
+
+const hasManyItems = [
+  {
+    address1: '50 Castilian Dr.',
+    city: 'Goleta',
+    state: 'CA',
+    postal: '93117',
+    countryCode: 'US'
+  }
+];
+const HasManyFieldsExample = () => {
+  <HasManyFields
+    defaultValue={hasManyItems}
+    template={AddressInput}
+    blank={{ countryCode: 'US' }}
+    label="Add an Address"
+    disabled={false}
+    onAdd={() => { }}
+    onRemove={() => { }}
+    onUpdate={() => { }}
+    onChange={() => { }}
+  />;
+  
+}
+
+const HelpBubbleExample = () => {
+  <p>
+    I can be placed in context to provide some contextual help!
+    <HelpBubble title='Test' className="ml-1" placement='bottom'>
+      Some text
+    </HelpBubble>
+  </p>
+}
+
+const IconExample = () => {
+  <Icon name="calendar" size="lg" />
+}
+
+const InfoBoxExample = () => {
+  <InfoBox
+    color='success'
+    title='Some title'
+    icon='check'
+    vertical={false}
+  >
+   yo
+  </InfoBox>
+}
+
+const LabelBadgeExample = () => {
+  <LabelBadge
+    label='one'
+    value='two'
+    removable={true}
+    maxWidth={200}
+    onRemove={() => {}}
   />
 }
