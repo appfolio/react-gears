@@ -21,6 +21,7 @@ import HelpBubble from '../src/components/HelpBubble';
 import Icon from '../src/components/Icon';
 import InfoBox from '../src/components/InfoBox';
 import LabelBadge from '../src/components/LabelBadge';
+import MonthInput from '../src/components/MonthInput';
 import * as React from 'react';
 
 const ActivityExample = () => {
@@ -99,10 +100,20 @@ const BlockPanelExample = () => {
 }
 
 const ButtonExample = () => {
-  <Button color="primary" disabled={false} outline={false}>
+  <Button
+    color="fds"
+  >
     Click Me
   </Button>
 }
+
+// const BadButtonExample = () => {
+//   <Button
+//     color="link"
+//     onClick={(e) => { document.body = (e + 5); }}
+//     someDumbAttribute="yes"
+//   />
+// }
 
 const CalloutExample = () => {
   <Callout
@@ -261,5 +272,17 @@ const LabelBadgeExample = () => {
     removable={true}
     maxWidth={200}
     onRemove={() => {}}
+  />
+}
+
+const MonthInputExample = () => {
+  <MonthInput
+    dateFormat='MMM YYYY'
+    monthFormat='MMM'
+    yearFormat='YYY'
+    showOnFocus={true}
+    disabled={false}
+    onBlur={() => {}}
+    onChange= {() => { }}
   />
 }
