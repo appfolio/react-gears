@@ -100,6 +100,16 @@ describe('<Select />', () => {
     assert(component.hasClass('select-async'));
   });
 
+  it('should default to single class', () => {
+    const component = mount(<Select />).find('.Select');
+    assert(component.hasClass('Select--single'));
+  });
+
+  it('should append the multi class', () => {
+    const component = mount(<Select multi />).find('.Select');
+    assert(component.hasClass('Select--multi'));
+  });
+
   it('should support focus', () => {
     const wrapper = mount(<Select />);
     const component = wrapper.instance();

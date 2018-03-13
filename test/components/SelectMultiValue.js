@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 
 import { SelectMultiValue } from '../../src';
 
-describe.only('<SelectMultiValue />', () => {
+describe('<SelectMultiValue />', () => {
   it('renders passed value', () => {
     const component = mount(<SelectMultiValue>User</SelectMultiValue>);
     assert.equal(component.text().trim(), 'User');
