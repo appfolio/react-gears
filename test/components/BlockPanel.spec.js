@@ -1,11 +1,17 @@
 import React from 'react';
 import assert from 'assert';
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import { Button, CardBlock, CardTitle, Icon, BlockPanel } from '../../src';
-import { mount, shallow } from 'enzyme';
 
 
 describe('<BlockPanel />', () => {
+  it('should be empty with no children', () => {
+    const component = mount(<BlockPanel title="Open" />);
+
+    assert.equal(component.find('CardBody').length, 0);
+  });
+
   context('is expandable', () => {
     it('should be open by default', () => {
       const component = mount(
