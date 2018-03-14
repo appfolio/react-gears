@@ -38,17 +38,17 @@ class BlockPanel extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ('open' in nextProps) {
-      this.setState({ open: nextProps.open });
-    }
-  }
-
   toggle = () => {
     const open = !this.state.open;
     this.setState({ open });
     this.props.onToggle(open);
   };
+
+  componentWillReceiveProps(nextProps) {
+    if ('open' in nextProps) {
+      this.setState({ open: nextProps.open });
+    }
+  }
 
   render() {
     // eslint-disable-next-line no-unused-vars
@@ -76,7 +76,7 @@ class BlockPanel extends React.Component {
             className="d-inline-flex align-items-center"
             onClick={this.toggle}
             ref="title"
-            style={{ cursor: expandable ? 'pointer' : 'default' }}
+            role={expandable ? 'button' : undefined}
           >
             {expandable ?
               <Icon
@@ -90,12 +90,12 @@ class BlockPanel extends React.Component {
               {title}
             </CardTitle>
           </div>
-          <div className="d-inline-flex blockpanel-controls">
+          <div className="d-inline-flex">
             {controls && controls}
             {onEdit && <Button color="link" className="p-0 ml-2 mr-1" ref="edit" onClick={onEdit}>edit</Button>}
           </div>
         </CardHeader>
-        {!expandable || open || hideOnToggle ?
+        {children && (!expandable || open || hideOnToggle) ?
           <CardBlock hidden={expandable && !open && hideOnToggle}>
             {children}
           </CardBlock>
