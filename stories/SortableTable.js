@@ -45,6 +45,10 @@ class StatefulExample extends React.Component {
     }
   };
 
+  rowOnClick = (row) => {
+    alert(`clicked ${row.key}`);
+  };
+
   render() {
     const { ascending, column } = this.state;
     const { bordered, hover, size, striped } = this.props;
@@ -96,6 +100,7 @@ class StatefulExample extends React.Component {
         ]}
         rows={this.sortedData(column, ascending)}
         rowExpanded={row => row.expanded && <div className="py-1"><Button color="danger" size="sm">Delete</Button></div>}
+        rowOnClick={this.rowOnClick}
       />
     );
   }
@@ -245,7 +250,7 @@ class StatefulExample extends React.Component {
       />
     );
   }
-}  
+}
         `}
         </pre>
       </Card>
