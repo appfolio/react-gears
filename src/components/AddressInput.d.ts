@@ -23,5 +23,5 @@ interface AddressInputProps {
   value?: AddressInterface;
 }
 
-declare const Activity: React.StatelessComponent<AddressInputProps>;
-export default Activity;
+declare const AddressInput: React.StatelessComponent<AddressInputProps>;
+export default AddressInput;
