@@ -55,7 +55,7 @@ class BlockPanel extends React.Component {
     const { children, className, color, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
     const { open } = this.state;
 
-    // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes  
+    // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
     const headerClassNames = classnames(
       'border-0',
       'd-flex',
