@@ -17,7 +17,7 @@ describe('<Datapair />', () => {
     const labelCol = component.find(Col).first();
     assert.equal(labelCol.prop('sm'), '4');
     assert.equal(labelCol.prop('xs'), '12');
-    assert.equal(labelCol.hasClass('text-sm-right'));
+    assert(labelCol.hasClass('text-sm-right'));
   });
 
   it('should correctly size value column', () => {
