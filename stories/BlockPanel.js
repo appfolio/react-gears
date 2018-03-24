@@ -2,13 +2,14 @@ import React from 'react';
 import { action, storiesOf } from '@storybook/react';
 
 import { BlockPanel, Button, ButtonGroup, Icon, Input, InputGroup, InputGroupAddon, HelpBubble } from '../src';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 storiesOf('BlockPanel', module)
   .addWithInfo('Live example', () => (
     <BlockPanel
       title={text('title', 'Some simple content would go here')}
       onEdit={() => alert('Edit clicked!')}
+      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'])}
       expandable={boolean('expandable', true)}
       hideOnToggle={boolean('hideOnToggle', false)}
       open={boolean('open', true)}
