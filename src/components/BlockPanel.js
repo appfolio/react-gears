@@ -9,9 +9,9 @@ import CardTitle from './CardTitle';
 import Icon from './Icon';
 
 class BlockPanel extends React.Component {
-
   static propTypes = {
     children: PropTypes.node,
+    color: PropTypes.string,
     controls: PropTypes.node,
     className: PropTypes.string,
     expandable: PropTypes.bool,
@@ -52,9 +52,10 @@ class BlockPanel extends React.Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { children, className, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
+    const { children, className, color, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
     const { open } = this.state;
 
+    // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
     const headerClassNames = classnames(
       'border-0',
       'd-flex',
@@ -63,7 +64,11 @@ class BlockPanel extends React.Component {
       'justify-content-between',
       'py-2',
       'pr-2',
-      { 'pl-2': expandable }
+      {
+        'pl-2': expandable,
+        [`bg-${color}`]: color,
+        'text-white': color === 'primary' || color === 'dark'
+      }
     );
 
     return (
@@ -80,7 +85,7 @@ class BlockPanel extends React.Component {
           >
             {expandable ?
               <Icon
-                className="text-muted mr-1"
+                className={`${(color !== 'primary' && color !== 'dark') ? 'text-muted' : ''} mr-1`}
                 name="caret-right"
                 rotate={open ? 90 : undefined}
                 fixedWidth
@@ -92,7 +97,17 @@ class BlockPanel extends React.Component {
           </div>
           <div className="d-inline-flex">
             {controls && controls}
-            {onEdit && <Button color="link" className="p-0 ml-2 mr-1" ref="edit" onClick={onEdit}>edit</Button>}
+            {onEdit && (
+              <Button
+                color="link"
+                className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ml-2 mr-1`}
+                ref="edit"
+                onClick={onEdit}
+                role="button"
+              >
+                edit
+              </Button>
+            )}
           </div>
         </CardHeader>
         {children && (!expandable || open || hideOnToggle) ?
