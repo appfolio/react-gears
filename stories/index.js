@@ -4,6 +4,7 @@ import './Layout';
 import './ActivityLog';
 import './Address';
 import './Alerts';
+import './AutosuggestInput';
 import './BlockPanel';
 import './Buttons';
 import './Callout';

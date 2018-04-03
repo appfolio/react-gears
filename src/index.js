@@ -64,6 +64,7 @@ import Activity from './components/Activity.js';
 import ActivityLog from './components/ActivityLog.js';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
+import AutosuggestInput from './components/AutosuggestInput.js';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
@@ -196,6 +197,7 @@ export {
   ActivityLog,
   AddressInput,
   Alert,
+  AutosuggestInput,
   BlockPanel,
   BoundForm,
   BoundFormRow,
