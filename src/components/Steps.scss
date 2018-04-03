@@ -17,7 +17,7 @@ $todo: #818a91; // Saffron color-muted, needs to be text-muted
     align-items: center;
     display: inline-flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1 1 0;
     list-style: square;
     padding:  0.1rem;
     text-align: center;
