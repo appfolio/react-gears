@@ -12,6 +12,7 @@ import {
 } from '../../src';
 
 const items = [ 'monkey', 'cat', 'mouse' ];
+const errors = [{ name: "can't be blank" }, {}, { foo: "can't be bar" }];
 
 describe('<HasManyFields />', () => {
   describe('uncontrolled', () => {
@@ -22,6 +23,7 @@ describe('<HasManyFields />', () => {
     const component = shallow(
       <HasManyFields
         defaultValue={items}
+        errors={errors}
         template={Input}
         blank={values => values.length.toString()}
         onAdd={onAdd}
@@ -50,6 +52,12 @@ describe('<HasManyFields />', () => {
     it('should pass the items at values to template', () => {
       component.find(Input).forEach((input, i) => {
         assert.equal(input.prop('value'), items[i]);
+      });
+    });
+
+    it('should pass the errors to each template', () => {
+      component.find(Input).forEach((input, i) => {
+        assert.deepEqual(input.prop('errors'), errors[i]);
       });
     });
 
@@ -94,6 +102,7 @@ describe('<HasManyFields />', () => {
     const component = shallow(
       <HasManyFields
         value={items}
+        errors={errors}
         template={Input}
         blank={'foo'}
         onAdd={onAdd}
@@ -118,6 +127,12 @@ describe('<HasManyFields />', () => {
     it('should pass the items at values to template', () => {
       component.find(Input).forEach((input, i) => {
         assert.equal(input.prop('value'), items[i]);
+      });
+    });
+
+    it('should pass the errors to each template', () => {
+      component.find(Input).forEach((input, i) => {
+        assert.deepEqual(input.prop('errors'), errors[i]);
       });
     });
 

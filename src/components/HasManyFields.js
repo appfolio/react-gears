@@ -11,6 +11,7 @@ class HasManyFields extends React.Component {
     blank: PropTypes.any,
     defaultValue: PropTypes.array,
     disabled: PropTypes.bool,
+    errors: PropTypes.array,
     label: PropTypes.string.isRequired,
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
@@ -23,6 +24,7 @@ class HasManyFields extends React.Component {
 
   static defaultProps = {
     defaultValue: [],
+    errors: [],
     onAdd: noop,
     onRemove: noop,
     onUpdate: noop,
@@ -96,7 +98,7 @@ class HasManyFields extends React.Component {
   };
 
   render() {
-    const { template: Template, label, disabled } = this.props;
+    const { template: Template, label, disabled, errors } = this.props;
 
     return (
       <div>
@@ -108,6 +110,7 @@ class HasManyFields extends React.Component {
           >
             <Template
               value={item}
+              errors={errors[i]}
               onChange={this.updateItem(i)}
               ref={this.setRowReference(i)}
               disabled={disabled}
