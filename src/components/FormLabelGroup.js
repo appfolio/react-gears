@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Col from './Col';
 import FormGroup from './FormGroup';
+import FormText from './FormText';
+import FormFeedback from './FormFeedback';
 import Label from './Label';
 import Row from './Row';
 
@@ -9,8 +11,10 @@ const FormLabelGroup = (props) => {
   const {
     children,
     color,
+    feedback,
     inputId,
     invalid,
+    hint,
     label,
     required,
     rowClassName,
@@ -38,6 +42,8 @@ const FormLabelGroup = (props) => {
             {children}
           </Col>
         </Row>
+        {hint && <FormText color="muted">{hint}</FormText>}
+        {feedback && <FormFeedback>{feedback}</FormFeedback>}
       </Col>
     </FormGroup>
   );
