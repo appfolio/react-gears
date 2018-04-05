@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
-import { AddressInput, FormLabelGroup } from '../src';
+import { Alert, FormLabelGroup } from '../src';
 
 storiesOf('FormLabelGroup', module)
   .addWithInfo('Live example', () => (
@@ -15,7 +15,9 @@ storiesOf('FormLabelGroup', module)
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}
       >
-        <img alt="Sample" src="https://placeimg.com/320/240/tech" width="320" height="240" />
+        <Alert color="info" className="text-center p-4" style={{ borderStyle: 'dashed' }}>
+          Your content here
+        </Alert>
       </FormLabelGroup>
     </div>
   ));

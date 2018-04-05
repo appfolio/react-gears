@@ -39,10 +39,10 @@ const FormLabelGroup = (props) => {
         <Row>
           <Col {...width}>
             {children}
+            {hint && <FormText color="muted">{hint}</FormText>}
+            {feedback && <FormFeedback>{feedback}</FormFeedback>}
           </Col>
         </Row>
-        {hint && <FormText color="muted">{hint}</FormText>}
-        {feedback && <FormFeedback>{feedback}</FormFeedback>}
       </Col>
     </FormGroup>
   );

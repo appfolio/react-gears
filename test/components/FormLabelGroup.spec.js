@@ -11,7 +11,7 @@ import {
   Label,
 } from '../../src';
 
-describe.only('<FormLabelGroup />', () => {
+describe('<FormLabelGroup />', () => {
   describe('by default', () => {
     const component = shallow(<FormLabelGroup>Hello World</FormLabelGroup>);
 
