@@ -13,7 +13,6 @@ const FormLabelGroup = (props) => {
     color,
     feedback,
     inputId,
-    invalid,
     hint,
     label,
     required,
@@ -23,7 +22,7 @@ const FormLabelGroup = (props) => {
     width
   } = props;
 
-  const rowColor = color || (invalid && 'danger');
+  const rowColor = color || (feedback && 'danger');
   const labelWidth = stacked ? 12 : 3;
   const labelAlignment = stacked ? '' : 'text-sm-right';
   const inputContainerWidth = stacked ? 12 : 9;
@@ -58,7 +57,6 @@ FormLabelGroup.propTypes = {
   ]),
   inline: PropTypes.bool,
   inputId: PropTypes.string,
-  invalid: PropTypes.bool,
   hint: PropTypes.string,
   label: PropTypes.node,
   required: PropTypes.bool,
@@ -70,7 +68,6 @@ FormLabelGroup.propTypes = {
 
 FormLabelGroup.defaultProps = {
   inline: false,
-  invalid: false,
   required: false,
   stacked: false,
   width: { xs: 12 }
