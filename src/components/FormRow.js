@@ -10,6 +10,7 @@ import Input from './Input';
 import Label from './Label';
 import RadioInput from './RadioInput';
 import Row from './Row';
+import Required from './Required';
 import StaticInput from './StaticInput';
 
 const typeTranslations = {
@@ -69,7 +70,7 @@ const FormRow = (props) => {
       {label && (
         <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
           {label}
-          {required && label ? <span className="text-danger">&nbsp;*</span> : null}
+          {required && label ? <Required /> : null}
         </Label>
       )}
       <Col sm={inputContainerWidth}>

@@ -80,10 +80,9 @@ describe('<FormRow />', () => {
 
     it('should show a star', () => {
       const label = component.find(Label);
-      const star = label.find('span');
+      const star = label.find('Required');
 
-      assert.equal(star.hasClass('text-danger'), true);
-      assert.equal(star.text(), ' *');
+      assert.equal(star.length, 1);
     });
   });
 
