@@ -29,6 +29,7 @@ import Fade from './components/Fade';
 import Form from './components/Form';
 import FormFeedback from './components/FormFeedback';
 import FormGroup from './components/FormGroup';
+import FormLabelGroup from './components/FormLabelGroup';
 import FormText from './components/FormText';
 import Input from './components/Input';
 import InputGroup from './components/InputGroup';
@@ -154,6 +155,7 @@ export {
   Form,
   FormFeedback,
   FormGroup,
+  FormLabelGroup,
   FormText,
   Input,
   InputGroup,

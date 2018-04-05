@@ -17,6 +17,7 @@ import './FeatureBanner';
 import './FilterList';
 import './Flag';
 import './FormRow';
+import './FormLabelGroup';
 import './Forms';
 import './HasManyFields';
 import './HelpBubble';
