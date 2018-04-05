@@ -31,7 +31,7 @@ function parseFeedback(feedback) {
     [feedback, {}];
 }
 
-const FormRow = props => {
+const FormRow = (props) => {
   const {
     children,
     color,
@@ -74,7 +74,7 @@ const FormRow = props => {
       )}
       <Col sm={inputContainerWidth}>
         <Row>
-          <Col {...width} >
+          <Col {...width}>
             <InputElement
               id={id}
               size={size}
