@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://npm-proxy.fury.io/appfolio/"
+    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },
   "scripts": {
     "lint": "eslint src; exit 0",
