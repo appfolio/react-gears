@@ -5,6 +5,7 @@ import FormGroup from './FormGroup';
 import FormText from './FormText';
 import FormFeedback from './FormFeedback';
 import Label from './Label';
+import Required from './Required';
 import Row from './Row';
 
 const FormLabelGroup = (props) => {
@@ -32,7 +33,7 @@ const FormLabelGroup = (props) => {
       {label && (
         <Label for={inputId} sm={labelWidth} size={size} className={labelAlignment}>
           {label}
-          {required && label ? <span className="text-danger">&nbsp;*</span> : null}
+          {required && label ? <Required /> : null}
         </Label>
       )}
       <Col sm={inputContainerWidth}>

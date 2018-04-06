@@ -72,8 +72,8 @@ describe('<FormLabelGroup />', () => {
       assert.equal(label.length, 1);
       const labelChildren = label.children();
       assert.equal(labelChildren.at(0).text(), 'First Name');
-      assert.equal(labelChildren.at(1).text(), ' *');
-      assert.equal(labelChildren.at(1).prop('className'), 'text-danger');
+      const star = label.find('Required');
+      assert.equal(star.length, 1);
     });
   });
 
