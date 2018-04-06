@@ -61,6 +61,7 @@ const FormRow = (props) => {
 
   const inputContainerWidth = stacked ? 12 : 9;
 
+  // TODO this should use FormLabelGroup vs duplicated code here:
   return (
     <FormGroup
       row
