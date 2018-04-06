@@ -6,6 +6,7 @@ interface HasManyFieldsPropTypes {
   blank: any;
   defaultValue?: HasManyValue[];
   disabled?: boolean;
+  errors: any[];
   label: string;
   onAdd: () => void;
   onRemove: (index: number) => void;

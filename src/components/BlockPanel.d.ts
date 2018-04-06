@@ -3,6 +3,7 @@ interface BlockPanelProps {
   children?: (string | JSX.Element)[] | string | JSX.Element;
   controls?: JSX.Element | JSX.Element[];
   className?: string;
+  color: string;
   expandable?: boolean;
   hideOnToggle?: boolean;
   onEdit?: React.MouseEventHandler<any>;
