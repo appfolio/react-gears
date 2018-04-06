@@ -3,7 +3,7 @@ interface FormRowPropTypes {
   color?: string;
   label?: (JSX.Element | string) | (JSX.Element | string)[];
   hint?: string;
-  feedback?: string;
+  feedback?: any;
   id?: string;
   required?: boolean;
   rowClassName?: string;
@@ -11,7 +11,13 @@ interface FormRowPropTypes {
   inline?: boolean;
   stacked?: boolean;
   state?: string;
-  width?: { size: number };
+  size?: string;
+  width?: {
+    size?: boolean | number | string
+    push?: string | number
+    pull?: string | number
+    offset?: string | number
+  }
 }
 declare const FormRow: React.StatelessComponent<FormRowPropTypes>;
 export default FormRow;

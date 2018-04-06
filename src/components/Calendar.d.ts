@@ -2,7 +2,7 @@ interface CalendarProps {
   className?: string;
   date?: Date;
   dateFormat?: string;
-  dateVisible?: (currentDate: Date) => any[];
+  dateVisible?: (currentDate: Date) => boolean;
   onSelect?: (date: Date) => void;
   weekDayFormat?: string;
 }

@@ -1,5 +1,6 @@
 import Omit from '../util/omit';
 
+// When we update to v5 of reactstrap, we can inherit from ListGroupItemProps from @types/reactstrap
 interface ListGroupItemProps {
   tag?: React.ReactType;
   active?: boolean;

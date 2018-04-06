@@ -1,9 +1,9 @@
 interface CountryInputPropTypes {
   className?: string;
   disabled?: boolean;
-  id: string;
-  name: string;
-  onChange: (value: string | null) => void;
+  id?: string;
+  name?: string;
+  onChange?: (value: string | null) => void;
   placeholder?: string;
   value?: string;
 }

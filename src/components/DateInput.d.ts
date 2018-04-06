@@ -6,9 +6,9 @@ interface DateInputPropTypes {
   dateFormat?: string;
   defaultValue?: DateOrString;
   disabled?: boolean;
-  footer?: (JSX.Element | string)[];
-  header?: (JSX.Element | string)[];
-  id: string;
+  footer?: (JSX.Element | string) | (JSX.Element | string)[];
+  header?: (JSX.Element | string) | (JSX.Element | string)[];
+  id?: string;
   keyboard?: boolean;
   onBlur?: (ev: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (value: DateOrString, isDate: boolean) => void;

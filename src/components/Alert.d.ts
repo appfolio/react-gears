@@ -1,6 +1,6 @@
 
 interface AlertProps {
-  children: (string | JSX.Element)[] | string | JSX.Element;
+  children?: (string | JSX.Element)[] | string | JSX.Element;
   color?: string;
   dismissible?: boolean;
   icon?: boolean;

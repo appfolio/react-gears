@@ -8,6 +8,7 @@ interface FormChoicePropTypes extends Omit<HTMLOptionElement, 'disabled'> {
   checked?: boolean;
   type: 'checkbox' | 'radio';
   value: string;
+  selected: any;
 }
 declare const FormChoice: React.StatelessComponent<FormChoicePropTypes>;
 export default FormChoice;

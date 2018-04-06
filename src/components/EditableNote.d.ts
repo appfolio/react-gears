@@ -1,4 +1,4 @@
-import Note from './Note';
+import Note from './NoteType';
 
 interface EditableNotePropTypes {
   note: Note;

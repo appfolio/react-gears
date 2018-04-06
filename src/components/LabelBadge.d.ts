@@ -1,7 +1,7 @@
 interface LabelBadgePropTypes {
   className?: string;
-  label: string;
-  maxWidth: number;
+  label?: string;
+  maxWidth?: number;
   onRemove?: React.MouseEventHandler<any>;
   removable?: boolean;
   value: string;

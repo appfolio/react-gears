@@ -1,5 +1,6 @@
 interface WaitingPropTypes {
-  children: (JSX.Element | string) | (JSX.Element | string)[];
+  backdrop?: boolean;
+  children?: (JSX.Element | string) | (JSX.Element | string)[];
   className?: string;
   isOpen?: boolean;
   title?: string;

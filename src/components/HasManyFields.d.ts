@@ -3,16 +3,16 @@ interface HasManyValue {
   [key: string]: string;
 }
 interface HasManyFieldsPropTypes {
-  blank: any;
+  blank?: any;
   defaultValue?: HasManyValue[];
   disabled?: boolean;
-  errors: any[];
+  errors?: any[];
   label: string;
-  onAdd: () => void;
-  onRemove: (index: number) => void;
-  onUpdate: (newVal: HasManyValue) => void;
-  onChange: (val: HasManyValue) => void;
-  template: React.StatelessComponent;
+  onAdd?: () => void;
+  onRemove?: (index: number) => void;
+  onUpdate?: (newVal: HasManyValue) => void;
+  onChange?: (val: HasManyValue) => void;
+  template: any;
   value?: HasManyValue[];
 }
 declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> {
