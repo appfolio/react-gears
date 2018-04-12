@@ -5,7 +5,7 @@ import React from 'react';
 import Badge from './Badge';
 import Button from './Button';
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import CardText from './CardText';
 import DeletedNote from './DeletedNote.js';
@@ -68,10 +68,10 @@ class Note extends React.Component {
                   {onDelete ? <Button color="link" ref="delete" onClick={() => onDelete(note)} className="p-0">delete</Button> : null}
                 </span>
               </CardHeader>
-              <CardBlock>
+              <CardBody>
                 <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
                 {children}
-              </CardBlock>
+              </CardBody>
             </Card>
           }
       </div>

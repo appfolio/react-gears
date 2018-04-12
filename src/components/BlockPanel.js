@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Button from './Button';
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import Icon from './Icon';
@@ -108,9 +108,9 @@ class BlockPanel extends React.Component {
           </div>
         </CardHeader>
         {children && (!expandable || open || hideOnToggle) ?
-          <CardBlock hidden={expandable && !open && hideOnToggle}>
+          <CardBody hidden={expandable && !open && hideOnToggle}>
             {children}
-          </CardBlock>
+          </CardBody>
           : null}
       </Card>
     );

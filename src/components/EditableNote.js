@@ -3,7 +3,7 @@ import React from 'react';
 import Button from './Button';
 import ButtonToolbar from './ButtonToolbar';
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 import Input from './Input';
 
 class EditableNote extends React.Component {
@@ -19,7 +19,7 @@ class EditableNote extends React.Component {
 
     return (
       <Card>
-        <CardBlock>
+        <CardBody>
           <Input
             ref="text"
             type="textarea"
@@ -31,7 +31,7 @@ class EditableNote extends React.Component {
             <Button ref="save" color="primary" onClick={onSave}>Save</Button>
             <Button ref="cancel" onClick={onCancel}>Cancel</Button>
           </ButtonToolbar>
-        </CardBlock>
+        </CardBody>
       </Card>
     );
   }

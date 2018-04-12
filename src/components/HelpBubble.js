@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from './Icon';
 import Popover from './Popover';
-import PopoverTitle from './PopoverTitle';
-import PopoverContent from './PopoverContent';
+import PopoverHeader from './PopoverHeader';
+import PopoverBody from './PopoverBody';
 
 let count = 0;
 
@@ -56,8 +56,8 @@ class HelpBubble extends React.Component {
           target={this.id}
           {...other}
         >
-          <PopoverTitle children={title} />
-          <PopoverContent children={children} />
+          <PopoverHeader children={title} />
+          <PopoverBody children={children} />
         </Popover>
       </span>
     );

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 
 const SummaryBoxItem = ({ className, label, value, ...props }) => (
   <Card

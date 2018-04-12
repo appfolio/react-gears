@@ -7,6 +7,7 @@ import ButtonGroup from './components/ButtonGroup';
 import ButtonToolbar from './components/ButtonToolbar';
 import Card from './components/Card';
 import CardBlock from './components/CardBlock';
+import CardBody from './components/CardBody';
 import CardColumns from './components/CardColumns';
 import CardDeck from './components/CardDeck';
 import CardFooter from './components/CardFooter';
@@ -53,12 +54,13 @@ import NavbarToggler from './components/NavbarToggler';
 import Pagination from './components/Pagination';
 import PaginationItem from './components/PaginationItem';
 import PaginationLink from './components/PaginationLink';
+import PopoverBody from './components/PopoverBody';
 import PopoverContent from './components/PopoverContent';
+import PopoverHeader from './components/PopoverHeader';
 import PopoverTitle from './components/PopoverTitle';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
-import TetherContent from './components/TetherContent';
 
 // Gears:
 import Activity from './components/Activity.js';
@@ -131,6 +133,7 @@ export {
   ButtonToolbar,
   Card,
   CardBlock,
+  CardBody,
   CardColumns,
   CardDeck,
   CardFooter,
@@ -183,13 +186,14 @@ export {
   PaginationItem,
   PaginationLink,
   Popover,
+  PopoverBody,
   PopoverContent,
+  PopoverHeader,
   PopoverTitle,
   Row,
   TabContent,
   TabPane,
   Table,
-  TetherContent,
 
   Select,
   SelectMultiValue,
