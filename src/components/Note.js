@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 import CardText from './CardText';
 import NoteHeader from './NoteHeader.js';
 import DeletedNote from './DeletedNote.js';
@@ -26,7 +26,7 @@ class Note extends React.Component {
     onSave: PropTypes.func,
     onUndelete: PropTypes.func,
     rows: PropTypes.number,
-    saving: PropTypes.boolean
+    saving: PropTypes.bool
   };
 
   static defaultProps = {
@@ -62,10 +62,10 @@ class Note extends React.Component {
     return (
       <Card color="info" className={className} outline>
         <NoteHeader note={note} onDelete={onDelete} onEdit={onEdit} />
-        <CardBlock>
+        <CardBody>
           <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
           {children}
-        </CardBlock>
+        </CardBody>
       </Card>
     );
   }

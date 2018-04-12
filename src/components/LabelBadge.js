@@ -21,7 +21,7 @@ export default class LabelBadge extends React.Component {
 
   render() {
     const { className, label, maxWidth, onRemove, removable, value } = this.props;
-    const labelClasses = 'bg-faded text-muted rounded-left d-inline-flex align-self-center h-100 px-3 py-2';
+    const labelClasses = 'bg-light text-muted rounded-left d-inline-flex align-self-center h-100 px-3 py-2';
     const valueClasses = `label-badge-value ${styles.trim} rounded-right px-3 py-2`;
     const style = {
       maxWidth: maxWidth ? `${maxWidth}rem` : null

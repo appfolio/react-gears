@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
-import { Card, CardBlock, CardTitle } from '../src/index';
+import { Card, CardBody, CardTitle } from '../src/index';
 
 storiesOf('Card', module)
   .addWithInfo('Live example', () => {
@@ -15,14 +15,14 @@ storiesOf('Card', module)
           inverse={boolean('inverse', false)}
           outline={outline}
         >
-          <CardBlock>
+          <CardBody>
             <CardTitle>{text('header', 'Hello World!')}</CardTitle>
             {text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
                               elit, sed do eiusmod tempor incididunt ut labore
                               et dolore magna aliqua.  Ut enim ad minim veniam,
                               quis nostrud exercitation ullamco laboris nisi ut
                               aliquip ex ea commodo consequat.`)}
-          </CardBlock>
+          </CardBody>
         </Card>
       </div>
     );
@@ -31,12 +31,12 @@ storiesOf('Card', module)
     <div>
       {[null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger'].map(color => (
         <Card color={color} className="mb-4">
-          <CardBlock>
+          <CardBody>
             <CardTitle>{color || 'default'}</CardTitle>
             Lorem ipsum dolor sit amet, consectetur adipiscing
             elit, sed do eiusmod tempor incididunt ut labore
             et dolore magna aliqua.
-          </CardBlock>
+          </CardBody>
         </Card>
         ))}
     </div>
@@ -47,22 +47,22 @@ storiesOf('Card', module)
     return (
       <div>
         <Card outline className={`mb-4 ${squareCorners ? 'rounded-0' : ''}`}>
-          <CardBlock>
+          <CardBody>
             <CardTitle>Default</CardTitle>
             Lorem ipsum dolor sit amet, consectetur adipiscing
             elit, sed do eiusmod tempor incididunt ut labore
             et dolore magna aliqua.
-          </CardBlock>
+          </CardBody>
         </Card>
 
         {['primary', 'secondary', 'info', 'success', 'warning', 'danger'].map(color => (
           <Card outline color={color} className={`mb-4 ${squareCorners ? 'rounded-0' : ''}`}>
-            <CardBlock>
+            <CardBody>
               <CardTitle>{color}</CardTitle>
               Lorem ipsum dolor sit amet, consectetur adipiscing
               elit, sed do eiusmod tempor incididunt ut labore
               et dolore magna aliqua.
-            </CardBlock>
+            </CardBody>
           </Card>
         ))}
       </div>

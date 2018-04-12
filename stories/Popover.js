@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Popover, PopoverContent, PopoverTitle } from '../src';
+import { Popover, PopoverBody, PopoverTitle } from '../src';
 import { boolean, text, select } from '@storybook/addon-knobs';
 
 storiesOf('Popover', module)
@@ -21,9 +21,9 @@ storiesOf('Popover', module)
         <PopoverTitle>
           {text('PopoverTitle', 'Hello World')}
         </PopoverTitle>
-        <PopoverContent>
-          {text('PopoverContent', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
-        </PopoverContent>
+        <PopoverBody>
+          {text('PopoverBody', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
+        </PopoverBody>
       </Popover>
     </div>
   ));

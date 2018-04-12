@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Button,
   Card,
-  CardBlock,
+  CardBody,
   CardSubtitle,
   CardText,
   CardTitle,
@@ -14,7 +14,7 @@ import {
   Icon,
   Paginator,
   Popover,
-  PopoverContent,
+  PopoverBody,
   PopoverTitle,
   Row,
   Table,
@@ -98,12 +98,12 @@ storiesOf('react-gears', module)
 
         {demoHeader('PANEL / CARD')}
         <Card>
-          <CardBlock>
+          <CardBody>
             <CardTitle>Card title</CardTitle>
             <CardSubtitle>Card subtitle</CardSubtitle>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
             <Button>Button</Button>
-          </CardBlock>
+          </CardBody>
         </Card>
 
         {demoHeader('TOOLTIPS')}
@@ -191,13 +191,13 @@ storiesOf('react-gears', module)
         <div id='popover-top' style={{ marginTop: 140, height: 20 }} />
         <Popover isOpen target="popover-top" placement="top">
           <PopoverTitle children={'Popover top'} />
-          <PopoverContent children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
+          <PopoverBody children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
         </Popover>
 
         <div id='popover-right' style={{ width: 10, marginTop: 40, height: 20 }} />
         <Popover isOpen target="popover-right" placement="right">
           <PopoverTitle children={'Popover right'} />
-          <PopoverContent children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
+          <PopoverBody children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
         </Popover>
       </Col>
     </Row>

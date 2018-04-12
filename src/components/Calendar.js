@@ -21,7 +21,7 @@ import Table from './Table';
 const Day = ({ day, dateFormat, ...props }) => {
   const classNames = classnames(
     'text-center',
-    { 'bg-faded text-muted': !day.sameMonth }, // Lighten days in months before & after
+    { 'bg-light text-muted': !day.sameMonth }, // Lighten days in months before & after
     { 'bg-primary text-white': day.selected }, // Highlight selected date
     { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible }, // If date is (optionally) filtered out
