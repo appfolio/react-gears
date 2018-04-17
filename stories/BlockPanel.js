@@ -47,7 +47,7 @@ storiesOf('BlockPanel', module)
       controls={[
         <InputGroup>
           <Input placeholder="Search" />
-          <InputGroupAddon>
+          <InputGroupAddon addonType="append">
             <Icon name="search" />
           </InputGroupAddon>
         </InputGroup>,

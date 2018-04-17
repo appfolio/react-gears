@@ -15,7 +15,7 @@ import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
-import InputGroupButton from './InputGroupButton';
+import InputGroupAddon from './InputGroupAddon';
 
 const { parse } = Fecha;
 
@@ -261,7 +261,7 @@ export default class DateInput extends React.Component {
               disabled={disabled}
               {...props}
             />
-            <InputGroupButton onClick={this.toggle}>
+            <InputGroupAddon addonType="append" onClick={this.toggle}>
               <Button
                 className="px-2"
                 disabled={disabled}
@@ -271,7 +271,7 @@ export default class DateInput extends React.Component {
               >
                 <Icon name="calendar" fixedWidth />
               </Button>
-            </InputGroupButton>
+            </InputGroupAddon>
           </InputGroup>
 
           <DropdownMenu
