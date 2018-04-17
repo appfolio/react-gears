@@ -105,6 +105,7 @@ import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioInput from './components/RadioInput.js';
 import Select from './components/Select.js';
+import SelectEmail from './components/SelectEmail.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
@@ -191,6 +192,7 @@ export {
   TetherContent,
 
   Select,
+  SelectEmail,
   SelectMultiValue,
 
   // Gears
