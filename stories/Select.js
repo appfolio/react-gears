@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Icon, Select } from '../src';
+import { Badge, Icon, Select, SelectEmail } from '../src';
 import { action, storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs';
 
@@ -61,19 +61,9 @@ storiesOf('Select', module)
     />);
   })
   .addWithInfo('with multiple and creatable options', () => (
-    <Select
+    <SelectEmail
       className="w-100"
-      creatable={boolean('creatable', true)}
-      multi
-      options={[
-        { label: 'alpha@team.com', value: 'alpha@team.com' },
-        { label: 'bravo@tv.com', value: 'bravo@tv.com' },
-        { label: 'charlie@brown.com', value: 'charlie@brown.com' },
-        { label: 'delta@force.com', value: 'delta@force.com' },
-        { label: 'echo@bunnymen.com', value: 'echo@bunnymen.com' },
-        { label: 'foxtrot@dance.com', value: 'foxtrot@dance.com' },
-        { label: 'golf@club.com', value: 'golf@club.com' },
-      ]}
+      options={[]}
       isValidNewOption={({ label }) => validateEmail(label)}
       onChange={action('onChange')}
     />));

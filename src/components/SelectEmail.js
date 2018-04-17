@@ -46,6 +46,7 @@ class SelectEmail extends React.Component {
   onPaste = (evt) => {
     evt.preventDefault();
     const clipboard = evt.clipboardData.getData('Text');
+    console.log(clipboard);
     if (!clipboard) {
       return;
     }
@@ -69,11 +70,23 @@ class SelectEmail extends React.Component {
     }
   }
 
+  loadOptions = (input, callback) => {
+    setTimeout(() => {
+      callback(null, {
+        options: [
+          { value: 'oogah', label: 'Oogah' },
+          { value: 'chaka', label: 'Chaka' }
+        ],
+        complete: true
+      });
+    }, 1); // Tiny timeout for testing
+  }
+
   render() {
     const { className, multi, value, valueComponent, ...props } = this.props;
     delete props.onChange; // don't pass onChange prop to react-select
     return (
-      <ReactSelect.Creatable
+      <ReactSelect.AsyncCreatable
         arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
         clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
         inputProps={{ ...props.inputProps, name: props.name || '', onPaste: this.onPaste }}
@@ -84,6 +97,7 @@ class SelectEmail extends React.Component {
         className={className}
         ref={this.bindInput}
         {...props}
+        loadOptions={this.loadOptions}
       />
     );
   }
