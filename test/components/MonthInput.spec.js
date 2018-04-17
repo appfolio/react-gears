@@ -47,7 +47,7 @@ describe('<MonthInput />', () => {
   it('should not tab to the calendar button', () => {
     const component = mount(<MonthInput />);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     const calendarButton = toggle.find('Button');
     assert.equal(calendarButton.props().tabIndex, -1);
   });
@@ -57,7 +57,7 @@ describe('<MonthInput />', () => {
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
     assert.equal(dropdown.props().isOpen, true);
 
@@ -91,7 +91,7 @@ describe('<MonthInput />', () => {
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
     assert.equal(dropdown.props().isOpen, false);
 
@@ -162,7 +162,7 @@ describe('<MonthInput />', () => {
   context('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<MonthInput onChange={callback} showOnFocus />);
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
 
     it('should set date after clicking a date', () => {
@@ -246,7 +246,7 @@ describe('<MonthInput />', () => {
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = (date) => isSameDay(date, defaultDate);
     const component = mount(<MonthInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
 
     it('should pass dateVisible func to Calendar component', () => {

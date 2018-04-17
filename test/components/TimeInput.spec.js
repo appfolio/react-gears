@@ -75,7 +75,7 @@ describe('<TimeInput />', () => {
   it('should not tab to the clock button', () => {
     const component = mount(<TimeInput />);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     const clockButton = toggle.find('Button');
     assert.equal(clockButton.props().tabIndex, -1);
   });
