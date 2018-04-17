@@ -117,4 +117,16 @@ describe('<Select />', () => {
     component.focus();
     sinon.assert.calledOnce(component.selectEl.focus);
   });
+
+  it('should render AsyncCreatable if loadOptions and creatable', () => {
+    const getOptions = () => {};
+
+    const component = shallow(<Select loadOptions={getOptions} creatable />);
+    assert.equal(component.type(), ReactSelect.AsyncCreatable);
+  });
+
+  it('should render Creatable if creatable', () => {
+    const component = shallow(<Select creatable />);
+    assert.equal(component.type(), ReactSelect.Creatable);
+  });
 });

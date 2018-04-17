@@ -53,9 +53,14 @@ class Select extends React.Component {
   render() {
     const { className, multi, value, valueComponent, ...props } = this.props;
     delete props.onChange; // don't pass onChange prop to react-select
-    const SelectElement = this.props.loadOptions ? ReactSelect.Async :
-                          this.props.creatable ? ReactSelect.Creatable :
-                          ReactSelect;
+    let SelectElement = ReactSelect;
+    if (this.props.loadOptions && this.props.creatable) {
+      SelectElement = ReactSelect.AsyncCreatable;
+    } else if (this.props.loadOptions) {
+      SelectElement = ReactSelect.Async;
+    } else if (this.props.creatable) {
+      SelectElement = ReactSelect.Creatable;
+    }
     const classNames = classnames(className, { 'select-async': this.props.loadOptions });
     const valueComponentRenderer = valueComponent ? valueComponent :
                                    multi ? SelectMultiValue :
