@@ -34,6 +34,7 @@
     "classnames": "^2.2.5",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.28.5",
+    "email-validator": "^2.0.3",
     "fecha": "^2.3.0",
     "lodash.flow": "^3.5.0",
     "lodash.noop": "^3.0.1",
