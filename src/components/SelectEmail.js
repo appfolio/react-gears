@@ -3,6 +3,7 @@ import React from 'react';
 import ReactSelect from 'react-select-plus';
 import noop from 'lodash.noop';
 import uniq from 'lodash.uniq';
+import * as EmailValidator from 'email-validator';
 import Close from './Close';
 import Icon from './Icon';
 import SelectMultiValue from './SelectMultiValue.js';
@@ -51,8 +52,7 @@ class SelectEmail extends React.Component {
     const values = uniq(clipboard.split(/[\s,]+/), value =>
       value.trim());
     const options = values
-      .filter(value =>
-        this.selectEl.props.isValidNewOption({ label: value }))
+      .filter(value => EmailValidator.validate(value))
       .map((value) => {
         return {
           [this.selectEl.labelKey]: value,

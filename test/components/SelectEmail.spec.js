@@ -97,11 +97,11 @@ describe('<SelectEmail />', () => {
       assert.equal(wrapper.find('SelectMultiValue').at(0).text().trim(), 'dilraj@dilraj.com');
     });
 
-    it('should filter out empty strings', () => {
+    it('should filter out empty strings and invalid emails', () => {
       const wrapper = mount(<SelectEmail />);
       const evt = {
         preventDefault: () => {},
-        clipboardData: { getData: () => 'dilraj@dilraj.com, ' }
+        clipboardData: { getData: () => 'dilraj@dilraj.com, ,invalid-email' }
       };
       wrapper.find('input').simulate('paste', evt);
 
