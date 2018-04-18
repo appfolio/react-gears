@@ -1,10 +1,10 @@
 import assert from 'assert';
 
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import { Button, Col, HasManyFieldsRow } from '../../src';
+import { ConfirmationButton, Col, HasManyFieldsRow } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
@@ -14,11 +14,11 @@ describe('<HasManyFieldsRow />', () => {
   describe('when enabled', () => {
     beforeEach(() => {
       onDelete = sinon.spy();
-      component = shallow(
+      component = mount(
         <HasManyFieldsRow onDelete={onDelete}>Stuff</HasManyFieldsRow>
       );
 
-      deleteButton = component.find(Button);
+      deleteButton = component.find(ConfirmationButton);
     });
 
     it('should have a delete button', () => {
@@ -26,6 +26,9 @@ describe('<HasManyFieldsRow />', () => {
     });
 
     it('should call onDelete', () => {
+      deleteButton.simulate('click');
+      assert.equal(onDelete.calledOnce, false);
+      assert.equal(deleteButton.text(), 'Delete');
       deleteButton.simulate('click');
       assert.equal(onDelete.calledOnce, true);
     });
@@ -43,7 +46,7 @@ describe('<HasManyFieldsRow />', () => {
         </HasManyFieldsRow>
       );
 
-      deleteButton = component.find(Button);
+      deleteButton = component.find(ConfirmationButton);
     });
 
     it('should have a disabled delete button', () => {
