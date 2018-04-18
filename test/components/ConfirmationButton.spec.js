@@ -6,39 +6,46 @@ import sinon from 'sinon';
 import { ConfirmationButton } from '../../src';
 
 describe('<ConfirmationButton />', () => {
+  let map;
+
+  beforeEach(() => {
+    map = {};
+    sinon.stub(document, 'addEventListener').callsFake((event, cb) => {
+      map[event] = cb;
+    });
+  });
+
+  afterEach(() => {
+    document.addEventListener.restore();
+  });
+
   it('should call onClick after two clicks', () => {
     const onClick = sinon.spy();
     const wrapper = mount(
-      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>
-        DESTROY ALL MONSTERS
-      </ConfirmationButton>
+      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
     );
     assert.equal(wrapper.text(), 'DESTROY ALL MONSTERS');
     wrapper.simulate('click');
-    assert.equal(onClick.calledOnce, false);
+    sinon.assert.notCalled(onClick);
     assert.equal(wrapper.text(), 'R U SURE');
     wrapper.simulate('click');
-    assert.equal(onClick.calledOnce, true);
+    sinon.assert.calledOnce(onClick);
     assert.equal(wrapper.text(), 'DESTROY ALL MONSTERS');
   });
 
-  it('should call cancel after click outside')
-  // TODO test does not work in enzyme/jsdom:
-  // const onClick = sinon.spy();
-  // const wrapper = mount(
-  //   <div>
-  //     <span>Whatev</span>
-  //     <ConfirmationButton confirmation="R U SURE" onClick={onClick}>
-  //       DESTROY ALL MONSTERS
-  //     </ConfirmationButton>
-  //   </div>
-  // );
-  // const button = wrapper.find(ConfirmationButton);
-  // const outside = wrapper.find('span');
-  // button.simulate('click');
-  // assert.equal(onClick.calledOnce, false);
-  // assert.equal(button.text(), 'R U SURE');
-  // outside.simulate('click');
-  // assert.equal(button.text(), 'DESTROY ALL MONSTERS');
-  // assert.equal(onClick.calledOnce, false);
+  it('should call cancel after click outside', () => {
+    const onClick = sinon.spy();
+    const wrapper = mount(
+      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
+    );
+
+    const button = wrapper.find(ConfirmationButton);
+    button.simulate('click');
+    sinon.assert.notCalled(onClick);
+    assert.equal(button.text(), 'R U SURE');
+
+    map.mousedown({ target: document });
+    assert.equal(button.text(), 'DESTROY ALL MONSTERS');
+    sinon.assert.notCalled(onClick);
+  });
 });

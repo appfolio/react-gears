@@ -28,11 +28,11 @@ class ConfirmationButton extends React.Component {
     this.setState({ confirm: !this.state.confirm });
   }
 
-  enableOnClickOutside(evt) {
+  enableOnClickOutside() {
     return this.state.confirm;
   }
 
-  handleClickOutside(evt) {
+  handleClickOutside() {
     this.setState({ confirm: false });
   }
 
@@ -44,7 +44,7 @@ class ConfirmationButton extends React.Component {
 
     return (
       <Button
-        onClick={e => this.onClick(e)}
+        onClick={this.onClick}
         {...props}
       >
         {this.state.confirm ? confirmation : children}

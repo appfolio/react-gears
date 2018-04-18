@@ -27,10 +27,10 @@ describe('<HasManyFieldsRow />', () => {
 
     it('should call onDelete', () => {
       deleteButton.simulate('click');
-      assert.equal(onDelete.calledOnce, false);
+      sinon.assert.notCalled(onDelete);
       assert.equal(deleteButton.text(), 'Delete');
       deleteButton.simulate('click');
-      assert.equal(onDelete.calledOnce, true);
+      sinon.assert.calledOnce(onDelete);
     });
 
     it('should put content in first column', () =>
