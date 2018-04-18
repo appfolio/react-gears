@@ -1,18 +1,18 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './Button';
+import Button from './ConfirmationButton';
 import Col from './Col';
 import Icon from './Icon';
 import Row from './Row';
 
-
 const HasManyFieldsRow = ({ children, onDelete, disabled }) => (
   <Row className="mb-3" noGutters>
-    <Col children={children} />
+    <Col>{children}</Col>
     <Col xs="auto" className="pl-3 d-flex">
       <Button
         color="danger"
+        confirmation="Delete"
         outline
         onClick={onDelete}
         disabled={disabled}
