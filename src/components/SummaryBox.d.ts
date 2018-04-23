@@ -1,10 +1,12 @@
+import CardGroupProps from './props/CardGroup';
+
 interface SummaryItem {
   key?: string | number;
   value: string;
   label: string;
 }
 
-interface SummaryBoxPropTypes {
+interface SummaryBoxPropTypes extends CardGroupProps {
   children?: (JSX.Element | string) | (JSX.Element | string)[]; 
   items?: SummaryItem[];
 }

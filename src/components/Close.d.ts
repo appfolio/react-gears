@@ -1,2 +1,3 @@
-declare const Close: React.StatelessComponent<HTMLButtonElement>;
+import { HTMLProps } from 'react';
+declare const Close: React.StatelessComponent<HTMLProps<HTMLButtonElement>>;
 export default Close;

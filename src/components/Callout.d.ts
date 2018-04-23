@@ -1,4 +1,6 @@
-interface CalloutProps {
+import { HTMLProps } from 'react';
+
+interface CalloutProps extends HTMLProps<HTMLDivElement> {
   children?: JSX.Element | (JSX.Element | string)[];
   className?: string;
   color?: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'muted';

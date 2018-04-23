@@ -1,4 +1,7 @@
-interface SummaryBoxItemPropTypes {
+import CardProps from './props/Card';
+import Omit from '../util/Omit';
+
+interface SummaryBoxItemPropTypes extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string;
   label?: string;
   value?: string;

@@ -1,4 +1,6 @@
-interface CurrencyInputPropTypes {
+import Omit from '../util/Omit';
+
+interface CurrencyInputPropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'size'>{
   allowDecimal?: boolean;
   allowNegative?: boolean;
   className?: string;

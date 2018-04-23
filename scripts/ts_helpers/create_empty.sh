@@ -1,6 +1,6 @@
 
-cat >"$1.d.ts" <<EOF
-interface $1PropTypes {
+cat >"./src/components/$1.d.ts" <<EOF
+export interface $1PropTypes {
 
 }
 declare const $1: React.StatelessComponent<$1PropTypes>;

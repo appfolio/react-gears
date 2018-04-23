@@ -1,4 +1,8 @@
-interface FormRowPropTypes {
+// TODO: omit
+import Omit from '../util/Omit';
+
+interface FormRowPropTypes extends 
+  Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
   children?: (JSX.Element | string) | (JSX.Element | string)[];
   color?: string;
   label?: (JSX.Element | string) | (JSX.Element | string)[];

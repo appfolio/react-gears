@@ -1,4 +1,7 @@
-interface CalendarProps {
+import { TablePropTypes } from './Table';
+import Omit from '../util/Omit';
+
+interface CalendarProps extends Omit<TablePropTypes, 'bordered' | 'hover' | 'striped'> {
   className?: string;
   date?: Date;
   dateFormat?: string;

@@ -6,9 +6,12 @@ import Alert from '../src/components/Alert';
 import BlockPanel from '../src/components/BlockPanel';
 import Breadcrumb from '../src/components/Breadcrumb';
 import Button from '../src/components/Button';
+import Calendar from '../src/components/Calendar';
 import Callout from '../src/components/Callout';
 import Card from '../src/components/Card';
 import CardBlock from '../src/components/CardBlock';
+import Close from '../src/components/Close';
+import CurrencyInput from '../src/components/CurrencyInput';
 import Datapair from '../src/components/Datapair';
 import CreditCardNumber from '../src/components/CreditCardNumber';
 import DateInput from '../src/components/DateInput';
@@ -25,7 +28,7 @@ import MonthInput from '../src/components/MonthInput';
 import * as React from 'react';
 
 const ActivityExample = () => {
-  <Activity date={new Date()} action="Created" by="Services">
+  <Activity date={new Date()} action="Created" by="Services" href="http://google.com">
     Hi
   </Activity>
   }
@@ -34,7 +37,7 @@ const ActivityLogExample = () => {
   <ActivityLog flush={false}>
     <Activity date={new Date()} action="Created" by="Services" />
     <Activity date={new Date()} action="Edited" />
-    <Activity date={new Date()} action="Edited" by="Gary">
+    <Activity date={new Date()} action="Edited" by="Gary" href="http://www.google.com">
       He messed this up
     </Activity>
     <Activity date={new Date()} />
@@ -107,19 +110,12 @@ const ButtonExample = () => {
   </Button>
 }
 
-// const BadButtonExample = () => {
-//   <Button
-//     color="link"
-//     onClick={(e) => { document.body = (e + 5); }}
-//     someDumbAttribute="yes"
-//   />
-// }
-
 const CalloutExample = () => {
   <Callout
     color={'primary'}
     background={'faded'}
     placement={'top'}
+    title={'todo'}
   >
     <h3>Hello World</h3>
     Hello
@@ -130,6 +126,14 @@ const CreditCardNumberExample = () => {
   <CreditCardNumber
     types={['visa', 'master-card']}
   />
+}
+
+const CloseExample = () => {
+  <Close title={'My Close'}/>
+}
+
+const CurrencyInputExample = () => {
+  <CurrencyInput allowDecimal={false}/>
 }
 
 const DatapairExample = () => {
