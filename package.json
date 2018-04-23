@@ -23,7 +23,7 @@
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist": "webpack -p",
-    "prepublish": "npm run dist",
+    "prepublishOnly": "npm run dist",
     "postpublish": "git push --no-verify && git push --tags"
   },
   "peerDependencies": {
