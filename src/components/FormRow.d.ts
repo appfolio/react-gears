@@ -1,4 +1,3 @@
-// TODO: omit
 import Omit from '../util/Omit';
 
 interface FormRowPropTypes extends 
