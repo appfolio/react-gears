@@ -239,7 +239,7 @@ export default class DateInput extends React.Component {
 
   render() {
     const { className, dateVisible, disabled, footer, header, id, showOnFocus,
-      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, ...props } = this.props;
+      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, state, ...props } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
