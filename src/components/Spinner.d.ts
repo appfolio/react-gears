@@ -1,4 +1,4 @@
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 
 interface SpinnerPropTypes extends Omit<React.SVGAttributes<SVGElement>, 'width' | 'height' | 'version'> {
   className?: string;

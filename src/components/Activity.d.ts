@@ -1,5 +1,5 @@
-import Omit from '../util/omit';
-import ListGroupItemProps from './props/ListGroupItemProps';
+import Omit from './TypeHelpers/Omit';
+import ListGroupItemProps from './TypeHelpers/props/ListGroupItemProps';
 
 export interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   action?: JSX.Element | string;

@@ -1,5 +1,5 @@
-import ModalProps from './props/Modal';
-import Omit from '../util/Omit';
+import ModalProps from './TypeHelpers/props/Modal';
+import Omit from './TypeHelpers/Omit';
 
 interface WaitingPropTypes extends Omit<ModalProps, 'toggle'> {
   backdrop?: boolean;

@@ -1,5 +1,5 @@
-import CardProps from './props/Card';
-import Omit from '../util/Omit';
+import CardProps from './TypeHelpers/props/Card';
+import Omit from './TypeHelpers/Omit';
 
 interface SummaryBoxItemPropTypes extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string;

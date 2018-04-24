@@ -1,4 +1,4 @@
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 
 interface FormChoicePropTypes extends Omit<React.InputHTMLAttributes<HTMLOptionElement>, 'disabled'> {
   inline?: boolean;

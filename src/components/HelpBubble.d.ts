@@ -1,5 +1,5 @@
-import Omit from '../util/Omit';
-import PopoverProps from './props/Popover';
+import Omit from './TypeHelpers/Omit';
+import PopoverProps from './TypeHelpers/props/Popover';
 
 interface HelpBubblePropTypes extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {
   title: string;

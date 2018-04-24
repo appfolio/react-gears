@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 
 interface CountryInputPropTypes extends 
   Omit<HTMLProps<HTMLInputElement>, 'type' | 'onChange'> {

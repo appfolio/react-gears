@@ -1,4 +1,4 @@
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 
 interface InfoBoxPropTypes extends
   Omit<React.HTMLProps<HTMLDivElement>, 'className'>{

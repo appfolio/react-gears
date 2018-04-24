@@ -1,4 +1,4 @@
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 type DateOrString = Date | string;
 
 interface DateInputPropTypes extends Omit<

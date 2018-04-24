@@ -1,5 +1,5 @@
-import ButtonProps from './props/Button';
-import Omit from '../util/Omit';
+import ButtonProps from './TypeHelpers/props/Button';
+import Omit from './TypeHelpers/Omit';
 
 interface HasManyFieldsAddPropTypes extends Omit<ButtonProps,'color'> {
   className?: string;

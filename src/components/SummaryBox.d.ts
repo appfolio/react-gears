@@ -1,4 +1,4 @@
-import CardGroupProps from './props/CardGroup';
+import CardGroupProps from './TypeHelpers/props/CardGroup';
 
 interface SummaryItem {
   key?: string | number;

@@ -1,5 +1,5 @@
 import { TablePropTypes } from './Table';
-import Omit from '../util/Omit';
+import Omit from './TypeHelpers/Omit';
 
 interface CalendarProps extends Omit<TablePropTypes, 'bordered' | 'hover' | 'striped'> {
   className?: string;
