@@ -1,4 +1,5 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 type DateOrString = Date | string;
 
 interface DateInputPropTypes extends Omit<
