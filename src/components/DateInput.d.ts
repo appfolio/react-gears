@@ -20,5 +20,7 @@ interface DateInputPropTypes extends Omit<
   showOnFocus?: boolean;
   value?: DateOrString;
 }
-declare const DateInput: React.StatelessComponent<DateInputPropTypes>;
+
+declare class DateInput extends React.Component<DateInputPropTypes, {}> {
+}
 export default DateInput;
