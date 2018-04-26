@@ -1,15 +1,16 @@
 import assert from 'assert';
 
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import { ConfirmationButton, Col, HasManyFieldsRow } from '../../src';
+import { ConfirmationButton, Col, HasManyFieldsRow, Tooltip } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
   let component;
   let deleteButton;
+  let tooltip;
 
   describe('when enabled', () => {
     beforeEach(() => {
@@ -19,6 +20,7 @@ describe('<HasManyFieldsRow />', () => {
       );
 
       deleteButton = component.find(ConfirmationButton);
+      tooltip = component.find(Tooltip);
     });
 
     it('should have a delete button', () => {
@@ -35,6 +37,10 @@ describe('<HasManyFieldsRow />', () => {
 
     it('should put content in first column', () =>
       assert.equal(component.find(Col).first().render().text(), 'Stuff'));
+
+    it('should not have a disabled tooltip', () => {
+      assert.equal(tooltip.length, 0);
+    });
   });
 
   describe('when disabled', () => {
@@ -47,6 +53,7 @@ describe('<HasManyFieldsRow />', () => {
       );
 
       deleteButton = component.find(ConfirmationButton);
+      tooltip = component.find(Tooltip);
     });
 
     it('should have a disabled delete button', () => {
@@ -57,5 +64,20 @@ describe('<HasManyFieldsRow />', () => {
       deleteButton.simulate('click');
       assert.equal(onDelete.calledOnce, false);
     });
+
+    it('should not have a disabled tooltip without disabledReason', () => {
+      assert.equal(tooltip.length, 0);
+    });
+  });
+
+  it('should have a disabled tooltip when disabled and disabledReason', () => {
+    component = shallow(
+      <HasManyFieldsRow onDelete={onDelete} disabled disabledReason="NONE SHALL PASS">
+        Stuff
+      </HasManyFieldsRow>
+    );
+    const disabledTooltip = component.find(Tooltip);
+    assert.equal(disabledTooltip.length, 1);
+    // TODO assert disabledReason text
   });
 });
