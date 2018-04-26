@@ -1,4 +1,4 @@
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { action, storiesOf } from '@storybook/react';
 import React from 'react';
 import { Input } from 'reactstrap';
@@ -22,10 +22,13 @@ const items = [
 
 storiesOf('HasManyFields', module)
   .addWithInfo('Row Wrapper', () =>
-    <HasManyFieldsRow onDelete={action('onDelete')}>
+    <HasManyFieldsRow
+      onDelete={action('onDelete')}
+      disabled={boolean('disabled', false)}
+      disabledReason={text('disabledReason')}
+    >
       <Input
         defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow"
-        readOnly
       />
     </HasManyFieldsRow>
   )
