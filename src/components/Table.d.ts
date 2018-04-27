@@ -1,4 +1,6 @@
-export interface TablePropTypes {
+import * as React from 'react';
+
+export interface TableProps {
   size?: string;
   bordered?: boolean;
   striped?: boolean;
@@ -7,5 +9,6 @@ export interface TablePropTypes {
   reflow?: boolean;
   responsive?: boolean;
 }
-declare const Table: React.StatelessComponent<TablePropTypes>;
+declare class Table extends React.Component<TableProps, {}> { }
 export default Table;
+

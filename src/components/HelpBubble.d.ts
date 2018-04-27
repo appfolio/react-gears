@@ -1,10 +1,11 @@
 import Omit from './TypeHelpers/Omit';
 import PopoverProps from './TypeHelpers/props/Popover';
+import * as React from 'react';
 
-interface HelpBubblePropTypes extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {
+interface HelpBubbleProps extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {
   title: string;
   children?: (JSX.Element | string) | (JSX.Element | string)[];
   className?: string;
 }
-declare const HelpBubble: React.StatelessComponent<HelpBubblePropTypes>;
+declare class HelpBubble extends React.Component<HelpBubbleProps, {}> { }
 export default HelpBubble;

@@ -1,8 +1,9 @@
-interface StepPropTypes {
+import * as React from 'react';
+interface StepProps {
   collapse?: boolean;
   complete?: boolean;
   step: number;
   steps: string[];
 }
-declare const Step: React.StatelessComponent<StepPropTypes>;
+declare class Step extends React.Component<StepProps, {}> { }
 export default Step;

@@ -1,7 +1,10 @@
-interface DatapairPropTypes {
+import * as React from 'react';
+
+interface DatapairProps {
   children?: (JSX.Element | string)[];
   label?: (JSX.Element | string);
   value?: string;
 }
-declare const Datapair: React.StatelessComponent<DatapairPropTypes>;
+declare class Datapair extends React.Component<DatapairProps, {}> { }
 export default Datapair;
+

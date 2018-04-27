@@ -1,4 +1,5 @@
 import CardGroupProps from './TypeHelpers/props/CardGroup';
+import * as React from 'react';
 
 interface SummaryItem {
   key?: string | number;
@@ -6,9 +7,9 @@ interface SummaryItem {
   label: string;
 }
 
-interface SummaryBoxPropTypes extends CardGroupProps {
+interface SummaryBoxProps extends CardGroupProps {
   children?: (JSX.Element | string) | (JSX.Element | string)[]; 
   items?: SummaryItem[];
 }
-declare const SummaryBox: React.StatelessComponent<SummaryBoxPropTypes>;
+declare class SummaryBox extends React.Component<SummaryBoxProps, {}> { }
 export default SummaryBox;

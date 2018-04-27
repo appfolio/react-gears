@@ -1,11 +1,13 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface CurrencyInputPropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'size'>{
+interface CurrencyInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'size'>{
   allowDecimal?: boolean;
   allowNegative?: boolean;
   className?: string;
   includeThousandsSeparator?: boolean;
   size?: string;
 }
-declare const CurrencyInput: React.StatelessComponent<CurrencyInputPropTypes>;
+declare class CurrencyInput extends React.Component<CurrencyInputProps, {}> { }
 export default CurrencyInput;
+

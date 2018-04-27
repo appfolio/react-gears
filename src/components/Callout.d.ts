@@ -1,4 +1,5 @@
 import { HTMLProps } from 'react';
+import * as React from 'react';
 
 interface CalloutProps extends HTMLProps<HTMLDivElement> {
   children?: JSX.Element | (JSX.Element | string)[];
@@ -7,5 +8,5 @@ interface CalloutProps extends HTMLProps<HTMLDivElement> {
   background?: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'faded';
   placement?: 'top' | 'bottom' | 'left' | 'right';
 }
-declare const Callout: React.StatelessComponent<CalloutProps>;
+declare class Callout extends React.Component<CalloutProps, {}> { }
 export default Callout;

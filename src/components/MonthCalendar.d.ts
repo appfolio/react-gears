@@ -1,4 +1,6 @@
-interface MonthCalendarPropTypes {
+import * as React from 'react';
+
+interface MonthCalendarProps {
   date?: Date;
   dateVisible?: (date: Date) => boolean;
   monthFormat?: string;
@@ -6,5 +8,5 @@ interface MonthCalendarPropTypes {
   onSelect?: (date: Date) => void;
 }
 
-declare const MonthCalendar: React.StatelessComponent<MonthCalendarPropTypes>;
+declare class MonthCalendar extends React.Component<MonthCalendarProps, {}> { }
 export default MonthCalendar;

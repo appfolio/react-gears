@@ -1,8 +1,9 @@
-import Note from './NoteType';
+import Note from './TypeHelpers/NoteType';
+import * as React from 'react';
 
-interface DeletedNotePropTypes {
+interface DeletedNoteProps {
   note: Note;
   onUndelete: (Note) => void;
 }
-declare const DeletedNote: React.StatelessComponent<DeletedNotePropTypes>;
+declare class DeletedNote extends React.Component<DeletedNoteProps, {}> { }
 export default DeletedNote;

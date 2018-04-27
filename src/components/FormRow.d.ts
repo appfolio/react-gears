@@ -1,4 +1,5 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
 interface FormRowPropTypes extends 
   Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
@@ -22,5 +23,6 @@ interface FormRowPropTypes extends
     offset?: string | number
   }
 }
-declare const FormRow: React.StatelessComponent<FormRowPropTypes>;
+
+declare class FormRow extends React.Component<FormRowPropTypes, {}> { }
 export default FormRow;

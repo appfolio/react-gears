@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 interface CSSModule {
   [name: string]: string;
 }
 
-interface IconPropTypes {
+interface IconProps {
   ariaLabel?: string;
   border?: boolean;
   className?: string;
@@ -19,5 +21,5 @@ interface IconPropTypes {
   tag?: string;
 }
 
-declare const Icon: React.StatelessComponent<IconPropTypes>;
+declare class Icon extends React.Component<IconProps, {}> { }
 export default Icon;

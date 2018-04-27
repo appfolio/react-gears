@@ -1,9 +1,10 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface SpinnerPropTypes extends Omit<React.SVGAttributes<SVGElement>, 'width' | 'height' | 'version'> {
+interface SpinnerProps extends Omit<React.SVGAttributes<SVGElement>, 'width' | 'height' | 'version'> {
   className?: string;
   color?: string;
   size?: string;
 }
-declare const Spinner: React.StatelessComponent<SpinnerPropTypes>;
+declare class Spinner extends React.Component<SpinnerProps, {}> { }
 export default Spinner;

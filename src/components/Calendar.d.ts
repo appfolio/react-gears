@@ -1,5 +1,6 @@
 import { TablePropTypes } from './Table';
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
 interface CalendarProps extends Omit<TablePropTypes, 'bordered' | 'hover' | 'striped'> {
   className?: string;
@@ -10,5 +11,6 @@ interface CalendarProps extends Omit<TablePropTypes, 'bordered' | 'hover' | 'str
   weekDayFormat?: string;
 }
 
-declare const Calendar: React.StatelessComponent<CalendarProps>;
+declare class Calendar extends React.Component<CalendarProps, {}> { }
 export default Calendar;
+

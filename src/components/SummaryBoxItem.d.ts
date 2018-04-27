@@ -1,10 +1,12 @@
 import CardProps from './TypeHelpers/props/Card';
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface SummaryBoxItemPropTypes extends Omit<CardProps, 'color' | 'outline' | 'className'> {
+interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string;
   label?: string;
   value?: string;
 }
-declare const SummaryBoxItem: React.StatelessComponent<SummaryBoxItemPropTypes>;
+declare class SummaryBoxItem extends React.Component<SummaryBoxItemProps, {}> { }
 export default SummaryBoxItem;
+

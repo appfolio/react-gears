@@ -1,6 +1,7 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface FormChoicePropTypes extends Omit<React.InputHTMLAttributes<HTMLOptionElement>, 'disabled'> {
+interface FormChoiceProps extends Omit<React.InputHTMLAttributes<HTMLOptionElement>, 'disabled'> {
   inline?: boolean;
   color?: string;
   state?: string;
@@ -10,5 +11,6 @@ interface FormChoicePropTypes extends Omit<React.InputHTMLAttributes<HTMLOptionE
   value: string;
   selected: any;
 }
-declare const FormChoice: React.StatelessComponent<FormChoicePropTypes>;
+
+declare class FormChoice extends React.Component<FormChoiceProps, {}> { }
 export default FormChoice;

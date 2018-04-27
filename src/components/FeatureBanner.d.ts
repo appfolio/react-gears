@@ -1,8 +1,9 @@
-interface FeatureBannerPropTypes {
+import * as React from 'react';
+interface FeatureBannerProps {
   alertText?: string;
   children?: (JSX.Element | string) | (JSX.Element | string)[];
   subtitle: string;
   title: string;
 }
-declare const FeatureBanner: React.StatelessComponent<FeatureBannerPropTypes>;
+declare class FeatureBanner extends React.Component<FeatureBannerProps, {}> { }
 export default FeatureBanner;

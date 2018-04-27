@@ -1,10 +1,11 @@
 import ButtonProps from './TypeHelpers/props/Button';
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface HasManyFieldsAddPropTypes extends Omit<ButtonProps,'color'> {
+interface HasManyFieldsAddProps extends Omit<ButtonProps,'color'> {
   className?: string;
   children: (JSX.Element | string) | (JSX.Element | string)[];
   disabled?: boolean;
 }
-declare const HasManyFieldsAdd: React.StatelessComponent<HasManyFieldsAddPropTypes>;
+declare class HasManyFieldsAdd extends React.Component<HasManyFieldsAddProps, {}> { }
 export default HasManyFieldsAdd;

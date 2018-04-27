@@ -1,14 +1,17 @@
+import * as React from 'react';
+
 interface FilterType {
   label: string;
   value: string;
   removable?: boolean;
 }
 
-interface FilterListPropTypes {
+interface FilterListProps {
   className?: string;
   filters: FilterType[];
   maxWidth?: number;
   onRemove: (filter: FilterType) => void;
 }
-declare const FilterList: React.StatelessComponent<FilterListPropTypes>;
+
+declare class FilterList extends React.Component<FilterListProps, {}> { }
 export default FilterList;

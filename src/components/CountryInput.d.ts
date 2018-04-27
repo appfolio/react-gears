@@ -1,11 +1,12 @@
 import { HTMLProps } from 'react';
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface CountryInputPropTypes extends 
+interface CountryInputProps extends 
   Omit<HTMLProps<HTMLInputElement>, 'type' | 'onChange'> {
   onChange?: (value: string | null) => void;
   placeholder?: string;
   value?: string;
 }
-declare const CountryInput: React.StatelessComponent<CountryInputPropTypes>;
+declare class CountryInput extends React.Component<CountryInputProps, {}> { }
 export default CountryInput;

@@ -1,4 +1,4 @@
-
+import * as React from 'react';
 interface AlertProps {
   children?: (string | JSX.Element)[] | string | JSX.Element;
   color?: string;
@@ -7,5 +7,5 @@ interface AlertProps {
   className?: string;
 }
 
-declare const Alert: React.StatelessComponent<AlertProps>;
+declare class Alert extends React.Component<AlertProps, {}> { }
 export default Alert;

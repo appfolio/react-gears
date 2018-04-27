@@ -1,4 +1,6 @@
-interface LabelBadgePropTypes {
+import * as React from 'react';
+
+interface LabelBadgeProps {
   className?: string;
   label?: string;
   maxWidth?: number;
@@ -6,5 +8,6 @@ interface LabelBadgePropTypes {
   removable?: boolean;
   value: string;
 }
-declare const LabelBadge: React.StatelessComponent<LabelBadgePropTypes>;
+declare class LabelBadge extends React.Component<LabelBadgeProps, {}> { }
 export default LabelBadge;
+

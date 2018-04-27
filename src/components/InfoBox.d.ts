@@ -1,6 +1,7 @@
 import Omit from './TypeHelpers/Omit';
+import * as React from 'react';
 
-interface InfoBoxPropTypes extends
+interface InfoBoxProps extends
   Omit<React.HTMLProps<HTMLDivElement>, 'className'>{
   className?: string;
   color?: string;
@@ -9,5 +10,5 @@ interface InfoBoxPropTypes extends
   title?: string;
   vertical: boolean;
 }
-declare const InfoBox: React.StatelessComponent<InfoBoxPropTypes>;
+declare class InfoBox extends React.Component<InfoBoxProps, {}> { }
 export default InfoBox;

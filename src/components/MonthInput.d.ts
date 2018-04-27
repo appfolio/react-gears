@@ -1,4 +1,6 @@
-interface MonthInputPropTypes {
+import * as React from 'react';
+
+interface MonthInputProps {
   className?: string;
   dateVisible?: (d: Date) => boolean;
   dateFormat?: string;
@@ -15,5 +17,5 @@ interface MonthInputPropTypes {
   showOnFocus?: boolean;
   value?: string | Date;
 }
-declare const MonthInput: React.StatelessComponent<MonthInputPropTypes>;
+declare class MonthInput extends React.Component<MonthInputProps, {}> { }
 export default MonthInput;

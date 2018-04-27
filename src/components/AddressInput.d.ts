@@ -1,3 +1,4 @@
+import * as React from 'react';
 
 interface AddressInterface {
   address1?: string;
@@ -23,5 +24,5 @@ interface AddressInputProps {
   value?: AddressInterface;
 }
 
-declare const AddressInput: React.StatelessComponent<AddressInputProps>;
+declare class AddressInput extends React.Component<AddressInputProps, {}> { }
 export default AddressInput;

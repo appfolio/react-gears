@@ -1,10 +1,12 @@
-import Note from './NoteType';
+import Note from './TypeHelpers/NoteType';
+import * as React from 'react';
 
-interface EditableNotePropTypes {
+interface EditableNoteProps {
   note: Note;
   onCancel: (ev: React.MouseEventHandler<any>) => void;
   onChange: (ev: React.ChangeEventHandler<HTMLInputElement>) => void;
   onSave: (ev: React.MouseEventHandler<any>) => void;
 }
-declare const EditableNote: React.StatelessComponent<EditableNotePropTypes>;
+
+declare class EditableNote extends React.Component<EditableNoteProps, {}> { }
 export default EditableNote;

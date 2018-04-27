@@ -1,5 +1,6 @@
 import Omit from './TypeHelpers/Omit';
 import ListGroupItemProps from './TypeHelpers/props/ListGroupItemProps';
+import * as React from 'react';
 
 export interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   action?: JSX.Element | string;
@@ -11,5 +12,5 @@ export interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   toggle?: () => void;
 }
 
-declare const Activity: React.StatelessComponent<ActivityProps>;
+declare class Activity extends React.Component<ActivityProps, {}> {}
 export default Activity;

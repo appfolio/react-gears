@@ -1,4 +1,4 @@
-
+import * as React from 'react';
 interface BlockPanelProps {
   children?: (string | JSX.Element)[] | string | JSX.Element;
   controls?: JSX.Element | JSX.Element[];
@@ -12,5 +12,6 @@ interface BlockPanelProps {
   title: (string | JSX.Element)[] | string | JSX.Element;
 }
 
-declare const BlockPanel: React.StatelessComponent<BlockPanelProps>;
+declare class BlockPanel extends React.Component<BlockPanelProps, {}> { }
 export default BlockPanel;
+
