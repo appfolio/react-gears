@@ -7,9 +7,9 @@ interface FormChoiceProps extends Omit<React.InputHTMLAttributes<HTMLOptionEleme
   state?: string;
   disabled?: boolean;
   checked?: boolean;
-  type: 'checkbox' | 'radio';
+  type: 'checkbox' | 'radio' | 'select';
   value: string;
-  selected: any;
+  selected?: any;
 }
 
 declare class FormChoice extends React.Component<FormChoiceProps, {}> { }

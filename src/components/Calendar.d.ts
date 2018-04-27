@@ -13,4 +13,3 @@ interface CalendarProps extends Omit<TableProps, 'bordered' | 'hover' | 'striped
 
 declare class Calendar extends React.Component<CalendarProps, {}> { }
 export default Calendar;
-

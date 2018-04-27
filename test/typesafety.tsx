@@ -1,8 +1,8 @@
-import Badge from '../src/components/Badge';
 import Activity from '../src/components/Activity';
 import ActivityLog from '../src/components/ActivityLog';
 import AddressInput from '../src/components/AddressInput';
 import Alert from '../src/components/Alert';
+import Badge from '../src/components/Badge';
 import BlockPanel from '../src/components/BlockPanel';
 import Breadcrumb from '../src/components/Breadcrumb';
 import Button from '../src/components/Button';
@@ -10,21 +10,36 @@ import Calendar from '../src/components/Calendar';
 import Callout from '../src/components/Callout';
 import Card from '../src/components/Card';
 import CardBlock from '../src/components/CardBlock';
+import CheckboxBooleanInput from '../src/components/CheckboxBooleanInput';
 import Close from '../src/components/Close';
+import CountryInput from '../src/components/CountryInput';
+import CreditCardNumber from '../src/components/CreditCardNumber';
 import CurrencyInput from '../src/components/CurrencyInput';
 import Datapair from '../src/components/Datapair';
-import CreditCardNumber from '../src/components/CreditCardNumber';
 import DateInput from '../src/components/DateInput';
+import DeletedNote from '../src/components/DeletedNote';
+import EditableNote from '../src/components/EditableNote';
 import ExpandableSection from '../src/components/ExpandableSection';
 import FeatureBanner from '../src/components/FeatureBanner';
+import FileInput from '../src/components/FileInput';
 import FilterList from '../src/components/FilterList';
+import FormChoice from '../src/components/FormChoice';
 import FormRow from '../src/components/FormRow';
 import HasManyFields from '../src/components/HasManyFields';
+import HasManyFieldsAdd from '../src/components/HasManyFieldsAdd';
+import HasManyFieldsRow from '../src/components/HasManyFieldsRow';
 import HelpBubble from '../src/components/HelpBubble';
 import Icon from '../src/components/Icon';
 import InfoBox from '../src/components/InfoBox';
 import LabelBadge from '../src/components/LabelBadge';
 import MonthInput from '../src/components/MonthInput';
+import MonthCalendar from '../src/components/MonthCalendar';
+import Spinner from '../src/components/Spinner';
+import Steps from '../src/components/Steps';
+import SummaryBox from '../src/components/SummaryBox';
+import SummaryBoxItem from '../src/components/SummaryBoxItem';
+import Table from '../src/components/Table';
+import Waiting from '../src/components/Waiting';
 import * as React from 'react';
 
 const ActivityExample = () => {
@@ -110,6 +125,10 @@ const ButtonExample = () => {
   </Button>
 }
 
+const CalendarExample = () => {
+  <Calendar date={new Date(2017, 7, 14)} dateVisible={(date) => true}/>
+}
+
 const CalloutExample = () => {
   <Callout
     color={'primary'}
@@ -120,6 +139,10 @@ const CalloutExample = () => {
     <h3>Hello World</h3>
     Hello
   </Callout>
+}
+
+const CheckboxBooleanInputExample = () => {
+  <CheckboxBooleanInput checkboxLabel={'Cool Label'} value={true} disabled/>
 }
 
 const CreditCardNumberExample = () => {
@@ -134,6 +157,10 @@ const CloseExample = () => {
 
 const CurrencyInputExample = () => {
   <CurrencyInput allowDecimal={false}/>
+}
+
+const CountryInputExample = () => {
+  <CountryInput defaultValue="US" id="yo" className="boogie" placeholder="Pick something" disabled />
 }
 
 const DatapairExample = () => {
@@ -161,6 +188,19 @@ const DateInputExample = () => {
   />
 }
 
+const DeletedNoteExample = () => {
+  const note = { text: 'Hello World', date: new Date(2018, 5, 3)};
+  <DeletedNote onUndelete={(n) => { null }} note={note}/>
+}
+
+const EditableNoteExample = () => {
+  const note = { text: 'Sup' };
+  function blankFunc() {
+    return undefined;
+  }
+  <EditableNote note={note} onCancel={blankFunc} onChange={blankFunc} onSave={blankFunc}/>
+}
+
 const ExpandableSectionExample = () => {
   <ExpandableSection title="Click to expand me">
     <h2>BOO!</h2>
@@ -181,23 +221,27 @@ const FeatureBannerExample = () => {
   </FeatureBanner>
 }
 
+const FileInputExample = () => {
+  <FileInput name="aFileInput" onChange={() => { undefined }}/>
+}
 
-const filters = [
-  {
-    label: 'User',
-    value: 'Hello World',
-    removable: false
-  },
-  {
-    label: 'Property',
-    value: '1234 State Street'
-  },
-  {
-    label: 'People',
-    value: 'Lalalala'
-  }
-];
 const FilterListExample = () => {
+  const filters = [
+    {
+      label: 'User',
+      value: 'Hello World',
+      removable: false
+    },
+    {
+      label: 'Property',
+      value: '1234 State Street'
+    },
+    {
+      label: 'People',
+      value: 'Lalalala'
+    }
+  ];
+
   <div>
     <FilterList
       filters={filters}
@@ -206,6 +250,12 @@ const FilterListExample = () => {
     />
   </div>
 }
+
+const FormChoiceExample = () => {
+  <FormChoice type="select" value="foobar">
+    Test
+  </FormChoice>
+} 
 
 const FormRowExample = () => {
   return (
@@ -243,6 +293,18 @@ const HasManyFieldsExample = () => {
     onChange={() => { }}
   />;
   
+}
+
+const HasManyFieldsAddExample = () => {
+  <HasManyFieldsAdd outline={true} className="foobar">
+    Custom Label!
+  </HasManyFieldsAdd>
+}
+
+const HasManyFieldsRowExample = () => {
+  <HasManyFieldsRow onDelete={() => { undefined }} disabled>
+    Stuff
+  </HasManyFieldsRow>
 }
 
 const HelpBubbleExample = () => {
@@ -289,4 +351,41 @@ const MonthInputExample = () => {
     onBlur={() => {}}
     onChange= {() => { }}
   />
+}
+
+const MonthCalendarExample = () => {
+  <MonthCalendar date={new Date(2017, 4, 20)} dateVisible={(d) => true}/>
+}
+
+const SpinnerExample = () => {
+  <Spinner/>
+}
+
+const StepExample = () => {
+  <Steps steps={['first', 'second', 'third']} step={2} collapse={false}/>
+}
+
+const SummaryBoxExample = () => {
+  const items = [
+    { value: 'Alpha', label: 'Team' },
+    { value: 'Bravo', label: 'Johnny' },
+    { value: 'Charlie', label: 'Brown' }
+  ];
+  <SummaryBox id="fred" items={items}>
+    <span>Hi</span>
+  </SummaryBox>
+}
+
+const SummaryBoxItemExample = () => {
+  <SummaryBoxItem id="mertz"/>
+}
+
+const TableItem = () => {
+  <Table>
+    <tr><td>hi</td></tr>
+  </Table>
+}
+
+const WaitingItem = () => {
+  <Waiting isOpen backdrop className="something"/>
 }

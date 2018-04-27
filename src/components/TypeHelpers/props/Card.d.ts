@@ -1,6 +1,6 @@
 import CSSModule from './CSSModule';
 
-export default interface Props {
+export default interface Props extends React.HTMLAttributes<HTMLDivElement> {
   tag?: React.ReactType;
   inverse?: boolean;
   color?: string;
