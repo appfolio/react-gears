@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import flow from 'lodash.flow';
+import classnames from 'classnames';
 
 import CountryInput from './CountryInput';
 import StateInput from './StateInput';
@@ -102,7 +103,7 @@ class AddressInput extends React.Component {
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
             <ValidatedFormGroup
-              className="pr-3"
+              className={classnames('pr-3', { 'mb-0': !showCountry })}
               error={error.city}
               label={showLabels ? labels.city : null}
             >
@@ -121,7 +122,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col sm={2} xs={3}>
             <ValidatedFormGroup
-              className="pr-3"
+              className={classnames('pr-3', { 'mb-0': !showCountry })}
               error={error.state}
               label={showLabels ? labels.state : null}
             >
@@ -139,6 +140,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col sm={4} xs={4}>
             <ValidatedFormGroup
+              className={classnames({ 'mb-0': !showCountry })}
               label={showLabels ? labels.postal : null}
               error={error.postal}
             >
