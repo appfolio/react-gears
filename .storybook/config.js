@@ -32,14 +32,13 @@ const ThemeLink = props => {
 }
 
 const THEMES = [
-  { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/bootstrap-saffron.min.css' },
+  { name: 'APM/Saffron', url: 'http://pa.cdn.appfolio.com/appfolio/assets/styles/saffron/4.0.0-alpha/bootstrap-saffron.min.css' },
   { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' },
   { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
   { name: 'Bootstrap default', url: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' },
-  // TODO Re-enable after update to BS4 Beta:
-  // { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
-  // { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
-  // { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }
+  { name: 'Material', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/materia/bootstrap.min.css' },
+  { name: 'Metro', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/cosmo/bootstrap.min.css' },
+  { name: 'Dark', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/darkly/bootstrap.min.css' }
 ];
 
 addDecorator(withKnobs);

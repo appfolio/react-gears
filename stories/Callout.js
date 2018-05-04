@@ -8,8 +8,8 @@ storiesOf('Callout', module)
   .addWithInfo('Live example', () => (
     <div>
       <Callout
-        color={select('color', ['primary', 'info', 'success', 'warning', 'danger', 'muted'], 'primary')}
-        background={select('background', ['primary', 'info', 'success', 'warning', 'danger', 'faded'], 'faded')}
+        color={select('color', ['primary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], 'primary')}
+        background={select('background', ['primary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], 'faded')}
         placement={select('placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
       >
         <h3>Hello World</h3>
