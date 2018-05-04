@@ -51,6 +51,12 @@ class BoundForm extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.object !== this.state.formData) {
+      this.setState({ formData: nextProps.object });
+    }
+  }
+
   render() {
     const { errors, object, onChange, onSubmit, ...props } = this.props;
 
