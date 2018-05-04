@@ -284,9 +284,9 @@ describe('<AddressInput />', () => {
         countryCode: 'Foxtrot'
       };
       const component = mount(<AddressInput showLabels labels={labels} />);
-      Object.keys(labels).forEach(key => {
-        assert(component.contains(<Label>{labels[key]}</Label>));
-      });
+      const formLabels = component.find(Label);
+      assert.equal(formLabels.length, 6);
+      formLabels.forEach(label => assert(Object.values(labels).includes(label.text())));
     });
 
     it('should not show custom labels when disabled', () => {
