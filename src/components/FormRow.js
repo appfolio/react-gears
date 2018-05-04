@@ -86,10 +86,10 @@ const FormRow = (props) => {
               {...attributes}
               {...childFeedback}
             />
+            {hint && <FormText color="muted">{hint}</FormText>}
+            {baseFeedback && <FormFeedback>{baseFeedback}</FormFeedback>}
           </Col>
         </Row>
-        {hint ? <FormText color="muted" children={hint} /> : null}
-        {baseFeedback ? <FormFeedback children={baseFeedback} /> : null}
       </Col>
     </FormGroup>
   );

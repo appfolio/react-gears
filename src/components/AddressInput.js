@@ -5,7 +5,7 @@ import classnames from 'classnames';
 
 import CountryInput from './CountryInput';
 import StateInput from './StateInput';
-import ValidatedFormGroup from './ValidatedFormGroup';
+import FormLabelGroup from './FormLabelGroup';
 import Col from './Col';
 import Input from './Input';
 import Row from './Row';
@@ -67,9 +67,10 @@ class AddressInput extends React.Component {
 
     return (
       <div id={id}>
-        <ValidatedFormGroup
+        <FormLabelGroup
           label={showLabels ? labels.address1 : null}
-          error={error.address1}
+          feedback={error.address1}
+          stacked
         >
           <Input
             id={id ? `${id}_address1` : null}
@@ -83,10 +84,12 @@ class AddressInput extends React.Component {
             disabled={disabled}
             getRef={this.bindAddress1}
           />
-        </ValidatedFormGroup>
-        <ValidatedFormGroup
+        </FormLabelGroup>
+        <FormLabelGroup
           label={showLabels ? labels.address2 : null}
           error={error.address2}
+          feedback={error.address2}
+          stacked
         >
           <Input
             id={id ? `${id}_address2` : null}
@@ -99,13 +102,14 @@ class AddressInput extends React.Component {
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
           />
-        </ValidatedFormGroup>
+        </FormLabelGroup>
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
-            <ValidatedFormGroup
-              className={classnames('pr-3', { 'mb-0': !showCountry })}
-              error={error.city}
+            <FormLabelGroup
+              rowClassName={classnames({ 'mb-0': !showCountry })}
+              feedback={error.city}
               label={showLabels ? labels.city : null}
+              stacked
             >
               <Input
                 id={id ? `${id}_city` : null}
@@ -118,13 +122,14 @@ class AddressInput extends React.Component {
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
-            </ValidatedFormGroup>
+            </FormLabelGroup>
           </Col>
-          <Col sm={2} xs={3}>
-            <ValidatedFormGroup
-              className={classnames('pr-3', { 'mb-0': !showCountry })}
-              error={error.state}
+          <Col sm={2} xs={3} className="px-3">
+            <FormLabelGroup
+              rowClassName={classnames({ 'mb-0': !showCountry })}
+              feedback={error.state}
               label={showLabels ? labels.state : null}
+              stacked
             >
               <StateInput
                 className="w-100"
@@ -132,17 +137,19 @@ class AddressInput extends React.Component {
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}
+                state={error.state && 'danger'}
                 onBlur={() => onBlur('state')}
                 onChange={state => this.onChange({ state })}
                 disabled={disabled}
               />
-            </ValidatedFormGroup>
+            </FormLabelGroup>
           </Col>
           <Col sm={4} xs={4}>
-            <ValidatedFormGroup
-              className={classnames({ 'mb-0': !showCountry })}
+            <FormLabelGroup
+              rowClassName={classnames({ 'mb-0': !showCountry })}
               label={showLabels ? labels.postal : null}
-              error={error.postal}
+              feedback={error.postal}
+              stacked
             >
               <Input
                 id={id ? `${id}_postal` : null}
@@ -155,14 +162,15 @@ class AddressInput extends React.Component {
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
-            </ValidatedFormGroup>
+            </FormLabelGroup>
           </Col>
         </Row>
         {showCountry &&
-          <ValidatedFormGroup
-            error={error.countryCode}
-            className="mb-0"
+          <FormLabelGroup
+            feedback={error.countryCode}
+            rowClassName="mb-0"
             label={showLabels ? labels.countryCode : null}
+            stacked
           >
             <CountryInput
               className="w-100"
@@ -170,11 +178,12 @@ class AddressInput extends React.Component {
               name="countryCode"
               placeholder={labels.countryCode}
               {...this.propsFor('countryCode')}
+              state={error.countryCode && 'danger'}
               onBlur={() => onBlur('countryCode')}
               onChange={countryCode => this.onChange({ countryCode })}
               disabled={disabled}
             />
-          </ValidatedFormGroup>
+          </FormLabelGroup>
         }
       </div>
     );

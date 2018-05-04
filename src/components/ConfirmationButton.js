@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import onClickOutside from 'react-onclickoutside';
 import Button from './Button';
 
 class ConfirmationButton extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    confirmation: React.PropTypes.string,
-    onClick: React.PropTypes.func
+    children: PropTypes.node,
+    confirmation: PropTypes.string,
+    onClick: PropTypes.func
   }
 
   static defaultProps = {
