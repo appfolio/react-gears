@@ -11,7 +11,7 @@ storiesOf('Card', module)
     return (
       <div>
         <Card
-          color={select('color', [null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger'], null)}
+          color={select('color', [null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], null)}
           inverse={boolean('inverse', false)}
           outline={outline}
         >
@@ -29,7 +29,7 @@ storiesOf('Card', module)
   })
   .addWithInfo('Colors', () => (
     <div>
-      {[null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger'].map(color => (
+      {[null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'dark', 'light'].map(color => (
         <Card color={color} className="mb-4">
           <CardBody>
             <CardTitle>{color || 'default'}</CardTitle>

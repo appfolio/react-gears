@@ -72,7 +72,7 @@ storiesOf('react-gears', module)
       <Col>
         {demoHeader('COLORS')}
         <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'inverse', 'faded'].map((color) =>
+          {['primary', 'success', 'info', 'warning', 'danger', 'inverse', 'dark', 'light'].map((color) =>
             <div key={color} style={{ width: 100 }} className="d-inline-block mb-1">
               <b>{`bg-${color}`}</b>
               <div className={`bg-${color}`} style={{ height: 100 }} />
@@ -81,7 +81,7 @@ storiesOf('react-gears', module)
         </div>
 
         <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'muted', 'white'].map((color) =>
+          {['primary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'white'].map((color) =>
             <div key={color} className="mb-1">
               <h3 className={`text-${color}`}>{`text-${color}`}</h3>
             </div>
@@ -118,13 +118,13 @@ storiesOf('react-gears', module)
       <Col>
         {demoHeader('BUTTONS')}
         <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'].map((color) =>
+          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map((color) =>
             <Button color={color} className="mr-1 text-capitalize">{color}</Button>
           )}
         </p>
 
         <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'].map((color) =>
+          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map((color) =>
             <Button color={color} size="sm" className="mr-1 text-capitalize">{color}</Button>
           )}
         </p>

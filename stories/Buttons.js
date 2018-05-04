@@ -7,7 +7,7 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 storiesOf('Buttons', module)
   .addWithInfo('Live example', () => (
     <Button
-      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger'], 'primary')}
+      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'primary')}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       size={select('size', ['', 'sm', 'lg'])}
@@ -24,6 +24,8 @@ storiesOf('Buttons', module)
       <Button color="info">Info</Button>
       <Button color="warning">Warning</Button>
       <Button color="danger">Danger</Button>
+      <Button color="dark">Dark</Button>
+      <Button color="light">Light</Button>
       <Button color="link">Link</Button>
     </ButtonToolbar>
     )
@@ -37,6 +39,8 @@ storiesOf('Buttons', module)
       <Button disabled color="info">Info</Button>
       <Button disabled color="warning">Warning</Button>
       <Button disabled color="danger">Danger</Button>
+      <Button disabled color="dark">Dark</Button>
+      <Button disabled color="light">Light</Button>
       <Button disabled color="link">Link</Button>
     </ButtonToolbar>
     )
@@ -50,6 +54,8 @@ storiesOf('Buttons', module)
       <Button outline color="info">Info</Button>
       <Button outline color="warning">Warning</Button>
       <Button outline color="danger">Danger</Button>
+      <Button outline color="dark">Dark</Button>
+      <Button outline color="light">Light</Button>
       <Button outline color="link">Link</Button>
     </ButtonToolbar>
     )
