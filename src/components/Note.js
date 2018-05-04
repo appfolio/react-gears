@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Badge from './Badge';
+import BlockPanel from './BlockPanel';
 import Button from './Button';
 import Card from './Card';
 import CardBody from './CardBody';
@@ -52,27 +53,31 @@ class Note extends React.Component {
               onChange={onChange}
               onSave={onSave}
             /> :
-            <Card color="info" outline>
-              <CardHeader className="d-flex justify-content-start p-2 bg-info">
-                {edited ? <span ref="edited"><Badge color="primary text-uppercase mr-2">Edited</Badge></span> : null}
-                <span className="text-muted">
-                  <span className="hidden-xs-down">
-                    {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM D, YYYY "at" h:mm A')}</span>
-                  </span>
-                  <span className="hidden-sm-up">
-                    {from ? <span>{from} </span> : null}<span ref="shortDate">{dateFormat(date, 'M/D/YY h:mm A')}</span>
+            <BlockPanel
+              color="info"
+              title={(
+                <span>
+                  {edited ? <span ref="edited"><Badge color="primary text-uppercase mr-2">Edited</Badge></span> : null}
+                  <span className="text-muted">
+                    <small className="d-none d-sm-inline">
+                      {edited ? 'Last edited' : 'Posted'} {from ? <span ref="from">by {from}</span> : ' '} on <span ref="date">{dateFormat(date, 'ddd, MMMM D, YYYY "at" h:mm A')}</span>
+                    </small>
+                    <small className="d-inline d-sm-none">
+                      {from ? <span>{from} </span> : null}<span ref="shortDate">{dateFormat(date, 'M/D/YY h:mm A')}</span>
+                    </small>
                   </span>
                 </span>
-                <span className="ml-auto">
+              )}
+              controls={(
+                <span>
                   {onEdit ? <Button color="link" ref="edit" onClick={() => onEdit(note)} className="mr-3 p-0">edit</Button> : null}
                   {onDelete ? <Button color="link" ref="delete" onClick={() => onDelete(note)} className="p-0">delete</Button> : null}
                 </span>
-              </CardHeader>
-              <CardBody>
+              )}
+            >
                 <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
                 {children}
-              </CardBody>
-            </Card>
+            </BlockPanel>
           }
       </div>
     );
