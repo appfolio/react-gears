@@ -106,7 +106,8 @@ class AddressInput extends React.Component {
         <Row className="no-gutters">
           <Col sm={6} xs={5}>
             <FormLabelGroup
-              className={classnames('pr-3', { 'mb-0': !showCountry })}
+              className="pr-3"
+              rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.city}
               label={showLabels ? labels.city : null}
               stacked
@@ -126,7 +127,8 @@ class AddressInput extends React.Component {
           </Col>
           <Col sm={2} xs={3} className="px-2">
             <FormLabelGroup
-              className={classnames('pr-3', { 'mb-0': !showCountry })}
+              className="pr-3"
+              rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
               label={showLabels ? labels.state : null}
               stacked
@@ -146,7 +148,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col sm={4} xs={4}>
             <FormLabelGroup
-              className={classnames({ 'mb-0': !showCountry })}
+              rowClassName={classnames({ 'mb-0': !showCountry })}
               label={showLabels ? labels.postal : null}
               feedback={error.postal}
               stacked
@@ -168,7 +170,7 @@ class AddressInput extends React.Component {
         {showCountry &&
           <FormLabelGroup
             feedback={error.countryCode}
-            className="mb-0"
+            rowClassName="mb-0"
             label={showLabels ? labels.countryCode : null}
             stacked
           >
