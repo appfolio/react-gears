@@ -11,6 +11,7 @@ import ButtonGroup from './ButtonGroup';
 import Calendar from './MonthCalendar';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
+import DropdownToggle from './DropdownToggle';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
@@ -258,6 +259,7 @@ export default class MonthInput extends React.Component {
               </Button>
             </InputGroupAddon>
           </InputGroup>
+          <DropdownToggle tag="div" />
 
           <DropdownMenu
             className="p-0"

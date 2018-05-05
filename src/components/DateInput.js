@@ -16,6 +16,7 @@ import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
+import { DropdownToggle } from '..';
 
 const { parse } = Fecha;
 
@@ -273,7 +274,7 @@ export default class DateInput extends React.Component {
               </Button>
             </InputGroupAddon>
           </InputGroup>
-
+          <DropdownToggle tag="div" />
           <DropdownMenu
             className="p-0"
             onKeyDown={this.onKeyDown}
