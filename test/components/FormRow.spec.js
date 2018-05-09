@@ -18,7 +18,7 @@ import {
 describe('<FormRow />', () => {
   describe('by default', () => {
     const component = shallow(
-      <FormRow label="First Name" id="someID" size="sm"/>
+      <FormRow label="First Name" id="someID" size="sm" />
     );
 
     it('should create a label', () => {
@@ -70,6 +70,18 @@ describe('<FormRow />', () => {
     it('should have an inner column width of 12', () => {
       const col = component.find(Col).at(1); // inner column
       assert.equal(col.prop('xs'), 12);
+    });
+  });
+
+  describe('when no id provided', () => {
+    it('should infer an id from text labels', () => {
+      const wrapper = shallow(<FormRow label='Reticulated Spline' />);
+      assert.equal(wrapper.find(Label).prop('for'), 'reticulated_spline');
+    });
+
+    it('should make no assumptions about complex labels', () => {
+      const wrapper = shallow(<FormRow label={<Input />} />);
+      assert.equal(wrapper.find(Label).id, undefined);
     });
   });
 
