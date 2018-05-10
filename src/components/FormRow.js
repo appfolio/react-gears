@@ -51,6 +51,9 @@ const FormRow = (props) => {
     ...attributes
   } = props;
 
+  const genID = (!id && label && typeof label === 'string') ?
+    label.toLowerCase().replace(/[^a-z0-9_]+/, '_') : id;
+
   const InputElement = determineElement(type);
 
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
@@ -69,7 +72,7 @@ const FormRow = (props) => {
       color={rowColor}
     >
       {label && (
-        <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
+        <Label for={genID} sm={labelWidth} size={size} className={labelAlignment}>
           {label}
           {required && label ? <Required /> : null}
         </Label>
@@ -78,7 +81,7 @@ const FormRow = (props) => {
         <Row>
           <Col {...width}>
             <InputElement
-              id={id}
+              id={genID}
               size={size}
               state={rowColor}
               type={typeof type === 'string' ? type : null}
