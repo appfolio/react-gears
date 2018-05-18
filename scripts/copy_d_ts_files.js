@@ -1,12 +1,12 @@
-import * as path from 'path';
-import * as glob from 'glob';
-import * as fse from 'fs-extra';
+const path = require('path');
+const glob = require('glob');
+const fse = require('fs-extra');
 
 // copies all .d.ts files to lib/ directory
 // inspired by https://github.com/mui-org/material-ui/blob/v1-beta/scripts/copy-files.js
-async function typescriptCopy(from: string, to: string) {
+async function typescriptCopy(from, to) {
   const files = glob.sync('**/*.d.ts', { cwd: from });
-  const cmds = files.map(async file => {
+  files.map(async (file) => {
     const fromFilePath = path.resolve(from, file);
     const toFilePath = path.resolve(to, file);
     await fse.copy(fromFilePath, toFilePath);
