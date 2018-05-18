@@ -1,6 +1,6 @@
 {
-  "name": "react-gears",
-  "version": "2.23.1",
+  "name": "typesafe-react-gears-test",
+  "version": "2.21.3",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -22,11 +22,9 @@
     "ts-test": "NODE_ENV=test tsc ./test/typesafety.tsx --jsx react --noEmit",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha",
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
-    "version": "npm run docs && git add -A docs",
     "dist:copy-d-ts-files": "ts-node ./scripts/copy_d_ts_files.ts",
     "dist": "npm run dist:copy-d-ts-files && webpack -p",
-    "prepublishOnly": "npm run dist",
-    "postpublish": "git push --no-verify && git push --tags"
+    "prepublishOnly": "npm run dist"
   },
   "peerDependencies": {
     "react": "15.x",
