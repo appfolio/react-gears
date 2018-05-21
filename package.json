@@ -19,10 +19,12 @@
   "scripts": {
     "lint": "eslint src; exit 0",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
+    "ts-test": "NODE_ENV=test tsc ./test/typesafety.tsx --jsx react --noEmit",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha",
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
-    "dist": "webpack -p",
+    "dist:copy-d-ts-files": "node ./scripts/copy_d_ts_files.js",
+    "dist": "npm run dist:copy-d-ts-files && webpack -p",
     "prepublishOnly": "npm run dist",
     "postpublish": "git push --no-verify && git push --tags"
   },
@@ -31,6 +33,7 @@
     "react-dom": "15.x"
   },
   "dependencies": {
+    "@types/reactstrap": "4.6.6",
     "classnames": "^2.2.5",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.28.5",
@@ -51,6 +54,9 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-options": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "@types/fs-extra": "^5.0.1",
+    "@types/glob": "^5.0.35",
+    "@types/react": "^16.0.40",
     "assert": "~1.4.1",
     "autoprefixer": "~7.1.1",
     "babel-core": "~6.26.0",
@@ -64,6 +70,7 @@
     "enzyme": "^2.6.0",
     "eslint": "^4.9.0",
     "eslint-config-appfolio-react": "^1.0.3",
+    "fs-extra": "5.0.0",
     "glob": "^7.1.2",
     "ignore-styles": "~5.0.1",
     "jsdom": "~11.0.0",
@@ -79,6 +86,8 @@
     "sass-loader": "~6.0.5",
     "sinon": "~3.2.1",
     "style-loader": "~0.18.1",
+    "ts-node": "^5.0.0",
+    "typescript": "~2.7.1",
     "uncontrollable": "^4.1.0",
     "webpack": "~2.6.1"
   }
