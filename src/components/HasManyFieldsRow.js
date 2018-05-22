@@ -10,7 +10,7 @@ import Tooltip from './Tooltip';
 let count = 0;
 
 function getID() {
-  return `hmf-${count += 1}`;
+  return `hmf-${(count += 1)}`;
 }
 
 export default class HasManyFieldsRow extends React.Component {
@@ -18,10 +18,12 @@ export default class HasManyFieldsRow extends React.Component {
     children: PropTypes.node.isRequired,
     disabled: PropTypes.bool,
     disabledReason: PropTypes.node,
+    disabledReasonPlacement: PropTypes.string,
     onDelete: PropTypes.func
   };
 
   static defaultProps = {
+    disabledReasonPlacement: 'top',
     disabled: false,
     onDelete: noop
   };
@@ -31,7 +33,13 @@ export default class HasManyFieldsRow extends React.Component {
   }
 
   render() {
-    const { children, disabledReason, onDelete, disabled } = this.props;
+    const {
+      children,
+      disabledReason,
+      onDelete,
+      disabled,
+      disabledReasonPlacement
+    } = this.props;
 
     return (
       <Row className="mb-3" noGutters>
@@ -48,14 +56,12 @@ export default class HasManyFieldsRow extends React.Component {
           >
             <Icon name="times-circle-o" size="lg" />
           </Button>
-          {(disabled && disabledReason) && (
-            <Tooltip
-              placement="top"
-              target={this.id}
-            >
-              {disabledReason}
-            </Tooltip>
-          )}
+          {disabled &&
+            disabledReason && (
+              <Tooltip placement={disabledReasonPlacement} target={this.id}>
+                {disabledReason}
+              </Tooltip>
+            )}
         </Col>
       </Row>
     );

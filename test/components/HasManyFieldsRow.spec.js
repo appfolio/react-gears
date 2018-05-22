@@ -36,7 +36,14 @@ describe('<HasManyFieldsRow />', () => {
     });
 
     it('should put content in first column', () =>
-      assert.equal(component.find(Col).first().render().text(), 'Stuff'));
+      assert.equal(
+        component
+          .find(Col)
+          .first()
+          .render()
+          .text(),
+        'Stuff'
+      ));
 
     it('should not have a disabled tooltip', () => {
       assert.equal(tooltip.length, 0);
@@ -72,12 +79,57 @@ describe('<HasManyFieldsRow />', () => {
 
   it('should have a disabled tooltip when disabled and disabledReason', () => {
     component = shallow(
-      <HasManyFieldsRow onDelete={onDelete} disabled disabledReason="NONE SHALL PASS">
+      <HasManyFieldsRow
+        onDelete={onDelete}
+        disabled
+        disabledReason="NONE SHALL PASS"
+      >
         Stuff
       </HasManyFieldsRow>
     );
     const disabledTooltip = component.find(Tooltip);
     assert.equal(disabledTooltip.length, 1);
     // TODO assert disabledReason text
+  });
+
+  describe('when disabled and disabled reason', () => {
+    let disabledTooltip;
+
+    beforeEach(() => {
+      component = shallow(
+        <HasManyFieldsRow
+          onDelete={onDelete}
+          disabled
+          disabledReason="NONE SHALL PASS"
+        >
+          Stuff
+        </HasManyFieldsRow>
+      );
+      disabledTooltip = component.find(Tooltip);
+    });
+
+    it('should have tooltip', () => {
+      assert.equal(disabledTooltip.length, 1);
+      // TODO assert disabledReason text
+    });
+
+    it('defaults disabledReasonPlacement to top', () => {
+      assert.equal(disabledTooltip.prop('placement'), 'top');
+    });
+
+    it('sets tooltip placement based on disabledReasonPlacement', () => {
+      component = shallow(
+        <HasManyFieldsRow
+          onDelete={onDelete}
+          disabled
+          disabledReason="NONE SHALL PASS"
+          disabledReasonPlacement="left"
+        >
+          Stuff
+        </HasManyFieldsRow>
+      );
+      disabledTooltip = component.find(Tooltip);
+      assert.equal(disabledTooltip.prop('placement'), 'left');
+    });
   });
 });
