@@ -1,4 +1,4 @@
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { action, storiesOf } from '@storybook/react';
 import React from 'react';
 import { Input } from 'reactstrap';
@@ -26,6 +26,7 @@ storiesOf('HasManyFields', module)
       onDelete={action('onDelete')}
       disabled={boolean('disabled', false)}
       disabledReason={text('disabledReason')}
+      disabledReasonPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
     >
       <Input
         defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow"

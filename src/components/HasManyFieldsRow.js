@@ -51,6 +51,7 @@ export default class HasManyFieldsRow extends React.Component {
             <Button
               id={this.id}
               color="danger"
+              onClick={e => e.preventDefault()}
               outline
               className="p-2 disabled"
             >
