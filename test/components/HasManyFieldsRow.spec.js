@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import { ConfirmationButton, Col, HasManyFieldsRow, Tooltip } from '../../src';
+import { Button, ConfirmationButton, Col, HasManyFieldsRow, Tooltip } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
@@ -59,12 +59,12 @@ describe('<HasManyFieldsRow />', () => {
         </HasManyFieldsRow>
       );
 
-      deleteButton = component.find(ConfirmationButton);
+      deleteButton = component.find(Button);
       tooltip = component.find(Tooltip);
     });
 
     it('should have a disabled delete button', () => {
-      assert.equal(deleteButton.prop('disabled'), true);
+      assert.equal(deleteButton.hasClass('disabled'), true);
     });
 
     it('should not call onDelete', () => {

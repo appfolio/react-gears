@@ -1,7 +1,8 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './ConfirmationButton';
+import Button from './Button';
+import ConfirmationButton from './ConfirmationButton';
 import Col from './Col';
 import Icon from './Icon';
 import Row from './Row';
@@ -41,21 +42,32 @@ export default class HasManyFieldsRow extends React.Component {
       disabledReasonPlacement
     } = this.props;
 
+    // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
     return (
       <Row className="mb-3" noGutters>
         <Col>{children}</Col>
         <Col xs="auto" className="pl-3 d-flex">
-          <Button
-            color="danger"
-            confirmation="Delete"
-            id={this.id}
-            outline
-            onClick={onDelete}
-            disabled={disabled}
-            className="p-2"
-          >
-            <Icon name="times-circle-o" size="lg" />
-          </Button>
+          {disabled ? (
+            <Button
+              id={this.id}
+              color="danger"
+              onClick={e => e.preventDefault()}
+              outline
+              className="p-2 disabled"
+            >
+              <Icon name="times-circle-o" size="lg" />
+            </Button>
+          ) : (
+            <ConfirmationButton
+              color="danger"
+              confirmation="Delete"
+              outline
+              onClick={onDelete}
+              className="p-2"
+            >
+              <Icon name="times-circle-o" size="lg" />
+            </ConfirmationButton>
+          )}
           {disabled &&
             disabledReason && (
               <Tooltip placement={disabledReasonPlacement} target={this.id}>
