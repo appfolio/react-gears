@@ -16,25 +16,14 @@ describe('<BoundForm />', () => {
 
   const errors = {
     firstName: "Can't be Glenn"
-  };
+  }
 
   const submitFunc = sinon.stub();
   const changeFunc = sinon.stub();
 
-  let component;
-  beforeEach(() => {
-    component = shallow(<BoundForm
-      object={data}
-      errors={errors}
-      onSubmit={submitFunc}
-      onChange={changeFunc}
-      other="stuff"
-    />);
-  });
-
-  it('should be initialized with object data', () => {
-    assert.equal(component.state().formData, data);
-  });
+  const component = shallow(
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff"/>
+  );
 
   it('should provide a context', () => {
     const context = component.instance().getChildContext();
@@ -90,17 +79,5 @@ describe('<BoundForm />', () => {
 
   it('should forward other props to child form', () => {
     assert.equal(component.prop('other'), 'stuff');
-  });
-
-  it('should update form data when props updated with new object', () => {
-    const newData = {
-      firstName: 'John',
-      address: {
-        address1: '321 sweet',
-        city: 'a town'
-      }
-    };
-    component.setProps({ object: newData });
-    assert.equal(component.state().formData, newData);
   });
 });
