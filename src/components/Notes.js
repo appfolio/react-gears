@@ -8,10 +8,17 @@ import Icon from './Icon';
 import Note from './Note';
 import Row from './Row';
 
+const generalHelpString =
+  'Make notes on several different pages. Notes are private to property managers.';
+const downloadHelpString =
+  'The \'Download PDF\' button will download all the notes on a page as a PDF to your computer.';
+
 export default class Notes extends React.Component {
 
   static propTypes = {
+    children: PropTypes.node,
     className: PropTypes.string,
+    help: PropTypes.string,
     onAdd: PropTypes.func,
     onCancel: PropTypes.func,
     onChange: PropTypes.func,
@@ -25,7 +32,17 @@ export default class Notes extends React.Component {
 
   static defaultProps = {
     className: '',
+    help: generalHelpString,
     notes: []
+  }
+
+  renderHelpBubble() {
+    const { help, onDownload } = this.props;
+    return (help &&
+      <HelpBubble title="Notes" placement="right" className="text-primary ml-1">
+        {`${help}${onDownload ? `  ${downloadHelpString}` : ''}`}
+      </HelpBubble>
+    );
   }
 
   render() {
@@ -37,14 +54,7 @@ export default class Notes extends React.Component {
           <Col>
             <h3>
               Notes
-              <HelpBubble
-                title="Notes"
-                placement="right"
-                className="text-primary ml-1"
-              >
-                Make notes on several different pages. Notes are private to property managers.
-                The 'Download PDF' button will download all the notes on a page as a PDF to your computer.
-              </HelpBubble>
+              {this.renderHelpBubble()}
             </h3>
           </Col>
           <Col className="text-right">
@@ -63,7 +73,7 @@ export default class Notes extends React.Component {
           </Col>
         </Row>
         {children ||
-          notes.map((note, i) =>
+          notes.map((note, i) => (
             <Note
               note={note}
               key={i}
@@ -74,7 +84,7 @@ export default class Notes extends React.Component {
               onSave={onSave}
               onUndelete={onUndelete}
             />
-          )
+          ))
         }
       </div>
     );
