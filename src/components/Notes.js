@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import BlockPanel from './BlockPanel';
 import Button from './Button';
-import Col from './Col';
 import HelpBubble from './HelpBubble';
 import Icon from './Icon';
 import Note from './Note';
-import Row from './Row';
 
 const generalHelpString =
   'Make notes on several different pages. Notes are private to property managers.';
@@ -14,8 +13,9 @@ const downloadHelpString =
   'The \'Download PDF\' button will download all the notes on a page as a PDF to your computer.';
 
 export default class Notes extends React.Component {
-
   static propTypes = {
+    addControl: PropTypes.node,
+    adding: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     help: PropTypes.string,
@@ -27,7 +27,9 @@ export default class Notes extends React.Component {
     onEdit: PropTypes.func,
     onSave: PropTypes.func,
     onUndelete: PropTypes.func,
-    notes: PropTypes.array,
+    notes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }))
   }
 
   static defaultProps = {
@@ -46,37 +48,40 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    const { children, className, notes, onAdd, onDownload, onCancel, onChange, onDelete, onEdit, onSave, onUndelete } = this.props;
+    const { addControl, adding, children, className, notes, onAdd, onDownload, onCancel, onChange,
+      onDelete, onEdit, onSave, onUndelete } = this.props;
+    const controls = [];
+    if (onDownload) {
+      const control = (
+        <Button key="js-notes-download" size="sm" className="mr-1" onClick={onDownload}>
+          <Icon name="download" fixedWidth />
+          <span className="hidden-xs-down">Download PDF</span>
+        </Button>
+      );
+      controls.push(control);
+    }
+    if (onAdd) {
+      const control = (
+        <Button key="js-notes-edit" size="sm" onClick={onAdd}>
+          <Icon name="plus-circle" fixedWidth />
+          <span className="hidden-xs-down">Add Note</span>
+        </Button>
+      );
+      controls.push(control);
+    }
 
     return (
-      <div className={className}>
-        <Row className="mb-3">
-          <Col>
-            <h3>
-              Notes
-              {this.renderHelpBubble()}
-            </h3>
-          </Col>
-          <Col className="text-right">
-            {onDownload ?
-              <Button size="sm" className="mr-1" onClick={onDownload}>
-                <Icon name="download" fixedWidth />
-                <span className="hidden-xs-down">Download PDF</span>
-              </Button>
-              : null}
-            {onAdd ?
-              <Button size="sm" onClick={onAdd}>
-                <Icon name="plus-circle" fixedWidth />
-                <span className="hidden-xs-down">Add Note</span>
-              </Button>
-              : null}
-          </Col>
-        </Row>
+      <BlockPanel
+        title={<span>Notes{this.renderHelpBubble()}</span>}
+        className={className}
+        controls={controls}
+      >
+        {adding && onAdd && addControl}
         {children ||
-          notes.map((note, i) => (
+          notes.map(note => (
             <Note
+              key={`js-note-${note.id}`}
               note={note}
-              key={i}
               onCancel={onCancel}
               onChange={onChange}
               onDelete={onDelete}
@@ -86,7 +91,7 @@ export default class Notes extends React.Component {
             />
           ))
         }
-      </div>
+      </BlockPanel>
     );
   }
 }
