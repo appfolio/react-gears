@@ -6,30 +6,36 @@ import Card from './Card';
 import CardBlock from './CardBlock';
 import Input from './Input';
 
+const noteShape = {
+  text: PropTypes.string
+};
+
 class EditableNote extends React.Component {
   static propTypes = {
-    note: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    note: PropTypes.shape(noteShape).isRequired,
     onCancel: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired
   };
 
   render() {
-    const { note, onCancel, onChange, onSave } = this.props;
+    const { className, note, onCancel, onChange, onSave } = this.props;
+    const { text } = note;
 
     return (
-      <Card>
+      <Card className={className}>
         <CardBlock>
           <Input
             ref="text"
+            rows="4"
             type="textarea"
-            value={note.text}
-            rows="5"
-            onChange={onChange}
+            value={text}
+            onChange={event => onChange(event, note)}
           />
           <ButtonToolbar className="mt-3">
-            <Button ref="save" color="primary" onClick={onSave}>Save</Button>
-            <Button ref="cancel" onClick={onCancel}>Cancel</Button>
+            <Button ref="save" color="primary" onClick={() => onSave(note)}>Save</Button>
+            <Button ref="cancel" onClick={() => onCancel(note)}>Cancel</Button>
           </ButtonToolbar>
         </CardBlock>
       </Card>
