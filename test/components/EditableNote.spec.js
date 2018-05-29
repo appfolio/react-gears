@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { EditableNote } from '../../src';
+import { EditableNote, FormLabelGroup } from '../../src';
 import { mount } from 'enzyme';
 
 describe.only('<EditableNote />', () => {
@@ -83,6 +83,27 @@ describe.only('<EditableNote />', () => {
           assert(props.onSave.calledOnce);
           assert(props.onSave.calledWith(note));
         });
+      });
+    });
+
+    context('with errors', () => {
+      beforeEach(() => {
+        props.note.errors = 'oh snap!';
+        component = mount(<EditableNote {...props} />);
+      });
+
+      it('should render form group with errors', () => {
+        const group = component.find(FormLabelGroup);
+
+        assert(group.exists);
+        assert.equal(1, group.length);
+        assert.equal('oh snap!', group.props().feedback);
+      });
+
+      it('should render input state as danger', () => {
+        const input = component.ref('text');
+
+        assert.equal('danger', input.props().state);
       });
     });
   });
