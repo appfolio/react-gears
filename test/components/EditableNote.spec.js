@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import { EditableNote, FormLabelGroup } from '../../src';
 import { mount } from 'enzyme';
 
-describe.only('<EditableNote />', () => {
+describe('<EditableNote />', () => {
   const note = {
     text: 'Hello World!'
   };
@@ -104,6 +104,35 @@ describe.only('<EditableNote />', () => {
         const input = component.ref('text');
 
         assert.equal('danger', input.props().state);
+      });
+    });
+
+    context('in saving mode', () => {
+      beforeEach(() => {
+        props.note.saving = true;
+        component = mount(<EditableNote {...props} />);
+      });
+
+      it('should render text input disabled', () => {
+        const input = component.ref('text');
+
+        assert(input.exists);
+        assert(input.props().disabled);
+      });
+
+      it('should render cancel button disabled', () => {
+        const button = component.ref('cancel');
+
+        assert(button.exists);
+        assert(button.props().disabled);
+      });
+
+      it('should render save button disabled with alternate text', () => {
+        const button = component.ref('save');
+
+        assert(button.exists);
+        assert(button.props().disabled);
+        assert.equal('Saving...', button.text());
       });
     });
   });

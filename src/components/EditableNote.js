@@ -9,27 +9,38 @@ import Input from './Input';
 
 const noteShape = {
   errors: PropTypes.string,
+  saving: PropTypes.bool,
   text: PropTypes.string
 };
 
 class EditableNote extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    note: PropTypes.shape(noteShape).isRequired,
+    note: PropTypes.shape({
+      date: PropTypes.object,
+      errors: PropTypes.string,
+      saving: PropTypes.bool,
+      text: PropTypes.string
+    }),
     onCancel: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired
   };
 
+  static defaultProps = {
+    className: 'bg-white mb-3'
+  };
+
   render() {
     const { className, note, onCancel, onChange, onSave } = this.props;
-    const { errors, text } = note;
+    const { errors, saving, text } = note;
 
     return (
       <Card className={className}>
         <CardBlock>
           <FormLabelGroup feedback={errors} stacked>
             <Input
+              disabled={saving}
               ref="text"
               rows="4"
               state={errors && 'danger'}
@@ -38,9 +49,12 @@ class EditableNote extends React.Component {
               onChange={event => onChange(event, note)}
             />
           </FormLabelGroup>
-          <ButtonToolbar className="mt-3">
-            <Button ref="save" color="primary" onClick={() => onSave(note)}>Save</Button>
-            <Button ref="cancel" onClick={() => onCancel(note)}>Cancel</Button>
+          {children}
+          <ButtonToolbar className="mt-3 mb-0">
+            <Button ref="save" color="primary" disabled={saving} onClick={() => onSave(note)}>
+              {saving ? 'Saving...' : 'Save'}
+            </Button>
+            <Button ref="cancel" disabled={saving} onClick={() => onCancel(note)}>Cancel</Button>
           </ButtonToolbar>
         </CardBlock>
       </Card>
