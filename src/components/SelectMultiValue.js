@@ -25,11 +25,11 @@ export default class SelectMultiValue extends React.Component {
       children,
       className,
       disabled,
+      instancePrefix, // excludes from Badge {....props}
       value,
       onRemove,
       ...props
     } = this.props;
-
     const classNames = classnames(
       'ml-1',
       className
