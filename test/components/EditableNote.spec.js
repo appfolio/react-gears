@@ -86,6 +86,47 @@ describe('<EditableNote />', () => {
       });
     });
 
+    context('in default mode with children', () => {
+      const text = 'This is some additional text to be rendered';
+
+      beforeEach(() => {
+        component = mount(
+          <EditableNote {...props}>
+            <span className="js-editable-note__child">{text}</span>
+          </EditableNote>
+        );
+      });
+
+      it('renders children', () => {
+        const children = component.find('.js-editable-note__child');
+        assert.equal(1, children.length);
+        assert.equal(text, children.text());
+      });
+
+      it('should still render input area', () => {
+        const input = component.ref('text');
+
+        assert(input.exists);
+        assert.equal(1, input.length);
+      });
+
+      it('should still render cancel button', () => {
+        const button = component.ref('cancel');
+
+        assert(button.exists);
+        assert.equal(1, button.length);
+        assert.equal('Cancel', button.text());
+      });
+
+      it('should still render save button', () => {
+        const button = component.ref('save');
+
+        assert(button.exists);
+        assert.equal(1, button.length);
+        assert.equal('Save', button.text());
+      });
+    });
+
     context('with errors', () => {
       beforeEach(() => {
         props.note.errors = 'oh snap!';

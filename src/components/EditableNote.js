@@ -10,6 +10,7 @@ import NoteHeader from './NoteHeader';
 
 class EditableNote extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     className: PropTypes.string,
     note: PropTypes.shape({
       date: PropTypes.object,
@@ -27,7 +28,7 @@ class EditableNote extends React.Component {
   };
 
   render() {
-    const { className, note, onCancel, onChange, onSave } = this.props;
+    const { children, className, note, onCancel, onChange, onSave } = this.props;
     const { date, errors, saving, text } = note;
 
     return (
