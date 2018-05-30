@@ -6,12 +6,7 @@ import Card from './Card';
 import CardBlock from './CardBlock';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
-
-const noteShape = {
-  errors: PropTypes.string,
-  saving: PropTypes.bool,
-  text: PropTypes.string
-};
+import NoteHeader from './NoteHeader';
 
 class EditableNote extends React.Component {
   static propTypes = {
@@ -33,10 +28,11 @@ class EditableNote extends React.Component {
 
   render() {
     const { className, note, onCancel, onChange, onSave } = this.props;
-    const { errors, saving, text } = note;
+    const { date, errors, saving, text } = note;
 
     return (
       <Card className={className}>
+        {date && <NoteHeader note={note} />}
         <CardBlock>
           <FormLabelGroup feedback={errors} stacked>
             <Input

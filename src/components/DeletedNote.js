@@ -4,15 +4,16 @@ import Alert from './Alert';
 
 class DeletedNote extends React.Component {
   static propTypes = {
+    className: PropTypes.string,
     note: PropTypes.object.isRequired,
     onUndelete: PropTypes.func
   };
 
   render() {
-    const { note, onUndelete } = this.props;
+    const { className, note, onUndelete } = this.props;
 
     return (
-      <Alert color="success" icon>
+      <Alert color="success" icon className={className}>
         Note deleted.
         {onUndelete ? <a ref="undo" href="#" className="ml-1" onClick={() => onUndelete(note)}>undo</a> : null}
       </Alert>
