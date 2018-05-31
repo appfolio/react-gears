@@ -91,16 +91,4 @@ describe('<BoundForm />', () => {
   it('should forward other props to child form', () => {
     assert.equal(component.prop('other'), 'stuff');
   });
-
-  it('should update form data when props updated with new object', () => {
-    const newData = {
-      firstName: 'John',
-      address: {
-        address1: '321 sweet',
-        city: 'a town'
-      }
-    };
-    component.setProps({ object: newData });
-    assert.equal(component.state().formData, newData);
-  });
 });
