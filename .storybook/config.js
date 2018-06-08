@@ -34,7 +34,7 @@ const ThemeLink = props => {
 const THEMES = [
   { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/bootstrap-saffron.min.css' },
   { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' },
-  { name: 'APM/Saffron 3 Preview', url: 'https://s3-us-west-2.amazonaws.com/appfolio-frontend-dev/styles/preview/bootstrap-saffron.min.css' },
+  { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
   { name: 'Bootstrap default', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
   // TODO Re-enable after update to BS4 Beta:
   // { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
