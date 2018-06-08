@@ -21,7 +21,7 @@ const items = [
 ];
 
 storiesOf('HasManyFields', module)
-  .addWithInfo('Row Wrapper', () =>
+  .addWithInfo('Row Wrapper', () => (
     <HasManyFieldsRow
       onDelete={action('onDelete')}
       disabled={boolean('disabled', false)}
@@ -32,13 +32,13 @@ storiesOf('HasManyFields', module)
         defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow"
       />
     </HasManyFieldsRow>
-  )
-  .addWithInfo('Add Item Button', () =>
+  ))
+  .addWithInfo('Add Item Button', () => (
     <HasManyFieldsAdd onClick={action('onClick')}>
       Button Label Content
     </HasManyFieldsAdd>
-  )
-  .addWithInfo('Full Example', () =>
+  ))
+  .addWithInfo('Full Example', () => (
     <HasManyFields
       defaultValue={items}
       template={AddressInput}
@@ -50,4 +50,4 @@ storiesOf('HasManyFields', module)
       onUpdate={action('hasManyFields onUpdate')}
       onChange={action('hasManyFields onChange')}
     />
-  );
+  ));

@@ -1,5 +1,6 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import React from 'react';
 import Button from './Button';
 import ConfirmationButton from './ConfirmationButton';
@@ -17,6 +18,7 @@ function getID() {
 export default class HasManyFieldsRow extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     disabled: PropTypes.bool,
     disabledReason: PropTypes.node,
     disabledReasonPlacement: PropTypes.string,
@@ -36,15 +38,17 @@ export default class HasManyFieldsRow extends React.Component {
   render() {
     const {
       children,
+      className,
       disabledReason,
       onDelete,
       disabled,
       disabledReasonPlacement
     } = this.props;
 
+    const classNames = classnames('mb-3', className);
     // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
     return (
-      <Row className="mb-3" noGutters>
+      <Row className={classNames} noGutters>
         <Col>{children}</Col>
         <Col xs="auto" className="pl-3 d-flex">
           {disabled ? (
