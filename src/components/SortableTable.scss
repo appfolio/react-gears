@@ -1,0 +1,13 @@
+$table-even-background-color: #fff;
+$table-odd-background-color: #f6f6f6;
+
+:global {
+  tbody tr{
+    &.expandable-table__expansion:hover {
+      background-color: $table-even-background-color;
+      &:nth-of-type(odd) {
+        background-color: $table-odd-background-color;
+      }
+    }
+  }
+}

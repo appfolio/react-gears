@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './SortableTable/Header.js';
 import Table from './Table.js';
+import style from './SortableTable.scss';
 
 class SortableTable extends React.Component {
   static propTypes = {
@@ -42,7 +43,7 @@ class SortableTable extends React.Component {
       </tr>,
       expanded && <tr hidden />,
       expanded && (
-        <tr>
+        <tr className="expandable-table__expansion">
           <td colSpan={columns.length}>
             {expanded}
           </td>
