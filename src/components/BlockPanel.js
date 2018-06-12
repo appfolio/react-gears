@@ -56,7 +56,6 @@ class BlockPanel extends React.Component {
 
     // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
     const headerClassNames = classnames(
-      'border-0',
       'd-flex',
       'flex-wrap',
       'align-items-center',
@@ -71,10 +70,9 @@ class BlockPanel extends React.Component {
     );
 
     return (
-      <Card className={`rounded-0 border-0 shadow-1 ${className}`} {...props}>
+      <Card className={`border-0 shadow-1 ${className}`} {...props}>
         <CardHeader
           className={headerClassNames}
-          style={{ borderRadius: 0 }}
         >
           <div
             className="d-inline-flex align-items-center"
