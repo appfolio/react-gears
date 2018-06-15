@@ -49,7 +49,7 @@ addDecorator((story, info) => (
   <ButtonGroup size="sm">
     {THEMES.map((theme, i) => <ThemeLink key={i} index={i}>{theme.name}</ThemeLink>)}
   </ButtonGroup>
-  <Container fluid className="m-5">
+  <Container fluid className="my-5">
     <Col xl="7">
       <header className="mb-5">
         <h1 className="display-4 mb-3">{info.kind}</h1>

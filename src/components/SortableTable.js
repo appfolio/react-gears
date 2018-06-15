@@ -42,8 +42,8 @@ class SortableTable extends React.Component {
       </tr>,
       expanded && <tr hidden />,
       expanded && (
-        <tr>
-          <td colSpan={columns.length}>
+        <tr className="tr-expanded">
+          <td className="border-top-0" colSpan={columns.length}>
             {expanded}
           </td>
         </tr>

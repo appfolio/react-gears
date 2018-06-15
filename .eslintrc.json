@@ -2,9 +2,22 @@
   "parser": "babel-eslint",
   "extends": "appfolio-react",
   "rules": {
+    "function-paren-newline": 0,
+    "import/newline-after-import": 1,
     "max-len": 0,
     "react/prefer-stateless-function": 0,
     "react/prop-types": 1,
+    "react/sort-comp": [1, {
+      "order": [
+        "propTypes",
+        "defaultProps",
+        "static-methods",
+        "constructor",
+        "everything-else",
+        "lifecycle",
+        "render"
+      ]
+    }],
     "require-jsdoc": 0
   }
 }
