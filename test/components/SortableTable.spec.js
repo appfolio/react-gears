@@ -242,12 +242,26 @@ describe('<SortableTable />', () => {
     assert.equal(wrapper.find('thead th.text-center').length, 1, 'thead th.text-center incorrect');
     assert.equal(wrapper.find('thead th.text-right').length, 1, 'thead th.text-right incorrect');
 
-    assert.equal(wrapper.find('td.text-left').length, 3, 'td.text-left incorrect');
-    assert.equal(wrapper.find('td.text-center').length, 3, 'td.text-center incorrect');
-    assert.equal(wrapper.find('td.text-right').length, 3, 'td.text-right incorrect');
+    assert.equal(wrapper.find('tbody td.text-left').length, 3, 'tbody td.text-left incorrect');
+    assert.equal(wrapper.find('tbody td.text-center').length, 3, 'tbody td.text-center incorrect');
+    assert.equal(wrapper.find('tbody td.text-right').length, 3, 'tbody td.text-right incorrect');
 
-    assert.equal(wrapper.find('tfoot th.text-left').length, 1, 'tfoot th.text-left incorrect');
-    assert.equal(wrapper.find('tfoot th.text-center').length, 1, 'tfoot th.text-center incorrect');
-    assert.equal(wrapper.find('tfoot th.text-right').length, 1, 'tfoot th.text-right incorrect');
+    assert.equal(wrapper.find('tfoot td.text-left').length, 1, 'tfoot td.text-left incorrect');
+    assert.equal(wrapper.find('tfoot td.text-center').length, 1, 'tfoot td.text-center incorrect');
+    assert.equal(wrapper.find('tfoot td.text-right').length, 1, 'tfoot td.text-right incorrect');
+  });
+
+  it('should render correct column classnames when present', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+    ];
+    const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+
+    assert.equal(wrapper.find('thead th.whatever').length, 1, 'thead th.whatever incorrect');
+
+    assert.equal(wrapper.find('tbody td.whatever').length, 3, 'tbody td.whatever incorrect');
+
+    assert.equal(wrapper.find('tfoot td.whatever').length, 1, 'tfoot td.whatever incorrect');
   });
 });
