@@ -8,7 +8,7 @@ const SummaryBoxItem = ({ className, label, value, ...props }) => (
   <Card
     color="secondary"
     outline
-    className={classnames('rounded-0', className)}
+    className={classnames('rounded-0 shadow-0 bg-white border-secondary', className)}
     {...props}
   >
     <CardBlock className="text-center">
