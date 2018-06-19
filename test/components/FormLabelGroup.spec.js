@@ -22,7 +22,7 @@ describe('<FormLabelGroup />', () => {
 
     it('should have an outer column for the row where the children are rendered', () => {
       const col = component.find(Col).at(0);
-      assert.equal(col.prop('sm'), 9);
+      assert.equal(col.prop('sm'), 12);
     });
 
     it('should have an inner column wrapping the children', () => {
@@ -74,6 +74,12 @@ describe('<FormLabelGroup />', () => {
       assert.equal(labelChildren.at(0).text(), 'First Name');
       const star = label.find('Required');
       assert.equal(star.length, 1);
+    });
+
+    it('should have an outer column for the row where the children are rendered', () => {
+      const component = shallow(<FormLabelGroup {...props} required>Hello World</FormLabelGroup>);
+      const col = component.find(Col).at(0);
+      assert.equal(col.prop('sm'), 9);
     });
   });
 

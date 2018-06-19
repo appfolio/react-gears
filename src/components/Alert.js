@@ -20,6 +20,7 @@ export default class AlertComponent extends React.Component {
   }
 
   static defaultProps = {
+    className: '',
     color: 'warning',
     dismissible: false,
     icon: false
@@ -35,16 +36,16 @@ export default class AlertComponent extends React.Component {
     };
   }
 
-  componentWillReceiveProps() {
-    this.setState({ visible: true });
-  }
-
   toggle = () => {
     this.setState({ visible: !this.state.visible });
   }
 
+  componentWillReceiveProps() {
+    this.setState({ visible: true });
+  }
+
   render() {
-    const { color, children, className, dismissible, icon } = this.props;
+    const { color, children, className, dismissible, icon, ...props } = this.props;
 
     return (
       <Alert
@@ -52,6 +53,7 @@ export default class AlertComponent extends React.Component {
         isOpen={this.state.visible}
         toggle={dismissible ? this.toggle : null}
         className={className}
+        {...props}
       >
         <div className="d-flex align-items-start">
           {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
