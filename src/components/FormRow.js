@@ -59,7 +59,7 @@ const FormRow = (props) => {
   const labelWidth = stacked ? 12 : 3;
   const labelAlignment = stacked ? '' : 'text-sm-right';
 
-  const inputContainerWidth = stacked ? 12 : 9;
+  const inputContainerWidth = (stacked || !label) ? 12 : 9;
 
   // TODO this should use FormLabelGroup vs duplicated code here:
   return (

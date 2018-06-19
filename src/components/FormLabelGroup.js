@@ -26,7 +26,7 @@ const FormLabelGroup = (props) => {
   const rowColor = color || (feedback && 'danger');
   const labelWidth = stacked ? 12 : 3;
   const labelAlignment = stacked ? '' : 'text-sm-right';
-  const inputContainerWidth = stacked ? 12 : 9;
+  const inputContainerWidth = (stacked || !label) ? 12 : 9;
 
   return (
     <FormGroup row className={rowClassName} color={rowColor}>
