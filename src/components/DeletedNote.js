@@ -14,6 +14,7 @@ class DeletedNote extends React.Component {
     const { className, note, onUndelete } = this.props;
 
     return (
+<<<<<<< 80a4287d8123cd3aa286f3b3447a491338666dc8
       <Alert color="success" icon className={className}>
         <span className="align-middle">Note deleted.</span>
         {onUndelete &&
@@ -21,6 +22,11 @@ class DeletedNote extends React.Component {
             undo
           </Button>
         }
+=======
+      <Alert color="success" icon>
+        Note deleted.
+        {onUndelete ? <a href="#" className="ml-1" onClick={() => onUndelete(note)}>undo</a> : null}
+>>>>>>> mb - fix all tests for react 16 and enzyme 3
       </Alert>
     );
   }

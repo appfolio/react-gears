@@ -10,27 +10,27 @@ describe('<TimeInput />', () => {
     const component = mount(<TimeInput />);
     const input = component.find('select');
 
-    assert.equal(input.get(0).value, '');
+    assert.equal(input.getDOMNode().value, '');
   });
 
   it('should default to defaultValue when specified', () => {
     const component = mount(<TimeInput defaultValue="13:00" />);
     const input = component.find('select');
 
-    assert.equal(input.get(0).value, '13:00');
+    assert.equal(input.getDOMNode().value, '13:00');
   });
 
   it('should default to value when specified', () => {
     const component = mount(<TimeInput value="13:00" />);
     const input = component.find('select');
 
-    assert.equal(input.get(0).value, '13:00');
+    assert.equal(input.getDOMNode().value, '13:00');
   });
 
   it('should not format invalid defaultValue and default to today', () => {
     const component = mount(<TimeInput defaultValue="Veni, Vedi, Vici" />);
     const input = component.find('select');
-    assert.equal(input.get(0).value, '');
+    assert.equal(input.getDOMNode().value, '');
   });
 
   it('should call onChange after selecting time', () => {

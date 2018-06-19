@@ -23,7 +23,7 @@ describe('<AddressInput />', () => {
     );
 
     it('should have address1', () => {
-      const input = component.find('[name="address1"]');
+      const input = component.find('[name="address1"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'Address');
       assert.equal(input.prop('defaultValue'), 'Wayne Enterprises');
       assert.equal(input.prop('value'), undefined);
@@ -33,7 +33,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should have address2', () => {
-      const input = component.find('[name="address2"]');
+      const input = component.find('[name="address2"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'Address 2');
       assert.equal(input.prop('defaultValue'), '1007 Mountain Drive');
       assert.equal(input.prop('value'), undefined);
@@ -43,7 +43,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should have city', () => {
-      const input = component.find('[name="city"]');
+      const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'City');
       assert.equal(input.prop('defaultValue'), 'Gotham');
       assert.equal(input.prop('value'), undefined);
@@ -53,7 +53,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should have state', () => {
-      const input = component.find('select[name="state"]');
+      const input = component.find('select[name="state"]').hostNodes();
       // assert.equal(input.prop('placeholder'), 'State');  TODO selects don't have placeholders
       assert.equal(input.prop('defaultValue'), 'NJ');
       assert.equal(input.prop('value'), undefined);
@@ -65,7 +65,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should have zip', () => {
-      const input = component.find('[name="postal"]');
+      const input = component.find('[name="postal"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'Zip');
       assert.equal(input.prop('defaultValue'), '07001');
       assert.equal(input.prop('value'), undefined);
@@ -75,7 +75,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should have country', () => {
-      const input = component.find('[name="countryCode"]');
+      const input = component.find('[name="countryCode"]').hostNodes();
       // assert.equal(input.prop('placeholder'), 'Country'); TODO selects don't have placeholders
       assert.equal(input.prop('defaultValue'), 'US');
       assert.equal(input.prop('value'), undefined);
@@ -121,7 +121,7 @@ describe('<AddressInput />', () => {
     );
 
     it('should update address1', () => {
-      const input = component.find('[name="address1"]');
+      const input = component.find('[name="address1"]').hostNodes();
       assert.equal(input.prop('value'), 'Wayne Enterprises');
       assert.equal(input.prop('defaultValue'), undefined);
 
@@ -130,7 +130,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should update address2', () => {
-      const input = component.find('[name="address2"]');
+      const input = component.find('[name="address2"]').hostNodes();
       assert.equal(input.prop('value'), '1007 Mountain Drive');
       assert.equal(input.prop('defaultValue'), undefined);
 
@@ -139,7 +139,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should update city', () => {
-      const input = component.find('[name="city"]');
+      const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('value'), 'Gotham');
       assert.equal(input.prop('defaultValue'), undefined);
 
@@ -148,7 +148,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should update state', () => {
-      const input = component.find('[name="state"]');
+      const input = component.find('[name="state"]').hostNodes();
       assert.equal(input.prop('value'), 'NJ');
       assert.equal(input.prop('defaultValue'), null);
 
@@ -160,7 +160,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should update zip', () => {
-      const input = component.find('[name="postal"]');
+      const input = component.find('[name="postal"]').hostNodes();
       assert.equal(input.prop('value'), '07001');
       assert.equal(input.prop('defaultValue'), undefined);
 
@@ -169,7 +169,7 @@ describe('<AddressInput />', () => {
     });
 
     it('should update country', () => {
-      const input = component.find('[name="countryCode"]');
+      const input = component.find('[name="countryCode"]').hostNodes();
       assert.equal(input.prop('value'), 'US');
       assert.equal(input.prop('defaultValue'), null);
 
@@ -306,24 +306,24 @@ describe('<AddressInput />', () => {
   describe('ids', () => {
     it('should not show id by default', () => {
       const component = mount(<AddressInput />);
-      assert.equal(component.find('div#yo').length, 0, 'div id visible');
-      assert.equal(component.find('#yo_address1').length, 0, 'address1 id visible');
-      assert.equal(component.find('#yo_address2').length, 0, 'address2 id visible');
-      assert.equal(component.find('#yo_city').length, 0, 'city id visible');
-      assert.equal(component.find('#yo_state').length, 0, 'state id visible');
-      assert.equal(component.find('#yo_postal').length, 0, 'postal id visible');
-      assert.equal(component.find('#yo_countryCode').length, 0, 'countryCode id visible');
+      assert.equal(component.find('div#yo').hostNodes().length, 0, 'div id visible');
+      assert.equal(component.find('#yo_address1').hostNodes().length, 0, 'address1 id visible');
+      assert.equal(component.find('#yo_address2').hostNodes().length, 0, 'address2 id visible');
+      assert.equal(component.find('#yo_city').hostNodes().length, 0, 'city id visible');
+      assert.equal(component.find('#yo_state').hostNodes().length, 0, 'state id visible');
+      assert.equal(component.find('#yo_postal').hostNodes().length, 0, 'postal id visible');
+      assert.equal(component.find('#yo_countryCode').hostNodes().length, 0, 'countryCode id visible');
     });
 
     it('should show id by when specified', () => {
       const component = mount(<AddressInput id="yo" />);
-      assert.equal(component.find('div#yo').length, 1, 'div id missing');
-      assert.equal(component.find('#yo_address1').length, 1, 'address1 id missing');
-      assert.equal(component.find('#yo_address2').length, 1, 'address2 id missing');
-      assert.equal(component.find('#yo_city').length, 1, 'city id missing');
-      assert.equal(component.find('#yo_state').length, 1, 'state id missing');
-      assert.equal(component.find('#yo_postal').length, 1, 'postal id missing');
-      assert.equal(component.find('#yo_countryCode').length, 1, 'countryCode id missing');
+      assert.equal(component.find('div#yo').hostNodes().length, 1, 'div id missing');
+      assert.equal(component.find('#yo_address1').hostNodes().length, 1, 'address1 id missing');
+      assert.equal(component.find('#yo_address2').hostNodes().length, 1, 'address2 id missing');
+      assert.equal(component.find('#yo_city').hostNodes().length, 1, 'city id missing');
+      assert.equal(component.find('#yo_state').hostNodes().length, 1, 'state id missing');
+      assert.equal(component.find('#yo_postal').hostNodes().length, 1, 'postal id missing');
+      assert.equal(component.find('#yo_countryCode').hostNodes().length, 1, 'countryCode id missing');
     });
   });
 
@@ -342,7 +342,7 @@ describe('<AddressInput />', () => {
     const component = mount(<AddressInput onBlur={callback} />);
     const fields = ['address1', 'address2', 'city', 'state', 'postal', 'countryCode'];
     fields.forEach((field) => {
-      const input = component.find(`[name="${field}"]`);
+      const input = component.find(`[name="${field}"]`).hostNodes();
       input.simulate('blur');
       assert(callback.calledWith(field));
     });

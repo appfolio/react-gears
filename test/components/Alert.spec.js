@@ -42,8 +42,8 @@ describe('<Alert />', () => {
     it('should wrap children with block (for alignment) with icon', () => {
       const component = mount(<Alert icon>Stuff Here</Alert>);
       const wrapper = component.ref('wrapper');
-      assert.equal(wrapper.exists(), true);
-      assert.equal(wrapper.text(), 'Stuff Here');
+      assert(wrapper);
+      assert.equal(wrapper.textContent, 'Stuff Here');
     });
   });
 
@@ -52,12 +52,11 @@ describe('<Alert />', () => {
       const component = mount(<Alert dismissible />);
       assert.equal(component.state('visible'), true);
 
-      const inner = component.find(Inner);
-      assert.equal(inner.prop('isOpen'), true);
+      assert.equal(component.find(Inner).prop('isOpen'), true);
 
-      inner.find('button').simulate('click');
+      component.find(Inner).find('button').simulate('click');
       assert.equal(component.state('visible'), false);
-      assert.equal(inner.prop('isOpen'), false);
+      assert.equal(component.find(Inner).prop('isOpen'), false);
     });
 
     it('should become visible when receiving new props', () => {

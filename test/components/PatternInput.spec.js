@@ -11,14 +11,13 @@ describe('<PatternInput />', () => {
     const component = mount(
       <PatternInput restrictInput pattern={/^[0-9]*$/} onChange={onChange} />
     );
-    const input = component.find('input').get(0);
 
-    assert.equal(input.value, '');
+    assert.equal(component.find('input').getDOMNode().value, '');
 
     // Valid input
     component.simulate('change', { target: { value: '123' } });
     assert(onChange.called);  // << onChange event
-    assert.equal(input.value, '');
+    assert.equal(component.find('input').getDOMNode().value, '');
     onChange.reset();
 
     // Invalid input
