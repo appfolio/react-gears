@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Header from './SortableTable/Header.js';
 import Table from './Table.js';
+
+function generateColumnClassName(column) {
+  return classnames(
+    column.align && `text-${column.align}`,
+    column.className
+  );
+}
 
 class SortableTable extends React.Component {
   static propTypes = {
@@ -38,7 +46,7 @@ class SortableTable extends React.Component {
     const expanded = rowExpanded(row);
     return [
       <tr key={row.key} className={rowClassName(row)} onClick={() => rowOnClick(row)}>
-        {columns.map(column => <td key={column.key} className={column.align && `text-${column.align}`}>{column.cell(row)}</td>)}
+        {columns.map(column => <td key={column.key} className={generateColumnClassName(column)}>{column.cell(row)}</td>)}
       </tr>,
       expanded && <tr hidden />,
       expanded && (
@@ -71,7 +79,7 @@ class SortableTable extends React.Component {
               <Header
                 active={column.active}
                 ascending={column.ascending}
-                className={column.align && `text-${column.align}`}
+                className={generateColumnClassName(column)}
                 key={index}
                 onSort={column.onSort ? () => column.onSort(!column.ascending) : null}
               >
@@ -87,9 +95,12 @@ class SortableTable extends React.Component {
           <tfoot>
             <tr>
               {columns.map(column => (
-                <th key={column.key} className={column.align && `text-${column.align}`}>
+                <td
+                  key={column.key}
+                  className={generateColumnClassName(column)}
+                >
                   {column.footer}
-                </th>
+                </td>
               ))}
             </tr>
           </tfoot>
