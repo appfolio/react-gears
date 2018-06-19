@@ -21,21 +21,21 @@ describe('<EditableNote />', () => {
 
   it('should render correctly', () => {
     assert(component);
-    assert.equal(note.text, component.ref('text').text());
+    assert.equal(note.text, component.find('Input').text());
   });
 
   it('should call onCancel on click', () => {
-    component.ref('cancel').simulate('click');
+    component.ref('cancel').onClick();
     assert.equal(onCancel.calledOnce, true);
   });
 
   it('should call onSave on click', () => {
-    component.ref('save').simulate('click');
+    component.ref('save').onClick();
     assert.equal(onSave.calledOnce, true);
   });
 
   it('should call onChange on text change', () => {
-    component.ref('text').simulate('change', { target: { value: 'Yikes!' } });
+    component.find('Input').simulate('change', { target: { value: 'Yikes!' } });
     assert.equal(onChange.calledOnce, true);
   });
 });

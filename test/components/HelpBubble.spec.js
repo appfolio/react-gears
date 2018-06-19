@@ -11,13 +11,24 @@ import {
 } from '../../src';
 
 describe('<HelpBubble />', () => {
+  let div;
+
+  beforeEach(() => {
+    div = document.createElement('div');
+    document.body.appendChild(div);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(div);
+  });
+
   it('should have a question mark', () => {
-    const icon = mount(<HelpBubble title="hello" />).find(Icon);
+    const icon = mount(<HelpBubble title="hello" />, { attachTo: div }).find(Icon);
     assert.equal(icon.prop('name'), 'question-circle');
   });
 
   it('should link popover and icon trigger', () => {
-    const component = mount(<HelpBubble title="hi" />);
+    const component = mount(<HelpBubble title="hi" />, { attachTo: div });
     assert.equal(
       component.find(Popover).prop('target'),
       component.find(Icon).prop('id')
@@ -25,7 +36,7 @@ describe('<HelpBubble />', () => {
   });
 
   it('should start closed', () => {
-    const component = mount(<HelpBubble title="hi" />);
+    const component = mount(<HelpBubble title="hi" />, { attachTo: div });
     assert.equal(component.find(Popover).prop('isOpen'), false);
   });
 
@@ -38,9 +49,7 @@ describe('<HelpBubble />', () => {
   });
 
   it('should forward props to Popover', () => {
-    const component = mount(
-      <HelpBubble title="hi" placement="bottom" other="stuff" />
-    );
+    const component = mount(<HelpBubble title="hi" placement="bottom" other="stuff" />, { attachTo: div });
     const popover = component.find(Popover);
     assert.equal(popover.prop('placement'), 'bottom');
     assert.equal(popover.prop('other'), 'stuff');

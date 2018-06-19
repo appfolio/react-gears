@@ -256,8 +256,8 @@ export default class DateInput extends React.Component {
               type="text"
               onBlur={this.onBlur}
               onChange={this.onChange}
-              onClick={showOnFocus && this.show}
-              onFocus={showOnFocus && this.show}
+              onClick={showOnFocus ? this.show : undefined}
+              onFocus={showOnFocus ? this.show : undefined}
               onKeyDown={this.onKeyDown}
               disabled={disabled}
               {...props}

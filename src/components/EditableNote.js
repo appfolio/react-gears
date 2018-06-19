@@ -21,7 +21,6 @@ class EditableNote extends React.Component {
       <Card>
         <CardBody>
           <Input
-            ref="text"
             type="textarea"
             value={note.text}
             rows="5"

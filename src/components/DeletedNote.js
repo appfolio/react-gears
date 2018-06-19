@@ -14,7 +14,7 @@ class DeletedNote extends React.Component {
     return (
       <Alert color="success" icon>
         Note deleted.
-        {onUndelete ? <a ref="undo" href="#" className="ml-1" onClick={() => onUndelete(note)}>undo</a> : null}
+        {onUndelete ? <a href="#" className="ml-1" onClick={() => onUndelete(note)}>undo</a> : null}
       </Alert>
     );
   }

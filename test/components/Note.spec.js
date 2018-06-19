@@ -4,8 +4,6 @@ import { Note } from '../../src';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import fecha from 'fecha';
-
 describe('<Note />', () => {
   const note = {
     date: new Date("November 5, 1605 00:00:00"),
@@ -23,24 +21,24 @@ describe('<Note />', () => {
     });
 
     it('should render from', () => {
-      assert.equal(`by ${note.from}`, component.ref('from').text());
+      assert.equal(`by ${note.from}`, component.ref('from').textContent);
     });
 
     it('should render date', () => {
       const expectedDate = 'Sat, November 5, 1605 at 12:00 AM'
-      assert.equal(expectedDate, component.ref('date').text());
+      assert.equal(expectedDate, component.ref('date').textContent);
     });
 
     it('should render edited', () => {
-      assert(component.ref('edited').nodes.length);
+      assert(component.ref('edited'));
     });
 
     it('should not render edit link if no onEdit prop', () => {
-      assert.equal(component.ref('edit').nodes.length, 0);
+      assert.equal(undefined, component.ref('edit'));
     });
 
     it('should not render delete link if no onDelete prop', () => {
-      assert.equal(component.ref('delete').nodes.length, 0);
+      assert.equal(undefined, component.ref('delete'));
     });
   });
 
@@ -53,11 +51,11 @@ describe('<Note />', () => {
     const component = mount(<Note note={note2} />);
 
     it('should not render from', () => {
-      assert.equal(component.ref('from').nodes.length, 0);
+      assert.equal(undefined, component.ref('from'));
     });
 
     it('should not render edited', () => {
-      assert.equal(component.ref('edited').nodes.length, 0);
+      assert.equal(undefined, component.ref('edited'));
     });
   });
 
@@ -67,11 +65,11 @@ describe('<Note />', () => {
 
     it('should render edit link if onEdit prop', () => {
       assert(component);
-      assert(component.ref('edit').nodes.length);
+      assert(component.ref('edit'));
     });
 
     it('should call onEdit on click', () => {
-      component.ref('edit').simulate('click');
+      component.ref('edit').onClick();
       assert.equal(onEdit.calledOnce, true);
     });
   });
@@ -82,11 +80,11 @@ describe('<Note />', () => {
 
     it('should render delete link if onDelete prop', () => {
       assert(component);
-      assert(component.ref('delete').nodes.length);
+      assert(component.ref('delete'));
     });
 
     it('should call onDelete on click', () => {
-      component.ref('delete').simulate('click');
+      component.ref('delete').onClick();
       assert.equal(onDelete.calledOnce, true);
     });
   });

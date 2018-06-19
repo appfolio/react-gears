@@ -27,7 +27,7 @@ export default class InfoBox extends React.Component {
     return (
       <div className={`${styles.infobox} text-${color} ${vertical ? styles.vertical : ''} p-3 ${className}`} {...props}>
         {title ?
-          <h1 ref="title" className={headerClasses}>
+          <h1 className={headerClasses}>
             {title}
             {icon ? <Icon name={icon} /> : null}
           </h1>

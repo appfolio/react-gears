@@ -20,7 +20,7 @@ describe('<DeletedNote />', () => {
   });
 
   it('should call onUndelete on click', () => {
-    component.ref('undo').simulate('click');
+    component.find('a').simulate('click');
     assert.equal(onUndelete.calledOnce, true);
   });
 });
