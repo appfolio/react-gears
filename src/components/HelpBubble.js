@@ -56,8 +56,8 @@ class HelpBubble extends React.Component {
           target={this.id}
           {...other}
         >
-          <PopoverHeader children={title} />
-          <PopoverBody children={children} />
+          <PopoverHeader>{title}</PopoverHeader>
+          <PopoverBody>{children}</PopoverBody>
         </Popover>
       </span>
     );

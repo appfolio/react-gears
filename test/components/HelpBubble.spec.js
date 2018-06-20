@@ -5,7 +5,7 @@ import { shallow, mount } from 'enzyme';
 import {
   Popover,
   PopoverTitle,
-  PopoverContent,
+  PopoverBody,
   Icon,
   HelpBubble
 } from '../../src';
@@ -58,7 +58,7 @@ describe('<HelpBubble />', () => {
   it('should place title and content in popover', () => {
     const component = shallow(<HelpBubble title="Title">Content</HelpBubble>);
     assert.equal(component.find(PopoverTitle).prop('children'), 'Title');
-    assert.equal(component.find(PopoverContent).prop('children'), 'Content');
+    assert.equal(component.find(PopoverBody).prop('children'), 'Content');
   });
 
   it('should accept className', () => {
