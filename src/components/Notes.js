@@ -51,13 +51,13 @@ export default class Notes extends React.Component {
             {onDownload ?
               <Button size="sm" className="mr-1" onClick={onDownload}>
                 <Icon name="download" fixedWidth />
-                <span className="hidden-xs-down">Download PDF</span>
+                <span className="d-none d-sm-inline">Download PDF</span>
               </Button>
               : null}
             {onAdd ?
               <Button size="sm" onClick={onAdd}>
                 <Icon name="plus-circle" fixedWidth />
-                <span className="hidden-xs-down">Add Note</span>
+                <span className="d-none d-sm-inline">Add Note</span>
               </Button>
               : null}
           </Col>
