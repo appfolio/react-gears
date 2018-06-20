@@ -14,7 +14,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
   const activeStepClasses = classNames({
     'text-gray-dark': !complete,
     'text-success': complete,
-    'hidden-sm-up': collapse !== true,
+    'd-sm-none': collapse !== true,
     'text-center': true
   });
 
@@ -50,7 +50,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
           });
 
           const textClasses = classNames({
-            'hidden-xs-down': collapse !== false,
+            'd-none d-sm-inline': collapse !== false,
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
             'text-success': complete,
