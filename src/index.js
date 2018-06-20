@@ -36,6 +36,7 @@ import Input from './components/Input';
 import InputGroup from './components/InputGroup';
 import InputGroupAddon from './components/InputGroupAddon';
 import InputGroupButton from './components/InputGroupButton';
+import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
 import Label from './components/Label';
 import ListGroup from './components/ListGroup';
@@ -165,6 +166,7 @@ export {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
+  InputGroupText,
   Jumbotron,
   Label,
   ListGroup,
