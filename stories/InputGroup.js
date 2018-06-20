@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, Input, InputGroupButton } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input, InputGroupButton, InputGroupText } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
 
 storiesOf('InputGroup', module)
@@ -12,7 +12,9 @@ storiesOf('InputGroup', module)
       <br />
       <InputGroup>
         <InputGroupAddon addonType="prepend">
-          <Input type="checkbox" aria-label="Checkbox for following text input" />
+          <InputGroupText>
+            <input type="checkbox" aria-label="Checkbox for following text input" />
+          </InputGroupText>
         </InputGroupAddon>
         <Input placeholder="Check it out" />
       </InputGroup>
