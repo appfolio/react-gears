@@ -13,8 +13,8 @@ describe('<StaticInput />', () => {
     assert.equal(component.type(), Input);
   });
 
-  it('should have the static prop', () => {
-    assert.equal(component.prop('static'), true);
+  it('should have the plaintext prop', () => {
+    assert.equal(component.prop('plaintext'), true);
   });
 
   it('should forward the state', () => {
