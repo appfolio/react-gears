@@ -20,7 +20,7 @@ class Callout extends React.Component {
   static defaultProps = {
     className: '',
     color: 'primary',
-    background: 'faded',
+    background: 'light',
     placement: 'bottom'
   };
 
