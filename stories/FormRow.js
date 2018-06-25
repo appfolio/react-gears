@@ -3,11 +3,17 @@ import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { FormRow } from '../src';
 
+const description = `
+  Represents a form group consisting of a label + input, with built-in support for hint and
+  feedback.  If the input "type" property is not specified, then type "text" is used by default.
+`;
+
 storiesOf('FormRow', module)
-  .addWithInfo('Live example', () => (
+  .addWithInfo('Live example', description, () => (
     <div>
       <FormRow
         label={text('label', 'First Name')}
+        labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
         color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
         hint={text('hint', '')}
