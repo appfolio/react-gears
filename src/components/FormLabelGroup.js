@@ -8,6 +8,15 @@ import Label from './Label';
 import Required from './Required';
 import Row from './Row';
 
+const labelSizeTranslations = {
+  sm: 2,
+  md: 3,
+  lg: 4
+};
+
+// Note:  `inline` has no effect at the moment.  In reactstrap 5 and later, this property appears
+// to be relevant for the <FormGroup>, though.  As such, we may be able to simplify this class with
+// the built-in support of inline forms in newer versions of reactstrap.
 const FormLabelGroup = (props) => {
   const {
     children,
@@ -16,6 +25,7 @@ const FormLabelGroup = (props) => {
     inputId,
     hint,
     label,
+    labelSize,
     required,
     rowClassName,
     size,
@@ -24,9 +34,9 @@ const FormLabelGroup = (props) => {
   } = props;
 
   const rowColor = color || (feedback && 'danger');
-  const labelWidth = stacked ? 12 : 3;
-  const labelAlignment = stacked ? '' : 'text-sm-right';
-  const inputContainerWidth = (stacked || !label) ? 12 : 9;
+  const labelAlignment = stacked ? '' : 'text-sm-right pr-0';
+  const labelWidth = stacked ? 12 : (labelSizeTranslations[labelSize || 'md']);
+  const inputWidth = (stacked || !label) ? 12 : (12 - labelWidth);
 
   return (
     <FormGroup row className={rowClassName} color={rowColor}>
@@ -36,7 +46,7 @@ const FormLabelGroup = (props) => {
           {required && label ? <Required /> : null}
         </Label>
       )}
-      <Col sm={inputContainerWidth}>
+      <Col sm={inputWidth}>
         <Row>
           <Col {...width}>
             {children}
@@ -60,6 +70,7 @@ FormLabelGroup.propTypes = {
   inputId: PropTypes.string,
   hint: PropTypes.string,
   label: PropTypes.node,
+  labelSize: PropTypes.oneOf([null, 'sm', 'md', 'lg']),
   required: PropTypes.bool,
   rowClassName: PropTypes.string,
   size: PropTypes.string,
