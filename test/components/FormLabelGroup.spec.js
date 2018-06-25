@@ -61,7 +61,7 @@ describe('<FormLabelGroup />', () => {
       assert.equal(label.prop('for'), 'someID');
       assert.equal(label.prop('sm'), 3);
       assert.equal(label.prop('size'), 'sm');
-      assert.equal(label.prop('className'), 'text-sm-right');
+      assert.equal(label.prop('className'), 'text-sm-right pr-0');
       assert.equal(label.children().text(), 'First Name');
     });
 
@@ -80,6 +80,51 @@ describe('<FormLabelGroup />', () => {
       const component = shallow(<FormLabelGroup {...props} required>Hello World</FormLabelGroup>);
       const col = component.find(Col).at(0);
       assert.equal(col.prop('sm'), 9);
+    });
+
+    it('should support node in label', () => {
+      props.label = <span>stuff</span>;
+      const component = shallow(<FormLabelGroup {...props}>Hello World</FormLabelGroup>);
+
+      const label = component.find(Label);
+      assert.equal(label.length, 1);
+      const labelChildren = label.children();
+      assert.equal(labelChildren.at(0).html(), '<span>stuff</span>');
+    });
+  });
+
+  describe('with labelSize', () => {
+    let props;
+
+    beforeEach(() => {
+      props = {
+        label: 'First Name',
+        size: 'sm',
+      };
+    });
+
+    it('should adjust the width of the label and outer chilren column to small', () => {
+      props.labelSize = 'sm';
+      const component = shallow(<FormLabelGroup {...props}>Hello World</FormLabelGroup>);
+
+      const label = component.find(Label);
+      assert.equal(label.length, 1);
+      assert.equal(label.prop('sm'), 2);
+
+      const col = component.find(Col).at(0);
+      assert.equal(col.prop('sm'), 10);
+    });
+
+    it('should adjust the width of the label and outer chilren column to large', () => {
+      props.labelSize = 'lg';
+      const component = shallow(<FormLabelGroup {...props}>Hello World</FormLabelGroup>);
+
+      const label = component.find(Label);
+      assert.equal(label.length, 1);
+      assert.equal(label.prop('sm'), 4);
+
+      const col = component.find(Col).at(0);
+      assert.equal(col.prop('sm'), 8);
     });
   });
 

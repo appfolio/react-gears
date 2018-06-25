@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import CheckboxInput from './CheckboxInput';
-import Col from './Col';
 import FileInput from './FileInput';
-import FormFeedback from './FormFeedback';
-import FormGroup from './FormGroup';
-import FormText from './FormText';
+import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
-import Label from './Label';
 import RadioInput from './RadioInput';
-import Row from './Row';
-import Required from './Required';
 import StaticInput from './StaticInput';
 
 const typeTranslations = {
@@ -41,6 +35,7 @@ const FormRow = (props) => {
     id,
     inline,
     label,
+    labelSize,
     required,
     rowClassName,
     size,
@@ -56,61 +51,56 @@ const FormRow = (props) => {
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const rowColor = color || state || (baseFeedback && 'danger');
 
-  const labelWidth = stacked ? 12 : 3;
-  const labelAlignment = stacked ? '' : 'text-sm-right';
-
-  const inputContainerWidth = (stacked || !label) ? 12 : 9;
-
-  // TODO this should use FormLabelGroup vs duplicated code here:
   return (
-    <FormGroup
-      row
-      className={rowClassName}
+    <FormLabelGroup
       color={rowColor}
+      feedback={baseFeedback}
+      hint={hint}
+      inline={inline}
+      inputId={id}
+      label={label}
+      labelSize={labelSize}
+      required={required}
+      rowClassName={rowClassName}
+      size={size}
+      stacked={stacked}
+      width={width}
     >
-      {label && (
-        <Label for={id} sm={labelWidth} size={size} className={labelAlignment}>
-          {label}
-          {required && label ? <Required /> : null}
-        </Label>
-      )}
-      <Col sm={inputContainerWidth}>
-        <Row>
-          <Col {...width}>
-            <InputElement
-              id={id}
-              size={size}
-              state={rowColor}
-              type={typeof type === 'string' ? type : null}
-              children={React.Children.map(children, child => React.cloneElement(child, { type }))}
-              {...attributes}
-              {...childFeedback}
-            />
-            {hint && <FormText color="muted">{hint}</FormText>}
-            {baseFeedback && <FormFeedback>{baseFeedback}</FormFeedback>}
-          </Col>
-        </Row>
-      </Col>
-    </FormGroup>
+      <InputElement
+        id={id}
+        size={size}
+        state={rowColor}
+        type={typeof type === 'string' ? type : null}
+        children={React.Children.map(children, child => React.cloneElement(child, { type }))}
+        {...attributes}
+        {...childFeedback}
+      />
+    </FormLabelGroup>
   );
 };
 
 FormRow.propTypes = {
-  label: PropTypes.node,
-  hint: PropTypes.string,
+  children: PropTypes.node,
+  color: PropTypes.string,
   feedback: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
   ]),
+  hint: PropTypes.string,
+  id: PropTypes.string,
+  inline: PropTypes.bool,
+  label: PropTypes.node,
+  labelSize: PropTypes.string,
   required: PropTypes.bool,
   rowClassName: PropTypes.string,
+  size: PropTypes.string,
+  stacked: PropTypes.bool,
+  state: PropTypes.string,
   type: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
     PropTypes.func
   ]),
-  inline: PropTypes.bool,
-  stacked: PropTypes.bool,
   width: PropTypes.object
 };
 
@@ -122,8 +112,7 @@ FormRow.defaultProps = {
   required: false,
   rowClassName: '',
   stacked: false,
-  type: 'text',
-  width: { xs: 12 }
+  type: 'text'
 };
 
 export default FormRow;
