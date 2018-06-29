@@ -1,7 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { action, storiesOf } from '@storybook/react';
 import { Note } from '../src';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
 storiesOf('Note', module)
   .addWithInfo('Live example', () => {
@@ -17,12 +17,14 @@ storiesOf('Note', module)
     return (
       <Note
         note={note}
-        onCancel={() => alert('Cancel')}
-        onChange={() => console.log('Change')}
-        onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-        onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-        onSave={() => alert('Save')}
-        onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onDelete={action('onDelete')}
+        onEdit={action('onEdit')}
+        onSave={action('onSave')}
+        onUndelete={action('onUndelete')}
+        rows={number('rows', Note.defaultProps.rows)}
+        saving={boolean('saving')}
       />
     );
   })
@@ -39,12 +41,12 @@ storiesOf('Note', module)
     return (
       <Note
         note={note}
-        onCancel={() => alert('Cancel')}
-        onChange={() => console.log('Change')}
-        onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-        onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-        onSave={() => alert('Save')}
-        onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onDelete={action('onDelete')}
+        onEdit={action('onEdit')}
+        onSave={action('onSave')}
+        onUndelete={action('onUndelete')}
       >
         <img src="http://lorempixel.com/200/100/sports/" alt="Sample" />
       </Note>

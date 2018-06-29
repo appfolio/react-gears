@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { action, storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
 import { EditableNote, Note, Notes } from '../src';
 
@@ -33,6 +33,7 @@ storiesOf('Notes', module)
         deleted: boolean('deleted', false),
         edited: boolean('edited', false),
         editing: boolean('editing', false),
+        saving: boolean('saving', false),
         from: 'Gary Thomas',
         text: 'Hello World'
       },
@@ -43,20 +44,18 @@ storiesOf('Notes', module)
       <Notes
         addControl={<EditableNote
           note={{}}
-          onCancel={n => alert(`Cancel Add: ${JSON.stringify(n)}`)}
-          onChange={() => console.log('Change Add')}
-          onSave={n => alert(`Save Add: ${JSON.stringify(n)}`)}
+          onCancel={action('onCancel')}
+          onChange={action('onChange')}
+          onSave={action('onSave')}
         />}
         adding={adding}
         notes={notes}
-        onAdd={() => alert('Add')}
-        onCancel={n => alert(`Cancel: ${JSON.stringify(n)}`)}
-        onChange={() => console.log('Change')}
-        onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-        onDownload={() => alert('Download')}
-        onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-        onSave={n => alert(`Save: ${JSON.stringify(n)}`)}
-        onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onDelete={action('onDelete')}
+        onEdit={action('onEdit')}
+        onSave={action('onSave')}
+        onUndelete={action('onUndelete')}
       />
     );
   })
@@ -68,6 +67,7 @@ storiesOf('Notes', module)
         deleted: boolean('deleted', false),
         edited: boolean('edited', false),
         editing: boolean('editing', false),
+        saving: boolean('saving', false),
         from: 'Gary Thomas',
         text: 'Hello World'
       },
@@ -78,27 +78,26 @@ storiesOf('Notes', module)
       <Notes
         addControl={<EditableNote
           note={{}}
-          onCancel={n => alert(`Cancel Add: ${JSON.stringify(n)}`)}
-          onChange={() => console.log('Change Add')}
-          onSave={n => alert(`Save Add: ${JSON.stringify(n)}`)}
+          onCancel={action('onCancel')}
+          onChange={action('onChange')}
+          onSave={action('onSave')}
         />}
         adding={adding}
-        onAdd={() => alert('Add')}
-        onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-        onDownload={() => alert('Download')}
-        onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-        onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
+        onDelete={action('onDelete')}
+        onEdit={action('onEdit')}
+        onUndelete={action('onUndelete')}
       >
         {notes.map(note => (
           <div>
             <Note
               note={note}
-              onCancel={n => alert(`Cancel: ${JSON.stringify(n)}`)}
-              onChange={() => console.log('Change')}
-              onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-              onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-              onSave={n => alert(`Save: ${JSON.stringify(n)}`)}
-              onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
+              onCancel={action('onCancel')}
+              onChange={action('onChange')}
+              onDelete={action('onDelete')}
+              onEdit={action('onEdit')}
+              onSave={action('onSave')}
+              onUndelete={action('onUndelete')}
+              saving={note.saving}
             />
           </div>
         ))}
