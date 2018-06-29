@@ -150,8 +150,7 @@ describe('<EditableNote />', () => {
 
     context('in saving mode', () => {
       beforeEach(() => {
-        props.note.saving = true;
-        component = mount(<EditableNote {...props} />);
+        component = mount(<EditableNote saving {...props} />);
       });
 
       it('should render text input disabled', () => {

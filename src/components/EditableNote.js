@@ -15,21 +15,24 @@ class EditableNote extends React.Component {
     note: PropTypes.shape({
       date: PropTypes.object,
       errors: PropTypes.string,
-      saving: PropTypes.bool,
       text: PropTypes.string
     }),
     onCancel: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
+    rows: PropTypes.number,
+    saving: PropTypes.bool
   };
 
   static defaultProps = {
-    className: 'bg-white mb-3'
+    className: 'bg-white mb-3',
+    rows: 4,
+    saving: false
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onSave } = this.props;
-    const { date, errors, saving, text } = note;
+    const { children, className, note, onCancel, onChange, onSave, rows, saving } = this.props;
+    const { date, errors, text } = note;
 
     return (
       <Card className={className}>
@@ -37,9 +40,10 @@ class EditableNote extends React.Component {
         <CardBlock>
           <FormLabelGroup feedback={errors} stacked>
             <Input
+              autoFocus
               disabled={saving}
               ref="text"
-              rows="4"
+              rows={rows}
               state={errors && 'danger'}
               type="textarea"
               value={text}

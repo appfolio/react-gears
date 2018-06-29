@@ -24,15 +24,19 @@ class Note extends React.Component {
     onDelete: PropTypes.func,
     onEdit: PropTypes.func,
     onSave: PropTypes.func,
-    onUndelete: PropTypes.func
+    onUndelete: PropTypes.func,
+    rows: PropTypes.number,
+    saving: PropTypes.boolean
   };
 
   static defaultProps = {
-    className: 'bg-white mb-3'
+    className: 'bg-white mb-3',
+    rows: EditableNote.defaultProps.rows,
+    saving: EditableNote.defaultProps.saving
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete }
+    const { children, className, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete, rows, saving }
       = this.props;
     const { deleted, editing, text } = note;
 
@@ -51,6 +55,8 @@ class Note extends React.Component {
           onCancel={onCancel}
           onChange={onChange}
           onSave={onSave}
+          rows={rows}
+          saving={saving}
         />);
     }
     return (
