@@ -19,10 +19,7 @@ const noteToEdit = {
 storiesOf('EditableNote', module)
   .addWithInfo('With note prop', decription, () => {
     const withNote = boolean('with note', true);
-    const saving = boolean('saving', false);
-
     const note = withNote ? noteToEdit : { text: '' };
-    note.saving = saving;
 
     return (
       <EditableNote
@@ -30,15 +27,14 @@ storiesOf('EditableNote', module)
         onCancel={n => alert(`Cancel: ${JSON.stringify(n)}`)}
         onChange={() => console.log('Change')}
         onSave={n => alert(`Save: ${JSON.stringify(n)}`)}
+        saving={boolean('saving', false)}
       />
     );
   })
   .addWithInfo('With children', decription, () => {
     const withNote = boolean('with note', true);
     const saving = boolean('saving', false);
-
     const note = withNote ? noteToEdit : { text: '' };
-    note.saving = saving;
 
     return (
       <EditableNote
@@ -46,6 +42,7 @@ storiesOf('EditableNote', module)
         onCancel={n => alert(`Cancel: ${JSON.stringify(n)}`)}
         onChange={() => console.log('Change')}
         onSave={n => alert(`Save: ${JSON.stringify(n)}`)}
+        saving={saving}
       >
         <span>Add an attachment:  </span><button disabled={saving}>Choose file...</button>
         <hr />

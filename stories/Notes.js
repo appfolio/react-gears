@@ -5,8 +5,7 @@ import { EditableNote, Note, Notes } from '../src';
 
 const description = 'The Notes component works in conjunction with other components.\n\nThe "Note" '
   + 'child component represents each note, and works in conjunction with "EditableNote" and '
-  + 'DeletedNote components.\n\nFor the "addCntrol" property, it is recommended to use an '
-  + 'instance of the "EditableNote" component, as demonstrated here.';
+  + 'DeletedNote components.';
 
 const moreNotes = [
   {
@@ -25,7 +24,6 @@ const moreNotes = [
 
 storiesOf('Notes', module)
   .addWithInfo('With notes prop', description, () => {
-    const adding = boolean('adding', false);
     const notes = [
       {
         id: 0,
@@ -42,13 +40,6 @@ storiesOf('Notes', module)
 
     return (
       <Notes
-        addControl={<EditableNote
-          note={{}}
-          onCancel={action('onCancel')}
-          onChange={action('onChange')}
-          onSave={action('onSave')}
-        />}
-        adding={adding}
         notes={notes}
         onCancel={action('onCancel')}
         onChange={action('onChange')}
@@ -60,7 +51,6 @@ storiesOf('Notes', module)
     );
   })
   .addWithInfo('With children', description, () => {
-    const adding = boolean('adding', false);
     const notes = [
       {
         date: new Date(),
@@ -75,31 +65,18 @@ storiesOf('Notes', module)
     ];
 
     return (
-      <Notes
-        addControl={<EditableNote
-          note={{}}
-          onCancel={action('onCancel')}
-          onChange={action('onChange')}
-          onSave={action('onSave')}
-        />}
-        adding={adding}
-        onDelete={action('onDelete')}
-        onEdit={action('onEdit')}
-        onUndelete={action('onUndelete')}
-      >
+      <Notes>
         {notes.map(note => (
-          <div>
-            <Note
-              note={note}
-              onCancel={action('onCancel')}
-              onChange={action('onChange')}
-              onDelete={action('onDelete')}
-              onEdit={action('onEdit')}
-              onSave={action('onSave')}
-              onUndelete={action('onUndelete')}
-              saving={note.saving}
-            />
-          </div>
+          <Note
+            note={note}
+            onCancel={action('onCancel')}
+            onChange={action('onChange')}
+            onDelete={action('onDelete')}
+            onEdit={action('onEdit')}
+            onSave={action('onSave')}
+            onUndelete={action('onUndelete')}
+            saving={note.saving}
+          />
         ))}
       </Notes>
     );

@@ -38,10 +38,7 @@ class NoteHeader extends React.Component {
 
     return (
       <CardHeader className={headerClassNames}>
-        <div
-          className="d-inline-flex align-items-center"
-          ref="title"
-        >
+        <div className="d-inline-flex align-items-center text-muted">
           {edited && <Badge color="primary" className="text-uppercase mr-2 js-note-header__edited">Edited</Badge>}
           <span className="m-0 my-1 mr-auto">
             <span className="hidden-xs-down">

@@ -47,6 +47,8 @@ storiesOf('Note', module)
         onEdit={action('onEdit')}
         onSave={action('onSave')}
         onUndelete={action('onUndelete')}
+        rows={number('rows', Note.defaultProps.rows)}
+        saving={boolean('saving')}
       >
         <img src="http://lorempixel.com/200/100/sports/" alt="Sample" />
       </Note>

@@ -35,7 +35,7 @@ class EditableNote extends React.Component {
     const { date, errors, text } = note;
 
     return (
-      <Card className={className}>
+      <Card outline color="info" className={className}>
         {date && <NoteHeader note={note} />}
         <CardBlock>
           <FormLabelGroup feedback={errors} stacked>
