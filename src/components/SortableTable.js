@@ -48,9 +48,9 @@ class SortableTable extends React.Component {
       <tr key={row.key} className={rowClassName(row)} onClick={() => rowOnClick(row)}>
         {columns.map(column => <td key={column.key} className={generateColumnClassName(column)}>{column.cell(row)}</td>)}
       </tr>,
-      expanded && <tr hidden />,
+      expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
       expanded && (
-        <tr className="tr-expanded">
+        <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
           <td className="border-top-0" colSpan={columns.length}>
             {expanded}
           </td>

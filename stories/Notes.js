@@ -1,54 +1,83 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { Note, Notes } from '../src';
+import { action, storiesOf } from '@storybook/react';
+import { boolean, text } from '@storybook/addon-knobs';
+import { EditableNote, Note, Notes } from '../src';
 
+const description = 'The Notes component works in conjunction with other components.\n\nThe "Note" '
+  + 'child component represents each note, and works in conjunction with "EditableNote" and '
+  + 'DeletedNote components.';
 
-const notes = [
+const moreNotes = [
   {
-    date: new Date(),
-    edited: true,
-    from: 'Gary Thomas',
-    text: 'Hello World'
-  },
-  {
+    id: 1,
     date: new Date(),
     from: 'Aaron Panchal',
     text: 'Hello World as well!'
   },
   {
+    id: 2,
     date: new Date(),
-    deleted: true,
     from: 'Gary Thomas',
     text: 'Goodbye Cruel World',
-  }
+  },
 ];
 
 storiesOf('Notes', module)
-  .addWithInfo('With notes prop', () => (
-    <Notes
-      notes={notes}
-      onAdd={() => alert('Add')}
-      onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-      onDownload={() => alert('Download')}
-      onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-      onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
-    />
-  ))
-  .addWithInfo('With children', () => (
-    <Notes
-      onAdd={() => alert('Add')}
-      onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-      onDownload={() => alert('Download')}
-      onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-      onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
-    >
-      {notes.map(note => (
-        <Note
-          note={note}
-          onDelete={n => alert(`Delete: ${JSON.stringify(n)}`)}
-          onEdit={n => alert(`Edit: ${JSON.stringify(n)}`)}
-          onUndelete={n => alert(`onUndelete: ${JSON.stringify(n)}`)}
-        />
-      ))}
-    </Notes>
-  ));
+  .addWithInfo('With notes prop', description, () => {
+    const notes = [
+      {
+        id: 0,
+        date: new Date(),
+        deleted: boolean('deleted', false),
+        edited: boolean('edited', false),
+        editing: boolean('editing', false),
+        saving: boolean('saving', false),
+        from: 'Gary Thomas',
+        text: 'Hello World'
+      },
+      ...moreNotes
+    ];
+
+    return (
+      <Notes
+        notes={notes}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onDelete={action('onDelete')}
+        onEdit={action('onEdit')}
+        onSave={action('onSave')}
+        onUndelete={action('onUndelete')}
+      />
+    );
+  })
+  .addWithInfo('With children', description, () => {
+    const notes = [
+      {
+        date: new Date(),
+        deleted: boolean('deleted', false),
+        edited: boolean('edited', false),
+        editing: boolean('editing', false),
+        saving: boolean('saving', false),
+        from: 'Gary Thomas',
+        text: 'Hello World'
+      },
+      ...moreNotes
+    ];
+
+    return (
+      <Notes>
+        {notes.map(note => (
+          <Note
+            note={note}
+            onCancel={action('onCancel')}
+            onChange={action('onChange')}
+            onDelete={action('onDelete')}
+            onEdit={action('onEdit')}
+            onSave={action('onSave')}
+            onUndelete={action('onUndelete')}
+            saving={note.saving}
+          />
+        ))}
+      </Notes>
+    );
+  });

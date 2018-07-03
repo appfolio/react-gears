@@ -5,87 +5,114 @@ import { mount } from 'enzyme';
 import sinon from 'sinon';
 
 describe('<Note />', () => {
-  const note = {
-    date: new Date("November 5, 1605 00:00:00"),
-    from: 'Jim Nabors',
-    text: 'Hello World!',
-    edited: true
-  };
+  let component;
+  let note;
+  let props;
+
+  beforeEach(() => {
+    note = {
+      date: new Date('November 5, 1605 00:00:00'),
+      from: 'Jim Nabors',
+      text: 'Hello World!',
+      edited: true
+    };
+    props = {
+      note,
+      onCancel: sinon.spy(),
+      onChange: sinon.spy(),
+      onDelete: sinon.spy(),
+      onEdit: sinon.spy(),
+      onSave: sinon.spy(),
+      onUndelete: sinon.spy(),
+    };
+  });
 
   describe('rendering', () => {
-    const component = mount(<Note note={note} />);
+    context('in default mode', () => {
+      beforeEach(() => {
+        component = mount(<Note {...props} />);
+      });
 
-    it('should render correctly', () => {
-      assert(component);
-      assert.equal(note.text, component.find('CardText').text());
+      describe('should render a note card', () => {
+        it('should render a single Card', () => {
+          const card = component.find('Card');
+
+          assert(card.exists());
+          assert.equal(1, card.length);
+        });
+
+        it('should render a NoteHeader', () => {
+          const header = component.find('Card').find('NoteHeader');
+
+          assert(header.exists());
+          assert.equal(1, header.length);
+          assert.equal(note, header.props().note);
+          assert.equal(props.onDelete, header.props().onDelete);
+          assert.equal(props.onEdit, header.props().onEdit);
+        });
+
+        it('should render a CardBlock with text', () => {
+          const noteControl = component.find('Card').find('CardBlock').find('CardText');
+
+          assert(noteControl.exists());
+          assert.equal(1, noteControl.length);
+          assert.equal(note.text, noteControl.text());
+        });
+      });
     });
 
-    it('should render from', () => {
-      assert.equal(`by ${note.from}`, component.ref('from').textContent);
+    context('in default mode with children', () => {
+      const text = 'This is some additional text to be rendered';
+
+      beforeEach(() => {
+        component = mount(
+          <Note {...props}>
+            <span className="js-note__child">{text}</span>
+          </Note>
+        );
+      });
+
+      it('should render children', () => {
+        const children = component.find('.js-note__child');
+        assert.equal(1, children.length);
+        assert.equal(text, children.text());
+      });
+
+      it('should still render a CardBlock with text', () => {
+        const noteControl = component.find('Card').find('CardBlock').find('CardText');
+
+        assert(noteControl.exists());
+        assert.equal(1, noteControl.length);
+        assert.equal(note.text, noteControl.text());
+      });
     });
 
-    it('should render date', () => {
-      const expectedDate = 'Sat, November 5, 1605 at 12:00 AM'
-      assert.equal(expectedDate, component.ref('date').textContent);
+    context('in deleted mode', () => {
+      it('should render a single DeletedNote', () => {
+        props.note.deleted = true;
+        component = mount(<Note {...props} />);
+        const noteControl = component.find('DeletedNote');
+
+        assert(noteControl.exists());
+        assert.equal(1, noteControl.length);
+        assert.equal(note, noteControl.props().note);
+        assert.equal(props.onUndelete, noteControl.props().onUndelete);
+      });
     });
 
-    it('should render edited', () => {
-      assert(component.ref('edited'));
-    });
+    context('in editing mode', () => {
+      it('should render a single EditableNote', () => {
+        props.note.editing = true;
+        component = mount(<Note {...props} />);
+        const noteControl = component.find('EditableNote');
 
-    it('should not render edit link if no onEdit prop', () => {
-      assert.equal(undefined, component.ref('edit'));
-    });
-
-    it('should not render delete link if no onDelete prop', () => {
-      assert.equal(undefined, component.ref('delete'));
-    });
-  });
-
-  describe('optional', () => {
-    const note2 = {
-      date: new Date(),
-      text: 'Hello World!'
-    };
-
-    const component = mount(<Note note={note2} />);
-
-    it('should not render from', () => {
-      assert.equal(undefined, component.ref('from'));
-    });
-
-    it('should not render edited', () => {
-      assert.equal(undefined, component.ref('edited'));
-    });
-  });
-
-  describe('edit', () => {
-    const onEdit = sinon.spy();
-    const component = mount(<Note note={note} onEdit={onEdit} />);
-
-    it('should render edit link if onEdit prop', () => {
-      assert(component);
-      assert(component.ref('edit'));
-    });
-
-    it('should call onEdit on click', () => {
-      component.ref('edit').onClick();
-      assert.equal(onEdit.calledOnce, true);
-    });
-  });
-
-  describe('delete', () => {
-    const onDelete = sinon.spy();
-    const component = mount(<Note note={note} onDelete={onDelete} />);
-
-    it('should render delete link if onDelete prop', () => {
-      assert(component);
-      assert(component.ref('delete'));
-    });
-
-    it('should call onDelete on click', () => {
-      component.ref('delete').onClick();
-      assert.equal(onDelete.calledOnce, true);
+        assert(noteControl.exists());
+        assert.equal(1, noteControl.length);
+        assert.equal(note, noteControl.props().note);
+        assert.equal(props.onCancel, noteControl.props().onCancel);
+        assert.equal(props.onChange, noteControl.props().onChange);
+        assert.equal(props.onSave, noteControl.props().onSave);
+      });
     });
   });
 });

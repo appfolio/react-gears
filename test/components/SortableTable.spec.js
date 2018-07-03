@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import { SortableTable } from '../../src';
 
@@ -197,7 +197,7 @@ describe('<SortableTable />', () => {
   it('should render expandable row when specified', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
-    const wrapper = mount(
+    const wrapper = shallow(
       <SortableTable
         columns={columns}
         rows={rows}

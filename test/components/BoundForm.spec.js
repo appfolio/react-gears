@@ -16,25 +16,14 @@ describe('<BoundForm />', () => {
 
   const errors = {
     firstName: "Can't be Glenn"
-  };
+  }
 
   const submitFunc = sinon.stub();
   const changeFunc = sinon.stub();
 
-  let component;
-  beforeEach(() => {
-    component = shallow(<BoundForm
-      object={data}
-      errors={errors}
-      onSubmit={submitFunc}
-      onChange={changeFunc}
-      other="stuff"
-    />);
-  });
-
-  it('should be initialized with object data', () => {
-    assert.equal(component.state().formData, data);
-  });
+  const component = shallow(
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff"/>
+  );
 
   it('should provide a context', () => {
     const context = component.instance().getChildContext();

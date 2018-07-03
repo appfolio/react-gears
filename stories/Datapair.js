@@ -4,8 +4,14 @@ import { storiesOf } from '@storybook/react';
 
 import { Datapair } from '../src';
 
+const description = `
+  Datapairs are clear and concise elements for displaying labeled data. Each element is comprised
+  of two parts: the key (label) and a value. The key is an identifier for some form of data and
+  the value can be text or links.
+  `;
+
 storiesOf('Datapair', module)
-  .addWithInfo('with props', () => (
+  .addWithInfo('with props', description, () => (
     <Card className="mt-1">
       <CardBody>
         <Datapair label="Key" value="Some simple content would go here" />
@@ -13,7 +19,7 @@ storiesOf('Datapair', module)
       </CardBody>
     </Card>
   ))
-  .addWithInfo('with HTML value', () => (
+  .addWithInfo('with HTML value', description, () => (
     <Card className="mt-1">
       <CardBody>
         <Datapair label="Label">
@@ -26,12 +32,10 @@ storiesOf('Datapair', module)
       </CardBody>
     </Card>
   ))
-  .addWithInfo('with node in label', () => (
+  .addWithInfo('with node in label', description, () => (
     <Card className="mt-1">
       <CardBody>
-        <Datapair label={<span>Name <Badge>awesome</Badge></span>}>
-          Stuff
-        </Datapair>
+        <Datapair label={<span>Name <Badge>awesome</Badge></span>} value="Stuff" />
       </CardBody>
     </Card>
   ));
