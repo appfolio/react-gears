@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Alert from './Alert';
+import Button from './Button';
 
 class DeletedNote extends React.Component {
   static propTypes = {
@@ -14,8 +15,12 @@ class DeletedNote extends React.Component {
 
     return (
       <Alert color="success" icon className={className}>
-        Note deleted.
-        {onUndelete ? <a ref="undo" href="#" className="ml-1" onClick={() => onUndelete(note)}>undo</a> : null}
+        <span className="align-middle">Note deleted.</span>
+        {onUndelete &&
+          <Button color="link" onClick={() => onUndelete(note)} className="ml-1 p-0">
+            undo
+          </Button>
+        }
       </Alert>
     );
   }
