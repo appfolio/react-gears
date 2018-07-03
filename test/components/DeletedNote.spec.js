@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { DeletedNote } from '../../src';
+import { Button, DeletedNote } from '../../src';
 import { mount } from 'enzyme';
 
 describe('<DeletedNote />', () => {
@@ -20,7 +20,7 @@ describe('<DeletedNote />', () => {
   });
 
   it('should call onUndelete on click', () => {
-    component.ref('undo').simulate('click');
+    component.find(Button).simulate('click');
     assert.equal(onUndelete.calledOnce, true);
   });
 });
