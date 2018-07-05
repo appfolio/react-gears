@@ -31,11 +31,11 @@ describe('<NoteHeader />', () => {
       });
 
       it('should not render edit link if no onEdit prop', () => {
-        assert.equal(component.find('.js-note-header__edit').nodes.length, 0);
+        assert.equal(component.find('.js-note-header__edit').exists(), false);
       });
 
       it('should not render delete link if no onDelete prop', () => {
-        assert.equal(component.find('.js-note-header__delete').nodes.length, 0);
+        assert.equal(component.find('.js-note-header__delete').exists(), false);
       });
     });
 
@@ -47,7 +47,7 @@ describe('<NoteHeader />', () => {
       });
 
       it('should render edited', () => {
-        assert(component.find('.js-note-header__edited').nodes.length);
+        assert(component.find('.js-note-header__edited').exists());
       });
     });
 
@@ -60,11 +60,11 @@ describe('<NoteHeader />', () => {
       const component = mount(<NoteHeader note={note2} />);
 
       it('should not render from', () => {
-        assert.equal(component.find('.js-note-header__from').nodes.length, 0);
+        assert.equal(component.find('.js-note-header__from').exists(), false);
       });
 
       it('should not render edited', () => {
-        assert.equal(component.find('.js-note-header__edited').nodes.length, 0);
+        assert.equal(component.find('.js-note-header__edited').exists(), false);
       });
     });
   });
@@ -76,11 +76,11 @@ describe('<NoteHeader />', () => {
 
       it('should render edit link if onEdit prop', () => {
         assert(component);
-        assert(component.find('.js-note-header__edit').nodes.length);
+        assert(component.find('.js-note-header__edit').exists());
       });
 
       it('should call onEdit on click', () => {
-        component.find('.js-note-header__edit').simulate('click');
+        component.find('.js-note-header__edit').hostNodes().simulate('click');
         assert.equal(onEdit.calledOnce, true);
       });
     });
@@ -93,11 +93,11 @@ describe('<NoteHeader />', () => {
 
       it('should render delete link if onDelete prop', () => {
         assert(component);
-        assert(component.find('.js-note-header__delete').nodes.length);
+        assert(component.find('.js-note-header__delete').exists());
       });
 
       it('should call onDelete on click', () => {
-        component.find('.js-note-header__delete').simulate('click');
+        component.find('.js-note-header__delete').hostNodes().simulate('click');
         assert.equal(onDelete.calledOnce, true);
       });
     });

@@ -1,8 +1,8 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { EditableNote, FormLabelGroup } from '../../src';
 import { mount } from 'enzyme';
+import { EditableNote, FormLabelGroup, Input } from '../../src';
 
 describe('<EditableNote />', () => {
   const note = {
@@ -34,9 +34,9 @@ describe('<EditableNote />', () => {
 
       describe('should render a text input', () => {
         it('should render with text', () => {
-          const input = component.ref('text');
+          const input = component.find(Input);
 
-          assert(input.exists);
+          assert(input.exists());
           assert.equal(1, input.length);
           assert.equal(note.text, input.text());
           assert(!input.props().disabled);
@@ -44,24 +44,15 @@ describe('<EditableNote />', () => {
 
         it('should call onChange on text change', () => {
           const event = { target: { value: 'Yikes!' } };
-          component.ref('text').simulate('change', event);
+          component.find(Input).simulate('change', event);
           assert(props.onChange.calledOnce);
           assert(props.onChange.calledWith(sinon.match(event), note));
         });
       });
 
       describe('should render a cancel button', () => {
-        it('should render with text', () => {
-          const button = component.ref('cancel');
-
-          assert(button.exists);
-          assert.equal(1, button.length);
-          assert.equal('Cancel', button.text());
-          assert(!button.props().disabled);
-        });
-
         it('should call onCancel on click', () => {
-          component.ref('cancel').simulate('click');
+          component.find('.js-editable-note_cancel').hostNodes().simulate('click');
           assert(props.onCancel.calledOnce);
           assert(props.onCancel.calledWith(note));
         });
@@ -69,17 +60,14 @@ describe('<EditableNote />', () => {
 
       describe('should render a save button', () => {
         it('should render with text', () => {
-          const button = component.ref('save');
+          const button = component.find('.js-editable-note_save').hostNodes();
 
-          assert(button.exists);
-          assert.equal(1, button.length);
-          assert.equal('Save', button.text());
-          assert.equal('primary', button.props().color);
+          assert(button);
           assert(!button.props().disabled);
         });
 
         it('should call onSave on click', () => {
-          component.ref('save').simulate('click');
+          component.find('.js-editable-note_save').hostNodes().simulate('click');
           assert(props.onSave.calledOnce);
           assert(props.onSave.calledWith(note));
         });
@@ -104,26 +92,22 @@ describe('<EditableNote />', () => {
       });
 
       it('should still render input area', () => {
-        const input = component.ref('text');
+        const input = component.find(Input);
 
         assert(input.exists);
         assert.equal(1, input.length);
       });
 
       it('should still render cancel button', () => {
-        const button = component.ref('cancel');
+        const button = component.find('.js-editable-note_cancel').hostNodes();
 
         assert(button.exists);
-        assert.equal(1, button.length);
-        assert.equal('Cancel', button.text());
       });
 
       it('should still render save button', () => {
-        const button = component.ref('save');
+        const button = component.find('.js-editable-note_save');
 
         assert(button.exists);
-        assert.equal(1, button.length);
-        assert.equal('Save', button.text());
       });
     });
 
@@ -142,7 +126,7 @@ describe('<EditableNote />', () => {
       });
 
       it('should render input state as danger', () => {
-        const input = component.ref('text');
+        const input = component.find(Input);
 
         assert.equal('danger', input.props().state);
       });
@@ -154,21 +138,21 @@ describe('<EditableNote />', () => {
       });
 
       it('should render text input disabled', () => {
-        const input = component.ref('text');
+        const input = component.find(Input);
 
         assert(input.exists);
         assert(input.props().disabled);
       });
 
       it('should render cancel button disabled', () => {
-        const button = component.ref('cancel');
+        const button = component.find('.js-editable-note_cancel').hostNodes();
 
         assert(button.exists);
         assert(button.props().disabled);
       });
 
       it('should render save button disabled with alternate text', () => {
-        const button = component.ref('save');
+        const button = component.find('.js-editable-note_save').hostNodes();
 
         assert(button.exists);
         assert(button.props().disabled);
