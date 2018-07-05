@@ -1,8 +1,8 @@
 import React from 'react';
 import assert from 'assert';
-import { Note } from '../../src';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
+import { CardText, Note } from '../../src';
 
 describe('<Note />', () => {
   let component;
@@ -52,7 +52,7 @@ describe('<Note />', () => {
         });
 
         it('should render a CardBlock with text', () => {
-          const noteControl = component.find('Card').find('CardBlock').find('CardText');
+          const noteControl = component.find(CardText);
 
           assert(noteControl.exists());
           assert.equal(1, noteControl.length);
@@ -79,7 +79,7 @@ describe('<Note />', () => {
       });
 
       it('should still render a CardBlock with text', () => {
-        const noteControl = component.find('Card').find('CardBlock').find('CardText');
+        const noteControl = component.find(CardText);
 
         assert(noteControl.exists());
         assert.equal(1, noteControl.length);

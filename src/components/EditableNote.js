@@ -41,8 +41,8 @@ class EditableNote extends React.Component {
           <FormLabelGroup feedback={errors} stacked>
             <Input
               autoFocus
+              className="js-editable-note_text"
               disabled={saving}
-              ref="text"
               rows={rows}
               state={errors && 'danger'}
               type="textarea"
@@ -52,10 +52,10 @@ class EditableNote extends React.Component {
           </FormLabelGroup>
           {children}
           <ButtonToolbar className="mt-3 mb-0">
-            <Button ref="save" color="primary" disabled={saving} onClick={() => onSave(note)}>
+            <Button className="js-editable-note_save" color="primary" disabled={saving} onClick={() => onSave(note)}>
               {saving ? 'Saving...' : 'Save'}
             </Button>
-            <Button ref="cancel" disabled={saving} onClick={() => onCancel(note)}>Cancel</Button>
+            <Button className="js-editable-note_cancel" disabled={saving} onClick={() => onCancel(note)}>Cancel</Button>
           </ButtonToolbar>
         </CardBody>
       </Card>
