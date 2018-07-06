@@ -89,7 +89,7 @@ describe('<AddressInput />', () => {
 
     it('should not set any color on FormGroups without errors', () => {
       const groups = component.find(FormGroup);
-      groups.forEach(group => assert.equal(group.prop('color'), undefined));
+      groups.forEach(group => assert.equal(group.prop('feedback'), undefined));
     });
 
     it('should not set the state of non-Select inputs without errors', () => {

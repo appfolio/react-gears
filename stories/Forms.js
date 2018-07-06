@@ -34,36 +34,7 @@ const formData = {
   mindTricks: true,
 };
 
-const colKnobOptions = {
-  range: true,
-  min: 1,
-  max: 12,
-};
-
 storiesOf('Forms', module)
-  .addWithInfo('Live example', () => (
-    <div>
-      <FormRow
-        type={select('type', ['select', 'checkbox', 'radio'], 'select')}
-        label={text('label', 'Select a Movie')}
-        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
-        feedback={text('feedback', 'You must select a movie')}
-        stacked={boolean('stacked', false)}
-        width={{
-          xs: number('xs width', 12, colKnobOptions),
-          sm: number('sm width', 12, colKnobOptions),
-          md: number('md width', 12, colKnobOptions),
-          lg: number('lg width', 12, colKnobOptions),
-          xl: number('xl width', 12, colKnobOptions),
-        }}
-        name="live-input"
-      >
-        <FormChoice value="override">A New Hope</FormChoice>
-        <FormChoice>The Empire Strikes Back</FormChoice>
-        <FormChoice>The Force Awakens</FormChoice>
-      </FormRow>
-    </div>
-  ))
   .addWithInfo('Inputs', () => (
     <div>
       <FormGroup row>

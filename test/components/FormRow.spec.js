@@ -33,21 +33,6 @@ describe('<FormRow />', () => {
       assert.equal(input.prop('size'), 'sm');
       assert.equal(input.prop('type'), 'text');
     });
-
-    it('should sync color and state', () => {
-      assert.equal(component.prop('color'), '');
-      assert.equal(component.find(FormLabelGroup).prop('color'), '');
-      assert.equal(component.find(Input).prop('state'), '');
-
-      component.setProps({ color: 'danger', state: 'warning' });
-      assert.equal(component.find(FormLabelGroup).prop('color'), 'danger');
-      assert.equal(component.find(Input).prop('state'), 'danger');
-
-      component.setProps({ color: null });
-      assert.equal(component.prop('color'), 'warning');
-      assert.equal(component.find(FormLabelGroup).prop('color'), 'warning');
-      assert.equal(component.find(Input).prop('state'), 'warning');
-    });
   });
 
   describe('with static type', () => {
