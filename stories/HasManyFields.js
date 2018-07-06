@@ -21,6 +21,19 @@ const items = [
 ];
 
 storiesOf('HasManyFields', module)
+  .addWithInfo('Live Example', () => (
+    <HasManyFields
+      defaultValue={items}
+      template={AddressInput}
+      blank={{ countryCode: 'US' }}
+      label="Add an Address"
+      disabled={boolean('disabled', false)}
+      onAdd={action('hasManyFields onAdd')}
+      onRemove={action('hasManyFields onRemove')}
+      onUpdate={action('hasManyFields onUpdate')}
+      onChange={action('hasManyFields onChange')}
+    />
+  ))
   .addWithInfo('Row Wrapper', () => (
     <HasManyFieldsRow
       onDelete={action('onDelete')}
@@ -37,17 +50,4 @@ storiesOf('HasManyFields', module)
     <HasManyFieldsAdd onClick={action('onClick')}>
       Button Label Content
     </HasManyFieldsAdd>
-  ))
-  .addWithInfo('Full Example', () => (
-    <HasManyFields
-      defaultValue={items}
-      template={AddressInput}
-      blank={{ countryCode: 'US' }}
-      label="Add an Address"
-      disabled={boolean('disabled', false)}
-      onAdd={action('hasManyFields onAdd')}
-      onRemove={action('hasManyFields onRemove')}
-      onUpdate={action('hasManyFields onUpdate')}
-      onChange={action('hasManyFields onChange')}
-    />
   ));

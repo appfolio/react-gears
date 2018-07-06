@@ -33,7 +33,7 @@ const ThemeLink = props => {
 
 const THEMES = [
   { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.0-alpha/bootstrap-saffron.min.css' },
-  { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' },
+  { name: 'MyCase', url: 'https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css' },
   { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
   { name: 'Bootstrap default', url: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' }
   // { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },

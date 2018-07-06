@@ -146,7 +146,12 @@ storiesOf('react-gears', module)
           <FormRow label="Disabled" disabled />
           <FormRow type={DateInput} label="Date" />
           <FormRow type="password" label="Password" />
-          <FormRow label="Select" type="select" hint="Example help text">
+          <FormRow
+            className="custom-select"
+            label="Select"
+            type="select"
+            hint="Example help text"
+          >
             <FormChoice>A New Hope</FormChoice>
             <FormChoice>The Empire Strikes Back</FormChoice>
             <FormChoice>The Force Awakens</FormChoice>
