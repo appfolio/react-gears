@@ -12,7 +12,6 @@ import './CreditCardNumber';
 import './CurrencyInput';
 import './Datapair';
 import './DateInput';
-import './EditableNote';
 import './ExpandableSection';
 import './FeatureBanner';
 import './FilterList';

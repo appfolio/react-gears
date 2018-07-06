@@ -1,7 +1,24 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import { Note } from '../src';
 import { boolean, number, text } from '@storybook/addon-knobs';
+import { EditableNote, Note } from '../src';
+
+const decription = `This component is used in conjunction with the "Notes" component to provide
+  views for both the "edit" and "add" note features.
+
+  If the note contains valid data,
+  then a note header will be rendered, otherwise the header is omitted.  This behavior allows
+  the component to be used for both "add" (no/minimal note data), or "edit" (with note data)
+  views.
+
+  This component also checks the "saving" property of the note in order to disable
+  the controls and change the text on the "Save" button.`;
+
+const noteToEdit = {
+  date: new Date(),
+  from: 'Gary Thomas',
+  text: 'Hello World'
+};
 
 storiesOf('Note', module)
   .addWithInfo('Live example', () => {
@@ -53,4 +70,38 @@ storiesOf('Note', module)
         <img src="http://lorempixel.com/200/100/sports/" alt="Sample" />
       </Note>
     );
+  })
+  .addWithInfo('EditableNote with note prop', decription, () => {
+    const withNote = boolean('with note', true);
+    const note = withNote ? noteToEdit : { text: '' };
+
+    return (
+      <EditableNote
+        note={note}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onSave={action('onSave')}
+        saving={boolean('saving', false)}
+      />
+    );
+  })
+  .addWithInfo('EditableNote with children', decription, () => {
+    const withNote = boolean('with note', true);
+    const saving = boolean('saving', false);
+    const note = withNote ? noteToEdit : { text: '' };
+
+    return (
+      <EditableNote
+        note={note}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onSave={action('onSave')}
+        saving={saving}
+      >
+        <span>Add an attachment:  </span>
+        <button disabled={saving}>Choose file...</button>
+        <hr />
+      </EditableNote>
+    );
   });
+
