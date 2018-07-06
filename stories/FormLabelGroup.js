@@ -15,13 +15,13 @@ storiesOf('FormLabelGroup', module)
         label={text('label', 'Some Input')}
         labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
-        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
+        validFeedback={text('validFeedback')}
         hint={text('hint', '')}
         required={boolean('required', false)}
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}
       >
-        <Alert color="info" className="text-center p-4" style={{ borderStyle: 'dashed' }}>
+        <Alert color="info" className="text-center p-4 mb-0" style={{ borderStyle: 'dashed' }}>
           Your content here
         </Alert>
       </FormLabelGroup>
