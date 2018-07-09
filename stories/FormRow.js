@@ -15,7 +15,7 @@ storiesOf('FormRow', module)
         label={text('label', 'First Name')}
         labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
-        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
+        validFeedback={text('validFeedback')}
         hint={text('hint', '')}
         required={boolean('required', false)}
         inline={boolean('inline', false)}
