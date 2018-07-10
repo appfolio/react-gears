@@ -19,7 +19,7 @@ describe('<Steps />', () => {
 
   it('should activate the current step', () => {
     const component = mount(<Steps steps={steps} step={2} />);
-    assert.equal(component.find('label.text-gray-dark').text(), steps[2]);
+    assert.equal(component.find('label.text-dark').text(), steps[2]);
   });
 
   it('should show complete correctly', () => {
