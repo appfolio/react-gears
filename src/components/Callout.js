@@ -33,7 +33,7 @@ class Callout extends React.Component {
         {...props}
       >
         <span className={`callout-arrow ${styles.arrow} ${styles[placement]} bg-${background}`} />
-        <div className={`${styles.body} bg-${background} text-gray-dark p-3`}>
+        <div className={`${styles.body} bg-${background} text-dark p-3`}>
           {children}
         </div>
       </div>
