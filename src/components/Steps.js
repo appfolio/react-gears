@@ -12,7 +12,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
   });
   const activeStep = steps[step];
   const activeStepClasses = classNames({
-    'text-gray-dark': !complete,
+    'text-dark': !complete,
     'text-success': complete,
     'd-sm-none': collapse !== true,
     'text-center': true
@@ -45,7 +45,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
           const iconClasses = classNames({
             'text-primary': stepComplete,
             'text-white': stepActive,
-            'text-gray-dark': !(complete || stepComplete || stepActive),
+            'text-dark': !(complete || stepComplete || stepActive),
             'text-success': complete
           });
 
@@ -54,7 +54,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
             'text-success': complete,
-            'text-gray-dark': stepActive,
+            'text-dark': stepActive,
           });
 
           return (
