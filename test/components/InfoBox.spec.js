@@ -19,7 +19,7 @@ describe('<InfoBox />', () => {
     const wrapperRendered = wrapper.render();
 
     assert.equal(wrapper.prop('id'), 'alpha');
-    assert.equal(wrapper.find('.text-gray-dark').text(), 'Charlie');
+    assert.equal(wrapper.find('.text-dark').text(), 'Charlie');
     assert.equal(wrapper.find('h1').text(), 'Bravo');
     assert(wrapper.find('Icon').exists());
     assert(wrapperRendered.hasClass('slick'));
