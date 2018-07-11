@@ -34,16 +34,8 @@ storiesOf('Datapair', module)
   ))
   .addWithInfo('with node in label', description, () => (
     <Card className="mt-1">
-<<<<<<< 951bfeada74729177b4ef8c62119c26721291a79
-      <CardBlock>
-        <Datapair label={<span>Name <Badge>awesome</Badge></span>} value="Stuff" />
-      </CardBlock>
-=======
       <CardBody>
-        <Datapair label={<span>Name <Badge>awesome</Badge></span>}>
-          Stuff
-        </Datapair>
+        <Datapair label={<span>Name <Badge>awesome</Badge></span>} value="Stuff" />
       </CardBody>
->>>>>>> gt - WIP First pass at React 16, Reactstrap 5, Bootstrap 4 final
     </Card>
   ));
