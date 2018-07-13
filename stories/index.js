@@ -45,3 +45,5 @@ import './Tooltip';
 import './Waiting';
 
 import './More';
+
+import './EditableTable';

@@ -82,6 +82,7 @@ import Datapair from './components/Datapair.js';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
+import EditableTable from './components/EditableTable.js';
 import ExpandableSection from './components/ExpandableSection.js';
 import FeatureBanner from './components/FeatureBanner.js';
 import FileInput from './components/FileInput.js';
@@ -215,6 +216,7 @@ export {
   CurrencyInput,
   Datapair,
   DateInput,
+  EditableTable,
   ExpandableSection,
   Badge as Flag,
   FeatureBanner,
