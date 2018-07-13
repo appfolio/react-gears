@@ -174,6 +174,10 @@ const DatapairExample = () => {
         label="This is a really long label that probably shouldn't be this long"
         value="Stuff"
       />
+      <Datapair
+        label="test"
+        value={<div/>}
+      />
     </CardBlock>
   </Card>
 }

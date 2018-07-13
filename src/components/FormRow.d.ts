@@ -12,7 +12,7 @@ interface FormRowPropTypes extends
   id?: string;
   required?: boolean;
   rowClassName?: string;
-  type?: 'checkbox' | 'radio' | 'static' | 'file' | 'string';
+  type?: any;
   inline?: boolean;
   stacked?: boolean;
   state?: string;
