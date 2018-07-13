@@ -292,7 +292,6 @@ const HasManyFieldsExample = () => {
     onUpdate={() => { }}
     onChange={() => { }}
   />;
-  
 }
 
 const HasManyFieldsAddExample = () => {
@@ -303,6 +302,12 @@ const HasManyFieldsAddExample = () => {
 
 const HasManyFieldsRowExample = () => {
   <HasManyFieldsRow onDelete={() => { undefined }} disabled>
+    Stuff
+  </HasManyFieldsRow>
+}
+
+const HasManyFieldsRowDisabledExample = () => {
+  <HasManyFieldsRow onDelete={() => { undefined }} disabled disabledReason={'test'} disabledReasonPlacement={'top'}>
     Stuff
   </HasManyFieldsRow>
 }
