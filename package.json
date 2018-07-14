@@ -50,6 +50,7 @@
     "react-fontawesome": "^1.4.0",
     "react-onclickoutside": "^6.7.1",
     "react-popper": "^0.10.4",
+    "react-select": "^2.0.0",
     "react-select-plus": "1.2.0",
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.3.1",
