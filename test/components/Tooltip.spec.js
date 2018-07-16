@@ -19,6 +19,7 @@ describe('<Tooltip />', () => {
 
     it('should toggle state', () => {
       component.prop('toggle')();
+      component.update();
       assert.equal(component.prop('isOpen'), true);
       assert.equal(component.state('isOpen'), true);
     });

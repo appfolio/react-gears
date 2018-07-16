@@ -5,7 +5,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 
 storiesOf('InfoBox', module)
   .addWithInfo('Live example', () => (
-    <div className="bg-faded p-4">
+    <div className="bg-light p-4">
       <div className="text-muted mb-3">
         <em>(Background color added for contrast)</em>
       </div>

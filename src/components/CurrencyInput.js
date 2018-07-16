@@ -59,7 +59,7 @@ const CurrencyInput = ({ size, ...props }) => {
 
   return (
     <InputGroup size={size} className={props.className}>
-      <InputGroupAddon>$</InputGroupAddon>
+      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
       <MaskedInput {...maskedProps} />
     </InputGroup>
   );

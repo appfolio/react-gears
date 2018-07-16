@@ -16,17 +16,19 @@ describe('<InfoBox />', () => {
         Charlie
       </InfoBox>);
 
+    const wrapperRendered = wrapper.render();
+
     assert.equal(wrapper.prop('id'), 'alpha');
-    assert.equal(wrapper.ref('children').text(), 'Charlie');
-    assert.equal(wrapper.ref('title').text(), 'Bravo');
+    assert.equal(wrapper.find('.text-dark').text(), 'Charlie');
+    assert.equal(wrapper.find('h1').text(), 'Bravo');
     assert(wrapper.find('Icon').exists());
-    assert(wrapper.hasClass('slick'));
-    assert(wrapper.hasClass('text-success')); // TODO assumes internal details
+    assert(wrapperRendered.hasClass('slick'));
+    assert(wrapperRendered.hasClass('text-success')); // TODO assumes internal details
   });
 
   it('does not render header if title not specified', () => {
     const wrapper = mount(<InfoBox icon='check'>Delta</InfoBox>);
-    assert.equal(wrapper.ref('title').nodes.length, 0);
+    assert.equal(wrapper.find('h1').length, 0);
     assert.equal(wrapper.find('Icon').exists(), false);
   });
 

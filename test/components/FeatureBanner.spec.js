@@ -16,20 +16,22 @@ describe('<FeatureBanner />', () => {
   });
 
   it('renders default alertText', () => {
-    assert.equal(wrapper.ref('alertText').text(), FeatureBanner.defaultProps.alertText);
+    assert.equal(wrapper.find('h2').at(0).text(), FeatureBanner.defaultProps.alertText);
+    assert.equal(wrapper.find('h2').at(1).text(), FeatureBanner.defaultProps.alertText);
   });
 
   it('renders passed in alertText', () => {
     wrapper = mount(<FeatureBanner title='test' subtitle='is fun' alertText='whatever' />);
-    assert.equal(wrapper.ref('alertText').text(), 'whatever');
+    assert.equal(wrapper.find('h2').at(0).text(), 'whatever');
+    assert.equal(wrapper.find('h2').at(1).text(), 'whatever');
   });
 
   it('renders passed in title', () => {
-    assert.equal(wrapper.ref('title').text(), 'test');
+    assert.equal(wrapper.find('h3').text(), 'test');
   });
 
   it('renders passed in subtitle', () => {
-    assert.equal(wrapper.ref('subtitle').text(), 'is fun');
+    assert.equal(wrapper.find('p').text(), 'is fun');
   });
 });
 

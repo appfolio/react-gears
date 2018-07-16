@@ -35,25 +35,25 @@ export default class Paginator extends React.Component {
     const { from, to } = paginationState.currentItemRange();
 
     const firstPageLink = paginationState.showFirst() && (
-      <ShortcutLink ref="first" name="first" page={1} onClick={onClick}>
+      <ShortcutLink name="first" page={1} onClick={onClick}>
         <Icon name="angle-double-left" />
       </ShortcutLink>
     );
 
     const prevPageLink = paginationState.showPrevious() && (
-      <ShortcutLink ref="previous" name="previous" page={currentPage - 1} onClick={onClick}>
+      <ShortcutLink name="previous" page={currentPage - 1} onClick={onClick}>
         <Icon name="angle-left" />
       </ShortcutLink>
     );
 
     const nextPageLink = paginationState.showNext() && (
-      <ShortcutLink ref="next" name="next" page={currentPage + 1} onClick={onClick}>
+      <ShortcutLink name="next" page={currentPage + 1} onClick={onClick}>
         <Icon name="angle-right" />
       </ShortcutLink>
     );
 
     const lastPageLink = paginationState.showLast() && (
-      <ShortcutLink ref="last" name="last" page={paginationState.totalPages} onClick={onClick}>
+      <ShortcutLink name="last" page={paginationState.totalPages} onClick={onClick}>
         <Icon name="angle-double-right" />
       </ShortcutLink>
     );
@@ -66,7 +66,6 @@ export default class Paginator extends React.Component {
         pages.push(
           <Page
             key={page}
-            ref={page}
             page={page}
             current={currentPage === page}
             onClick={onClick}
