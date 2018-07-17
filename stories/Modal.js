@@ -6,18 +6,34 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  FormRow
+  ModalFooter
 } from '../src';
 import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs';
 import { dateParse } from 'js-utils-apm';
-import { observable } from 'mobx';
-import { Observer } from 'mobx-react';
 
-const data = observable({
-  date: ''
-});
+class Whatever extends React.Component {
+  state = { date: '' };
+
+  onChange = (val) => {
+    this.setState({
+      date: val
+    });
+  };
+
+  render() {
+    return (
+      <Modal isOpen backdrop>
+        <DateInput
+          dateFormat="MM/DD/YYYY"
+          value={this.state.date}
+          onChange={this.onChange}
+          parse={dateParse}
+        />
+      </Modal>
+    );
+  }
+}
 
 storiesOf('Modal', module)
   .addWithInfo('Live example', () => (
@@ -45,34 +61,4 @@ storiesOf('Modal', module)
       </ModalFooter>
     </Modal>
   ))
-  .addWithInfo('Autofocus', () => (
-    <Observer
-      render={() => (
-        <Modal
-          isOpen={boolean('isOpen', true)}
-          backdrop={boolean('backdrop', true)}
-          size={select('size', [null, 'sm', 'md', 'lg'], null)}
-          autoFocus={false}
-        >
-          <ModalHeader toggle={() => {}}>Modal title</ModalHeader>
-          <ModalBody>
-            This input should have focus:{' '}
-            <FormRow
-              type={DateInput}
-              autoFocus
-              dateFormat="MM/DD/YYYY"
-              value={data.date}
-              onChange={val => (data.date = val)}
-              parse={dateParse}
-            />
-          </ModalBody>
-          <ModalFooter>
-            <ButtonToolbar>
-              <Button color="primary">Do Something</Button>
-              <Button>Cancel</Button>
-            </ButtonToolbar>
-          </ModalFooter>
-        </Modal>
-      )}
-    />
-  ));
+  .addWithInfo('Autofocus', () => <Whatever />);
