@@ -12,15 +12,15 @@ describe('<ActivityLog />', () => {
         <Activity date={new Date()} action="Created" by="John Doe" />
       </ActivityLog>);
     assert(component);
-    const activities = component.find(Activity).nodes;
+    const activities = component.find(Activity);
     assert.equal(2, activities.length);
-    assert.equal('Edited', activities[0].props.action);
-    assert.equal('Created', activities[1].props.action);
+    assert.equal('Edited', activities.get(0).props.action);
+    assert.equal('Created', activities.get(1).props.action);
   });
 
   it('should render an empty component', () => {
     const component = mount(<ActivityLog />);
     assert(component);
-    assert.equal(0, component.find(Activity).nodes.length);
+    assert.equal(0, component.find(Activity).length);
   });
 });

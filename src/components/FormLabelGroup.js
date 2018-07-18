@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
 import Col from './Col';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
@@ -20,7 +21,6 @@ const labelSizeTranslations = {
 const FormLabelGroup = (props) => {
   const {
     children,
-    color,
     feedback,
     inputId,
     hint,
@@ -30,18 +30,30 @@ const FormLabelGroup = (props) => {
     rowClassName,
     size,
     stacked,
+    validFeedback,
     width
   } = props;
 
-  const rowColor = color || (feedback && 'danger');
-  const labelAlignment = stacked ? '' : 'text-sm-right pr-0';
+  const rowColor = classnames({
+    danger: feedback,
+    success: validFeedback,
+  });
+  const labelClassNames = classnames({
+    'text-sm-right pr-0': !stacked,
+    'text-danger': feedback,
+    'text-success': validFeedback
+  });
+  const hiddenClassNames = classnames({
+    'is-invalid': feedback,
+    'is-valid': validFeedback
+  }, 'form-control');
   const labelWidth = stacked ? 12 : (labelSizeTranslations[labelSize || 'md']);
   const inputWidth = (stacked || !label) ? 12 : (12 - labelWidth);
 
   return (
     <FormGroup row className={rowClassName} color={rowColor}>
       {label && (
-        <Label for={inputId} sm={labelWidth} size={size} className={labelAlignment}>
+        <Label for={inputId} sm={labelWidth} size={size} className={labelClassNames}>
           {label}
           {required && label ? <Required /> : null}
         </Label>
@@ -50,8 +62,10 @@ const FormLabelGroup = (props) => {
         <Row>
           <Col {...width}>
             {children}
+            {rowColor && <div className={hiddenClassNames} hidden />}
             {hint && <FormText color="muted">{hint}</FormText>}
             {feedback && <FormFeedback>{feedback}</FormFeedback>}
+            {validFeedback && <FormFeedback valid>{validFeedback}</FormFeedback>}
           </Col>
         </Row>
       </Col>
@@ -61,11 +75,7 @@ const FormLabelGroup = (props) => {
 
 FormLabelGroup.propTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.string,
-  feedback: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  feedback: PropTypes.node,
   inline: PropTypes.bool,
   inputId: PropTypes.string,
   hint: PropTypes.string,
@@ -75,6 +85,7 @@ FormLabelGroup.propTypes = {
   rowClassName: PropTypes.string,
   size: PropTypes.string,
   stacked: PropTypes.bool,
+  validFeedback: PropTypes.node,
   width: PropTypes.object
 };
 

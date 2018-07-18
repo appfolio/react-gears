@@ -18,7 +18,7 @@ describe('<Waiting />', () => {
     assert.equal(true, modal.prop('isOpen'));
     assert.equal(true, modal.prop('backdrop'));
     assert.equal('something', modal.prop('className'));
-    assert.equal('Please Wait', wrapper.ref('title').text('Please Wait'));
+    assert.equal('Please Wait', wrapper.find('header').text());
   });
 
   it('uses passed in children', () => {

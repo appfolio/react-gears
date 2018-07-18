@@ -15,7 +15,8 @@ import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
-import InputGroupButton from './InputGroupButton';
+import InputGroupAddon from './InputGroupAddon';
+import DropdownToggle from './DropdownToggle';
 
 const { parse } = Fecha;
 
@@ -244,6 +245,7 @@ export default class DateInput extends React.Component {
     const date = this.getCurrentDate();
 
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
+    // TODO invalid, valid classes:
     return (
       <div>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
@@ -255,13 +257,13 @@ export default class DateInput extends React.Component {
               type="text"
               onBlur={this.onBlur}
               onChange={this.onChange}
-              onClick={showOnFocus && this.show}
-              onFocus={showOnFocus && this.show}
+              onClick={showOnFocus ? this.show : undefined}
+              onFocus={showOnFocus ? this.show : undefined}
               onKeyDown={this.onKeyDown}
               disabled={disabled}
               {...props}
             />
-            <InputGroupButton onClick={this.toggle}>
+            <InputGroupAddon addonType="append" onClick={this.toggle}>
               <Button
                 className="px-2"
                 disabled={disabled}
@@ -271,9 +273,9 @@ export default class DateInput extends React.Component {
               >
                 <Icon name="calendar" fixedWidth />
               </Button>
-            </InputGroupButton>
+            </InputGroupAddon>
           </InputGroup>
-
+          <DropdownToggle tag="div" />
           <DropdownMenu
             className="p-0"
             onKeyDown={this.onKeyDown}

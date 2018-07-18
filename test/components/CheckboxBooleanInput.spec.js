@@ -18,12 +18,8 @@ describe('<CheckboxBooleanInput />', () => {
     assert.equal(component.type(), Input);
   });
 
-  it('should not have any children', () => {
-    assert.equal(component.children().length, 0);
-  });
-
   it('should not render checkboxLabel', () => {
-    assert.equal(wrapper.ref('label').exists(), false);
+    assert.equal(wrapper.ref('label'), undefined);
   });
 
   it('should use value for checked state', () => {
@@ -37,8 +33,8 @@ describe('<CheckboxBooleanInput />', () => {
 
   it('should render checkboxLabel if specified', () => {
     const wrapped = mount(<CheckboxBooleanInput checkboxLabel="Yowza" />);
-    assert.equal(wrapped.ref('label').text(), 'Yowza');
-    assert.equal(wrapped.ref('label').exists(), true);
+    assert.equal(wrapped.ref('label').textContent, 'Yowza');
+    assert(wrapped.ref('label'));
   });
 
   it('should allow you to pass through other props to the input', () => {

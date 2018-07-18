@@ -8,12 +8,12 @@ import { CountryInput } from '../../src';
 describe('<CountryInput />', () => {
   it('should default to blank', () => {
     const component = mount(<CountryInput />);
-    assert.equal(component.find('select').node.selectedIndex, 0);
+    assert.equal(component.find('select').getDOMNode().selectedIndex, 0);
   });
 
   it('should default to specified countryCode', () => {
     const component = mount(<CountryInput defaultValue="US" />);
-    assert.equal(component.find('select').node.selectedIndex, 1);
+    assert.equal(component.find('select').getDOMNode().selectedIndex, 1);
   });
 
   it('should call onChange when new selection picked', () => {

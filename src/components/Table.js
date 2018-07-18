@@ -7,10 +7,10 @@ class TableComponent extends React.Component {
   static propTypes = {
     size: PropTypes.string,
     bordered: PropTypes.bool,
+    borderless: PropTypes.bool,
     striped: PropTypes.bool,
-    inverse: PropTypes.bool,
+    dark: PropTypes.bool,
     hover: PropTypes.bool,
-    reflow: PropTypes.bool,
     responsive: PropTypes.bool
   }
   static defaultProps = {

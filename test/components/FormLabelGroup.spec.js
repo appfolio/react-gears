@@ -147,16 +147,6 @@ describe('<FormLabelGroup />', () => {
     });
   });
 
-  describe('with color', () => {
-    const component = shallow(<FormLabelGroup color="success">Hello World</FormLabelGroup>);
-
-    it('should use the color prop to set the color of the FormGroup', () => {
-      const formGroup = component.find(FormGroup);
-      assert.equal(formGroup.length, 1);
-      assert.equal(formGroup.prop('color'), 'success');
-    });
-  });
-
   describe('stacked', () => {
     const component = shallow(<FormLabelGroup label="First Name" stacked>Hello World</FormLabelGroup>);
 
@@ -195,12 +185,40 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('with feedback', () => {
-    const component = shallow(<FormLabelGroup feedback="You're doing amazing sweetie!">Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup 
+        label="Label"
+        feedback="You're doing amazing sweetie!"
+      >
+        Hello World
+      </FormLabelGroup>
+    );
 
     it('should render FormFeedback with the feedback', () => {
       const feedback = component.find(FormFeedback);
+      const label = component.find(Label);
       assert.equal(feedback.length, 1);
       assert.equal(feedback.children().text(), "You're doing amazing sweetie!");
+      assert.equal(label.hasClass('text-danger'), true);
+    });
+  });
+
+  describe('with valid feedback', () => {
+    const component = shallow(
+      <FormLabelGroup
+        label="Label"
+        validFeedback="YOU ARE CORRECT"
+      >
+        Hello World
+      </FormLabelGroup>
+    );
+
+    it('should render FormFeedback with the valid feedback', () => {
+      const feedback = component.find(FormFeedback);
+      const label = component.find(Label);
+      assert.equal(feedback.length, 1);
+      assert.equal(feedback.children().text(), 'YOU ARE CORRECT');
+      assert.equal(label.hasClass('text-success'), true);
     });
   });
 });

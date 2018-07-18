@@ -133,7 +133,7 @@ const CalendarExample = () => {
 const CalloutExample = () => {
   <Callout
     color={'primary'}
-    background={'faded'}
+    background={'light'}
     placement={'top'}
     title={'todo'}
   >

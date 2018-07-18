@@ -1,8 +1,9 @@
 import React from 'react';
+import { storiesOf } from '@storybook/react';
 import {
   Button,
   Card,
-  CardBlock,
+  CardBody,
   CardSubtitle,
   CardText,
   CardTitle,
@@ -14,15 +15,14 @@ import {
   Icon,
   Paginator,
   Popover,
-  PopoverContent,
+  PopoverBody,
   PopoverTitle,
   Row,
   Table,
   Tooltip,
 } from '../src';
-import { storiesOf } from '@storybook/react';
 
-const demoHeader = (caption) => <h2 className="text-muted text-uppercase mt-5 mb-4">{caption}</h2>;
+const demoHeader = caption => <h2 className="text-muted text-uppercase mt-5 mb-4">{caption}</h2>;
 
 storiesOf('react-gears', module)
   .add('Introduction', () => (
@@ -72,20 +72,20 @@ storiesOf('react-gears', module)
       <Col>
         {demoHeader('COLORS')}
         <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'inverse', 'faded'].map((color) =>
+          {['primary', 'success', 'info', 'warning', 'danger', 'inverse', 'dark', 'light'].map(color => (
             <div key={color} style={{ width: 100 }} className="d-inline-block mb-1">
               <b>{`bg-${color}`}</b>
               <div className={`bg-${color}`} style={{ height: 100 }} />
             </div>
-          )}
+          ))}
         </div>
 
         <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'muted', 'white'].map((color) =>
+          {['primary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'white'].map(color => (
             <div key={color} className="mb-1">
               <h3 className={`text-${color}`}>{`text-${color}`}</h3>
             </div>
-          )}
+          ))}
         </div>
 
         {demoHeader('HEADINGS')}
@@ -98,35 +98,40 @@ storiesOf('react-gears', module)
 
         {demoHeader('PANEL / CARD')}
         <Card>
-          <CardBlock>
+          <CardBody>
             <CardTitle>Card title</CardTitle>
             <CardSubtitle>Card subtitle</CardSubtitle>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
             <Button>Button</Button>
-          </CardBlock>
+          </CardBody>
         </Card>
 
         {demoHeader('TOOLTIPS')}
-        <div id='tooltip-right' style={{ width: 1, height: 80 }} />
-        <Tooltip placement={'right'} isOpen target='tooltip-right'>Tooltip on the side</Tooltip>
-
-        <div id='tooltip-top' style={{ width: 160, marginTop: 30 }} />
-        <Tooltip placement={'top'} isOpen target='tooltip-top'>Tooltip on the top</Tooltip>
+        <div className="d-flex justify-content-between">
+          <span id='tooltip-right'>Right</span>
+          <span id='tooltip-top'>Top</span>
+          <span id='tooltip-left'>Left</span>
+          <span id='tooltip-bottom'>Bottom</span>
+          <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
+          <Tooltip placement="top" target='tooltip-top'>Tooltip on the top</Tooltip>
+          <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
+          <Tooltip placement="bottom" target='tooltip-bottom'>Tooltip on the Bottom</Tooltip>
+        </div>
 
       </Col>
 
       <Col>
         {demoHeader('BUTTONS')}
         <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'].map((color) =>
+          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
             <Button color={color} className="mr-1 text-capitalize">{color}</Button>
-          )}
+          ))}
         </p>
 
         <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'].map((color) =>
+          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
             <Button color={color} size="sm" className="mr-1 text-capitalize">{color}</Button>
-          )}
+          ))}
         </p>
 
         {demoHeader('PAGINATION')}
@@ -141,7 +146,12 @@ storiesOf('react-gears', module)
           <FormRow label="Disabled" disabled />
           <FormRow type={DateInput} label="Date" />
           <FormRow type="password" label="Password" />
-          <FormRow label="Select" type="select" hint="Example help text">
+          <FormRow
+            className="custom-select"
+            label="Select"
+            type="select"
+            hint="Example help text"
+          >
             <FormChoice>A New Hope</FormChoice>
             <FormChoice>The Empire Strikes Back</FormChoice>
             <FormChoice>The Force Awakens</FormChoice>
@@ -189,15 +199,18 @@ storiesOf('react-gears', module)
         {demoHeader('POPOVERS')}
 
         <div id='popover-top' style={{ marginTop: 140, height: 20 }} />
-        <Popover isOpen target="popover-top" placement="top">
-          <PopoverTitle children={'Popover top'} />
-          <PopoverContent children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
+        <Popover target="popover-top" placement="top">
+          <PopoverTitle>Popover top</PopoverTitle>
+          <PopoverBody>
+            Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.
+          </PopoverBody>
         </Popover>
-
         <div id='popover-right' style={{ width: 10, marginTop: 40, height: 20 }} />
-        <Popover isOpen target="popover-right" placement="right">
-          <PopoverTitle children={'Popover right'} />
-          <PopoverContent children={'Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.'} />
+        <Popover target="popover-right" placement="right">
+          <PopoverTitle>Popover right</PopoverTitle>
+          <PopoverBody>
+            Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.
+          </PopoverBody>
         </Popover>
       </Col>
     </Row>

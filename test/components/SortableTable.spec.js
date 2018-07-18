@@ -12,13 +12,13 @@ describe('<SortableTable />', () => {
   });
 
   it('should accept all normal Table props', () => {
-    const wrapper = mount(<SortableTable size="lg" bordered striped inverse hover responsive columns={[]} />);
+    const wrapper = mount(<SortableTable size="lg" bordered striped dark hover responsive columns={[]} />);
     const table = wrapper.find('table');
 
-    assert(wrapper.hasClass('table-responsive'), 'responsive missing');
+    assert(wrapper.render().hasClass('table-responsive'), 'responsive missing');
     assert(table.hasClass('table-bordered'), 'bordered missing');
     assert(table.hasClass('table-striped'), 'striped missing');
-    assert(table.hasClass('table-inverse'), 'inverse missing');
+    assert(table.hasClass('table-dark'), 'dark missing');
     assert(table.hasClass('table-hover'), 'hover missing');
   });
 
@@ -174,7 +174,7 @@ describe('<SortableTable />', () => {
     assert(colgroup.exists());
 
     const col = wrapper.find('col');
-    columns.forEach((column, i) => assert.equal(col.get(i).style.width, column.width));
+    columns.forEach((column, i) => assert.equal(col.get(i).props.style.width, column.width));
   });
 
   it('should render row className when specified', () => {

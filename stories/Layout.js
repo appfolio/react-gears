@@ -101,32 +101,32 @@ storiesOf('Layout', module)
       `}</style>
       <Row>
         <Col lg="2" md="6" xs="12">
-          <h2 className="hidden-md-down">lg=2</h2>
-          <h2 className="hidden-lg-up hidden-sm-down">md=6</h2>
-          <h2 className="hidden-md-up">xs=12</h2>
+          <h2 className="d-none d-lg-block">lg=2</h2>
+          <h2 className="d-none d-md-block d-lg-none">md=6</h2>
+          <h2 className="d-md-none">xs=12</h2>
         </Col>
         <Col lg="4" md="6" xs="12">
-          <h2 className="hidden-md-down">lg=4</h2>
-          <h2 className="hidden-lg-up hidden-sm-down">md=6</h2>
-          <h2 className="hidden-md-up">xs=12</h2>
+          <h2 className="d-none d-lg-block">lg=4</h2>
+          <h2 className="d-none d-md-block d-lg-none">md=6</h2>
+          <h2 className="d-md-none">xs=12</h2>
         </Col>
         <Col lg="6" md="12" xs="12">
-          <h2 className="hidden-md-down">lg=6</h2>
-          <h2 className="hidden-lg-up hidden-sm-down">md=12</h2>
-          <h2 className="hidden-md-up">xs=12</h2>
+          <h2 className="d-none d-lg-block">lg=6</h2>
+          <h2 className="d-none d-md-block d-lg-none">md=12</h2>
+          <h2 className="d-md-none">xs=12</h2>
         </Col>
       </Row>
 
       <Row>
         <Col lg="7" md="5" xs="12">
-          <h2 className="hidden-md-down">lg=7</h2>
-          <h2 className="hidden-lg-up hidden-sm-down">md=5</h2>
-          <h2 className="hidden-md-up">xs=12</h2>
+          <h2 className="d-none d-lg-block">lg=7</h2>
+          <h2 className="d-none d-md-block d-lg-none">md=5</h2>
+          <h2 className="d-md-none">xs=12</h2>
         </Col>
         <Col lg="5" md="7" xs="12">
-          <h2 className="hidden-md-down">lg=5</h2>
-          <h2 className="hidden-lg-up hidden-sm-down">md=7</h2>
-          <h2 className="hidden-md-up">xs=12</h2>
+          <h2 className="d-none d-lg-block">lg=5</h2>
+          <h2 className="d-none d-md-block d-lg-none">md=7</h2>
+          <h2 className="d-md-none">xs=12</h2>
         </Col>
       </Row>
     </Container>

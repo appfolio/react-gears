@@ -15,7 +15,7 @@ import Button from './Button';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupButton from './InputGroupButton';
+import InputGroupAddon from './InputGroupAddon';
 
 const format = fecha.format;
 const parse = fecha.parse;
@@ -101,7 +101,7 @@ export default class TimeInput extends React.Component {
       <InputGroup>
         <Input
           {...props}
-          getRef={(el) => { this.inputEl = el; }}
+          ref={(el) => { this.inputEl = el; }}
           type="select"
           className={classNames}
           disabled={disabled}
@@ -110,7 +110,7 @@ export default class TimeInput extends React.Component {
           <option value="">{placeholder}</option>
           {times.map(({ label, value }) => <option key={value} value={value}>{label}</option>)}
         </Input>
-        <InputGroupButton onClick={this.toggle}>
+        <InputGroupAddon addonType="append" onClick={this.toggle}>
           <Button
             className="px-2"
             disabled={disabled}
@@ -120,7 +120,7 @@ export default class TimeInput extends React.Component {
           >
             <Icon name="clock-o" fixedWidth />
           </Button>
-        </InputGroupButton>
+        </InputGroupAddon>
       </InputGroup>
     );
   }

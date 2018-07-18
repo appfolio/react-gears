@@ -82,7 +82,7 @@ class AddressInput extends React.Component {
             onBlur={() => onBlur('address1')}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
-            getRef={this.bindAddress1}
+            ref={this.bindAddress1}
           />
         </FormLabelGroup>
         <FormLabelGroup

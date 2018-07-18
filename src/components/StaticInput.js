@@ -3,7 +3,7 @@ import Input from './Input';
 
 const StaticInput = ({ type, value, defaultValue, children, color, state, ...props }) => (
   <Input
-    static
+    plaintext
     children={value || defaultValue}
     state={color || state}
     {...props}
