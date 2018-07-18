@@ -18,6 +18,7 @@ import CurrencyInput from '../src/components/CurrencyInput';
 import Datapair from '../src/components/Datapair';
 import DateInput from '../src/components/DateInput';
 import DeletedNote from '../src/components/DeletedNote';
+import DropdownItem from '../src/components/DropdownItem';
 import EditableNote from '../src/components/EditableNote';
 import ExpandableSection from '../src/components/ExpandableSection';
 import FeatureBanner from '../src/components/FeatureBanner';
@@ -173,6 +174,10 @@ const DatapairExample = () => {
         label="This is a really long label that probably shouldn't be this long"
         value="Stuff"
       />
+      <Datapair
+        label="test"
+        value={<div/>}
+      />
     </CardBlock>
   </Card>
 }
@@ -191,6 +196,10 @@ const DateInputExample = () => {
 const DeletedNoteExample = () => {
   const note = { text: 'Hello World', date: new Date(2018, 5, 3)};
   <DeletedNote onUndelete={(n) => { null }} note={note}/>
+}
+
+const DropdownItemExample = () => {
+  <DropdownItem key={'hi'} active={true}/>
 }
 
 const EditableNoteExample = () => {
@@ -292,7 +301,6 @@ const HasManyFieldsExample = () => {
     onUpdate={() => { }}
     onChange={() => { }}
   />;
-  
 }
 
 const HasManyFieldsAddExample = () => {
@@ -303,6 +311,12 @@ const HasManyFieldsAddExample = () => {
 
 const HasManyFieldsRowExample = () => {
   <HasManyFieldsRow onDelete={() => { undefined }} disabled>
+    Stuff
+  </HasManyFieldsRow>
+}
+
+const HasManyFieldsRowDisabledExample = () => {
+  <HasManyFieldsRow onDelete={() => { undefined }} disabled disabledReason={'test'} disabledReasonPlacement={'top'}>
     Stuff
   </HasManyFieldsRow>
 }

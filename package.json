@@ -87,7 +87,7 @@
     "sinon": "~3.2.1",
     "style-loader": "~0.18.1",
     "ts-node": "^5.0.0",
-    "typescript": "~2.7.1",
+    "typescript": "~2.8.3",
     "uncontrollable": "^4.1.0",
     "webpack": "~2.6.1"
   }
