@@ -14,6 +14,7 @@ const readEvent = e => ({ [e.target.name]: e.target.value });
 
 class AddressInput extends React.Component {
   static propTypes = {
+    className: PropTypes.string,
     defaultValue: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
@@ -27,6 +28,7 @@ class AddressInput extends React.Component {
   };
 
   static defaultProps = {
+    className: '',
     defaultValue: {},
     disabled: false,
     error: {},
@@ -63,10 +65,10 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { disabled, error, id, labels, onBlur, showCountry, showLabels } = this.props;
+    const { className, disabled, error, id, labels, onBlur, showCountry, showLabels } = this.props;
 
     return (
-      <div id={id}>
+      <div className={className} id={id}>
         <FormLabelGroup
           label={showLabels ? labels.address1 : null}
           feedback={error.address1}
