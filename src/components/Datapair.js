@@ -4,12 +4,12 @@ import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
 
 const Datapair = (props) => {
-  const { children, label, value, ...attributes } = props;
+  const { children, className, label, value, ...attributes } = props;
   return (
     <FormLabelGroup
       inline
       label={label}
-      rowClassName="mb-1"
+      rowClassName={`mb-1 ${className}`}
       {...attributes}
     >
       {children || <Input static>{value}</Input>}
@@ -19,6 +19,7 @@ const Datapair = (props) => {
 
 Datapair.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   label: PropTypes.node.isRequired,
   value: PropTypes.node,
 };
