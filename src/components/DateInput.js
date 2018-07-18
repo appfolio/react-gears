@@ -16,7 +16,7 @@ import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
-import { DropdownToggle } from '..';
+import DropdownToggle from './DropdownToggle';
 
 const { parse } = Fecha;
 
@@ -245,6 +245,7 @@ export default class DateInput extends React.Component {
     const date = this.getCurrentDate();
 
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
+    // TODO invalid, valid classes:
     return (
       <div>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
