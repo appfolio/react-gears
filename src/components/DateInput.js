@@ -16,7 +16,7 @@ import DropdownMenu from './DropdownMenu';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
-import { DropdownToggle } from '..';
+import DropdownToggle from './DropdownToggle';
 
 const { parse } = Fecha;
 
