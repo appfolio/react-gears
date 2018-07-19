@@ -33,4 +33,16 @@ describe('<Datapair />', () => {
     const formLabelGroup = fancyComponent.find(FormLabelGroup);
     assert.equal(formLabelGroup.children().html(), '<span>Special</span>');
   });
+
+  it('should support a className', () => {
+    const fancyComponent = shallow(<Datapair className="fancy-component" label="stuff"></Datapair>);
+    const formLabelGroup = fancyComponent.find(FormLabelGroup);
+    assert.equal(formLabelGroup.prop('rowClassName'), 'mb-1 fancy-component');
+  });
+
+  it('should omit undefined class name', () => {
+    const fancyComponent = shallow(<Datapair label="stuff"></Datapair>);
+    const formLabelGroup = fancyComponent.find(FormLabelGroup);
+    assert.equal(formLabelGroup.prop('rowClassName'), 'mb-1');
+  });
 });
