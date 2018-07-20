@@ -39,7 +39,6 @@ const FormRow = (props) => {
     rowClassName,
     size,
     stacked,
-    state,
     type,
     validFeedback,
     width,

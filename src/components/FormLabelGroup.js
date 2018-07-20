@@ -34,10 +34,10 @@ const FormLabelGroup = (props) => {
     width
   } = props;
 
-  const rowColor = classnames({
-    danger: feedback,
-    success: validFeedback,
-  });
+  const containerClassNames = classnames({
+    'is-invalid': feedback,
+    'is-valid': validFeedback
+  }, rowClassName);
   const labelClassNames = classnames({
     'text-sm-right pr-0': !stacked,
     'text-danger': feedback,
@@ -51,7 +51,7 @@ const FormLabelGroup = (props) => {
   const inputWidth = (stacked || !label) ? 12 : (12 - labelWidth);
 
   return (
-    <FormGroup row className={rowClassName} color={rowColor}>
+    <FormGroup row className={containerClassNames}>
       {label && (
         <Label for={inputId} sm={labelWidth} size={size} className={labelClassNames}>
           {label}
@@ -62,10 +62,10 @@ const FormLabelGroup = (props) => {
         <Row>
           <Col {...width}>
             {children}
-            {rowColor && <div className={hiddenClassNames} hidden />}
+            {(feedback || validFeedback) && <div className={hiddenClassNames} hidden />}
             {hint && <FormText color="muted">{hint}</FormText>}
-            {feedback && <FormFeedback>{feedback}</FormFeedback>}
-            {validFeedback && <FormFeedback valid>{validFeedback}</FormFeedback>}
+            {feedback && <FormFeedback className="d-flex" >{feedback}</FormFeedback>}
+            {validFeedback && <FormFeedback className="d-flex" valid>{validFeedback}</FormFeedback>}
           </Col>
         </Row>
       </Col>
