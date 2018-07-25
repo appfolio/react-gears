@@ -105,7 +105,7 @@ export default class DateInput extends React.Component {
     };
   }
 
-  onChange = event => {
+  onChange = (event) => {
     const value = event.target.value;
     this.setState({
       value
@@ -113,12 +113,12 @@ export default class DateInput extends React.Component {
     this.parseInput(value);
   }
 
-  onSelect = newDate => {
+  onSelect = (newDate) => {
     this.setDate(newDate);
     this.close();
   };
 
-  onKeyDown = event => {
+  onKeyDown = (event) => {
     // Ignore arrows if closed, disabled, or modifiers are down:
     const allowArrows = this.state.open &&
                         this.props.keyboard &&
@@ -160,7 +160,7 @@ export default class DateInput extends React.Component {
     return true;
   };
 
-  setDate = date => {
+  setDate = (date) => {
     this.setState({
       value: format(date, this.props.dateFormat)
     });
@@ -179,7 +179,7 @@ export default class DateInput extends React.Component {
 
   getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat, this.props.parse);
 
-  parseInput = value => {
+  parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
 
     if (date) {
@@ -217,14 +217,6 @@ export default class DateInput extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.setInputValue();
-  }
-
-  componentDidUpdate() {
-    this.setInputValue();
-  }
-
   onBlur = (e) => {
     this.props.onBlur(e);
 
@@ -238,43 +230,53 @@ export default class DateInput extends React.Component {
     this.inputEl.focus();
   }
 
+  componentDidMount() {
+    this.setInputValue();
+  }
+
+  componentDidUpdate() {
+    this.setInputValue();
+  }
+
   render() {
     const { className, dateVisible, disabled, footer, header, id, showOnFocus,
       dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, state, ...props } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
+    // <DropdownToggle tag="div" disabled> is to wrap the input in a container for positioning dropdown/up, without breaking showOnFocus
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
         <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
-          <InputGroup className={className}>
-            <input
-              id={id}
-              className="form-control"
-              ref={el => { this.inputEl = el; }}
-              type="text"
-              onBlur={this.onBlur}
-              onChange={this.onChange}
-              onClick={showOnFocus ? this.show : undefined}
-              onFocus={showOnFocus ? this.show : undefined}
-              onKeyDown={this.onKeyDown}
-              disabled={disabled}
-              {...props}
-            />
-            <InputGroupAddon addonType="append" onClick={this.toggle}>
-              <Button
-                className="px-2"
+          <DropdownToggle tag="div" disabled>
+            <InputGroup className={className}>
+              <input
+                id={id}
+                className="form-control"
+                ref={el => { this.inputEl = el; }}
+                type="text"
+                onBlur={this.onBlur}
+                onChange={this.onChange}
+                onClick={showOnFocus ? this.show : undefined}
+                onFocus={showOnFocus ? this.show : undefined}
+                onKeyDown={this.onKeyDown}
                 disabled={disabled}
-                active={open}
-                type="button"
-                tabIndex={-1}
-              >
-                <Icon name="calendar" fixedWidth />
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-          <DropdownToggle tag="div" />
+                {...props}
+              />
+              <InputGroupAddon addonType="append" onClick={this.toggle}>
+                <Button
+                  className="px-2"
+                  disabled={disabled}
+                  active={open}
+                  type="button"
+                  tabIndex={-1}
+                >
+                  <Icon name="calendar" fixedWidth />
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </DropdownToggle>
           <DropdownMenu
             className="p-0"
             onKeyDown={this.onKeyDown}
