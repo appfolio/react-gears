@@ -2,14 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
+import classnames from 'classnames';
 
 const Datapair = (props) => {
-  const { children, label, value, ...attributes } = props;
+  const { children, className, label, value, ...attributes } = props;
+  const classNames = classnames(
+    'mb-1',
+    className
+  );
   return (
     <FormLabelGroup
       inline
       label={label}
-      rowClassName="mb-1"
+      rowClassName={classNames}
       {...attributes}
     >
       {children || <Input plaintext tag="div">{value}</Input>}
@@ -19,6 +24,7 @@ const Datapair = (props) => {
 
 Datapair.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   label: PropTypes.node.isRequired,
   value: PropTypes.node,
 };

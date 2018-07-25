@@ -6,12 +6,13 @@ interface FormRowPropTypes extends
   children?: (JSX.Element | string) | (JSX.Element | string)[];
   color?: string;
   label?: (JSX.Element | string) | (JSX.Element | string)[];
+  labelSize?: string;
   hint?: string;
   feedback?: any;
   id?: string;
   required?: boolean;
   rowClassName?: string;
-  type?: 'checkbox' | 'radio' | 'static' | 'file' | 'string';
+  type?: any;
   inline?: boolean;
   stacked?: boolean;
   state?: string;
