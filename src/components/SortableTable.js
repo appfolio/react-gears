@@ -38,14 +38,18 @@ class SortableTable extends React.Component {
     ...Table.defaultProps,
     rows: [],
     rowClassName: () => undefined,
-    rowExpanded: () => false,
-    rowOnClick: () => {}
+    rowExpanded: () => false
   };
 
   renderRow(row, columns, rowClassName, rowExpanded, rowOnClick) {
     const expanded = rowExpanded(row);
     return [
-      <tr key={row.key} className={rowClassName(row)} onClick={() => rowOnClick(row)}>
+      <tr
+        key={row.key}
+        className={rowClassName(row)}
+        onClick={() => rowOnClick && rowOnClick(row)}
+        role={rowOnClick ? 'button' : null}
+      >
         {columns.map(column => <td key={column.key} className={generateColumnClassName(column)}>{column.cell(row)}</td>)}
       </tr>,
       expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
