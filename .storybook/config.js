@@ -32,14 +32,17 @@ const ThemeLink = props => {
 }
 
 const THEMES = [
-  { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.0-rc.4/bootstrap-saffron.min.css' },
+  { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.0-rc.6/bootstrap-saffron.min.css' },
   { name: 'MyCase', url: 'https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css' },
+  { name: 'APM/Cayenne', url: 'https://d36t0nm30n26wn.cloudfront.net/cayenne/4.0.0-rc.0/bootstrap-cayenne.min.css' },
   { name: 'APM/Listings', url: 'https://d36t0nm30n26wn.cloudfront.net/listings/bootstrap-listings.min.css' },
   { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
-  { name: 'Bootstrap default', url: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' }
-  // { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
-  // { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
-  // { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }
+  { name: 'APM/Dream', url: 'https://d36t0nm30n26wn.cloudfront.net/dream/bootstrap-dream.min.css' },
+  { name: 'Bootstrap default', url: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' },
+  { name: 'Material', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/materia/bootstrap.min.css' },
+  { name: 'Metro', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cosmo/bootstrap.min.css' },
+  { name: 'Dark', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/darkly/bootstrap.min.css' },
+  { name: 'Sketch', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/sketchy/bootstrap.min.css' }
 ];
 
 addDecorator(withKnobs);
