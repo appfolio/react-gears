@@ -347,5 +347,14 @@ describe('<AddressInput />', () => {
       assert(callback.calledWith(field));
     });
   });
+
+  it('should support a className', () => {
+    const component = mount(
+      <AddressInput
+        className="address-component"
+      />
+    );
+    assert.equal(component.find('.address-component').length, 1);
+  });
 });
 

@@ -12,6 +12,7 @@ interface AddressInterface {
 type AddressNames = keyof AddressInterface;
 
 interface AddressInputProps {
+  className?: string;
   defaultValue?: AddressInterface;
   disabled?: boolean;
   error?: AddressInterface;
