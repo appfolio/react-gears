@@ -354,7 +354,7 @@ describe('<AddressInput />', () => {
         className="address-component"
       />
     );
-    assert.equal(component.find('.address-component').length, 1);
+    assert.equal(component.find('.address-component').hostNodes().length, 1);
   });
 });
 
