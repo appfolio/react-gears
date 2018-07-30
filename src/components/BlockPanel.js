@@ -70,7 +70,7 @@ class BlockPanel extends React.Component {
     );
 
     return (
-      <Card className={`border-0 shadow-1 ${className}`} {...props}>
+      <Card className={className} {...props}>
         <CardHeader
           className={headerClassNames}
         >
