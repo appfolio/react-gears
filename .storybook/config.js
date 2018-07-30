@@ -34,7 +34,7 @@ const ThemeLink = props => {
 const THEMES = [
   { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.0-rc.6/bootstrap-saffron.min.css' },
   { name: 'MyCase', url: 'https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css' },
-  { name: 'APM/Cayenne', url: 'https://d36t0nm30n26wn.cloudfront.net/cayenne/4.0.0-rc.0/bootstrap-cayenne.min.css' },
+  { name: 'APM/Cayenne', url: 'https://d36t0nm30n26wn.cloudfront.net/cayenne/bootstrap-cayenne.min.css' },
   { name: 'APM/Listings', url: 'https://d36t0nm30n26wn.cloudfront.net/listings/bootstrap-listings.min.css' },
   { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
   { name: 'APM/Dream', url: 'https://d36t0nm30n26wn.cloudfront.net/dream/bootstrap-dream.min.css' },
