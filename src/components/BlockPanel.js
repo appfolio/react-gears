@@ -6,6 +6,7 @@ import Card from './Card';
 import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
+import Collapse from './Collapse';
 import Icon from './Icon';
 
 class BlockPanel extends React.Component {
@@ -34,25 +35,37 @@ class BlockPanel extends React.Component {
     super(props);
 
     this.state = {
-      open: props.open
+      open: props.open,
+      closed: !props.open
     };
   }
 
   toggle = () => {
     const open = !this.state.open;
-    this.setState({ open }, () => this.props.onToggle(open));
+    const newState = open ?
+      { open, closed: false } :
+      { open };
+    this.setState(newState, () => this.props.onToggle(open));
+  };
+
+  onClosed = () => {
+    this.setState({ closed: true });
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.props.open) {
-      this.setState({ open: nextProps.open });
+      if (nextProps.open) {
+        this.setState({ open: true, closed: false });
+      } else {
+        this.setState({ open: false });
+      }
     }
   }
 
   render() {
     // eslint-disable-next-line no-unused-vars
     const { children, className, color, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
-    const { open } = this.state;
+    const { closed, open } = this.state;
 
     // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
     const headerClassNames = classnames(
@@ -107,11 +120,18 @@ class BlockPanel extends React.Component {
             )}
           </div>
         </CardHeader>
-        {children && (!expandable || open || hideOnToggle) ?
-          <CardBody hidden={expandable && !open && hideOnToggle}>
-            {children}
-          </CardBody>
-          : null}
+        {children && (
+          <Collapse
+            isOpen={children && (!expandable || open)}
+            onExited={() => this.onClosed()}
+          >
+            {(hideOnToggle || !closed) ?
+              <CardBody>
+                {children}
+              </CardBody> :
+              null}
+          </Collapse>
+        )}
       </Card>
     );
   }
