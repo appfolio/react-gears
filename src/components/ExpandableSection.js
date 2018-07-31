@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Collapse from './Collapse';
 import Icon from './Icon';
 
-import styles from './ExpandableSection.scss';
-
 class ExpandableSection extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    open: PropTypes.bool,
+    title: PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    className: '',
+    open: false
+  };
 
   constructor(props) {
     super(props);
@@ -17,12 +27,9 @@ class ExpandableSection extends React.Component {
   toggle = () => this.setState({ open: !this.state.open });
 
   render() {
-    const className = `${styles.expandable_section} ${this.props.className}`;
-
-    // TODO use reactstrap <Collapse /> component below - resolve animation issue first.
     return (
-      <section className={className}>
-        <header onClick={this.toggle} style={{ cursor: 'pointer' }}>
+      <section className={this.props.className}>
+        <header onClick={this.toggle} role="button">
           <Icon
             name='caret-right'
             rotate={this.state.open ? 90 : undefined}
@@ -32,21 +39,14 @@ class ExpandableSection extends React.Component {
           />
           <b style={{ userSelect: 'none' }}>{this.props.title}</b>
         </header>
-        {this.state.open ? <section>{this.props.children}</section> : null}
+        <Collapse isOpen={this.state.open}>
+          <div className="py-3">
+            {this.props.children}
+          </div>
+        </Collapse>
       </section>
     );
   }
 }
-
-ExpandableSection.propTypes = {
-  className: PropTypes.string,
-  open: PropTypes.bool,
-  title: PropTypes.string.isRequired
-};
-
-ExpandableSection.defaultProps = {
-  className: '',
-  open: false
-};
 
 export default ExpandableSection;

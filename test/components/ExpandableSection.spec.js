@@ -2,7 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
-import { ExpandableSection } from '../../src';
+import { Collapse, ExpandableSection } from '../../src';
 
 describe('<ExpandableSection />', () => {
   it('should be closed by default', () => {
@@ -12,7 +12,7 @@ describe('<ExpandableSection />', () => {
       </ExpandableSection>
     );
 
-    assert.equal(component.find('h1').length, 0);
+    assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
   });
 
   it('should be closed when false passed as prop', () => {
@@ -22,7 +22,7 @@ describe('<ExpandableSection />', () => {
       </ExpandableSection>
     );
 
-    assert.equal(component.find('h1').length, 0);
+    assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
   });
 
   it('should be open when true passed as prop', () => {
@@ -32,7 +32,7 @@ describe('<ExpandableSection />', () => {
       </ExpandableSection>
     );
 
-    assert.equal(component.find('h1').length, 1);
+    assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
 
   it('should be open when clicked', () => {
@@ -42,8 +42,8 @@ describe('<ExpandableSection />', () => {
       </ExpandableSection>
     );
 
-    assert.equal(component.find('h1').length, 0, 'inner block should not be visible');
+    assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     component.find('header').simulate('click');
-    assert.equal(component.find('h1').length, 1, 'inner block should be visible');
+    assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
 });
