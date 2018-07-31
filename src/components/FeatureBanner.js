@@ -7,20 +7,22 @@ export default class FeatureBanner extends React.Component {
   static propTypes = {
     alertText: PropTypes.string,
     children: PropTypes.node,
+    color: PropTypes.string,
     subtitle: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     alertText: 'new',
+    color: 'info'
   };
 
   render() {
-    const { alertText, title, subtitle, children } = this.props;
+    const { alertText, color, title, subtitle, children } = this.props;
     const alertStyle = 'font-weight-bold text-uppercase';
 
     return (
-      <Alert color="info" className="align-items-center d-flex p-0">
+      <Alert color={color} className="align-items-center d-flex p-0">
         {alertText ?
           <h2 className={`${alertStyle} text-center m-0 px-3 d-none d-sm-block`}>
             {alertText}
