@@ -125,7 +125,7 @@ class BlockPanel extends React.Component {
             isOpen={children && (!expandable || open)}
             onExited={() => this.onClosed()}
           >
-            {(hideOnToggle || !closed) ?
+            {(!expandable || hideOnToggle || !closed) ?
               <CardBody>
                 {children}
               </CardBody> :
