@@ -25,15 +25,15 @@ export default class InfoBox extends React.Component {
     const headerClasses = `text-${color} font-weight-normal d-flex justify-content-between m-0 mb-3`;
 
     return (
-      <div className={`${styles.infobox} text-${color} ${vertical ? styles.vertical : ''} p-3 ${className}`} {...props}>
-        {title ?
+      <div className={`${styles.infobox} bg-white border-${color} border-${vertical ? 'top' : 'left'} p-3 ${className}`} {...props}>
+        {title &&
           <h1 className={headerClasses}>
             {title}
             {icon ? <Icon name={icon} /> : null}
           </h1>
-          : null}
-        <div ref="children" className="text-dark">
-         {children}
+        }
+        <div className="infobox__body">
+          {children}
         </div>
       </div>
     );

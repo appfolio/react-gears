@@ -19,11 +19,11 @@ describe('<InfoBox />', () => {
     const wrapperRendered = wrapper.render();
 
     assert.equal(wrapper.prop('id'), 'alpha');
-    assert.equal(wrapper.find('.text-dark').text(), 'Charlie');
+    assert.equal(wrapper.find('.infobox__body').text(), 'Charlie');
     assert.equal(wrapper.find('h1').text(), 'Bravo');
     assert(wrapper.find('Icon').exists());
     assert(wrapperRendered.hasClass('slick'));
-    assert(wrapperRendered.hasClass('text-success')); // TODO assumes internal details
+    assert(wrapperRendered.hasClass('border-success'));
   });
 
   it('does not render header if title not specified', () => {
