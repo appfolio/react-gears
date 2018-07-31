@@ -6,7 +6,9 @@ import { action } from '../node_modules/@storybook/addon-actions';
 
 storiesOf('Dropdown', module)
   .addWithInfo('Uncontrolled', () => (
-    <UncontrolledDropdown>
+    <UncontrolledDropdown
+      direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
+    >
       <DropdownToggle
         color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'primary')}
         disabled={boolean('disabled', false)}
@@ -27,6 +29,7 @@ storiesOf('Dropdown', module)
   ))
   .addWithInfo('Controlled', () => (
     <Dropdown
+      direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
       isOpen={boolean('isOpen', false)}
       toggle={action('toggle')}
     >
