@@ -12,6 +12,7 @@ import './CreditCardNumber';
 import './CurrencyInput';
 import './Datapair';
 import './DateInput';
+import './Dropdown';
 import './ExpandableSection';
 import './FeatureBanner';
 import './FilterList';
