@@ -19,8 +19,10 @@ import {
   PopoverTitle,
   Row,
   Table,
-  Tooltip,
+  UncontrolledTooltip
 } from '../src';
+
+const Tooltip = UncontrolledTooltip;
 
 const demoHeader = caption => <h2 className="text-muted text-uppercase mt-5 mb-4">{caption}</h2>;
 
@@ -108,14 +110,14 @@ storiesOf('react-gears', module)
 
         {demoHeader('TOOLTIPS')}
         <div className="d-flex justify-content-between">
-          <span id='tooltip-right'>Right</span>
           <span id='tooltip-top'>Top</span>
-          <span id='tooltip-left'>Left</span>
           <span id='tooltip-bottom'>Bottom</span>
-          <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
+          <span id='tooltip-left'>Left</span>
+          <span id='tooltip-right'>Right</span>
           <Tooltip placement="top" target='tooltip-top'>Tooltip on the top</Tooltip>
-          <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
           <Tooltip placement="bottom" target='tooltip-bottom'>Tooltip on the Bottom</Tooltip>
+          <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
+          <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
         </div>
 
       </Col>
@@ -195,23 +197,6 @@ storiesOf('react-gears', module)
             </tr>
           </tbody>
         </Table>
-
-        {demoHeader('POPOVERS')}
-
-        <div id='popover-top' style={{ marginTop: 140, height: 20 }} />
-        <Popover target="popover-top" placement="top">
-          <PopoverTitle>Popover top</PopoverTitle>
-          <PopoverBody>
-            Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.
-          </PopoverBody>
-        </Popover>
-        <div id='popover-right' style={{ width: 10, marginTop: 40, height: 20 }} />
-        <Popover target="popover-right" placement="right">
-          <PopoverTitle>Popover right</PopoverTitle>
-          <PopoverBody>
-            Eat. Sleep. Code. Repeat. That is the theme of HackDay March 2017.
-          </PopoverBody>
-        </Popover>
       </Col>
     </Row>
   ));
