@@ -62,7 +62,10 @@ import PopoverTitle from './components/PopoverTitle';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
+import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown';
+import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
+import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
 import Activity from './components/Activity.js';
@@ -198,7 +201,10 @@ export {
   TabContent,
   TabPane,
   Table,
+  UncontrolledButtonDropdown,
+  UncontrolledCollapse,
   UncontrolledDropdown,
+  UncontrolledTooltip,
 
   Select,
   SelectMultiValue,
