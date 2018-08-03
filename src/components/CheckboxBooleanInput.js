@@ -12,23 +12,23 @@ class CheckboxBooleanInput extends React.Component {
   };
 
   render() {
-    const { checkboxLabel, onChange, value, ...inputProps } = this.props;
+    const { checkboxLabel, onChange, value, id, ...inputProps } = this.props;
 
     return (
-      <FormGroup check>
-        <Label check>
-          <Input
-            {...inputProps}
-            type="checkbox"
-            checked={value}
-            onChange={e => onChange && onChange(e.target.checked)}
-          />
-          {checkboxLabel && (
-            <span className="ml-1" ref="label">
-              {checkboxLabel}
-            </span>
-          )}
-        </Label>
+      <FormGroup check className="col-form-label d-flex align-items-center h-100">
+        <Input
+          id={id}
+          {...inputProps}
+          type="checkbox"
+          checked={value}
+          onChange={e => onChange && onChange(e.target.checked)}
+          className="my-0"
+        />
+        {checkboxLabel && (
+          <Label check for={id} ref="label" className="my-0">
+            {checkboxLabel}
+          </Label>
+        )}
       </FormGroup>
     );
   }

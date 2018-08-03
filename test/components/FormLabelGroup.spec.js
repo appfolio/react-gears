@@ -26,7 +26,7 @@ describe('<FormLabelGroup />', () => {
     });
 
     it('should have an inner column wrapping the children', () => {
-      const col = component.find(Col).at(1);
+      const col = component.find(Col);
       assert.equal(col.prop('xs'), 12);
       assert.equal(col.children().text(), 'Hello World');
     });
@@ -151,8 +151,8 @@ describe('<FormLabelGroup />', () => {
     const component = shallow(<FormLabelGroup label="First Name" stacked>Hello World</FormLabelGroup>);
 
     it('should have a width 12 outer column for the row where the children are rendered', () => {
-      const col = component.find(Col).at(0);
-      assert.equal(col.prop('sm'), 12);
+      const col = component.find(Col);
+      assert.equal(col.prop('xs'), 12);
     });
 
     it('should adjust the label width to 12', () => {
@@ -167,7 +167,7 @@ describe('<FormLabelGroup />', () => {
     const component = shallow(<FormLabelGroup width={{ xs: 10, sm: 9 }}>Hello World</FormLabelGroup>);
 
     it('should adjust the width of the inner column wrapping the children', () => {
-      const col = component.find(Col).at(1);
+      const col = component.find(Col);
       assert.equal(col.prop('xs'), 10);
       assert.equal(col.prop('sm'), 9);
     });
