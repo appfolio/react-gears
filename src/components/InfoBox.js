@@ -32,7 +32,7 @@ export default class InfoBox extends React.Component {
             {icon ? <Icon name={icon} /> : null}
           </h1>
         }
-        <div className="infobox__body">
+        <div className="infobox-body">
           {children}
         </div>
       </div>
