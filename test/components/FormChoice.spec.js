@@ -38,7 +38,7 @@ describe('<FormChoice />', () => {
       );
 
       assert.equal(component.find(Input).prop('type'), 'checkbox');
-      assert.equal(component.find('span').text(), 'my type');
+      assert.equal(component.find(Label).props().children, 'my type');
       assert.equal(component.type(), FormGroup);
     });
 
@@ -48,8 +48,7 @@ describe('<FormChoice />', () => {
       );
 
       assert.equal(component.find(Input).prop('type'), 'checkbox');
-      assert.equal(component.find('span').text(), 'my type');
-      assert.equal(component.type(), Label);
+      assert.equal(component.find(Label).props().children, 'my type');
     });
 
     describe('with computed value', () => {
@@ -120,7 +119,7 @@ describe('<FormChoice />', () => {
       );
 
       assert.equal(component.find(Input).prop('type'), 'radio');
-      assert.equal(component.find('span').text(), 'my type');
+      assert.equal(component.find(Label).props().children, 'my type');
       assert.equal(component.type(), FormGroup);
     });
 
@@ -130,8 +129,7 @@ describe('<FormChoice />', () => {
       );
 
       assert.equal(component.find(Input).prop('type'), 'radio');
-      assert.equal(component.find('span').text(), 'my type');
-      assert.equal(component.type(), Label);
+      assert.equal(component.find(Label).props().children, 'my type');
     });
 
     describe('with computed value', () => {
