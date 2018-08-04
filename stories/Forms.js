@@ -7,17 +7,15 @@ import {
   BoundForm,
   BoundFormRow,
   CheckboxInput,
-  Col,
   CountryInput,
   CreditCardNumber,
   CurrencyInput,
   DateInput,
   FileInput,
   FormChoice,
-  FormGroup,
+  FormLabelGroup,
   FormRow,
   Input,
-  Label,
   MonthInput,
   StateInput,
   StaticInput,
@@ -37,12 +35,9 @@ const formData = {
 storiesOf('Forms', module)
   .addWithInfo('Inputs', () => (
     <div>
-      <FormGroup row>
-        <Label sm={3}>Input</Label>
-        <Col sm={9}>
-          <Input placeholder="Hello World" />
-        </Col>
-      </FormGroup>
+      <FormLabelGroup label="Input">
+        <Input placeholder="Hello World" />
+      </FormLabelGroup>
       <p>
         See all supported Input types here:{' '}
         <a href="https://reactstrap.github.io/components/form/">
@@ -52,60 +47,33 @@ storiesOf('Forms', module)
       </p>
       <hr />
 
-      <FormGroup row>
-        <Label sm={3}>CheckboxInput</Label>
-        <Col sm={9}>
-          <CheckboxInput placeholder="Hello World" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>CountryInput</Label>
-        <Col sm={9}>
-          <CountryInput />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>CreditCardNumber</Label>
-        <Col sm={9}>
-          <CreditCardNumber value="4111111111111111" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>CurrencyInput</Label>
-        <Col sm={9}>
-          <CurrencyInput value={123456.789} />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>DateInput</Label>
-        <Col sm={9}>
-          <DateInput />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>FileInput</Label>
-        <Col sm={9}>
-          <FileInput />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>MonthInput</Label>
-        <Col sm={9}>
-          <MonthInput />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>StateInput</Label>
-        <Col sm={9}>
-          <StateInput />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label sm={3}>StaticInput</Label>
-        <Col sm={9}>
-          <StaticInput value="No Change" />
-        </Col>
-      </FormGroup>
+      <FormLabelGroup label="CheckboxInput">
+        <CheckboxInput id="hello" checkboxLabel="Hello World" />
+      </FormLabelGroup>
+      <FormLabelGroup label="CountryInput">
+        <CountryInput />
+      </FormLabelGroup>
+      <FormLabelGroup label="CreditCardNumber">
+        <CreditCardNumber value="4111111111111111" />
+      </FormLabelGroup>
+      <FormLabelGroup label="CurrencyInput">
+        <CurrencyInput value={123456.789} />
+      </FormLabelGroup>
+      <FormLabelGroup label="DateInput">
+        <DateInput />
+      </FormLabelGroup>
+      <FormLabelGroup label="FileInput">
+        <FileInput />
+      </FormLabelGroup>
+      <FormLabelGroup label="MonthInput">
+        <MonthInput />
+      </FormLabelGroup>
+      <FormLabelGroup label="StateInput">
+        <StateInput />
+      </FormLabelGroup>
+      <FormLabelGroup label="StaticInput">
+        <StaticInput value="No Change" />
+      </FormLabelGroup>
     </div>
   ))
   .addWithInfo('Form Rows', () => (

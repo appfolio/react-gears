@@ -33,8 +33,8 @@ describe('<CheckboxBooleanInput />', () => {
 
   it('should render checkboxLabel if specified', () => {
     const wrapped = mount(<CheckboxBooleanInput checkboxLabel="Yowza" />);
-    assert.equal(wrapped.ref('label').textContent, 'Yowza');
-    assert(wrapped.ref('label'));
+    assert.equal(wrapped.text(), 'Yowza');
+    assert(wrapped.find('label').exists());
   });
 
   it('should allow you to pass through other props to the input', () => {

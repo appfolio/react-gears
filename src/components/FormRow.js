@@ -70,10 +70,11 @@ const FormRow = (props) => {
         type={typeof type === 'string' ? type : null}
         valid={!!validFeedback}
         invalid={!!feedback}
-        children={React.Children.map(children, child => React.cloneElement(child, { type }))}
         {...attributes}
         {...childFeedback}
-      />
+      >
+        {React.Children.map(children, child => React.cloneElement(child, { type }))}
+      </InputElement>
     </FormLabelGroup>
   );
 };
