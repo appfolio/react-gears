@@ -17,7 +17,7 @@ const Datapair = (props) => {
       rowClassName={classNames}
       {...attributes}
     >
-      {children || <Input static>{value}</Input>}
+      {children || <Input plaintext tag="div">{value}</Input>}
     </FormLabelGroup>
   );
 };

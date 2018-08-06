@@ -10,108 +10,108 @@ describe('<Paginator />', () => {
   describe('first shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('first').length);
+      assert.equal(0, wrapper.find({ name: 'first'}).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('first').length);
+      assert.equal(0, wrapper.find({ name: 'first'}).length);
     });
 
     it('does not display when on the first page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('first').length);
+      assert.equal(0, wrapper.find({ name: 'first'}).length);
     });
 
     it('does not display when on the second page', () => {
       const wrapper = mount(<Paginator currentPage={2} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('first').length);
+      assert.equal(0, wrapper.find({ name: 'first'}).length);
     });
 
     it('does display when not on the first page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('first').length);
+      assert.equal(1, wrapper.find({ name: 'first'}).length);
     });
   });
 
   describe('previous shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('previous').length);
+      assert.equal(0, wrapper.find({ name: 'previous'}).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('previous').length);
+      assert.equal(0, wrapper.find({ name: 'previous'}).length);
     });
 
     it('does not display when on the first page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('previous').length);
+      assert.equal(0, wrapper.find({ name: 'previous'}).length);
     });
 
     it('does display when on the second page', () => {
       const wrapper = mount(<Paginator currentPage={2} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('previous').length);
+      assert.equal(1, wrapper.find({ name: 'previous'}).length);
     });
 
     it('does display when not on the first page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('previous').length);
+      assert.equal(1, wrapper.find({ name: 'previous'}).length);
     });
   });
 
   describe('next shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('next').length);
+      assert.equal(0, wrapper.find({ name: 'next'}).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('next').length);
+      assert.equal(0, wrapper.find({ name: 'next'}).length);
     });
 
     it('does not display when on the last page', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('next').length);
+      assert.equal(0, wrapper.find({ name: 'next'}).length);
     });
 
     it('does display when on the second to last page', () => {
       const wrapper = mount(<Paginator currentPage={12} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('next').length);
+      assert.equal(1, wrapper.find({ name: 'next'}).length);
     });
 
     it('does display when on any other page', () => {
       const wrapper = mount(<Paginator currentPage={11} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('next').length);
+      assert.equal(1, wrapper.find({ name: 'next'}).length);
     });
   });
 
   describe('last shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('last').length);
+      assert.equal(0, wrapper.find({ name: 'last'}).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('last').length);
+      assert.equal(0, wrapper.find({ name: 'last'}).length);
     });
 
     it('does not display when on the last page', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('last').length);
+      assert.equal(0, wrapper.find({ name: 'last'}).length);
     });
 
     it('does not display when on the second to last page', () => {
       const wrapper = mount(<Paginator currentPage={12} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.ref('last').length);
+      assert.equal(0, wrapper.find({ name: 'last'}).length);
     });
 
     it('does display when on any other page', () => {
       const wrapper = mount(<Paginator currentPage={11} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.ref('last').length);
+      assert.equal(1, wrapper.find({ name: 'last'}).length);
     });
   });
 
@@ -217,30 +217,30 @@ describe('<Paginator />', () => {
     beforeEach(() => {
       onClick = sinon.stub();
       wrapper = mount(<Paginator currentPage={7} totalItems={256} onClick={onClick} />);
-    })
+    });
 
     it('reports the click correctly when clicking on the "first" link', () => {
-      wrapper.ref('first').find('a').simulate('click');
+      wrapper.find({ name: 'first'}).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 1);
     });
 
     it('reports the click correctly when clicking on the "previous" link', () => {
-      wrapper.ref('previous').find('a').simulate('click');
+      wrapper.find({ name: 'previous'}).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 6);
     });
 
     it('reports the click correctly when clicking on the "next" link', () => {
-      wrapper.ref('next').find('a').simulate('click');
+      wrapper.find({ name: 'next'}).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 8);
     });
 
     it('reports the click correctly when clicking on the "last" link', () => {
-      wrapper.ref('last').find('a').simulate('click');
+      wrapper.find({ name: 'last'}).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 13);
     });
 
     it('reports the click correctly when clicking on page links', () => {
-      wrapper.ref('9').find('a').simulate('click');
+      wrapper.findWhere(node => node.key() === '9').find('button').simulate('click');
       sinon.assert.calledWith(onClick, 9);
     });
   });

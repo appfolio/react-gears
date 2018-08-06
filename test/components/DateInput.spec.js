@@ -17,28 +17,28 @@ describe('<DateInput />', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
 
-      assert.equal(input.get(0).value, '');
+      assert.equal(input.getDOMNode().value, '');
     });
 
     it('should format defaultValue Date prop', () => {
       const component = mount(<DateInput defaultValue={new Date(1999, 1, 14)} />);
       const input = component.find('input');
 
-      assert.equal(input.get(0).value, '2/14/1999');
+      assert.equal(input.getDOMNode().value, '2/14/1999');
     });
 
     it('should format defaultValue date strings prop', () => {
       const component = mount(<DateInput defaultValue="1/23/1983" />);
       const input = component.find('input');
 
-      assert.equal(input.get(0).value, '1/23/1983');
+      assert.equal(input.getDOMNode().value, '1/23/1983');
       assert(isSameDay(component.instance().getCurrentDate(), new Date(1983, 0, 23)));
     });
 
     it('should not format invalid defaultValue and default to today', () => {
       const component = mount(<DateInput defaultValue="Veni, Vedi, Vici" />);
       const input = component.find('input');
-      assert.equal(input.get(0).value, 'Veni, Vedi, Vici');
+      assert.equal(input.getDOMNode().value, 'Veni, Vedi, Vici');
       assert(isToday(component.instance().getCurrentDate()));
     });
   });
@@ -46,32 +46,30 @@ describe('<DateInput />', () => {
   it('should not tab to the calendar button', () => {
     const component = mount(<DateInput />);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     const calendarButton = toggle.find('Button');
     assert.equal(calendarButton.props().tabIndex, -1);
   });
 
   it('should should open and close when input addon clicked', () => {
     const component = mount(<DateInput />);
-    const dropdown = component.find('Dropdown');
-    assert.equal(dropdown.props().isOpen, false);
+    assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
-    assert.equal(dropdown.props().isOpen, true);
+    assert.equal(component.find('Dropdown').props().isOpen, true);
 
     toggle.simulate('click');
-    assert.equal(dropdown.props().isOpen, false);
+    assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
   it('should should open when focused if showOnFocus is true', () => {
     const component = mount(<DateInput showOnFocus />);
-    const dropdown = component.find('Dropdown');
-    assert.equal(dropdown.props().isOpen, false);
+    assert.equal(component.find('Dropdown').props().isOpen, false);
 
     const input = component.find('input');
     input.simulate('focus');
-    assert.equal(dropdown.props().isOpen, true);
+    assert.equal(component.find('Dropdown').props().isOpen, true);
   });
 
   it('should should not open when focused if showOnFocus is false', () => {
@@ -90,7 +88,7 @@ describe('<DateInput />', () => {
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
 
-    const toggle = component.find('InputGroupButton');
+    const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');
     assert.equal(dropdown.props().isOpen, false);
 
@@ -102,19 +100,18 @@ describe('<DateInput />', () => {
   it('should should close when tab or esc pressed', () => {
     const component = mount(<DateInput showOnFocus />);
     const input = component.find('input');
-    const dropdown = component.find('Dropdown');
 
     input.simulate('focus');
-    assert.equal(dropdown.props().isOpen, true);
+    assert.equal(component.find('Dropdown').props().isOpen, true);
 
     input.simulate('keydown', { key: 'Esc', keyCode: 27, which: 27 });
-    assert.equal(dropdown.props().isOpen, false);
+    assert.equal(component.find('Dropdown').props().isOpen, false);
 
     input.simulate('focus');
-    assert.equal(dropdown.props().isOpen, true);
+    assert.equal(component.find('Dropdown').props().isOpen, true);
 
     input.simulate('keydown', { key: 'Tab', keyCode: 9, which: 9 });
-    assert.equal(dropdown.props().isOpen, false);
+    assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
   context('user input', () => {
@@ -161,8 +158,6 @@ describe('<DateInput />', () => {
   context('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<DateInput onChange={callback} showOnFocus />);
-    const toggle = component.find('InputGroupButton');
-    toggle.simulate('click');
 
     it('should should set date after clicking a date', () => {
       callback.reset();
@@ -184,7 +179,7 @@ describe('<DateInput />', () => {
     it('should should set date after clicking prev year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-      component.ref('prevYear').simulate('click');
+      component.ref('prevYear').props.onClick();
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -192,7 +187,7 @@ describe('<DateInput />', () => {
     it('should should set date after clicking next year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-      component.ref('nextYear').simulate('click');
+      component.ref('nextYear').props.onClick();
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -200,7 +195,7 @@ describe('<DateInput />', () => {
     it('should should set date after clicking prev month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-      component.ref('prevMonth').simulate('click');
+      component.ref('prevMonth').props.onClick();
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -208,13 +203,13 @@ describe('<DateInput />', () => {
     it('should should set date after clicking next month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-      component.ref('nextMonth').simulate('click');
+      component.ref('nextMonth').props.onClick();
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
 
     it('should should set date after clicking today', () => {
-      component.ref('today').simulate('click');
+      component.ref('today').props.onClick();
       assert(isToday(component.instance().getCurrentDate()));
     });
 
@@ -245,8 +240,6 @@ describe('<DateInput />', () => {
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = (date) => isSameDay(date, defaultDate);
     const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
-    const toggle = component.find('InputGroupButton');
-    toggle.simulate('click');
 
     it('should pass dateVisible func to Calendar component', () => {
       const calendar = component.find('Calendar');

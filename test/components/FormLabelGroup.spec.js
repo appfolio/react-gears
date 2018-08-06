@@ -26,7 +26,7 @@ describe('<FormLabelGroup />', () => {
     });
 
     it('should have an inner column wrapping the children', () => {
-      const col = component.find(Col).at(1);
+      const col = component.find(Col);
       assert.equal(col.prop('xs'), 12);
       assert.equal(col.children().text(), 'Hello World');
     });
@@ -147,22 +147,12 @@ describe('<FormLabelGroup />', () => {
     });
   });
 
-  describe('with color', () => {
-    const component = shallow(<FormLabelGroup color="success">Hello World</FormLabelGroup>);
-
-    it('should use the color prop to set the color of the FormGroup', () => {
-      const formGroup = component.find(FormGroup);
-      assert.equal(formGroup.length, 1);
-      assert.equal(formGroup.prop('color'), 'success');
-    });
-  });
-
   describe('stacked', () => {
     const component = shallow(<FormLabelGroup label="First Name" stacked>Hello World</FormLabelGroup>);
 
     it('should have a width 12 outer column for the row where the children are rendered', () => {
-      const col = component.find(Col).at(0);
-      assert.equal(col.prop('sm'), 12);
+      const col = component.find(Col);
+      assert.equal(col.prop('xs'), 12);
     });
 
     it('should adjust the label width to 12', () => {
@@ -177,7 +167,7 @@ describe('<FormLabelGroup />', () => {
     const component = shallow(<FormLabelGroup width={{ xs: 10, sm: 9 }}>Hello World</FormLabelGroup>);
 
     it('should adjust the width of the inner column wrapping the children', () => {
-      const col = component.find(Col).at(1);
+      const col = component.find(Col);
       assert.equal(col.prop('xs'), 10);
       assert.equal(col.prop('sm'), 9);
     });
@@ -195,12 +185,40 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('with feedback', () => {
-    const component = shallow(<FormLabelGroup feedback="You're doing amazing sweetie!">Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup 
+        label="Label"
+        feedback="You're doing amazing sweetie!"
+      >
+        Hello World
+      </FormLabelGroup>
+    );
 
     it('should render FormFeedback with the feedback', () => {
       const feedback = component.find(FormFeedback);
+      const label = component.find(Label);
       assert.equal(feedback.length, 1);
       assert.equal(feedback.children().text(), "You're doing amazing sweetie!");
+      assert.equal(label.hasClass('text-danger'), true);
+    });
+  });
+
+  describe('with valid feedback', () => {
+    const component = shallow(
+      <FormLabelGroup
+        label="Label"
+        validFeedback="YOU ARE CORRECT"
+      >
+        Hello World
+      </FormLabelGroup>
+    );
+
+    it('should render FormFeedback with the valid feedback', () => {
+      const feedback = component.find(FormFeedback);
+      const label = component.find(Label);
+      assert.equal(feedback.length, 1);
+      assert.equal(feedback.children().text(), 'YOU ARE CORRECT');
+      assert.equal(label.hasClass('text-success'), true);
     });
   });
 });

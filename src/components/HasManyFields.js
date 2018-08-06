@@ -54,7 +54,7 @@ class HasManyFields extends React.Component {
     this.isUncontrolled && this.setState({ value });
   }
 
-  updateItem = i => update => {
+  updateItem = i => (update) => {
     this.props.onUpdate(i, update);
     this.value = [
       ...this.value.slice(0, i),
@@ -79,7 +79,7 @@ class HasManyFields extends React.Component {
     setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
   };
 
-  setRowReference = index => rowTemplate => {
+  setRowReference = index => (rowTemplate) => {
     this.rowRefs[index] = rowTemplate;
 
     if (this.rowRefs.every(row => row === null)) {
@@ -87,7 +87,7 @@ class HasManyFields extends React.Component {
     }
   };
 
-  focusRow = index => {
+  focusRow = (index) => {
     const row = this.rowRefs[index];
     if (!row) {
       return;
@@ -102,7 +102,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, i, items) =>
+        {this.value.map((item, i, items) => (
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
@@ -116,7 +116,7 @@ class HasManyFields extends React.Component {
               disabled={disabled}
             />
           </HasManyFieldsRow>
-        )}
+        ))}
 
         <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
           {label}

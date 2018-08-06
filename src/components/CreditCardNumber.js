@@ -5,6 +5,7 @@ import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
+import InputGroupText from './InputGroupText';
 
 const ICONS = {
   'american-express': 'cc-amex',
@@ -68,12 +69,14 @@ export default class CreditCardNumber extends React.Component {
           onChange={this.onChange}
           {...inputProps}
         />
-        <InputGroupAddon className="p-0 px-2">
-          <Icon
-            name={typeToIconName(ccType)}
-            fixedWidth
-            size="lg"
-          />
+        <InputGroupAddon addonType="append">
+          <InputGroupText className="p-0 px-2">
+            <Icon
+              name={typeToIconName(ccType)}
+              fixedWidth
+              size="lg"
+            />
+          </InputGroupText>
         </InputGroupAddon>
       </InputGroup>
     );

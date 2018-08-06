@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, object, text, select } from '@storybook/addon-knobs';
 import { FormRow } from '../src';
 
 const description = `
@@ -15,8 +15,9 @@ storiesOf('FormRow', module)
         label={text('label', 'First Name')}
         labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
-        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
+        validFeedback={text('validFeedback')}
         hint={text('hint', '')}
+        width={object('width', {})}
         required={boolean('required', false)}
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}

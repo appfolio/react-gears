@@ -5,19 +5,30 @@ import { shallow, mount } from 'enzyme';
 import {
   Popover,
   PopoverTitle,
-  PopoverContent,
+  PopoverBody,
   Icon,
   HelpBubble
 } from '../../src';
 
 describe('<HelpBubble />', () => {
+  let div;
+
+  beforeEach(() => {
+    div = document.createElement('div');
+    document.body.appendChild(div);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(div);
+  });
+
   it('should have a question mark', () => {
-    const icon = mount(<HelpBubble title="hello" />).find(Icon);
+    const icon = mount(<HelpBubble title="hello" />, { attachTo: div }).find(Icon);
     assert.equal(icon.prop('name'), 'question-circle');
   });
 
   it('should link popover and icon trigger', () => {
-    const component = mount(<HelpBubble title="hi" />);
+    const component = mount(<HelpBubble title="hi" />, { attachTo: div });
     assert.equal(
       component.find(Popover).prop('target'),
       component.find(Icon).prop('id')
@@ -25,7 +36,7 @@ describe('<HelpBubble />', () => {
   });
 
   it('should start closed', () => {
-    const component = mount(<HelpBubble title="hi" />);
+    const component = mount(<HelpBubble title="hi" />, { attachTo: div });
     assert.equal(component.find(Popover).prop('isOpen'), false);
   });
 
@@ -38,9 +49,7 @@ describe('<HelpBubble />', () => {
   });
 
   it('should forward props to Popover', () => {
-    const component = mount(
-      <HelpBubble title="hi" placement="bottom" other="stuff" />
-    );
+    const component = mount(<HelpBubble title="hi" placement="bottom" other="stuff" />, { attachTo: div });
     const popover = component.find(Popover);
     assert.equal(popover.prop('placement'), 'bottom');
     assert.equal(popover.prop('other'), 'stuff');
@@ -49,7 +58,7 @@ describe('<HelpBubble />', () => {
   it('should place title and content in popover', () => {
     const component = shallow(<HelpBubble title="Title">Content</HelpBubble>);
     assert.equal(component.find(PopoverTitle).prop('children'), 'Title');
-    assert.equal(component.find(PopoverContent).prop('children'), 'Content');
+    assert.equal(component.find(PopoverBody).prop('children'), 'Content');
   });
 
   it('should accept className', () => {

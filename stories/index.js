@@ -12,7 +12,7 @@ import './CreditCardNumber';
 import './CurrencyInput';
 import './Datapair';
 import './DateInput';
-import './EditableNote';
+import './Dropdown';
 import './ExpandableSection';
 import './FeatureBanner';
 import './FilterList';

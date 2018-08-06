@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import Card from './Card';
-import CardBlock from './CardBlock';
+import CardBody from './CardBody';
 
 const SummaryBoxItem = ({ className, label, value, ...props }) => (
   <Card
@@ -11,10 +11,10 @@ const SummaryBoxItem = ({ className, label, value, ...props }) => (
     className={classnames('rounded-0 shadow-0 bg-white border-secondary', className)}
     {...props}
   >
-    <CardBlock className="text-center d-flex flex-column-reverse justify-content-end">
+    <CardBody className="text-center d-flex flex-column-reverse justify-content-end">
       <small className="text-muted text-uppercase">{label}</small>
       <div className="h3 mb-0 mt-1">{value}</div>
-    </CardBlock>
+    </CardBody>
   </Card>
 );
 

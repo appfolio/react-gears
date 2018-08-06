@@ -36,7 +36,7 @@ storiesOf('ActivityLog', module)
       action={text('action', 'Published')}
       active={boolean('active', false)}
       by={text('by', 'Joel Bandi')}
-      color={select('color', ['', 'info', 'success', 'warning', 'danger'], 'primary')}
+      color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
       date={new Date()}
       dateFormat={text('dateFormat', Activity.defaultProps.dateFormat)}
       disabled={boolean('disabled', false)}

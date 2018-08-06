@@ -29,7 +29,6 @@ function parseFeedback(feedback) {
 const FormRow = (props) => {
   const {
     children,
-    color,
     feedback,
     hint,
     id,
@@ -40,8 +39,8 @@ const FormRow = (props) => {
     rowClassName,
     size,
     stacked,
-    state,
     type,
+    validFeedback,
     width,
     ...attributes
   } = props;
@@ -49,11 +48,9 @@ const FormRow = (props) => {
   const InputElement = determineElement(type);
 
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
-  const rowColor = color || state || (baseFeedback && 'danger');
 
   return (
     <FormLabelGroup
-      color={rowColor}
       feedback={baseFeedback}
       hint={hint}
       inline={inline}
@@ -64,26 +61,28 @@ const FormRow = (props) => {
       rowClassName={rowClassName}
       size={size}
       stacked={stacked}
+      validFeedback={validFeedback}
       width={width}
     >
       <InputElement
         id={id}
         size={size}
-        state={rowColor}
         type={typeof type === 'string' ? type : null}
-        children={React.Children.map(children, child => React.cloneElement(child, { type }))}
+        valid={!!validFeedback}
+        invalid={!!feedback}
         {...attributes}
         {...childFeedback}
-      />
+      >
+        {React.Children.map(children, child => React.cloneElement(child, { type }))}
+      </InputElement>
     </FormLabelGroup>
   );
 };
 
 FormRow.propTypes = {
   children: PropTypes.node,
-  color: PropTypes.string,
   feedback: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.node,
     PropTypes.object
   ]),
   hint: PropTypes.string,
@@ -95,12 +94,12 @@ FormRow.propTypes = {
   rowClassName: PropTypes.string,
   size: PropTypes.string,
   stacked: PropTypes.bool,
-  state: PropTypes.string,
   type: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
     PropTypes.func
   ]),
+  validFeedback: PropTypes.node,
   width: PropTypes.object
 };
 

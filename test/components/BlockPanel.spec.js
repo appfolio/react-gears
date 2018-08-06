@@ -2,8 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import { Button, CardBlock, CardTitle, Icon, BlockPanel } from '../../src';
-
+import { Button, CardTitle, Collapse, Icon, BlockPanel } from '../../src';
 
 describe('<BlockPanel />', () => {
   it('should be empty with no children', () => {
@@ -41,6 +40,7 @@ describe('<BlockPanel />', () => {
       );
 
       assert.equal(component.find('#hi').length, 0);
+      assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     });
 
     it('should be open when true passed as prop', () => {
@@ -61,12 +61,12 @@ describe('<BlockPanel />', () => {
       );
 
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
-      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
-      component.ref('title').simulate('click');
-      assert.equal(component.find('#hi').length, 0, 'inner block should not be visible');
+      assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should not be hidden');
+      component.find(CardTitle).simulate('click');
+      assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
       component.find(Icon).simulate('click');
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
-      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
+      assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should not be hidden');
     });
 
     it('should honor state of open if state passed as prop', () => {
@@ -77,10 +77,10 @@ describe('<BlockPanel />', () => {
       );
 
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
-
+      assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
       component.setProps({ open: false });
 
-      assert.equal(component.find('#hi').length, 0);
+      assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     });
 
     it('should show and hide when hideOnToggle is true', () => {
@@ -91,13 +91,13 @@ describe('<BlockPanel />', () => {
       );
 
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
-      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
-      component.ref('title').simulate('click');
+      assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should not be hidden');
+      component.find(CardTitle).simulate('click');
       assert.equal(component.find('#hi').length, 1, 'inner block should be present');
-      assert.equal(component.find(CardBlock).prop('hidden'), true, 'inner block should be hidden');
+      assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
       component.find(Icon).simulate('click');
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
-      assert.equal(component.find(CardBlock).prop('hidden'), false, 'inner block should not be hidden');
+      assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should not be hidden');
     });
 
     it('should call onToggle when clicked', () => {
@@ -135,7 +135,7 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      assert.equal(component.ref('edit').exists(), false);
+      assert(!component.ref('edit'));
     });
 
     it('should render edit link when passed onEdit', () => {
@@ -144,7 +144,7 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      assert.equal(component.ref('edit').exists(), true);
+      assert(component.ref('edit'));
     });
 
     it('should call onEdit when clicked', () => {
@@ -155,7 +155,7 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      component.ref('edit').simulate('click');
+      component.ref('edit').onClick();
       assert.equal(onEdit.calledOnce, true);
     });
 
@@ -168,11 +168,8 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      assert.equal(component.find('#title').exists(), true);
-      assert.equal(component.find('#title').text(), 'WE ARE THE CHAMPIONS');
-      assert.equal(component.find('#action').exists(), true);
-      assert.equal(component.find('#action').text(), 'Go!');
+      assert.equal(component.find('#title').first().text(), 'WE ARE THE CHAMPIONS');
+      assert.equal(component.find('#action').first().text(), 'Go!');
     });
-
   });
 });

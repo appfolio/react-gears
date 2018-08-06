@@ -45,6 +45,7 @@ class ConfirmationButton extends React.Component {
 
     return (
       <Button
+        onBlur={() => this.handleClickOutside()}
         onClick={this.onClick}
         {...props}
       >

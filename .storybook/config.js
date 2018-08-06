@@ -1,6 +1,20 @@
 import React from 'react';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
-import { Button, ButtonGroup, Col, Container } from '../src';
+import {
+  Button,
+  Nav,
+  Navbar,
+  NavItem,
+  NavLink,
+  NavbarToggler,
+  Col,
+  Container,
+  UncontrolledCollapse,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from '../src';
 import { configure, setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -12,55 +26,140 @@ import './addons.js';
 setOptions({
   name: `react-gears ${pkg.version}`,
   url: 'https://github.com/appfolio/react-gears',
-  showDownPanel: true,
-  downPanelInRight: true,
+  showAddonPanel: true,
+  addonPanelInRight: true,
   downPanel: 'kadirahq%2Fstorybook-addon-knobs'
 });
 
-const changeTheme = index => {
+const changeTheme = url => {
   const link = document.getElementById('theme');
-  link.href = THEMES[index].url;
-  try {
-    localStorage.storybookTheme = index;
-  } catch (err) {
-    // Safari private mode
-  }
-}
+  link.href = url;
+  // TODO reenable after 4.0.0 release
+  // try {
+  //   localStorage.storybookTheme = index;
+  // } catch (err) {
+  //   // Safari private mode
+  // }
+};
 
 const ThemeLink = props => {
-  return <Button color="link" onClick={() => changeTheme(props.index)}>{props.children}</Button>
-}
+  return (
+    <NavLink href="#" onClick={() => changeTheme(props.url)}>
+      {props.children}
+    </NavLink>
+  );
+};
 
-const THEMES = [
-  { name: 'APM/Saffron', url: 'https://d36t0nm30n26wn.cloudfront.net/saffron/bootstrap-saffron.min.css' },
-  { name: 'MyCase', url: 'https://s3.amazonaws.com/com.mycaseinc.dev-share/paulus/bootstrap-mycase.min.20170628.css' },
-  { name: 'APM/OPortal', url: 'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css' },
-  { name: 'Bootstrap default', url: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' },
-  // TODO Re-enable after update to BS4 Beta:
-  // { name: 'Material', url: 'https://bootswatch.com/4-alpha/materia/bootstrap.min.css' },
-  // { name: 'Metro', url: 'https://bootswatch.com/4-alpha/cosmo/bootstrap.min.css' },
-  // { name: 'Dark', url: 'https://bootswatch.com/4-alpha/darkly/bootstrap.min.css' }
+const APM_THEMES = [
+  {
+    name: 'APM/Saffron',
+    url:
+      'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.0/bootstrap-saffron.min.css'
+  },
+  {
+    name: 'APM/Cayenne',
+    url:
+      'https://d36t0nm30n26wn.cloudfront.net/cayenne/bootstrap-cayenne.min.css'
+  },
+  {
+    name: 'APM/Listings',
+    url:
+      'https://d36t0nm30n26wn.cloudfront.net/listings/bootstrap-listings.min.css'
+  },
+  {
+    name: 'APM/OPortal',
+    url:
+      'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css'
+  },
+  {
+    name: 'APM/Dream',
+    url: 'https://d36t0nm30n26wn.cloudfront.net/dream/bootstrap-dream.min.css'
+  }
+];
+
+const BS4_THEMES = [
+  {
+    name: 'Default',
+    url:
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'
+  },
+  {
+    name: 'Material',
+    url:
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/materia/bootstrap.min.css'
+  },
+  {
+    name: 'Metro',
+    url:
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cosmo/bootstrap.min.css'
+  },
+  {
+    name: 'Dark',
+    url:
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/darkly/bootstrap.min.css'
+  },
+  {
+    name: 'Sketch',
+    url:
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/sketchy/bootstrap.min.css'
+  }
 ];
 
 addDecorator(withKnobs);
 
 addDecorator((story, info) => (
-<div>
-  <ButtonGroup size="sm">
-    {THEMES.map((theme, i) => <ThemeLink key={i} index={i}>{theme.name}</ThemeLink>)}
-  </ButtonGroup>
-  <Container fluid className="my-5">
-    <Col xl="7">
-      <header className="mb-5">
-        <h1 className="display-4 mb-3">{info.kind}</h1>
-        <h2 className="lead">{info.story}</h2>
-      </header>
-      <section>
-        {story()}
-      </section>
-    </Col>
-  </Container>
-</div>
+  <div>
+    <Navbar color="light">
+      <Nav>
+        <NavItem>
+          <UncontrolledDropdown>
+            <DropdownToggle nav caret>
+              APM
+            </DropdownToggle>
+            <DropdownMenu>
+              {APM_THEMES.map((theme, i) => (
+                <DropdownItem>
+                  <ThemeLink key={i} url={theme.url}>
+                    {theme.name}
+                  </ThemeLink>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </NavItem>
+        <NavItem>
+          <ThemeLink url="https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css">
+            MyCase
+          </ThemeLink>
+        </NavItem>
+        <NavItem>
+          <UncontrolledDropdown>
+            <DropdownToggle nav caret>
+              Bootstrap
+            </DropdownToggle>
+            <DropdownMenu>
+              {BS4_THEMES.map((theme, i) => (
+                <DropdownItem>
+                  <ThemeLink key={i} url={theme.url}>
+                    {theme.name}
+                  </ThemeLink>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </NavItem>
+      </Nav>
+    </Navbar>
+    <Container fluid className="my-5">
+      <Col xl="7">
+        <header className="mb-5">
+          <h1 className="display-4 mb-3">{info.kind}</h1>
+          <h2 className="lead">{info.story}</h2>
+        </header>
+        <section>{story()}</section>
+      </Col>
+    </Container>
+  </div>
 ));
 
 setAddon(infoAddon);
@@ -72,11 +171,11 @@ setDefaults({
 function loadStories() {
   require('../stories');
 
-  const storybookTheme = parseInt(localStorage.storybookTheme);
+  // const storybookTheme = parseInt(localStorage.storybookTheme);
 
-  if (storybookTheme in THEMES) {
-    changeTheme(storybookTheme);
-  }
+  // if (storybookTheme) {
+  //   changeTheme(storybookTheme);
+  // }
 }
 
 configure(loadStories, module);

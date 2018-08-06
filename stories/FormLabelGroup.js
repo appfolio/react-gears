@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, object, text, select } from '@storybook/addon-knobs';
 import { Alert, FormLabelGroup } from '../src';
 
 const description = `
@@ -15,13 +15,14 @@ storiesOf('FormLabelGroup', module)
         label={text('label', 'Some Input')}
         labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
-        color={select('color', ['', 'success', 'warning', 'danger'], 'danger')}
+        validFeedback={text('validFeedback')}
         hint={text('hint', '')}
+        width={object('width', {})}
         required={boolean('required', false)}
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}
       >
-        <Alert color="info" className="text-center p-4" style={{ borderStyle: 'dashed' }}>
+        <Alert color="info" className="text-center p-4 mb-0" style={{ borderStyle: 'dashed' }}>
           Your content here
         </Alert>
       </FormLabelGroup>

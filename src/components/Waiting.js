@@ -36,7 +36,7 @@ export default class Waiting extends React.Component {
     return (
       <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
         {title ?
-          <header ref="title" className="text-center text-white px-4 pt-4">
+          <header className="text-center text-white px-4 pt-4">
             {title}
           </header>
           : null}
