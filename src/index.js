@@ -125,6 +125,7 @@ import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
+import UncontrolledTable from './components/UncontrolledTable.js';
 import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 import Waiting from './components/Waiting.js';
 
@@ -259,6 +260,7 @@ export {
   SummaryBoxItem,
   TimeInput,
   Tooltip,
+  UncontrolledTable,
   ValidatedFormGroup,
   Waiting,
 };
