@@ -19,7 +19,9 @@ class HasManyFields extends React.Component {
     onChange: PropTypes.func,
     template: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
       .isRequired,
-    value: PropTypes.array
+    value: PropTypes.array,
+    minimumRows: PropTypes.number,
+    maximumRows: PropTypes.number
   };
 
   static defaultProps = {
@@ -28,7 +30,9 @@ class HasManyFields extends React.Component {
     onAdd: noop,
     onRemove: noop,
     onUpdate: noop,
-    onChange: noop
+    onChange: noop,
+    minimumRows: 1,
+    maximumRows: Infinity
   };
 
   constructor(props) {
@@ -54,7 +58,7 @@ class HasManyFields extends React.Component {
     this.isUncontrolled && this.setState({ value });
   }
 
-  updateItem = i => (update) => {
+  updateItem = i => update => {
     this.props.onUpdate(i, update);
     this.value = [
       ...this.value.slice(0, i),
@@ -79,7 +83,7 @@ class HasManyFields extends React.Component {
     setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
   };
 
-  setRowReference = index => (rowTemplate) => {
+  setRowReference = index => rowTemplate => {
     this.rowRefs[index] = rowTemplate;
 
     if (this.rowRefs.every(row => row === null)) {
@@ -87,7 +91,7 @@ class HasManyFields extends React.Component {
     }
   };
 
-  focusRow = (index) => {
+  focusRow = index => {
     const row = this.rowRefs[index];
     if (!row) {
       return;
@@ -98,7 +102,14 @@ class HasManyFields extends React.Component {
   };
 
   render() {
-    const { template: Template, label, disabled, errors } = this.props;
+    const {
+      template: Template,
+      label,
+      disabled,
+      errors,
+      minimumRows,
+      maximumRows
+    } = this.props;
 
     return (
       <div>
@@ -106,6 +117,7 @@ class HasManyFields extends React.Component {
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
+            hideDeleteButton={this.value.length <= minimumRows}
             disabled={disabled}
           >
             <Template
@@ -118,9 +130,11 @@ class HasManyFields extends React.Component {
           </HasManyFieldsRow>
         ))}
 
-        <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
-          {label}
-        </HasManyFieldsAdd>
+        {this.value.length >= maximumRows ? null : (
+          <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
+            {label}
+          </HasManyFieldsAdd>
+        )}
       </div>
     );
   }
