@@ -128,7 +128,9 @@ storiesOf('Table', module)
           }
         ]}
         rows={DATA}
+        rowExpanded={row => <div>{row.first} {row.last}</div>}
         sort={{ column: 'last', ascending: true }}
+        expandable={boolean('expandable', false)}
         selectable={boolean('selectable', false)}
         onSelect={action('onSelect')}
       />

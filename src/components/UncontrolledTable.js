@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import includes from 'lodash.includes';
 import orderBy from 'lodash.orderby';
 import without from 'lodash.without';
+import Button from './Button';
+import Icon from './Icon';
 import SortableTable from './SortableTable';
 
 export default class UncontrolledTable extends React.Component {
@@ -24,7 +26,8 @@ export default class UncontrolledTable extends React.Component {
 
   state = {
     sort: this.props.sort,
-    selected: []
+    expanded: [],
+    selected: [],
   }
 
   // TODO pagination
@@ -84,6 +87,19 @@ export default class UncontrolledTable extends React.Component {
     );
   };
 
+  expanded(value) {
+    return includes(this.state.expanded, value);
+  }
+
+  toggleExpanded = (value) => {
+    const expanded = this.state.expanded;
+    const newExpanded = includes(expanded, value) ?
+      without(expanded, value) :
+      [...expanded, value];
+
+    this.setState({ expanded: newExpanded });
+  };
+
   componentWillReceiveProps(nextProps) {
     // Clear selection if rows or selectable change
     if (nextProps.rows !== this.props.rows ||
@@ -95,7 +111,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { sort } = this.state;
     const { ascending, column } = sort;
-    const { columns, rowClassName, rows, selectable, onSelect, ...props } = this.props;
+    const { columns, expandable, rowClassName, rowExpanded, rows, selectable, onSelect, ...props } = this.props;
     const cols = columns.map((col) => {
       return {
         active: column === col.key,
@@ -104,8 +120,11 @@ export default class UncontrolledTable extends React.Component {
         ...col
       };
     });
+
     if (selectable) {
       cols.unshift({
+        align: 'center',
+        key: 'select',
         header: (
           <input
             type="checkbox"
@@ -114,7 +133,6 @@ export default class UncontrolledTable extends React.Component {
             onChange={() => this.toggleAll()}
           />
         ),
-        key: 'select',
         cell: row => (
           <input
             type="checkbox"
@@ -126,12 +144,31 @@ export default class UncontrolledTable extends React.Component {
         width: '1%'
       });
     }
+
+    if (expandable) {
+      cols.push({
+        align: 'center',
+        key: 'expand',
+        cell: row => (
+          <Button
+            className="px-2 py-0"
+            color="link"
+            onClick={() => this.toggleExpanded(row)}
+          >
+            <Icon name="ellipsis-v" size="lg" />
+          </Button>
+        ),
+        width: '1%'
+      });
+    }
+
     return (
       <SortableTable
         {...props}
         columns={cols}
         rows={this.sortedData(rows, column, ascending)}
         rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
+        rowExpanded={row => this.expanded(row) && rowExpanded(row)}
       />
     );
   }
