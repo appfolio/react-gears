@@ -3,7 +3,10 @@ import assert from 'assert';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import ReactSelect from 'react-select-plus';
+import ReactSelect from 'react-select';
+import Async from 'react-select/lib/Async';
+import AsyncCreatable from 'react-select/lib/AsyncCreatable';
+import Creatable from 'react-select/lib/Creatable';
 import { Select } from '../../src';
 
 const OPTIONS = [
@@ -78,7 +81,7 @@ describe('<Select />', () => {
     };
 
     const component = shallow(<Select loadOptions={getOptions} />);
-    assert.equal(component.type(), ReactSelect.Async);
+    assert.equal(component.type(), Async);
     assert(component.hasClass('select-async'));
   });
 
@@ -94,20 +97,21 @@ describe('<Select />', () => {
     };
 
     const component = shallow(<Select loadOptions={getOptions} className="foo bar" />);
-    assert.equal(component.type(), ReactSelect.Async);
+    assert.equal(component.type(), Async);
     assert(component.hasClass('foo'));
     assert(component.hasClass('bar'));
     assert(component.hasClass('select-async'));
   });
 
   it('should default to single class', () => {
-    const component = mount(<Select />).find('.Select');
-    assert(component.hasClass('Select--single'));
+    const component = shallow(<Select />);
+    assert.equal(component.type(), ReactSelect);
   });
 
   it('should append the multi class', () => {
-    const component = mount(<Select multi />).find('.Select');
-    assert(component.hasClass('Select--multi'));
+    const component = shallow(<Select multi />);
+    assert.equal(component.type(), ReactSelect);
+    assert(component.prop('isMulti'));
   });
 
   it('should support focus', () => {
@@ -122,11 +126,11 @@ describe('<Select />', () => {
     const getOptions = () => {};
 
     const component = shallow(<Select loadOptions={getOptions} creatable />);
-    assert.equal(component.type(), ReactSelect.AsyncCreatable);
+    assert.equal(component.type(), AsyncCreatable);
   });
 
   it('should render Creatable if creatable', () => {
     const component = shallow(<Select creatable />);
-    assert.equal(component.type(), ReactSelect.Creatable);
+    assert.equal(component.type(), Creatable);
   });
 });
