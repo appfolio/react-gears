@@ -10,6 +10,7 @@ storiesOf('Paginator', module)
       currentPage={number('currentPage', 1, { min: 1, max: 19 })}
       onClick={action('onClick')}
       perPage={select('perPage', [5, 10, 20, 25], 20)}
+      size={select('size', ['', 'sm', 'lg'], '')}
       totalItems={100}
     />
   ));

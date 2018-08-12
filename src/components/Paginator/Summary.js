@@ -10,6 +10,7 @@ export default class Summary extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     from: PropTypes.number.isRequired,
+    size: PropTypes.string,
     to: PropTypes.number.isRequired,
     totalItems: PropTypes.number.isRequired,
   }
@@ -19,13 +20,15 @@ export default class Summary extends React.Component {
   }
 
   render() {
-    const { className, from, to, totalItems } = this.props;
+    const { className, from, size, to, totalItems } = this.props;
 
-    let start = Math.min(totalItems, from);
-    let end = Math.min(totalItems, to);
+    const start = Math.min(totalItems, from);
+    const end = Math.min(totalItems, to);
+
+    const fontSize = (size === 'lg') ? 'larger' : (size === 'sm') ? 'smaller' : null;
 
     return (
-      <p className={className}>Displaying: {start}-{end} of {totalItems}</p>
+      <p className={className} style={{ fontSize }}>Displaying: {start}-{end} of {totalItems}</p>
     );
   }
 }
