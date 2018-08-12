@@ -107,6 +107,25 @@ export default class TimeInput extends React.Component {
     this.props.onChange(selectedOption.value);
   }
 
+  parseInput = input => parse(input, this.props.timeFormat) || parse(input, this.valueFormat);
+
+  // workaround for removing the "Create option..." text that appears when creating a new option
+  formatCreateLabel = string => string;
+
+  isValidNewOption = (inputValue, selectValue, selectOptions) => {
+    const time = this.parseInput(inputValue);
+    const value = time ? format(time, this.valueFormat) : '';
+    return !!(
+      value &&
+      !selectValue.some(option => option.value === value) &&
+      !selectOptions.some(option => option.value === value)
+    );
+  };
+
+  getNewOptionData = (inputValue) => {
+    const time = this.parseInput(inputValue);
+    return this.timeToOption(time);
+  }
 
   selectedOption() {
     return this.props.value ?
@@ -134,7 +153,12 @@ export default class TimeInput extends React.Component {
       <Select
         {...props}
         className={classNames}
+        creatable
+        createOptionPosition="first"
         disabled={disabled}
+        formatCreateLabel={this.formatCreateLabel}
+        getNewOptionData={this.getNewOptionData}
+        isValidNewOption={this.isValidNewOption}
         noOptionsMessage={this.props.noOptionsMessage}
         options={times}
         onChange={this.onChange}

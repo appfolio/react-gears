@@ -90,5 +90,44 @@ describe('<TimeInput />', () => {
     assert.equal(noOptionsMessage('asdf'), 'yo asdf aint a real time');
   });
 
+  describe('create new option', () => {
+    it('should display new options first', () => {
+      const component = shallow(<TimeInput />);
+      const select = component.find(Select);
+
+      assert.equal(select.prop('createOptionPosition'), 'first');
+    });
+
+    it('should correctly validate new options', () => {
+      const component = shallow(<TimeInput />);
+      const isValidNewOption = component.find(Select).prop('isValidNewOption');
+      const options = component.find(Select).prop('options');
+
+      assert.equal(isValidNewOption('11:34 PM', [], options), true);
+      assert.equal(isValidNewOption('1:19 am', [], options), true);
+      assert.equal(isValidNewOption('02:27 pm', [], options), true);
+      assert.equal(isValidNewOption('2:00 pm', [], options), false);
+      assert.equal(isValidNewOption('02:00 pm', [], options), false);
+      assert.equal(isValidNewOption('happy hour', [], options), false);
+      assert.equal(isValidNewOption('', [], options), false);
+    });
+
+    it('should allow setting new options when controlled', () => {
+      const component = mount(<TimeInput value="13:00" />);
+      component.setProps({ value: '13:22' });
+      const select = component.find(Select);
+      assert.deepEqual(select.prop('value'), { label: '1:22 PM', value: '13:22' });
+    });
+
+    it('should create new options with correct label and value', () => {
+      const component = shallow(<TimeInput />);
+      const getNewOptionData = component.find(Select).prop('getNewOptionData');
+
+      assert.deepEqual(getNewOptionData('11:34 PM'), { label: '11:34 PM', value: '23:34' });
+      assert.deepEqual(getNewOptionData('1:19 am'), { label: '1:19 AM', value: '01:19' });
+      assert.deepEqual(getNewOptionData('02:27 pm'), { label: '2:27 PM', value: '14:27' });
+    });
+  });
+
   it('should open and close when input addon clicked');
 });
