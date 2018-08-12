@@ -6,11 +6,13 @@ import orderBy from 'lodash.orderby';
 import without from 'lodash.without';
 import Button from './Button';
 import Icon from './Icon';
+import Paginator from './Paginator';
 import SortableTable from './SortableTable';
 
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
+    pageSize: PropTypes.number,
     sort: PropTypes.shape({
       column: PropTypes.string.isRequired,
       ascending: PropTypes.bool.isRequired
@@ -19,6 +21,7 @@ export default class UncontrolledTable extends React.Component {
 
   static defaultProps = {
     ...SortableTable.defaultProps,
+    pageSize: 10,
     sort: {
       ascending: true // TODO or: `sort={{ last, 'asc' }}` ?
     }
@@ -28,6 +31,7 @@ export default class UncontrolledTable extends React.Component {
     sort: this.props.sort,
     expanded: [],
     selected: [],
+    page: 0
   }
 
   // TODO pagination
@@ -100,26 +104,34 @@ export default class UncontrolledTable extends React.Component {
     this.setState({ expanded: newExpanded });
   };
 
+  setPage = (page) => {
+    this.setState({ page });
+  }
+
   componentWillReceiveProps(nextProps) {
     // Clear selection if rows or selectable change
     if (nextProps.rows !== this.props.rows ||
       nextProps.selectable !== this.props.selectable) {
       this.setState({ selected: [] });
     }
+    if (nextProps.rows !== this.props.rows ||
+      nextProps.expandable !== this.props.expandable) {
+      this.setState({ expanded: [] });
+    }
   }
 
   render() {
-    const { sort } = this.state;
+    const { page, sort } = this.state;
     const { ascending, column } = sort;
-    const { columns, expandable, rowClassName, rowExpanded, rows, selectable, onSelect, ...props } = this.props;
-    const cols = columns.map((col) => {
-      return {
+    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, onSelect, ...props } = this.props;
+    const cols = columns.map(col => (col.sortable !== false) ?
+      {
         active: column === col.key,
         ascending,
         onSort: asc => this.sortBy(col.key, asc),
         ...col
-      };
-    });
+      } : col
+    );
 
     if (selectable) {
       cols.unshift({
@@ -162,14 +174,30 @@ export default class UncontrolledTable extends React.Component {
       });
     }
 
+    const start = page * pageSize;
+    const end = start + pageSize;
+    const sortedRows = this.sortedData(rows, column, ascending);
+    const visibleRows = paginated ? sortedRows.slice(start, end) : sortedRows;
+
     return (
-      <SortableTable
-        {...props}
-        columns={cols}
-        rows={this.sortedData(rows, column, ascending)}
-        rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
-        rowExpanded={row => this.expanded(row) && rowExpanded(row)}
-      />
+      <div>
+        <SortableTable
+          {...props}
+          columns={cols}
+          rows={visibleRows}
+          rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
+          rowExpanded={row => expandable && this.expanded(row) && rowExpanded(row)}
+        />
+        {paginated && [
+          <hr />,
+          <Paginator
+            currentPage={page + 1}
+            onClick={pg => this.setPage(pg - 1)}
+            perPage={pageSize}
+            totalItems={rows.length}
+          />
+        ]}
+      </div>
     );
   }
 }

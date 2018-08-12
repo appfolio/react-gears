@@ -14,12 +14,13 @@ const DATA = [
   { key: '666', expanded: false, first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
   { key: '777', expanded: true, first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
   { key: '888', expanded: false, first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
-  { key: '999', expanded: false, first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) }
+  { key: '999', expanded: false, first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
+  { key: '000', expanded: false, first: 'Max', last: 'Headroom', email: 'max.headroom@example.com', dob: new Date(1984, 6, 1) }
 ];
 
 storiesOf('Table', module)
   .addWithInfo('Live example', () => (
-    <Table bordered
+    <Table
       bordered={boolean('bordered', true)}
       striped={boolean('striped', true)}
       hover={boolean('hover', true)}
@@ -132,6 +133,8 @@ storiesOf('Table', module)
         sort={{ column: 'last', ascending: true }}
         expandable={boolean('expandable', false)}
         selectable={boolean('selectable', false)}
+        paginated={boolean('paginated', false)}
+        pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
       />
     </div>
