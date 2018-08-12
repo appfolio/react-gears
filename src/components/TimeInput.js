@@ -12,6 +12,9 @@ import setMinutes from 'date-fns/set_minutes';
 import startOfToday from 'date-fns/start_of_today';
 import startOfTomorrow from 'date-fns/start_of_tomorrow';
 
+import flow from 'lodash.flow';
+import toLower from 'lodash.tolower';
+
 import Select from './Select';
 
 const format = fecha.format;
@@ -133,6 +136,19 @@ export default class TimeInput extends React.Component {
     return this.timeToOption(time);
   }
 
+  // Handle leading zeros and typing without colons
+  filterOption = ({ label }, filter) => {
+    const removeColonAndWhitespace = str => str.replace(/[:\s]/gi, '');
+    const removeLeadingZeros = str => str.replace(/^0*/, '');
+
+    const filtersToApply = flow(removeColonAndWhitespace, removeLeadingZeros, toLower);
+
+    const candidate = filtersToApply(label);
+    const filterTest = filtersToApply(filter);
+
+    return candidate.indexOf(filterTest) === 0;
+  };
+
   selectedOption() {
     return this.props.value ?
       this.valueStrToOption(this.props.value) :
@@ -162,6 +178,7 @@ export default class TimeInput extends React.Component {
         creatable
         createOptionPosition="first"
         disabled={disabled}
+        filterOption={this.filterOption}
         formatCreateLabel={this.formatCreateLabel}
         getNewOptionData={this.getNewOptionData}
         isValidNewOption={this.isValidNewOption}

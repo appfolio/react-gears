@@ -139,5 +139,25 @@ describe('<TimeInput />', () => {
     });
   });
 
+  describe('filterOption', () => {
+    it('should ignore colons and whitespace when typing', () => {
+      const component = shallow(<TimeInput />);
+      const filterOption = component.find(Select).prop('filterOption');
+
+      assert.equal(filterOption({ label: '11:30 PM' }, '113'), true);
+      assert.equal(filterOption({ label: '11:30 AM' }, '113'), true);
+      assert.equal(filterOption({ label: '11:30 AM' }, '1130'), true);
+      assert.equal(filterOption({ label: '11:30 PM' }, '1130 pm'), true);
+      assert.equal(filterOption({ label: '11:30 PM' }, '1130pm'), true);
+    });
+
+    it('should handle leading zeros', () => {
+      const component = shallow(<TimeInput />);
+      const filterOption = component.find(Select).prop('filterOption');
+
+      assert.equal(filterOption({ label: '9:30 AM', value: '09:30' }, '09:30 AM'), true);
+    });
+  });
+
   it('should open and close when input addon clicked');
 });
