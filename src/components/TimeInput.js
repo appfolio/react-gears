@@ -11,11 +11,8 @@ import setHours from 'date-fns/set_hours';
 import setMinutes from 'date-fns/set_minutes';
 import startOfToday from 'date-fns/start_of_today';
 import startOfTomorrow from 'date-fns/start_of_tomorrow';
-import Button from './Button';
-import Icon from './Icon';
-import Input from './Input';
-import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
+
+import Select from './Select';
 
 const format = fecha.format;
 const parse = fecha.parse;
@@ -24,6 +21,7 @@ const parse = fecha.parse;
 
 export default class TimeInput extends React.Component {
   static propTypes = {
+    ...Select.propTypes,
     className: PropTypes.string,
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
@@ -31,18 +29,41 @@ export default class TimeInput extends React.Component {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     min: PropTypes.string,
+    noResultsText: PropTypes.string,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.string
   }
 
   static defaultProps = {
     onChange: () => {},
     step: 30,
-    timeFormat: 'h:mm A'
+    timeFormat: 'h:mm A',
+    noResultsText: 'Must be in the format HH:MM AM/PM'
+  }
+
+  constructor(props) {
+    super(props);
+    const { defaultValue } = this.props;
+    this.state = {
+      selectedOption: defaultValue && this.valueStrToOption(defaultValue)
+    };
   }
 
   valueFormat = 'HH:mm';
+
+  timeToOption(time) {
+    return {
+      label: format(time, this.props.timeFormat),
+      value: format(time, this.valueFormat)
+    };
+  }
+
+  valueStrToOption(valueStr) {
+    const time = parse(valueStr, this.valueFormat);
+
+    return time ? this.timeToOption(time) : null;
+  }
 
   focus() {
     // TODO JavaScript does not allow opening selects programmatically.
@@ -81,6 +102,18 @@ export default class TimeInput extends React.Component {
     return times;
   }
 
+  onChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    this.props.onChange(selectedOption && selectedOption.value);
+  }
+
+
+  selectedOption() {
+    return this.props.value ?
+      this.valueStrToOption(this.props.value) :
+      this.state.selectedOption;
+  }
+
   render() {
     const {
       className,
@@ -94,34 +127,20 @@ export default class TimeInput extends React.Component {
       ...props
     } = this.props;
 
-    const classNames = classnames('custom-select', 'pt-2', className);
+    const classNames = classnames('pt-2', className);
     const times = this.visibleTimes(step, timeFormat, min, max);
 
     return (
-      <InputGroup>
-        <Input
-          {...props}
-          ref={(el) => { this.inputEl = el; }}
-          type="select"
-          className={classNames}
-          disabled={disabled}
-          onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
-        >
-          <option value="">{placeholder}</option>
-          {times.map(({ label, value }) => <option key={value} value={value}>{label}</option>)}
-        </Input>
-        <InputGroupAddon addonType="append" onClick={this.toggle}>
-          <Button
-            className="px-2"
-            disabled={disabled}
-            onClick={() => this.focus()}
-            type="button"
-            tabIndex={-1}
-          >
-            <Icon name="clock-o" fixedWidth />
-          </Button>
-        </InputGroupAddon>
-      </InputGroup>
+      <Select
+        {...props}
+        className={classNames}
+        disabled={disabled}
+        noResultsText={this.props.noResultsText}
+        options={times}
+        onChange={this.onChange}
+        placeholder={placeholder}
+        value={this.selectedOption()}
+      />
     );
   }
 }
