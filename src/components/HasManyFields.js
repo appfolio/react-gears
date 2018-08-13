@@ -117,7 +117,7 @@ class HasManyFields extends React.Component {
           <HasManyFieldsRow
             onDelete={this.deleteItem(i)}
             key={`${i}/${items.length}`}
-            hideDeleteButton={this.value.length <= minimumRows}
+            deletable={this.value.length > minimumRows}
             disabled={disabled}
           >
             <Template
@@ -130,11 +130,11 @@ class HasManyFields extends React.Component {
           </HasManyFieldsRow>
         ))}
 
-        {this.value.length >= maximumRows ? null : (
+        {this.value.length < maximumRows ? (
           <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
             {label}
           </HasManyFieldsAdd>
-        )}
+        ) : null}
       </div>
     );
   }

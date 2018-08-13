@@ -23,14 +23,14 @@ export default class HasManyFieldsRow extends React.Component {
     disabledReason: PropTypes.node,
     disabledReasonPlacement: PropTypes.string,
     onDelete: PropTypes.func,
-    hideDeleteButton: PropTypes.bool
+    deletable: PropTypes.bool
   };
 
   static defaultProps = {
     disabledReasonPlacement: 'top',
     disabled: false,
     onDelete: noop,
-    hideDeleteButton: false
+    deletable: true
   };
 
   componentWillMount() {
@@ -45,7 +45,7 @@ export default class HasManyFieldsRow extends React.Component {
       onDelete,
       disabled,
       disabledReasonPlacement,
-      hideDeleteButton
+      deletable
     } = this.props;
 
     const classNames = classnames('mb-3', className);
@@ -84,7 +84,7 @@ export default class HasManyFieldsRow extends React.Component {
       <Row className={classNames} noGutters>
         <Col>{children}</Col>
         <Col xs="auto" className="pl-3 d-flex">
-          {hideDeleteButton ? null : button}
+          {deletable ? button : null}
           {tooltip}
         </Col>
       </Row>

@@ -175,9 +175,9 @@ describe('<HasManyFields />', () => {
       />
     );
 
-    assert(component.find(HasManyFieldsRow).at(0).props().hideDeleteButton);
-    assert(component.find(HasManyFieldsRow).at(1).props().hideDeleteButton);
-    assert(component.find(HasManyFieldsRow).at(2).props().hideDeleteButton);
+    assert(!component.find(HasManyFieldsRow).at(0).props().deletable);
+    assert(!component.find(HasManyFieldsRow).at(1).props().deletable);
+    assert(!component.find(HasManyFieldsRow).at(2).props().deletable);
   });
 
   it('should hide the add button if it has the maximum number of rows', () => {

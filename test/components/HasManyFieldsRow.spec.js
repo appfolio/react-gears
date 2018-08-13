@@ -98,9 +98,9 @@ describe('<HasManyFieldsRow />', () => {
     // TODO assert disabledReason text
   });
 
-  it('should hide the delete button when hideDeleteButton is true', () => {
+  it('should hide the delete button when deletable is false', () => {
     component = shallow(
-      <HasManyFieldsRow hideDeleteButton>Stuff</HasManyFieldsRow>
+      <HasManyFieldsRow deletable={false}>Stuff</HasManyFieldsRow>
     );
     assert.equal(component.find(ConfirmationButton).length, 0);
     assert.equal(component.find(Button).length, 0);
