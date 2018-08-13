@@ -58,7 +58,7 @@ class HasManyFields extends React.Component {
     this.isUncontrolled && this.setState({ value });
   }
 
-  updateItem = i => update => {
+  updateItem = i => (update) => {
     this.props.onUpdate(i, update);
     this.value = [
       ...this.value.slice(0, i),
@@ -83,7 +83,7 @@ class HasManyFields extends React.Component {
     setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
   };
 
-  setRowReference = index => rowTemplate => {
+  setRowReference = index => (rowTemplate) => {
     this.rowRefs[index] = rowTemplate;
 
     if (this.rowRefs.every(row => row === null)) {
@@ -91,7 +91,7 @@ class HasManyFields extends React.Component {
     }
   };
 
-  focusRow = index => {
+  focusRow = (index) => {
     const row = this.rowRefs[index];
     if (!row) {
       return;
