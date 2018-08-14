@@ -26,7 +26,7 @@ class Note extends React.Component {
     onSave: PropTypes.func,
     onUndelete: PropTypes.func,
     rows: PropTypes.number,
-    saving: PropTypes.boolean
+    saving: PropTypes.bool
   };
 
   static defaultProps = {
