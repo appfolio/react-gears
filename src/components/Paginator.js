@@ -1,14 +1,38 @@
-import Page from './Paginator/Page';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import range from 'lodash.range';
 import Icon from './Icon';
+import Page from './Paginator/Page';
 import Pagination from './Pagination';
-import Row from './Row';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
 
 const DEFAULT_PER_PAGE = 20;
+
+const FirstPageLink = ({ disabled, page, onClick }) => (
+  <ShortcutLink name="first" page={page} disabled={disabled} onClick={onClick}>
+    <Icon name="angle-double-left" />
+  </ShortcutLink>
+);
+
+const PrevPageLink = ({ disabled, page, onClick }) => (
+  <ShortcutLink name="previous" page={page} disabled={disabled} onClick={onClick}>
+    <Icon name="angle-left" />
+  </ShortcutLink>
+);
+
+const NextPageLink = ({ disabled, page, onClick }) => (
+  <ShortcutLink name="next" page={page} disabled={disabled} onClick={onClick}>
+    <Icon name="angle-right" />
+  </ShortcutLink>
+);
+
+const LastPageLink = ({ disabled, page, onClick }) => (
+  <ShortcutLink name="last" page={page} disabled={disabled} onClick={onClick}>
+    <Icon name="angle-double-right" />
+  </ShortcutLink>
+);
 
 /**
  * A component that generates a set of links that can be used for pagination.  Link selection is
@@ -24,8 +48,7 @@ export default class Paginator extends React.Component {
   }
 
   static defaultProps = {
-    perPage: DEFAULT_PER_PAGE,
-    size: 'lg'
+    perPage: DEFAULT_PER_PAGE
   };
 
   render() {
@@ -34,61 +57,48 @@ export default class Paginator extends React.Component {
     const paginationState = new State(currentPage, totalItems, perPage);
     const { from, to } = paginationState.currentItemRange();
 
-    const firstPageLink = paginationState.showFirst() && (
-      <ShortcutLink name="first" page={1} onClick={onClick}>
-        <Icon name="angle-double-left" />
-      </ShortcutLink>
-    );
-
-    const prevPageLink = paginationState.showPrevious() && (
-      <ShortcutLink name="previous" page={currentPage - 1} onClick={onClick}>
-        <Icon name="angle-left" />
-      </ShortcutLink>
-    );
-
-    const nextPageLink = paginationState.showNext() && (
-      <ShortcutLink name="next" page={currentPage + 1} onClick={onClick}>
-        <Icon name="angle-right" />
-      </ShortcutLink>
-    );
-
-    const lastPageLink = paginationState.showLast() && (
-      <ShortcutLink name="last" page={paginationState.totalPages} onClick={onClick}>
-        <Icon name="angle-double-right" />
-      </ShortcutLink>
-    );
-
-    const pages = [];
     const rangeStart = paginationState.pageRange.from;
-    const rangeEnd = paginationState.pageRange.to;
-    if (rangeEnd > rangeStart) {
-      for (let page = rangeStart; page <= rangeEnd; page++) {
-        pages.push(
-          <Page
-            key={page}
-            page={page}
-            current={currentPage === page}
-            onClick={onClick}
-          />
-        );
-      }
-    }
+    const rangeEnd = paginationState.pageRange.to + 1;
+    const pages = range(rangeStart, rangeEnd).map(page => (
+      <Page
+        key={page}
+        page={page}
+        current={currentPage === page}
+        onClick={onClick}
+      />
+    ));
 
     return (
-      <Row className="flex-sm-row-reverse align-items-center">
-        <div className="col-sm-7 text-center text-sm-right">
-          <Pagination size={size} className="my-0 mb-2 d-inline-flex">
-            {firstPageLink}
-            {prevPageLink}
-            {pages}
-            {nextPageLink}
-            {lastPageLink}
-          </Pagination>
+      <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center">
+        <div>
+          {(paginationState.totalPages > 1) && (
+            <Pagination size={size} className="m-0">
+              <FirstPageLink
+                page={1}
+                disabled={!paginationState.showPrevious()}
+                onClick={onClick}
+              />
+              <PrevPageLink
+                page={currentPage - 1}
+                disabled={!paginationState.showPrevious()}
+                onClick={onClick}
+              />
+              {pages}
+              <NextPageLink
+                page={currentPage + 1}
+                disabled={!paginationState.showNext()}
+                onClick={onClick}
+              />
+              <LastPageLink
+                page={paginationState.totalPages}
+                disabled={!paginationState.showNext()}
+                onClick={onClick}
+              />
+            </Pagination>
+          )}
         </div>
-        <div className="col-sm-5 text-center text-sm-left">
-          <Summary from={from} to={to} totalItems={totalItems} className="m-0 mb-2" />
-        </div>
-      </Row>
+        <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0 mb-3" />
+      </div>
     );
   }
 }

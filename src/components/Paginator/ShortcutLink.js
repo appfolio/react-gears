@@ -9,22 +9,22 @@ import PaginationLink from '../PaginationLink';
 export default class ShortcutLink extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    name: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     page: PropTypes.number.isRequired,
   }
 
-  onClick = event => {
+  onClick = (event) => {
     event.preventDefault();
     this.props.onClick(this.props.page);
   }
 
   render() {
-    const { children } = this.props;
+    const { children, disabled } = this.props;
 
     return (
-      <PaginationItem>
-        <PaginationLink onClick={this.onClick}>
+      <PaginationItem disabled={disabled}>
+        <PaginationLink onClick={this.onClick} tabIndex={disabled ? -1 : null}>
           {children}
         </PaginationLink>
       </PaginationItem>
