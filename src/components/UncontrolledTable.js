@@ -14,8 +14,8 @@ export default class UncontrolledTable extends React.Component {
     ...SortableTable.propTypes,
     pageSize: PropTypes.number,
     sort: PropTypes.shape({
-      column: PropTypes.string.isRequired,
-      ascending: PropTypes.bool.isRequired
+      column: PropTypes.string,
+      ascending: PropTypes.bool
     })
   }
 
@@ -23,7 +23,7 @@ export default class UncontrolledTable extends React.Component {
     ...SortableTable.defaultProps,
     pageSize: 10,
     sort: {
-      ascending: true // TODO or: `sort={{ last, 'asc' }}` ?
+      ascending: true
     }
   }
 
@@ -33,8 +33,6 @@ export default class UncontrolledTable extends React.Component {
     selected: [],
     page: 0
   }
-
-  // TODO pagination
 
   sortedData = (rows, column, ascending) => orderBy(
     rows,
