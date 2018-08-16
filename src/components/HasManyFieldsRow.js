@@ -22,13 +22,15 @@ export default class HasManyFieldsRow extends React.Component {
     disabled: PropTypes.bool,
     disabledReason: PropTypes.node,
     disabledReasonPlacement: PropTypes.string,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    deletable: PropTypes.bool
   };
 
   static defaultProps = {
     disabledReasonPlacement: 'top',
     disabled: false,
-    onDelete: noop
+    onDelete: noop,
+    deletable: true
   };
 
   componentWillMount() {
@@ -42,42 +44,48 @@ export default class HasManyFieldsRow extends React.Component {
       disabledReason,
       onDelete,
       disabled,
-      disabledReasonPlacement
+      disabledReasonPlacement,
+      deletable
     } = this.props;
 
     const classNames = classnames('mb-3', className);
     // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
+
+    const tooltip =
+      disabled && disabledReason ? (
+        <Tooltip placement={disabledReasonPlacement} target={this.id}>
+          {disabledReason}
+        </Tooltip>
+      ) : null;
+
+    const button = disabled ? (
+      <Button
+        id={this.id}
+        color="danger"
+        onClick={e => e.preventDefault()}
+        outline
+        className="p-2 disabled"
+      >
+        <Icon name="times-circle-o" size="lg" />
+      </Button>
+    ) : (
+      <ConfirmationButton
+        color="danger"
+        confirmation="Delete"
+        outline
+        onClick={onDelete}
+        className="p-2"
+      >
+        <Icon name="times-circle-o" size="lg" />
+      </ConfirmationButton>
+    );
+
     return (
       <Row className={classNames} noGutters>
         <Col>{children}</Col>
         <Col xs="auto" className="pl-3 d-flex">
-          {disabled ? (
-            <Button
-              id={this.id}
-              color="danger"
-              onClick={e => e.preventDefault()}
-              outline
-              className="p-2 disabled"
-            >
-              <Icon name="times-circle-o" size="lg" />
-            </Button>
-          ) : (
-            <ConfirmationButton
-              color="danger"
-              confirmation="Delete"
-              outline
-              onClick={onDelete}
-              className="p-2"
-            >
-              <Icon name="times-circle-o" size="lg" />
-            </ConfirmationButton>
-          )}
-          {disabled &&
-            disabledReason && (
-              <Tooltip placement={disabledReasonPlacement} target={this.id}>
-                {disabledReason}
-              </Tooltip>
-            )}
+          {deletable ? button : null}
+          {tooltip}
         </Col>
       </Row>
     );

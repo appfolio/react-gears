@@ -41,8 +41,6 @@ export default class State {
     };
   }
 
-  showFirst = () => this.currentPage > 2;
   showPrevious = () => this.currentPage > 1;
   showNext = () => this.currentPage < this.totalPages;
-  showLast = () => this.totalPages - this.currentPage > 1;
 }

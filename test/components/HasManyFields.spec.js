@@ -163,4 +163,34 @@ describe('<HasManyFields />', () => {
       sinon.assert.calledWith(onUpdate, 2, expectedItems[2]);
     });
   });
+
+  it('should hide the delete buttons if it has the minimum number of rows', () => {
+    const component = shallow(
+      <HasManyFields
+        template={Input}
+        blank="foo"
+        value={items}
+        label="Add an Animal"
+        minimumRows={3}
+      />
+    );
+
+    assert(!component.find(HasManyFieldsRow).at(0).props().deletable);
+    assert(!component.find(HasManyFieldsRow).at(1).props().deletable);
+    assert(!component.find(HasManyFieldsRow).at(2).props().deletable);
+  });
+
+  it('should hide the add button if it has the maximum number of rows', () => {
+    const component = shallow(
+      <HasManyFields
+        template={Input}
+        blank="foo"
+        value={items}
+        label="Add an Animal"
+        maximumRows={3}
+      />
+    );
+
+    assert.equal(component.find(HasManyFieldsAdd).length, 0);
+  });
 });

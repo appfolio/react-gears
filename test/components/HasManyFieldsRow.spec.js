@@ -4,7 +4,13 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import { Button, ConfirmationButton, Col, HasManyFieldsRow, Tooltip } from '../../src';
+import {
+  Button,
+  ConfirmationButton,
+  Col,
+  HasManyFieldsRow,
+  Tooltip
+} from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
@@ -90,6 +96,14 @@ describe('<HasManyFieldsRow />', () => {
     const disabledTooltip = component.find(Tooltip);
     assert.equal(disabledTooltip.length, 1);
     // TODO assert disabledReason text
+  });
+
+  it('should hide the delete button when deletable is false', () => {
+    component = shallow(
+      <HasManyFieldsRow deletable={false}>Stuff</HasManyFieldsRow>
+    );
+    assert.equal(component.find(ConfirmationButton).length, 0);
+    assert.equal(component.find(Button).length, 0);
   });
 
   describe('when disabled and disabled reason', () => {

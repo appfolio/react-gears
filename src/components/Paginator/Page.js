@@ -7,15 +7,13 @@ import PaginationLink from '../PaginationLink';
  * A clickable link to a page in the pagination bar
  */
 export default class Page extends React.Component {
-  static displayName = 'Page';
-
   static propTypes = {
     current: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
     page: PropTypes.number.isRequired,
   }
 
-  onClick = event => {
+  onClick = (event) => {
     event.preventDefault();
     this.props.onClick(this.props.page);
   }

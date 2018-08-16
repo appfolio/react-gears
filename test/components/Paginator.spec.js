@@ -5,7 +5,6 @@ import { mount } from 'enzyme';
 
 import { Paginator } from '../../src';
 
-
 describe('<Paginator />', () => {
   describe('first shortcut', () => {
     it('does not display if there are no pages', () => {
@@ -20,17 +19,12 @@ describe('<Paginator />', () => {
 
     it('does not display when on the first page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'first'}).length);
-    });
-
-    it('does not display when on the second page', () => {
-      const wrapper = mount(<Paginator currentPage={2} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'first'}).length);
+      assert.equal(wrapper.find({ name: 'first' }).props().disabled, true);
     });
 
     it('does display when not on the first page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'first'}).length);
+      assert.equal(wrapper.find({ name: 'first' }).props().disabled, false);
     });
   });
 
@@ -47,17 +41,12 @@ describe('<Paginator />', () => {
 
     it('does not display when on the first page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'previous'}).length);
-    });
-
-    it('does display when on the second page', () => {
-      const wrapper = mount(<Paginator currentPage={2} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'previous'}).length);
+      assert.equal(wrapper.find({ name: 'previous' }).props().disabled, true);
     });
 
     it('does display when not on the first page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'previous'}).length);
+      assert.equal(wrapper.find({ name: 'previous' }).props().disabled, false);
     });
   });
 
@@ -74,17 +63,12 @@ describe('<Paginator />', () => {
 
     it('does not display when on the last page', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'next'}).length);
-    });
-
-    it('does display when on the second to last page', () => {
-      const wrapper = mount(<Paginator currentPage={12} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'next'}).length);
+      assert.equal(wrapper.find({ name: 'next' }).props().disabled, true);
     });
 
     it('does display when on any other page', () => {
       const wrapper = mount(<Paginator currentPage={11} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'next'}).length);
+      assert.equal(wrapper.find({ name: 'next' }).props().disabled, false);
     });
   });
 
@@ -101,17 +85,12 @@ describe('<Paginator />', () => {
 
     it('does not display when on the last page', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'last'}).length);
-    });
-
-    it('does not display when on the second to last page', () => {
-      const wrapper = mount(<Paginator currentPage={12} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'last'}).length);
+      assert.equal(wrapper.find({ name: 'last' }).props().disabled, true);
     });
 
     it('does display when on any other page', () => {
       const wrapper = mount(<Paginator currentPage={11} totalItems={256} onClick={sinon.stub()} />);
-      assert.equal(1, wrapper.find({ name: 'last'}).length);
+      assert.equal(wrapper.find({ name: 'last' }).props().disabled, false);
     });
   });
 

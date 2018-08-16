@@ -23,6 +23,7 @@ import './Forms';
 import './HasManyFields';
 import './HelpBubble';
 import './Icon';
+import './Input';
 import './InfoBox';
 import './InputGroup';
 import './LabelBadge';
