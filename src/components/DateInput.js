@@ -70,6 +70,7 @@ export default class DateInput extends React.Component {
     keyboard: PropTypes.bool,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onClose: PropTypes.func,
     parse: PropTypes.func,
     showOnFocus: PropTypes.bool,
     value: PropTypes.oneOfType([
@@ -113,10 +114,7 @@ export default class DateInput extends React.Component {
     this.parseInput(value);
   }
 
-  onSelect = (newDate) => {
-    this.setDate(newDate);
-    this.close();
-  };
+  onSelect = newDate => this.setDate(newDate, true);
 
   onKeyDown = (event) => {
     // Ignore arrows if closed, disabled, or modifiers are down:
@@ -160,11 +158,14 @@ export default class DateInput extends React.Component {
     return true;
   };
 
-  setDate = (date) => {
-    this.setState({
+  setDate = (date, close = false) => {
+    const newState = close ? {
+      value: format(date, this.props.dateFormat),
+      open: false
+    } : {
       value: format(date, this.props.dateFormat)
-    });
-    this.props.onChange(date, true);
+    };
+    this.setState(newState, () => this.props.onChange(date, true));
   };
 
   getCurrentValue = () => {
@@ -195,10 +196,7 @@ export default class DateInput extends React.Component {
   prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
   show = () => this.setState({ open: true });
-  today = () => {
-    this.setDate(new Date());
-    this.close();
-  }
+  today = () => this.setDate(new Date(), true);
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
@@ -234,8 +232,18 @@ export default class DateInput extends React.Component {
     this.setInputValue();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.setInputValue();
+    if (this.props.onClose && this.state.open !== prevState.open && !this.state.open) {
+      const value = this.props.value !== undefined ? this.props.value : this.state.value;
+      const date = this.props.parse(value, this.props.dateFormat);
+
+      if (date) {
+        this.props.onClose(date, true);
+      } else {
+        this.props.onClose(value, false);
+      }
+    }
   }
 
   render() {
