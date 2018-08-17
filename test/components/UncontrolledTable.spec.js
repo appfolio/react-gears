@@ -258,6 +258,24 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should call onSelect when selectable row picked');
-  it('should show correct rows when paginated specified');
+
+  it('should show correct rows when paginated specified', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        paginated
+        pageSize={4}
+      />
+    );
+    const trs = wrapper.find('tbody tr');
+    assert.equal(trs.length, 4);
+    // TODO assert rows
+  });
+
   it('should show correct rows on page change');
+
+  it('should show correct rows on sort change');
 });
