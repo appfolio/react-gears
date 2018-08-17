@@ -13,6 +13,7 @@ storiesOf('DateInput', module)
         readOnly={boolean('readOnly', false)}
         onBlur={action('onBlur')}
         onChange={action('onChange')}
+        onClose={action('onClose')}
       />
     </div>
   ))
