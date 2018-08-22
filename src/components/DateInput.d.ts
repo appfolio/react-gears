@@ -17,6 +17,7 @@ interface DateInputPropTypes extends Omit<
   keyboard?: boolean;
   onBlur?: (ev: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (value: DateOrString, isDate: boolean) => void;
+  onClose?: (value: DateOrString, isDate: boolean) => void;
   parse?: (value: string, dateFormat: string) => DateOrString;
   showOnFocus?: boolean;
   value?: DateOrString;
