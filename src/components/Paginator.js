@@ -72,7 +72,7 @@ export default class Paginator extends React.Component {
       <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center">
         <div>
           {(paginationState.totalPages > 1) && (
-            <Pagination size={size} className="m-0 p-0 border-0 flex-row">
+            <Pagination size={size} className="m-0 mb-3" listClassName="m-0 p-0 border-0 flex-row">
               <FirstPageLink
                 page={1}
                 disabled={!paginationState.showPrevious()}
