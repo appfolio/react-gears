@@ -278,4 +278,6 @@ describe('<UncontrolledTable />', () => {
   it('should show correct rows on page change');
 
   it('should show correct rows on sort change');
+
+  it('should hide columns when hidden');
 });

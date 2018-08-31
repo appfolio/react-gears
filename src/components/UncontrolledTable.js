@@ -120,14 +120,16 @@ export default class UncontrolledTable extends React.Component {
     const { page, sort } = this.state;
     const { ascending, column } = sort;
     const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, onSelect, ...props } = this.props;
-    const cols = columns.map(col => (col.sortable !== false) ?
-      {
-        active: column === col.key,
-        ascending,
-        onSort: asc => this.sortBy(col.key, asc),
-        ...col
-      } : col
-    );
+    const cols = columns
+      .filter(col => !col.hidden)
+      .map(col => (col.sortable !== false) ?
+        {
+          active: column === col.key,
+          ascending,
+          onSort: asc => this.sortBy(col.key, asc),
+          ...col
+        } : col
+      );
 
     if (selectable) {
       cols.unshift({
