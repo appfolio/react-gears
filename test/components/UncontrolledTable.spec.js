@@ -257,7 +257,24 @@ describe('<UncontrolledTable />', () => {
     assert.equal(ths.length, columns.length + 1); // For selectable column
   });
 
-  it('should call onSelect when selectable row picked');
+  it('should call onSelect when selectable row picked', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const onSelect = sinon.stub();
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selectable
+        onSelect={onSelect}
+      />
+    );
+    wrapper
+      .find({ type: 'checkbox' })
+      .first()
+      .simulate('change', { target: { checked: true } });
+    sinon.assert.calledWith(onSelect, rows);
+  });
 
   it('should show correct rows when paginated specified', () => {
     const columns = [{ header: 'Name', cell: row => row }];
