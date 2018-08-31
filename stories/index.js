@@ -36,7 +36,6 @@ import './Paginator';
 import './Popover';
 import './Progress';
 import './Select';
-import './SortableTable';
 import './Spinner';
 import './Steps';
 import './SummaryBox';
