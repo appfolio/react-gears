@@ -76,9 +76,7 @@ export default class UncontrolledTable extends React.Component {
       without(selected, value) :
       [...selected, value];
 
-    this.setState({ selected: newSelection },
-      this.props.onSelect(newSelection)
-    );
+    this.setState({ selected: newSelection }, () => this.props.onSelect(newSelection));
   };
 
   toggleAll = () => {
@@ -140,7 +138,7 @@ export default class UncontrolledTable extends React.Component {
             type="checkbox"
             className="mx-1"
             checked={this.allSelected}
-            onChange={() => this.toggleAll()}
+            onChange={this.toggleAll}
           />
         ),
         cell: row => (
