@@ -279,5 +279,19 @@ describe('<UncontrolledTable />', () => {
 
   it('should show correct rows on sort change');
 
-  it('should hide columns when hidden');
+  it('should hide columns when hidden', () => {
+    const columns = [
+      { header: 'Name', cell: row => row },
+      { header: 'Nope', cell: () => 'Nope', hidden: true },
+    ];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+      />
+    );
+    assert.equal(wrapper.find('th').length, 1);
+    assert.equal(wrapper.find('td').length, rows.length);
+  });
 });
