@@ -112,6 +112,16 @@ describe('<TimeInput />', () => {
       assert.equal(isValidNewOption('', [], options), false);
     });
 
+    it('should not allow entering a time outside of min and max', () => {
+      const component = shallow(<TimeInput min='09:00' max='17:00' />);
+      const isValidNewOption = component.find(Select).prop('isValidNewOption');
+      const options = component.find(Select).prop('options');
+
+      assert.equal(isValidNewOption('11:34 AM', [], options), true);
+      assert.equal(isValidNewOption('1:19 am', [], options), false);
+      assert.equal(isValidNewOption('06:27 pm', [], options), false);
+    });
+
     it('should allow setting new options when controlled', () => {
       const component = mount(<TimeInput value="13:00" />);
       component.setProps({ value: '13:22' });
