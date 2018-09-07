@@ -148,6 +148,20 @@ describe('<TimeInput />', () => {
       assert.deepEqual(getNewOptionData('1:19 am'), { label: '1:19 AM', value: '01:19' });
       assert.deepEqual(getNewOptionData('02:27 pm'), { label: '2:27 PM', value: '14:27' });
     });
+
+    it('should allow adding new times without typing colons', () => {
+      const component = shallow(<TimeInput />);
+      const getNewOptionData = component.find(Select).prop('getNewOptionData');
+
+      assert.deepEqual(getNewOptionData('1131 PM'), { label: '11:31 PM', value: '23:31' });
+      assert.deepEqual(getNewOptionData('0222'), { label: '2:22 AM', value: '02:22' });
+      assert.deepEqual(getNewOptionData('223'), { label: '2:23 AM', value: '02:23' });
+      assert.deepEqual(getNewOptionData('454 pm'), { label: '4:54 PM', value: '16:54' });
+      assert.deepEqual(getNewOptionData('845'), { label: '8:45 AM', value: '08:45' });
+      assert.deepEqual(getNewOptionData('146'), { label: '1:46 AM', value: '01:46' });
+      assert.deepEqual(getNewOptionData('137 pm'), { label: '1:37 PM', value: '13:37' });
+      assert.deepEqual(getNewOptionData('658pm'), { label: '6:58 PM', value: '18:58' });
+    });
   });
 
   describe('filterOption', () => {
