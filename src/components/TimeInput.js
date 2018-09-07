@@ -22,6 +22,18 @@ const parse = fecha.parse;
 
 // TODO consider using <input type="time" /> when better browser support.
 
+// TODO use date-fns/parse to handle this behavior instead
+function addMissingColons(str) {
+  // looks for the hour in a smarter way than fecha - the first capture group only
+  // captures 0 or 1 if it is followed by 3 digits with an optional colon
+  const regex = /^((?:[01](?=\d:?\d{2}))?\d)?(:?)(.*)$/;
+
+  // eslint-disable-next-line no-unused-vars
+  const [_fullStr, hour, _colon, restOfStr] = regex.exec(str);
+
+  return [hour, ':', restOfStr].join('');
+}
+
 export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
@@ -110,7 +122,10 @@ export default class TimeInput extends React.Component {
     this.props.onChange(selectedOption.value);
   }
 
-  parseInput = input => parse(input, this.props.timeFormat) || parse(input, this.valueFormat);
+  parseInput(input) {
+    const str = addMissingColons(input);
+    return parse(str, this.props.timeFormat) || parse(str, this.valueFormat);
+  }
 
   // workaround for removing the "Create option..." text that appears when creating a new option
   formatCreateLabel = string => string;
