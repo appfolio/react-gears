@@ -38,6 +38,7 @@ export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
     className: PropTypes.string,
+    creatable: PropTypes.bool,
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
     max: PropTypes.string,
@@ -51,6 +52,7 @@ export default class TimeInput extends React.Component {
   }
 
   static defaultProps = {
+    creatable: false,
     onChange: () => {},
     step: 30,
     timeFormat: 'h:mm A',
@@ -172,6 +174,7 @@ export default class TimeInput extends React.Component {
 
   render() {
     const {
+      creatable,
       className,
       disabled,
       max,
@@ -186,17 +189,23 @@ export default class TimeInput extends React.Component {
     const classNames = classnames('pt-2', className);
     const times = this.visibleTimes(step, timeFormat, min, max);
 
+    const creatableProps = {
+      createOptionPosition: 'first',
+      formatCreateLabel: this.formatCreateLabel,
+      getNewOptionData: this.getNewOptionData,
+      isValidNewOption: this.isValidNewOption
+    };
+
     return (
       <Select
         {...props}
         className={classNames}
-        creatable
-        createOptionPosition="first"
+        {...{
+          creatable,
+          ...(creatable && creatableProps)
+        }}
         disabled={disabled}
         filterOption={this.filterOption}
-        formatCreateLabel={this.formatCreateLabel}
-        getNewOptionData={this.getNewOptionData}
-        isValidNewOption={this.isValidNewOption}
         noResultsText={this.props.noResultsText}
         options={times}
         onChange={this.onChange}
