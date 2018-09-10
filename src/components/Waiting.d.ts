@@ -1,4 +1,4 @@
-import ModalProps from './TypeHelpers/props/Modal';
+import { ModalProps } from 'reactstrap/lib/Modal';
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 

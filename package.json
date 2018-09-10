@@ -34,7 +34,7 @@
     "react-dom": "16.x"
   },
   "dependencies": {
-    "@types/reactstrap": "4.6.6",
+    "@types/reactstrap": "6.0.2",
     "classnames": "^2.2.5",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.28.5",
