@@ -13,6 +13,8 @@ interface HasManyFieldsPropTypes {
   onUpdate?: (newVal: HasManyValue) => void;
   onChange?: (val: HasManyValue) => void;
   template: any;
+  minimumRows?: number;
+  maximumRows?: number;
   value?: HasManyValue[];
 }
 declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> {}
