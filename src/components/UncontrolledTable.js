@@ -12,7 +12,10 @@ import SortableTable from './SortableTable';
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
+    expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    page: PropTypes.number,
     pageSize: PropTypes.number,
+    selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     sort: PropTypes.shape({
       column: PropTypes.string,
       ascending: PropTypes.bool
@@ -21,7 +24,10 @@ export default class UncontrolledTable extends React.Component {
 
   static defaultProps = {
     ...SortableTable.defaultProps,
+    expanded: [],
+    page: 0,
     pageSize: 10,
+    selected: [],
     sort: {
       ascending: true
     }
@@ -29,9 +35,9 @@ export default class UncontrolledTable extends React.Component {
 
   state = {
     sort: this.props.sort,
-    expanded: [],
-    selected: [],
-    page: 0
+    expanded: this.props.expanded,
+    selected: this.props.selected,
+    page: this.props.page
   }
 
   sortedData = (rows, column, ascending) => orderBy(
@@ -114,12 +120,15 @@ export default class UncontrolledTable extends React.Component {
       nextProps.expandable !== this.props.expandable) {
       this.setState({ expanded: [] });
     }
+    if (nextProps.rows !== this.props.rows) {
+      this.setState({ page: 0 });
+    }
   }
 
   render() {
-    const { page, sort } = this.state;
-    const { ascending, column } = sort;
-    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, onSelect, ...props } = this.props;
+    const { page } = this.state;
+    const { ascending, column } = this.state.sort;
+    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?

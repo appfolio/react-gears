@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon.js';
+import styles from './Header.scss';
+import classnames from 'classnames';
 
 export default class Header extends React.Component {
   static propTypes = {
@@ -16,10 +18,11 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { active, ascending, children, onSort, ...props } = this.props;
-
+    const { active, ascending, children, className, onSort, ...props } = this.props;
+    const classNames = classnames(className, styles.header);
     return (
       <th
+        className={classNames}
         onClick={onSort}
         style={{
           cursor: onSort ? 'pointer' : 'initial'
