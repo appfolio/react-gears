@@ -12,7 +12,10 @@ import SortableTable from './SortableTable';
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
+    expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    page: PropTypes.number,
     pageSize: PropTypes.number,
+    selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     sort: PropTypes.shape({
       column: PropTypes.string,
       ascending: PropTypes.bool
@@ -21,7 +24,10 @@ export default class UncontrolledTable extends React.Component {
 
   static defaultProps = {
     ...SortableTable.defaultProps,
+    expanded: [],
+    page: 0,
     pageSize: 10,
+    selected: [],
     sort: {
       ascending: true
     }
@@ -29,9 +35,9 @@ export default class UncontrolledTable extends React.Component {
 
   state = {
     sort: this.props.sort,
-    expanded: [],
-    selected: [],
-    page: 0
+    expanded: this.props.expanded,
+    selected: this.props.selected,
+    page: this.props.page
   }
 
   sortedData = (rows, column, ascending) => orderBy(
@@ -113,6 +119,9 @@ export default class UncontrolledTable extends React.Component {
     if (nextProps.rows !== this.props.rows ||
       nextProps.expandable !== this.props.expandable) {
       this.setState({ expanded: [] });
+    }
+    if (nextProps.rows !== this.props.rows) {
+      this.setState({ page: 0 });
     }
   }
 
