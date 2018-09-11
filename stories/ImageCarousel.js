@@ -34,6 +34,6 @@ storiesOf('ImageCarousel', module)
       keyboard={boolean('keyboard', ImageCarousel.defaultProps.keyboard)}
       indicators={boolean('indicators', ImageCarousel.defaultProps.indicators)}
       controls={boolean('controls', ImageCarousel.defaultProps.controls)}
-      autoplay={boolean('autoplay', ImageCarousel.defaultProps.autoplay)}
+      autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
     />
   ));
