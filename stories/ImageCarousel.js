@@ -6,19 +6,19 @@ import { ImageCarousel } from '../src';
 
 const items = [
   {
-    src: 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/18q1/699327/2018-lamborghini-huracan-performante-test-review-car-and-driver-photo-702889-s-original.jpg',
+    src: 'https://picsum.photos/800/600?random',
     altText: 'Slide 1',
     caption: 'Slide 1',
     header: 'Slide 1 Header'
   },
   {
-    src: 'http://media.caranddriver.com/images/17q2/678295/2018-mclaren-720s-first-drive-review-car-and-driver-photo-680456-s-original.jpg',
+    src: 'https://picsum.photos/1000/750?random',
     altText: 'Slide 2',
     caption: 'Slide 2',
     header: 'Slide 2 Header'
   },
   {
-    src: 'https://www.autocar.co.uk/sites/autocar.co.uk/files/ferrari-458-speciale-rt-221-31.jpg',
+    src: 'https://picsum.photos/1200/900?random',
     altText: 'Slide 3',
     caption: 'Slide 3',
     header: 'Slide 3 Header'
