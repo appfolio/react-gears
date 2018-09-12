@@ -21,7 +21,7 @@ export default class ImageCarousel extends React.Component {
   };
 
   handleEscape(e) {
-    if (e.keyCode === 27) {
+    if (e.key === 'Escape') {
       this.props.toggle();
     }
   }
