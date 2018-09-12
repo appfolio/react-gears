@@ -29,6 +29,7 @@ export default class TimeInput extends React.Component {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     min: PropTypes.string,
+    noOptionsMessage: PropTypes.func,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
     value: PropTypes.string
@@ -37,7 +38,8 @@ export default class TimeInput extends React.Component {
   static defaultProps = {
     onChange: () => {},
     step: 30,
-    timeFormat: 'h:mm A'
+    timeFormat: 'h:mm A',
+    noOptionsMessage: () => 'Must be in the format HH:MM AM/PM'
   }
 
   constructor(props) {
@@ -105,7 +107,6 @@ export default class TimeInput extends React.Component {
     this.props.onChange(selectedOption.value);
   }
 
-  noOptionsMessage = () => 'Must be in the format HH:MM AM/PM';
 
   selectedOption() {
     return this.props.value ?
@@ -134,7 +135,7 @@ export default class TimeInput extends React.Component {
         {...props}
         className={classNames}
         disabled={disabled}
-        noOptionsMessage={this.noOptionsMessage}
+        noOptionsMessage={this.props.noOptionsMessage}
         options={times}
         onChange={this.onChange}
         placeholder={placeholder}

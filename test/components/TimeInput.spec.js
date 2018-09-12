@@ -77,13 +77,17 @@ describe('<TimeInput />', () => {
     assert.equal(options[options.length - 1].label, '12:00 PM');
   });
 
-  it('should have a relevant message when the input is invalid', () => {
+  it('should have a relevant default message when the input is invalid', () => {
     const component = shallow(<TimeInput />);
     const noOptionsMessage = component.find(Select).prop('noOptionsMessage');
     assert.equal(noOptionsMessage(), 'Must be in the format HH:MM AM/PM');
   });
 
-
+  it('should allow passing a noOptionsMessage prop when the input is invalid', () => {
+    const customMessage = input => `yo ${input} aint a real time`;
+    const component = shallow(<TimeInput noOptionsMessage={customMessage} />);
+    const noOptionsMessage = component.find(Select).prop('noOptionsMessage');
+    assert.equal(noOptionsMessage('asdf'), 'yo asdf aint a real time');
   });
 
   it('should open and close when input addon clicked');
