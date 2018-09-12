@@ -42,7 +42,7 @@ class Select extends React.Component {
     this.props.onChange(value);
   }
 
-  bindInput = el => this.selectEl = el;
+  bindInput = (el) => { this.selectEl = el; };
 
   focus() {
     this.selectEl.focus();
@@ -66,9 +66,8 @@ class Select extends React.Component {
       SelectElement = Creatable;
     }
     const classNames = classnames(className, { 'select-async': this.props.loadOptions });
-    const valueComponentRenderer = valueComponent ? valueComponent :
-                                   multi ? SelectMultiValue :
-                                   undefined;
+    const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
+
     // TODO replace arrowRenderer and clearRenderer?
     return (
       <SelectElement
