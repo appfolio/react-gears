@@ -1,28 +1,22 @@
+/* eslint-disable react/default-props-match-prop-types */
+// Enable the above rule when the following is addressed https://github.com/yannickcr/eslint-plugin-react/issues/1674
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Icon from './Icon';
 import Modal from './Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
 
 export default class ImageCarousel extends React.Component {
   static propTypes = {
-    autoplay: PropTypes.bool,
-    backdrop: PropTypes.bool,
-    controls: PropTypes.bool,
-    fade: PropTypes.bool,
-    items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    indicators: PropTypes.bool,
-    isOpen: PropTypes.bool
+    ...UncontrolledCarousel.propTypes,
+    ...Modal.propTypes
   };
 
   static defaultProps = {
-    autoplay: false,
+    autoPlay: false,
     backdrop: true,
-    controls: true,
     fade: false,
     items: [],
-    indicators: true,
-    isOpen: false
     toggle: () => {}
   };
 
@@ -41,14 +35,11 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { autoplay, backdrop, controls, fade, items, indicators, toggle, ...props } = this.props;
+    const { autoPlay, controls, items, indicators, toggle, ...props } = this.props;
 
     // TODO temp - remove need for style tag below:
     return (
       <Modal
-        backdrop={backdrop}
-        fade={fade}
-        keyboard
         external={
           <div className="h-100">
             <Icon
@@ -63,7 +54,7 @@ export default class ImageCarousel extends React.Component {
               items={items}
               indicators={indicators}
               controls={controls}
-              autoplay={autoplay}
+              autoPlay={autoPlay}
             />
           </div>
         }
