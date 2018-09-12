@@ -23,24 +23,13 @@ export default class ImageCarousel extends React.Component {
     items: [],
     indicators: true,
     isOpen: false
-  };
-
-  state = {
-    isOpen: this.props.isOpen
+    toggle: () => {}
   };
 
   handleEscape(e) {
     if (e.keyCode === 27) {
-      this.setState({
-        isOpen: false
-      });
+      this.props.toggle();
     }
-  }
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
   }
 
   componentDidMount() {
@@ -52,16 +41,14 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { autoplay, backdrop, controls, fade, items, indicators, ...props } = this.props;
+    const { autoplay, backdrop, controls, fade, items, indicators, toggle, ...props } = this.props;
 
     // TODO temp - remove need for style tag below:
     return (
       <Modal
         backdrop={backdrop}
-        isOpen={this.state.isOpen}
         fade={fade}
         keyboard
-        toggle={() => this.toggle}
         external={
           <div className="h-100">
             <Icon
@@ -69,7 +56,7 @@ export default class ImageCarousel extends React.Component {
               size="2x"
               className="text-white"
               style={{ position: 'fixed', top: '2rem', right: '2rem', zIndex: 15000 }}
-              onClick={() => this.toggle()}
+              onClick={toggle}
             />
             <UncontrolledCarousel
               className="d-flex align-items-center h-100"
