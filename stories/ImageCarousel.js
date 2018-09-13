@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, number } from '@storybook/addon-knobs';
 
 import { ImageCarousel } from '../src';
 
@@ -32,6 +32,7 @@ storiesOf('ImageCarousel', module)
       fade={boolean('fade', ImageCarousel.defaultProps.fade)}
       isOpen={boolean('isOpen', true)}
       indicators={boolean('indicators', true)}
+      interval={number('interval', ImageCarousel.defaultProps.interval)}
       controls={boolean('controls', true)}
       autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
     />
