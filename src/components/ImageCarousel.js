@@ -17,7 +17,6 @@ export default class ImageCarousel extends React.Component {
     backdrop: true,
     fade: false,
     items: [],
-    interval: 0,
     toggle: () => {}
   };
 
@@ -54,7 +53,7 @@ export default class ImageCarousel extends React.Component {
               className="d-flex align-items-center h-100"
               items={items}
               indicators={indicators}
-              interval={interval}
+              interval={autoPlay ? interval : 0}
               controls={controls}
               autoPlay={autoPlay}
             />
