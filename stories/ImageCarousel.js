@@ -31,9 +31,8 @@ storiesOf('ImageCarousel', module)
       items={items}
       fade={boolean('fade', ImageCarousel.defaultProps.fade)}
       isOpen={boolean('isOpen', true)}
-      keyboard={boolean('keyboard', ImageCarousel.defaultProps.keyboard)}
-      indicators={boolean('indicators', ImageCarousel.defaultProps.indicators)}
-      controls={boolean('controls', ImageCarousel.defaultProps.controls)}
+      indicators={boolean('indicators', true)}
+      controls={boolean('controls', true)}
       autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
     />
   ));
