@@ -1,5 +1,50 @@
 # Change Log
 
+## [v4.5.0](https://github.com/appfolio/react-gears/tree/v4.5.0) (2018-09-13)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.4.1...v4.5.0)
+
+**Merged pull requests:**
+
+- Update storybook config [\#458](https://github.com/appfolio/react-gears/pull/458) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- Add ImageCarousel [\#457](https://github.com/appfolio/react-gears/pull/457) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- Update TypeScript definition files [\#455](https://github.com/appfolio/react-gears/pull/455) ([steveklebanoff](https://github.com/steveklebanoff))
+
+## [v4.4.1](https://github.com/appfolio/react-gears/tree/v4.4.1) (2018-09-12)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.4.0...v4.4.1)
+
+**Merged pull requests:**
+
+- gt - Correct Table props [\#453](https://github.com/appfolio/react-gears/pull/453) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.4.0](https://github.com/appfolio/react-gears/tree/v4.4.0) (2018-08-31)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.3.2...v4.4.0)
+
+**Merged pull requests:**
+
+- gt - WIP UncontrolledTable [\#440](https://github.com/appfolio/react-gears/pull/440) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.3.2](https://github.com/appfolio/react-gears/tree/v4.3.2) (2018-08-23)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.3.1...v4.3.2)
+
+**Merged pull requests:**
+
+- gt - Move classNames to inner pagination component [\#452](https://github.com/appfolio/react-gears/pull/452) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.3.1](https://github.com/appfolio/react-gears/tree/v4.3.1) (2018-08-23)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.1.1...v4.3.1)
+
+**Merged pull requests:**
+
+- gt - Add missing onClose type for DateInput [\#451](https://github.com/appfolio/react-gears/pull/451) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v3.1.1](https://github.com/appfolio/react-gears/tree/v3.1.1) (2018-08-22)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.3.0...v3.1.1)
+
+**Merged pull requests:**
+
+- td - add typescript definition for dateinput [\#450](https://github.com/appfolio/react-gears/pull/450) ([nonobitata](https://github.com/nonobitata))
+- gt - Explicitly set Paginator classes to avoid APM conflict [\#449](https://github.com/appfolio/react-gears/pull/449) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
 ## [v4.3.0](https://github.com/appfolio/react-gears/tree/v4.3.0) (2018-08-17)
 [Full Changelog](https://github.com/appfolio/react-gears/compare/v3.1.0...v4.3.0)
 
@@ -43,7 +88,7 @@
 - gt - Update FormChoice to support Bootstrap 4 [\#438](https://github.com/appfolio/react-gears/pull/438) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
 
 ## [v4.0.0-beta](https://github.com/appfolio/react-gears/tree/v4.0.0-beta) (2018-08-01)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.7...v4.0.0-beta)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.2...v4.0.0-beta)
 
 **Merged pull requests:**
 
@@ -51,59 +96,26 @@
 - gt - Update ExpandableSection with Collapse [\#436](https://github.com/appfolio/react-gears/pull/436) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
 - gt - Update BlockPanel dropdown [\#435](https://github.com/appfolio/react-gears/pull/435) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
 
-## [v4.0.0-rc.7](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.7) (2018-07-25)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.6...v4.0.0-rc.7)
-
-## [v4.0.0-rc.6](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.6) (2018-07-20)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.2...v4.0.0-rc.6)
-
 ## [v3.0.2](https://github.com/appfolio/react-gears/tree/v3.0.2) (2018-07-19)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.5...v3.0.2)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.1...v3.0.2)
 
 **Merged pull requests:**
 
 - Hex add classes to data pair and address input [\#434](https://github.com/appfolio/react-gears/pull/434) ([swangs](https://github.com/swangs))
-
-## [v4.0.0-rc.5](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.5) (2018-07-19)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.4...v4.0.0-rc.5)
-
-## [v4.0.0-rc.4](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.4) (2018-07-18)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.3...v4.0.0-rc.4)
-
-**Merged pull requests:**
-
 - Update Typescript & types [\#432](https://github.com/appfolio/react-gears/pull/432) ([steveklebanoff](https://github.com/steveklebanoff))
 
-## [v4.0.0-rc.3](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.3) (2018-07-11)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.1...v4.0.0-rc.3)
-
 ## [v3.0.1](https://github.com/appfolio/react-gears/tree/v3.0.1) (2018-07-11)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.2...v3.0.1)
-
-**Merged pull requests:**
-
-- gt - Remove unused CSS transform [\#431](https://github.com/appfolio/react-gears/pull/431) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
-
-## [v4.0.0-rc.2](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.2) (2018-07-10)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.1...v4.0.0-rc.2)
-
-**Merged pull requests:**
-
-- gt -Update package-lock [\#430](https://github.com/appfolio/react-gears/pull/430) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
-
-## [v4.0.0-rc.1](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.1) (2018-07-09)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.0.0-rc.0...v4.0.0-rc.1)
-
-**Merged pull requests:**
-
-- gt - Update FormRow, FormLabelGroup for React 16 [\#429](https://github.com/appfolio/react-gears/pull/429) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
-
-## [v4.0.0-rc.0](https://github.com/appfolio/react-gears/tree/v4.0.0-rc.0) (2018-07-05)
-[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.0...v4.0.0-rc.0)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v3.0.0...v3.0.1)
 
 **Closed issues:**
 
 - FormRow should support non-Input children [\#310](https://github.com/appfolio/react-gears/issues/310)
+
+**Merged pull requests:**
+
+- gt - Remove unused CSS transform [\#431](https://github.com/appfolio/react-gears/pull/431) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- gt -Update package-lock [\#430](https://github.com/appfolio/react-gears/pull/430) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- gt - Update FormRow, FormLabelGroup for React 16 [\#429](https://github.com/appfolio/react-gears/pull/429) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
 
 ## [v3.0.0](https://github.com/appfolio/react-gears/tree/v3.0.0) (2018-07-03)
 [Full Changelog](https://github.com/appfolio/react-gears/compare/v2.26.0...v3.0.0)
