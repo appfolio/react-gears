@@ -101,7 +101,7 @@ describe('<TimeInput />', () => {
     assert.equal(noOptionsMessage('asdf'), 'yo asdf aint a real time');
   });
 
-  describe('create new option', () => {
+  describe('allow other times', () => {
     it('should default to false', () => {
       const component = shallow(<TimeInput />);
       const select = component.find(Select);
@@ -109,8 +109,8 @@ describe('<TimeInput />', () => {
       assert.equal(select.prop('creatable'), false);
     });
 
-    it('should not accept new options when creatable is false', () => {
-      const component = shallow(<TimeInput creatable={false} />);
+    it('should not accept new options when allowOtherTimes is false', () => {
+      const component = shallow(<TimeInput allowOtherTimes={false} />);
       const select = component.find(Select);
 
       assert.equal(select.prop('creatable'), false);
@@ -121,14 +121,14 @@ describe('<TimeInput />', () => {
     });
 
     it('should display new options first', () => {
-      const component = shallow(<TimeInput creatable={true} />);
+      const component = shallow(<TimeInput allowOtherTimes />);
       const select = component.find(Select);
 
       assert.equal(select.prop('createOptionPosition'), 'first');
     });
 
     it('should correctly validate new options', () => {
-      const component = shallow(<TimeInput creatable={true} />);
+      const component = shallow(<TimeInput allowOtherTimes />);
       const isValidNewOption = component.find(Select).prop('isValidNewOption');
       const options = component.find(Select).prop('options');
 
@@ -142,7 +142,7 @@ describe('<TimeInput />', () => {
     });
 
     it('should not allow entering a time outside of min and max', () => {
-      const component = shallow(<TimeInput creatable={true} min='09:00' max='17:00' />);
+      const component = shallow(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
       const isValidNewOption = component.find(Select).prop('isValidNewOption');
       const options = component.find(Select).prop('options');
 
@@ -152,14 +152,14 @@ describe('<TimeInput />', () => {
     });
 
     it('should allow setting new options when controlled', () => {
-      const component = mount(<TimeInput creatable={true} value="13:00" />);
+      const component = mount(<TimeInput allowOtherTimes value="13:00" />);
       component.setProps({ value: '13:22' });
       const select = component.find(Select);
       assert.deepEqual(select.prop('value'), { label: '1:22 PM', value: '13:22' });
     });
 
     it('should create new options with correct label and value', () => {
-      const component = shallow(<TimeInput creatable={true} />);
+      const component = shallow(<TimeInput allowOtherTimes />);
       const getNewOptionData = component.find(Select).prop('getNewOptionData');
 
       assert.deepEqual(getNewOptionData('11:34 PM'), { label: '11:34 PM', value: '23:34' });
@@ -168,7 +168,7 @@ describe('<TimeInput />', () => {
     });
 
     it('should allow adding new times without typing colons', () => {
-      const component = shallow(<TimeInput creatable={true} />);
+      const component = shallow(<TimeInput allowOtherTimes />);
       const getNewOptionData = component.find(Select).prop('getNewOptionData');
 
       assert.deepEqual(getNewOptionData('1131 PM'), { label: '11:31 PM', value: '23:31' });
