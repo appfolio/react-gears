@@ -1,4 +1,4 @@
-import CardGroupProps from './TypeHelpers/props/CardGroup';
+import { CardGroupProps } from 'reactstrap/lib/CardGroup';
 import * as React from 'react';
 
 interface SummaryItem {

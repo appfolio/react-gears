@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DropdownItemProps from './TypeHelpers/props/DropdownItem';
+import { DropdownItemProps } from 'reactstrap/lib/DropdownItem';
 
 // react-gears types v4 incorrectly exclues the active boolean attribute
 interface PatchedDropdownItemProps extends DropdownItemProps{

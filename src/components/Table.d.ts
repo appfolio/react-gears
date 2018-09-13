@@ -3,10 +3,10 @@ import * as React from 'react';
 export interface TableProps {
   size?: string;
   bordered?: boolean;
+  borderless?: boolean;
   striped?: boolean;
-  inverse?: boolean;
+  dark?: boolean;
   hover?: boolean;
-  reflow?: boolean;
   responsive?: boolean;
 }
 declare class Table extends React.Component<TableProps, {}> { }

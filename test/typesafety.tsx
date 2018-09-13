@@ -9,12 +9,13 @@ import Button from '../src/components/Button';
 import Calendar from '../src/components/Calendar';
 import Callout from '../src/components/Callout';
 import Card from '../src/components/Card';
-import CardBlock from '../src/components/CardBlock';
+import CardBody from '../src/components/CardBody';
 import CheckboxBooleanInput from '../src/components/CheckboxBooleanInput';
 import Close from '../src/components/Close';
 import CountryInput from '../src/components/CountryInput';
 import CreditCardNumber from '../src/components/CreditCardNumber';
 import CurrencyInput from '../src/components/CurrencyInput';
+import CustomInput from '../src/components/CustomInput';
 import Datapair from '../src/components/Datapair';
 import DateInput from '../src/components/DateInput';
 import DeletedNote from '../src/components/DeletedNote';
@@ -160,13 +161,22 @@ const CurrencyInputExample = () => {
   <CurrencyInput allowDecimal={false}/>
 }
 
+const CustomInputExample = () => {
+  <CustomInput
+    type="checkbox"
+    id="exampleCustomCheckbox3"
+    label="But not this disabled one"
+    disabled
+  />
+}
+
 const CountryInputExample = () => {
   <CountryInput defaultValue="US" id="yo" className="boogie" placeholder="Pick something" disabled />
 }
 
 const DatapairExample = () => {
   <Card className="mt-1">
-    <CardBlock>
+    <CardBody>
       <Datapair label="Label">
         Custom markup <Button color="primary">can go here</Button>
       </Datapair>
@@ -178,7 +188,7 @@ const DatapairExample = () => {
         label="test"
         value={<div/>}
       />
-    </CardBlock>
+    </CardBody>
   </Card>
 }
 
@@ -190,6 +200,7 @@ const DateInputExample = () => {
     disabled={false}
     onBlur={() =>{}}
     onChange={() => { }}
+    onClose={() => {}}
   />
 }
 
@@ -276,6 +287,7 @@ const FormRowExample = () => {
       required={false}
       inline={false}
       stacked={false}
+      validFeedback='hay'
     />
   );
 }
@@ -300,6 +312,8 @@ const HasManyFieldsExample = () => {
     onRemove={() => { }}
     onUpdate={() => { }}
     onChange={() => { }}
+    minimumRows={5}
+    maximumRows={10}
   />;
 }
 
@@ -395,7 +409,7 @@ const SummaryBoxItemExample = () => {
 }
 
 const TableItem = () => {
-  <Table>
+  <Table bordered>
     <tr><td>hi</td></tr>
   </Table>
 }

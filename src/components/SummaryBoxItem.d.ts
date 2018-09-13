@@ -1,4 +1,4 @@
-import CardProps from './TypeHelpers/props/Card';
+import { CardProps } from 'reactstrap/lib/Card';
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 

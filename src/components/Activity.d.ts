@@ -1,5 +1,5 @@
 import Omit from './TypeHelpers/Omit';
-import ListGroupItemProps from './TypeHelpers/props/ListGroupItemProps';
+import { ListGroupItemProps } from 'reactstrap/lib/ListGroupItem';
 import * as React from 'react';
 
 export interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {

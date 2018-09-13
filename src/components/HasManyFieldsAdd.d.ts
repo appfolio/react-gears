@@ -1,4 +1,4 @@
-import ButtonProps from './TypeHelpers/props/Button';
+import { ButtonProps } from 'reactstrap/lib/Button';
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 

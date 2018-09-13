@@ -1,5 +1,5 @@
 import Omit from './TypeHelpers/Omit';
-import PopoverProps from './TypeHelpers/props/Popover';
+import { PopoverProps } from 'reactstrap/lib/Popover';
 import * as React from 'react';
 
 interface HelpBubbleProps extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {

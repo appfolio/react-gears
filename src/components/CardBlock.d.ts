@@ -1,2 +1,2 @@
-import { CardBlock } from 'reactstrap';
+import CardBlock from 'reactstrap/lib/CardBlock';
 export default CardBlock;
