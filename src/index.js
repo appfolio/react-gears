@@ -126,6 +126,7 @@ import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
+import TextCollapseByLength from './components/TextCollapseByLength.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
@@ -264,6 +265,7 @@ export {
   Steps,
   SummaryBox,
   SummaryBoxItem,
+  TextCollapseByLength,
   TimeInput,
   Tooltip,
   UncontrolledTable,
