@@ -60,6 +60,7 @@
     "@storybook/addon-info": "^3.2.9",
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-options": "^3.2.6",
+    "@storybook/addon-viewport": "^3.4.10",
     "@storybook/react": "^3.2.8",
     "@types/react": "16.4.1",
     "assert": "~1.4.1",
