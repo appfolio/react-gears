@@ -41,6 +41,7 @@ import './Spinner';
 import './Steps';
 import './SummaryBox';
 import './Table';
+import './TextCollapseByLength';
 import './TimeInput';
 import './Tooltip';
 import './Waiting';
