@@ -3,8 +3,11 @@ import { FormRow, TimeInput } from '../src';
 import { action, storiesOf } from '@storybook/react';
 import { boolean, number, text } from '@storybook/addon-knobs';
 
+const description = 'TimeInput supports typing times without colons. ' +
+  'It also optionally supports times outside the initial list of options through the creatable prop.';
+
 storiesOf('TimeInput', module)
-  .addWithInfo('with props', () => (
+  .addWithInfo('with props', description, () => (
     <div>
       <TimeInput
         allowOtherTimes={boolean('allowOtherTimes', true)}
