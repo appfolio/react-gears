@@ -14,6 +14,14 @@ import SelectMultiValue from './SelectMultiValue.js';
 // Disables CSS modules to import as global:
 import './Select.scss';
 
+function DropdownIndicator({ selectProps: { menuIsOpen } }) {
+  return <Icon className="px-3" name={`caret-${menuIsOpen ? 'up' : 'down'}`} />;
+}
+
+DropdownIndicator.propTypes = {
+  selectProps: PropTypes.shape({ menuIsOpen: PropTypes.bool })
+};
+
 class Select extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -72,8 +80,8 @@ class Select extends React.Component {
     // TODO replace arrowRenderer and clearRenderer?
     return (
       <SelectElement
-        arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
         clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
+        components={{ DropdownIndicator }}
         optionComponent={Option}
         inputProps={{ ...props.inputProps, name: props.name || '' }}
         isMulti={multi}
