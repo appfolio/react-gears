@@ -64,6 +64,7 @@ import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
 import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown';
+import UncontrolledCarousel from './components/UncontrolledCarousel';
 import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
@@ -100,6 +101,7 @@ import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
+import ImageCarousel from './components/ImageCarousel.js';
 import Icon from './components/Icon.js';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
@@ -205,6 +207,7 @@ export {
   TabPane,
   Table,
   UncontrolledButtonDropdown,
+  UncontrolledCarousel,
   UncontrolledCollapse,
   UncontrolledDropdown,
   UncontrolledTooltip,
@@ -243,6 +246,7 @@ export {
   HasManyFieldsRow,
   HelpBubble,
   Icon,
+  ImageCarousel,
   InfoBox,
   LabelBadge,
   MonthCalendar,
