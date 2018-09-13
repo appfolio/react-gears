@@ -60,6 +60,7 @@
     "@storybook/addon-info": "^3.2.9",
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-options": "^3.2.6",
+    "@storybook/addon-viewport": "^3.4.10",
     "@storybook/react": "^3.2.8",
     "@types/fs-extra": "^5.0.1",
     "@types/glob": "^5.0.35",
