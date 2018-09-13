@@ -38,7 +38,7 @@ export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
     className: PropTypes.string,
-    creatable: PropTypes.bool,
+    allowOtherTimes: PropTypes.bool,
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
     max: PropTypes.string,
@@ -52,7 +52,7 @@ export default class TimeInput extends React.Component {
   }
 
   static defaultProps = {
-    creatable: false,
+    allowOtherTimes: false,
     onChange: () => {},
     step: 30,
     timeFormat: 'h:mm A',
@@ -174,7 +174,7 @@ export default class TimeInput extends React.Component {
 
   render() {
     const {
-      creatable,
+      allowOtherTimes,
       className,
       disabled,
       max,
@@ -201,8 +201,8 @@ export default class TimeInput extends React.Component {
         {...props}
         className={classNames}
         {...{
-          creatable,
-          ...(creatable && creatableProps)
+          creatable: allowOtherTimes,
+          ...(allowOtherTimes && creatableProps)
         }}
         disabled={disabled}
         filterOption={this.filterOption}

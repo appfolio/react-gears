@@ -10,7 +10,7 @@ storiesOf('TimeInput', module)
   .addWithInfo('with props', description, () => (
     <div>
       <TimeInput
-        creatable={boolean('creatable', true)}
+        allowOtherTimes={boolean('allowOtherTimes', true)}
         disabled={boolean('disabled', false)}
         max={text('max')}
         min={text('min')}
