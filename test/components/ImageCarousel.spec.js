@@ -38,6 +38,7 @@ describe('<ImageCarousel />', () => {
     assert.strictEqual(carousel.prop('indicators'), true);
     assert.strictEqual(carousel.prop('controls'), true);
     assert.strictEqual(carousel.prop('autoPlay'), false);
+    assert.strictEqual(carousel.prop('interval'), 0);
   });
 
   it('should call toggle when ESC is pressed', () => {

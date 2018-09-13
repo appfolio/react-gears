@@ -17,6 +17,7 @@ export default class ImageCarousel extends React.Component {
     backdrop: true,
     fade: false,
     items: [],
+    interval: 0,
     toggle: () => {}
   };
 
@@ -35,7 +36,7 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { autoPlay, controls, items, indicators, toggle, ...props } = this.props;
+    const { autoPlay, controls, items, indicators, interval, toggle, ...props } = this.props;
 
     // TODO temp - remove need for style tag below:
     return (
@@ -53,6 +54,7 @@ export default class ImageCarousel extends React.Component {
               className="d-flex align-items-center h-100"
               items={items}
               indicators={indicators}
+              interval={interval}
               controls={controls}
               autoPlay={autoPlay}
             />
