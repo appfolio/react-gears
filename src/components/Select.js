@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactSelect from 'react-select-plus';
+import ReactSelect from 'react-select';
+import Async from 'react-select/lib/Async';
+import AsyncCreatable from 'react-select/lib/AsyncCreatable';
+import Creatable from 'react-select/lib/Creatable';
 import classnames from 'classnames';
 import noop from 'lodash.noop';
 import Close from './Close';
@@ -16,6 +19,7 @@ class Select extends React.Component {
     className: PropTypes.string,
     defaultValue: PropTypes.any,
     loadOptions: PropTypes.func,
+    multi: PropTypes.bool,
     onChange: PropTypes.func,
     value: PropTypes.any,
     ...ReactSelect.propTypes
@@ -38,7 +42,7 @@ class Select extends React.Component {
     this.props.onChange(value);
   }
 
-  bindInput = el => this.selectEl = el;
+  bindInput = (el) => { this.selectEl = el; };
 
   focus() {
     this.selectEl.focus();
@@ -55,23 +59,23 @@ class Select extends React.Component {
     delete props.onChange; // don't pass onChange prop to react-select
     let SelectElement = ReactSelect;
     if (this.props.loadOptions && this.props.creatable) {
-      SelectElement = ReactSelect.AsyncCreatable;
+      SelectElement = AsyncCreatable;
     } else if (this.props.loadOptions) {
-      SelectElement = ReactSelect.Async;
+      SelectElement = Async;
     } else if (this.props.creatable) {
-      SelectElement = ReactSelect.Creatable;
+      SelectElement = Creatable;
     }
     const classNames = classnames(className, { 'select-async': this.props.loadOptions });
-    const valueComponentRenderer = valueComponent ? valueComponent :
-                                   multi ? SelectMultiValue :
-                                   undefined;
+    const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
+
+    // TODO replace arrowRenderer and clearRenderer?
     return (
       <SelectElement
         arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
         clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
         optionComponent={Option}
         inputProps={{ ...props.inputProps, name: props.name || '' }}
-        multi={multi}
+        isMulti={multi}
         onChange={this.onChange}
         value={value || this.state.value}
         valueComponent={valueComponentRenderer}
