@@ -8,6 +8,7 @@ import './BlockPanel';
 import './Buttons';
 import './Callout';
 import './Card';
+import './CollapsableText';
 import './CreditCardNumber';
 import './CurrencyInput';
 import './Datapair';
