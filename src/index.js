@@ -83,6 +83,7 @@ import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
+import CollapsableText from './components/CollapsableText.js';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
@@ -126,7 +127,6 @@ import Steps from './components/Steps.js';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
-import TextCollapseByLength from './components/TextCollapseByLength.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
@@ -230,6 +230,7 @@ export {
   CheckboxInput,
   CheckboxBooleanInput,
   CheckboxListInput,
+  CollapsableText,
   ConfirmationButton,
   CountryInput,
   CreditCardNumber,
@@ -265,7 +266,6 @@ export {
   Steps,
   SummaryBox,
   SummaryBoxItem,
-  TextCollapseByLength,
   TimeInput,
   Tooltip,
   UncontrolledTable,
