@@ -17,7 +17,7 @@ const labelSizeTranslations = {
 // Note:  `inline` has no effect at the moment.  In reactstrap 5 and later, this property appears
 // to be relevant for the <FormGroup>, though.  As such, we may be able to simplify this class with
 // the built-in support of inline forms in newer versions of reactstrap.
-export class FormLabelGroup extends React.Component {
+class FormLabelGroup extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     feedback: PropTypes.node,
