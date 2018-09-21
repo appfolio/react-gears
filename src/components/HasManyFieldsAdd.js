@@ -11,7 +11,9 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
   return (
     <Button color="link" block {...props} className={classes}>
       <Icon name="plus-circle" className="mr-2" />
-      <span children={children} />
+      <span>
+        {children}
+      </span>
     </Button>
   );
 };

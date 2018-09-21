@@ -11,6 +11,7 @@
     "no-confusing-arrow": 0,
     "no-nested-ternary": 0,
     "react/no-array-index-key": 1,
+    "react/no-find-dom-node": 1,
     "react/no-string-refs": 1,
     "react/prefer-stateless-function": 0,
     "react/prop-types": 1,
