@@ -24,7 +24,6 @@ function includes(array, value) {
 }
 
 export default class CreditCardNumber extends React.Component {
-
   static propTypes = {
     ...Input.propTypes,
     className: PropTypes.string,
