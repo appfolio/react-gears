@@ -78,8 +78,8 @@ const Steps = ({ collapse, complete, step, steps }) => {
 Steps.propTypes = {
   collapse: PropTypes.bool,
   complete: PropTypes.bool,
-  step: PropTypes.number.isRequired,
-  steps: PropTypes.array.isRequired
+  step: PropTypes.number,
+  steps: PropTypes.array
 };
 
 Steps.defaultProps = {
