@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Icon from '../Icon.js';
 import styles from './Header.scss';
-import classnames from 'classnames';
 
 export default class Header extends React.Component {
   static propTypes = {
