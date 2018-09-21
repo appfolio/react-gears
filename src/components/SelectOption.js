@@ -8,19 +8,18 @@ import DropdownItem from './DropdownItem';
  * https://github.com/HubSpot/react-select-plus/blob/master/src/Option.js
  */
 export default class SelectOption extends React.Component {
-
   static propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string,             // className (based on mouse position)
-    instancePrefix: PropTypes.string.isRequired,  // unique prefix for the ids (used for aria)
-    isDisabled: PropTypes.bool,              // the option is disabled
-    isFocused: PropTypes.bool,               // the option is focused
-    isSelected: PropTypes.bool,              // the option is selected
-    onFocus: PropTypes.func,                 // method to handle mouseEnter on option element
-    onSelect: PropTypes.func,                // method to handle click on option element
-    onUnfocus: PropTypes.func,               // method to handle mouseLeave on option element
-    option: PropTypes.object.isRequired,     // object that is base for that option
-    optionIndex: PropTypes.number,           // index of the option, used to generate unique ids for aria
+    className: PropTypes.string, // className (based on mouse position)
+    instancePrefix: PropTypes.string.isRequired, // unique prefix for the ids (used for aria)
+    isDisabled: PropTypes.bool, // the option is disabled
+    isFocused: PropTypes.bool, // the option is focused
+    isSelected: PropTypes.bool, // the option is selected
+    onFocus: PropTypes.func, // method to handle mouseEnter on option element
+    onSelect: PropTypes.func, // method to handle click on option element
+    onUnfocus: PropTypes.func, // method to handle mouseLeave on option element
+    option: PropTypes.object.isRequired, // object that is base for that option
+    optionIndex: PropTypes.number, // index of the option, used to generate unique ids for aria
   };
 
   onFocus = (event) => {
@@ -48,8 +47,8 @@ export default class SelectOption extends React.Component {
     this.props.onSelect(this.props.option, event);
   }
 
-  handleMouseEnter = (event) => this.onFocus(event);
-  handleMouseMove = (event) => this.onFocus(event);
+  handleMouseEnter = event => this.onFocus(event);
+  handleMouseMove = event => this.onFocus(event);
 
   handleTouchEnd = (event) => {
     // Check if the view is being dragged, In this case

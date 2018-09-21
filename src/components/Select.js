@@ -62,9 +62,8 @@ class Select extends React.Component {
       SelectElement = ReactSelect.Creatable;
     }
     const classNames = classnames(className, { 'select-async': this.props.loadOptions });
-    const valueComponentRenderer = valueComponent ? valueComponent :
-                                   multi ? SelectMultiValue :
-                                   undefined;
+    const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue :
+      undefined);
     return (
       <SelectElement
         arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}

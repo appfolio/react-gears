@@ -24,10 +24,11 @@ const Spinner = ({ color, size, ...props }) => (
       @keyframes gears-spinner-spin {
         100% { transform: rotate(360deg); }
       }
-    `}</style>
+    `}
+    </style>
     <g transform="translate(-100,-100)">
       <g className="gears-spinner">
-        {range(SEGMENTS).map(i => {
+        {range(SEGMENTS).map((i) => {
           const opacity = (i / SEGMENTS).toFixed(2);
           const rotate = i * (360 / SEGMENTS).toFixed(2);
 
