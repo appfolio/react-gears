@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
-import classnames from 'classnames';
 
 const Datapair = (props) => {
   const { children, className, label, value, ...attributes } = props;

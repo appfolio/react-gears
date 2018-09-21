@@ -54,7 +54,6 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 }
 
 export default class DateInput extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
@@ -248,7 +247,7 @@ export default class DateInput extends React.Component {
 
   render() {
     const { className, dateVisible, disabled, footer, header, id, showOnFocus,
-      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, state, ...props } = this.props;
+      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
 
@@ -262,7 +261,7 @@ export default class DateInput extends React.Component {
               <input
                 id={id}
                 className="form-control"
-                ref={el => { this.inputEl = el; }}
+                ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
                 onChange={this.onChange}
