@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -34,7 +36,6 @@ export const srOnlyStyle = {
  * @type {ReactClass}
  */
 export default class FontAwesomeAPM extends React.Component {
-
   static propTypes = {
     ariaLabel: PropTypes.string,
     border: PropTypes.bool,
@@ -68,7 +69,7 @@ export default class FontAwesomeAPM extends React.Component {
       stack,
       tag: Tag = 'i',
       ariaLabel,
-      ...props,
+      ...props
     } = this.props;
 
     let classNames = [];
@@ -117,4 +118,4 @@ export default class FontAwesomeAPM extends React.Component {
       </Tag>
     );
   }
-};
+}
