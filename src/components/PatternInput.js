@@ -32,9 +32,11 @@ export default class PatternInput extends React.Component {
     const { pattern, restrictInput, ...inputProps } = this.props;
     return (
       <Input
-        {...inputProps} ref={self => { this.input = self; }}
+        {...inputProps}
+        ref={(self) => { this.input = self; }}
         onKeyPress={!!restrictInput && this.handleKeyPress}
-        onChange={this.handleChange} pattern={pattern}
+        onChange={this.handleChange}
+        pattern={pattern}
       />
     );
   }
