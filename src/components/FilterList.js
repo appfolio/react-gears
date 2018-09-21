@@ -3,7 +3,6 @@ import React from 'react';
 import LabelBadge from './LabelBadge';
 
 export default class FilterList extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     filters: PropTypes.array.isRequired,
