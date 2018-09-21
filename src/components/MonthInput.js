@@ -54,7 +54,6 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 }
 
 export default class MonthInput extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
@@ -239,7 +238,7 @@ export default class MonthInput extends React.Component {
             <InputGroup className={className}>
               <input
                 className="form-control"
-                ref={el => { this.inputEl = el; }}
+                ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
                 onChange={this.onChange}

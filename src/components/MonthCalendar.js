@@ -18,7 +18,6 @@ const Label = ({ selected, label, onClick, visible = true }) => (
 );
 
 export default class MonthCalendar extends React.Component {
-
   static propTypes = {
     date: PropTypes.instanceOf(Date),
     dateVisible: PropTypes.func,
@@ -35,7 +34,7 @@ export default class MonthCalendar extends React.Component {
     onSelect: () => {}
   };
 
-  getMonths = (date) => range(0, 12).map(month => new Date(date.getFullYear(), month, 1));
+  getMonths = date => range(0, 12).map(month => new Date(date.getFullYear(), month, 1));
   getYears = (date) => {
     const now = new Date();
     const currentYear = date.getFullYear();
