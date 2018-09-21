@@ -16,7 +16,7 @@ const Label = ({ selected, label, onClick, visible = true }) => (
     {label}
   </li>
 );
-
+;
 export default class MonthCalendar extends React.Component {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
