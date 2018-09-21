@@ -20,5 +20,8 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: Run eslint
+          command: npm run lint
+      - run:
           name: Run Tests
           command: npm test

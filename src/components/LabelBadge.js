@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './LabelBadge.scss';
 
 export default class LabelBadge extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     label: PropTypes.string,

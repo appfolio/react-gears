@@ -5,7 +5,6 @@ import Badge from './Badge';
 import Icon from './Icon';
 
 export default class SelectMultiValue extends React.Component {
-
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

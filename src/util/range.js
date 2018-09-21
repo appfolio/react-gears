@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+
 /**
  * Range function
  *

@@ -8,7 +8,7 @@ const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props })
   <FormGroup color={error && 'danger'} {...props}>
     {label && <Tag>{label}</Tag>}
     {children}
-    {error && <FormFeedback children={error} />}
+    {error && <FormFeedback>{error}</FormFeedback>}
   </FormGroup>
 );
 export default ValidatedFormGroup;

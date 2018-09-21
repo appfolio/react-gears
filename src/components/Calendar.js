@@ -38,7 +38,6 @@ const Day = ({ day, dateFormat, ...props }) => {
 };
 
 class Calendar extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     date: PropTypes.instanceOf(Date),
@@ -64,7 +63,7 @@ class Calendar extends React.Component {
     const end = endOfWeek(addWeeks(start, 5));
 
     // Generate calendar days:
-    return eachDay(start, end).map(date => {
+    return eachDay(start, end).map((date) => {
       return {
         selected: isSameDay(currentDate, date),
         date: startOfDay(date),

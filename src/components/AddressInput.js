@@ -10,7 +10,7 @@ import Col from './Col';
 import Input from './Input';
 import Row from './Row';
 
-const readEvent = e => ({ [e.target.name]: e.target.value });
+const readEvent = (e) => { return { [e.target.name]: e.target.value }; };
 
 class AddressInput extends React.Component {
   static propTypes = {

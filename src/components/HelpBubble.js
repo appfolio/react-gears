@@ -8,7 +8,7 @@ import PopoverBody from './PopoverBody';
 let count = 0;
 
 function getID() {
-  return `help-bubble-${count++}`;
+  return `help-bubble-${count++}`; // eslint-disable-line no-plusplus
 }
 
 const style = {

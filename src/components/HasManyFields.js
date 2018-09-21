@@ -55,7 +55,7 @@ class HasManyFields extends React.Component {
 
   set value(value) {
     this.props.onChange(value);
-    this.isUncontrolled && this.setState({ value });
+    this.isUncontrolled && this.setState({ value }); // eslint-disable-line no-unused-expressions
   }
 
   updateItem = i => (update) => {
@@ -98,7 +98,7 @@ class HasManyFields extends React.Component {
     }
     const el = ReactDOM.findDOMNode(row);
     const firstInput = el.querySelectorAll('input, select, textarea')[0];
-    firstInput && firstInput.focus();
+    firstInput && firstInput.focus(); // eslint-disable-line no-unused-expressions
   };
 
   render() {

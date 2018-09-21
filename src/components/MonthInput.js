@@ -54,7 +54,6 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 }
 
 export default class MonthInput extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
@@ -200,8 +199,8 @@ export default class MonthInput extends React.Component {
     const inputValue = this.inputEl.value;
     const currentValueAsDate = currentValue && this.props.parse(currentValue, this.props.dateFormat);
     const inputValueAsDate = this.props.parse(inputValue || '', this.props.dateFormat);
-    const isSame = (currentValueAsDate && inputValueAsDate) &&
-                    isSameDay(currentValueAsDate, inputValueAsDate) || (inputValue == currentValue);
+    const isSame = ((currentValueAsDate && inputValueAsDate) &&
+                    isSameDay(currentValueAsDate, inputValueAsDate)) || (inputValue === currentValue);
 
     if (!isSame) {
       this.inputEl.value = currentValue;
@@ -239,7 +238,7 @@ export default class MonthInput extends React.Component {
             <InputGroup className={className}>
               <input
                 className="form-control"
-                ref={el => { this.inputEl = el; }}
+                ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
                 onChange={this.onChange}

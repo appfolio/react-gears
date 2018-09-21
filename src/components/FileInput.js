@@ -3,7 +3,7 @@ import React from 'react';
 import Input from './Input';
 
 class FileInput extends React.Component {
-  onChange = changeEvent => {
+  onChange = (changeEvent) => {
     if (this.props.onChange) {
       this.props.onChange(changeEvent.target.files);
     }

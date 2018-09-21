@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './Callout.scss';
 
 class Callout extends React.Component {
-
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
