@@ -130,26 +130,26 @@ export default class TimeInput extends React.Component {
   }
 
   // workaround for removing the "Create option..." text that appears when creating a new option
-  formatCreateLabel = string => string;
+  promptTextCreator = string => string;
 
   isBeforeMax = time => isBefore(time, parse(this.props.max, this.valueFormat));
 
   isAfterMin = time => !isBefore(time, parse(this.props.min, this.valueFormat));
 
-  isValidNewOption = (inputValue, selectValue, selectOptions) => {
-    const time = this.parseInput(inputValue);
+  isValidNewOption = ({ label }) => {
+    const time = this.parseInput(label);
     const value = time ? format(time, this.valueFormat) : '';
     return !!(
       value &&
       (!this.props.min || this.isAfterMin(time)) &&
-      (!this.props.max || this.isBeforeMax(time)) &&
-      !selectValue.some(option => option.value === value) &&
-      !selectOptions.some(option => option.value === value)
+      (!this.props.max || this.isBeforeMax(time))
     );
   };
 
-  getNewOptionData = (inputValue) => {
-    const time = this.parseInput(inputValue);
+  isOptionUnique = ({ options, option: { value } }) => !options.some(option => option.value === value);
+
+  newOptionCreator = ({ label }) => {
+    const time = this.parseInput(label);
     return this.timeToOption(time);
   }
 
@@ -191,9 +191,10 @@ export default class TimeInput extends React.Component {
 
     const creatableProps = {
       createOptionPosition: 'first',
-      formatCreateLabel: this.formatCreateLabel,
-      getNewOptionData: this.getNewOptionData,
-      isValidNewOption: this.isValidNewOption
+      promptTextCreator: this.promptTextCreator,
+      newOptionCreator: this.newOptionCreator,
+      isValidNewOption: this.isValidNewOption,
+      isOptionUnique: this.isOptionUnique
     };
 
     return (
