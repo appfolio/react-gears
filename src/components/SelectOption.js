@@ -17,7 +17,6 @@ export default class SelectOption extends React.Component {
     isSelected: PropTypes.bool, // the option is selected
     onFocus: PropTypes.func, // method to handle mouseEnter on option element
     onSelect: PropTypes.func, // method to handle click on option element
-    onUnfocus: PropTypes.func, // method to handle mouseLeave on option element
     option: PropTypes.object.isRequired, // object that is base for that option
     optionIndex: PropTypes.number, // index of the option, used to generate unique ids for aria
   };
