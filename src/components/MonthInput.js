@@ -199,8 +199,8 @@ export default class MonthInput extends React.Component {
     const inputValue = this.inputEl.value;
     const currentValueAsDate = currentValue && this.props.parse(currentValue, this.props.dateFormat);
     const inputValueAsDate = this.props.parse(inputValue || '', this.props.dateFormat);
-    const isSame = (currentValueAsDate && inputValueAsDate) &&
-                    isSameDay(currentValueAsDate, inputValueAsDate) || (inputValue == currentValue);
+    const isSame = ((currentValueAsDate && inputValueAsDate) &&
+                    isSameDay(currentValueAsDate, inputValueAsDate)) || (inputValue === currentValue);
 
     if (!isSame) {
       this.inputEl.value = currentValue;
