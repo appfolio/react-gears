@@ -134,6 +134,7 @@ describe('<TimeInput />', () => {
       assert.equal(isValidNewOption({ label: '11:34 PM' }), true);
       assert.equal(isValidNewOption({ label: '1:19 am' }), true);
       assert.equal(isValidNewOption({ label: '02:27 pm' }), true);
+      assert.equal(isValidNewOption({ label: '12' }), false);
       assert.equal(isValidNewOption({ label: 'happy hour' }), false);
       assert.equal(isValidNewOption({ label: '' }), false);
     });
@@ -177,11 +178,9 @@ describe('<TimeInput />', () => {
       const newOptionCreator = component.find(Select).prop('newOptionCreator');
 
       assert.deepEqual(newOptionCreator({ label: '1131 PM' }), { label: '11:31 PM', value: '23:31' });
-      assert.deepEqual(newOptionCreator({ label: '0222' }), { label: '2:22 AM', value: '02:22' });
-      assert.deepEqual(newOptionCreator({ label: '223' }), { label: '2:23 AM', value: '02:23' });
+      assert.deepEqual(newOptionCreator({ label: '0222 AM' }), { label: '2:22 AM', value: '02:22' });
       assert.deepEqual(newOptionCreator({ label: '454 pm' }), { label: '4:54 PM', value: '16:54' });
-      assert.deepEqual(newOptionCreator({ label: '845' }), { label: '8:45 AM', value: '08:45' });
-      assert.deepEqual(newOptionCreator({ label: '146' }), { label: '1:46 AM', value: '01:46' });
+      assert.deepEqual(newOptionCreator({ label: '845am' }), { label: '8:45 AM', value: '08:45' });
       assert.deepEqual(newOptionCreator({ label: '137 pm' }), { label: '1:37 PM', value: '13:37' });
       assert.deepEqual(newOptionCreator({ label: '658pm' }), { label: '6:58 PM', value: '18:58' });
     });

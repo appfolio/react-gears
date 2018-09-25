@@ -126,7 +126,7 @@ export default class TimeInput extends React.Component {
 
   parseInput(input) {
     const str = addMissingColons(input);
-    return parse(str, this.props.timeFormat) || parse(str, this.valueFormat);
+    return parse(str, this.props.timeFormat);
   }
 
   // workaround for removing the "Create option..." text that appears when creating a new option
