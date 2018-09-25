@@ -89,6 +89,7 @@ export default class SelectOption extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         id={`${instancePrefix}-option-${optionIndex}`}
         title={option.title}
+        aria-selected={isSelected}
       >
         {this.props.children}
       </DropdownItem>
