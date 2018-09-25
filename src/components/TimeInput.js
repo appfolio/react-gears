@@ -11,38 +11,76 @@ import setHours from 'date-fns/set_hours';
 import setMinutes from 'date-fns/set_minutes';
 import startOfToday from 'date-fns/start_of_today';
 import startOfTomorrow from 'date-fns/start_of_tomorrow';
-import Button from './Button';
-import Icon from './Icon';
-import Input from './Input';
-import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
+
+import flow from 'lodash.flow';
+import toLower from 'lodash.tolower';
+
+import Select from './Select';
 
 const format = fecha.format;
 const parse = fecha.parse;
 
 // TODO consider using <input type="time" /> when better browser support.
 
+// TODO use date-fns/parse to handle this behavior instead
+function addMissingColons(str) {
+  // looks for the hour in a smarter way than fecha - the first capture group only
+  // captures 0 or 1 if it is followed by 3 digits with an optional colon
+  const regex = /^((?:0|1(?=\d:?\d{2}))?\d)?(:?)(.*)$/;
+
+  // eslint-disable-next-line no-unused-vars
+  const [_fullStr, hour, _colon, restOfStr] = regex.exec(str);
+
+  return [hour, ':', restOfStr].join('');
+}
+
 export default class TimeInput extends React.Component {
   static propTypes = {
+    ...Select.propTypes,
     className: PropTypes.string,
+    allowOtherTimes: PropTypes.bool,
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
     max: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     min: PropTypes.string,
+    noResultsText: PropTypes.string,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.string
   }
 
   static defaultProps = {
+    allowOtherTimes: false,
     onChange: () => {},
     step: 30,
-    timeFormat: 'h:mm A'
+    timeFormat: 'h:mm A',
+    noResultsText: 'Must be in the format HH:MM AM/PM'
+  }
+
+  constructor(props) {
+    super(props);
+    const { defaultValue } = this.props;
+    this.state = {
+      selectedOption: defaultValue && this.valueStrToOption(defaultValue)
+    };
   }
 
   valueFormat = 'HH:mm';
+
+  timeToOption(time) {
+    return {
+      label: format(time, this.props.timeFormat),
+      value: format(time, this.valueFormat)
+    };
+  }
+
+  valueStrToOption(valueStr) {
+    const time = parse(valueStr, this.valueFormat);
+
+    return time ? this.timeToOption(time) : null;
+  }
 
   focus() {
     // TODO JavaScript does not allow opening selects programmatically.
@@ -81,8 +119,62 @@ export default class TimeInput extends React.Component {
     return times;
   }
 
+  onChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    this.props.onChange(selectedOption && selectedOption.value);
+  }
+
+  parseInput(input) {
+    const str = addMissingColons(input);
+    return parse(str, this.props.timeFormat) || parse(str, this.valueFormat);
+  }
+
+  // workaround for removing the "Create option..." text that appears when creating a new option
+  promptTextCreator = string => string;
+
+  isBeforeMax = time => isBefore(time, parse(this.props.max, this.valueFormat));
+
+  isAfterMin = time => !isBefore(time, parse(this.props.min, this.valueFormat));
+
+  isValidNewOption = ({ label }) => {
+    const time = this.parseInput(label);
+    const value = time ? format(time, this.valueFormat) : '';
+    return !!(
+      value &&
+      (!this.props.min || this.isAfterMin(time)) &&
+      (!this.props.max || this.isBeforeMax(time))
+    );
+  };
+
+  isOptionUnique = ({ options, option: { value } }) => !options.some(option => option.value === value);
+
+  newOptionCreator = ({ label }) => {
+    const time = this.parseInput(label);
+    return this.timeToOption(time);
+  }
+
+  // Handle leading zeros and typing without colons
+  filterOption = ({ label }, filter) => {
+    const removeColonAndWhitespace = str => str.replace(/[:\s]/gi, '');
+    const removeLeadingZeros = str => str.replace(/^0*/, '');
+
+    const filtersToApply = flow(removeColonAndWhitespace, removeLeadingZeros, toLower);
+
+    const candidate = filtersToApply(label);
+    const filterTest = filtersToApply(filter);
+
+    return candidate.indexOf(filterTest) === 0;
+  };
+
+  selectedOption() {
+    return this.props.value ?
+      this.valueStrToOption(this.props.value) :
+      this.state.selectedOption;
+  }
+
   render() {
     const {
+      allowOtherTimes,
       className,
       disabled,
       max,
@@ -94,34 +186,31 @@ export default class TimeInput extends React.Component {
       ...props
     } = this.props;
 
-    const classNames = classnames('custom-select', 'pt-2', className);
+    const classNames = classnames('pt-2', className);
     const times = this.visibleTimes(step, timeFormat, min, max);
 
+    const creatableProps = {
+      createOptionPosition: 'first',
+      promptTextCreator: this.promptTextCreator,
+      newOptionCreator: this.newOptionCreator,
+      isValidNewOption: this.isValidNewOption,
+      isOptionUnique: this.isOptionUnique
+    };
+
     return (
-      <InputGroup>
-        <Input
-          {...props}
-          ref={(el) => { this.inputEl = el; }}
-          type="select"
-          className={classNames}
-          disabled={disabled}
-          onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
-        >
-          <option value="">{placeholder}</option>
-          {times.map(({ label, value }) => <option key={value} value={value}>{label}</option>)}
-        </Input>
-        <InputGroupAddon addonType="append" onClick={this.toggle}>
-          <Button
-            className="px-2"
-            disabled={disabled}
-            onClick={() => this.focus()}
-            type="button"
-            tabIndex={-1}
-          >
-            <Icon name="clock-o" fixedWidth />
-          </Button>
-        </InputGroupAddon>
-      </InputGroup>
+      <Select
+        {...props}
+        className={classNames}
+        creatable={allowOtherTimes}
+        {...(allowOtherTimes && creatableProps)}
+        disabled={disabled}
+        filterOption={this.filterOption}
+        noResultsText={this.props.noResultsText}
+        options={times}
+        onChange={this.onChange}
+        placeholder={placeholder}
+        value={this.selectedOption()}
+      />
     );
   }
 }
