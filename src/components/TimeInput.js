@@ -201,10 +201,8 @@ export default class TimeInput extends React.Component {
       <Select
         {...props}
         className={classNames}
-        {...{
-          creatable: allowOtherTimes,
-          ...(allowOtherTimes && creatableProps)
-        }}
+        creatable={allowOtherTimes}
+        {...(allowOtherTimes && creatableProps)}
         disabled={disabled}
         filterOption={this.filterOption}
         noResultsText={this.props.noResultsText}
