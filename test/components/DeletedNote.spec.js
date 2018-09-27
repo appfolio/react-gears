@@ -1,8 +1,9 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { Button, DeletedNote } from '../../src';
 import { mount } from 'enzyme';
+
+import { Button, DeletedNote } from '../../src';
 
 describe('<DeletedNote />', () => {
   const note = {

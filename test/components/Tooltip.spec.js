@@ -6,7 +6,7 @@ import { Tooltip } from '../../src';
 
 describe('<Tooltip />', () => {
   describe('by default', () => {
-    const component = shallow(<Tooltip placement="right" children="Hello World" target="foo" />);
+    const component = shallow(<Tooltip placement="right" target="foo">Hello World</Tooltip>);
 
     it('should be closed', () => {
       assert.equal(component.prop('isOpen'), false);
@@ -26,7 +26,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('with initial props', () => {
-    const component = shallow(<Tooltip isOpen children="Hello World" target="foo" />);
+    const component = shallow(<Tooltip isOpen target="foo">Hello World</Tooltip>);
 
     it('should seed state', () => {
       assert.equal(component.prop('isOpen'), true);

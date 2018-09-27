@@ -1,10 +1,9 @@
 import React from 'react';
 import assert from 'assert';
-import { NoteHeader } from '../../src';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import fecha from 'fecha';
+import { NoteHeader } from '../../src';
 
 describe('<NoteHeader />', () => {
   const note = {

@@ -35,7 +35,7 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(Note);
         assert.equal(4, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) {
+        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
           assert.equal(notes[i], noteCards.at(i).props().note);
           assert.equal(props.onEdit, noteCards.at(i).props().onEdit);
           assert.equal(props.onDelete, noteCards.at(i).props().onDelete);
@@ -59,7 +59,7 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(DummyNoteControl);
         assert.equal(3, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) {
+        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
           assert.equal(`${i + 1}`, noteCards.at(i).props().note.text);
         }
       });

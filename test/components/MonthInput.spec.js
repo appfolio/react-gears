@@ -1,9 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
-import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isSameMonth from 'date-fns/is_same_month';
