@@ -123,6 +123,9 @@ export default class UncontrolledTable extends React.Component {
     if (nextProps.rows !== this.props.rows) {
       this.setState({ page: 0 });
     }
+    if (nextProps.selected) {
+      this.setState({ selected: nextProps.selected });
+    }
   }
 
   render() {

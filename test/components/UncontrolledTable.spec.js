@@ -311,4 +311,28 @@ describe('<UncontrolledTable />', () => {
     assert.equal(wrapper.find('th').length, 1);
     assert.equal(wrapper.find('td').length, rows.length);
   });
+
+  it('should update selected when new selected props are provided', () => {
+    const columns = [
+      { header: 'Name', cell: row => row },
+      { header: 'Nope', cell: () => 'Nope', hidden: true },
+    ];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selected={['Alpha']}
+      />
+    );
+
+    assert.deepEqual(wrapper.props().selected, ['Alpha']);
+    assert.deepEqual(wrapper.state().selected, ['Alpha']);
+
+    wrapper.setProps({ selected: ['Bravo']})
+
+    assert.deepEqual(wrapper.props().selected, ['Bravo']);
+    assert.deepEqual(wrapper.state().selected, ['Bravo']);
+  });
 });
