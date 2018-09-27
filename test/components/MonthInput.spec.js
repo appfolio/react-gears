@@ -239,7 +239,7 @@ describe('<MonthInput />', () => {
   context('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
-    const dateVisible = (date) => isSameDay(date, defaultDate);
+    const dateVisible = date => isSameDay(date, defaultDate);
     const component = mount(<MonthInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
     const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');

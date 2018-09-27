@@ -6,7 +6,7 @@ configure({ adapter: new Adapter() });
 
 // Needed for React16 in tests: https://github.com/facebook/jest/issues/4545
 global.requestAnimationFrame = (cb) => {
-  setTimeout(cb, 0)
-}
+  setTimeout(cb, 0);
+};
 
-global.cancelAnimationFrame = () => {}
+global.cancelAnimationFrame = () => {};

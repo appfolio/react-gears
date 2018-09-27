@@ -16,7 +16,7 @@ describe('<PatternInput />', () => {
 
     // Valid input
     component.simulate('change', { target: { value: '123' } });
-    assert(onChange.called);  // << onChange event
+    assert(onChange.called); // << onChange event
     assert.equal(component.find('input').getDOMNode().value, '');
     onChange.reset();
 

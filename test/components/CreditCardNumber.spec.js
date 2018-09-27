@@ -30,7 +30,7 @@ describe('<CreditCardNumber />', () => {
   });
 
   it('should report/render icon for correct cardType for valid numbers', () => {
-    Object.keys(EXAMPLES).forEach(type => {
+    Object.keys(EXAMPLES).forEach((type) => {
       const cardNumber = EXAMPLES[type];
       const onChange = sinon.spy();
 
@@ -65,7 +65,7 @@ describe('<CreditCardNumber />', () => {
   });
 
   it('should not report/render icon for disallowed card types', () => {
-    Object.keys(EXAMPLES).forEach(type => {
+    Object.keys(EXAMPLES).forEach((type) => {
       const cardNumber = EXAMPLES[type];
       const onChange = sinon.spy();
 

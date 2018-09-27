@@ -9,12 +9,12 @@ describe('<Paginator />', () => {
   describe('first shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'first'}).length);
+      assert.equal(0, wrapper.find({ name: 'first' }).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'first'}).length);
+      assert.equal(0, wrapper.find({ name: 'first' }).length);
     });
 
     it('does not display when on the first page', () => {
@@ -31,12 +31,12 @@ describe('<Paginator />', () => {
   describe('previous shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'previous'}).length);
+      assert.equal(0, wrapper.find({ name: 'previous' }).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'previous'}).length);
+      assert.equal(0, wrapper.find({ name: 'previous' }).length);
     });
 
     it('does not display when on the first page', () => {
@@ -53,12 +53,12 @@ describe('<Paginator />', () => {
   describe('next shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'next'}).length);
+      assert.equal(0, wrapper.find({ name: 'next' }).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'next'}).length);
+      assert.equal(0, wrapper.find({ name: 'next' }).length);
     });
 
     it('does not display when on the last page', () => {
@@ -75,12 +75,12 @@ describe('<Paginator />', () => {
   describe('last shortcut', () => {
     it('does not display if there are no pages', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={0} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'last'}).length);
+      assert.equal(0, wrapper.find({ name: 'last' }).length);
     });
 
     it('does not display if there is 1 page', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={15} onClick={sinon.stub()} />);
-      assert.equal(0, wrapper.find({ name: 'last'}).length);
+      assert.equal(0, wrapper.find({ name: 'last' }).length);
     });
 
     it('does not display when on the last page', () => {
@@ -199,22 +199,22 @@ describe('<Paginator />', () => {
     });
 
     it('reports the click correctly when clicking on the "first" link', () => {
-      wrapper.find({ name: 'first'}).find('button').simulate('click');
+      wrapper.find({ name: 'first' }).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 1);
     });
 
     it('reports the click correctly when clicking on the "previous" link', () => {
-      wrapper.find({ name: 'previous'}).find('button').simulate('click');
+      wrapper.find({ name: 'previous' }).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 6);
     });
 
     it('reports the click correctly when clicking on the "next" link', () => {
-      wrapper.find({ name: 'next'}).find('button').simulate('click');
+      wrapper.find({ name: 'next' }).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 8);
     });
 
     it('reports the click correctly when clicking on the "last" link', () => {
-      wrapper.find({ name: 'last'}).find('button').simulate('click');
+      wrapper.find({ name: 'last' }).find('button').simulate('click');
       sinon.assert.calledWith(onClick, 13);
     });
 

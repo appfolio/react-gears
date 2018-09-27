@@ -66,7 +66,7 @@ describe('<HelpBubble />', () => {
     assert.equal(component.hasClass('foo'), true);
   });
 
-  it('should be closed after you toggle both the icon and the popover', done => {
+  it('should be closed after you toggle both the icon and the popover', (done) => {
     const event = { stopPropagation: sinon.stub() };
     const component = shallow(<HelpBubble title="hi" />);
     assert.equal(component.find(Popover).prop('isOpen'), false);

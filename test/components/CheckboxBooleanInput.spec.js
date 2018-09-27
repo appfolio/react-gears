@@ -6,10 +6,10 @@ import { mount } from 'enzyme';
 import { CheckboxBooleanInput, Input } from '../../src';
 
 describe('<CheckboxBooleanInput />', () => {
-  let onChange = sinon.stub();
+  const onChange = sinon.stub();
 
   const wrapper = mount(
-    <CheckboxBooleanInput value={true} onChange={onChange} />
+    <CheckboxBooleanInput value onChange={onChange} />
   );
 
   const component = wrapper.find(Input);

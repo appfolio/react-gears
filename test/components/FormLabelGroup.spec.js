@@ -186,7 +186,7 @@ describe('<FormLabelGroup />', () => {
 
   describe('with feedback', () => {
     const component = shallow(
-      <FormLabelGroup 
+      <FormLabelGroup
         label="Label"
         feedback="You're doing amazing sweetie!"
       >

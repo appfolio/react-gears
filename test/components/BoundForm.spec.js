@@ -16,13 +16,13 @@ describe('<BoundForm />', () => {
 
   const errors = {
     firstName: "Can't be Glenn"
-  }
+  };
 
   const submitFunc = sinon.stub();
   const changeFunc = sinon.stub();
 
   const component = shallow(
-    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff"/>
+    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff" />
   );
 
   it('should provide a context', () => {

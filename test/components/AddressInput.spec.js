@@ -218,7 +218,7 @@ describe('<AddressInput />', () => {
     it('should show the corresponding error for each input', () => {
       const groups = component.find(FormGroup);
 
-      groups.forEach(group => {
+      groups.forEach((group) => {
         const input = group.childAt(0);
         const feedback = group.find(FormFeedback);
 

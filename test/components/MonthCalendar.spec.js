@@ -44,7 +44,7 @@ describe('<MonthCalendar />', () => {
 
   it('should hide dates which are not visible based on dateVisible', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = (date) => isSameDay(date, specifiedDate);
+    const dateVisible = date => isSameDay(date, specifiedDate);
     const component = mount(<MonthCalendar date={specifiedDate} dateVisible={dateVisible} />);
     component.find('Label').forEach((dayComponent) => {
       if (isSameDay(dayComponent.props().date, specifiedDate)) {
@@ -58,7 +58,7 @@ describe('<MonthCalendar />', () => {
   it('should not call onSelect if clicking on a invisible date', () => {
     const today = new Date();
     const specifiedDate = new Date(today.getFullYear() - 5, 7, 14);
-    const dateVisible = (date) => isBefore(date, specifiedDate);
+    const dateVisible = date => isBefore(date, specifiedDate);
     const callback = sinon.spy();
     const component = mount(<MonthCalendar date={specifiedDate} dateVisible={dateVisible} onSelect={callback} />);
     const lastYear = component.find('li').last();

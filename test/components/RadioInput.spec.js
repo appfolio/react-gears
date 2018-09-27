@@ -18,7 +18,7 @@ describe('<RadioInput />', () => {
   });
 
   it('should forward radio as type to children', () => {
-    assert.equal(choice.prop('type'), 'radio')
+    assert.equal(choice.prop('type'), 'radio');
   });
 
   it('should pass value as selected input', () => {

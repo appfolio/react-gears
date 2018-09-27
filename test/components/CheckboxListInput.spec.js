@@ -6,9 +6,9 @@ import { shallow } from 'enzyme';
 import { CheckboxListInput, FormChoice } from '../../src';
 
 describe('<CheckboxListInput />', () => {
-  let onChange = sinon.stub();
+  const onChange = sinon.stub();
 
-  const value = [ 'A', 'stuff', 'C' ];
+  const value = ['A', 'stuff', 'C'];
   const component = shallow(
     <CheckboxListInput value={value} onChange={onChange}>
       <FormChoice>A</FormChoice>
@@ -22,7 +22,7 @@ describe('<CheckboxListInput />', () => {
   });
 
   it('should set up children', () => {
-    component.find(FormChoice).forEach(choice => {
+    component.find(FormChoice).forEach((choice) => {
       assert.equal(choice.prop('type'), 'checkbox');
       assert.equal(choice.prop('selected'), value);
       assert.equal(choice.prop('onChange'), component.instance().onChange);
@@ -30,12 +30,12 @@ describe('<CheckboxListInput />', () => {
   });
 
   it('should deselect unchecked choice', () => {
-    component.childAt(0).simulate('change', { target: { checked: false, value: 'A' }});
-    assert(onChange.calledWith([ 'stuff', 'C' ]));
+    component.childAt(0).simulate('change', { target: { checked: false, value: 'A' } });
+    assert(onChange.calledWith(['stuff', 'C']));
   });
 
   it('should select checked choice', () => {
-    component.childAt(2).simulate('change', { target: { checked: true, value: 'Other' }});
-    assert(onChange.calledWith([ 'A', 'stuff', 'C', 'Other' ]));
+    component.childAt(2).simulate('change', { target: { checked: true, value: 'Other' } });
+    assert(onChange.calledWith(['A', 'stuff', 'C', 'Other']));
   });
 });
