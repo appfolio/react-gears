@@ -1,9 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
-import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isSameMonth from 'date-fns/is_same_month';
@@ -239,7 +237,7 @@ describe('<MonthInput />', () => {
   context('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
-    const dateVisible = (date) => isSameDay(date, defaultDate);
+    const dateVisible = date => isSameDay(date, defaultDate);
     const component = mount(<MonthInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
     const toggle = component.find('InputGroupAddon');
     toggle.simulate('click');

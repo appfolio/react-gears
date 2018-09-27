@@ -1,9 +1,9 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
-import { Icon, Alert } from '../../src';
-
 import Inner from 'reactstrap/lib/Alert';
+
+import { Icon, Alert } from '../../src';
 
 describe('<Alert />', () => {
   describe('default', () => {

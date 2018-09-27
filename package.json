@@ -17,7 +17,7 @@
     "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint src test",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "ts-test": "NODE_ENV=test tsc ./test/typesafety.tsx --jsx react --noEmit",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",

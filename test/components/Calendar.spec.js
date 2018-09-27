@@ -48,7 +48,7 @@ describe('<Calendar />', () => {
 
   it('should hide dates which are not visible based on dateVisible', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = (date) => isSameDay(date, specifiedDate);
+    const dateVisible = date => isSameDay(date, specifiedDate);
     const component = mount(<Calendar date={specifiedDate} dateVisible={dateVisible} />);
     component.find('Day').forEach((dayComponent) => {
       if (isSameDay(dayComponent.props().day.date, specifiedDate)) {
@@ -61,7 +61,7 @@ describe('<Calendar />', () => {
 
   it('should not call onSelect if clicking on a invisible date', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = (date) => isSameDay(date, specifiedDate);
+    const dateVisible = date => isSameDay(date, specifiedDate);
     const callback = sinon.spy();
     const component = mount(<Calendar date={specifiedDate} dateVisible={dateVisible} onSelect={callback} />);
     const firstDate = component.find('Day').first();

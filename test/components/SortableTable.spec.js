@@ -46,9 +46,11 @@ describe('<SortableTable />', () => {
 
   it('should render header components', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
-    const columns = classNames.map(name => ({
-      header: <span className={name}>{name}</span>
-    }));
+    const columns = classNames.map((name) => {
+      return {
+        header: <span className={name}>{name}</span>
+      };
+    });
     const wrapper = mount(<SortableTable columns={columns} />);
     const headers = wrapper.find('span');
     headers.forEach((th, i) => assert(th.hasClass(classNames[i])));
@@ -56,16 +58,18 @@ describe('<SortableTable />', () => {
 
   it('should render cell components', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
-    const columns = classNames.map(name => ({
-      header: name,
-      cell: row => <span className={name}>{row}</span>
-    }));
+    const columns = classNames.map((name) => {
+      return {
+        header: name,
+        cell: row => <span className={name}>{row}</span>
+      };
+    });
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(<SortableTable columns={columns} rows={rows} />);
     const trs = wrapper.find('tr');
     assert.equal(trs.length, rows.length + 1); // +1 includes thead
 
-    classNames.forEach(name => {
+    classNames.forEach((name) => {
       const cells = wrapper.find(`.${name}`);
       assert.equal(cells.length, rows.length, 'Column cell not rendered for each row');
     });
@@ -73,9 +77,11 @@ describe('<SortableTable />', () => {
 
   it('should not render tfoot if no footers specified', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
-    const columns = classNames.map(name => ({
-      header: name
-    }));
+    const columns = classNames.map((name) => {
+      return {
+        header: name
+      };
+    });
     const wrapper = mount(<SortableTable columns={columns} />);
 
     const footer = wrapper.find('tfoot');
@@ -84,10 +90,12 @@ describe('<SortableTable />', () => {
 
   it('should render footer components', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
-    const columns = classNames.map(name => ({
-      header: name,
-      footer: <span className={name}>{name}</span>
-    }));
+    const columns = classNames.map((name) => {
+      return {
+        header: name,
+        footer: <span className={name}>{name}</span>
+      };
+    });
     const wrapper = mount(<SortableTable columns={columns} />);
 
     const footer = wrapper.find('tfoot');

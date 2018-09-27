@@ -43,7 +43,7 @@ describe('<FileInput />', () => {
           { name: 'your.mom' },
           { name: 'karans.mom' },
           { name: 'justins.mom' },
-        ]}
+        ] }
     });
 
     const expectedValue = [

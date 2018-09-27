@@ -9,7 +9,7 @@ const noop = () => {};
 describe('<Modal />', () => {
   let component;
 
-  afterEach(done => {
+  afterEach((done) => {
     if (component && component.prop('isOpen')) {
       component.setProps({ isOpen: false });
       const interval = setInterval(() => {

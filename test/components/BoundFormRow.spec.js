@@ -78,7 +78,7 @@ describe('<BoundFormRow />', () => {
 
   describe('with onChange prop', () => {
     const spy = sinon.stub();
-    const onChangeFactory = name => data => { spy(`${name} and ${data}`); };
+    const onChangeFactory = name => (data) => { spy(`${name} and ${data}`); };
     const onChange = sinon.stub();
 
     const component = shallow(

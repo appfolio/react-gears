@@ -15,7 +15,7 @@ import {
 describe('<FormRow />', () => {
   describe('by default', () => {
     const component = shallow(
-      <FormRow label="First Name" id="someID" size="sm"/>
+      <FormRow label="First Name" id="someID" size="sm" />
     );
 
     it('should create a FormLabelGroup', () => {
