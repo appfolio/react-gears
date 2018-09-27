@@ -2,9 +2,11 @@
 // Enable the above rule when the following is addressed https://github.com/yannickcr/eslint-plugin-react/issues/1674
 
 import React from 'react';
+import classnames from 'classnames';
 import Icon from './Icon';
 import Modal from './Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
+import styles from './ImageCarousel.scss';
 
 export default class ImageCarousel extends React.Component {
   static propTypes = {
@@ -50,7 +52,7 @@ export default class ImageCarousel extends React.Component {
               onClick={toggle}
             />
             <UncontrolledCarousel
-              className="d-flex align-items-center h-100"
+              className={classnames('d-flex align-items-center h-100', styles.carousel)}
               items={items}
               indicators={indicators}
               interval={autoPlay ? interval : 0}
