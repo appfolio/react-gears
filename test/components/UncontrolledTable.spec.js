@@ -338,7 +338,7 @@ describe('<UncontrolledTable />', () => {
     assert.deepEqual(wrapper.props().selected, ['Alpha']);
     assert.deepEqual(wrapper.state().selected, ['Alpha']);
 
-    wrapper.setProps({ selected: ['Bravo']})
+    wrapper.setProps({ selected: ['Bravo'] });
 
     assert.deepEqual(wrapper.props().selected, ['Bravo']);
     assert.deepEqual(wrapper.state().selected, ['Bravo']);
