@@ -19,6 +19,11 @@ import CardLink from './components/CardLink';
 import CardSubtitle from './components/CardSubtitle';
 import CardText from './components/CardText';
 import CardTitle from './components/CardTitle';
+import Carousel from './components/Carousel';
+import CarouselCaption from './components/CarouselCaption';
+import CarouselControl from './components/CarouselControl';
+import CarouselIndicators from './components/CarouselIndicators';
+import CarouselItem from './components/CarouselItem';
 import Col from './components/Col';
 import Collapse from './components/Collapse';
 import Container from './components/Container';
@@ -156,6 +161,11 @@ export {
   CardSubtitle,
   CardText,
   CardTitle,
+  Carousel,
+  CarouselCaption,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselItem,
   Col,
   Collapse,
   Container,
