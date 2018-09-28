@@ -27,7 +27,7 @@ export default class CollapsableText extends React.Component {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  renderButton(callback, buttonText) {
+  renderButton(buttonText) {
     return (
       <Button
         color="link"
@@ -54,14 +54,14 @@ export default class CollapsableText extends React.Component {
     } else if (this.state.collapsed) {
       return (
         <span>
-          {children.substring(0, maxLength).trim()}&hellip; {this.renderButton(this.expandText, moreLabel)}
+          {children.substring(0, maxLength).trim()}&hellip; {this.renderButton(moreLabel)}
         </span>
       );
     }
 
     return (
       <span>
-        {children} {this.renderButton(this.collapseText, lessLabel)}
+        {children} {this.renderButton(lessLabel)}
       </span>
     );
   }
