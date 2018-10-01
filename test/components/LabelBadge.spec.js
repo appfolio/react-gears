@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import { LabelBadge } from '../../src';
 
@@ -31,7 +31,14 @@ describe('<LabelBadge />', () => {
     assert.equal(closeButton.length, 0);
   });
 
-  it('renders correct max-width');
+  it('renders correct max-width', () => {
+    const component = shallow(<LabelBadge label="User" value="Yep" />);
+    const label = component.find('strong');
+    const value = component.find('.label-badge-value');
+
+    assert.strictEqual(label.prop('style').maxWidth, '14rem');
+    assert.strictEqual(value.prop('style').maxWidth, '14rem');
+  });
 
   it('passes classNames to outer span', () => {
     const wrapper = mount(<LabelBadge className='cc' value="Yep" />);
