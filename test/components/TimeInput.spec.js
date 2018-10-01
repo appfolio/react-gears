@@ -205,6 +205,4 @@ describe('<TimeInput />', () => {
       assert.equal(filterOption({ label: '9:30 AM', value: '09:30' }, '09:30 AM'), true);
     });
   });
-
-  it('should open and close when input addon clicked');
 });
