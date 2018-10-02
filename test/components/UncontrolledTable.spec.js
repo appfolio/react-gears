@@ -1,9 +1,9 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
-import { UncontrolledTable } from '../../src';
+import { Paginator, SortableTable, UncontrolledTable } from '../../src';
 
 describe('<UncontrolledTable />', () => {
   it('should render correctly', () => {
@@ -300,9 +300,54 @@ describe('<UncontrolledTable />', () => {
     // TODO assert rows
   });
 
-  it('should show correct rows on page change');
+  it('should show correct rows on page change', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const wrapper = shallow(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        paginated
+        pageSize={4}
+      />
+    );
+    let table = wrapper.find(SortableTable);
+    let paginator = wrapper.find(Paginator);
 
-  it('should show correct rows on sort change');
+    assert.deepStrictEqual(table.prop('rows'), ['Alpha', 'Bravo', 'Charlie', 'Delta']);
+    assert.strictEqual(paginator.prop('currentPage'), 1);
+
+    paginator.simulate('click', 2);
+    table = wrapper.find(SortableTable);
+    paginator = wrapper.find(Paginator);
+
+    assert.deepStrictEqual(table.prop('rows'), ['Echo', 'Foxtrot', 'Golf', 'Hotel']);
+    assert.strictEqual(paginator.prop('currentPage'), 2);
+  });
+
+  it('should show correct rows on sort change', () => {
+    const columns = [{ header: 'Name', key: 'name', cell: row => row }];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }];
+    const wrapper = shallow(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        sort={{ column: 'name', ascending: false }}
+        paginated
+        pageSize={4}
+      />
+    );
+
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+
+    wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order
+    wrapper.update();
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }]);
+
+    wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order
+    wrapper.update();
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+  });
 
   it('should hide columns when hidden', () => {
     const columns = [
