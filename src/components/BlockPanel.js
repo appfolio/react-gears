@@ -16,6 +16,7 @@ class BlockPanel extends React.Component {
     controls: PropTypes.node,
     className: PropTypes.string,
     expandable: PropTypes.bool,
+    headerClassName: PropTypes.string,
     hideOnToggle: PropTypes.bool,
     onEdit: PropTypes.func,
     onToggle: PropTypes.func,
@@ -64,7 +65,7 @@ class BlockPanel extends React.Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { children, className, color, controls, expandable, hideOnToggle, title, onEdit, onToggle, ...props } = this.props;
+    const { children, className, color, controls, expandable, hideOnToggle, title, onEdit, onToggle, headerClassName, ...props } = this.props;
     const { closed, open } = this.state;
 
     // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
@@ -79,7 +80,8 @@ class BlockPanel extends React.Component {
         'pl-2': expandable,
         [`bg-${color}`]: color,
         'text-white': color === 'primary' || color === 'dark'
-      }
+      },
+      headerClassName
     );
 
     return (
