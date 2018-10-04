@@ -70,7 +70,7 @@ class BlockPanel extends React.Component {
     // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
     const headerClassNames = classnames(
       'd-flex',
-      'flex-wrap',
+      'flex-nowrap',
       'align-items-center',
       'justify-content-between',
       'py-2',
