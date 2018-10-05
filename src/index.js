@@ -42,22 +42,25 @@ import Input from './components/Input';
 import InputGroup from './components/InputGroup';
 import InputGroupAddon from './components/InputGroupAddon';
 import InputGroupButton from './components/InputGroupButton';
+import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
 import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
 import Label from './components/Label';
 import ListGroup from './components/ListGroup';
 import ListGroupItem from './components/ListGroupItem';
+import ListGroupItemHeading from './components/ListGroupItemHeading';
+import ListGroupItemText from './components/ListGroupItemText';
 import Media from './components/Media';
 import ModalBody from './components/ModalBody';
 import ModalFooter from './components/ModalFooter';
 import ModalHeader from './components/ModalHeader';
 import Nav from './components/Nav';
-import NavDropdown from './components/NavDropdown';
-import NavItem from './components/NavItem';
-import NavLink from './components/NavLink';
 import Navbar from './components/Navbar';
 import NavbarBrand from './components/NavbarBrand';
 import NavbarToggler from './components/NavbarToggler';
+import NavDropdown from './components/NavDropdown';
+import NavItem from './components/NavItem';
+import NavLink from './components/NavLink';
 import Pagination from './components/Pagination';
 import PaginationItem from './components/PaginationItem';
 import PaginationLink from './components/PaginationLink';
@@ -65,13 +68,18 @@ import PopoverBody from './components/PopoverBody';
 import PopoverContent from './components/PopoverContent';
 import PopoverHeader from './components/PopoverHeader';
 import PopoverTitle from './components/PopoverTitle';
+import PopperContent from './components/PopperContent';
+import PopperTargetHelper from './components/PopperTargetHelper';
+import Portal from './components/Portal';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
+import UncontrolledAlert from './components/UncontrolledAlert';
 import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown';
 import UncontrolledCarousel from './components/UncontrolledCarousel';
 import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
+import UncontrolledNavDropdown from './components/UncontrolledNavDropdown';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
@@ -170,11 +178,11 @@ export {
   Collapse,
   Container,
   CustomInput,
+  DeletedNote,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  DeletedNote,
   EditableNote,
   Fade,
   FileInput,
@@ -187,40 +195,48 @@ export {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
+  InputGroupButtonDropdown,
   InputGroupText,
   Jumbotron,
   Label,
   ListGroup,
   ListGroupItem,
+  ListGroupItemHeading,
+  ListGroupItemText,
   Media,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
   Nav,
-  NavDropdown,
-  NavItem,
-  NavLink,
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  Paginator,
+  NavDropdown,
+  NavItem,
+  NavLink,
   Pagination,
   PaginationItem,
   PaginationLink,
+  Paginator,
   Popover,
   PopoverBody,
   PopoverContent,
   PopoverHeader,
   PopoverTitle,
+  PopperContent,
+  PopperTargetHelper,
+  Portal,
   Row,
   TabContent,
-  TabPane,
   Table,
+  TabPane,
+  UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCarousel,
   UncontrolledCollapse,
   UncontrolledDropdown,
+  UncontrolledNavDropdown,
   UncontrolledTooltip,
 
   Select,
