@@ -18,17 +18,20 @@ describe('<Activity />', () => {
 
   it('should render date', () => {
     const component = mount(<Activity date={new Date(2015, 1, 13, 12, 30)} />);
-    assert.equal(component.ref('date').textContent, '02/13/2015 12:30PM');
+    const date = component.find('span').first();
+    assert.strictEqual(date.text(), '02/13/2015 12:30PM');
   });
 
   it('should render action', () => {
     const component = mount(<Activity date={new Date()} action="Eat" />);
-    assert.equal(component.ref('action').textContent, 'Eat');
+    const action = component.find('strong');
+    assert.strictEqual(action.text(), 'Eat');
   });
 
   it('should render by', () => {
     const component = mount(<Activity date={new Date()} action="Sleep" by="Gary Thomas" />);
-    assert.equal(component.ref('by').textContent, 'Gary Thomas');
+    const by = component.find('span').at(2);
+    assert.strictEqual(by.text(), 'Gary Thomas');
   });
 
   it('should render children correctly', () => {
@@ -44,6 +47,7 @@ describe('<Activity />', () => {
 
   it('should support custom date formats', () => {
     const component = mount(<Activity dateFormat="M/D/YYYY" date={new Date(2010, 4, 9)} />);
-    assert.equal(component.ref('date').textContent, '5/9/2010');
+    const date = component.find('span').first();
+    assert.strictEqual(date.text(), '5/9/2010');
   });
 });
