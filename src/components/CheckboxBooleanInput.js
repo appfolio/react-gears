@@ -25,7 +25,7 @@ class CheckboxBooleanInput extends React.Component {
           className="my-0"
         />
         {checkboxLabel && (
-          <Label check for={id} ref="label" className="my-0">
+          <Label check for={id} className="my-0">
             {checkboxLabel}
           </Label>
         )}
