@@ -135,7 +135,8 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      assert(!component.ref('edit'));
+      const editButton = component.find(Button);
+      assert.strictEqual(editButton.length, 0);
     });
 
     it('should render edit link when passed onEdit', () => {
@@ -144,7 +145,8 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      assert(component.ref('edit'));
+      const editButton = component.find(Button);
+      assert.strictEqual(editButton.length, 1);
     });
 
     it('should call onEdit when clicked', () => {
@@ -155,8 +157,9 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
-      component.ref('edit').onClick();
-      assert.equal(onEdit.calledOnce, true);
+      const editButton = component.find(Button);
+      editButton.simulate('click');
+      assert(onEdit.calledOnce);
     });
 
     it('should render title components when passed', () => {

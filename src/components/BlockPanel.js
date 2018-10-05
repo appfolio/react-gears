@@ -92,7 +92,6 @@ class BlockPanel extends React.Component {
           <div
             className="d-inline-flex align-items-center"
             onClick={this.toggle}
-            ref="title"
             role={expandable ? 'button' : undefined}
           >
             {expandable ?
@@ -113,7 +112,6 @@ class BlockPanel extends React.Component {
               <Button
                 color="link"
                 className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ml-2 mr-1`}
-                ref="edit"
                 onClick={onEdit}
                 role="button"
               >
