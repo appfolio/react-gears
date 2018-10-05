@@ -179,37 +179,50 @@ describe('<DateInput />', () => {
     it('should should set date after clicking prev year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-      component.ref('prevYear').props.onClick();
+      const prevYear = component.find('Button.js-prev-year');
+
+      prevYear.simulate('click');
+
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
-      assert(callback.calledWith(expectedDate, true));
+      assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
     it('should should set date after clicking next year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-      component.ref('nextYear').props.onClick();
+      const nextYear = component.find('Button.js-next-year');
+
+      nextYear.simulate('click');
+
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
-      assert(callback.calledWith(expectedDate, true));
+      assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
     it('should should set date after clicking prev month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-      component.ref('prevMonth').props.onClick();
+      const prevMonth = component.find('Button.js-prev-month');
+
+      prevMonth.simulate('click');
+
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
-      assert(callback.calledWith(expectedDate, true));
+      assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
     it('should should set date after clicking next month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-      component.ref('nextMonth').props.onClick();
+      const nextMonth = component.find('Button.js-next-month');
+
+      nextMonth.simulate('click');
+
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
-      assert(callback.calledWith(expectedDate, true));
+      assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
     it('should should set date after clicking today', () => {
-      component.ref('today').props.onClick();
+      const today = component.find('footer Button');
+      today.simulate('click');
       assert(isToday(component.instance().getCurrentDate()));
     });
 

@@ -41,9 +41,8 @@ describe('<Alert />', () => {
 
     it('should wrap children with block (for alignment) with icon', () => {
       const component = mount(<Alert icon>Stuff Here</Alert>);
-      const wrapper = component.ref('wrapper');
-      assert(wrapper);
-      assert.equal(wrapper.textContent, 'Stuff Here');
+      const wrapper = component.find('div').first();
+      assert.strictEqual(wrapper.text(), 'Stuff Here');
     });
   });
 

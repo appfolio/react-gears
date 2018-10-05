@@ -270,10 +270,10 @@ export default class MonthInput extends React.Component {
             {header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
-                  <Button ref="prevYear" color="link" onClick={() => this.prevYear()}>
+                  <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
                   </Button>
-                  <Button ref="prevMonth" color="link" onClick={() => this.prevMonth()}>
+                  <Button className="js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
                   </Button>
                 </ButtonGroup>
@@ -283,10 +283,10 @@ export default class MonthInput extends React.Component {
                 </span>
 
                 <ButtonGroup size="sm">
-                  <Button ref="nextMonth" color="link" onClick={() => this.nextMonth()}>
+                  <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
                   </Button>
-                  <Button ref="nextYear" color="link" onClick={() => this.nextYear()}>
+                  <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
                   </Button>
                 </ButtonGroup>
@@ -305,7 +305,7 @@ export default class MonthInput extends React.Component {
             {footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button ref="today" onClick={this.today} className="mr-2">Today</Button>
+                  <Button onClick={this.today} className="mr-2">Today</Button>
                 </div>
               </footer>
             )}

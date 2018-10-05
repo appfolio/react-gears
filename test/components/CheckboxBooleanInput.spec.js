@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import assert from 'assert';
 import { mount } from 'enzyme';
 
-import { CheckboxBooleanInput, Input } from '../../src';
+import { CheckboxBooleanInput, Input, Label } from '../../src';
 
 describe('<CheckboxBooleanInput />', () => {
   const onChange = sinon.stub();
@@ -19,7 +19,8 @@ describe('<CheckboxBooleanInput />', () => {
   });
 
   it('should not render checkboxLabel', () => {
-    assert.equal(wrapper.ref('label'), undefined);
+    const label = wrapper.find(Label);
+    assert.strictEqual(label.length, 0);
   });
 
   it('should use value for checked state', () => {
