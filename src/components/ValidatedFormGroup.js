@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FormFeedback from './FormFeedback';
-import FormGroup from './FormGroup';
+import { warnOnce } from 'reactstrap/lib/utils';
+import FormLabelGroup from './FormLabelGroup';
 import Label from './Label';
 
-const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => (
-  <FormGroup color={error && 'danger'} {...props}>
-    {label && <Tag>{label}</Tag>}
-    {children}
-    {error && <FormFeedback>{error}</FormFeedback>}
-  </FormGroup>
-);
+const ValidatedFormGroup = ({ children, error, label, labelTag: Tag, ...props }) => {
+  warnOnce('The "ValidatedFormGroup" component has been deprecated.\nPlease use component "FormLabelGroup".');
+  return (
+    <FormLabelGroup
+      label={label}
+      feedback={error}
+      {...props}
+    >
+      {children}
+    </FormLabelGroup>
+  );
+};
+
 export default ValidatedFormGroup;
 
 ValidatedFormGroup.defaultProps = {
