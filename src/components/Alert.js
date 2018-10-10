@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Alert from 'reactstrap/lib/Alert';
+import AlertComponent from 'reactstrap/lib/Alert';
 import Icon from './Icon';
 
 const ICON_MAP = {
@@ -10,7 +10,7 @@ const ICON_MAP = {
   danger: 'ban'
 };
 
-export default class AlertComponent extends React.Component {
+export default class Alert extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     color: PropTypes.string,
@@ -48,7 +48,7 @@ export default class AlertComponent extends React.Component {
     const { color, children, className, dismissible, icon, ...props } = this.props;
 
     return (
-      <Alert
+      <AlertComponent
         color={color}
         isOpen={this.state.visible}
         toggle={dismissible ? this.toggle : null}
@@ -59,7 +59,7 @@ export default class AlertComponent extends React.Component {
           {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
           {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : <div>{children}</div>}
         </div>
-      </Alert>
+      </AlertComponent>
     );
   }
 }

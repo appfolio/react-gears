@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Table from 'reactstrap/lib/Table';
+import TableComponent from 'reactstrap/lib/Table';
 
-class TableComponent extends React.Component {
+class Table extends React.Component {
   static displayName = 'Table';
   static propTypes = {
     size: PropTypes.string,
@@ -22,11 +22,11 @@ class TableComponent extends React.Component {
 
   render() {
     return (
-      <Table {...this.props}>
+      <TableComponent {...this.props}>
         {this.props.children}
-      </Table>
+      </TableComponent>
     );
   }
 }
 
-export default TableComponent;
+export default Table;
