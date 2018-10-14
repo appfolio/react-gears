@@ -6,8 +6,8 @@ import { text, boolean, number, object, select } from '@storybook/addon-knobs';
 import { Table, SortableTable, UncontrolledTable } from '../src';
 
 const DATA = [
-  { key: '111', expanded: false, first: 'Nicole', last: 'Grant', email: 'nicole.grant@example.com', dob: new Date(1968, 6, 15) },
-  { key: '222', expanded: false, first: 'Alberto', last: 'Kennedy', email: 'alberto.kennedy@example.com', dob: new Date(1972, 7, 17) },
+  { key: '111', expanded: false, first: 'Rufus Xavier Sarsparilla', last: 'Jones', email: 'rufus.xavier.sarsparilla@example.com', dob: new Date(1968, 6, 15) },
+  { key: '222', expanded: false, first: 'Albert Andreas Armadillo', last: 'Thomas', email: 'albert.andreas.armadillo@example.com', dob: new Date(1972, 7, 17) },
   { key: '333', expanded: false, first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
   { key: '444', expanded: false, first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
   { key: '555', expanded: false, first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
@@ -60,6 +60,7 @@ storiesOf('Table', module)
           hover={boolean('hover', true)}
           size={select('size', ['', 'sm', 'lg'], 'sm')}
           striped={boolean('striped', true)}
+          truncate={boolean('truncate', true)}
           columns={[
             {
               active: column === 'first',
@@ -133,6 +134,7 @@ storiesOf('Table', module)
         sort={{ column: 'last', ascending: true }}
         expandable={boolean('expandable', false)}
         selectable={boolean('selectable', false)}
+        truncate={boolean('truncate', true)}
         paginated={boolean('paginated', false)}
         pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
