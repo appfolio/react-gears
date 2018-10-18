@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, Icon, Select } from '../src';
 import { action, storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 import COUNTRIES from '../src/components/address/Countries.js';
 
@@ -18,6 +18,7 @@ storiesOf('Select', module)
         disabled={boolean('disabled', false)}
         multi={boolean('multi', false)}
         options={COUNTRIES}
+        placeholder={text('placeholder')}
         onChange={action('onChange')}
       />
       <p className="pt-5">

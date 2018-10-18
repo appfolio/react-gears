@@ -22,6 +22,7 @@ storiesOf('Table', module)
   .addWithInfo('Live example', () => (
     <Table
       bordered={boolean('bordered', true)}
+      responsive={boolean('responsive', true)}
       striped={boolean('striped', true)}
       hover={boolean('hover', true)}
       size={select('size', ['', 'sm', 'lg'], 'sm')}
@@ -58,9 +59,10 @@ storiesOf('Table', module)
         <SortableTable
           bordered={boolean('bordered', false)}
           hover={boolean('hover', true)}
+          responsive={boolean('responsive', true)}
           size={select('size', ['', 'sm', 'lg'], 'sm')}
           striped={boolean('striped', true)}
-          truncate={boolean('truncate', true)}
+          truncate={boolean('truncate', false)}
           columns={[
             {
               active: column === 'first',
@@ -133,8 +135,9 @@ storiesOf('Table', module)
         rowExpanded={row => <div>{row.first} {row.last}</div>}
         sort={{ column: 'last', ascending: true }}
         expandable={boolean('expandable', false)}
+        responsive={boolean('responsive', true)}
         selectable={boolean('selectable', false)}
-        truncate={boolean('truncate', true)}
+        truncate={boolean('truncate', false)}
         paginated={boolean('paginated', false)}
         pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
