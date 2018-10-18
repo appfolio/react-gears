@@ -163,7 +163,7 @@ export default class UncontrolledTable extends React.Component {
             onChange={() => this.toggleSelection(row)}
           />
         ),
-        width: '1%'
+        width: '2rem'
       });
     }
 
@@ -180,7 +180,7 @@ export default class UncontrolledTable extends React.Component {
             <Icon name="ellipsis-v" size="lg" />
           </Button>
         ),
-        width: '1%'
+        width: '2rem'
       });
     }
 
