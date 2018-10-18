@@ -71,6 +71,7 @@ export default class MonthInput extends React.Component {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     parse: PropTypes.func,
+    positionFixed: PropTypes.bool,
     showOnFocus: PropTypes.bool,
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -90,6 +91,7 @@ export default class MonthInput extends React.Component {
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
+    positionFixed: false,
     showOnFocus: true
   }
 
@@ -225,7 +227,7 @@ export default class MonthInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
 
@@ -266,6 +268,7 @@ export default class MonthInput extends React.Component {
             className="p-0"
             onKeyDown={this.onKeyDown}
             style={{ minWidth: '19rem' }}
+            positionFixed={positionFixed}
           >
             {header || (
               <header className="d-flex py-2">
