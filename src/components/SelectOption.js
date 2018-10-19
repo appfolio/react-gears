@@ -57,8 +57,8 @@ export default class SelectOption extends React.Component {
     this.handleMouseDown(event);
   }
 
-  handleTouchMove = () => this.dragging = true;
-  handleTouchStart = () => this.dragging = false;
+  handleTouchMove = () => { this.dragging = true; };
+  handleTouchStart = () => { this.dragging = false; };
 
   render() {
     const { option, instancePrefix, optionIndex, isDisabled, isFocused, isSelected } = this.props;

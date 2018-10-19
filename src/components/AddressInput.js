@@ -58,7 +58,7 @@ class AddressInput extends React.Component {
     return { defaultValue: this.props.defaultValue[field] };
   }
 
-  bindAddress1 = el => this.inputAddress1 = el;
+  bindAddress1 = (el) => { this.inputAddress1 = el; };
 
   focus() {
     this.inputAddress1.focus();

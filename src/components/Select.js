@@ -38,7 +38,7 @@ class Select extends React.Component {
     this.props.onChange(value);
   }
 
-  bindInput = el => this.selectEl = el;
+  bindInput = (el) => { this.selectEl = el; };
 
   focus() {
     this.selectEl.focus();
