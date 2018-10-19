@@ -37,6 +37,16 @@ const Day = ({ day, dateFormat, ...props }) => {
   );
 };
 
+Day.propTypes = {
+  day: PropTypes.shape({
+    sameMonth: PropTypes.bool,
+    selected: PropTypes.bool,
+    date: PropTypes.instanceOf(Date),
+    visible: PropTypes.bool
+  }),
+  dateFormat: PropTypes.string
+};
+
 class Calendar extends React.Component {
   static propTypes = {
     className: PropTypes.string,

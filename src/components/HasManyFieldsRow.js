@@ -12,7 +12,7 @@ import Tooltip from './Tooltip';
 let count = 0;
 
 function getID() {
-  return `hmf-${(count += 1)}`;
+  return `hmf-${(count += 1)}`; // eslint-disable-line no-return-assign
 }
 
 export default class HasManyFieldsRow extends React.Component {

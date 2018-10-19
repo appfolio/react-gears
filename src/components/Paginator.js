@@ -34,6 +34,17 @@ const LastPageLink = ({ disabled, page, onClick }) => (
   </ShortcutLink>
 );
 
+const linkPropTypes = {
+  disabled: PropTypes.bool,
+  page: PropTypes.number,
+  onClick: PropTypes.func
+};
+
+FirstPageLink.propTypes = linkPropTypes;
+PrevPageLink.propTypes = linkPropTypes;
+NextPageLink.propTypes = linkPropTypes;
+LastPageLink.propTypes = linkPropTypes;
+
 /**
  * A component that generates a set of links that can be used for pagination.  Link selection is
  * communicated via the `onClick` callback.

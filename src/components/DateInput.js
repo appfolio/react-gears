@@ -73,6 +73,7 @@ export default class DateInput extends React.Component {
     parse: PropTypes.func,
     positionFixed: PropTypes.bool,
     showOnFocus: PropTypes.bool,
+    state: PropTypes.any,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object

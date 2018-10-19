@@ -7,6 +7,7 @@ import Label from './Label';
 
 class CheckboxBooleanInput extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     checkboxLabel: PropTypes.node,
     className: PropTypes.string,
     onChange: PropTypes.func,

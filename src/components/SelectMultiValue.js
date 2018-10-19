@@ -9,6 +9,7 @@ export default class SelectMultiValue extends React.Component {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
+    instancePrefix: PropTypes.any,
     disabled: PropTypes.bool,
     onRemove: PropTypes.func,
     value: PropTypes.object
