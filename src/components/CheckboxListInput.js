@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxListInput extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    onChange: PropTypes.func,
+    value: PropTypes.array
+  };
+
   onChange = (e) => {
     if (this.props.onChange) {
       const { checked, value } = e.target;
@@ -19,7 +26,6 @@ class CheckboxListInput extends React.Component {
 
   render() {
     const {
-      type,
       value,
       children,
       onChange,

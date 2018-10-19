@@ -9,6 +9,7 @@ export default class Header extends React.Component {
     active: PropTypes.bool,
     ascending: PropTypes.bool,
     children: PropTypes.node,
+    className: PropTypes.string,
     onSort: PropTypes.func
   };
 

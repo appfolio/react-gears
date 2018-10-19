@@ -76,7 +76,9 @@ CurrencyInput.propTypes = {
   allowNegative: PropTypes.bool,
   className: PropTypes.string,
   includeThousandsSeparator: PropTypes.bool,
-  size: PropTypes.string
+  size: PropTypes.string,
+  state: PropTypes.any,
+  type: PropTypes.any
 };
 
 

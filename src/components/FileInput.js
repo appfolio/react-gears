@@ -23,7 +23,8 @@ class FileInput extends React.Component {
 }
 
 FileInput.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  type: PropTypes.any
 };
 
 export default FileInput;

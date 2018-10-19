@@ -17,6 +17,13 @@ const Label = ({ selected, label, onClick, visible = true }) => (
   </li>
 );
 
+Label.propTypes = {
+  selected: PropTypes.bool,
+  label: PropTypes.node,
+  onClick: PropTypes.func,
+  visible: PropTypes.bool
+};
+
 export default class MonthCalendar extends React.Component {
   static propTypes = {
     date: PropTypes.instanceOf(Date),

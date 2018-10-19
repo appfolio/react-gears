@@ -11,7 +11,8 @@ class Table extends React.Component {
     striped: PropTypes.bool,
     dark: PropTypes.bool,
     hover: PropTypes.bool,
-    responsive: PropTypes.bool
+    responsive: PropTypes.bool,
+    children: PropTypes.node
   }
   static defaultProps = {
     hover: true,
