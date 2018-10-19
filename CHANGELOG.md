@@ -1,5 +1,95 @@
 # Change Log
 
+## [v4.9.0](https://github.com/appfolio/react-gears/tree/v4.9.0) (2018-10-18)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.8.3...v4.9.0)
+
+**Merged pull requests:**
+
+- gt - Fix reactstrap version at 6.3.x [\#483](https://github.com/appfolio/react-gears/pull/483) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- gt - Add positionFixed prop [\#482](https://github.com/appfolio/react-gears/pull/482) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- Add support for table cell truncate/ellipsis [\#480](https://github.com/appfolio/react-gears/pull/480) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.8.3](https://github.com/appfolio/react-gears/tree/v4.8.3) (2018-10-11)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.8.2...v4.8.3)
+
+**Merged pull requests:**
+
+- Correct CheckBoxBooleanInput [\#479](https://github.com/appfolio/react-gears/pull/479) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.8.2](https://github.com/appfolio/react-gears/tree/v4.8.2) (2018-10-10)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.8.1...v4.8.2)
+
+**Merged pull requests:**
+
+- Add minified displayNames [\#478](https://github.com/appfolio/react-gears/pull/478) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.8.1](https://github.com/appfolio/react-gears/tree/v4.8.1) (2018-10-09)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.8.0...v4.8.1)
+
+**Merged pull requests:**
+
+- Deprecate and correct ValidatedFormGroup [\#477](https://github.com/appfolio/react-gears/pull/477) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- Remove string refs [\#476](https://github.com/appfolio/react-gears/pull/476) ([wpliao1989](https://github.com/wpliao1989))
+
+## [v4.8.0](https://github.com/appfolio/react-gears/tree/v4.8.0) (2018-10-05)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.7.2...v4.8.0)
+
+**Merged pull requests:**
+
+- Add missing components [\#475](https://github.com/appfolio/react-gears/pull/475) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- allow header of BlockPanel to have flexible class [\#474](https://github.com/appfolio/react-gears/pull/474) ([mqchau](https://github.com/mqchau))
+- set flexbox to no wrap in title of BlockPanel [\#473](https://github.com/appfolio/react-gears/pull/473) ([mqchau](https://github.com/mqchau))
+- Fix tests that are pending [\#472](https://github.com/appfolio/react-gears/pull/472) ([wpliao1989](https://github.com/wpliao1989))
+- ml - remove nonexistent methods from method calls [\#471](https://github.com/appfolio/react-gears/pull/471) ([mosessliu](https://github.com/mosessliu))
+- gt - Correct lint error [\#470](https://github.com/appfolio/react-gears/pull/470) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.7.2](https://github.com/appfolio/react-gears/tree/v4.7.2) (2018-09-27)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.7.1...v4.7.2)
+
+**Implemented enhancements:**
+
+- Fix linting errors in test folder [\#468](https://github.com/appfolio/react-gears/pull/468) ([wpliao1989](https://github.com/wpliao1989))
+
+**Merged pull requests:**
+
+- gt - Export Carousel components [\#469](https://github.com/appfolio/react-gears/pull/469) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+- mb - fix uncontrolled table to update selected when new props provided [\#467](https://github.com/appfolio/react-gears/pull/467) ([mathewbaltes](https://github.com/mathewbaltes))
+- gt - Fit images in ImageCarousel [\#466](https://github.com/appfolio/react-gears/pull/466) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.7.1](https://github.com/appfolio/react-gears/tree/v4.7.1) (2018-09-25)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.7.0...v4.7.1)
+
+**Merged pull requests:**
+
+- Fix weird parsing behavior in Time input [\#465](https://github.com/appfolio/react-gears/pull/465) ([darreneng](https://github.com/darreneng))
+- gt - Correct eslint [\#464](https://github.com/appfolio/react-gears/pull/464) ([gthomas-appfolio](https://github.com/gthomas-appfolio))
+
+## [v4.7.0](https://github.com/appfolio/react-gears/tree/v4.7.0) (2018-09-25)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.6.0...v4.7.0)
+
+**Implemented enhancements:**
+
+- Fix linting errors [\#462](https://github.com/appfolio/react-gears/pull/462) ([wpliao1989](https://github.com/wpliao1989))
+
+**Closed issues:**
+
+- Typescript type definitions [\#456](https://github.com/appfolio/react-gears/issues/456)
+- Popover, Tooltip, HelpBubble should auto-position [\#291](https://github.com/appfolio/react-gears/issues/291)
+- Bootstrap 4 Beta changes [\#283](https://github.com/appfolio/react-gears/issues/283)
+- Tooltip + enzyme `mount` causes errors in tests [\#269](https://github.com/appfolio/react-gears/issues/269)
+- CSS in React Gears [\#172](https://github.com/appfolio/react-gears/issues/172)
+
+**Merged pull requests:**
+
+- Add new time input [\#463](https://github.com/appfolio/react-gears/pull/463) ([darreneng](https://github.com/darreneng))
+
+## [v4.6.0](https://github.com/appfolio/react-gears/tree/v4.6.0) (2018-09-14)
+[Full Changelog](https://github.com/appfolio/react-gears/compare/v4.5.0...v4.6.0)
+
+**Merged pull requests:**
+
+- new component TextCollapseByLength [\#460](https://github.com/appfolio/react-gears/pull/460) ([mqchau](https://github.com/mqchau))
+
 ## [v4.5.0](https://github.com/appfolio/react-gears/tree/v4.5.0) (2018-09-13)
 [Full Changelog](https://github.com/appfolio/react-gears/compare/v4.4.1...v4.5.0)
 
