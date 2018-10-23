@@ -32,7 +32,7 @@ class SortableTable extends React.Component {
     rowClassName: PropTypes.func,
     rowExpanded: PropTypes.func,
     rowOnClick: PropTypes.func,
-    truncate: PropTypes.boolean
+    truncate: PropTypes.bool
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
