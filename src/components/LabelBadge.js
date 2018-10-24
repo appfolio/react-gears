@@ -9,7 +9,7 @@ export default class LabelBadge extends React.Component {
     maxWidth: PropTypes.number,
     onRemove: PropTypes.func,
     removable: PropTypes.bool,
-    value: PropTypes.string.isRequired
+    value: PropTypes.node.isRequired
   }
 
   static defaultProps = {
