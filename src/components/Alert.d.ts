@@ -5,6 +5,7 @@ interface AlertProps {
   dismissible?: boolean;
   icon?: boolean;
   className?: string;
+  onToggle?: (boolean) => any
 }
 
 declare class Alert extends React.Component<AlertProps, {}> { }

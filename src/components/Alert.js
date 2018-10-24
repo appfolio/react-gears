@@ -16,14 +16,16 @@ export default class Alert extends React.Component {
     color: PropTypes.string,
     dismissible: PropTypes.bool,
     icon: PropTypes.bool,
-    className: PropTypes.string
+    className: PropTypes.string,
+    onToggle: PropTypes.func
   }
 
   static defaultProps = {
     className: '',
     color: 'warning',
     dismissible: false,
-    icon: false
+    icon: false,
+    onToggle: null
   }
 
   static displayName = 'Alert';
@@ -37,7 +39,9 @@ export default class Alert extends React.Component {
   }
 
   toggle = () => {
-    this.setState({ visible: !this.state.visible });
+    const visible = !this.state.visible;
+    this.setState({ visible });
+    if (this.props.onToggle) this.props.onToggle(visible);
   }
 
   componentWillReceiveProps() {
