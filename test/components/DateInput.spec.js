@@ -221,9 +221,32 @@ describe('<DateInput />', () => {
     });
 
     it('should should set date after clicking today', () => {
-      const today = component.find('footer Button');
+      const today = component.find('footer Button').at(0);
       today.simulate('click');
       assert(isToday(component.instance().getCurrentDate()));
+    });
+
+    it('should should call onChange after clicking today', () => {
+      callback.reset();
+      const today = component.find('footer Button').at(0);
+      today.simulate('click');
+      assert(callback.called);
+      const spyCall = callback.getCall(0);
+      assert(isToday(spyCall.args[0]));
+      assert.equal(spyCall.args[1], true);
+    });
+
+    it('should should clear date after clicking clear', () => {
+      const clear = component.find('footer Button').at(1);
+      clear.simulate('click');
+      assert.equal(component.instance().inputEl.value, '');
+    });
+
+    it('should should call onChange after clicking clear', () => {
+      callback.reset();
+      const clear = component.find('footer Button').at(1);
+      clear.simulate('click');
+      assert(callback.calledWith('', true));
     });
 
     it('should should set date when using arrow keys', () => {
