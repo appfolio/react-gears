@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 
 import {
   CheckboxInput,
@@ -36,9 +36,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with static type', () => {
-    const component = shallow(
-      <FormRow label="First Name" type="static" />
-    );
+    const component = shallow(<FormRow label="First Name" type="static" />);
 
     it('should render a StaticInput', () => {
       const input = component.find(StaticInput);
@@ -47,9 +45,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with checkbox type', () => {
-    const component = shallow(
-      <FormRow label="First Name" type="checkbox" />
-    );
+    const component = shallow(<FormRow label="First Name" type="checkbox" />);
 
     it('should render a CheckboxInput', () => {
       assert.equal(component.find(CheckboxInput).length, 1);
@@ -57,9 +53,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with radio type', () => {
-    const component = shallow(
-      <FormRow label="First Name" type="radio" />
-    );
+    const component = shallow(<FormRow label="First Name" type="radio" />);
 
     it('should render a RadioInput', () => {
       assert.equal(component.find(RadioInput).length, 1);
@@ -67,9 +61,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with file type', () => {
-    const wrapper = shallow(
-      <FormRow type="file" />
-    );
+    const wrapper = shallow(<FormRow type="file" />);
 
     it('should render a FileInput', () => {
       assert.equal(wrapper.find(FileInput).length, 1);
@@ -77,22 +69,27 @@ describe('<FormRow />', () => {
   });
 
   describe('with custom type', () => {
-    const Custom = () => (<div>Hi</div>);
-    const component = shallow(
-      <FormRow label="First Name" type={Custom} />
-    );
+    const Custom = () => <div>Hi</div>;
+    const component = shallow(<FormRow label="First Name" type={Custom} />);
 
     it('should render custom input', () => {
       const custom = component.find(Custom);
       assert.equal(custom.length, 1);
       assert.equal(custom.first().prop('type'), null);
     });
+
+    describe('that does not grok validity', () => {
+      const Custom2 = ({ props }) => <div {...props}>Hi</div>;
+      Custom2.propTypes = {};
+      const component2 = render(
+        <FormRow label="First Name" type={Custom2} feedback="Na brah" />
+      );
+      assert.notEqual(component2.toString().indexOf('<div>Hi</div>'), -1);
+    });
   });
 
   describe('stacked', () => {
-    const component = shallow(
-      <FormRow label="First Name" stacked />
-    );
+    const component = shallow(<FormRow label="First Name" stacked />);
 
     it('should have a stacked property', () => {
       const formLabelGroup = component.find(FormLabelGroup);
@@ -112,9 +109,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with custom labelSize', () => {
-    const component = shallow(
-      <FormRow label="First Name" labelSize='sm' />
-    );
+    const component = shallow(<FormRow label="First Name" labelSize="sm" />);
 
     it('should set the FormLabelGroup labelSize', () => {
       const formLabelGroup = component.find(FormLabelGroup);
@@ -122,4 +117,3 @@ describe('<FormRow />', () => {
     });
   });
 });
-
