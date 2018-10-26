@@ -53,7 +53,7 @@ describe('<TimeInput />', () => {
 
     select.simulate('change', option);
     assert(callback.calledOnce);
-    sinon.assert.calledWith(callback, null);
+    sinon.assert.calledWith(callback, '');
   });
 
   // TODO

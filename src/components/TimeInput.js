@@ -121,7 +121,7 @@ export default class TimeInput extends React.Component {
 
   onChange = (selectedOption) => {
     this.setState({ selectedOption });
-    this.props.onChange(selectedOption && selectedOption.value);
+    this.props.onChange(selectedOption ? selectedOption.value : '');
   }
 
   parseInput(input) {
