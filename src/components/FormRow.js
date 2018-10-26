@@ -15,15 +15,22 @@ const typeTranslations = {
 };
 
 function determineElement(type) {
-  return (typeof type === 'string') ?
-    typeTranslations[type] || Input :
-    type;
+  return typeof type === 'string' ? typeTranslations[type] || Input : type;
 }
 
 function parseFeedback(feedback) {
-  return typeof feedback === 'object' ?
-    [null, { error: feedback }] :
-    [feedback, {}];
+  return typeof feedback === 'object'
+    ? [null, { error: feedback }]
+    : [feedback, {}];
+}
+
+function sanitizeProps(component, props) {
+  if (!component.props) return props;
+  const saneProps = {};
+  Object.entries(props).forEach(([k, v]) => {
+    if (component.props[k]) saneProps[k] = v;
+  });
+  return saneProps;
 }
 
 const FormRow = (props) => {
@@ -49,6 +56,11 @@ const FormRow = (props) => {
 
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
 
+  const validityThings = sanitizeProps(InputElement, {
+    valid: !!validFeedback,
+    invalid: !!feedback
+  });
+
   return (
     <FormLabelGroup
       feedback={baseFeedback}
@@ -68,12 +80,13 @@ const FormRow = (props) => {
         id={id}
         size={size}
         type={typeof type === 'string' ? type : null}
-        valid={!!validFeedback}
-        invalid={!!feedback}
+        {...validityThings}
         {...attributes}
         {...childFeedback}
       >
-        {React.Children.map(children, child => React.cloneElement(child, { type }))}
+        {React.Children.map(children, child =>
+          React.cloneElement(child, { type })
+        )}
       </InputElement>
     </FormLabelGroup>
   );
@@ -81,10 +94,7 @@ const FormRow = (props) => {
 
 FormRow.propTypes = {
   children: PropTypes.node,
-  feedback: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.object
-  ]),
+  feedback: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
   hint: PropTypes.string,
   id: PropTypes.string,
   inline: PropTypes.bool,

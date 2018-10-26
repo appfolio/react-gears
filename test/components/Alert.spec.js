@@ -53,7 +53,10 @@ describe('<Alert />', () => {
 
       assert.equal(component.find(Inner).prop('isOpen'), true);
 
-      component.find(Inner).find('button').simulate('click');
+      component
+        .find(Inner)
+        .find('button')
+        .simulate('click');
       assert.equal(component.state('visible'), false);
       assert.equal(component.find(Inner).prop('isOpen'), false);
     });
@@ -66,6 +69,26 @@ describe('<Alert />', () => {
 
       component.setProps({ color: 'danger' });
       assert.equal(component.state('visible'), true);
+    });
+
+    it('should call onToggle if provided', () => {
+      let called = false;
+      let calledWith;
+
+      const component = mount(
+        <Alert
+          dismissible
+          onToggle={(value) => {
+            called = true;
+            calledWith = value;
+          }}
+        />
+      );
+      const inner = component.find(Inner);
+      inner.find('button').simulate('click');
+
+      assert.equal(called, true);
+      assert.equal(calledWith, false);
     });
   });
 });
