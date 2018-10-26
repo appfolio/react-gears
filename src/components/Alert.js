@@ -18,15 +18,15 @@ export default class Alert extends React.Component {
     icon: PropTypes.bool,
     className: PropTypes.string,
     onToggle: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     className: '',
     color: 'warning',
     dismissible: false,
     icon: false,
-    onToggle: null
-  }
+    onToggle: () => {}
+  };
 
   static displayName = 'Alert';
 
@@ -41,15 +41,22 @@ export default class Alert extends React.Component {
   toggle = () => {
     const visible = !this.state.visible;
     this.setState({ visible });
-    if (this.props.onToggle) this.props.onToggle(visible);
-  }
+    this.props.onToggle(visible);
+  };
 
   componentWillReceiveProps() {
     this.setState({ visible: true });
   }
 
   render() {
-    const { color, children, className, dismissible, icon, ...props } = this.props;
+    const {
+      color,
+      children,
+      className,
+      dismissible,
+      icon,
+      ...props
+    } = this.props;
 
     return (
       <AlertComponent
@@ -60,8 +67,14 @@ export default class Alert extends React.Component {
         {...props}
       >
         <div className="d-flex align-items-start">
-          {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
-          {icon ? <div style={{ overflow: 'hidden' }}>{children}</div> : <div>{children}</div>}
+          {icon ? (
+            <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" />
+          ) : null}
+          {icon ? (
+            <div style={{ overflow: 'hidden' }}>{children}</div>
+          ) : (
+            <div>{children}</div>
+          )}
         </div>
       </AlertComponent>
     );
