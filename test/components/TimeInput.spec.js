@@ -2,6 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
+import isSameDay from 'date-fns/is_same_day';
 
 import { TimeInput, Select } from '../../src';
 
@@ -41,7 +42,11 @@ describe('<TimeInput />', () => {
 
     select.simulate('change', option);
     assert(callback.calledOnce);
-    sinon.assert.calledWith(callback, '12:00');
+    const [value, time] = callback.firstCall.args;
+    assert.equal(value, '12:00');
+    assert.equal(time.getHours(), 12);
+    assert.equal(time.getMinutes(), 0);
+    assert(isSameDay(time, new Date()));
   });
 
   it('should handle onChange when clearing the selection', () => {
@@ -52,7 +57,9 @@ describe('<TimeInput />', () => {
 
     select.simulate('change', option);
     assert(callback.calledOnce);
-    sinon.assert.calledWith(callback, '');
+    const [value, time] = callback.firstCall.args;
+    assert.equal(value, '');
+    assert(Number.isNaN(time.getTime()));
   });
 
   // TODO
