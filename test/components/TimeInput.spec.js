@@ -27,8 +27,7 @@ describe('<TimeInput />', () => {
     assert.deepEqual(select.prop('value'), { label: '1:00 PM', value: '13:00' });
   });
 
-  // TODO: this won't default to today. change this?
-  it('should not format invalid defaultValue and default to today', () => {
+  it('should not format invalid defaultValue', () => {
     const component = mount(<TimeInput defaultValue="Veni, Vedi, Vici" />);
     const select = component.find(Select);
     assert.equal(select.prop('value'), null);
