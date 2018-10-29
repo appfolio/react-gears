@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Close from './Close';
 import styles from './LabelBadge.scss';
 
 export default class LabelBadge extends React.Component {
@@ -36,7 +37,7 @@ export default class LabelBadge extends React.Component {
           </strong>
           : null}
         <span className={valueClasses} style={style}>{value}</span>
-        {removable ? <a className="close mr-2" onClick={onRemove}>&times;</a> : null}
+        {removable ? <Close className="mr-2" onClick={onRemove} /> : null}
       </span>
     );
   }
