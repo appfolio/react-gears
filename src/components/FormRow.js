@@ -25,10 +25,10 @@ function parseFeedback(feedback) {
 }
 
 function sanitizeProps(component, props) {
-  if (!component.props) return props;
+  if (!component.propTypes) return props;
   const saneProps = {};
   Object.entries(props).forEach(([k, v]) => {
-    if (component.props[k]) saneProps[k] = v;
+    if (component.propTypes[k]) saneProps[k] = v;
   });
   return saneProps;
 }
