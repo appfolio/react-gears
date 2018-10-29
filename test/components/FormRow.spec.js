@@ -79,12 +79,21 @@ describe('<FormRow />', () => {
     });
 
     describe('that does not grok validity', () => {
-      const Custom2 = ({ props }) => <div {...props}>Hi</div>;
-      Custom2.propTypes = {};
-      const component2 = render(
-        <FormRow label="First Name" type={Custom2} feedback="Na brah" />
+      const Custom2 = ({ ...props }) => (
+        <div>
+          {props.valid !== undefined && 'valid!'}
+          {props.invalid !== undefined && 'invalid!'}
+        </div>
       );
-      assert.notEqual(component2.toString().indexOf('<div>Hi</div>'), -1);
+      Custom2.propTypes = {};
+
+      it('should omit valid/invalid props', () => {
+        const component2 = render(
+          <FormRow label="First Name" type={Custom2} feedback="Na brah" />
+        );
+        assert.equal(component2.toString().indexOf('valid!'), -1);
+        assert.equal(component2.toString().indexOf('invalid!'), -1);
+      });
     });
   });
 
