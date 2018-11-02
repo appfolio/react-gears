@@ -56,6 +56,7 @@ export default class TimeInput extends React.Component {
     allowOtherTimes: false,
     onChange: () => {},
     step: 30,
+    placeholder: 'Enter a time',
     timeFormat: 'h:mm A',
     noResultsText: 'Must be in the format HH:MM AM/PM'
   }

@@ -15,7 +15,7 @@ storiesOf('TimeInput', module)
         max={text('max')}
         min={text('min')}
         onChange={action('onChange')}
-        placeholder={text('placeholder', 'Select a time')}
+        placeholder={text('placeholder', TimeInput.defaultProps.placeholder)}
         step={number('step', TimeInput.defaultProps.step)}
         timeFormat={text('timeFormat', TimeInput.defaultProps.timeFormat)}
       />
