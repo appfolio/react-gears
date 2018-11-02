@@ -15,6 +15,7 @@ import startOfTomorrow from 'date-fns/start_of_tomorrow';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
 
+import Icon from './Icon';
 import Select from './Select';
 
 const format = fecha.format;
@@ -55,6 +56,7 @@ export default class TimeInput extends React.Component {
     allowOtherTimes: false,
     onChange: () => {},
     step: 30,
+    placeholder: 'Enter a time',
     timeFormat: 'h:mm A',
     noResultsText: 'Must be in the format HH:MM AM/PM'
   }
@@ -200,6 +202,7 @@ export default class TimeInput extends React.Component {
     return (
       <Select
         {...props}
+        arrowRenderer={() => <Icon name="clock-o" />}
         className={classNames}
         creatable={allowOtherTimes}
         {...(allowOtherTimes && creatableProps)}
