@@ -21,6 +21,8 @@ import Select from './Select';
 const format = fecha.format;
 const parse = fecha.parse;
 
+const INVALID_DATE = new Date(undefined);
+
 // TODO consider using <input type="time" /> when better browser support.
 
 // TODO use date-fns/parse to handle this behavior instead
@@ -123,7 +125,10 @@ export default class TimeInput extends React.Component {
 
   onChange = (selectedOption) => {
     this.setState({ selectedOption });
-    this.props.onChange(selectedOption && selectedOption.value);
+
+    const value = selectedOption ? selectedOption.value : '';
+    const time = this.normalizeTime(parse(value, this.valueFormat) || INVALID_DATE);
+    this.props.onChange(value, time);
   }
 
   parseInput(input) {

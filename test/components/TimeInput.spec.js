@@ -2,6 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
+import isSameDay from 'date-fns/is_same_day';
 
 import { TimeInput, Select } from '../../src';
 
@@ -27,8 +28,7 @@ describe('<TimeInput />', () => {
     assert.deepEqual(select.prop('value'), { label: '1:00 PM', value: '13:00' });
   });
 
-  // TODO: this won't default to today. change this?
-  it('should not format invalid defaultValue and default to today', () => {
+  it('should not format invalid defaultValue', () => {
     const component = mount(<TimeInput defaultValue="Veni, Vedi, Vici" />);
     const select = component.find(Select);
     assert.equal(select.prop('value'), null);
@@ -42,7 +42,11 @@ describe('<TimeInput />', () => {
 
     select.simulate('change', option);
     assert(callback.calledOnce);
-    sinon.assert.calledWith(callback, '12:00');
+    const [value, time] = callback.firstCall.args;
+    assert.equal(value, '12:00');
+    assert.equal(time.getHours(), 12);
+    assert.equal(time.getMinutes(), 0);
+    assert(isSameDay(time, new Date()));
   });
 
   it('should handle onChange when clearing the selection', () => {
@@ -53,7 +57,9 @@ describe('<TimeInput />', () => {
 
     select.simulate('change', option);
     assert(callback.calledOnce);
-    sinon.assert.calledWith(callback, null);
+    const [value, time] = callback.firstCall.args;
+    assert.equal(value, '');
+    assert(Number.isNaN(time.getTime()));
   });
 
   // TODO
