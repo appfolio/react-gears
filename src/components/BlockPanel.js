@@ -113,7 +113,6 @@ class BlockPanel extends React.Component {
                 color="link"
                 className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ml-2 mr-1`}
                 onClick={onEdit}
-                role="button"
               >
                 edit
               </Button>
