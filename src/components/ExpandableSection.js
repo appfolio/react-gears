@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Collapse from './Collapse';
+import ClickableContainer from './ClickableContainer';
 import Icon from './Icon';
 
 class ExpandableSection extends React.Component {
@@ -29,7 +30,7 @@ class ExpandableSection extends React.Component {
   render() {
     return (
       <section className={this.props.className}>
-        <header onClick={this.toggle} role="button">
+        <ClickableContainer tag="header" onClick={this.toggle}>
           <Icon
             name='caret-right'
             rotate={this.state.open ? 90 : undefined}
@@ -38,7 +39,7 @@ class ExpandableSection extends React.Component {
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
           <b style={{ userSelect: 'none' }}>{this.props.title}</b>
-        </header>
+        </ClickableContainer>
         <Collapse isOpen={this.state.open}>
           <div className="py-3">
             {this.props.children}
