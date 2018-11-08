@@ -6,8 +6,20 @@ import Card from './Card';
 import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
+import ClickableContainer from './ClickableContainer';
 import Collapse from './Collapse';
 import Icon from './Icon';
+
+function BlockPanelTitle({ expandable, onClick, ...props }) {
+  return expandable ?
+    <ClickableContainer onClick={onClick} {...props} /> :
+    <div {...props} />;
+}
+
+BlockPanelTitle.propTypes = {
+  expandable: PropTypes.bool,
+  onClick: PropTypes.func
+};
 
 class BlockPanel extends React.Component {
   static propTypes = {
@@ -89,11 +101,7 @@ class BlockPanel extends React.Component {
         <CardHeader
           className={headerClassNames}
         >
-          <div
-            className="d-inline-flex align-items-center"
-            onClick={this.toggle}
-            role={expandable ? 'button' : undefined}
-          >
+          <BlockPanelTitle className="d-inline-flex align-items-center" expandable={expandable} onClick={this.toggle}>
             {expandable ?
               <Icon
                 className={`${(color !== 'primary' && color !== 'dark') ? 'text-muted' : ''} mr-1`}
@@ -105,7 +113,7 @@ class BlockPanel extends React.Component {
             <CardTitle className="m-0 my-1 mr-auto">
               {title}
             </CardTitle>
-          </div>
+          </BlockPanelTitle>
           <div className="d-inline-flex">
             {controls && controls}
             {onEdit && (
