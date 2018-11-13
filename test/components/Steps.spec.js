@@ -19,7 +19,7 @@ describe('<Steps />', () => {
 
   it('should activate the current step', () => {
     const component = mount(<Steps steps={steps} step={2} />);
-    assert.equal(component.find('label.text-dark').text(), steps[2]);
+    assert.equal(component.find('span.text-dark.js-step-label').text(), steps[2]);
   });
 
   it('should show complete correctly', () => {
@@ -30,19 +30,19 @@ describe('<Steps />', () => {
   describe('collapse', () => {
     it('should default to showing responsive step labels', () => {
       const component = mount(<Steps steps={steps} />);
-      assert.equal(component.find('label').length, steps.length + 1);
-      assert.equal(component.find('label.d-none.d-sm-inline').length, steps.length);
-      assert.equal(component.find('.d-sm-none label').length, 1);
+      assert.equal(component.find('span.js-step-label').length, steps.length + 1);
+      assert.equal(component.find('span.d-none.d-sm-inline').length, steps.length);
+      assert.equal(component.find('.d-sm-none span').length, 1);
     });
 
     it('should only show non-responsive step labels when collapse=false', () => {
       const component = mount(<Steps steps={steps} collapse={false} />);
-      assert.equal(component.find('label').length, steps.length);
+      assert.equal(component.find('.js-step-label').length, steps.length);
     });
 
     it('should only show active step label when collapse=true', () => {
       const component = mount(<Steps steps={steps} collapse />);
-      assert.equal(component.find('label').length, 1);
+      assert.equal(component.find('.js-step-label').length, 1);
     });
   });
 });

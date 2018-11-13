@@ -49,7 +49,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
             'text-success': complete
           });
 
-          const textClasses = classNames({
+          const textClasses = classNames('mb-2 js-step-label', {
             'd-none d-sm-inline': collapse !== false,
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
@@ -62,14 +62,14 @@ const Steps = ({ collapse, complete, step, steps }) => {
               <div className={bubbleClasses}>
                 <span className={iconClasses}>{complete || stepComplete ? <Icon name="check" /> : index + 1}</span>
               </div>
-              {collapse !== true ? <label className={textClasses}>{name}</label> : null}
+              {collapse !== true ? <span className={textClasses}>{name}</span> : null}
             </li>
           );
         })}
       </ol>
       {collapse !== false ?
         <div className={activeStepClasses}>
-          <label>{activeStep}</label>
+          <span className="mb-2 js-step-label">{activeStep}</span>
         </div> : null}
     </div>
   );
