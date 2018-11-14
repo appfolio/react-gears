@@ -11,6 +11,18 @@ describe('<FormChoice />', () => {
         shallow(<FormChoice type="foobar">A</FormChoice>);
       }, /Type 'foobar' is not supported/);
     });
+
+    it('should generate an id when not set', () => {
+      const wrapper = shallow(<FormChoice type="radio">A</FormChoice>);
+      assert(wrapper.find('Input[id^="form-choice-"]').exists());
+      assert(wrapper.find('Label[for^="form-choice-"]').exists());
+    });
+
+    it('should use id when set', () => {
+      const wrapper = shallow(<FormChoice type="radio" id="yowza">A</FormChoice>);
+      assert(wrapper.find('Input[id="yowza"]').exists());
+      assert(wrapper.find('Label[for="yowza"]').exists());
+    });
   });
 
   describe('type=select', () => {
@@ -65,20 +77,6 @@ describe('<FormChoice />', () => {
       it('should not have checked state', () => {
         assert.equal(inputElement.prop('checked'), undefined);
       });
-
-      it('should use selected choices (selected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="checkbox" selected={['A', 'B']}>A</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), true);
-      });
-
-      it('should use selected choices (unselected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="checkbox" selected={['A', 'B']}>C</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), false);
-      });
     });
 
     describe('with explicit value', () => {
@@ -94,20 +92,6 @@ describe('<FormChoice />', () => {
 
       it('should not have checked state', () => {
         assert.equal(inputElement.prop('checked'), undefined);
-      });
-
-      it('should use selected choices (selected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="checkbox" value='stuff' selected={['stuff', 'B']}>A</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), true);
-      });
-
-      it('should use selected choices (unselected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="checkbox" value='stuff' selected={['A', 'B']}>C</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), false);
       });
     });
   });
@@ -146,20 +130,6 @@ describe('<FormChoice />', () => {
       it('should not have checked state', () => {
         assert.equal(inputElement.prop('checked'), undefined);
       });
-
-      it('should use selected choices (selected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="radio" selected="A">A</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), true);
-      });
-
-      it('should use selected choices (unselected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="radio" selected="A">C</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), false);
-      });
     });
 
     describe('with explicit value', () => {
@@ -175,20 +145,6 @@ describe('<FormChoice />', () => {
 
       it('should not have checked state', () => {
         assert.equal(inputElement.prop('checked'), undefined);
-      });
-
-      it('should use selected choices (selected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="radio" value='stuff' selected="stuff">A</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), true);
-      });
-
-      it('should use selected choices (unselected)', () => {
-        const boundComponent = shallow(
-          <FormChoice type="radio" value='stuff' selected="A">C</FormChoice>
-        );
-        assert.equal(boundComponent.find(Input).prop('checked'), false);
       });
     });
   });
