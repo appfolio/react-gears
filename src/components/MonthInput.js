@@ -91,7 +91,6 @@ export default class MonthInput extends React.Component {
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
-    positionFixed: false,
     showOnFocus: true
   }
 
@@ -230,6 +229,7 @@ export default class MonthInput extends React.Component {
     const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
+    const dropdownProps = open ? { positionFixed } : {};
 
     // <DropdownToggle tag="div" disabled> is to wrap the input in a container for positioning dropdown/up, without breaking showOnFocus
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
@@ -268,7 +268,7 @@ export default class MonthInput extends React.Component {
             className="p-0"
             onKeyDown={this.onKeyDown}
             style={{ minWidth: '19rem' }}
-            positionFixed={positionFixed}
+            {...dropdownProps}
           >
             {header || (
               <header className="d-flex py-2">
