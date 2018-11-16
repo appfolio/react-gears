@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { Collapse, ExpandableSection } from '../../src';
 
@@ -36,7 +36,7 @@ describe('<ExpandableSection />', () => {
   });
 
   it('should be open when clicked', () => {
-    const component = shallow(
+    const component = mount(
       <ExpandableSection title="Open">
         <h1>Hello World!</h1>
       </ExpandableSection>
