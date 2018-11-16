@@ -110,7 +110,7 @@ class BlockPanel extends React.Component {
                 fixedWidth
                 style={{ transition: 'transform 200ms ease-in-out' }}
               /> : null}
-            <CardTitle className="m-0 my-1 mr-auto">
+            <CardTitle tag="h2" className="h5 m-0 my-1 mr-auto">
               {title}
             </CardTitle>
           </BlockPanelTitle>
