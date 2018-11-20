@@ -13,6 +13,7 @@ export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
     expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    onExpand: PropTypes.func,
     page: PropTypes.number,
     pageSize: PropTypes.number,
     selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -24,6 +25,7 @@ export default class UncontrolledTable extends React.Component {
 
   static defaultProps = {
     ...SortableTable.defaultProps,
+    onExpand: () => {},
     expanded: [],
     page: 0,
     pageSize: 10,
@@ -103,7 +105,7 @@ export default class UncontrolledTable extends React.Component {
       without(expanded, value) :
       [...expanded, value];
 
-    this.setState({ expanded: newExpanded });
+    this.setState({ expanded: newExpanded }, () => this.props.onExpand(newExpanded));
   };
 
   setPage = (page) => {
@@ -126,12 +128,15 @@ export default class UncontrolledTable extends React.Component {
     if (nextProps.selected) {
       this.setState({ selected: nextProps.selected });
     }
+    if (nextProps.expanded !== this.props.expanded) {
+      this.setState({ expanded: nextProps.expanded });
+    }
   }
 
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
