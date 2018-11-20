@@ -199,6 +199,23 @@ describe('<UncontrolledTable />', () => {
     assert.equal(ths.length, columns.length + 1); // For expanded column
   });
 
+  it('should update expanded rows when new expanded prop provided', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [{ name: 'Mantleray', key: '1' }];
+    const rowExpanded = () => <span className="expando">Hey</span>;
+    const expanded = [];
+    const props = { columns, rows, expandable: true, expanded, rowExpanded };
+    const wrapper = mount(<UncontrolledTable {...props} />);
+
+    let expandedRow = wrapper.find('.expando');
+    assert.equal(expandedRow.length, 0);
+
+    const newProps = { expanded: [rows[0]] };
+    wrapper.setProps(newProps);
+    expandedRow = wrapper.find('.expando');
+    assert.equal(expandedRow.length, 1);
+  });
+
   it('should supply onClick row handler when specified', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
