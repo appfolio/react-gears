@@ -216,6 +216,20 @@ describe('<UncontrolledTable />', () => {
     assert.equal(expandedRow.length, 1);
   });
 
+  it('should call onExpand when row is expanded', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [{ name: 'Mantleray', key: '1' }];
+    const rowExpanded = () => <span className="expando">Hey</span>;
+    const onExpand = sinon.stub();
+    const props = { columns, rows, expandable: true, rowExpanded, onExpand };
+    const wrapper = mount(<UncontrolledTable {...props} />);
+
+    const expandButton = wrapper.find('tbody tr button');
+    assert.equal(expandButton.length, 1);
+    expandButton.simulate('click');
+    sinon.assert.calledOnce(onExpand);
+  });
+
   it('should supply onClick row handler when specified', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
