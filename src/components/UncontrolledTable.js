@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import includes from 'lodash.includes';
 import orderBy from 'lodash.orderby';
-import without from 'lodash.without';
+import some from 'lodash.some';
+import isEqual from 'lodash.isequal';
 import Button from './Button';
 import Icon from './Icon';
 import Paginator from './Paginator';
@@ -20,8 +20,9 @@ export default class UncontrolledTable extends React.Component {
     sort: PropTypes.shape({
       column: PropTypes.string,
       ascending: PropTypes.bool
-    })
-  }
+    }),
+    onSelect: PropTypes.func
+  };
 
   static defaultProps = {
     ...SortableTable.defaultProps,
@@ -32,8 +33,9 @@ export default class UncontrolledTable extends React.Component {
     selected: [],
     sort: {
       ascending: true
-    }
-  }
+    },
+    onSelect: () => {}
+  };
 
   state = {
     sort: this.props.sort,
@@ -75,37 +77,41 @@ export default class UncontrolledTable extends React.Component {
   }
 
   selected(value) {
-    return includes(this.state.selected, value);
+    return some(this.state.selected, value);
   }
 
   toggleSelection = (value) => {
     const selected = this.state.selected;
-    const newSelection = includes(selected, value) ?
-      without(selected, value) :
-      [...selected, value];
+    const newSelection = some(selected, value)
+      ? selected.filter(selectedRow => !isEqual(selectedRow, value))
+      : [...selected, value];
 
-    this.setState({ selected: newSelection }, () => this.props.onSelect(newSelection));
+    this.setState({ selected: newSelection }, () => {
+      this.props.onSelect(newSelection);
+    });
   };
 
   toggleAll = () => {
     const newSelection = this.allSelected ? [] : this.props.rows;
 
-    this.setState({ selected: newSelection },
-      this.props.onSelect(newSelection)
-    );
+    this.setState({ selected: newSelection }, () => {
+      this.props.onSelect(newSelection);
+    });
   };
 
   expanded(value) {
-    return includes(this.state.expanded, value);
+    return some(this.state.expanded, value);
   }
 
   toggleExpanded = (value) => {
     const expanded = this.state.expanded;
-    const newExpanded = includes(expanded, value) ?
-      without(expanded, value) :
-      [...expanded, value];
+    const newExpanded = some(expanded, value)
+      ? expanded.filter(expandedRow => !isEqual(expandedRow, value))
+      : [...expanded, value];
 
-    this.setState({ expanded: newExpanded }, () => this.props.onExpand(newExpanded));
+    this.setState({ expanded: newExpanded }, () =>
+      this.props.onExpand(newExpanded)
+    );
   };
 
   setPage = (page) => {

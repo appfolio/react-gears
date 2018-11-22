@@ -419,4 +419,76 @@ describe('<UncontrolledTable />', () => {
     assert.deepEqual(wrapper.props().selected, ['Bravo']);
     assert.deepEqual(wrapper.state().selected, ['Bravo']);
   });
+
+  it('should select the selected prop rows, if provided', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [
+      { name: 'Alpha' },
+      { name: 'Bravo' },
+    ];
+    const selected = [{ name: 'Alpha' }];
+
+    const wrapper = mount(
+      <UncontrolledTable columns={columns} rows={rows} selected={selected} />
+    );
+    const instance = wrapper.instance();
+
+    assert(instance.selected({ name: 'Alpha' }) === true);
+    assert(instance.selected({ name: 'Bravo' }) === false);
+    assert(instance.selected({ name: 'Alpha', age: 16 }) === false);
+  });
+
+  it('should toggle selection correctly', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
+    const selected = [{ name: 'Alpha' }];
+
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selected={selected}
+      />
+    );
+    const instance = wrapper.instance();
+
+    assert(wrapper.state().selected.length === 1);
+    instance.toggleSelection({ name: 'Alpha' });
+    assert(wrapper.state().selected.length === 0);
+
+    instance.toggleSelection({ name: 'Alpha' });
+    assert(wrapper.state().selected.length === 1);
+  });
+
+  it('should expand the rows specified in the expanded prop, when that prop is provided', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
+    const expanded = [{ name: 'Alpha' }];
+
+    const wrapper = mount(
+      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
+    );
+    const instance = wrapper.instance();
+
+    assert(instance.expanded({ name: 'Alpha' }) === true);
+    assert(instance.expanded({ name: 'Bravo' }) === false);
+    assert(instance.expanded({ name: 'Alpha', age: 16 }) === false);
+  });
+
+  it('should toggle expanded correctly', () => {
+    const columns = [{ header: 'Name', cell: row => row.name }];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
+    const expanded = [{ name: 'Alpha' }];
+
+    const wrapper = mount(
+      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
+    );
+    const instance = wrapper.instance();
+    assert(instance.expanded({ name: 'Alpha' }) === true);
+    instance.toggleExpanded({ name: 'Alpha' });
+    assert(wrapper.state().expanded.length === 0);
+
+    instance.toggleExpanded({ name: 'Alpha' });
+    assert(instance.expanded({ name: 'Alpha' }) === true);
+  });
 });
