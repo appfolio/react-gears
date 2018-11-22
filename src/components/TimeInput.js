@@ -44,6 +44,14 @@ function normalizeTime(date) {
   return time;
 }
 
+function getEndTime(end, timeFormat) {
+  return end ? addSeconds(normalizeTime(parse(end, timeFormat)), 1) : startOfTomorrow();
+}
+
+function getStartTime(start, timeFormat) {
+  return start ? normalizeTime(parse(start, timeFormat)) : startOfToday();
+}
+
 export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
@@ -98,18 +106,10 @@ export default class TimeInput extends React.Component {
     this.inputEl.focus();
   }
 
-  getEndTime(end, timeFormat) {
-    return end ? addSeconds(normalizeTime(parse(end, timeFormat)), 1) : startOfTomorrow();
-  }
-
-  getStartTime(start, timeFormat) {
-    return start ? normalizeTime(parse(start, timeFormat)) : startOfToday();
-  }
-
   visibleTimes(step, timeFormat, start, end) {
     const times = [];
-    let time = this.getStartTime(start, this.valueFormat);
-    const max = this.getEndTime(end, this.valueFormat);
+    let time = getStartTime(start, this.valueFormat);
+    const max = getEndTime(end, this.valueFormat);
 
     do {
       times.push({
