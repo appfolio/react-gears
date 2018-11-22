@@ -217,6 +217,25 @@ describe('<TimeInput />', () => {
       options = component.find(OPTION_SELECTOR);
       assert(options.contains('6:58 PM'));
     });
+
+    it('should ignore colons for non step times', () => {
+      const component = mount(<TimeInput allowOtherTimes />);
+      const input = component.find('input');
+
+      input.simulate('change', { target: { value: '41' } });
+      let options = component.find(OPTION_SELECTOR);
+      assert(options.contains('4:10 AM'));
+      assert(options.contains('4:10 PM'));
+      assert.equal(options.length, 2);
+
+      input.simulate('change', { target: { value: '112' } });
+      options = component.find(OPTION_SELECTOR);
+      assert(options.contains('1:12 AM'));
+      assert(options.contains('1:12 PM'));
+      assert(options.contains('11:20 AM'));
+      assert(options.contains('11:20 PM'));
+      assert.equal(options.length, 4);
+    });
   });
 
   describe('filtering options', () => {

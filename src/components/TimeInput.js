@@ -54,10 +54,48 @@ function getStartTime(start, timeFormat) {
   return start ? normalizeTime(parse(start, timeFormat)) : startOfToday();
 }
 
+function onInterval(time, interval) {
+  return getMinutes(time) % interval === 0;
+}
+
+/** Helper for userInputProgress(). Builds a regex for parsing a time in h:mm format
+ * @param isTwoDigit whether the time to parse is a two digit (eg. 10:00) or
+ * one digit (eg. 1:00) hour
+ * @returns regex used to parse a string
+*/
+function buildhmmARegex(isTwoDigit) {
+  const oneDigitHourAndColon = '\\d:?';
+  const twoDigitHourAndColon = '\\d\\d:?';
+  const hour = isTwoDigit ? twoDigitHourAndColon : oneDigitHourAndColon;
+  const m0 = '\\d';
+  const m1 = '\\d';
+
+  return new RegExp(`^(?:${hour})?(${m0})?(${m1})?`);
+}
+
+/** Helper for userInputProgress(). Returns whether a time is two digits in h:mm
+ * format, ie. if a time is one of 12am, 10am, 11am, 12am, 10pm, 11pm
+*/
+function isTwoDigitHour(time) {
+  return [0, 10, 11, 12, 22, 23].includes(getHours(time));
+}
+
+/** filterOption() helper for determining user input progress
+ * @returns [hasTypedTens, hasTypedMin] where:
+ * - hasTypedTens === true if finished typing tens place in minute (5 in 8:53)
+ * - hasTypedMin === true if finished typing minute (3 in 8:53)
+ */
+function userInputProgress(input, time) {
+  const re = buildhmmARegex(isTwoDigitHour(time));
+  const [, hasTypedTens, hasTypedMin] = re.exec(input);
+  return [!!hasTypedTens, !!hasTypedMin];
+}
+
 export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
     className: PropTypes.string,
+    /** Allow entering times outside of step interval */
     allowOtherTimes: PropTypes.bool,
     defaultValue: PropTypes.string,
     disabled: PropTypes.bool,
@@ -90,22 +128,28 @@ export default class TimeInput extends React.Component {
 
   valueFormat = 'HH:mm';
 
-  timeToOption(time) {
-    return {
-      label: format(time, this.props.timeFormat),
-      value: format(time, this.valueFormat)
-    };
-  }
-
   valueStrToOption(valueStr) {
-    const time = parse(valueStr, this.valueFormat);
-
-    return time ? this.timeToOption(time) : null;
+    return this.times().find(({ value }) => value === valueStr);
   }
 
   focus() {
     // TODO JavaScript does not allow opening selects programmatically.
     this.inputEl.focus();
+  }
+
+  defaultVisibleTimes() {
+    const { step, timeFormat, min, max } = this.props;
+    return this.visibleTimes(step, timeFormat, min, max);
+  }
+
+  allTimes() {
+    const { timeFormat, min, max } = this.props;
+    return this.visibleTimes(1, timeFormat, min, max);
+  }
+
+  times() {
+    const { allowOtherTimes } = this.props;
+    return allowOtherTimes ? this.allTimes() : this.defaultVisibleTimes();
   }
 
   // TODO replace with useMemo in react 16.7
@@ -118,6 +162,7 @@ export default class TimeInput extends React.Component {
       times.push({
         label: format(time, timeFormat),
         value: format(time, this.valueFormat),
+        time
       });
       time = addMinutes(time, step);
     } while (isBefore(time, max));
@@ -162,17 +207,39 @@ export default class TimeInput extends React.Component {
     return this.timeToOption(time);
   }
 
-  // Handle leading zeros and typing without colons
-  filterOption = ({ label }, filter) => {
-    const removeColonAndWhitespace = str => str.replace(/[:\s]/gi, '');
+  /** Determines whether to display the current option given a particular user
+   * input.
+   * Handles the following user input cases:
+   * - missing colons "930 AM"
+   * - leading zeroes "09:30 AM"
+   * - missing whitespace "9:30AM"
+   * - typing am/pm upper or lower case "9:30 am"
+  */
+  filterOption = ({ label, time }, input) => {
+    const { step } = this.props;
+
+    const removeWhitespace = str => str.replace(/\s/gi, '');
     const removeLeadingZeros = str => str.replace(/^0*/, '');
 
-    const filtersToApply = flow(removeColonAndWhitespace, removeLeadingZeros, toLower);
+    const inputCandidate = flow(removeWhitespace, removeLeadingZeros, toLower)(input);
 
-    const candidate = filtersToApply(label);
-    const filterTest = filtersToApply(filter);
+    const [hasTypedTens, hasTypedMin] = userInputProgress(inputCandidate, time);
 
-    return candidate.indexOf(filterTest) === 0;
+    // only show times on step if we havent started to type minutes
+    if (!hasTypedTens && !onInterval(time, step)) return false;
+
+    // only show times on step or on 10 min intervals if we havent finished typing minutes
+    if (!hasTypedMin && !onInterval(time, step) && !onInterval(time, 10)) return false;
+
+    const labelCandidate = flow(
+      // Remove colon from option if input doesnt have one
+      str => inputCandidate.includes(':') ? str : str.replace(/:/gi, ''),
+      removeWhitespace,
+      removeLeadingZeros,
+      toLower
+    )(label);
+
+    return labelCandidate.indexOf(inputCandidate) === 0;
   };
 
   selectedOption() {
@@ -194,7 +261,7 @@ export default class TimeInput extends React.Component {
       ...props
     } = this.props;
 
-    const times = this.visibleTimes(step, timeFormat, min, max);
+    const times = this.times();
 
     const creatableProps = {
       createOptionPosition: 'first',
