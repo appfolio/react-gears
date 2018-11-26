@@ -1,5 +1,7 @@
 # react-gears
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/appfolio/react-gears.svg?token=7c56141e1c521578715daafcde8f6e68a7c8c64fc2dbd09cd9ea6813a707941f&ts=1543272348134)](https://greenkeeper.io/)
+
 A refresh of [Gears](https://qa.qa.appfolio.com/gears/) & [Saffron](https://qa.qa.appfolio.com/saffron/) components using 
 [React](https://reactstrap.github.io),
 [Bootstrap 4](http://v4-alpha.getbootstrap.com), 
