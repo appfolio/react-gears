@@ -95,7 +95,7 @@ const FormRow = (props) => {
 FormRow.propTypes = {
   children: PropTypes.node,
   feedback: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
-  hint: PropTypes.string,
+  hint: PropTypes.node,
   id: PropTypes.string,
   inline: PropTypes.bool,
   label: PropTypes.node,

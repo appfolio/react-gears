@@ -23,7 +23,7 @@ class FormLabelGroup extends React.Component {
     feedback: PropTypes.node,
     inline: PropTypes.bool,
     inputId: PropTypes.string,
-    hint: PropTypes.string,
+    hint: PropTypes.node,
     label: PropTypes.node,
     labelSize: PropTypes.oneOf([null, 'sm', 'md', 'lg']),
     required: PropTypes.bool,
