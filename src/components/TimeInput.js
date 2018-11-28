@@ -36,6 +36,14 @@ function addMissingColons(str) {
   return [hour, ':', restOfStr].join('');
 }
 
+function normalizeTime(date) {
+  let time = startOfToday();
+  time = setHours(time, getHours(date));
+  time = setMinutes(time, getMinutes(date));
+
+  return time;
+}
+
 export default class TimeInput extends React.Component {
   static propTypes = {
     ...Select.propTypes,
@@ -90,20 +98,12 @@ export default class TimeInput extends React.Component {
     this.inputEl.focus();
   }
 
-  normalizeTime(date) {
-    let time = startOfToday();
-    time = setHours(time, getHours(date));
-    time = setMinutes(time, getMinutes(date));
-
-    return time;
-  }
-
   getEndTime(end, timeFormat) {
-    return end ? addSeconds(this.normalizeTime(parse(end, timeFormat)), 1) : startOfTomorrow();
+    return end ? addSeconds(normalizeTime(parse(end, timeFormat)), 1) : startOfTomorrow();
   }
 
   getStartTime(start, timeFormat) {
-    return start ? this.normalizeTime(parse(start, timeFormat)) : startOfToday();
+    return start ? normalizeTime(parse(start, timeFormat)) : startOfToday();
   }
 
   visibleTimes(step, timeFormat, start, end) {
@@ -126,7 +126,7 @@ export default class TimeInput extends React.Component {
     this.setState({ selectedOption });
 
     const value = selectedOption ? selectedOption.value : '';
-    const time = this.normalizeTime(parse(value, this.valueFormat) || INVALID_DATE);
+    const time = normalizeTime(parse(value, this.valueFormat) || INVALID_DATE);
     this.props.onChange(value, time);
   }
 
