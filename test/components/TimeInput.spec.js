@@ -107,6 +107,15 @@ describe('<TimeInput />', () => {
     assert.equal(noOptionsMessage('asdf'), 'yo asdf aint a real time');
   });
 
+  it('should default to displaying every time on 30 minute intervals', () => {
+    const component = mount(<TimeInput allowOtherTimes={false} />);
+    const input = component.find('input');
+
+    input.simulate('keyDown', { key: 'ArrowDown', keyCode: 40 }); // open dropdown
+    const options = component.find('button[role="option"]');
+    assert.equal(options.length, 48);
+  });
+
   describe('allow other times', () => {
     it('should default to false', () => {
       const component = shallow(<TimeInput />);
