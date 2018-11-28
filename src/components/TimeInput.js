@@ -14,6 +14,8 @@ import startOfTomorrow from 'date-fns/start_of_tomorrow';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
 
+import memoizeOne from 'memoize-one';
+
 import Icon from './Icon';
 import Select from './Select';
 
@@ -106,7 +108,8 @@ export default class TimeInput extends React.Component {
     this.inputEl.focus();
   }
 
-  visibleTimes(step, timeFormat, start, end) {
+  // TODO replace with useMemo in react 16.7
+  visibleTimes = memoizeOne((step, timeFormat, start, end) => {
     const times = [];
     let time = getStartTime(start, this.valueFormat);
     const max = getEndTime(end, this.valueFormat);
@@ -120,7 +123,7 @@ export default class TimeInput extends React.Component {
     } while (isBefore(time, max));
 
     return times;
-  }
+  });
 
   onChange = (selectedOption) => {
     this.setState({ selectedOption });
