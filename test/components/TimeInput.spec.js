@@ -7,6 +7,7 @@ import isSameDay from 'date-fns/is_same_day';
 import { TimeInput, Select } from '../../src';
 
 const VALUE_SELECTOR = '[aria-selected="true"]';
+const OPTION_SELECTOR = 'button[role="option"]';
 
 describe('<TimeInput />', () => {
   it('should default to blank and today', () => {
@@ -113,7 +114,7 @@ describe('<TimeInput />', () => {
     const input = component.find('input');
 
     input.simulate('keyDown', { key: 'ArrowDown', keyCode: 40 }); // open dropdown
-    const options = component.find('button[role="option"]');
+    const options = component.find(OPTION_SELECTOR);
     assert.equal(options.length, 48);
   });
 
@@ -124,7 +125,7 @@ describe('<TimeInput />', () => {
 
       input.simulate('change', { target: { value: '12:45 PM' } });
 
-      const options = component.find('button[role="option"]');
+      const options = component.find(OPTION_SELECTOR);
       assert.equal(options.length, 0);
     });
 
@@ -133,15 +134,15 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '11:34 PM' } });
-      let options = component.find('button[role="option"]');
+      let options = component.find(OPTION_SELECTOR);
       assert(options.contains('11:34 PM'));
 
       input.simulate('change', { target: { value: '1:19 am' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('1:19 AM'));
 
       input.simulate('change', { target: { value: '02:27am' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('2:27 AM'));
     });
 
@@ -150,7 +151,7 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '12:34 PM' } });
-      const options = component.find('button[role="option"]');
+      const options = component.find(OPTION_SELECTOR);
       assert(options.contains('12:34 PM'));
     });
 
@@ -159,11 +160,11 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '1:19 am' } });
-      let options = component.find('button[role="option"]');
+      let options = component.find(OPTION_SELECTOR);
       assert.equal(options.length, 0);
 
       input.simulate('change', { target: { value: '06:27 pm' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert.equal(options.length, 0);
     });
 
@@ -193,27 +194,27 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '1131 PM' } });
-      let options = component.find('button[role="option"]');
+      let options = component.find(OPTION_SELECTOR);
       assert(options.contains('11:31 PM'));
 
       input.simulate('change', { target: { value: '0222 AM' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('2:22 AM'));
 
       input.simulate('change', { target: { value: '454 pm' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('4:54 PM'));
 
       input.simulate('change', { target: { value: '845am' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('8:45 AM'));
 
       input.simulate('change', { target: { value: '137 pm' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('1:37 PM'));
 
       input.simulate('change', { target: { value: '658pm' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('6:58 PM'));
     });
   });
@@ -224,18 +225,18 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '113' } });
-      let options = component.find('button[role="option"]');
+      let options = component.find(OPTION_SELECTOR);
       assert(options.contains('11:30 AM'));
       assert(options.contains('11:30 PM'));
 
       input.simulate('change', { target: { value: '1130' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert.equal(options.length, 2);
       assert(options.contains('11:30 AM'));
       assert(options.contains('11:30 PM'));
 
       input.simulate('change', { target: { value: '1130pm' } });
-      options = component.find('button[role="option"]');
+      options = component.find(OPTION_SELECTOR);
       assert(options.contains('11:30 PM'));
       assert.equal(options.length, 1);
     });
@@ -245,7 +246,7 @@ describe('<TimeInput />', () => {
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '09:30 AM' } });
-      const options = component.find('button[role="option"]');
+      const options = component.find(OPTION_SELECTOR);
       assert.equal(options.length, 1);
       assert(options.contains('9:30 AM'));
     });
