@@ -1,10 +1,12 @@
 import React from 'react';
 import assert from 'assert';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import sinon from 'sinon';
 import isSameDay from 'date-fns/is_same_day';
 
 import { TimeInput, Select } from '../../src';
+
+const VALUE_SELECTOR = '[aria-selected="true"]';
 
 describe('<TimeInput />', () => {
   it('should default to blank and today', () => {
@@ -16,16 +18,14 @@ describe('<TimeInput />', () => {
 
   it('should default to defaultValue when specified', () => {
     const component = mount(<TimeInput defaultValue="13:00" />);
-    const select = component.find(Select);
-
-    assert.deepEqual(select.prop('value'), { label: '1:00 PM', value: '13:00' });
+    const value = component.find(VALUE_SELECTOR);
+    assert(value.contains('1:00 PM'));
   });
 
   it('should default to value when specified', () => {
     const component = mount(<TimeInput value="13:00" />);
-    const select = component.find(Select);
-
-    assert.deepEqual(select.prop('value'), { label: '1:00 PM', value: '13:00' });
+    const value = component.find(VALUE_SELECTOR);
+    assert(value.contains('1:00 PM'));
   });
 
   it('should not format invalid defaultValue', () => {
@@ -36,26 +36,25 @@ describe('<TimeInput />', () => {
 
   it('should call onChange after selecting time', () => {
     const callback = sinon.spy();
-    const component = shallow(<TimeInput onChange={callback} />);
-    const select = component.find(Select);
-    const option = { label: '12:00 PM', value: '12:00' };
+    const component = mount(<TimeInput onChange={callback} />);
+    const input = component.find('input');
+    input.simulate('keyDown', { key: 'ArrowDown', keyCode: 40 }); // open dropdown
+    input.simulate('keyDown', { key: 'Enter', keyCode: 13 });
 
-    select.simulate('change', option);
     assert(callback.calledOnce);
     const [value, time] = callback.firstCall.args;
-    assert.equal(value, '12:00');
-    assert.equal(time.getHours(), 12);
+    assert.equal(value, '00:00');
+    assert.equal(time.getHours(), 0);
     assert.equal(time.getMinutes(), 0);
     assert(isSameDay(time, new Date()));
   });
 
   it('should handle onChange when clearing the selection', () => {
     const callback = sinon.spy();
-    const component = shallow(<TimeInput onChange={callback} />);
-    const select = component.find(Select);
-    const option = null;
+    const component = mount(<TimeInput defaultValue="13:30" onChange={callback} />);
+    const input = component.find('input');
+    input.simulate('keyDown', { key: 'Backspace', keyCode: 8 });
 
-    select.simulate('change', option);
     assert(callback.calledOnce);
     const [value, time] = callback.firstCall.args;
     assert.equal(value, '');
@@ -95,16 +94,18 @@ describe('<TimeInput />', () => {
   });
 
   it('should have a relevant default message when the input is invalid', () => {
-    const component = shallow(<TimeInput />);
-    const noResultsText = component.find(Select).prop('noResultsText');
-    assert.equal(noResultsText, 'Must be in the format HH:MM AM/PM');
+    const component = mount(<TimeInput />);
+    const input = component.find('input');
+    input.simulate('change', { target: { value: 'happy hour' } });
+    assert(component.contains('Must be in the format HH:MM AM/PM'));
   });
 
-  it('should allow passing a noOptionsMessage prop when the input is invalid', () => {
-    const customMessage = input => `yo ${input} aint a real time`;
-    const component = shallow(<TimeInput noOptionsMessage={customMessage} />);
-    const noOptionsMessage = component.find(Select).prop('noOptionsMessage');
-    assert.equal(noOptionsMessage('asdf'), 'yo asdf aint a real time');
+  it('should allow passing a noResultsText prop when the input is invalid', () => {
+    const customMessage = 'yo that aint a real time';
+    const component = mount(<TimeInput noResultsText={customMessage} />);
+    const input = component.find('input');
+    input.simulate('change', { target: { value: 'happy hour' } });
+    assert(component.contains('yo that aint a real time'));
   });
 
   it('should default to displaying every time on 30 minute intervals', () => {
@@ -117,107 +118,136 @@ describe('<TimeInput />', () => {
   });
 
   describe('allow other times', () => {
-    it('should default to false', () => {
-      const component = shallow(<TimeInput />);
-      const select = component.find(Select);
-
-      assert.equal(select.prop('creatable'), false);
-    });
-
     it('should not accept new options when allowOtherTimes is false', () => {
-      const component = shallow(<TimeInput allowOtherTimes={false} />);
-      const select = component.find(Select);
+      const component = mount(<TimeInput allowOtherTimes={false} />);
+      const input = component.find('input');
 
-      assert.equal(select.prop('creatable'), false);
-      assert.equal(select.prop('createOptionPosition'), undefined);
-      assert.equal(select.prop('promptTextCreator'), undefined);
-      assert.equal(select.prop('newOptionCreator'), undefined);
-      assert.equal(select.prop('isValidNewOption'), undefined);
-    });
+      input.simulate('change', { target: { value: '12:45 PM' } });
 
-    it('should display new options first', () => {
-      const component = shallow(<TimeInput allowOtherTimes />);
-      const select = component.find(Select);
-
-      assert.equal(select.prop('createOptionPosition'), 'first');
+      const options = component.find('button[role="option"]');
+      assert.equal(options.length, 0);
     });
 
     it('should correctly validate new options', () => {
-      const component = shallow(<TimeInput allowOtherTimes />);
-      const isValidNewOption = component.find(Select).prop('isValidNewOption');
+      const component = mount(<TimeInput allowOtherTimes />);
+      const input = component.find('input');
 
-      assert.equal(isValidNewOption({ label: '11:34 PM' }), true);
-      assert.equal(isValidNewOption({ label: '1:19 am' }), true);
-      assert.equal(isValidNewOption({ label: '02:27 pm' }), true);
-      assert.equal(isValidNewOption({ label: '12' }), false);
-      assert.equal(isValidNewOption({ label: 'happy hour' }), false);
-      assert.equal(isValidNewOption({ label: '' }), false);
+      input.simulate('change', { target: { value: '11:34 PM' } });
+      let options = component.find('button[role="option"]');
+      assert(options.contains('11:34 PM'));
+
+      input.simulate('change', { target: { value: '1:19 am' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('1:19 AM'));
+
+      input.simulate('change', { target: { value: '02:27am' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('2:27 AM'));
     });
 
-    it('should not accept existing options', () => {
-      const component = shallow(<TimeInput allowOtherTimes />);
-      const isOptionUnique = component.find(Select).prop('isOptionUnique');
-      const options = component.find(Select).prop('options');
+    it('should allow entering a time inside of min and max when specified', () => {
+      const component = mount(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
+      const input = component.find('input');
 
-      assert.equal(isOptionUnique({ option: { value: '02:00' }, options }), false);
-      assert.equal(isOptionUnique({ option: { value: '03:43' }, options }), true);
+      input.simulate('change', { target: { value: '12:34 PM' } });
+      const options = component.find('button[role="option"]');
+      assert(options.contains('12:34 PM'));
     });
 
     it('should not allow entering a time outside of min and max', () => {
-      const component = shallow(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
-      const isValidNewOption = component.find(Select).prop('isValidNewOption');
+      const component = mount(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
+      const input = component.find('input');
 
-      assert.equal(isValidNewOption({ label: '11:34 AM' }), true);
-      assert.equal(isValidNewOption({ label: '1:19 am' }), false);
-      assert.equal(isValidNewOption({ label: '06:27 pm' }), false);
+      input.simulate('change', { target: { value: '1:19 am' } });
+      let options = component.find('button[role="option"]');
+      assert.equal(options.length, 0);
+
+      input.simulate('change', { target: { value: '06:27 pm' } });
+      options = component.find('button[role="option"]');
+      assert.equal(options.length, 0);
     });
 
     it('should allow setting new options when controlled', () => {
       const component = mount(<TimeInput allowOtherTimes value="13:00" />);
       component.setProps({ value: '13:22' });
-      const select = component.find(Select);
-      assert.deepEqual(select.prop('value'), { label: '1:22 PM', value: '13:22' });
+      const value = component.find(VALUE_SELECTOR);
+      assert(value.contains('1:22 PM'));
     });
 
     it('should create new options with correct label and value', () => {
-      const component = shallow(<TimeInput allowOtherTimes />);
-      const newOptionCreator = component.find(Select).prop('newOptionCreator');
+      const callback = sinon.spy();
+      const component = mount(<TimeInput onChange={callback} allowOtherTimes />);
+      const input = component.find('input');
 
-      assert.deepEqual(newOptionCreator({ label: '11:34 PM' }), { label: '11:34 PM', value: '23:34' });
-      assert.deepEqual(newOptionCreator({ label: '1:19 am' }), { label: '1:19 AM', value: '01:19' });
-      assert.deepEqual(newOptionCreator({ label: '02:27 pm' }), { label: '2:27 PM', value: '14:27' });
+      input.simulate('change', { target: { value: '1:19 am' } });
+      input.simulate('keyDown', { key: 'Enter', keyCode: 13 });
+      assert(component.contains('1:19 AM'));
+
+      assert(callback.calledOnce);
+      const [value] = callback.firstCall.args;
+      assert.equal(value, '01:19');
     });
 
     it('should allow adding new times without typing colons', () => {
-      const component = shallow(<TimeInput allowOtherTimes />);
-      const newOptionCreator = component.find(Select).prop('newOptionCreator');
+      const component = mount(<TimeInput allowOtherTimes />);
+      const input = component.find('input');
 
-      assert.deepEqual(newOptionCreator({ label: '1131 PM' }), { label: '11:31 PM', value: '23:31' });
-      assert.deepEqual(newOptionCreator({ label: '0222 AM' }), { label: '2:22 AM', value: '02:22' });
-      assert.deepEqual(newOptionCreator({ label: '454 pm' }), { label: '4:54 PM', value: '16:54' });
-      assert.deepEqual(newOptionCreator({ label: '845am' }), { label: '8:45 AM', value: '08:45' });
-      assert.deepEqual(newOptionCreator({ label: '137 pm' }), { label: '1:37 PM', value: '13:37' });
-      assert.deepEqual(newOptionCreator({ label: '658pm' }), { label: '6:58 PM', value: '18:58' });
+      input.simulate('change', { target: { value: '1131 PM' } });
+      let options = component.find('button[role="option"]');
+      assert(options.contains('11:31 PM'));
+
+      input.simulate('change', { target: { value: '0222 AM' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('2:22 AM'));
+
+      input.simulate('change', { target: { value: '454 pm' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('4:54 PM'));
+
+      input.simulate('change', { target: { value: '845am' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('8:45 AM'));
+
+      input.simulate('change', { target: { value: '137 pm' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('1:37 PM'));
+
+      input.simulate('change', { target: { value: '658pm' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('6:58 PM'));
     });
   });
 
-  describe('filterOption', () => {
+  describe('filtering options', () => {
     it('should ignore colons and whitespace when typing', () => {
-      const component = shallow(<TimeInput />);
-      const filterOption = component.find(Select).prop('filterOption');
+      const component = mount(<TimeInput />);
+      const input = component.find('input');
 
-      assert.equal(filterOption({ label: '11:30 PM' }, '113'), true);
-      assert.equal(filterOption({ label: '11:30 AM' }, '113'), true);
-      assert.equal(filterOption({ label: '11:30 AM' }, '1130'), true);
-      assert.equal(filterOption({ label: '11:30 PM' }, '1130 pm'), true);
-      assert.equal(filterOption({ label: '11:30 PM' }, '1130pm'), true);
+      input.simulate('change', { target: { value: '113' } });
+      let options = component.find('button[role="option"]');
+      assert(options.contains('11:30 AM'));
+      assert(options.contains('11:30 PM'));
+
+      input.simulate('change', { target: { value: '1130' } });
+      options = component.find('button[role="option"]');
+      assert.equal(options.length, 2);
+      assert(options.contains('11:30 AM'));
+      assert(options.contains('11:30 PM'));
+
+      input.simulate('change', { target: { value: '1130pm' } });
+      options = component.find('button[role="option"]');
+      assert(options.contains('11:30 PM'));
+      assert.equal(options.length, 1);
     });
 
     it('should handle leading zeros', () => {
-      const component = shallow(<TimeInput />);
-      const filterOption = component.find(Select).prop('filterOption');
+      const component = mount(<TimeInput />);
+      const input = component.find('input');
 
-      assert.equal(filterOption({ label: '9:30 AM', value: '09:30' }, '09:30 AM'), true);
+      input.simulate('change', { target: { value: '09:30 AM' } });
+      const options = component.find('button[role="option"]');
+      assert.equal(options.length, 1);
+      assert(options.contains('9:30 AM'));
     });
   });
 });
