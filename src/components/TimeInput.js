@@ -26,18 +26,6 @@ const INVALID_DATE = new Date(undefined);
 
 // TODO consider using <input type="time" /> when better browser support.
 
-// TODO use date-fns/parse to handle this behavior instead
-function addMissingColons(str) {
-  // looks for the hour in a smarter way than fecha - the first capture group only
-  // captures 0 or 1 if it is followed by 3 digits with an optional colon
-  const regex = /^((?:0|1(?=\d:?\d{2}))?\d)?(:?)(.*)$/;
-
-  // eslint-disable-next-line no-unused-vars
-  const [_fullStr, hour, _colon, restOfStr] = regex.exec(str);
-
-  return [hour, ':', restOfStr].join('');
-}
-
 function normalizeTime(date) {
   let time = startOfToday();
   time = setHours(time, getHours(date));
@@ -178,35 +166,6 @@ export default class TimeInput extends React.Component {
     this.props.onChange(value, time);
   }
 
-  parseInput(input) {
-    const str = addMissingColons(input);
-    return parse(str, this.props.timeFormat);
-  }
-
-  // workaround for removing the "Create option..." text that appears when creating a new option
-  promptTextCreator = string => string;
-
-  isBeforeMax = time => isBefore(time, parse(this.props.max, this.valueFormat));
-
-  isAfterMin = time => !isBefore(time, parse(this.props.min, this.valueFormat));
-
-  isValidNewOption = ({ label }) => {
-    const time = this.parseInput(label);
-    const value = time ? format(time, this.valueFormat) : '';
-    return !!(
-      value &&
-      (!this.props.min || this.isAfterMin(time)) &&
-      (!this.props.max || this.isBeforeMax(time))
-    );
-  };
-
-  isOptionUnique = ({ options, option: { value } }) => !options.some(option => option.value === value);
-
-  newOptionCreator = ({ label }) => {
-    const time = this.parseInput(label);
-    return this.timeToOption(time);
-  }
-
   /** Determines whether to display the current option given a particular user
    * input.
    * Handles the following user input cases:
@@ -263,20 +222,10 @@ export default class TimeInput extends React.Component {
 
     const times = this.times();
 
-    const creatableProps = {
-      createOptionPosition: 'first',
-      promptTextCreator: this.promptTextCreator,
-      newOptionCreator: this.newOptionCreator,
-      isValidNewOption: this.isValidNewOption,
-      isOptionUnique: this.isOptionUnique
-    };
-
     return (
       <Select
         {...props}
         arrowRenderer={() => <Icon name="clock-o" />}
-        creatable={allowOtherTimes}
-        {...(allowOtherTimes && creatableProps)}
         disabled={disabled}
         filterOption={this.filterOption}
         noResultsText={this.props.noResultsText}
