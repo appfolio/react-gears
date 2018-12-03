@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import addMinutes from 'date-fns/add_minutes';
 import addSeconds from 'date-fns/add_seconds';
-import classnames from 'classnames';
 import fecha from 'fecha';
 import getHours from 'date-fns/get_hours';
 import getMinutes from 'date-fns/get_minutes';
@@ -182,7 +181,6 @@ export default class TimeInput extends React.Component {
   render() {
     const {
       allowOtherTimes,
-      className,
       disabled,
       max,
       min,
@@ -193,7 +191,6 @@ export default class TimeInput extends React.Component {
       ...props
     } = this.props;
 
-    const classNames = classnames('pt-2', className);
     const times = this.visibleTimes(step, timeFormat, min, max);
 
     const creatableProps = {
@@ -208,7 +205,6 @@ export default class TimeInput extends React.Component {
       <Select
         {...props}
         arrowRenderer={() => <Icon name="clock-o" />}
-        className={classNames}
         creatable={allowOtherTimes}
         {...(allowOtherTimes && creatableProps)}
         disabled={disabled}
