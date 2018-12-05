@@ -3,7 +3,7 @@ import fecha from 'fecha';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, object, select } from '@storybook/addon-knobs';
-import { Table, SortableTable, UncontrolledTable } from '../src';
+import { Table, SortableTable, UncontrolledTable, ButtonGroup, Button } from '../src';
 
 const DATA = [
   { key: '111', expanded: false, first: 'Rufus Xavier Sarsparilla', last: 'Jones', email: 'rufus.xavier.sarsparilla@example.com', dob: new Date(1968, 6, 15) },
@@ -16,6 +16,12 @@ const DATA = [
   { key: '888', expanded: false, first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
   { key: '999', expanded: false, first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
   { key: '000', expanded: false, first: 'Max', last: 'Headroom', email: 'max.headroom@example.com', dob: new Date(1984, 6, 1) }
+];
+
+const EXPANDED_ROWS = [
+  { key: '121', expanded: false, first: 'Iggy', last: 'Pop', email: 'iggy.pop@example.com', dob: new Date(1956, 9, 7) },
+  { key: '232', expanded: false, first: 'Debbie', last: 'Harry', email: 'blondie.turner@example.com', dob: new Date(1955, 2, 29) },
+  { key: '343', expanded: false, first: 'Richard', last: 'Hell', email: 'rich.hell@example.com', dob: new Date(1957, 8, 14) }
 ];
 
 storiesOf('Table', module)
@@ -132,7 +138,15 @@ storiesOf('Table', module)
           }
         ]}
         rows={DATA}
-        rowExpanded={row => <div>{row.first} {row.last}</div>}
+        rowExpanded={row => (
+          <ButtonGroup size="sm">
+            <Button color="link" className="border-right">Alpha</Button>
+            <Button color="link" className="border-right">Bravo</Button>
+            <Button color="link" className="border-right">Charlie</Button>
+            <Button color="link" className="text-danger">Delta</Button>
+          </ButtonGroup>
+        )}
+        rowsWhenExpanded={() => EXPANDED_ROWS}
         sort={{ column: 'last', ascending: true }}
         expandable={boolean('expandable', false)}
         responsive={boolean('responsive', true)}

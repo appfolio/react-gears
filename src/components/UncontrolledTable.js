@@ -142,7 +142,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, rowsWhenExpanded, selectable, sort, onSelect, onExpand, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
@@ -166,7 +166,7 @@ export default class UncontrolledTable extends React.Component {
             onChange={this.toggleAll}
           />
         ),
-        cell: row => (
+        cell: row => row.uncontrolledExpandedRow ? null : (
           <input
             type="checkbox"
             className="mx-1"
@@ -182,7 +182,7 @@ export default class UncontrolledTable extends React.Component {
       cols.push({
         align: 'center',
         key: 'expand',
-        cell: row => (
+        cell: row => row.uncontrolledExpandedRow ? null : (
           <Button
             className="px-2 py-0"
             color="link"
@@ -208,6 +208,7 @@ export default class UncontrolledTable extends React.Component {
           rows={visibleRows}
           rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
           rowExpanded={row => expandable && this.expanded(row) && rowExpanded(row)}
+          rowsWhenExpanded={row => expandable && this.expanded(row) && rowsWhenExpanded(row).map(r => ({ ...r, uncontrolledExpandedRow: true }))}
         />
         {paginated && [
           <hr />,

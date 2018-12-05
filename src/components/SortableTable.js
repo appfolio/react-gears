@@ -31,6 +31,7 @@ class SortableTable extends React.Component {
     rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     rowClassName: PropTypes.func,
     rowExpanded: PropTypes.func,
+    rowsWhenExpanded: PropTypes.func,
     rowOnClick: PropTypes.func,
     truncate: PropTypes.bool
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
@@ -41,11 +42,13 @@ class SortableTable extends React.Component {
     rows: [],
     rowClassName: () => undefined,
     rowExpanded: () => false,
+    rowsWhenExpanded: () => [],
     truncate: false
   };
 
-  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate) {
+  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, rowsWhenExpanded, truncate) {
     const expanded = rowExpanded(row);
+    const rowsExpanded = rowsWhenExpanded(row);
     return [
       <tr
         key={row.key}
@@ -59,6 +62,24 @@ class SortableTable extends React.Component {
           </td>
         ))}
       </tr>,
+      rowsExpanded && (
+        rowsExpanded.map((extraRow, index) => [
+          <tr key={row.key ? `${row.key}-hidden-${index}` : null} hidden />,
+          <tr
+            key={`${row.key}-expanded-${index}`}
+            className="tr-expanded"
+          >
+            {columns.map(column => (
+              <td
+                key={column.key}
+                className={`border-top-0 ${generateColumnClassName(column, truncate)}`}
+              >
+                {column.cell(extraRow)}
+              </td>
+            ))}
+          </tr>
+        ])
+      ),
       expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
       expanded && (
         <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
@@ -71,7 +92,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, rowClassName, rowExpanded, rowOnClick, rows, style, truncate, ...props } = this.props;
+    const { columns, rowClassName, rowExpanded, rowOnClick, rows, rowsWhenExpanded, style, truncate, ...props } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
     const tableStyle = {
@@ -107,7 +128,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate))}
+          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, rowsWhenExpanded, truncate))}
         </tbody>
         {showFooter &&
           <tfoot>
