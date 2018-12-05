@@ -208,7 +208,12 @@ export default class UncontrolledTable extends React.Component {
           rows={visibleRows}
           rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
           rowExpanded={row => expandable && this.expanded(row) && rowExpanded(row)}
-          rowsWhenExpanded={row => expandable && this.expanded(row) && rowsWhenExpanded(row).map(r => ({ ...r, uncontrolledExpandedRow: true }))}
+          rowsWhenExpanded={row => expandable && this.expanded(row) && rowsWhenExpanded(row).map((r) => {
+            return {
+              ...r,
+              uncontrolledExpandedRow: true
+            };
+          })}
         />
         {paginated && [
           <hr />,
