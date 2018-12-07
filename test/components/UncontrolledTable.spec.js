@@ -199,6 +199,23 @@ describe('<UncontrolledTable />', () => {
     assert.equal(ths.length, columns.length + 1); // For expanded column
   });
 
+  it('should merge expandColumnProps with the expand column definition so you can alter it', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        expandable
+        rowExpanded={() => <span className="expando">Hey</span>}
+        expandColumnProps={{ header: 'whatever you want, homie' }}
+      />
+    );
+
+    const ths = wrapper.find('th');
+    assert.equal(ths.last().text(), 'whatever you want, homie');
+  });
+
   it('should update expanded rows when new expanded prop provided', () => {
     const columns = [{ header: 'Name', cell: row => row.name }];
     const rows = [{ name: 'Mantleray', key: '1' }];
