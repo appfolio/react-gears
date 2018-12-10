@@ -12,7 +12,7 @@ import SortableTable from './SortableTable';
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
-    expandColumnProps: PropTypes.object,
+    expandColumn: PropTypes.object,
     expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     onExpand: PropTypes.func,
     page: PropTypes.number,
@@ -28,7 +28,7 @@ export default class UncontrolledTable extends React.Component {
   static defaultProps = {
     ...SortableTable.defaultProps,
     onExpand: () => {},
-    expandColumnProps: {},
+    expandColumn: {},
     expanded: [],
     page: 0,
     pageSize: 10,
@@ -144,7 +144,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, expandColumnProps, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, expandColumn, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
@@ -194,7 +194,7 @@ export default class UncontrolledTable extends React.Component {
           </Button>
         ),
         width: '2rem',
-        ...expandColumnProps
+        ...expandColumn
       });
     }
 
