@@ -12,7 +12,7 @@ import SortableTable from './SortableTable';
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
-    expandColumn: PropTypes.object,
+    expandableColumn: PropTypes.object,
     expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     onExpand: PropTypes.func,
     page: PropTypes.number,
@@ -28,7 +28,7 @@ export default class UncontrolledTable extends React.Component {
   static defaultProps = {
     ...SortableTable.defaultProps,
     onExpand: () => {},
-    expandColumn: {},
+    expandableColumn: {},
     expanded: [],
     page: 0,
     pageSize: 10,
@@ -144,7 +144,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, expandColumn, ...props } = this.props;
+    const { columns, expandableColumn, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
@@ -181,6 +181,7 @@ export default class UncontrolledTable extends React.Component {
     }
 
     if (expandable) {
+      // TODO expandableColumn `cell` is currently unusable to toggle open, needs toggleExpanded support
       cols.push({
         align: 'center',
         key: 'expand',
@@ -194,7 +195,7 @@ export default class UncontrolledTable extends React.Component {
           </Button>
         ),
         width: '2rem',
-        ...expandColumn
+        ...expandableColumn
       });
     }
 

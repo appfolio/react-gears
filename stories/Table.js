@@ -3,7 +3,7 @@ import fecha from 'fecha';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, object, select } from '@storybook/addon-knobs';
-import { Table, SortableTable, UncontrolledTable } from '../src';
+import { Button, Table, SortableTable, UncontrolledTable } from '../src';
 
 const DATA = [
   { key: '111', expanded: false, first: 'Rufus Xavier Sarsparilla', last: 'Jones', email: 'rufus.xavier.sarsparilla@example.com', dob: new Date(1968, 6, 15) },
@@ -141,6 +141,47 @@ storiesOf('Table', module)
         paginated={boolean('paginated', false)}
         pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
+      />
+    </div>
+  ))
+  .addWithInfo('custom expand column', () => (
+    <div>
+      <UncontrolledTable
+        columns={[
+          {
+            header: 'First',
+            key: 'first',
+            cell: row => row.first,
+            width: '20%'
+          },
+          {
+            header: 'Last',
+            key: 'last',
+            cell: row => row.last,
+            width: '30%'
+          },
+          {
+            header: 'DOB',
+            key: 'dob',
+            cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+            width: '15%'
+          },
+          {
+            header: 'Email',
+            key: 'email',
+            cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+            width: '35%'
+          }
+        ]}
+        rows={DATA}
+        rowExpanded={row => <div>{row.first} {row.last}</div>}
+        sort={{ column: 'last', ascending: true }}
+        expandable
+        expandableColumn={{
+          align: 'right',
+          header: 'Actions',
+          cell: () => <Button size="sm">Edit</Button>,
+        }}
       />
     </div>
   ))

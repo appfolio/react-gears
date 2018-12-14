@@ -199,7 +199,7 @@ describe('<UncontrolledTable />', () => {
     assert.equal(ths.length, columns.length + 1); // For expanded column
   });
 
-  it('should merge expandColumn with the expand column definition so you can alter it', () => {
+  it('should merge expandableColumn with the expand column definition so you can alter it', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(
@@ -208,7 +208,7 @@ describe('<UncontrolledTable />', () => {
         rows={rows}
         expandable
         rowExpanded={() => <span className="expando">Hey</span>}
-        expandColumn={{ header: 'whatever you want, homie' }}
+        expandableColumn={{ header: 'whatever you want, homie' }}
       />
     );
 
