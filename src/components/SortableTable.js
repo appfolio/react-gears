@@ -29,6 +29,7 @@ class SortableTable extends React.Component {
       })
     ).isRequired,
     rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    footer: PropTypes.node,
     rowClassName: PropTypes.func,
     rowExpanded: PropTypes.func,
     rowOnClick: PropTypes.func,
@@ -71,7 +72,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, rowClassName, rowExpanded, rowOnClick, rows, style, truncate, ...props } = this.props;
+    const { columns, footer, rowClassName, rowExpanded, rowOnClick, rows, style, truncate, ...props } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
     const tableStyle = {
@@ -109,20 +110,23 @@ class SortableTable extends React.Component {
         <tbody>
           {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate))}
         </tbody>
-        {showFooter &&
+        {(showFooter || footer) && (
           <tfoot>
-            <tr>
-              {columns.map(column => (
-                <td
-                  key={column.key}
-                  className={generateColumnClassName(column, truncate)}
-                >
-                  {column.footer}
-                </td>
-              ))}
-            </tr>
+            {showFooter && (
+              <tr>
+                {columns.map(column => (
+                  <td
+                    key={column.key}
+                    className={generateColumnClassName(column, truncate)}
+                  >
+                    {column.footer}
+                  </td>
+                ))}
+              </tr>
+            )}
+            {footer}
           </tfoot>
-        }
+        )}
       </Table>
     );
   }

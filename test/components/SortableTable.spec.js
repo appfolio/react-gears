@@ -106,6 +106,30 @@ describe('<SortableTable />', () => {
     footers.forEach((th, i) => assert(th.hasClass(classNames[i])));
   });
 
+  it('should render custom footer', () => {
+    const columns = [{ header: 'Name' }];
+    const wrapper = mount(
+      <SortableTable
+        columns={columns}
+        footer={[
+          <tr>
+            <td className="total">Costs</td>
+          </tr>,
+          <tr>
+            <td className="total">Total Costs</td>
+          </tr>
+        ]}
+      />
+    );
+
+    const footer = wrapper.find('tfoot');
+    assert(footer.exists());
+
+    const footers = wrapper.find('tfoot td');
+    assert.equal(footers.length, 2);
+    footers.forEach(td => assert(td.hasClass('total')));
+  });
+
   it('should render sorting controls when onSort present', () => {
     const columns = [
       { header: 'Alpha', onSort: () => {} },

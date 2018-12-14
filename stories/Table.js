@@ -144,6 +144,55 @@ storiesOf('Table', module)
       />
     </div>
   ))
+  .addWithInfo('custom footer', () => {
+    return (
+      <div>
+        <UncontrolledTable
+          columns={[
+            {
+              header: 'Date',
+              key: 'date',
+              cell: row => fecha.format(row.date, 'MM/DD/YYYY'),
+              width: '25%'
+            },
+            {
+              header: 'Description',
+              key: 'name',
+              cell: row => row.name,
+              width: '50%'
+            },
+            {
+              header: 'Cost',
+              key: 'cost',
+              cell: row => row.cost,
+              width: '25%',
+              align: 'right'
+            }
+          ]}
+          rows={[
+            { key: '111', expanded: false, date: new Date(2016, 6, 15), name: 'Utility bill', cost: '$123.45' },
+            { key: '222', expanded: false, date: new Date(2016, 7, 17), name: 'Roof repair', cost: '$4000.00' },
+            { key: '333', expanded: false, date: new Date(2017, 4, 1), name: 'Plumbing', cost: '$350' },
+            { key: '444', expanded: false, date: new Date(2018, 8, 14), name: 'Painting', cost: '$1500' },
+            ]}
+          footer={[
+            <tr>
+              <td colSpan={2} className="text-right">Total Costs</td>
+              <td className="text-right">$5973.45</td>
+            </tr>,
+            <tr>
+              <td colSpan={2} className="text-right">Total Income</td>
+              <td className="text-right">$26,200.00</td>
+            </tr>,
+            <tr>
+              <td colSpan={2} className="text-right">Total Gain</td>
+              <td className="text-right">$20,226.55</td>
+            </tr>
+          ]}
+        />
+      </div>
+    );
+  })
   .addWithInfo('custom expand column', () => (
     <div>
       <UncontrolledTable
