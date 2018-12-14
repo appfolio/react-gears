@@ -125,10 +125,10 @@ describe('<EditableNote />', () => {
         assert.equal('oh snap!', group.props().feedback);
       });
 
-      it('should render input state as danger', () => {
+      it('should render input state as invalid', () => {
         const input = component.find(Input);
 
-        assert.equal('danger', input.props().state);
+        assert.equal(input.props().invalid, true);
       });
     });
 

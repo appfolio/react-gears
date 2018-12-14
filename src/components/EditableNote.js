@@ -44,7 +44,7 @@ class EditableNote extends React.Component {
               className="js-editable-note_text"
               disabled={saving}
               rows={rows}
-              state={errors && 'danger'}
+              invalid={!!errors}
               type="textarea"
               value={text}
               onChange={event => onChange(event, note)}
