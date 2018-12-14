@@ -161,9 +161,12 @@ export default class TimeInput extends React.Component {
   onChange = (selectedOption) => {
     this.setState({ selectedOption });
 
-    const value = selectedOption ? selectedOption.value : '';
-    const time = normalizeTime(parse(value, this.valueFormat) || INVALID_DATE);
-    this.props.onChange(value, time);
+    if (selectedOption) {
+      const { value, time } = selectedOption;
+      this.props.onChange(value, time);
+    } else {
+      this.props.onChange('', INVALID_DATE);
+    }
   }
 
   /** Determines whether to display the current option given a particular user
