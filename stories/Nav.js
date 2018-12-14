@@ -12,27 +12,27 @@ storiesOf('Nav', module)
       <div>
         <Nav tabs>
           <NavItem>
-            <NavLink active={activeTab === 1} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 1} onClick={onClick}>
               Receivables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 2} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 2} onClick={onClick}>
               Payables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 3} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 3} onClick={onClick}>
               Bank Accounts
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 4} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 4} onClick={onClick}>
               Journal Entries
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 5} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 5} onClick={onClick}>
               GL Accounts
             </NavLink>
           </NavItem>
@@ -46,27 +46,27 @@ storiesOf('Nav', module)
       <div>
         <Nav pills>
           <NavItem>
-            <NavLink active={activeTab === 1} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 1} onClick={onClick}>
               Receivables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 2} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 2} onClick={onClick}>
               Payables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 3} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 3} onClick={onClick}>
               Bank Accounts
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 4} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 4} onClick={onClick}>
               Journal Entries
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active={activeTab === 5} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 5} onClick={onClick}>
               GL Accounts
             </NavLink>
           </NavItem>
