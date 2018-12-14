@@ -212,7 +212,7 @@ describe('<AddressInput />', () => {
 
     it('should set the state of non-Select inputs', () => {
       const inputs = component.find(Input);
-      inputs.forEach(input => assert.equal(input.prop('state'), 'danger'));
+      inputs.forEach(input => assert.equal(input.prop('invalid'), true));
     });
 
     it('should show the corresponding error for each input', () => {

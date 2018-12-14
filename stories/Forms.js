@@ -88,10 +88,6 @@ storiesOf('Forms', module)
         value="Darth Vader"
         type="static"
       />
-      <FormRow
-        state="warning"
-        placeholder="Labels can be omitted but that may be bad"
-      />
       <FormRow type="textarea" label="Notes" />
       <FormRow
         type="select"

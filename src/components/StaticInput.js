@@ -6,7 +6,6 @@ import Input from './Input';
 const StaticInput = ({ type, value, defaultValue, children, color, state, ...props }) => (
   <Input
     plaintext
-    state={color || state}
     {...props}
   >
     {value || defaultValue}

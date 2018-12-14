@@ -6,7 +6,7 @@ import { Input, StaticInput } from '../../src';
 
 describe('<StaticInput />', () => {
   const component = shallow(
-    <StaticInput value="foobar" state="danger" />
+    <StaticInput value="foobar" invalid />
   );
 
   it('should render with correct type', () => {
@@ -18,16 +18,11 @@ describe('<StaticInput />', () => {
   });
 
   it('should forward the state', () => {
-    assert.equal(component.prop('state'), 'danger');
+    assert.equal(component.prop('invalid'), true);
   });
 
   it('should use value as child', () => {
     assert.equal(component.find(Input).prop('children'), 'foobar');
-  });
-
-  it('should use color over state', () => {
-    component.setProps({ color: 'success' });
-    assert.equal(component.prop('state'), 'success');
   });
 
   it('should fallback to default value', () => {

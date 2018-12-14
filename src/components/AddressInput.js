@@ -80,7 +80,7 @@ class AddressInput extends React.Component {
             type="text"
             placeholder={labels.address1}
             {...this.propsFor('address1')}
-            state={error.address1 && 'danger'}
+            invalid={!!error.address1}
             onBlur={() => onBlur('address1')}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
@@ -99,7 +99,7 @@ class AddressInput extends React.Component {
             type="text"
             placeholder={labels.address2}
             {...this.propsFor('address2')}
-            state={error.address2 && 'danger'}
+            invalid={!!error.address2}
             onBlur={() => onBlur('address2')}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
@@ -119,7 +119,7 @@ class AddressInput extends React.Component {
                 name="city"
                 placeholder={labels.city}
                 {...this.propsFor('city')}
-                state={error.city && 'danger'}
+                invalid={!!error.city}
                 onBlur={() => onBlur('city')}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
@@ -139,7 +139,7 @@ class AddressInput extends React.Component {
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}
-                state={error.state && 'danger'}
+                invalid={!!error.state}
                 onBlur={() => onBlur('state')}
                 onChange={state => this.onChange({ state })}
                 disabled={disabled}
@@ -159,7 +159,7 @@ class AddressInput extends React.Component {
                 name="postal"
                 placeholder={labels.postal}
                 {...this.propsFor('postal')}
-                state={error.postal && 'danger'}
+                invalid={!!error.postal}
                 onBlur={() => onBlur('postal')}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
@@ -180,7 +180,7 @@ class AddressInput extends React.Component {
               name="countryCode"
               placeholder={labels.countryCode}
               {...this.propsFor('countryCode')}
-              state={error.countryCode && 'danger'}
+              invalid={!!error.countryCode}
               onBlur={() => onBlur('countryCode')}
               onChange={countryCode => this.onChange({ countryCode })}
               disabled={disabled}
