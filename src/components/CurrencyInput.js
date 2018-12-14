@@ -37,6 +37,7 @@ const CurrencyInput = ({ size, ...props }) => {
     allowDecimal,
     allowNegative,
     includeThousandsSeparator,
+    onChange,
     ...inputProps
   } = props;
   /* eslint-enable  no-unused-vars */
@@ -57,10 +58,15 @@ const CurrencyInput = ({ size, ...props }) => {
     pipe: preventMultipleDecimalPoint,
   };
 
+  function handleOnChange(e) {
+    const amount = parseFloat(e.target.value.replace(/,/g, '')); // TODO support I18n
+    onChange(e, amount);
+  }
+
   return (
     <InputGroup size={size} className={props.className}>
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-      <MaskedInput {...maskedProps} />
+      <MaskedInput {...maskedProps} onChange={handleOnChange} />
     </InputGroup>
   );
 };
@@ -69,6 +75,7 @@ CurrencyInput.defaultProps = {
   allowDecimal: true,
   allowNegative: false,
   includeThousandsSeparator: true,
+  onChange: () => {}
 };
 
 CurrencyInput.propTypes = {
@@ -76,6 +83,7 @@ CurrencyInput.propTypes = {
   allowNegative: PropTypes.bool,
   className: PropTypes.string,
   includeThousandsSeparator: PropTypes.bool,
+  onChange: PropTypes.func,
   size: PropTypes.string,
   state: PropTypes.any,
   type: PropTypes.any

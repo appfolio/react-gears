@@ -34,6 +34,18 @@ describe('<CurrencyInput />', () => {
       const input = component.find('input');
       assert.equal(input.getDOMNode().value, '123456');
     });
+
+    it('should call onChange', () => {
+      const spy = sinon.spy();
+      const component = mount(<CurrencyInput onChange={spy} />);
+      const input = component.find('input');
+
+      input.simulate('input', { target: { value: '123,456,789.99' } });
+
+      assert(spy.calledOnce);
+      assert.strictEqual(spy.firstCall.args[0].target.value, '123,456,789.99');
+      assert.strictEqual(spy.firstCall.args[1], 123456789.99);
+    });
   });
 
   context('negative numbers', () => {
@@ -47,6 +59,18 @@ describe('<CurrencyInput />', () => {
       const component = mount(<CurrencyInput value="-123" allowNegative />);
       const input = component.find('input');
       assert.equal(input.getDOMNode().value, '-123');
+    });
+
+    it('should call onChange', () => {
+      const spy = sinon.spy();
+      const component = mount(<CurrencyInput onChange={spy} />);
+      const input = component.find('input');
+
+      input.simulate('input', { target: { value: '-123,456,789.99' } });
+
+      assert(spy.calledOnce);
+      assert.strictEqual(spy.firstCall.args[0].target.value, '-123,456,789.99');
+      assert.strictEqual(spy.firstCall.args[1], -123456789.99);
     });
   });
 
@@ -87,6 +111,18 @@ describe('<CurrencyInput />', () => {
       assert.equal(input.getDOMNode().value, '0.');
     });
 
+    it('should call onChange', () => {
+      const spy = sinon.spy();
+      const component = mount(<CurrencyInput onChange={spy} />);
+      const input = component.find('input');
+
+      input.simulate('input', { target: { value: '123,456,789.' } });
+
+      assert(spy.calledOnce);
+      assert.strictEqual(spy.firstCall.args[0].target.value, '123,456,789.');
+      assert.strictEqual(spy.firstCall.args[1], 123456789);
+    });
+
     // TODO skipped pending this issue/question: https://github.com/text-mask/text-mask/issues/372
     it.skip('should zero pad 1 decimal', () => {
       const component = mount(<CurrencyInput onChange={callback} value={1234.5} />);
@@ -107,5 +143,17 @@ describe('<CurrencyInput />', () => {
     const component = mount(<CurrencyInput onChange={callback} value="Veni, Vedi, Vici" />);
     const input = component.find('input');
     assert.equal(input.getDOMNode().value, '');
+  });
+
+  it('should call onChange with NaN for invalid numbers', () => {
+    const spy = sinon.spy();
+    const component = mount(<CurrencyInput onChange={spy} />);
+    const input = component.find('input');
+
+    input.simulate('input', { target: { value: '' } });
+
+    assert(spy.calledOnce);
+    assert.strictEqual(spy.firstCall.args[0].target.value, '');
+    assert(Number.isNaN(spy.firstCall.args[1]));
   });
 });
