@@ -5,6 +5,12 @@ import FormGroup from './FormGroup';
 import Input from './Input';
 import Label from './Label';
 
+let count = 0;
+
+function getID() {
+  return `checkbox-boolean-input-${count++}`; // eslint-disable-line no-plusplus
+}
+
 class CheckboxBooleanInput extends React.Component {
   static propTypes = {
     id: PropTypes.string,
@@ -14,14 +20,20 @@ class CheckboxBooleanInput extends React.Component {
     value: PropTypes.bool
   };
 
+  constructor(props) {
+    super(props);
+
+    this.id = props.id || getID();
+  }
+
   render() {
-    const { checkboxLabel, className, onChange, value, id, ...inputProps } = this.props;
+    const { checkboxLabel, className, onChange, value, ...inputProps } = this.props;
     const classNames = classnames('col-form-label d-flex align-items-center h-100', className);
 
     return (
       <FormGroup check className={classNames}>
         <Input
-          id={id}
+          id={this.id}
           {...inputProps}
           type="checkbox"
           checked={value}
@@ -29,7 +41,7 @@ class CheckboxBooleanInput extends React.Component {
           className="my-0"
         />
         {checkboxLabel && (
-          <Label check for={id} className="my-0">
+          <Label check for={this.id} className="my-0">
             {checkboxLabel}
           </Label>
         )}
