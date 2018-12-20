@@ -5,7 +5,11 @@ import FormGroup from './FormGroup';
 import Input from './Input';
 import Label from './Label';
 
-let counter = 0;
+let count = 0;
+
+function getID() {
+  return `checkbox-boolean-input-${count++}`; // eslint-disable-line no-plusplus
+}
 
 class CheckboxBooleanInput extends React.Component {
   static propTypes = {
@@ -18,18 +22,18 @@ class CheckboxBooleanInput extends React.Component {
 
   constructor(props) {
     super(props);
-    counter += 1;
+
+    this.id = props.id || getID();
   }
 
   render() {
-    const { checkboxLabel, className, onChange, value, id: idFromProps, ...inputProps } = this.props;
+    const { checkboxLabel, className, onChange, value, ...inputProps } = this.props;
     const classNames = classnames('col-form-label d-flex align-items-center h-100', className);
-    const id = idFromProps || `reactgears-checkbox-${counter}`; // provides default id to ensure clickable label
 
     return (
       <FormGroup check className={classNames}>
         <Input
-          id={id}
+          id={this.id}
           {...inputProps}
           type="checkbox"
           checked={value}
@@ -37,7 +41,7 @@ class CheckboxBooleanInput extends React.Component {
           className="my-0"
         />
         {checkboxLabel && (
-          <Label check for={id} className="my-0">
+          <Label check for={this.id} className="my-0">
             {checkboxLabel}
           </Label>
         )}
