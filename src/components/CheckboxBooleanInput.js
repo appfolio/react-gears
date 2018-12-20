@@ -5,6 +5,8 @@ import FormGroup from './FormGroup';
 import Input from './Input';
 import Label from './Label';
 
+let counter = 0;
+
 class CheckboxBooleanInput extends React.Component {
   static propTypes = {
     id: PropTypes.string,
@@ -14,9 +16,15 @@ class CheckboxBooleanInput extends React.Component {
     value: PropTypes.bool
   };
 
+  constructor(props) {
+    super(props);
+    counter += 1;
+  }
+
   render() {
-    const { checkboxLabel, className, onChange, value, id, ...inputProps } = this.props;
+    const { checkboxLabel, className, onChange, value, id: idFromProps, ...inputProps } = this.props;
     const classNames = classnames('col-form-label d-flex align-items-center h-100', className);
+    const id = idFromProps || `reactgears-checkbox-${counter}`; // provides default id to ensure clickable label
 
     return (
       <FormGroup check className={classNames}>
