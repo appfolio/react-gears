@@ -47,4 +47,21 @@ describe('<CheckboxBooleanInput />', () => {
 
     assert.equal(input.props().disabled, true);
   });
+
+  it('should have an id even if not passed as prop', () => {
+    assert(component.prop('id'));
+  });
+
+  it('should not generate duplicate ids', () => {
+    const page = mount(
+      <div>
+        <CheckboxBooleanInput onChange={onChange} />
+        <CheckboxBooleanInput onChange={onChange} />
+      </div>
+    );
+
+    const inputs = page.find(Input);
+
+    assert.notEqual(inputs.at(0).prop('id'), inputs.at(1).prop('id'));
+  });
 });
