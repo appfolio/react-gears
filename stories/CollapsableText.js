@@ -15,7 +15,7 @@ storiesOf('CollapsableText', module)
     <CollapsableText
       collapsed={boolean('collapsed', CollapsableText.defaultProps.collapsed)}
       maxLength={number('maxLength', CollapsableText.defaultProps.maxLength)}
-      moreLabel={text('showMore', CollapsableText.defaultProps.moreLabel)}
+      moreLabel={text('moreLabel', CollapsableText.defaultProps.moreLabel)}
       lessLabel={text('lessLabel', CollapsableText.defaultProps.lessLabel)}
     >
       {loremIpsum}
