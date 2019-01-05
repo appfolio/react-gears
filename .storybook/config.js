@@ -54,7 +54,7 @@ const APM_THEMES = [
   {
     name: 'APM/Saffron',
     url:
-      'https://d36t0nm30n26wn.cloudfront.net/saffron/4.0.2/bootstrap-saffron.min.css'
+      'https://d36t0nm30n26wn.cloudfront.net/saffron/bootstrap-saffron.min.css'
   },
   {
     name: 'APM/Cayenne',
