@@ -1,0 +1,140 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import noop from 'lodash.noop';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import HasManyFieldsAdd from './HasManyFieldsAdd';
+import HasManyFieldsRow from './HasManyFieldsRow';
+
+class ReorderableHasManyFields extends Component {
+  static defaultProps = {
+    defaultValue: [],
+    errors: [],
+    onAdd: noop,
+    onRemove: noop,
+    onUpdate: noop,
+    onChange: noop,
+    minimumRows: 1,
+    maximumRows: Infinity
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.isUncontrolled = typeof props.value === 'undefined';
+
+    if (this.isUncontrolled) {
+      this.state = {
+        value: props.defaultValue,
+      };
+    }
+
+    this.rowRefs = [];
+  }
+
+  get value() {
+    return this.isUncontrolled ? this.state.value : this.props.value;
+  }
+
+  set value(newValue) {
+    this.props.onChange(newValue);
+    this.isUncontrolled && this.setState({ value: newValue });
+  }
+
+  updateItem = i => (updatedValue) => {
+    this.props.onUpdate(i, updatedValue);
+    this.value = [
+      ...this.value.slice(0, i),
+      updatedValue,
+      ...this.value.slice(i + 1)
+    ];
+  };
+
+  addItem = () => {
+    this.props.onAdd();
+    const blank =
+      typeof this.props.blank === 'function'
+        ? this.props.blank(this.value)
+        : this.props.blank;
+    this.value = this.value.concat(blank);
+    setTimeout(() => this.focusRow(this.rowRefs.length - 1));
+  }
+
+  deleteItem = i => () => {
+    this.props.onRemove(i);
+    this.value = [...this.value.slice(0, i), ...this.value.slice(i + 1)];
+    setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
+  };
+
+  setRowReference = index => (rowTemplate) => {
+    this.rowRefs[index] = rowTemplate;
+
+    if (this.rowRefs.every(row => row === null)) {
+      this.rowRefs = [];
+    }
+  };
+
+  focusRow = (index) => {
+    const row = this.rowRefs[index];
+    if (!row) {
+      return;
+    }
+    const el = ReactDOM.findDOMNode(row);
+    const firstInput = el.querySelectorAll('input, select, textarea')[0];
+    firstInput && firstInput.focus(); // eslint-disable-line no-unused-expressions
+  };
+
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const result = Array.from(this.value);
+    const [removed] = result.splice(oldIndex, 1);
+    result.splice(newIndex, 0, removed);
+    this.value = result;
+  };
+
+  render() {
+    const {
+      template: Template,
+      label,
+      disabled,
+      errors,
+      minimumRows,
+      maximumRows
+    } = this.props;
+
+    const SortableItem = SortableElement(({ key, index, value }) => (
+      <HasManyFieldsRow
+        onDelete={this.deleteItem(index)}
+        key={key}
+        deletable={this.value.length > minimumRows}
+        disabled={disabled}
+      >
+        <Template
+          value={value}
+          errors={errors[index]}
+          onChange={this.updateItem(index)}
+          ref={this.setRowReference(index)}
+          disabled={disabled}
+        />
+      </HasManyFieldsRow>
+    ));
+
+    const SortableList = SortableContainer(() => (
+      <div>
+        {this.value.map((item, i) => (
+          <SortableItem key={`item-${i}`} index={i} value={item} />
+        ))}
+        {this.value.length < maximumRows ? (
+          <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
+            {label}
+          </HasManyFieldsAdd>
+        ) : null}
+      </div>
+    ));
+
+    return (
+      <SortableList onSortEnd={this.onSortEnd} />
+    );
+  }
+}
+
+export default ReorderableHasManyFields;
+
