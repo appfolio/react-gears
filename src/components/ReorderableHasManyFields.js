@@ -123,7 +123,6 @@ class ReorderableHasManyFields extends Component {
     );
   }
 
-
   render() {
     const {
       template: Template,
@@ -134,20 +133,20 @@ class ReorderableHasManyFields extends Component {
       maximumRows
     } = this.props;
 
-    const SortableItem = SortableElement(({ key, index, value }) => (
+    const SortableItem = SortableElement(({ key, sortIndex, value }) => (
       <div>
         {this.renderGrabHandle()}
         <HasManyFieldsRow
-          onDelete={this.deleteItem(index)}
+          onDelete={this.deleteItem(sortIndex)}
           key={key}
           deletable={this.value.length > minimumRows}
           disabled={disabled}
         >
           <Template
             value={value}
-            errors={errors[index]}
-            onChange={this.updateItem(index)}
-            ref={this.setRowReference(index)}
+            errors={errors[sortIndex]}
+            onChange={this.updateItem(sortIndex)}
+            ref={this.setRowReference(sortIndex)}
             disabled={disabled}
           />
         </HasManyFieldsRow>
@@ -157,12 +156,15 @@ class ReorderableHasManyFields extends Component {
     const SortableList = SortableContainer(() => (
       <div>
         {this.value.map((item, i) => (
-          <SortableItem key={`item-${i}`} index={i} value={item} />
+          <SortableItem key={`item-${i}`} index={i} sortIndex={i} value={item} />
         ))}
         {this.value.length < maximumRows ? (
-          <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
-            {label}
-          </HasManyFieldsAdd>
+          <div>
+            {this.renderGrabHandle()}
+            <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
+              {label}
+            </HasManyFieldsAdd>
+          </div>
         ) : null}
       </div>
     ));
