@@ -1,0 +1,19 @@
+.grabHandle {
+  color: #d1d2d4 !important;
+  font-size: 1.2em;
+  left: -21px;
+  padding: 3px;
+  position: absolute;
+}
+
+.grabHandleContainer {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.grabHandleRight {
+  margin-left: 2px;
+}

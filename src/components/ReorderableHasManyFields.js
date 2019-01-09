@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import noop from 'lodash.noop';
+import PropTypes from 'prop-types';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import Icon from './Icon';
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
+import * as styles from './ReorderableHasManyFields.scss';
 
 class ReorderableHasManyFields extends Component {
+  static propTypes = {
+    blank: PropTypes.any,
+    defaultValue: PropTypes.array,
+    disabled: PropTypes.bool,
+    errors: PropTypes.array,
+    label: PropTypes.string.isRequired,
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    onUpdate: PropTypes.func,
+    onChange: PropTypes.func,
+    template: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
+      .isRequired,
+    value: PropTypes.array,
+    minimumRows: PropTypes.number,
+    maximumRows: PropTypes.number
+  };
+
   static defaultProps = {
     defaultValue: [],
     errors: [],
@@ -37,7 +57,9 @@ class ReorderableHasManyFields extends Component {
 
   set value(newValue) {
     this.props.onChange(newValue);
-    this.isUncontrolled && this.setState({ value: newValue });
+    if (this.isUncontrolled) {
+      this.setState({ value: newValue });
+    }
   }
 
   updateItem = i => (updatedValue) => {
@@ -90,6 +112,18 @@ class ReorderableHasManyFields extends Component {
     this.value = result;
   };
 
+  renderGrabHandle() {
+    return (
+      <span className={`${styles.grabHandleContainer}`}>
+        <div className={styles.grabHandle}>
+          <Icon name="ellipsis-v" />
+          <Icon name="ellipsis-v" className={styles.grabHandleRight} />
+        </div>
+      </span>
+    );
+  }
+
+
   render() {
     const {
       template: Template,
@@ -101,20 +135,23 @@ class ReorderableHasManyFields extends Component {
     } = this.props;
 
     const SortableItem = SortableElement(({ key, index, value }) => (
-      <HasManyFieldsRow
-        onDelete={this.deleteItem(index)}
-        key={key}
-        deletable={this.value.length > minimumRows}
-        disabled={disabled}
-      >
-        <Template
-          value={value}
-          errors={errors[index]}
-          onChange={this.updateItem(index)}
-          ref={this.setRowReference(index)}
+      <div>
+        {this.renderGrabHandle()}
+        <HasManyFieldsRow
+          onDelete={this.deleteItem(index)}
+          key={key}
+          deletable={this.value.length > minimumRows}
           disabled={disabled}
-        />
-      </HasManyFieldsRow>
+        >
+          <Template
+            value={value}
+            errors={errors[index]}
+            onChange={this.updateItem(index)}
+            ref={this.setRowReference(index)}
+            disabled={disabled}
+          />
+        </HasManyFieldsRow>
+      </div>
     ));
 
     const SortableList = SortableContainer(() => (
