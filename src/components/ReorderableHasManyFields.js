@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import Icon from './Icon';
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
-import * as styles from './ReorderableHasManyFields.scss';
 
 class ReorderableHasManyFields extends Component {
   static propTypes = {
@@ -112,17 +111,6 @@ class ReorderableHasManyFields extends Component {
     this.value = result;
   };
 
-  renderGrabHandle() {
-    return (
-      <span className={`${styles.grabHandleContainer}`}>
-        <div className={styles.grabHandle}>
-          <Icon name="ellipsis-v" />
-          <Icon name="ellipsis-v" className={styles.grabHandleRight} />
-        </div>
-      </span>
-    );
-  }
-
   render() {
     const {
       template: Template,
@@ -133,23 +121,33 @@ class ReorderableHasManyFields extends Component {
       maximumRows
     } = this.props;
 
+    const DragHandle = SortableHandle(() => (
+      <div className="mr-3 align-self-stretch text-black-50" style={{ cursor: 'grab' }}>
+        <span className="d-flex align-items-center h-100">
+          <Icon name="bars" />
+        </span>
+      </div>
+    ));
+
     const SortableItem = SortableElement(({ key, sortIndex, value }) => (
-      <div>
-        {this.renderGrabHandle()}
-        <HasManyFieldsRow
-          onDelete={this.deleteItem(sortIndex)}
-          key={key}
-          deletable={this.value.length > minimumRows}
-          disabled={disabled}
-        >
-          <Template
-            value={value}
-            errors={errors[sortIndex]}
-            onChange={this.updateItem(sortIndex)}
-            ref={this.setRowReference(sortIndex)}
+      <div className="d-flex">
+        <DragHandle />
+        <div style={{ width: '100%' }}>
+          <HasManyFieldsRow
+            onDelete={this.deleteItem(sortIndex)}
+            key={key}
+            deletable={this.value.length > minimumRows}
             disabled={disabled}
-          />
-        </HasManyFieldsRow>
+          >
+            <Template
+              value={value}
+              errors={errors[sortIndex]}
+              onChange={this.updateItem(sortIndex)}
+              ref={this.setRowReference(sortIndex)}
+              disabled={disabled}
+            />
+          </HasManyFieldsRow>
+        </div>
       </div>
     ));
 
@@ -160,7 +158,6 @@ class ReorderableHasManyFields extends Component {
         ))}
         {this.value.length < maximumRows ? (
           <div>
-            {this.renderGrabHandle()}
             <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
               {label}
             </HasManyFieldsAdd>
@@ -170,7 +167,7 @@ class ReorderableHasManyFields extends Component {
     ));
 
     return (
-      <SortableList onSortEnd={this.onSortEnd} />
+      <SortableList onSortEnd={this.onSortEnd} useDragHandle />
     );
   }
 }
