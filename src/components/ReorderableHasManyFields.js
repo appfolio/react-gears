@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
-import Icon from './Icon';
+import { SortableElement } from 'react-sortable-hoc';
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
+import withDragHandler from './Reorderable/DragHandler';
+import withReorderableContainer from './Reorderable/ReorderableContainer';
 
 class ReorderableHasManyFields extends Component {
   static propTypes = {
@@ -121,17 +122,11 @@ class ReorderableHasManyFields extends Component {
       maximumRows
     } = this.props;
 
-    const DragHandle = SortableHandle(() => (
-      <div className="mr-3 align-self-stretch text-black-50" style={{ cursor: 'grab' }}>
-        <span className="d-flex align-items-center h-100">
-          <Icon name="bars" />
-        </span>
-      </div>
-    ));
+    const DragHandler = withDragHandler();
 
     const SortableItem = SortableElement(({ key, sortIndex, value }) => (
       <div className="d-flex">
-        <DragHandle />
+        <DragHandler />
         <div style={{ width: '100%' }}>
           <HasManyFieldsRow
             onDelete={this.deleteItem(sortIndex)}
@@ -151,7 +146,7 @@ class ReorderableHasManyFields extends Component {
       </div>
     ));
 
-    const SortableList = SortableContainer(() => (
+    const ContainerUI = (
       <div>
         {this.value.map((item, i) => (
           <SortableItem key={`item-${i}`} index={i} sortIndex={i} value={item} />
@@ -164,10 +159,12 @@ class ReorderableHasManyFields extends Component {
           </div>
         ) : null}
       </div>
-    ));
+    );
+
+    const ReorderableContainer = withReorderableContainer(ContainerUI);
 
     return (
-      <SortableList onSortEnd={this.onSortEnd} useDragHandle />
+      <ReorderableContainer onSortEnd={this.onSortEnd} useDragHandle />
     );
   }
 }
