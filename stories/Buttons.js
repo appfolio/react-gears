@@ -121,7 +121,14 @@ storiesOf('Buttons', module)
         </ButtonGroup>
       </Row>
     </div>
-  ));
+  ))
+  .addWithInfo('Toolbar', () => (
+    <ButtonToolbar>
+      <Button color="primary">Save</Button>
+      <Button>Cancel</Button>
+      <Button color="link" className="text-danger ml-sm-auto">Delete</Button>
+    </ButtonToolbar>
+  ))
 // TODO
 //  .addWithInfo('with dropdowns', () => <h1>TODO</h1>)
 //  .addWithInfo('with split dropdowns', () => <h1>TODO</h1>)
