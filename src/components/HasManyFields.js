@@ -129,8 +129,30 @@ class HasManyFields extends React.Component {
     return null;
   }
 
+  renderHasManyFiledsRow(key, index, value) {
+    const { template: Template, disabled, errors, minimumRows } = this.props;
+
+    return (
+      <HasManyFieldsRow
+        onDelete={this.deleteItem(index)}
+        key={key}
+        deletable={this.value.length > minimumRows}
+        disabled={disabled}
+      >
+        <Template
+          value={value}
+          errors={errors[index]}
+          onChange={this.updateItem(index)}
+          ref={this.setRowReference(index)}
+          disabled={disabled}
+        />
+      </HasManyFieldsRow>
+    );
+  }
+
   render() {
-    const { template: Template, disabled, errors, minimumRows, reorderable } = this.props;
+    const { reorderable } = this.props;
+    const itemsLength = this.value.length;
 
     if (reorderable) {
       const DragHandler = withDragHandler();
@@ -139,20 +161,7 @@ class HasManyFields extends React.Component {
         <div className="d-flex">
           <DragHandler />
           <div style={{ width: '100%' }}>
-            <HasManyFieldsRow
-              onDelete={this.deleteItem(sortIndex)}
-              key={key}
-              deletable={this.value.length > minimumRows}
-              disabled={disabled}
-            >
-              <Template
-                value={value}
-                errors={errors[sortIndex]}
-                onChange={this.updateItem(sortIndex)}
-                ref={this.setRowReference(sortIndex)}
-                disabled={disabled}
-              />
-            </HasManyFieldsRow>
+            {this.renderHasManyFiledsRow(key, sortIndex, value)}
           </div>
         </div>
       );
@@ -160,8 +169,8 @@ class HasManyFields extends React.Component {
 
       const ContainerUI = () => (
         <div>
-          {this.value.map((item, i) => (
-            <SortableItem key={`item-${i}`} index={i} sortIndex={i} value={item} />
+          {this.value.map((item, index) => (
+            <SortableItem key={`${index}/${itemsLength}`} index={index} sortIndex={index} value={item} />
           ))}
           {this.renderAddRow()}
         </div>
@@ -175,22 +184,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, i, items) => (
-          <HasManyFieldsRow
-            onDelete={this.deleteItem(i)}
-            key={`${i}/${items.length}`}
-            deletable={this.value.length > minimumRows}
-            disabled={disabled}
-          >
-            <Template
-              value={item}
-              errors={errors[i]}
-              onChange={this.updateItem(i)}
-              ref={this.setRowReference(i)}
-              disabled={disabled}
-            />
-          </HasManyFieldsRow>
-        ))}
+        {this.value.map((item, index) => this.renderHasManyFiledsRow(`${index}/${itemsLength}`, index, item))}
         {this.renderAddRow()}
       </div>
     );
