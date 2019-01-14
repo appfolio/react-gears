@@ -129,7 +129,7 @@ class HasManyFields extends React.Component {
     return null;
   }
 
-  renderHasManyFiledsRow(key, index, value) {
+  renderHasManyFieldsRow(key, index, value) {
     const { template: Template, disabled, errors, minimumRows } = this.props;
 
     return (
@@ -161,7 +161,7 @@ class HasManyFields extends React.Component {
         <div className="d-flex js-reorderable-item">
           <DragHandler />
           <div style={{ width: '100%' }} >
-            {this.renderHasManyFiledsRow(key, sortIndex, value)}
+            {this.renderHasManyFieldsRow(key, sortIndex, value)}
           </div>
         </div>
       );
@@ -184,7 +184,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, index) => this.renderHasManyFiledsRow(`${index}/${itemsLength}`, index, item))}
+        {this.value.map((item, index) => this.renderHasManyFieldsRow(`${index}/${itemsLength}`, index, item))}
         {this.renderAddRow()}
       </div>
     );
