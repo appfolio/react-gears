@@ -158,9 +158,9 @@ class HasManyFields extends React.Component {
       const DragHandler = withDragHandler();
 
       const ItemUI = ({ key, sortIndex, value }) => (
-        <div className="d-flex">
+        <div className="d-flex js-reorderable-item">
           <DragHandler />
-          <div style={{ width: '100%' }}>
+          <div style={{ width: '100%' }} >
             {this.renderHasManyFiledsRow(key, sortIndex, value)}
           </div>
         </div>
@@ -178,7 +178,7 @@ class HasManyFields extends React.Component {
       const ReorderableContainer = withReorderableContainer(ContainerUI);
 
       return (
-        <ReorderableContainer onSortEnd={this.onSortEnd} useDragHandle />
+        <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle />
       );
     }
 
