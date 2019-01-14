@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
+import withDragHandler from './Reorderable/DragHandler';
+import withReorderableContainer from './Reorderable/ReorderableContainer';
+import withReorderableElement from './Reorderable/ReorderableElement';
 
 class HasManyFields extends React.Component {
   static propTypes = {
@@ -21,7 +24,8 @@ class HasManyFields extends React.Component {
       .isRequired,
     value: PropTypes.array,
     minimumRows: PropTypes.number,
-    maximumRows: PropTypes.number
+    maximumRows: PropTypes.number,
+    reorderable: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -32,7 +36,8 @@ class HasManyFields extends React.Component {
     onUpdate: noop,
     onChange: noop,
     minimumRows: 1,
-    maximumRows: Infinity
+    maximumRows: Infinity,
+    reorderable: false,
   };
 
   constructor(props) {
@@ -101,15 +106,72 @@ class HasManyFields extends React.Component {
     firstInput && firstInput.focus(); // eslint-disable-line no-unused-expressions
   };
 
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const result = Array.from(this.value);
+    const [removed] = result.splice(oldIndex, 1);
+    result.splice(newIndex, 0, removed);
+    this.value = result;
+  };
+
+  renderAddRow() {
+    const { disabled, label, maximumRows } = this.props;
+
+    if (this.value.length < maximumRows) {
+      return (
+        <div>
+          <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
+            {label}
+          </HasManyFieldsAdd>
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   render() {
-    const {
-      template: Template,
-      label,
-      disabled,
-      errors,
-      minimumRows,
-      maximumRows
-    } = this.props;
+    const { template: Template, disabled, errors, minimumRows, reorderable } = this.props;
+
+    if (reorderable) {
+      const DragHandler = withDragHandler();
+
+      const ItemUI = ({ key, sortIndex, value }) => (
+        <div className="d-flex">
+          <DragHandler />
+          <div style={{ width: '100%' }}>
+            <HasManyFieldsRow
+              onDelete={this.deleteItem(sortIndex)}
+              key={key}
+              deletable={this.value.length > minimumRows}
+              disabled={disabled}
+            >
+              <Template
+                value={value}
+                errors={errors[sortIndex]}
+                onChange={this.updateItem(sortIndex)}
+                ref={this.setRowReference(sortIndex)}
+                disabled={disabled}
+              />
+            </HasManyFieldsRow>
+          </div>
+        </div>
+      );
+      const SortableItem = withReorderableElement(ItemUI);
+
+      const ContainerUI = () => (
+        <div>
+          {this.value.map((item, i) => (
+            <SortableItem key={`item-${i}`} index={i} sortIndex={i} value={item} />
+          ))}
+          {this.renderAddRow()}
+        </div>
+      );
+      const ReorderableContainer = withReorderableContainer(ContainerUI);
+
+      return (
+        <ReorderableContainer onSortEnd={this.onSortEnd} useDragHandle />
+      );
+    }
 
     return (
       <div>
@@ -129,12 +191,7 @@ class HasManyFields extends React.Component {
             />
           </HasManyFieldsRow>
         ))}
-
-        {this.value.length < maximumRows ? (
-          <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
-            {label}
-          </HasManyFieldsAdd>
-        ) : null}
+        {this.renderAddRow()}
       </div>
     );
   }
