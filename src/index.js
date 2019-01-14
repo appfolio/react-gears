@@ -71,7 +71,6 @@ import PopoverTitle from './components/PopoverTitle';
 import PopperContent from './components/PopperContent';
 import PopperTargetHelper from './components/PopperTargetHelper';
 import Portal from './components/Portal';
-import ReorderableHasManyFields from './components/ReorderableHasManyFields';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
@@ -229,7 +228,6 @@ export {
   PopperContent,
   PopperTargetHelper,
   Portal,
-  ReorderableHasManyFields,
   Row,
   TabContent,
   Table,

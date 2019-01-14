@@ -37,7 +37,6 @@ import './Notes';
 import './Paginator';
 import './Popover';
 import './Progress';
-import './ReorderableHasManyFields';
 import './Select';
 import './Spinner';
 import './Steps';
