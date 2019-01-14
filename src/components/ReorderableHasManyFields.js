@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import { SortableElement } from 'react-sortable-hoc';
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
 import withDragHandler from './Reorderable/DragHandler';
 import withReorderableContainer from './Reorderable/ReorderableContainer';
+import withReorderableElement from './Reorderable/ReorderableElement';
 
 class ReorderableHasManyFields extends Component {
   static propTypes = {
@@ -124,7 +124,7 @@ class ReorderableHasManyFields extends Component {
 
     const DragHandler = withDragHandler();
 
-    const SortableItem = SortableElement(({ key, sortIndex, value }) => (
+    const ItemUI = ({ key, sortIndex, value }) => (
       <div className="d-flex">
         <DragHandler />
         <div style={{ width: '100%' }}>
@@ -144,7 +144,9 @@ class ReorderableHasManyFields extends Component {
           </HasManyFieldsRow>
         </div>
       </div>
-    ));
+    );
+
+    const SortableItem = withReorderableElement(ItemUI);
 
     const ContainerUI = (
       <div>
