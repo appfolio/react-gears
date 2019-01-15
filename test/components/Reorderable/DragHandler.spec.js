@@ -11,8 +11,7 @@ describe('#withDragHandler', () => {
       const wrapper = mount(<Handler />);
       const icon = wrapper.find(Icon);
 
-      assert.equal(icon.length, 1);
-      assert.deepEqual(icon.prop('name'), 'bars');
+      assert(icon.exists());
     });
   });
 

@@ -180,7 +180,12 @@ class HasManyFields extends React.Component {
 
       return (
         <div className={styles.noSelect}>
-          <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle lockAxis="y" />
+          <ReorderableContainer
+            className="js-reorderable-container"
+            onSortEnd={this.onSortEnd}
+            useDragHandle
+            lockAxis="y"
+          />
         </div>
       );
     }
