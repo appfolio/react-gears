@@ -9,7 +9,7 @@ export default function withDragHandler(WrappedComponent, useDefault = true) {
       <div className={`mr-3 align-self-stretch ${styles.dragHandler}`}>
         <span className="d-flex flex-column align-items-center justify-content-center h-100 pr-1">
           <Icon name="angle-up" />
-          <Icon name="circle-thin" className={styles.off} />
+          <Icon name="circle-thin" />
           <Icon name="angle-down" />
         </span>
       </div>
