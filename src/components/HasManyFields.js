@@ -8,6 +8,7 @@ import HasManyFieldsRow from './HasManyFieldsRow';
 import withDragHandler from './Reorderable/DragHandler';
 import withReorderableContainer from './Reorderable/ReorderableContainer';
 import withReorderableElement from './Reorderable/ReorderableElement';
+import * as styles from './Reorderable/Reorderable.scss';
 
 class HasManyFields extends React.Component {
   static propTypes = {
@@ -178,7 +179,9 @@ class HasManyFields extends React.Component {
       const ReorderableContainer = withReorderableContainer(ContainerUI);
 
       return (
-        <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle />
+        <div className={styles.noSelect}>
+          <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle />
+        </div>
       );
     }
 
