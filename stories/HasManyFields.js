@@ -17,7 +17,21 @@ const items = [
     state: 'CA',
     postal: '93117',
     countryCode: 'US'
-  }
+  },
+  {
+    address1: '70 Castilian Dr.',
+    city: 'Goleta',
+    state: 'CA',
+    postal: '93117',
+    countryCode: 'US'
+  },
+  {
+    address1: '90 Castilian Dr.',
+    city: 'Goleta',
+    state: 'CA',
+    postal: '93117',
+    countryCode: 'US'
+  },
 ];
 
 storiesOf('HasManyFields', module)
@@ -34,6 +48,7 @@ storiesOf('HasManyFields', module)
       onChange={action('hasManyFields onChange')}
       minimumRows={number('minimumRows', 1)}
       maximumRows={number('maximumRows', 5)}
+      reorderable={boolean('reorderable', false)}
     />
   ))
   .addWithInfo('Row Wrapper', () => (
