@@ -1,13 +1,16 @@
 import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
 import Icon from '../Icon';
+import styles from './DragHandler.scss';
 
 export default function withDragHandler(WrappedComponent, useDefault = true) {
   if (useDefault) {
     return SortableHandle(() => (
-      <div className="mr-3 align-self-stretch text-black-50" style={{ cursor: 'grab' }}>
-        <span className="d-flex align-items-center h-100">
-          <Icon name="bars" />
+      <div className={`mr-3 align-self-stretch ${styles.dragHandler}`}>
+        <span className="d-flex flex-column align-items-center justify-content-center h-100 pr-1">
+          <Icon name="angle-up" />
+          <Icon name="circle-thin" />
+          <Icon name="angle-down" />
         </span>
       </div>
     ));
