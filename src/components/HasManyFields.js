@@ -152,10 +152,10 @@ class HasManyFields extends React.Component {
   }
 
   render() {
-    const { reorderable } = this.props;
+    const { disabled, reorderable } = this.props;
     const itemsLength = this.value.length;
 
-    if (reorderable) {
+    if (!disabled && reorderable) {
       const DragHandler = withDragHandler();
 
       const ItemUI = ({ key, sortIndex, value }) => (
@@ -180,7 +180,7 @@ class HasManyFields extends React.Component {
 
       return (
         <div className={styles.noSelect}>
-          <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle />
+          <ReorderableContainer className="js-reorderable-container" onSortEnd={this.onSortEnd} useDragHandle lockAxis="y" />
         </div>
       );
     }
