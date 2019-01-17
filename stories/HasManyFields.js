@@ -1,13 +1,13 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action, storiesOf } from '@storybook/react';
 import React from 'react';
-import { Input } from 'reactstrap';
 
 import {
   AddressInput,
   HasManyFields,
   HasManyFieldsAdd,
-  HasManyFieldsRow
+  HasManyFieldsRow,
+  Input
 } from '../src';
 
 const items = [
