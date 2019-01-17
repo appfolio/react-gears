@@ -10,6 +10,32 @@ import ReorderableContainer from './Reorderable/ReorderableContainer';
 import ReorderableElement from './Reorderable/ReorderableElement';
 import styles from './Reorderable/Reorderable.scss';
 
+const DragHandler = withDragHandler();
+
+const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
+  <div className="d-flex js-reorderable-item" key={key}>
+    <DragHandler />
+    <div style={{ width: '100%' }} >
+      {renderHasManyFieldsRow(null, sortIndex, value)}
+    </div>
+  </div>
+));
+
+const SortableContainer = ReorderableContainer(({ value, renderAddRow, renderHasManyFieldsRow }) => (
+  <div>
+    {value.map((item, index) => (
+      <SortableItem
+        key={`${item.key ? item.key : `${index}/${value.length}`}`}
+        index={index}
+        sortIndex={index}
+        value={item}
+        renderHasManyFieldsRow={renderHasManyFieldsRow}
+      />
+    ))}
+    {renderAddRow()}
+  </div>
+));
+
 class HasManyFields extends React.Component {
   static propTypes = {
     blank: PropTypes.any,
@@ -114,7 +140,7 @@ class HasManyFields extends React.Component {
     this.value = result;
   };
 
-  renderAddRow() {
+  renderAddRow = () => {
     const { disabled, label, maximumRows } = this.props;
 
     if (this.value.length < maximumRows) {
@@ -130,7 +156,7 @@ class HasManyFields extends React.Component {
     return null;
   }
 
-  renderHasManyFieldsRow(key, index, value) {
+  renderHasManyFieldsRow = (key, index, value) => {
     const { template: Template, disabled, errors, minimumRows } = this.props;
 
     return (
@@ -156,28 +182,6 @@ class HasManyFields extends React.Component {
     const itemsLength = this.value.length;
 
     if (!disabled && reorderable) {
-      const DragHandler = withDragHandler();
-
-      const ItemUI = ({ key, sortIndex, value }) => (
-        <div className="d-flex js-reorderable-item">
-          <DragHandler />
-          <div style={{ width: '100%' }} >
-            {this.renderHasManyFieldsRow(key, sortIndex, value)}
-          </div>
-        </div>
-      );
-      const SortableItem = ReorderableElement(ItemUI);
-
-      const ContainerUI = () => (
-        <div>
-          {this.value.map((item, index) => (
-            <SortableItem key={`${index}/${itemsLength}`} index={index} sortIndex={index} value={item} />
-          ))}
-          {this.renderAddRow()}
-        </div>
-      );
-      const SortableContainer = ReorderableContainer(ContainerUI);
-
       return (
         <div className={styles.noSelect}>
           <SortableContainer
@@ -185,6 +189,9 @@ class HasManyFields extends React.Component {
             onSortEnd={this.onSortEnd}
             useDragHandle
             lockAxis="y"
+            value={this.value}
+            renderHasManyFieldsRow={this.renderHasManyFieldsRow}
+            renderAddRow={this.renderAddRow}
           />
         </div>
       );
