@@ -202,7 +202,7 @@ export default class DateInput extends React.Component {
     this.setState({
       value: ''
     });
-    this.props.onChange('', true);
+    this.props.onChange('', false);
   }
   toggle = () => (this.state.open ? this.close() : this.show());
 
