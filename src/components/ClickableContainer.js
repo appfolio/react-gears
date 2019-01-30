@@ -17,7 +17,7 @@ export default function ClickableContainer({ onClick, tag: Tag, ...props }) {
 
 ClickableContainer.propTypes = {
   onClick: PropTypes.func.isRequired,
-  tag: PropTypes.oneOf([PropTypes.string, PropTypes.func])
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 
 ClickableContainer.defaultProps = {

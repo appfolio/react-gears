@@ -35,8 +35,23 @@ describe('<ClickableContainer />', () => {
 
   it('should render any tag', () => {
     const onClick = sinon.spy();
-    const component = mount(<ClickableContainer tag="header" onClick={onClick} />);
+    const component = mount(
+      <ClickableContainer tag="header" onClick={onClick} />
+    );
     const header = component.find('header');
     assert.equal(header.length, 1);
+  });
+
+  it('should accept string or function as tag', () => {
+    const onClick = () => true;
+
+    assert.doesNotThrow(() => {
+      mount(<ClickableContainer tag="div" onClick={onClick} />);
+      mount(<ClickableContainer tag={() => <div />} onClick={onClick} />);
+    });
+
+    assert.throws(() => {
+      mount(<ClickableContainer tag={3.14159} onClick={onClick} />);
+    }, Error);
   });
 });
