@@ -51,7 +51,7 @@ class SortableTable extends React.Component {
       <tr
         key={row.key}
         className={rowClassName(row)}
-        onClick={() => rowOnClick && rowOnClick(row)}
+        onClick={e => rowOnClick && rowOnClick(row, e)}
         role={rowOnClick ? 'button' : null}
       >
         {columns.map(column => (
