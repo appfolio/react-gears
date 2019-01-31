@@ -33,6 +33,12 @@ export default class HasManyFieldsRow extends React.Component {
     deletable: true
   };
 
+  state = { isDeleting: false };
+
+  onDelete = (e) => {
+    this.setState({ isDeleting: true }, () => setTimeout(() => this.props.onDelete(e), 1250));
+  }
+
   componentWillMount() {
     this.id = getID();
   }
@@ -42,13 +48,12 @@ export default class HasManyFieldsRow extends React.Component {
       children,
       className,
       disabledReason,
-      onDelete,
       disabled,
       disabledReasonPlacement,
       deletable
     } = this.props;
 
-    const classNames = classnames('mb-3', className);
+    const classNames = classnames('mb-3 animated', { hinge: this.state.isDeleting }, className);
     // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
 
     const tooltip =
@@ -73,7 +78,7 @@ export default class HasManyFieldsRow extends React.Component {
         color="danger"
         confirmation="Delete"
         outline
-        onClick={onDelete}
+        onClick={this.onDelete}
         className="p-2"
       >
         <Icon name="times-circle-o" size="lg" />
