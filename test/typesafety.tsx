@@ -36,6 +36,7 @@ import InfoBox from '../src/components/InfoBox';
 import LabelBadge from '../src/components/LabelBadge';
 import MonthInput from '../src/components/MonthInput';
 import MonthCalendar from '../src/components/MonthCalendar';
+import SortableTable from '../src/components/SortableTable';
 import Spinner from '../src/components/Spinner';
 import Steps from '../src/components/Steps';
 import SummaryBox from '../src/components/SummaryBox';
@@ -275,7 +276,7 @@ const FormChoiceExample = () => {
   <FormChoice type="select" value="foobar">
     Test
   </FormChoice>
-} 
+}
 
 const FormRowExample = () => {
   return (
@@ -385,6 +386,47 @@ const MonthCalendarExample = () => {
   <MonthCalendar date={new Date(2017, 4, 20)} dateVisible={(d) => true}/>
 }
 
+const SortableTableExample = () => {
+  type Row = { name: string };
+  const columns = [
+    {
+      key: 'name',
+      header: 'Name',
+      align: 'left',
+      active: true,
+      ascending: false,
+      cell: (row: Row) => row.name,
+      onSort: (ascending: boolean) => {},
+      width: '50%',
+    },
+    {
+      key: 'enabled',
+      header: 'Enabled',
+      align: 'center',
+      active: false,
+      cell: (row: Row) => 'Yes',
+      width: '10%',
+      footer: 'All systems are go',
+      ascending: false
+    }
+  ];
+  const rows: Row[] = [
+      {
+        name: 'Smith',
+      }
+    ];
+
+  class NameTable extends SortableTable<Row> { }
+
+  <NameTable
+    dark
+    bordered
+    striped
+    columns={columns}
+    rows={rows}
+  />
+};
+
 const SpinnerExample = () => {
   <Spinner/>
 }
@@ -406,6 +448,12 @@ const SummaryBoxExample = () => {
 
 const SummaryBoxItemExample = () => {
   <SummaryBoxItem id="mertz"/>
+}
+
+const TableExample = () => {
+  <Table size="sm" borderless striped dark hover>
+    <tr><td>One Cell</td></tr>
+  </Table>
 }
 
 const TableItem = () => {
