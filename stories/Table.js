@@ -70,7 +70,8 @@ storiesOf('Table', module)
               header: 'First',
               key: 'first',
               cell: row => row.first,
-              onSort: action('onSort', 'First')
+              onSort: action('onSort', 'First'),
+              width: '20%'
             },
             {
               active: column === 'last',
@@ -78,7 +79,8 @@ storiesOf('Table', module)
               header: 'Last',
               key: 'last',
               cell: row => row.last,
-              onSort: action('onSort', 'Last')
+              onSort: action('onSort', 'Last'),
+              width: '30%'
             },
             {
               active: column === 'dob',
@@ -86,7 +88,8 @@ storiesOf('Table', module)
               header: 'DOB',
               key: 'dob',
               cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-              onSort: action('onSort', 'DOB')
+              onSort: action('onSort', 'DOB'),
+              width: '15%'
             },
             {
               active: column === 'email',
@@ -94,10 +97,15 @@ storiesOf('Table', module)
               header: <span>Email</span>,
               key: 'email',
               cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-              onSort: action('onSort', 'Email')
+              onSort: action('onSort', 'Email'),
+              width: '35%'
             }
           ]}
           rows={DATA}
+          rowSelected={row => row.key === '777'}
+          onExpand={action('onExpand')}
+          onSelect={action('onSelect')}
+          onSelectAll={action('onSelectAll')}
         />
       </div>
     );
