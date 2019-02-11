@@ -1,12 +1,9 @@
-import { Component, MouseEvent } from 'react';
-import OneOrMore from '../TypeHelpers/OneOrMore';
-
-type Child = JSX.Element | string;
+import { Component, MouseEvent, ReactNode } from 'react';
 
 export interface HeaderProps {
   active: boolean;
   ascending: boolean;
-  children: OneOrMore<Child>;
+  children: ReactNode;
   className: string;
   onSort: ((event: MouseEvent) => void) | null;
 }

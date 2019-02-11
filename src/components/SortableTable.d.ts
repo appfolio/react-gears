@@ -3,15 +3,14 @@ import { TableProps } from './Table';
 import { HeaderProps } from './SortableTable/Header';
 import Omit from './TypeHelpers/Omit';
 
-type Node = JSX.Element | string;
 type HorizontalAlignment = 'left' | 'center' | 'right';
 
 export interface SortableColumn<T>
   extends Omit<HeaderProps, 'className' | 'children' | 'onSort'> {
   align?: HorizontalAlignment;
-  cell: (row: T) => Node;
-  footer?: Node;
-  header?: Node;
+  cell: (row: T) => React.ReactNode;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
   key: string;
   onSort?: (ascending: boolean) => void;
   width?: string;
@@ -20,9 +19,9 @@ export interface SortableColumn<T>
 interface SortableTableProps<T> extends TableProps {
   columns: SortableColumn<T>[];
   rows: T[];
-  footer?: Node;
-  rowClassName?: (row: T) => Node | undefined;
-  rowExpanded?: (row: T) => Node | boolean;
+  footer?: React.ReactNode;
+  rowClassName?: (row: T) => React.ReactNode | undefined;
+  rowExpanded?: (row: T) => React.ReactNode | boolean;
   rowOnClick?: (row: T, evt: React.MouseEvent) => void;
   trunate?: boolean;
 }
