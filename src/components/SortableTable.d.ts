@@ -4,9 +4,10 @@ import { HeaderProps } from './SortableTable/Header';
 import Omit from './TypeHelpers/Omit';
 
 type Node = JSX.Element | string;
+export type HorizontalAlignment = "left" | "center" | "right";
 
 interface Column<T> extends Omit<HeaderProps, 'className' | 'children' | 'onSort'> {
-  align?: 'left' | 'center' | 'right';
+  align?: HorizontalAlignment;
   cell: (row: T) => Node;
   footer?: Node;
   header?: Node;

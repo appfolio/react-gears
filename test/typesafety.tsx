@@ -36,7 +36,7 @@ import InfoBox from '../src/components/InfoBox';
 import LabelBadge from '../src/components/LabelBadge';
 import MonthInput from '../src/components/MonthInput';
 import MonthCalendar from '../src/components/MonthCalendar';
-import SortableTable from '../src/components/SortableTable';
+import SortableTable, { HorizontalAlignment } from '../src/components/SortableTable';
 import Spinner from '../src/components/Spinner';
 import Steps from '../src/components/Steps';
 import SummaryBox from '../src/components/SummaryBox';
@@ -392,7 +392,7 @@ const SortableTableExample = () => {
     {
       key: 'name',
       header: 'Name',
-      align: 'left',
+      align: 'left' as HorizontalAlignment,
       active: true,
       ascending: false,
       cell: (row: Row) => row.name,
@@ -402,7 +402,7 @@ const SortableTableExample = () => {
     {
       key: 'enabled',
       header: 'Enabled',
-      align: 'center',
+      align: 'center' as HorizontalAlignment,
       active: false,
       cell: (row: Row) => 'Yes',
       width: '10%',
