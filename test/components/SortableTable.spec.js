@@ -361,5 +361,45 @@ describe('<SortableTable />', () => {
       wrapper.find('td input').last().simulate('change', { target: { checked: false } });
       assert(onSelect.calledWith(3, false));
     });
+
+    it('should check the selectAll checkbox when allSelected present', () => {
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={() => {}}
+          rowSelected={() => false}
+          allSelected
+        />
+      );
+      assert.equal(wrapper.find('th input').prop('checked'), true);
+    });
+
+    it('should not check the selectAll checkbox when allSelected not present', () => {
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={() => {}}
+          rowSelected={() => false}
+          allSelected={false}
+        />
+      );
+      assert.equal(wrapper.find('th input').prop('checked'), false);
+    });
+
+    it('should call onSelectAll when clicked', () => {
+      const onSelectAll = sinon.stub();
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelectAll={onSelectAll}
+          rowSelected={() => false}
+        />
+      );
+      wrapper.find('th input').first().simulate('change', { target: { checked: true } });
+      assert.equal(onSelectAll.calledOnce, true);
+    });
   });
 });
