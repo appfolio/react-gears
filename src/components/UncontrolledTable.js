@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import orderBy from 'lodash.orderby';
 import some from 'lodash.some';
 import isEqual from 'lodash.isequal';
