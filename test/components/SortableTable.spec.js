@@ -399,7 +399,9 @@ describe('<SortableTable />', () => {
         />
       );
       wrapper.find('th input').first().simulate('change', { target: { checked: true } });
-      assert.equal(onSelectAll.calledOnce, true);
+      assert(onSelectAll.calledWith(true));
+      wrapper.find('th input').first().simulate('change', { target: { checked: false } });
+      assert(onSelectAll.calledWith(false));
     });
   });
 });
