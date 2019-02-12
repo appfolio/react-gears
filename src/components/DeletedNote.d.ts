@@ -3,7 +3,7 @@ import * as React from 'react';
 
 interface DeletedNoteProps {
   note: Note;
-  onUndelete: (Note) => void;
+  onUndelete: (note: Note) => void;
 }
 declare class DeletedNote extends React.Component<DeletedNoteProps, {}> { }
 export default DeletedNote;
