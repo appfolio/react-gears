@@ -19,11 +19,11 @@ export interface SortableColumn<T>
 interface SortableTableProps<T> extends TableProps {
   allSelected?: boolean;
   columns: SortableColumn<T>[];
-  expandableColumn?: SortableColumn<T>;
+  expandableColumn?: Partial<SortableColumn<T>>;
   footer?: React.ReactNode;
   onExpand?: (row: T) => void;
   onSelect?: (row: T, selected: boolean) => void;
-  onSelectAll?: (row: T, selected: boolean) => void;
+  onSelectAll?: (selected: boolean) => void;
   rowSelected?: (row: T) => boolean;
   rows: T[];
   rowClassName?: (row: T) => React.ReactNode | undefined;
