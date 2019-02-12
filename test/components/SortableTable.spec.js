@@ -303,4 +303,30 @@ describe('<SortableTable />', () => {
 
     assert.equal(wrapper.find('tfoot td.whatever').length, 1, 'tfoot td.whatever incorrect');
   });
+
+  describe('Expandable column', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+    ];
+
+    it('should not render expandable column helper when onExpand not present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+      assert.equal(wrapper.find('td Button').length, 0, 'expand buttons present');
+    });
+
+    it('should render expandable column helper when onExpand present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={() => {}} />);
+      assert.equal(wrapper.find('td Button').length, 3, 'expand buttons missing');
+    });
+
+    it('should call onExpand when clicked', () => {
+      const onExpand = sinon.stub();
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={onExpand} />);
+      wrapper.find('td Button').first().simulate('click');
+      assert(onExpand.calledWith(1));
+      wrapper.find('td Button').last().simulate('click');
+      assert(onExpand.calledWith(3));
+    });
+  });
 });
