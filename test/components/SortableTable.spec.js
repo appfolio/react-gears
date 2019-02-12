@@ -329,4 +329,37 @@ describe('<SortableTable />', () => {
       assert(onExpand.calledWith(3));
     });
   });
+
+  describe('Selectable column', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+    ];
+
+    it('should not render selectable column helper when rowSelected not present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+      assert.equal(wrapper.find('input').length, 0, 'select checkbox present');
+    });
+
+    it('should render selectable column helper when rowSelected present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} rowSelected={() => false} />);
+      assert.equal(wrapper.find('input').length, 4, 'select checkbox missing');
+    });
+
+    it('should call onSelect when clicked', () => {
+      const onSelect = sinon.stub();
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={onSelect}
+          rowSelected={() => false}
+        />
+      );
+      wrapper.find('td input').first().simulate('change', { target: { checked: true } });
+      assert(onSelect.calledWith(1, true));
+      wrapper.find('td input').last().simulate('change', { target: { checked: false } });
+      assert(onSelect.calledWith(3, false));
+    });
+  });
 });
