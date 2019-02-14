@@ -55,3 +55,12 @@ storiesOf('HasManyFields', module)
       Button Label Content
     </HasManyFieldsAdd>
   ));
+
+storiesOf('HasManyFields/Integration', module).add('some test', () => (
+  <HasManyFields
+    defaultValue={items}
+    template={AddressInput}
+    blank={{ countryCode: 'US' }}
+    label="Add an Address"
+  />
+));

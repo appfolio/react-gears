@@ -13,18 +13,27 @@
     "react/no-find-dom-node": 1, // TODO Remove this when warnings are addressed
     "react/prefer-stateless-function": 0,
     "react/prop-types": 1,
-    "react/sort-comp": [1, {
-      "order": [
-        "propTypes",
-        "defaultProps",
-        "static-methods",
-        "state",
-        "constructor",
-        "everything-else",
-        "lifecycle",
-        "render"
-      ]
-    }],
+    "react/sort-comp": [
+      1,
+      {
+        "order": [
+          "propTypes",
+          "defaultProps",
+          "static-methods",
+          "state",
+          "constructor",
+          "everything-else",
+          "lifecycle",
+          "render"
+        ]
+      }
+    ],
     "require-jsdoc": 0
+  },
+  "globals": {
+    "beforeEach": true,
+    "cy": true,
+    "describe": true,
+    "it": true
   }
 }
