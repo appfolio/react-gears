@@ -9,7 +9,7 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
   ...Popover.defaultProps,
-  trigger: 'focus'
+  trigger: 'legacy'
 };
 
 export default Popover;

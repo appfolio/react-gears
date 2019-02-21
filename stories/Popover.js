@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
-import { Popover, PopoverBody } from '../src';
+import { PopoverBody, UncontrolledPopover } from '../src';
 
 storiesOf('Popover', module)
   .addWithInfo('Live example', () => (
@@ -9,10 +9,8 @@ storiesOf('Popover', module)
       <p>
         I can be placed in context to provide some contextual <strong id="popoverTarget">help</strong>!
       </p>
-      <Popover
-        isOpen={boolean('isOpen', false)}
+      <UncontrolledPopover
         target="popoverTarget"
-        toggle={() => {}}
         placement={select('placement', [
           'top', 'bottom', 'left', 'right'
         ], 'bottom')}
@@ -23,6 +21,6 @@ storiesOf('Popover', module)
           </h5>
           {text('PopoverBody', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
         </PopoverBody>
-      </Popover>
+      </UncontrolledPopover>
     </div>
   ));

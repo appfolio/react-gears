@@ -80,6 +80,7 @@ import UncontrolledCarousel from './components/UncontrolledCarousel';
 import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
 import UncontrolledNavDropdown from './components/UncontrolledNavDropdown';
+import UncontrolledPopover from './components/UncontrolledPopover';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
@@ -238,6 +239,7 @@ export {
   UncontrolledCollapse,
   UncontrolledDropdown,
   UncontrolledNavDropdown,
+  UncontrolledPopover,
   UncontrolledTooltip,
 
   Select,
