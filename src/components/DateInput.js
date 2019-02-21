@@ -107,8 +107,7 @@ export default class DateInput extends React.Component {
     };
   }
 
-  onChange = (event) => {
-    const value = event.target.value;
+  onChange = (value) => {
     this.setState({
       value
     });
@@ -198,12 +197,6 @@ export default class DateInput extends React.Component {
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
   show = () => this.setState({ open: true });
   today = () => this.setDate(new Date(), true);
-  clear = () => {
-    this.setState({
-      value: ''
-    });
-    this.props.onChange('', true);
-  }
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
@@ -273,7 +266,7 @@ export default class DateInput extends React.Component {
                 ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
-                onChange={this.onChange}
+                onChange={e => this.onChange(e.target.value)}
                 onClick={showOnFocus ? this.show : undefined}
                 onFocus={showOnFocus ? this.show : undefined}
                 onKeyDown={this.onKeyDown}
@@ -336,7 +329,7 @@ export default class DateInput extends React.Component {
               <footer className="text-center pb-2 pt-1">
                 <div>
                   <Button onClick={this.today} className="mr-2">Today</Button>
-                  <Button onClick={this.clear} className="mr-2">Clear</Button>
+                  <Button onClick={() => this.onChange('')} className="mr-2">Clear</Button>
                 </div>
               </footer>
             )}

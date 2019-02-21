@@ -25,3 +25,6 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
+      - run:
+          name: Run TypeScript Tests
+          command: npm run ts-test

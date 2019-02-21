@@ -246,7 +246,7 @@ describe('<DateInput />', () => {
       callback.reset();
       const clear = component.find('footer Button').at(1);
       clear.simulate('click');
-      assert(callback.calledWith('', true));
+      assert(callback.calledWith('', false));
     });
 
     it('should should set date when using arrow keys', () => {

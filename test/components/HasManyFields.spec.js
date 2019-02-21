@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon, { spy } from 'sinon';
 
@@ -192,5 +192,44 @@ describe('<HasManyFields />', () => {
     );
 
     assert.equal(component.find(HasManyFieldsAdd).length, 0);
+  });
+
+  describe('reorderable', () => {
+    let component;
+
+    beforeEach(() => {
+      const onAdd = spy();
+      const onRemove = spy();
+      const onUpdate = spy();
+      const onChange = spy();
+      component = mount(
+        <HasManyFields
+          value={items}
+          errors={errors}
+          template={Input}
+          blank="foo"
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onUpdate={onUpdate}
+          onChange={onChange}
+          label="Add an Animal"
+          reorderable
+        />
+      );
+    });
+
+    context('includes reorderable items', () => {
+      it('renders a container', () => {
+        const containerWrapper = component.find('.js-reorderable-container');
+
+        assert.equal(component.instance().onSortEnd, containerWrapper.at(0).prop('onSortEnd'));
+        assert.equal(true, containerWrapper.at(0).prop('useDragHandle'));
+      });
+
+      it('has correct number of reorderable items', () => {
+        assert.equal(items.length, component.find('.js-reorderable-item').length);
+        assert.equal(items.length, component.find(HasManyFieldsRow).length);
+      });
+    });
   });
 });

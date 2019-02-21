@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import orderBy from 'lodash.orderby';
 import some from 'lodash.some';
 import isEqual from 'lodash.isequal';
-import Button from './Button';
-import Icon from './Icon';
 import Paginator from './Paginator';
 import SortableTable from './SortableTable';
 
 export default class UncontrolledTable extends React.Component {
   static propTypes = {
     ...SortableTable.propTypes,
-    expandableColumn: PropTypes.object,
     expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     onExpand: PropTypes.func,
     page: PropTypes.number,
@@ -28,7 +24,6 @@ export default class UncontrolledTable extends React.Component {
   static defaultProps = {
     ...SortableTable.defaultProps,
     onExpand: () => {},
-    expandableColumn: {},
     expanded: [],
     page: 0,
     pageSize: 10,
@@ -144,7 +139,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandableColumn, expandable, pageSize, paginated, rowClassName, rowExpanded, rows, selectable, sort, onSelect, onExpand, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowExpanded, rows, selectable, sort, onSelect, onExpand, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
@@ -156,48 +151,17 @@ export default class UncontrolledTable extends React.Component {
         } : col
       );
 
-    if (selectable) {
-      cols.unshift({
-        align: 'center',
-        key: 'select',
-        header: (
-          <input
-            type="checkbox"
-            className="mx-1"
-            checked={this.allSelected}
-            onChange={this.toggleAll}
-          />
-        ),
-        cell: row => (
-          <input
-            type="checkbox"
-            className="mx-1"
-            checked={this.selected(row)}
-            onChange={() => this.toggleSelection(row)}
-          />
-        ),
-        width: '2rem'
-      });
-    }
+    const selectableProps = selectable ? {
+      rowSelected: row => this.selected(row),
+      onSelect: row => this.toggleSelection(row),
+      onSelectAll: () => this.toggleAll(),
+      allSelected: this.allSelected
+    } : undefined;
 
-    if (expandable) {
-      // TODO expandableColumn `cell` is currently unusable to toggle open, needs toggleExpanded support
-      cols.push({
-        align: 'center',
-        key: 'expand',
-        cell: row => (
-          <Button
-            className="px-2 py-0"
-            color="link"
-            onClick={() => this.toggleExpanded(row)}
-          >
-            <Icon name="ellipsis-v" size="lg" />
-          </Button>
-        ),
-        width: '2rem',
-        ...expandableColumn
-      });
-    }
+    const expandableProps = expandable ? {
+      rowExpanded: row => this.expanded(row) && rowExpanded(row),
+      onExpand: row => this.toggleExpanded(row)
+    } : undefined;
 
     const start = page * pageSize;
     const end = start + pageSize;
@@ -210,8 +174,8 @@ export default class UncontrolledTable extends React.Component {
           {...props}
           columns={cols}
           rows={visibleRows}
-          rowClassName={row => classnames({ 'table-info': this.selected(row) }, rowClassName(row))}
-          rowExpanded={row => expandable && this.expanded(row) && rowExpanded(row)}
+          {...expandableProps}
+          {...selectableProps}
         />
         {paginated && [
           <hr />,

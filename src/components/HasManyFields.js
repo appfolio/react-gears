@@ -5,6 +5,36 @@ import ReactDOM from 'react-dom';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
+import withDragHandler from './Reorderable/DragHandler';
+import ReorderableContainer from './Reorderable/ReorderableContainer';
+import ReorderableElement from './Reorderable/ReorderableElement';
+import styles from './Reorderable/Reorderable.scss';
+
+const DragHandler = withDragHandler();
+
+const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
+  <div className="d-flex js-reorderable-item" key={key}>
+    <DragHandler />
+    <div style={{ width: '100%' }} >
+      {renderHasManyFieldsRow(null, sortIndex, value)}
+    </div>
+  </div>
+));
+
+const SortableContainer = ReorderableContainer(({ value, renderAddRow, renderHasManyFieldsRow }) => (
+  <div>
+    {value.map((item, index) => (
+      <SortableItem
+        key={`${item.key ? item.key : `${index}/${value.length}`}`}
+        index={index}
+        sortIndex={index}
+        value={item}
+        renderHasManyFieldsRow={renderHasManyFieldsRow}
+      />
+    ))}
+    {renderAddRow()}
+  </div>
+));
 
 class HasManyFields extends React.Component {
   static propTypes = {
@@ -21,7 +51,8 @@ class HasManyFields extends React.Component {
       .isRequired,
     value: PropTypes.array,
     minimumRows: PropTypes.number,
-    maximumRows: PropTypes.number
+    maximumRows: PropTypes.number,
+    reorderable: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -32,7 +63,8 @@ class HasManyFields extends React.Component {
     onUpdate: noop,
     onChange: noop,
     minimumRows: 1,
-    maximumRows: Infinity
+    maximumRows: Infinity,
+    reorderable: false,
   };
 
   constructor(props) {
@@ -101,40 +133,74 @@ class HasManyFields extends React.Component {
     firstInput && firstInput.focus(); // eslint-disable-line no-unused-expressions
   };
 
-  render() {
-    const {
-      template: Template,
-      label,
-      disabled,
-      errors,
-      minimumRows,
-      maximumRows
-    } = this.props;
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const result = Array.from(this.value);
+    const [removed] = result.splice(oldIndex, 1);
+    result.splice(newIndex, 0, removed);
+    this.value = result;
+  };
 
-    return (
-      <div>
-        {this.value.map((item, i, items) => (
-          <HasManyFieldsRow
-            onDelete={this.deleteItem(i)}
-            key={`${i}/${items.length}`}
-            deletable={this.value.length > minimumRows}
-            disabled={disabled}
-          >
-            <Template
-              value={item}
-              errors={errors[i]}
-              onChange={this.updateItem(i)}
-              ref={this.setRowReference(i)}
-              disabled={disabled}
-            />
-          </HasManyFieldsRow>
-        ))}
+  renderAddRow = () => {
+    const { disabled, label, maximumRows } = this.props;
 
-        {this.value.length < maximumRows ? (
+    if (this.value.length < maximumRows) {
+      return (
+        <div>
           <HasManyFieldsAdd onClick={this.addItem} disabled={disabled}>
             {label}
           </HasManyFieldsAdd>
-        ) : null}
+        </div>
+      );
+    }
+
+    return null;
+  }
+
+  renderHasManyFieldsRow = (key, index, value) => {
+    const { template: Template, disabled, errors, minimumRows } = this.props;
+
+    return (
+      <HasManyFieldsRow
+        onDelete={this.deleteItem(index)}
+        key={key}
+        deletable={this.value.length > minimumRows}
+        disabled={disabled}
+      >
+        <Template
+          value={value}
+          errors={errors[index]}
+          onChange={this.updateItem(index)}
+          ref={this.setRowReference(index)}
+          disabled={disabled}
+        />
+      </HasManyFieldsRow>
+    );
+  }
+
+  render() {
+    const { disabled, reorderable } = this.props;
+    const itemsLength = this.value.length;
+
+    if (!disabled && reorderable) {
+      return (
+        <div className={styles.noSelect}>
+          <SortableContainer
+            className="js-reorderable-container"
+            onSortEnd={this.onSortEnd}
+            useDragHandle
+            lockAxis="y"
+            value={this.value}
+            renderHasManyFieldsRow={this.renderHasManyFieldsRow}
+            renderAddRow={this.renderAddRow}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        {this.value.map((item, index) => this.renderHasManyFieldsRow(`${index}/${itemsLength}`, index, item))}
+        {this.renderAddRow()}
       </div>
     );
   }

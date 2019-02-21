@@ -1,4 +1,4 @@
-import * as React from 'React';
+import * as React from 'react';
 interface HasManyValue {
   [key: string]: string;
 }
@@ -15,7 +15,8 @@ interface HasManyFieldsPropTypes {
   template: any;
   minimumRows?: number;
   maximumRows?: number;
+  reorderable?: boolean;
   value?: HasManyValue[];
 }
-declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> {}
+declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> { }
 export default HasManyFields;

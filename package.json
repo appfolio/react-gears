@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "4.13.1",
+  "version": "4.15.0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -49,11 +49,13 @@
     "lodash.some": "^4.6.0",
     "lodash.tolower": "^4.1.2",
     "lodash.without": "^4.4.0",
+    "memoize-one": "^5.0.0",
     "prop-types": "^15.5.10",
     "react-fontawesome": "^1.4.0",
     "react-onclickoutside": "^6.7.1",
     "react-popper": "^0.10.4",
     "react-select-plus": "1.2.0",
+    "react-sortable-hoc": "^1.4.0",
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.3.1",
     "reactstrap": "^7.1.0",

@@ -246,10 +246,12 @@ describe('<SortableTable />', () => {
     assert(span.exists());
   });
 
-  it('should supply onClick row handler when specified', () => {
+  it('should call rowOnClick with row and event when row clicked', () => {
     const columns = [{ header: 'Name', cell: row => row }];
-    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const row1 = 'Alpha';
+    const rows = [row1];
     const onClick = sinon.stub();
+
     const wrapper = mount(
       <SortableTable
         columns={columns}
@@ -257,8 +259,13 @@ describe('<SortableTable />', () => {
         rowOnClick={onClick}
       />
     );
-    wrapper.find('tbody tr').first().simulate('click');
-    sinon.assert.calledWith(onClick, 'Alpha');
+
+    const clickEvent = { eventData: '123' };
+    wrapper.find('tbody tr').first().simulate('click', clickEvent);
+    const firstArg = onClick.getCall(0).args[0];
+    const secondArg = onClick.getCall(0).args[1];
+    assert.equal(firstArg, row1);
+    assert.equal(secondArg.eventData, clickEvent.eventData);
   });
 
   it('should render correct align when present', () => {
@@ -295,5 +302,106 @@ describe('<SortableTable />', () => {
     assert.equal(wrapper.find('tbody td.whatever').length, 3, 'tbody td.whatever incorrect');
 
     assert.equal(wrapper.find('tfoot td.whatever').length, 1, 'tfoot td.whatever incorrect');
+  });
+
+  describe('Expandable column', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+    ];
+
+    it('should not render expandable column helper when onExpand not present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+      assert.equal(wrapper.find('td Button').length, 0, 'expand buttons present');
+    });
+
+    it('should render expandable column helper when onExpand present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={() => {}} />);
+      assert.equal(wrapper.find('td Button').length, 3, 'expand buttons missing');
+    });
+
+    it('should call onExpand when clicked', () => {
+      const onExpand = sinon.stub();
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={onExpand} />);
+      wrapper.find('td Button').first().simulate('click');
+      assert(onExpand.calledWith(1));
+      wrapper.find('td Button').last().simulate('click');
+      assert(onExpand.calledWith(3));
+    });
+  });
+
+  describe('Selectable column', () => {
+    const columns = [
+      { header: 'Default', cell: () => '-', footer: '-' },
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+    ];
+
+    it('should not render selectable column helper when rowSelected not present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
+      assert.equal(wrapper.find('input').length, 0, 'select checkbox present');
+    });
+
+    it('should render selectable column helper when rowSelected present', () => {
+      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} rowSelected={() => false} />);
+      assert.equal(wrapper.find('input').length, 4, 'select checkbox missing');
+    });
+
+    it('should call onSelect when clicked', () => {
+      const onSelect = sinon.stub();
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={onSelect}
+          rowSelected={() => false}
+        />
+      );
+      wrapper.find('td input').first().simulate('change', { target: { checked: true } });
+      assert(onSelect.calledWith(1, true));
+      wrapper.find('td input').last().simulate('change', { target: { checked: false } });
+      assert(onSelect.calledWith(3, false));
+    });
+
+    it('should check the selectAll checkbox when allSelected present', () => {
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={() => {}}
+          rowSelected={() => false}
+          allSelected
+        />
+      );
+      assert.equal(wrapper.find('th input').prop('checked'), true);
+    });
+
+    it('should not check the selectAll checkbox when allSelected not present', () => {
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelect={() => {}}
+          rowSelected={() => false}
+          allSelected={false}
+        />
+      );
+      assert.equal(wrapper.find('th input').prop('checked'), false);
+    });
+
+    it('should call onSelectAll when clicked', () => {
+      const onSelectAll = sinon.stub();
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={[1, 2, 3]}
+          onSelectAll={onSelectAll}
+          rowSelected={() => false}
+        />
+      );
+      wrapper.find('th input').first().simulate('change', { target: { checked: true } });
+      assert(onSelectAll.calledWith(true));
+      wrapper.find('th input').first().simulate('change', { target: { checked: false } });
+      assert(onSelectAll.calledWith(false));
+    });
   });
 });

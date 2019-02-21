@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Header from './SortableTable/Header.js';
+import Button from './Button';
+import Icon from './Icon';
 import Table from './Table.js';
 
 function generateColumnClassName(column, truncate = false) {
@@ -29,29 +31,36 @@ class SortableTable extends React.Component {
       })
     ).isRequired,
     rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    expandableColumn: PropTypes.object,
     footer: PropTypes.node,
     rowClassName: PropTypes.func,
+    onExpand: PropTypes.func,
+    onSelect: PropTypes.func,
+    onSelectAll: PropTypes.func,
     rowExpanded: PropTypes.func,
+    rowSelected: PropTypes.func,
     rowOnClick: PropTypes.func,
+    allSelected: PropTypes.bool,
     truncate: PropTypes.bool
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
   static defaultProps = {
     ...Table.defaultProps,
+    expandableColumn: {},
     rows: [],
     rowClassName: () => undefined,
     rowExpanded: () => false,
     truncate: false
   };
 
-  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate) {
+  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected) {
     const expanded = rowExpanded(row);
     return [
       <tr
         key={row.key}
-        className={rowClassName(row)}
-        onClick={() => rowOnClick && rowOnClick(row)}
+        className={classnames({ 'table-info': rowSelected && rowSelected(row) }, rowClassName(row))}
+        onClick={e => rowOnClick && rowOnClick(row, e)}
         role={rowOnClick ? 'button' : null}
       >
         {columns.map(column => (
@@ -72,13 +81,64 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, footer, rowClassName, rowExpanded, rowOnClick, rows, style, truncate, ...props } = this.props;
+    const {
+      columns, footer, rowClassName, rowOnClick, rows, style, truncate,
+      allSelected, onSelect, onSelectAll, rowSelected,
+      expandableColumn, onExpand, rowExpanded,
+      ...props
+    } = this.props;
     const showColgroup = columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
     const tableStyle = {
       tableLayout: truncate ? 'fixed' : 'auto',
       ...style
     };
+
+    const selectable = rowSelected;
+    const expandable = onExpand;
+    const cols = [...columns];
+
+    if (selectable) {
+      cols.unshift({
+        align: 'center',
+        key: 'select',
+        header: (
+          <input
+            type="checkbox"
+            className="mx-1"
+            checked={allSelected}
+            onChange={e => onSelectAll(e.target.checked)}
+          />
+        ),
+        cell: row => (
+          <input
+            type="checkbox"
+            className="mx-1"
+            checked={rowSelected(row)}
+            onChange={e => onSelect(row, e.target.checked)}
+          />
+        ),
+        width: '2rem'
+      });
+    }
+
+    if (expandable) {
+      cols.push({
+        align: 'center',
+        key: 'expand',
+        cell: row => (
+          <Button
+            className="px-2 py-0"
+            color="link"
+            onClick={() => onExpand(row)}
+          >
+            <Icon name="ellipsis-v" size="lg" />
+          </Button>
+        ),
+        width: '2rem',
+        ...expandableColumn
+      });
+    }
 
     return (
       <Table
@@ -87,14 +147,14 @@ class SortableTable extends React.Component {
       >
         {showColgroup &&
           <colgroup>
-            {columns.map(column => (
+            {cols.map(column => (
               <col key={column.key} style={{ width: column.width }} />
             ))}
           </colgroup>
         }
         <thead>
           <tr>
-            {columns.map((column, index) => (
+            {cols.map((column, index) => (
               <Header
                 active={column.active}
                 ascending={column.ascending}
@@ -108,13 +168,13 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate))}
+          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
         </tbody>
         {(showFooter || footer) && (
           <tfoot>
             {showFooter && (
               <tr>
-                {columns.map(column => (
+                {cols.map(column => (
                   <td
                     key={column.key}
                     className={generateColumnClassName(column, truncate)}
