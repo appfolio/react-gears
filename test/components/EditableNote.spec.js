@@ -66,6 +66,13 @@ describe('<EditableNote />', () => {
           assert(!button.props().disabled);
         });
 
+        it('should render with custom text', () => {
+          const wrapper = mount(<EditableNote {...props} saveLabel="Send" />);
+          const button = wrapper.find('.js-editable-note_save').hostNodes();
+
+          assert.equal(button.text(), 'Send');
+        });
+
         it('should call onSave on click', () => {
           component.find('.js-editable-note_save').hostNodes().simulate('click');
           assert(props.onSave.calledOnce);
@@ -157,6 +164,15 @@ describe('<EditableNote />', () => {
         assert(button.exists);
         assert(button.props().disabled);
         assert.equal('Saving...', button.text());
+      });
+
+      it('should render save button disabled with custom text', () => {
+        const wrapper = mount(<EditableNote {...props} saving savingLabel="Sending..." />);
+        const button = wrapper.find('.js-editable-note_save').hostNodes();
+
+        assert(button.exists);
+        assert(button.props().disabled);
+        assert.equal('Sending...', button.text());
       });
     });
 

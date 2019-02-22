@@ -10,6 +10,8 @@ interface EditableNoteProps {
   onSave: (ev: React.MouseEventHandler<any>) => void;
   rows?: number;
   saving?: boolean;
+  saveLabel?: (JSX.Element | string);
+  savingLabel?: (JSX.Element | string);
 }
 
 declare class EditableNote extends React.Component<EditableNoteProps, {}> { }

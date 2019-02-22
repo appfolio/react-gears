@@ -42,6 +42,8 @@ storiesOf('Note', module)
         onUndelete={action('onUndelete')}
         rows={number('rows', Note.defaultProps.rows)}
         saving={boolean('saving')}
+        saveLabel={text('saveLabel', EditableNote.defaultProps.saveLabel)}
+        savingLabel={text('savingLabel', EditableNote.defaultProps.savingLabel)}
       />
     );
   })
