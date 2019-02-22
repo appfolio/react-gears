@@ -26,17 +26,21 @@ class Note extends React.Component {
     onSave: PropTypes.func,
     onUndelete: PropTypes.func,
     rows: PropTypes.number,
-    saving: PropTypes.bool
+    saving: PropTypes.bool,
+    saveLabel: PropTypes.node,
+    savingLabel: PropTypes.node
   };
 
   static defaultProps = {
     className: 'bg-white mb-3',
     rows: EditableNote.defaultProps.rows,
-    saving: EditableNote.defaultProps.saving
+    saving: EditableNote.defaultProps.saving,
+    saveLabel: EditableNote.defaultProps.saveLabel,
+    savingLabel: EditableNote.defaultProps.savingLabel,
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete, rows, saving }
+    const { children, className, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete, rows, saving, saveLabel, savingLabel }
       = this.props;
     const { deleted, editing, text } = note;
 
@@ -57,10 +61,12 @@ class Note extends React.Component {
           onSave={onSave}
           rows={rows}
           saving={saving}
+          saveLabel={saveLabel}
+          savingLabel={savingLabel}
         />);
     }
     return (
-      <Card color="info" className={className} outline>
+      <Card className={className}>
         <NoteHeader note={note} onDelete={onDelete} onEdit={onEdit} />
         <CardBody>
           <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>

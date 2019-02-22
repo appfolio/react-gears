@@ -21,21 +21,25 @@ class EditableNote extends React.Component {
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     rows: PropTypes.number,
-    saving: PropTypes.bool
+    saving: PropTypes.bool,
+    saveLabel: PropTypes.node,
+    savingLabel: PropTypes.node
   };
 
   static defaultProps = {
     className: 'bg-white mb-3',
     rows: 4,
-    saving: false
+    saving: false,
+    saveLabel: 'Save',
+    savingLabel: 'Saving...',
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onSave, rows, saving } = this.props;
+    const { children, className, note, onCancel, onChange, onSave, rows, saving, saveLabel, savingLabel } = this.props;
     const { date, errors, text } = note;
 
     return (
-      <Card outline color="info" className={className}>
+      <Card className={className}>
         {date && <NoteHeader note={note} />}
         <CardBody>
           <FormLabelGroup feedback={errors} stacked>
@@ -53,7 +57,7 @@ class EditableNote extends React.Component {
           {children}
           <ButtonToolbar className="mt-3 mb-0">
             <Button className="js-editable-note_save" color="primary" disabled={saving} onClick={() => onSave(note)}>
-              {saving ? 'Saving...' : 'Save'}
+              {saving ? savingLabel : saveLabel}
             </Button>
             <Button className="js-editable-note_cancel" disabled={saving} onClick={() => onCancel(note)}>Cancel</Button>
           </ButtonToolbar>
