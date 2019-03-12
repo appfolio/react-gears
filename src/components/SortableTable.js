@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import withResponsiveness from './SortableTable/withResponsiveness';
 import Header from './SortableTable/Header.js';
 import Button from './Button';
 import Icon from './Icon';
@@ -140,8 +141,9 @@ class SortableTable extends React.Component {
       });
     }
 
+    const TableWithResponsiveness = this.props.responsive ? withResponsiveness(Table) : Table;
     return (
-      <Table
+      <TableWithResponsiveness
         style={tableStyle}
         {...props}
       >
@@ -187,7 +189,7 @@ class SortableTable extends React.Component {
             {footer}
           </tfoot>
         )}
-      </Table>
+      </TableWithResponsiveness>
     );
   }
 }

@@ -13,9 +13,8 @@ describe('<SortableTable />', () => {
 
   it('should accept all normal Table props', () => {
     const wrapper = mount(<SortableTable size="lg" bordered striped dark hover responsive columns={[]} />);
-    const table = wrapper.find('table');
+    const table = wrapper.find('.table-responsive table');
 
-    assert(wrapper.render().hasClass('table-responsive'), 'responsive missing');
     assert(table.hasClass('table-bordered'), 'bordered missing');
     assert(table.hasClass('table-striped'), 'striped missing');
     assert(table.hasClass('table-dark'), 'dark missing');

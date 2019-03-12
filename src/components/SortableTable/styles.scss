@@ -1,0 +1,53 @@
+/* copied from https://github.com/appfolio/gp-frontend/blob/e85fd782db3eefcf2501e9d7e1a166754f13bf46/src/components/shared/ResponsiveTable/styles.scss */
+
+$responsive-table-gradient-start-color: #a0a0a0 !default;
+$responsive-table-gradient-end-color: transparent !default;
+
+.responsive-table {
+  margin-bottom: 1em;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s;
+    width: 15px;
+    z-index: 1;
+  }
+
+  &:before {
+    background: linear-gradient(
+      to right,
+      $responsive-table-gradient-start-color,
+      $responsive-table-gradient-end-color
+    );
+    left: 0;
+  }
+
+  &:after {
+    background: linear-gradient(
+      to left,
+      $responsive-table-gradient-start-color,
+      $responsive-table-gradient-end-color
+    );
+    right: 0;
+  }
+
+  &.is-left-scrollable {
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &.is-right-scrollable {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
