@@ -15,6 +15,7 @@ function generateColumnClassName(column, truncate = false) {
   );
 }
 
+const ResponsiveTable = withResponsiveness(Table);
 class SortableTable extends React.Component {
   static propTypes = {
     ...Table.propTypes,
@@ -141,7 +142,7 @@ class SortableTable extends React.Component {
       });
     }
 
-    const TableWithResponsiveness = this.props.responsive ? withResponsiveness(Table) : Table;
+    const TableWithResponsiveness = this.props.responsive ? ResponsiveTable : Table;
     return (
       <TableWithResponsiveness
         style={tableStyle}
