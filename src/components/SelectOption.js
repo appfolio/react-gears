@@ -30,6 +30,11 @@ export default class SelectOption extends React.Component {
   blockEvent = (event) => {
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  handleDisabledOptionClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const anchor = event.target.closest('.Select-option a');
     if (!anchor || !('href' in anchor)) {
       return;
@@ -74,7 +79,7 @@ export default class SelectOption extends React.Component {
         tag="div" // Eliminates invalid nesting of anchors within a button (default tag)
         className={className}
         onMouseDown={this.blockEvent}
-        onClick={this.blockEvent}
+        onClick={this.handleDisabledOptionClick}
       >
         {this.props.children}
       </DropdownItem>
