@@ -1,0 +1,9 @@
+:global .sticky-header-table table tr:last-of-type td {
+  bottom: 0px;
+  position: sticky;
+}
+
+:global .sticky-header-table table th {
+  top: 0px;
+  position: sticky;
+}

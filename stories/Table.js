@@ -58,6 +58,8 @@ storiesOf('Table', module)
         </p>
         <SortableTable
           bordered={boolean('bordered', false)}
+          fixedHeader={boolean('fixedHeader', false)}
+          maxHeight={text('maxHeight')}
           hover={boolean('hover', true)}
           responsive={boolean('responsive', true)}
           size={select('size', ['', 'sm', 'lg'], 'sm')}
@@ -141,6 +143,8 @@ storiesOf('Table', module)
         ]}
         rows={DATA}
         rowExpanded={row => <div>{row.first} {row.last}</div>}
+        fixedHeader={boolean('fixedHeader', false)}
+        maxHeight={text('maxHeight')}
         sort={{ column: 'last', ascending: true }}
         expandable={boolean('expandable', false)}
         responsive={boolean('responsive', true)}

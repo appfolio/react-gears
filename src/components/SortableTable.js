@@ -5,6 +5,7 @@ import Header from './SortableTable/Header.js';
 import Button from './Button';
 import Icon from './Icon';
 import Table from './Table.js';
+import './SortableTable.css';
 
 function generateColumnClassName(column, truncate = false) {
   return classnames(
@@ -32,7 +33,9 @@ class SortableTable extends React.Component {
     ).isRequired,
     rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     expandableColumn: PropTypes.object,
+    fixedHeader: PropTypes.bool,
     footer: PropTypes.node,
+    maxHeight: PropTypes.node,
     rowClassName: PropTypes.func,
     onExpand: PropTypes.func,
     onSelect: PropTypes.func,
@@ -48,6 +51,8 @@ class SortableTable extends React.Component {
   static defaultProps = {
     ...Table.defaultProps,
     expandableColumn: {},
+    fixedHeader: false,
+    maxHeight: '22rem',
     rows: [],
     rowClassName: () => undefined,
     rowExpanded: () => false,
@@ -82,7 +87,7 @@ class SortableTable extends React.Component {
 
   render() {
     const {
-      columns, footer, rowClassName, rowOnClick, rows, style, truncate,
+      columns, fixedHeader, footer, maxHeight, responsive, rowClassName, rowOnClick, rows, style, truncate,
       allSelected, onSelect, onSelectAll, rowSelected,
       expandableColumn, onExpand, rowExpanded,
       ...props
@@ -140,54 +145,72 @@ class SortableTable extends React.Component {
       });
     }
 
+    // const headerProps = (fixedHeader && maxHeight) ? {
+    //   className: 'position-sticky',
+    //   style: { top: 0 }
+    // } : {};
+
+    const wrapperProps = {
+      className: classnames({ 'table-responsive': responsive }),
+      style: (fixedHeader && maxHeight) ? {
+        maxHeight,
+        overflow: 'auto'
+      } : {}
+    };
+
     return (
-      <Table
-        style={tableStyle}
-        {...props}
-      >
-        {showColgroup &&
-          <colgroup>
-            {cols.map(column => (
-              <col key={column.key} style={{ width: column.width }} />
-            ))}
-          </colgroup>
-        }
-        <thead>
-          <tr>
-            {cols.map((column, index) => (
-              <Header
-                active={column.active}
-                ascending={column.ascending}
-                className={generateColumnClassName(column, truncate)}
-                key={index}
-                onSort={column.onSort ? () => column.onSort(!column.ascending) : null}
-              >
-                {column.header}
-              </Header>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
-        </tbody>
-        {(showFooter || footer) && (
-          <tfoot>
-            {showFooter && (
-              <tr>
+      <div className="sticky-header-table">
+        <div {...wrapperProps}>
+          <Table
+            responsive={false}
+            style={tableStyle}
+            {...props}
+          >
+            {showColgroup &&
+              <colgroup>
                 {cols.map(column => (
-                  <td
-                    key={column.key}
+                  <col key={column.key} style={{ width: column.width }} />
+                ))}
+              </colgroup>
+            }
+            <thead>
+              <tr>
+                {cols.map((column, index) => (
+                  <Header
+                    active={column.active}
+                    ascending={column.ascending}
                     className={generateColumnClassName(column, truncate)}
+                    key={index}
+                    onSort={column.onSort ? () => column.onSort(!column.ascending) : null}
                   >
-                    {column.footer}
-                  </td>
+                    {column.header}
+                  </Header>
                 ))}
               </tr>
+            </thead>
+            <tbody>
+              {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
+            </tbody>
+            {(showFooter || footer) && (
+              <tfoot>
+                {showFooter && (
+                  <tr>
+                    {cols.map(column => (
+                      <td
+                        key={column.key}
+                        className={generateColumnClassName(column, truncate)}
+                      >
+                        {column.footer}
+                      </td>
+                    ))}
+                  </tr>
+                )}
+                {footer}
+              </tfoot>
             )}
-            {footer}
-          </tfoot>
-        )}
-      </Table>
+          </Table>
+        </div>
+      </div>
     );
   }
 }
