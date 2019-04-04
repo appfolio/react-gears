@@ -179,6 +179,13 @@ describe('<AddressInput />', () => {
       input.simulate('change', { target: { value: null } });
       assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
     });
+
+    it('should clear values', () => {
+      const input = component.find('[name="address1"]').hostNodes();
+
+      input.simulate('change', { target: { name: 'address1', value: '' } });
+      assert(callback.calledWith(Object.assign({}, addressData, { address1: '' })));
+    });
   });
 
   describe('with errors', () => {
