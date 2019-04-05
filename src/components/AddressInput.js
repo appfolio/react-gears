@@ -52,7 +52,7 @@ class AddressInput extends React.Component {
   }
 
   propsFor = (field) => {
-    if (this.props.value[field]) {
+    if (this.props.value[field] !== undefined) {
       return { value: this.props.value[field] };
     }
     return { defaultValue: this.props.defaultValue[field] };
