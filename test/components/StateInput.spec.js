@@ -12,7 +12,7 @@ describe('<StateInput />', () => {
   });
 
   it('should default to specified countryCode', () => {
-    const component = mount(<StateInput defaultValue="AL" />);
+    const component = mount(<StateInput defaultValue="AA" />);
     assert.equal(component.find('select').getDOMNode().selectedIndex, 1);
   });
 
