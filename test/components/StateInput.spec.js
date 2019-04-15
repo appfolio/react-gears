@@ -11,8 +11,8 @@ describe('<StateInput />', () => {
     assert.equal(component.find('select').getDOMNode().selectedIndex, 0);
   });
 
-  it('should default to specified countryCode', () => {
-    const component = mount(<StateInput defaultValue="AL" />);
+  it('should default to specified stateCode', () => {
+    const component = mount(<StateInput defaultValue="AK" />);
     assert.equal(component.find('select').getDOMNode().selectedIndex, 1);
   });
 
