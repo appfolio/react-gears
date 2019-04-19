@@ -25,7 +25,7 @@ const SortableContainer = ReorderableContainer(({ value, renderAddRow, renderHas
   <div>
     {value.map((item, index) => (
       <SortableItem
-        key={`${item.key ? item.key : `${index}/${value.length}`}`}
+        key={`${item.key ? item.key : index}`}
         index={index}
         sortIndex={index}
         value={item}
@@ -179,7 +179,6 @@ class HasManyFields extends React.Component {
 
   render() {
     const { disabled, reorderable } = this.props;
-    const itemsLength = this.value.length;
 
     if (!disabled && reorderable) {
       return (
@@ -199,7 +198,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, index) => this.renderHasManyFieldsRow(`${index}/${itemsLength}`, index, item))}
+        {this.value.map((item, index) => this.renderHasManyFieldsRow(index, index, item))}
         {this.renderAddRow()}
       </div>
     );
