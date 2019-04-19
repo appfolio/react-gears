@@ -13,6 +13,7 @@ import {
 const items = [
   {
     address1: '50 Castilian Dr.',
+    address2: '',
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
@@ -20,6 +21,7 @@ const items = [
   },
   {
     address1: '70 Castilian Dr.',
+    address2: '',
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
@@ -27,6 +29,7 @@ const items = [
   },
   {
     address1: '90 Castilian Dr.',
+    address2: '',
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
@@ -39,7 +42,14 @@ storiesOf('HasManyFields', module)
     <HasManyFields
       defaultValue={items}
       template={AddressInput}
-      blank={{ countryCode: 'US' }}
+      blank={{
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        postal: '',
+        countryCode: 'US'
+      }}
       label="Add an Address"
       disabled={boolean('disabled', false)}
       onAdd={action('hasManyFields onAdd')}
