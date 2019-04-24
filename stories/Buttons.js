@@ -10,6 +10,7 @@ storiesOf('Buttons', module)
       color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'primary')}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
+      active={boolean('active', false)}
       size={select('size', ['', 'sm', 'lg'])}
     >
       {text('Label', 'Click Me')}
@@ -68,7 +69,7 @@ storiesOf('Buttons', module)
     </div>
     )
   )
-  .addWithInfo('Groups', () => (
+  .addWithInfo('ButtonGroup', () => (
     <div>
       <Row className="mb-1">
         <Button size="lg" block>Block level button</Button>
@@ -76,7 +77,7 @@ storiesOf('Buttons', module)
       <Row className="mb-1">
         <ButtonGroup>
           <Button>Left</Button>
-          <Button>Middle</Button>
+          <Button active>Middle</Button>
           <Button>Right</Button>
         </ButtonGroup>
       </Row>
@@ -84,14 +85,14 @@ storiesOf('Buttons', module)
         <ButtonToolbar>
           <ButtonGroup>
             <Button>1</Button>
-            <Button>2</Button>
+            <Button active>2</Button>
             <Button>3</Button>
             <Button>4</Button>
           </ButtonGroup>
 
           <ButtonGroup>
             <Button>5</Button>
-            <Button>6</Button>
+            <Button active>6</Button>
             <Button>7</Button>
           </ButtonGroup>
 
@@ -115,7 +116,7 @@ storiesOf('Buttons', module)
       <Row>
         <ButtonGroup vertical>
           <Button>Button</Button>
-          <Button>Button</Button>
+          <Button active>Button</Button>
           <Button>Button</Button>
           <Button>Button</Button>
         </ButtonGroup>

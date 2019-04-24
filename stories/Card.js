@@ -2,27 +2,34 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
-import { Card, CardBody, CardTitle } from '../src/index';
+import { Card, CardBody, CardFooter, CardHeader, CardTitle } from '../src/index';
 
 storiesOf('Card', module)
   .addWithInfo('Live example', () => {
     const outline = boolean('outline', false);
+    const footer = text('footer', '');
 
     return (
       <div>
         <Card
-          color={select('color', [null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], null)}
           inverse={boolean('inverse', false)}
           outline={outline}
         >
+          <CardHeader>
+            <CardTitle>{text('title', 'Hello World!')}</CardTitle>
+          </CardHeader>
           <CardBody>
-            <CardTitle>{text('header', 'Hello World!')}</CardTitle>
             {text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
                               elit, sed do eiusmod tempor incididunt ut labore
                               et dolore magna aliqua.  Ut enim ad minim veniam,
                               quis nostrud exercitation ullamco laboris nisi ut
                               aliquip ex ea commodo consequat.`)}
           </CardBody>
+          {footer && (
+            <CardFooter>
+              {footer}
+            </CardFooter>
+          )}
         </Card>
       </div>
     );
