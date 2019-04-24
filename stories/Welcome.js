@@ -2,9 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import {
   Button,
+  ButtonToolbar,
   Card,
   CardBody,
-  CardSubtitle,
+  CardHeader,
   CardText,
   CardTitle,
   Col,
@@ -14,9 +15,6 @@ import {
   FormRow,
   Icon,
   Paginator,
-  Popover,
-  PopoverBody,
-  PopoverTitle,
   Row,
   Table,
   UncontrolledTooltip
@@ -70,134 +68,139 @@ storiesOf('react-gears', module)
     </section>
   ))
   .addWithInfo('Style overview', () => (
-    <Row>
-      <Col>
-        {demoHeader('COLORS')}
-        <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'inverse', 'dark', 'light'].map(color => (
-            <div key={color} style={{ width: 100 }} className="d-inline-block mb-1">
-              <b>{`bg-${color}`}</b>
-              <div className={`bg-${color}`} style={{ height: 100 }} />
-            </div>
-          ))}
-        </div>
+    <div>
+      <Row>
+        <Col>
+          {demoHeader('BUTTONS')}
+          <ButtonToolbar className="mb-3">
+            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
+              <Button color={color} className="mr-1 text-capitalize">{color}</Button>
+            ))}
+          </ButtonToolbar>
+          <ButtonToolbar className="mb-3">
+            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light'].map(color => (
+              <Button color={color} outline className="mr-1 text-capitalize">{color}</Button>
+            ))}
+          </ButtonToolbar>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {demoHeader('COLORS')}
+          <div>
+            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light'].map(color => (
+              <div key={color} style={{ width: 100 }} className="d-inline-block mb-1">
+                <b>{`bg-${color}`}</b>
+                <div className={`bg-${color}`} style={{ height: 33 }} />
+              </div>
+            ))}
+          </div>
 
-        <div>
-          {['primary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'white'].map(color => (
-            <div key={color} className="mb-1">
-              <h3 className={`text-${color}`}>{`text-${color}`}</h3>
-            </div>
-          ))}
-        </div>
+          <div>
+            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'black-50'].map(color => (
+              <div key={color} className="mb-1">
+                <h3 className={`text-${color}`}>{`text-${color}`}</h3>
+              </div>
+            ))}
+          </div>
+          <div>
+            {['white', 'light', 'white-50'].map(color => (
+              <div key={color} className="mb-1 bg-dark">
+                <h3 className={`text-${color}`}>{`text-${color}`}</h3>
+              </div>
+            ))}
+          </div>
 
-        {demoHeader('HEADINGS')}
-        <h1>h1. Heading</h1>
-        <h2>h2. Heading</h2>
-        <h3>h3. Heading</h3>
-        <h4>h4. Heading</h4>
-        <h5>h5. Heading</h5>
-        <h6>h6. Heading</h6>
+          {demoHeader('HEADINGS')}
+          <h1>h1. Heading</h1>
+          <h2>h2. Heading</h2>
+          <h3>h3. Heading</h3>
+          <h4>h4. Heading</h4>
+          <h5>h5. Heading</h5>
+          <h6>h6. Heading</h6>
 
-        {demoHeader('PANEL / CARD')}
-        <Card>
-          <CardBody>
-            <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Button</Button>
-          </CardBody>
-        </Card>
+          {demoHeader('PANEL / CARD')}
+          <Card>
+            <CardHeader>
+              <CardTitle>Card title</CardTitle>
+            </CardHeader>
+            <CardBody>
+              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+              <Button>Button</Button>
+            </CardBody>
+          </Card>
 
-        {demoHeader('TOOLTIPS')}
-        <div className="d-flex justify-content-between">
-          <span id='tooltip-top'>Top</span>
-          <span id='tooltip-bottom'>Bottom</span>
-          <span id='tooltip-left'>Left</span>
-          <span id='tooltip-right'>Right</span>
-          <Tooltip placement="top" target='tooltip-top'>Tooltip on the top</Tooltip>
-          <Tooltip placement="bottom" target='tooltip-bottom'>Tooltip on the Bottom</Tooltip>
-          <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
-          <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
-        </div>
+          {demoHeader('TOOLTIPS')}
+          <div className="d-flex justify-content-between">
+            <span id='tooltip-top'>Top</span>
+            <span id='tooltip-bottom'>Bottom</span>
+            <span id='tooltip-left'>Left</span>
+            <span id='tooltip-right'>Right</span>
+            <Tooltip placement="top" target='tooltip-top'>Tooltip on the top</Tooltip>
+            <Tooltip placement="bottom" target='tooltip-bottom'>Tooltip on the Bottom</Tooltip>
+            <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
+            <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
+          </div>
 
-      </Col>
+        </Col>
 
-      <Col>
-        {demoHeader('BUTTONS')}
-        <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
-            <Button color={color} className="mr-1 text-capitalize">{color}</Button>
-          ))}
-        </p>
+        <Col>
+          {demoHeader('FORMS')}
 
-        <p>
-          {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
-            <Button color={color} size="sm" className="mr-1 text-capitalize">{color}</Button>
-          ))}
-        </p>
+          <form>
+            <FormRow label="Label" defaultValue="Text" required />
+            <FormRow label="Label" placeholder="Default" />
+            <FormRow label="Disabled" disabled />
+            <FormRow type={DateInput} label="Date" />
+            <FormRow type="password" label="Password" />
+            <FormRow
+              className="custom-select"
+              label="Select"
+              type="select"
+              hint="Example help text"
+            >
+              <FormChoice>A New Hope</FormChoice>
+              <FormChoice>The Empire Strikes Back</FormChoice>
+              <FormChoice>The Force Awakens</FormChoice>
+            </FormRow>
+            <FormRow label="Label" feedback="Error message" />
+            <FormRow type={CurrencyInput} label="Tip" />
+            <FormRow stacked label="Stacked" defaultValue="Text" required size="12" />
+          </form>
 
-        {demoHeader('PAGINATION')}
+          {demoHeader('TABLES')}
 
-        <Paginator size="sm" currentPage={5} totalItems={256} onClick={() => {}} />
+          <Table>
+            <thead>
+              <tr>
+                <th>First name</th>
+                <th>
+                  Last name <Icon name="caret-down" />
+                </th>
+              </tr>
+            </thead>
 
-        {demoHeader('FORMS')}
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Wick</td>
+              </tr>
+              <tr>
+                <td>Paulus</td>
+                <td>Schoutsen</td>
+              </tr>
+              <tr>
+                <td>Gary</td>
+                <td>Thomas</td>
+              </tr>
+            </tbody>
+          </Table>
 
-        <form>
-          <FormRow label="Label" defaultValue="Text" required />
-          <FormRow label="Label" placeholder="Default" />
-          <FormRow label="Disabled" disabled />
-          <FormRow type={DateInput} label="Date" />
-          <FormRow type="password" label="Password" />
-          <FormRow
-            className="custom-select"
-            label="Select"
-            type="select"
-            hint="Example help text"
-          >
-            <FormChoice>A New Hope</FormChoice>
-            <FormChoice>The Empire Strikes Back</FormChoice>
-            <FormChoice>The Force Awakens</FormChoice>
-          </FormRow>
-          <FormRow label="Label" feedback="Error message" />
-          <FormRow type={CurrencyInput} label="Tip" />
-        </form>
+          {demoHeader('PAGINATION')}
+          <Paginator size="sm" currentPage={5} totalItems={256} onClick={() => {}} />
 
-        {demoHeader('FORMS')}
-        <form>
-          <FormRow stacked label="Label above" defaultValue="Text" required size="12" />
-          <FormRow stacked label="Label above" placeholder="Default" />
-          <FormRow stacked label="Disabled above" disabled />
-          <FormRow stacked type={DateInput} label="Date" />
-        </form>
-
-        {demoHeader('TABLES')}
-
-        <Table>
-          <thead>
-            <tr>
-              <th>First name</th>
-              <th>
-                Last name <Icon name="caret-down" />
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>John</td>
-              <td>Wick</td>
-            </tr>
-            <tr>
-              <td>Paulus</td>
-              <td>Schoutsen</td>
-            </tr>
-            <tr>
-              <td>Gary</td>
-              <td>Thomas</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </div>
   ));
 

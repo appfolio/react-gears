@@ -72,8 +72,24 @@ const APM_THEMES = [
       'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css'
   },
   {
+    name: 'APM/Insights',
+    url:
+      'https://d36t0nm30n26wn.cloudfront.net/insights/bootstrap-insights.min.css'
+  },
+  {
     name: 'APM/Dream',
     url: 'https://d36t0nm30n26wn.cloudfront.net/dream/bootstrap-dream.min.css'
+  }
+];
+
+const MYCASE_THEMES = [
+  {
+    name: 'MyCase',
+    url: 'https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css'
+  },
+  {
+    name: 'MyCase Focus',
+    url: 'https://assets.mycase.com/packs/bootstrap-mycase-focus-54fbc74952.min.css'
   }
 ];
 
@@ -128,9 +144,20 @@ addDecorator((story, info) => (
           </UncontrolledDropdown>
         </NavItem>
         <NavItem>
-          <ThemeLink url="https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css">
-            MyCase
-          </ThemeLink>
+          <UncontrolledDropdown>
+            <DropdownToggle nav caret>
+              MyCase
+            </DropdownToggle>
+            <DropdownMenu>
+              {MYCASE_THEMES.map((theme, i) => (
+                <DropdownItem>
+                  <ThemeLink key={i} url={theme.url}>
+                    {theme.name}
+                  </ThemeLink>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </NavItem>
         <NavItem>
           <UncontrolledDropdown>

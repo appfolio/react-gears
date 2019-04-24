@@ -29,7 +29,7 @@ storiesOf('Note', module)
       editing: boolean('editing', false),
       from: text('from', 'Gary Thomas'),
       text: text('text', 'Goodbye Cruel World'),
-      title: text('title', 'Step 1: Hello Beautiful World!'),
+      title: text('title', ''),
     };
 
     return (
