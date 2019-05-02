@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
+import Nav from './Nav';
+import NavItem from './NavItem';
+import NavLink from './NavLink';
 import Col from './Col';
 import Row from './Row';
 import mod from '../util/mod.js';
@@ -10,11 +13,18 @@ import styles from './MonthCalendar.scss';
 
 const { format } = Fecha;
 
-// TODO use links for label to allow keyboard nav:
 const Label = ({ selected, label, onClick, visible = true }) => (
-  <li className={`px-0 py-1 text-center ${selected ? 'bg-primary text-white' : ''} ${!visible ? 'invisible' : ''}`} onClick={onClick}>
-    {label}
-  </li>
+  <NavItem className={!visible ? 'invisible' : ''}>
+    <NavLink
+      active={selected}
+      className="text-center py-1 px-2"
+      color="primary"
+      onClick={onClick}
+      outline
+    >
+      {label}
+    </NavLink>
+  </NavItem>
 );
 
 Label.propTypes = {
@@ -57,8 +67,8 @@ export default class MonthCalendar extends React.Component {
     return (
       <div className={styles.picker}>
         <Row className="no-gutters">
-          <Col className="styles.month">
-            <ul className="list-unstyled p-1 m-0">
+          <Col>
+            <Nav pills className="d-block p-1 m-0">
               {this.getMonths(date).map((monthYear, i) => (
                 <Label
                   selected={date.getMonth() === monthYear.getMonth()}
@@ -69,11 +79,11 @@ export default class MonthCalendar extends React.Component {
                   visible={dateVisible(monthYear)}
                 />
               ))}
-            </ul>
+            </Nav>
           </Col>
 
-          <Col className={styles.year}>
-            <ul className="list-unstyled p-1 m-0">
+          <Col className="border-left">
+            <Nav pills className="d-block p-1 m-0">
               {this.getYears(date).map((monthYear, i) => (
                 <Label
                   selected={date.getFullYear() === monthYear.getFullYear()}
@@ -84,7 +94,7 @@ export default class MonthCalendar extends React.Component {
                   visible={dateVisible(monthYear)}
                 />
               ))}
-            </ul>
+            </Nav>
           </Col>
         </Row>
       </div>

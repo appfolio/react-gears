@@ -161,8 +161,9 @@ describe('<MonthInput />', () => {
     it('should set date after clicking a date', () => {
       callback.reset();
       const firstDate = component.find('Label').first();
+      const firstDateLink = component.find('NavLink').first();
       const expectedDate = firstDate.props().date;
-      firstDate.simulate('click');
+      firstDateLink.simulate('click');
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -170,8 +171,9 @@ describe('<MonthInput />', () => {
     it('should call onChange after clicking a date', () => {
       callback.reset();
       const lastDate = component.find('Label').first();
+      const lastDateLink = component.find('NavLink').first();
       const expectedDate = lastDate.props().date;
-      lastDate.simulate('click');
+      lastDateLink.simulate('click');
       assert(callback.calledWith(expectedDate, true));
     });
 

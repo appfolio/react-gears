@@ -82,6 +82,7 @@
     "enzyme": "^3.3.0",
     "eslint": "^4.9.0",
     "eslint-config-appfolio-react": "^1.0.3",
+    "eslint-plugin-no-only-tests": "^2.3.0",
     "fs-extra": "5.0.0",
     "glob": "^7.1.2",
     "ignore-styles": "~5.0.1",
