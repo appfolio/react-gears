@@ -273,10 +273,10 @@ export default class MonthInput extends React.Component {
             {header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
-                  <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
+                  <Button className="p-2 js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
                   </Button>
-                  <Button className="js-prev-month" color="link" onClick={() => this.prevMonth()}>
+                  <Button className="p-2 js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
                   </Button>
                 </ButtonGroup>

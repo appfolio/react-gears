@@ -17,8 +17,8 @@ describe('<MonthCalendar />', () => {
   it('should default to current month and today', () => {
     const component = mount(<MonthCalendar />);
     const today = new Date();
-    const month = component.find('li.bg-primary').first();
-    const year = component.find('li.bg-primary').last();
+    const month = component.find('.active').first();
+    const year = component.find('.active').last();
     assert.equal(month.text(), fecha.format(today, 'MMM'));
     assert.equal(year.text(), today.getFullYear());
   });
@@ -26,8 +26,8 @@ describe('<MonthCalendar />', () => {
   it('should render the specified month and date', () => {
     const date = new Date(1992, 10, 30);
     const component = mount(<MonthCalendar date={date} />);
-    const month = component.find('li.bg-primary').first();
-    const year = component.find('li.bg-primary').last();
+    const month = component.find('.active').first();
+    const year = component.find('.active').last();
     assert.equal(month.text(), fecha.format(date, 'MMM'));
     assert.equal(year.text(), date.getFullYear());
   });
@@ -37,7 +37,7 @@ describe('<MonthCalendar />', () => {
     const today = new Date();
     const expectedDate = new Date(today.getFullYear(), 0, 1);
     const component = mount(<MonthCalendar onSelect={callback} />);
-    const firstDate = component.find('li').first();
+    const firstDate = component.find('.nav-link').first();
     firstDate.simulate('click');
     sinon.assert.calledWith(callback, expectedDate);
   });
