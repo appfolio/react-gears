@@ -71,9 +71,9 @@ export default class Alert extends React.Component {
             <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" />
           ) : null}
           {icon ? (
-            <div style={{ overflow: 'hidden' }}>{children}</div>
+            <div className="w-100" style={{ overflow: 'hidden' }}>{children}</div>
           ) : (
-            <div>{children}</div>
+            <div className="w-100">{children}</div>
           )}
         </div>
       </AlertComponent>
