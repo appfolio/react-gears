@@ -19,6 +19,16 @@ describe('<SummaryBoxItem />', () => {
     assert(component.find('small').text(), '--');
   });
 
+  it('should reverse when specified', () => {
+    const component = mount(<SummaryBoxItem id="mertz" reverse />);
+    assert(component.find('.flex-column-reverse').exists());
+  });
+
+  it('should reverse when specified', () => {
+    const component = mount(<SummaryBoxItem id="mertz" reverse={false} />);
+    assert(component.find('.flex-column').exists());
+  });
+
   it('should allow arbitrary props', () => {
     const component = mount(<SummaryBoxItem id="mertz" />);
     assert(component.find('#mertz').exists());

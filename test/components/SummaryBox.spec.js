@@ -4,6 +4,12 @@ import { shallow } from 'enzyme';
 
 import { SummaryBox, SummaryBoxItem } from '../../src';
 
+const items = [
+  { value: 'Alpha', label: 'Team' },
+  { value: 'Bravo', label: 'Johnny' },
+  { value: 'Charlie', label: 'Brown' }
+];
+
 describe('<SummaryBox />', () => {
   it('should render correctly', () => {
     const component = shallow(<SummaryBox />);
@@ -17,11 +23,6 @@ describe('<SummaryBox />', () => {
   });
 
   it('should render items as SummaryBoxItems', () => {
-    const items = [
-      { value: 'Alpha', label: 'Team' },
-      { value: 'Bravo', label: 'Johnny' },
-      { value: 'Charlie', label: 'Brown' }
-    ];
     const component = shallow(
       <SummaryBox items={items}>
         <span>Hi</span>
@@ -35,6 +36,18 @@ describe('<SummaryBox />', () => {
       assert.equal(child.prop('value'), items[i].value);
       assert.equal(child.prop('label'), items[i].label);
     });
+  });
+
+  it('should reverse all items when specified', () => {
+    const component = shallow(<SummaryBox items={items} reverse />);
+    const children = component.find(SummaryBoxItem);
+    children.forEach(child => assert.equal(child.prop('reverse'), true));
+  });
+
+  it('should not reverse all items when specified', () => {
+    const component = shallow(<SummaryBox items={items} reverse={false} />);
+    const children = component.find(SummaryBoxItem);
+    children.forEach(child => assert.equal(child.prop('reverse'), false));
   });
 
   it('should render children', () => {
