@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import SummaryBox from '../src/components/SummaryBox';
 import SummaryBoxItem from '../src/components/SummaryBoxItem';
-import { text } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 const link = <a href="#">Link</a>;
 
@@ -16,10 +16,10 @@ const items = [
 
 storiesOf('SummaryBox', module)
   .addWithInfo('with items', () => (
-    <SummaryBox items={items} />
+    <SummaryBox items={items} reverse={boolean('reverse', SummaryBox.defaultProps.reverse)} />
   ))
   .addWithInfo('with children', () => (
-    <SummaryBox>
+    <SummaryBox reverse={boolean('reverse', SummaryBox.defaultProps.reverse)}>
       <SummaryBoxItem value={link} label="Bravo" />
       <SummaryBoxItem value="Charlie" />
       <SummaryBoxItem label="Foxtrot" />
@@ -31,5 +31,6 @@ storiesOf('SummaryBox', module)
     <SummaryBoxItem
       value={text('value', 'Live from New York')}
       label={text('label', 'It\'s Saturday Night')}
+      reverse={boolean('reverse', SummaryBoxItem.defaultProps.reverse)}
     />
   ));
