@@ -27,6 +27,16 @@ class ExpandableSection extends React.Component {
 
   toggle = () => this.setState({ open: !this.state.open });
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open !== this.props.open) {
+      if (nextProps.open) {
+        this.setState({ open: true });
+      } else {
+        this.setState({ open: false });
+      }
+    }
+  }
+
   render() {
     return (
       <section className={this.props.className}>
