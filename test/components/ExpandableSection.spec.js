@@ -46,4 +46,16 @@ describe('<ExpandableSection />', () => {
     component.find('header').simulate('click');
     assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
+
+  it('should be open when prop changed', () => {
+    const component = mount(
+      <ExpandableSection title="Open">
+        <h1>Hello World!</h1>
+      </ExpandableSection>
+    );
+
+    assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
+    component.setProps({ open: true });
+    assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
+  });
 });
