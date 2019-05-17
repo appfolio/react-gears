@@ -20,21 +20,25 @@ describe('<HasManyFields />', () => {
     const onRemove = spy();
     const onUpdate = spy();
     const onChange = spy();
-    const component = shallow(
-      <HasManyFields
-        defaultValue={items}
-        errors={errors}
-        template={Input}
-        blank={values => values.length.toString()}
-        onAdd={onAdd}
-        onRemove={onRemove}
-        onUpdate={onUpdate}
-        onChange={onChange}
-        label="Add an Animal"
-      />
-    );
+    let component;
+    let props;
+    let addItem;
 
-    const addItem = component.find(HasManyFieldsAdd);
+    beforeEach(() => {
+      props = {
+        defaultValue: items,
+        template: Input,
+        blank: values => values.length.toString(),
+        errors,
+        onAdd,
+        onRemove,
+        onUpdate,
+        onChange,
+        label: 'Add an Animal'
+      };
+      component = shallow(<HasManyFields {...props} />);
+      addItem = component.find(HasManyFieldsAdd);
+    });
 
     it('should copy the defaultValue to state', () => {
       assert.deepEqual(component.state('value'), items);
@@ -73,7 +77,7 @@ describe('<HasManyFields />', () => {
     });
 
     it('should remove an item', () => {
-      const expectedItems = ['monkey', 'mouse', '3'];
+      const expectedItems = ['monkey', 'mouse'];
       component.find(HasManyFieldsRow).at(1).simulate('delete');
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.deepEqual(component.state('value'), expectedItems);
@@ -83,7 +87,7 @@ describe('<HasManyFields />', () => {
     });
 
     it('should update an item', () => {
-      const expectedItems = ['monkey', 'la souris est sous la table', '3'];
+      const expectedItems = ['monkey', 'la souris est sous la table', 'mouse'];
       component.find(Input).at(1).simulate('change', expectedItems[1]);
       assert.equal(component.find(HasManyFieldsRow).length, expectedItems.length);
       assert.equal(component.find(Input).at(1).prop('value'), expectedItems[1]);
@@ -91,6 +95,20 @@ describe('<HasManyFields />', () => {
       sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
       sinon.assert.calledWith(onUpdate, 1, expectedItems[1]);
+    });
+
+    context('template ref', () => {
+      it('should have the ref prop', () => {
+        component = mount(<HasManyFields {...props} />);
+        const expected = component.find(Input).length;
+        assert.equal(component.instance().rowRefs.length, expected);
+      });
+
+      it('should not have the ref props', () => {
+        props.template = templateProps => (<Input {...templateProps} />);
+        component = mount(<HasManyFields {...props} />);
+        assert.equal(component.instance().rowRefs.length, 0);
+      });
     });
   });
 

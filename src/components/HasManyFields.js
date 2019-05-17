@@ -154,10 +154,16 @@ class HasManyFields extends React.Component {
     }
 
     return null;
-  }
+  };
+
+  isStateless = (Template) => {
+    const isFunction = typeof Template === 'function';
+    return isFunction && !(Template.prototype && Template.prototype.render);
+  };
 
   renderHasManyFieldsRow = (key, index, value) => {
     const { template: Template, disabled, errors, minimumRows } = this.props;
+    const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
     return (
       <HasManyFieldsRow
@@ -170,12 +176,12 @@ class HasManyFields extends React.Component {
           value={value}
           errors={errors[index]}
           onChange={this.updateItem(index)}
-          ref={this.setRowReference(index)}
           disabled={disabled}
+          {...refProps}
         />
       </HasManyFieldsRow>
     );
-  }
+  };
 
   render() {
     const { disabled, reorderable } = this.props;
