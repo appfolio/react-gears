@@ -1,5 +1,4 @@
 const glob = require('glob');
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -57,13 +56,6 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [
-          autoprefixer({ browsers: ['last 2 versions'] })
-        ]
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
