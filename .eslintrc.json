@@ -11,6 +11,7 @@
     "no-confusing-arrow": 0,
     "no-only-tests/no-only-tests": 2,
     "no-nested-ternary": 0,
+    "react/default-props-match-prop-types": [2, { "allowRequiredDefaults": true }],
     "react/no-array-index-key": 1, // TODO Remove this when warnings are addressed
     "react/no-find-dom-node": 1, // TODO Remove this when warnings are addressed
     "react/prefer-stateless-function": 0,
