@@ -126,7 +126,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col sm={2} xs={4} className="pr-3">
+          <Col md={2} sm={3} xs={4} className="pr-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
@@ -146,7 +146,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col sm={4} xs={8}>
+          <Col md={4} sm={3} xs={8}>
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               label={showLabels ? labels.postal : null}
