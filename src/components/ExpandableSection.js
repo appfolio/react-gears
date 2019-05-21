@@ -29,7 +29,7 @@ class ExpandableSection extends React.Component {
 
   toggle = () => {
     const open = !this.state.open;
-    this.setState({ open: !this.state.open }, () => this.props.onToggle(open));
+    this.setState({ open }, () => this.props.onToggle(open));
   };
 
   componentWillReceiveProps(nextProps) {
