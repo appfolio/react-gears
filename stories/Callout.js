@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs';
-
-import { Callout } from '../src/index';
+import { Callout } from '../src';
 
 storiesOf('Callout', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <div>
       <Callout
         color={select('color', ['primary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], Callout.defaultProps.color)}

@@ -1,10 +1,11 @@
 import React from 'react';
-import { FilterList } from '../src';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
+import { FilterList } from '../src';
 
 storiesOf('FilterList', module)
-  .addWithInfo('Live example', () => {
+  .add('Live example', () => {
     const filters = [
       {
         label: 'User',
@@ -25,7 +26,7 @@ storiesOf('FilterList', module)
         <FilterList
           filters={filters}
           maxWidth={number('maxWidth', 14)}
-          onRemove={filter => alert(`Remove clicked for: ${JSON.stringify(filter)}`)}
+          onRemove={filter => action('onRemove', filter)}
         />
       </div>
     );

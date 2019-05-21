@@ -9,7 +9,7 @@ const description = `
 `;
 
 storiesOf('FormRow', module)
-  .addWithInfo('Live example', description, () => (
+  .add('Live example', description, () => (
     <div>
       <FormRow
         label={text('label', 'First Name')}

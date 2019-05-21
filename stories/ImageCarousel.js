@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number } from '@storybook/addon-knobs';
-
 import { ImageCarousel } from '../src';
 
 const items = [
@@ -28,7 +27,7 @@ const items = [
 ];
 
 storiesOf('ImageCarousel', module)
-  .addWithInfo('default props', () => (
+  .add('default props', () => (
     <ImageCarousel
       autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
       controls={boolean('controls', true)}

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button, Card, CardBody, Badge } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
-
-import { Datapair } from '../src';
+import { Badge, Button, Card, CardBody, Datapair } from '../src';
 
 const description = `
   Datapairs are clear and concise elements for displaying labeled data. Each element is comprised
@@ -11,7 +9,7 @@ const description = `
   `;
 
 storiesOf('Datapair', module)
-  .addWithInfo('with props', description, () => (
+  .add('with props', description, () => (
     <Card className="mt-1">
       <CardBody>
         <Datapair label="Key" value="Some simple content would go here" />
@@ -19,7 +17,7 @@ storiesOf('Datapair', module)
       </CardBody>
     </Card>
   ))
-  .addWithInfo('with HTML value', description, () => (
+  .add('with HTML value', description, () => (
     <Card className="mt-1">
       <CardBody>
         <Datapair label="Label">
@@ -32,7 +30,7 @@ storiesOf('Datapair', module)
       </CardBody>
     </Card>
   ))
-  .addWithInfo('with node in label', description, () => (
+  .add('with node in label', description, () => (
     <Card className="mt-1">
       <CardBody>
         <Datapair label={<span>Name <Badge>awesome</Badge></span>} value="Stuff" />

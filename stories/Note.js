@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { EditableNote, Note } from '../src';
 
@@ -21,7 +22,7 @@ const noteToEdit = {
 };
 
 storiesOf('Note', module)
-  .addWithInfo('Live example', () => {
+  .add('Live example', () => {
     const note = {
       date: new Date(),
       deleted: boolean('deleted', false),
@@ -48,7 +49,7 @@ storiesOf('Note', module)
       />
     );
   })
-  .addWithInfo('with children', () => {
+  .add('with children', () => {
     const note = {
       date: new Date(),
       deleted: boolean('deleted', false),
@@ -74,7 +75,7 @@ storiesOf('Note', module)
       </Note>
     );
   })
-  .addWithInfo('EditableNote with note prop', decription, () => {
+  .add('EditableNote with note prop', decription, () => {
     const withNote = boolean('with note', true);
     const note = withNote ? noteToEdit : { text: '' };
 
@@ -88,7 +89,7 @@ storiesOf('Note', module)
       />
     );
   })
-  .addWithInfo('EditableNote with children', decription, () => {
+  .add('EditableNote with children', decription, () => {
     const withNote = boolean('with note', true);
     const saving = boolean('saving', false);
     const note = withNote ? noteToEdit : { text: '' };

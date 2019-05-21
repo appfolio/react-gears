@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, boolean, select } from '@storybook/addon-knobs';
-
+import { text, boolean } from '@storybook/addon-knobs';
 import { Card, CardBody, CardFooter, CardHeader, CardTitle } from '../src/index';
 
 storiesOf('Card', module)
-  .addWithInfo('Live example', () => {
+  .add('Live example', () => {
     const outline = boolean('outline', false);
     const footer = text('footer', '');
 
@@ -34,7 +33,7 @@ storiesOf('Card', module)
       </div>
     );
   })
-  .addWithInfo('Colors', () => (
+  .add('Colors', () => (
     <div>
       {[null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'dark', 'light'].map(color => (
         <Card color={color} className="mb-4">
@@ -48,7 +47,7 @@ storiesOf('Card', module)
         ))}
     </div>
   ))
-  .addWithInfo('Outline', () => {
+  .add('Outline', () => {
     const squareCorners = boolean('square corners', true);
 
     return (

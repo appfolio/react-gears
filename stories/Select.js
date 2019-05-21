@@ -1,17 +1,18 @@
 import React from 'react';
-import { Badge, Icon, Select } from '../src';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { Select } from '../src';
 
 import COUNTRIES from '../src/components/address/Countries.js';
 
 function validateEmail(email) {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
 storiesOf('Select', module)
-  .addWithInfo('with options', () => (
+  .add('with options', () => (
     <div>
       <Select
         className="w-100"
@@ -22,11 +23,11 @@ storiesOf('Select', module)
         onChange={action('onChange')}
       />
       <p className="pt-5">
-        Please see <a href="http://github.hubspot.com/react-select-plus/" target="_blank">react-select-plus documentation</a> for full usage and options.
+        Please see <a href="http://github.hubspot.com/react-select-plus/" rel="noopener noreferrer" target="_blank">react-select-plus documentation</a> for full usage and options.
       </p>
     </div>
   ))
-  .addWithInfo('with initial selection (uncontrolled)', () => (
+  .add('with initial selection (uncontrolled)', () => (
     <Select
       className="w-100"
       defaultValue="US"
@@ -34,7 +35,7 @@ storiesOf('Select', module)
       onChange={action('onChange')}
     />
   ))
-  .addWithInfo('as a controlled input', () => (
+  .add('as a controlled input', () => (
     <Select
       className="w-100"
       value={select('value', COUNTRIES.map(c => c.value), 'US')}
@@ -42,7 +43,7 @@ storiesOf('Select', module)
       onChange={action('onChange')}
     />
   ))
-  .addWithInfo('with async options', () => {
+  .add('with async options', () => {
     const getOptions = (input, callback) => {
       setTimeout(() => {
         callback(null, {
@@ -61,7 +62,7 @@ storiesOf('Select', module)
       onChange={action('onChange')}
     />);
   })
-  .addWithInfo('with multiple and creatable options', () => (
+  .add('with multiple and creatable options', () => (
     <Select
       className="w-100"
       creatable={boolean('creatable', true)}

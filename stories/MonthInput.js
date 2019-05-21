@@ -1,11 +1,11 @@
 import React from 'react';
-import { MonthCalendar, MonthInput, Icon, FormRow } from '../src';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
+import { MonthCalendar, MonthInput, Icon, FormRow } from '../src';
 
 storiesOf('MonthInput', module)
-  .addWithInfo('with props', () => (
+  .add('with props', () => (
     <div className="d-flex">
       <MonthInput
         dateFormat={text('dateFormat', MonthInput.defaultProps.dateFormat)}
@@ -18,7 +18,7 @@ storiesOf('MonthInput', module)
       />
     </div>
   ))
-  .addWithInfo('defaultValue (uncontrolled)', () => (
+  .add('defaultValue (uncontrolled)', () => (
     <div>
       <p>
         When defaultValue is set, component is 'uncontrolled' and maintains its own state.
@@ -31,7 +31,7 @@ storiesOf('MonthInput', module)
       <FormRow type={MonthInput} onChange={action('onChange')} label="'Garbage in'" defaultValue="Garbage in" />
     </div>
   ))
-  .addWithInfo('value (controlled)', () => (
+  .add('value (controlled)', () => (
     <div>
       <p>
         When value is set, component is 'controlled' and does not maintain its own state.
@@ -44,7 +44,7 @@ storiesOf('MonthInput', module)
       <FormRow type={MonthInput} onChange={action('onChange')} label="'Garbage in'" value="Garbage in" />
     </div>
   ))
-  .addWithInfo('Custom header and footer', () => (
+  .add('Custom header and footer', () => (
     <div className="d-inline-flex">
       <MonthInput
         header={<h2 className="text-center text-danger p-2 font-italic">PIRELLI</h2>}
@@ -59,7 +59,7 @@ storiesOf('MonthInput', module)
       />
     </div>
   ))
-  .addWithInfo('MonthCalendar', () => (
+  .add('MonthCalendar', () => (
     <div className="d-inline-flex">
       <MonthCalendar
         monthFormat={text('monthFormat', MonthCalendar.defaultProps.monthFormat)}

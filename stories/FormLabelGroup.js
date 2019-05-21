@@ -9,7 +9,7 @@ const description = `
 `;
 
 storiesOf('FormLabelGroup', module)
-  .addWithInfo('Live example', description, () => (
+  .add('Live example', description, () => (
     <div>
       <FormLabelGroup
         label={text('label', 'Some Input')}

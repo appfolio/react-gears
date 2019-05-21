@@ -67,7 +67,7 @@ storiesOf('react-gears', module)
       </p>
     </section>
   ))
-  .addWithInfo('Style overview', () => (
+  .add('Style overview', () => (
     <div>
       <Row>
         <Col>

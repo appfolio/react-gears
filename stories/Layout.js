@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import { Container, Col, Row } from '../src';
 import { select } from '@storybook/addon-knobs';
+import { Container, Col, Row } from '../src';
 
 storiesOf('Layout', module)
-  .addWithInfo('Grid', () => (
+  .add('Grid', () => (
     <Container fluid className="text-xs-center">
       <Row>
         <Col xs={1}>1</Col>
@@ -49,7 +48,7 @@ storiesOf('Layout', module)
       </Row>
       <h3 className="my-5">
         More information about the layout grid can be read here:&nbsp;
-        <a href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works" target="_blank">Layout</a>
+        <a href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works" rel="noopener noreferrer" target="_blank">Layout</a>
       </h3>
       <hr />
       <style>{`
@@ -60,10 +59,11 @@ storiesOf('Layout', module)
           border-radius: 6px;
           padding: 0.5rem;
         }
-      `}</style>
+      `}
+      </style>
     </Container>)
   )
-  .addWithInfo('Offsets', () => (
+  .add('Offsets', () => (
     <Container className="text-xs-center">
       <style>{`
         /* Just to make example clearer, not needed */
@@ -73,7 +73,8 @@ storiesOf('Layout', module)
           border-radius: 6px;
           padding: 0.5rem;
         }
-      `}</style>
+      `}
+      </style>
       <Row>
         <Col xs={{ size: 2, offset: 2 }}>2 offset 2</Col>
         <Col xs={{ size: 2, offset: 4 }}>2 offset 4</Col>
@@ -88,7 +89,7 @@ storiesOf('Layout', module)
       </Row>
     </Container>
   ))
-  .addWithInfo('Responsive', () => (
+  .add('Responsive', () => (
     <Container className="text-xs-center">
       <style>{`
         /* Just to make example clearer, not needed */
@@ -98,7 +99,8 @@ storiesOf('Layout', module)
           border-radius: 6px;
           padding: 0.5rem;
         }
-      `}</style>
+      `}
+      </style>
       <Row>
         <Col lg="2" md="6" xs="12">
           <h2 className="d-none d-lg-block">lg=2</h2>
@@ -131,7 +133,7 @@ storiesOf('Layout', module)
       </Row>
     </Container>
   ))
-  .addWithInfo('Spacing', () => {
+  .add('Spacing', () => {
     const margin = `m${select('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('margin amount', [0, 1, 2, 3, 4, 5], 3)}`;
     const padding = `p${select('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('padding amount', [0, 1, 2, 3, 4, 5], 3)}`;
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, Input, InputGroupButton, InputGroupText } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
+import { InputGroup, InputGroupAddon, Input, InputGroupButton, InputGroupText } from '../src';
 
 storiesOf('InputGroup', module)
-  .addWithInfo('with props', () => (
+  .add('with props', () => (
     <div>
       <InputGroup>
         <InputGroupAddon addonType="prepend">@</InputGroupAddon>
@@ -39,7 +39,7 @@ storiesOf('InputGroup', module)
       </InputGroup>
     </div>
   ))
-  .addWithInfo('Addons', () => (
+  .add('Addons', () => (
     <div>
       <InputGroup>
         <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
@@ -58,7 +58,7 @@ storiesOf('InputGroup', module)
       </InputGroup>
     </div>
   ))
-  .addWithInfo('Addon Sizing', () => (
+  .add('Addon Sizing', () => (
     <div>
       <InputGroup size="lg">
         <InputGroupAddon addonType="prepend">@lg</InputGroupAddon>
@@ -77,7 +77,7 @@ storiesOf('InputGroup', module)
     </div>
   ))
 // TODO after exporting Dropdown button with state:
-//  .addWithInfo('Button Dropdown', () => (
+//  .add('Button Dropdown', () => (
 //    <div>
 //      <InputGroup>
 //        <InputGroupButton><Button>I'm a button</Button></InputGroupButton>
@@ -96,7 +96,7 @@ storiesOf('InputGroup', module)
 //      </InputGroup>
 //    </div>
 //  ))
-  .addWithInfo('Button Shorthand', () => (
+  .add('Button Shorthand', () => (
     <div>
       <InputGroup>
         <InputGroupButton addonType="prepend">To the Left!</InputGroupButton>

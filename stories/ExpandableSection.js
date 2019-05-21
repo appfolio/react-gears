@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { ExpandableSection } from '../src';
 
 storiesOf('ExpandableSection', module)
-  .addWithInfo('Default', () => (
+  .add('Default', () => (
     <ExpandableSection
       title={text('title', 'Click to expand me')}
       open={boolean('open', ExpandableSection.defaultProps.open)}
@@ -14,7 +14,7 @@ storiesOf('ExpandableSection', module)
       <h2>BOO!</h2>
     </ExpandableSection>
   ))
-  .addWithInfo('Open', () => (
+  .add('Open', () => (
     <ExpandableSection
       title={text('title', 'Expanded by default')}
       open={boolean('open', true)}

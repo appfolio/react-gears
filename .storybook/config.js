@@ -1,5 +1,9 @@
 import React from 'react';
-import infoAddon, { setDefaults } from '@storybook/addon-info';
+import { addParameters, configure, setAddon, addDecorator } from '@storybook/react';
+import { setOptions } from '@storybook/addon-options';
+import { withKnobs } from '@storybook/addon-knobs';
+import { themes } from '@storybook/theming';
+import { withInfo } from '@storybook/addon-info';
 import {
   Button,
   Nav,
@@ -15,9 +19,18 @@ import {
   DropdownMenu,
   DropdownItem
 } from '../src';
-import { configure, setAddon, addDecorator } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
-import { withKnobs } from '@storybook/addon-knobs';
+
+addDecorator(withInfo({
+  header: false,
+  inline: true
+}));
+
+// Option defaults.
+addParameters({
+  options: {
+    theme: themes.dark,
+  },
+});
 
 import pkg from '../package.json';
 
@@ -188,12 +201,6 @@ addDecorator((story, info) => (
     </Container>
   </div>
 ));
-
-setAddon(infoAddon);
-setDefaults({
-  header: false,
-  inline: true
-});
 
 function loadStories() {
   require('../stories');

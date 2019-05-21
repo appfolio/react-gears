@@ -1,7 +1,7 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
-
 import {
   AddressInput,
   HasManyFields,
@@ -35,7 +35,7 @@ const items = [
 ];
 
 storiesOf('HasManyFields', module)
-  .addWithInfo('Live Example', () => (
+  .add('Live Example', () => (
     <HasManyFields
       defaultValue={items}
       template={AddressInput}
@@ -51,7 +51,7 @@ storiesOf('HasManyFields', module)
       reorderable={boolean('reorderable', false)}
     />
   ))
-  .addWithInfo('Row Wrapper', () => (
+  .add('Row Wrapper', () => (
     <HasManyFieldsRow
       onDelete={action('onDelete')}
       disabled={boolean('disabled', false)}
@@ -65,7 +65,7 @@ storiesOf('HasManyFields', module)
       <Input defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow" />
     </HasManyFieldsRow>
   ))
-  .addWithInfo('Add Item Button', () => (
+  .add('Add Item Button', () => (
     <HasManyFieldsAdd onClick={action('onClick')}>
       Button Label Content
     </HasManyFieldsAdd>
