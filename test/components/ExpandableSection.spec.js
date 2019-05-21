@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
+import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
-
 import { Collapse, ExpandableSection } from '../../src';
 
 describe('<ExpandableSection />', () => {
@@ -57,5 +57,19 @@ describe('<ExpandableSection />', () => {
     assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     component.setProps({ open: true });
     assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
+  });
+
+  it('should call onToggle when state changed', () => {
+    const onToggle = sinon.spy();
+    const component = mount(
+      <ExpandableSection title="Open" onToggle={onToggle}>
+        <h1>Hello World!</h1>
+      </ExpandableSection>
+    );
+    component.find('header').simulate('click');
+    assert(onToggle.calledWith(true));
+
+    component.find('header').simulate('click');
+    assert(onToggle.calledWith(false));
   });
 });
