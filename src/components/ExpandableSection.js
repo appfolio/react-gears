@@ -8,13 +8,15 @@ class ExpandableSection extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    onToggle: PropTypes.func,
     open: PropTypes.bool,
     title: PropTypes.string.isRequired
   };
 
   static defaultProps = {
     className: '',
-    open: false
+    open: false,
+    onToggle: () => {}
   };
 
   constructor(props) {
@@ -25,7 +27,10 @@ class ExpandableSection extends React.Component {
     };
   }
 
-  toggle = () => this.setState({ open: !this.state.open });
+  toggle = () => {
+    const open = !this.state.open;
+    this.setState({ open: !this.state.open }, () => this.props.onToggle(open));
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.props.open) {
