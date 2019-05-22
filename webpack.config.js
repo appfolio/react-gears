@@ -20,15 +20,18 @@ const config = {
     // still resolve.
     ...Object.keys(packageJson.dependencies),
     // Externalize all the subimports from reactstrap and date-fns
-    function(context, request, callback) {
+    (context, request, callback) => {
       if (['reactstrap', 'date-fns'].some(check => request.indexOf(check) !== -1)) {
         // Keep it as commonjs require.
-        return callback(null, 'commonjs ' + request);
+        return callback(null, `commonjs ${request}`);
       }
       // Inline it.
       return callback();
     }
   ],
+  optimization: {
+    minimize: true
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
@@ -57,12 +60,6 @@ const config = {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compressor: {
-        warnings: false
-      }
     })
   ]
 };
@@ -73,7 +70,7 @@ const config = {
 const sourceRoot = path.resolve(__dirname, './src');
 const indexJs = path.resolve(sourceRoot, 'index.js');
 const files = {};
-glob.sync(`${sourceRoot}/**/*.js`).forEach(file => {
+glob.sync(`${sourceRoot}/**/*.js`).forEach((file) => {
   if (file === indexJs) return;
   const relativePath = path.relative(sourceRoot, file);
   const parts = path.parse(relativePath);
@@ -88,10 +85,10 @@ const fileConfigs = {
   // When transpiling individual files, we only want to include the file itself and
   // the component stylesheet if it uses one.
   externals: [
-    function(context, request, callback) {
+    (context, request, callback) => {
       if (debugInternalExternal) {
-        console.log('context', context)
-        console.log('request', request)
+        console.log('context', context);
+        console.log('request', request);
       }
       if (
         context.indexOf('node_modules') !== -1 || // inline node modules (style-loader stuff)
@@ -100,12 +97,12 @@ const fileConfigs = {
         context === sourceRoot // inline the entry point
       ) {
         // Inline it.
-        if (debugInternalExternal) console.log('internal\n')
+        if (debugInternalExternal) console.log('internal\n');
         return callback();
       }
       // Keep it as commonjs require.
-      if (debugInternalExternal) console.log('external\n')
-      return callback(null, 'commonjs ' + request);
+      if (debugInternalExternal) console.log('external\n');
+      return callback(null, `commonjs ${request}`);
     }
   ],
   // The output has the same path as the input, just under the lib dir.
@@ -117,6 +114,6 @@ const fileConfigs = {
   // Use the same loaders and plugins as the original config.
   module: config.module,
   plugins: config.plugins,
-}
+};
 
 module.exports = [config, fileConfigs];
