@@ -18,7 +18,8 @@ export default class UncontrolledTable extends React.Component {
       column: PropTypes.string,
       ascending: PropTypes.bool
     }),
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    onSort: PropTypes.func
   };
 
   static defaultProps = {
@@ -31,7 +32,8 @@ export default class UncontrolledTable extends React.Component {
     sort: {
       ascending: true
     },
-    onSelect: () => {}
+    onSelect: () => {},
+    onSort: () => {}
   };
 
   state = {
@@ -48,21 +50,19 @@ export default class UncontrolledTable extends React.Component {
   );
 
   sortBy = (column, ascending) => {
+    let sort;
     if (this.state.sort.column === column) {
-      this.setState({
-        sort: {
-          column,
-          ascending
-        }
-      });
+      sort = {
+        column,
+        ascending
+      };
     } else {
-      this.setState({
-        sort: {
-          column,
-          ascending: true
-        }
-      });
+      sort = {
+        column,
+        ascending: true
+      };
     }
+    this.setState({ sort }, () => this.props.onSort(sort));
   };
 
   get someSelected() {

@@ -397,6 +397,33 @@ describe('<UncontrolledTable />', () => {
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
   });
 
+  it('should show correct rows on sort change', () => {
+    const columns = [{ header: 'Name', key: 'name', cell: row => row }, { header: 'Age', key: 'age', cell: row => row }];
+    const rows = [{ name: 'Alpha', age: 1 }, { name: 'Bravo', age: 5 }, { name: 'Charlie', age: 3 }];
+    const onSort = sinon.stub();
+
+    const wrapper = shallow(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        sort={{ column: 'name', ascending: false }}
+        onSort={onSort}
+      />
+    );
+
+    wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order
+    sinon.assert.calledWith(onSort, { column: 'name', ascending: true });
+    wrapper.update();
+
+    wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order
+    sinon.assert.calledWith(onSort, { column: 'name', ascending: false });
+    wrapper.update();
+
+    wrapper.find(SortableTable).prop('columns')[1].onSort(false);
+    sinon.assert.calledWith(onSort, { column: 'age', ascending: true });
+    wrapper.update();
+  });
+
   it('should hide columns when hidden', () => {
     const columns = [
       { header: 'Name', cell: row => row },
