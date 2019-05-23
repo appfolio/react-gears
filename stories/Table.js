@@ -149,6 +149,7 @@ storiesOf('Table', module)
         paginated={boolean('paginated', false)}
         pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
+        onSort={action('onSort')}
       />
     </div>
   ))
