@@ -3,7 +3,7 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import { AddressInput, Select, FormFeedback, FormGroup, Input, Label } from '../../src';
+import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
 
 describe('<AddressInput />', () => {
   describe('uncontrolled', () => {
@@ -230,6 +230,42 @@ describe('<AddressInput />', () => {
         const feedback = group.find(FormFeedback);
 
         assert.equal(feedback.render().text(), errors[input.prop('name')]);
+      });
+    });
+  });
+
+  describe('with hints', () => {
+    const hints = {
+      address1: 'address1 hint',
+      address2: 'address2 hint',
+      city: 'city hint',
+      state: 'state hint',
+      postal: 'postal hint',
+      countryCode: 'countryCode hint'
+    };
+
+    const component = shallow(
+      <AddressInput
+        defaultValue={{
+          address1: 'Wayne Enterprises',
+          address2: '1007 Mountain Drive',
+          city: 'Gotham',
+          state: 'NJ',
+          postal: '07001',
+          countryCode: 'US'
+        }}
+        hints={hints}
+      />
+    );
+
+    it('should show the corresponding hint for each input', () => {
+      const groups = component.find(FormGroup);
+
+      groups.forEach((group) => {
+        const input = group.childAt(0);
+        const feedback = group.find(FormText);
+
+        assert.equal(feedback.render().text(), hints[input.prop('name')]);
       });
     });
   });

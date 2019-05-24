@@ -23,6 +23,7 @@ storiesOf('AddressInput', module)
         showCountry={boolean('showCountry', true)}
         showLabels={boolean('showLabels', false)}
         labels={object('labels', AddressInput.defaultProps.labels)}
+        hints={object('hints', AddressInput.defaultProps.hints)}
       />
     </div>
   ))

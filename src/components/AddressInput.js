@@ -18,6 +18,7 @@ class AddressInput extends React.Component {
     defaultValue: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
+    hints: PropTypes.shape(addressPropType),
     id: PropTypes.string,
     labels: PropTypes.shape(addressPropType),
     onBlur: PropTypes.func,
@@ -32,6 +33,7 @@ class AddressInput extends React.Component {
     defaultValue: {},
     disabled: false,
     error: {},
+    hints: {},
     labels: {
       address1: 'Address',
       address2: 'Address 2',
@@ -65,13 +67,14 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, disabled, error, id, labels, onBlur, showCountry, showLabels } = this.props;
+    const { className, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
 
     return (
       <div className={className} id={id}>
         <FormLabelGroup
           label={showLabels ? labels.address1 : null}
           feedback={error.address1}
+          hint={hints.address1}
           stacked
         >
           <Input
@@ -91,6 +94,7 @@ class AddressInput extends React.Component {
           label={showLabels ? labels.address2 : null}
           error={error.address2}
           feedback={error.address2}
+          hint={hints.address2}
           stacked
         >
           <Input
@@ -110,6 +114,7 @@ class AddressInput extends React.Component {
             <FormLabelGroup
               rowClassName={classnames({ 'mb-sm-0': !showCountry })}
               feedback={error.city}
+              hint={hints.city}
               label={showLabels ? labels.city : null}
               stacked
             >
@@ -130,6 +135,7 @@ class AddressInput extends React.Component {
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
+              hint={hints.state}
               label={showLabels ? labels.state : null}
               stacked
             >
@@ -151,6 +157,7 @@ class AddressInput extends React.Component {
               rowClassName={classnames({ 'mb-0': !showCountry })}
               label={showLabels ? labels.postal : null}
               feedback={error.postal}
+              hint={hints.postal}
               stacked
             >
               <Input
@@ -170,6 +177,7 @@ class AddressInput extends React.Component {
         {showCountry &&
           <FormLabelGroup
             feedback={error.countryCode}
+            hint={hints.countryCode}
             rowClassName="mb-0"
             label={showLabels ? labels.countryCode : null}
             stacked
