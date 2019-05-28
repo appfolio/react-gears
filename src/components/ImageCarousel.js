@@ -17,9 +17,6 @@ export default class ImageCarousel extends React.Component {
     autoPlay: PropTypes.bool,
     defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
-    next: PropTypes.func,
-    previous: PropTypes.func,
-    goToIndex: PropTypes.func,
     ...Modal.propTypes
   };
 
@@ -31,6 +28,11 @@ export default class ImageCarousel extends React.Component {
     toggle: () => {}
   };
 
+  constructor(props) {
+    super(props);
+    this.carousel = React.createRef();
+  }
+
   handleEscape(e) {
     if (e.key === 'Escape') {
       this.props.toggle();
@@ -39,6 +41,17 @@ export default class ImageCarousel extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keyup', e => this.handleEscape(e));
+    const index = this.props.index;
+    if (index >= 0 && index < this.props.items.length) {
+      this.carousel.current.goToIndex(index);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const index = this.props.index;
+    if (index !== prevProps.index && index >= 0 && index < this.props.items.length) {
+      this.carousel.current.goToIndex(index);
+    }
   }
 
   componentWillUnmount() {
@@ -46,9 +59,8 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { next, previous, goToIndex, defaultActiveIndex, activeIndex, autoPlay, controls, items, indicators, interval, toggle, ...props } = this.props;
+    const { defaultActiveIndex, autoPlay, controls, items, indicators, interval, toggle, ...props } = this.props;
 
-    // TODO temp - remove need for style tag below:
     return (
       <Modal
         external={
@@ -67,11 +79,8 @@ export default class ImageCarousel extends React.Component {
               interval={autoPlay ? interval : 0}
               controls={controls}
               autoPlay={autoPlay}
-              activeIndex={activeIndex}
-              next={next}
-              previous={previous}
-              goToIndex={goToIndex}
               defaultActiveIndex={defaultActiveIndex}
+              ref={this.carousel}
             />
           </div>
         }

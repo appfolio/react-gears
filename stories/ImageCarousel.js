@@ -35,5 +35,6 @@ storiesOf('ImageCarousel', module)
       interval={number('interval', ImageCarousel.defaultProps.interval)}
       controls={boolean('controls', true)}
       autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
+      index={number('index', 0)}
     />
   ));
