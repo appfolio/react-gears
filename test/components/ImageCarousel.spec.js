@@ -37,7 +37,7 @@ describe('<ImageCarousel />', () => {
   });
 
   it('should render a close button', () => {
-    const component = shallow(<ImageCarousel />);
+    component = shallow(<ImageCarousel />);
     const external = shallow(component.prop('external'));
     const icon = external.find(Icon);
 
