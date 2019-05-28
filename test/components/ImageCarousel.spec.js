@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -11,8 +11,24 @@ import {
 } from '../../src';
 
 describe('<ImageCarousel />', () => {
+  let component;
+  afterEach((done) => {
+    if (component && component.prop('isOpen')) {
+      component.setProps({ isOpen: false });
+      const interval = setInterval(() => {
+        if (!document.getElementsByClassName('modal').length) {
+          clearInterval(interval);
+          component = null;
+          done();
+        }
+      }, 100);
+    } else {
+      done();
+    }
+  });
+
   it('should render a modal with desired props', () => {
-    const component = shallow(<ImageCarousel isOpen />);
+    component = shallow(<ImageCarousel isOpen />);
     const modal = component.find(Modal);
 
     assert.strictEqual(modal.prop('backdrop'), true);
@@ -21,7 +37,7 @@ describe('<ImageCarousel />', () => {
   });
 
   it('should render a close button', () => {
-    const component = shallow(<ImageCarousel />);
+    component = shallow(<ImageCarousel />);
     const external = shallow(component.prop('external'));
     const icon = external.find(Icon);
 
@@ -30,7 +46,7 @@ describe('<ImageCarousel />', () => {
 
   it('should render a carousel', () => {
     const items = [{ src: 'empire' }, { src: 'phantom' }, { src: 'force' }];
-    const component = shallow(<ImageCarousel items={items} />);
+    component = shallow(<ImageCarousel items={items} />);
     const external = shallow(component.prop('external'));
     const carousel = external.find(UncontrolledCarousel);
 
@@ -64,7 +80,7 @@ describe('<ImageCarousel />', () => {
   describe('close button', () => {
     it('should call toggle on click', () => {
       const spy = sinon.spy();
-      const component = shallow(<ImageCarousel toggle={spy} />);
+      component = shallow(<ImageCarousel toggle={spy} />);
       const external = shallow(component.prop('external'));
       const icon = external.find(Icon);
 
@@ -72,5 +88,23 @@ describe('<ImageCarousel />', () => {
 
       assert(spy.calledOnce);
     });
+  });
+
+  it('should render with correct index', () => {
+    const items = [{ src: 'empire' }, { src: 'phantom' }, { src: 'force' }];
+    component = mount(<ImageCarousel items={items} index={2} isOpen />);
+    const carousel = component.find(UncontrolledCarousel);
+    assert.equal(carousel.state('activeIndex'), 2);
+  });
+
+  it('should render with correct with no index and then go to the appropriate index', () => {
+    const items = [{ src: 'empire' }, { src: 'phantom' }, { src: 'force' }];
+    component = mount(<ImageCarousel items={items} isOpen />);
+    let carousel = component.find(UncontrolledCarousel);
+
+    component.setProps({ index: 1 });
+    component.update();
+    carousel = component.find(UncontrolledCarousel);
+    assert.equal(carousel.state('activeIndex'), 1);
   });
 });
