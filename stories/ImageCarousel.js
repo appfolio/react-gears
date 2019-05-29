@@ -6,35 +6,38 @@ import { ImageCarousel } from '../src';
 
 const items = [
   {
-    src: 'https://picsum.photos/800/600?random',
-    altText: 'Slide 1',
-    caption: 'Slide 1',
-    header: 'Slide 1 Header'
+    src: 'https://picsum.photos/id/1/800/600',
+    altText: 'Slide 1'
   },
   {
-    src: 'https://picsum.photos/1000/750?random',
-    altText: 'Slide 2',
-    caption: 'Slide 2',
-    header: 'Slide 2 Header'
+    src: 'https://picsum.photos/id/2/1000/750',
+    altText: 'Slide 2'
   },
   {
-    src: 'https://picsum.photos/1200/900?random',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
-    header: 'Slide 3 Header'
+    src: 'https://picsum.photos/id/4/1200/900',
+    altText: 'Slide 3'
+  },
+  {
+    src: 'https://picsum.photos/id/5/1000/750',
+    altText: 'Slide 4'
+  },
+  {
+    src: 'https://picsum.photos/id/6/1200/900',
+    altText: 'Slide 5',
   }
 ];
 
 storiesOf('ImageCarousel', module)
   .addWithInfo('default props', () => (
     <ImageCarousel
-      items={items}
+      autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
+      controls={boolean('controls', true)}
       fade={boolean('fade', ImageCarousel.defaultProps.fade)}
-      isOpen={boolean('isOpen', true)}
+      slide={boolean('slide', ImageCarousel.defaultProps.slide)}
+      index={number('index', 0)}
       indicators={boolean('indicators', true)}
       interval={number('interval', ImageCarousel.defaultProps.interval)}
-      controls={boolean('controls', true)}
-      autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
-      index={number('index', 0)}
+      isOpen={boolean('isOpen', true)}
+      items={items}
     />
   ));

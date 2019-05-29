@@ -17,6 +17,7 @@ export default class ImageCarousel extends React.Component {
     autoPlay: PropTypes.bool,
     defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
+    slide: PropTypes.bool,
     ...Modal.propTypes
   };
 
@@ -25,12 +26,19 @@ export default class ImageCarousel extends React.Component {
     backdrop: true,
     fade: false,
     items: [],
+    slide: false,
     toggle: () => {}
   };
 
   constructor(props) {
     super(props);
     this.carousel = React.createRef();
+  }
+
+  goToIndex(index) {
+    if (index >= 0 && index < this.props.items.length && this.carousel && this.carousel.current) {
+      this.carousel.current.goToIndex(index);
+    }
   }
 
   handleEscape(e) {
@@ -42,15 +50,13 @@ export default class ImageCarousel extends React.Component {
   componentDidMount() {
     document.addEventListener('keyup', e => this.handleEscape(e));
     const index = this.props.index;
-    if (index >= 0 && index < this.props.items.length) {
-      this.carousel.current.goToIndex(index);
-    }
+    this.goToIndex(index);
   }
 
   componentDidUpdate(prevProps) {
-    const index = this.props.index;
-    if (index !== prevProps.index && index >= 0 && index < this.props.items.length) {
-      this.carousel.current.goToIndex(index);
+    const { index, isOpen } = this.props;
+    if (index !== prevProps.index || (isOpen && (isOpen !== prevProps.isOpen))) {
+      this.goToIndex(index);
     }
   }
 
@@ -59,7 +65,7 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { defaultActiveIndex, autoPlay, controls, items, indicators, interval, toggle, ...props } = this.props;
+    const { defaultActiveIndex, autoPlay, controls, index, items, indicators, interval, slide, toggle, ...props } = this.props;
 
     return (
       <Modal
@@ -73,14 +79,14 @@ export default class ImageCarousel extends React.Component {
               onClick={toggle}
             />
             <UncontrolledCarousel
+              autoPlay={autoPlay}
               className={classnames('d-flex align-items-center h-100', styles.carousel)}
-              items={items}
+              controls={controls}
               indicators={indicators}
               interval={autoPlay ? interval : 0}
-              controls={controls}
-              autoPlay={autoPlay}
-              defaultActiveIndex={defaultActiveIndex}
+              items={items}
               ref={this.carousel}
+              slide={slide}
             />
           </div>
         }
