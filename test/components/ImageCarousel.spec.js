@@ -107,4 +107,15 @@ describe('<ImageCarousel />', () => {
     carousel = component.find(UncontrolledCarousel);
     assert.equal(carousel.state('activeIndex'), 1);
   });
+
+  it('should ignore out of bounds index', () => {
+    const items = [{ src: 'empire' }, { src: 'phantom' }, { src: 'force' }];
+    component = mount(<ImageCarousel items={items} isOpen />);
+    let carousel = component.find(UncontrolledCarousel);
+
+    component.setProps({ index: 52 });
+    component.update();
+    carousel = component.find(UncontrolledCarousel);
+    assert.equal(carousel.state('activeIndex'), 0);
+  });
 });
