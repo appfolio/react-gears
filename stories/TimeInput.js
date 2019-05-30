@@ -4,11 +4,8 @@ import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { FormRow, TimeInput } from '../src';
 
-const description = 'TimeInput supports typing times without colons. ' +
-  'It also optionally supports times outside the initial list of options through the allowOtherTimes prop.';
-
 storiesOf('TimeInput', module)
-  .add('with props', description, () => (
+  .add('with props', () => (
     <div>
       <TimeInput
         allowOtherTimes={boolean('allowOtherTimes', true)}

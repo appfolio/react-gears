@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { object } from '@storybook/addon-knobs';
 import {
   AddressInput,
@@ -126,10 +127,10 @@ storiesOf('Forms', module)
       />
     </form>
   ))
-  .add('Forms with Objects', () => (
+  .add('BoundForm', () => (
     <BoundForm
       object={formData}
-      errors={object('errors', { lastName: "can't be blank" })}
+      errors={object('errors', { lastName: 'Last Name is required' })}
       onSubmit={action('submit')}
     >
       <BoundFormRow label="First Name" name="firstName" />

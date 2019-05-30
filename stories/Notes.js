@@ -4,10 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { Note, Notes } from '../src';
 
-const description = 'The Notes component works in conjunction with other components.\n\nThe "Note" '
-  + 'child component represents each note, and works in conjunction with "EditableNote" and '
-  + 'DeletedNote components.';
-
 const moreNotes = [
   {
     id: 1,
@@ -24,7 +20,7 @@ const moreNotes = [
 ];
 
 storiesOf('Notes', module)
-  .add('With notes prop', description, () => {
+  .add('With notes prop', () => {
     const notes = [
       {
         id: 0,
@@ -51,7 +47,7 @@ storiesOf('Notes', module)
       />
     );
   })
-  .add('With children', description, () => {
+  .add('With children', () => {
     const notes = [
       {
         date: new Date(),

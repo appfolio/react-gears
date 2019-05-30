@@ -134,7 +134,11 @@ const BS4_THEMES = [
   }
 ];
 
-addDecorator(withKnobs);
+addDecorator(
+  withKnobs({
+    escapeHTML: false,
+  })
+);
 
 addDecorator((story, info) => (
   <div>
