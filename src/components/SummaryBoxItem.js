@@ -18,7 +18,7 @@ const SummaryBoxItem = ({ className, label, reverse, value, ...props }) => {
     <Card
       color="secondary"
       outline
-      className={classnames('rounded-0 shadow-0 bg-white border-secondary', className)}
+      className={classnames('rounded-0 shadow-none bg-white border-secondary', className)}
       {...props}
     >
       <CardBody className={bodyClassNames}>
