@@ -131,6 +131,7 @@ import PatternInput from './components/PatternInput.js';
 import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioInput from './components/RadioInput.js';
+import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
@@ -287,6 +288,7 @@ export {
   PatternInput,
   Progress,
   RadioInput,
+  ScrollContainer,
   Spinner,
   StateInput,
   StaticInput,

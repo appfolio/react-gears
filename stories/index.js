@@ -37,6 +37,7 @@ import './Notes';
 import './Paginator';
 import './Popover';
 import './Progress';
+import './ScrollContainer';
 import './Select';
 import './Spinner';
 import './Steps';
