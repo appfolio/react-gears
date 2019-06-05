@@ -6,7 +6,7 @@ import styles from './ScrollContainer.scss';
 
 export default class ScrollContainer extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     theme: PropTypes.shape({
@@ -25,6 +25,7 @@ export default class ScrollContainer extends React.Component {
       overflowRight: styles.overflowRight
     }
   }
+
   state = {
     overflowTop: false,
     overflowBottom: false,

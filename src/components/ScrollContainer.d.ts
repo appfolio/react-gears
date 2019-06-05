@@ -11,7 +11,7 @@ type Theme = {
 interface Props extends
   Omit<React.HTMLProps<HTMLDivElement>, 'className'>{
   className?: string;
-  children: (JSX.Element | string) | (JSX.Element | string)[];
+  children: React.ReactNode;
   height?: string | number;
   theme?: Theme;
 }
