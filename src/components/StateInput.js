@@ -12,11 +12,27 @@ export default class StateInput extends React.Component {
     name: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.string,
+    additionalStates: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
+      })
+    )
   }
 
   static defaultProps = {
     onChange: () => {}
+  }
+
+  get states() {
+    const { additionalStates } = this.props;
+
+    if (additionalStates) {
+      return STATES.concat(additionalStates);
+    }
+
+    return STATES;
   }
 
   render() {
@@ -43,7 +59,7 @@ export default class StateInput extends React.Component {
         onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
       >
         <option value="">{placeholder}</option>
-        {STATES.map(state =>
+        {this.states.map(state =>
           <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
       </Input>
     );

@@ -48,3 +48,34 @@ describe('<StateInput />', () => {
     assert.equal(component.find('option').first().text(), 'Pick a State...');
   });
 });
+
+describe('options', () => {
+  const xxStateValue = 'XX';
+  const yyStateValue = 'YY';
+  const zzStateValue = 'ZZ';
+  const additionalStates = [
+    { label: 'The xx', value: xxStateValue },
+    { label: 'Yo-yo', value: yyStateValue },
+    { label: 'ZZ Top', value: zzStateValue }
+  ];
+  const component = mount(<StateInput additionalStates={additionalStates} />);
+
+  // it('well-formed additionalStates are available in STATES options', () => {
+  //   assert.equal(component.find(`option[value="${xxStateValue}"]`).exists(), true);
+  //   assert.equal(component.find(`option[value="${yyStateValue}"]`).exists(), true);
+  //   assert.equal(component.find(`option[value="${zzStateValue}"]`).exists(), true);
+  // });
+
+  // it('well-formed additionalStates are available in STATES options with value as text', () => {
+  //   assert.equal(component.find(`option[value="${xxStateValue}"]`).text(), xxStateValue);
+  //   assert.equal(component.find(`option[value="${yyStateValue}"]`).text(), yyStateValue);
+  //   assert.equal(component.find(`option[value="${zzStateValue}"]`).text(), zzStateValue);
+  // });
+
+  it('well-formed additionalStates are appended in order to the end of STATES options with value as text', () => {
+    const length = component.find('option').length;
+    assert.equal(component.find('option').last().text(), zzStateValue);
+    assert.equal(component.find('option').at(length - 2).text(), yyStateValue);
+    assert.equal(component.find('option').at(length - 3).text(), xxStateValue);
+  });
+});
