@@ -26,6 +26,12 @@ class AddressInput extends React.Component {
     showCountry: PropTypes.bool,
     showLabels: PropTypes.bool,
     value: PropTypes.shape(addressPropType),
+    additionalStates: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
+      })
+    ),
   };
 
   static defaultProps = {
@@ -67,7 +73,18 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
+    const {
+      additionalStates,
+      className,
+      disabled,
+      error,
+      hints,
+      id,
+      labels,
+      onBlur,
+      showCountry,
+      showLabels
+    } = this.props;
 
     return (
       <div className={className} id={id}>
@@ -149,6 +166,7 @@ class AddressInput extends React.Component {
                 onBlur={() => onBlur('state')}
                 onChange={state => this.onChange({ state })}
                 disabled={disabled}
+                additionalStates={additionalStates}
               />
             </FormLabelGroup>
           </Col>
