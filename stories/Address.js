@@ -18,6 +18,7 @@ storiesOf('AddressInput', module)
         }}
         onBlur={action('address onBlur')}
         onChange={action('address onChange')}
+        countries={object('countries', ['US'])}
         disabled={boolean('disabled')}
         error={object('error', {})}
         showCountry={boolean('showCountry', true)}
