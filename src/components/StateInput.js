@@ -13,7 +13,7 @@ const STATES_LOOKUP = {
 export default class StateInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    countries: PropTypes.array,
+    countries: PropTypes.arrayOf(PropTypes.string),
     disabled: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
