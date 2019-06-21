@@ -15,6 +15,7 @@ const readEvent = (e) => { return { [e.target.name]: e.target.value }; };
 class AddressInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    countries: PropTypes.arrayOf(PropTypes.string),
     defaultValue: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
@@ -67,7 +68,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
+    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
 
     return (
       <div className={className} id={id}>
@@ -141,6 +142,7 @@ class AddressInput extends React.Component {
             >
               <StateInput
                 className="w-100"
+                countries={countries}
                 id={id ? `${id}_state` : null}
                 name="state"
                 placeholder={labels.state}

@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Input from './Input';
-import STATES from './address/USStates.js'; // TODO Dynamic states based on country
+import US from './address/USStates';
+import CA from './address/CAProvinces';
+
+const STATES_LOOKUP = {
+  CA,
+  US
+};
 
 export default class StateInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    countries: PropTypes.arrayOf(PropTypes.string),
     disabled: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
@@ -16,12 +23,14 @@ export default class StateInput extends React.Component {
   }
 
   static defaultProps = {
+    countries: ['US'],
     onChange: () => {}
   }
 
   render() {
     const {
       className,
+      countries,
       disabled,
       id,
       name,
@@ -31,6 +40,11 @@ export default class StateInput extends React.Component {
     } = this.props;
 
     const classNames = classnames('custom-select', className);
+
+    const STATES = countries.reduce((result, country) => {
+      const states = STATES_LOOKUP[country] || [];
+      return [...result, ...states];
+    }, []);
 
     return (
       <Input
