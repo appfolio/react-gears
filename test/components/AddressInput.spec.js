@@ -4,6 +4,8 @@ import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
+import CA from '../../src/components/address/CAProvinces';
+import US from '../../src/components/address/USStates';
 
 describe('<AddressInput />', () => {
   describe('uncontrolled', () => {
@@ -399,5 +401,17 @@ describe('<AddressInput />', () => {
     );
     assert.equal(component.find('.address-component').hostNodes().length, 1);
   });
-});
 
+  describe('states', () => {
+    it('should support different countries', () => {
+      const defaultStates = mount(<AddressInput id="test" />);
+      assert.equal(defaultStates.find('#test_state option').length, US.length + 1);
+  
+      const component = mount(<AddressInput id="test" countries={['CA']} />);
+      assert.equal(component.find('#test_state option').length, CA.length + 1);
+  
+      const allSupported = mount(<AddressInput id="test" countries={['CA', 'US']} />);
+      assert.equal(allSupported.find('#test_state option').length, CA.length + US.length + 1);
+    });
+  })
+});

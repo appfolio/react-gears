@@ -4,6 +4,8 @@ import { mount } from 'enzyme';
 import sinon from 'sinon';
 
 import { StateInput } from '../../src';
+import CA from '../../src/components/address/CAProvinces';
+import US from '../../src/components/address/USStates';
 
 describe('<StateInput />', () => {
   it('should default to blank', () => {
@@ -46,5 +48,16 @@ describe('<StateInput />', () => {
   it('should render specified placeholder', () => {
     const component = mount(<StateInput placeholder="Pick a State..." />);
     assert.equal(component.find('option').first().text(), 'Pick a State...');
+  });
+
+  it('should support different countries', () => {
+    const defaultStates = mount(<StateInput />);
+    assert.equal(defaultStates.find('option').length, US.length + 1);
+
+    const component = mount(<StateInput countries={['CA']} />);
+    assert.equal(component.find('option').length, CA.length + 1);
+
+    const allSupported = mount(<StateInput countries={['CA', 'US']} />);
+    assert.equal(allSupported.find('option').length, CA.length + US.length + 1);
   });
 });
