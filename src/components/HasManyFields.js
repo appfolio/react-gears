@@ -198,6 +198,7 @@ class HasManyFields extends React.Component {
             value={this.value}
             renderHasManyFieldsRow={this.renderHasManyFieldsRow}
             renderAddRow={this.renderAddRow}
+            helperClass="active"
           />
         </div>
       );
