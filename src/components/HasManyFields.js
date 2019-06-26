@@ -192,13 +192,13 @@ class HasManyFields extends React.Component {
         <div className={styles.noSelect}>
           <SortableContainer
             className="js-reorderable-container"
+            helperClass="hmf-dragging"
             onSortEnd={this.onSortEnd}
             useDragHandle
             lockAxis="y"
             value={this.value}
             renderHasManyFieldsRow={this.renderHasManyFieldsRow}
             renderAddRow={this.renderAddRow}
-            helperClass="active"
           />
         </div>
       );
