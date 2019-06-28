@@ -59,7 +59,7 @@
     "react-sortable-hoc": "^1.4.0",
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.3.1",
-    "reactstrap": "^6.5.0",
+    "reactstrap": "~6.3.1",
     "text-mask-addons": "^3.1.0"
   },
   "devDependencies": {
