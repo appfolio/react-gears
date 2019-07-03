@@ -28,6 +28,7 @@ import './ImageCarousel';
 import './Input';
 import './InfoBox';
 import './InputGroup';
+import './InternationalAddressInput';
 import './LabelBadge';
 import './Modal';
 import './MonthInput';

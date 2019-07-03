@@ -48,6 +48,7 @@
     "lodash.range": "^3.2.0",
     "lodash.some": "^4.6.0",
     "lodash.tolower": "^4.1.2",
+    "lodash.topairs": "^4.3.0",
     "lodash.without": "^4.4.0",
     "memoize-one": "^5.0.0",
     "prop-types": "^15.5.10",
