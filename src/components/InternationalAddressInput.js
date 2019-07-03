@@ -69,7 +69,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                     <Input
                       className="custom-select"
                       disabled={disabled}
-                      id={id ? `${id}state` : null}
+                      id={id ? `${id}_state` : null}
                       invalid={!!error.state}
                       name="state"
                       onBlur={() => onBlur('state')}
@@ -79,7 +79,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                       value={value.state}
                     >
                       <option value="">{i18nLabels.state}</option>
-                      {states.map(({ name, code }) => <option value={code}>{name}</option>)}
+                      {states.map(({ name, code }) => <option key={code} value={code}>{name}</option>)}
                     </Input>
                   )}
                 </FormLabelGroup>
