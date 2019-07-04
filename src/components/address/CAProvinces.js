@@ -1,4 +1,4 @@
-import { formats } from './Formats';
+import { formats } from './AddressFormats';
 
 const states = formats.CA.states.map(({ name: label, code: value }) => {
   return {

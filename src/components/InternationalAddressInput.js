@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Col from './Col';
 import CountryInput from './CountryInput';
 import FormLabelGroup from './FormLabelGroup';
-import getAddressFormat from './address/Formats';
+import getAddressFormat from './address/AddressFormats';
 import Input from './Input';
 import Row from './Row';
 
@@ -11,7 +11,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
   const countryCode = value.countryCode;
   const addressFormat = getAddressFormat(countryCode);
   const fields = getAddressFormat(countryCode).fields;
-  const i18nLabels = { ...labels, ...addressFormat.labels };
+  const i18nLabels = { ...addressFormat.labels, ...labels };
   const states = addressFormat.states;
 
   const onAddressChange = (field) => {
@@ -33,7 +33,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
   );
 
   return (
-    <div className={className}>
+    <div className={className} id={id}>
       {fields.map(row => (
         <Row className="no-gutters">
           {row.map((field, index) => {
@@ -118,14 +118,7 @@ InternationalAddressInput.defaultProps = {
   disabled: false,
   error: {},
   hints: {},
-  labels: {
-    address1: 'Address',
-    address2: 'Address 2',
-    city: 'City',
-    state: 'State',
-    postal: 'Zip',
-    countryCode: 'Country',
-  },
+  labels: {},
   onBlur: () => {},
   onChange: () => {},
   showLabels: false,

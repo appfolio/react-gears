@@ -1,5 +1,9 @@
 const defaultFormat = {
   labels: {
+    address1: 'Address',
+    address2: 'Address 2',
+    city: 'City',
+    countryCode: 'Country',
     postal: 'Postal code',
     state: 'Region'
   },
@@ -4768,6 +4772,10 @@ export const formats = {
 export default function getAddressFormat(countryCode) {
   return {
     ...defaultFormat,
-    ...formats[countryCode]
+    ...formats[countryCode],
+    labels: {
+      ...defaultFormat.labels,
+      ...formats[countryCode].labels,
+    }
   };
 }
