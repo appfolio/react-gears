@@ -117,6 +117,7 @@ import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import ImageCarousel from './components/ImageCarousel.js';
+import InternationalAddressInput from './components/InternationalAddressInput.js';
 import Icon from './components/Icon.js';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
@@ -199,6 +200,7 @@ export {
   InputGroupButton,
   InputGroupButtonDropdown,
   InputGroupText,
+  InternationalAddressInput,
   Jumbotron,
   Label,
   ListGroup,
