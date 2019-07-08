@@ -110,5 +110,6 @@
     "uncontrollable": "^4.1.0",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
-  }
+  },
+  "browserslist": "last 2 versions"
 }
