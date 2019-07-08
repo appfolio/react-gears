@@ -67,7 +67,7 @@ storiesOf('AddressInput', module)
       />
     </div>
   ))
-  .addWithInfo('InternationalAddressInput', () => (
+  .add('InternationalAddressInput', () => (
     <div>
       <UncontrolledInternationalAddressInput
         showLabels={boolean('showLabel', InternationalAddressInput.defaultProps.showLabels)}
