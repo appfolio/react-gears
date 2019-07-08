@@ -1,8 +1,13 @@
 import React from 'react';
+import uncontrollable from 'uncontrollable';
 import { storiesOf, action } from '@storybook/react';
 import { boolean, text, select, object } from '@storybook/addon-knobs';
-import { AddressInput, Label } from '../src';
+import { AddressInput, InternationalAddressInput, Label } from '../src';
 import states from '../src/components/address/USStates.js';
+
+// Wrapping as uncontrolled so that story is easier to use:
+const UncontrolledInternationalAddressInput = uncontrollable(InternationalAddressInput, { value: 'onChange' });
+UncontrolledInternationalAddressInput.displayName = 'InternationalAddressInput';
 
 storiesOf('AddressInput', module)
   .addWithInfo('Live Example', () => (
@@ -58,6 +63,19 @@ storiesOf('AddressInput', module)
         error={object('error', { address1: 'bad stuff', state: 'no' })}
         onChange={action('address onChange')}
         disabled={boolean('disabled')}
+      />
+    </div>
+  ))
+  .addWithInfo('InternationalAddressInput', () => (
+    <div>
+      <UncontrolledInternationalAddressInput
+        showLabels={boolean('showLabel', InternationalAddressInput.defaultProps.showLabels)}
+        onBlur={action('address onBlur')}
+        onChange={action('address onChange')}
+        disabled={boolean('disabled')}
+        error={object('error', {})}
+        labels={object('labels', InternationalAddressInput.defaultProps.labels)}
+        hints={object('hints', InternationalAddressInput.defaultProps.hints)}
       />
     </div>
   ));

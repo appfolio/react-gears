@@ -4770,12 +4770,13 @@ export const formats = {
 };
 
 export default function getAddressFormat(countryCode) {
+  const labels = countryCode ? {
+    ...defaultFormat.labels,
+    ...formats[countryCode].labels,
+  } : defaultFormat.labels;
   return {
     ...defaultFormat,
     ...formats[countryCode],
-    labels: {
-      ...defaultFormat.labels,
-      ...formats[countryCode].labels,
-    }
+    labels
   };
 }
