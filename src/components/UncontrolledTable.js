@@ -178,8 +178,9 @@ export default class UncontrolledTable extends React.Component {
           {...selectableProps}
         />
         {paginated && [
-          <hr />,
+          <hr key="separator" />,
           <Paginator
+            key="paginator"
             currentPage={page + 1}
             onClick={pg => this.setPage(pg - 1)}
             perPage={pageSize}
