@@ -3,12 +3,12 @@ import React from 'react';
 import flow from 'lodash.flow';
 import classnames from 'classnames';
 
-import CountryInput from './CountryInput';
 import StateInput from './StateInput';
 import FormLabelGroup from './FormLabelGroup';
 import Col from './Col';
 import Input from './Input';
 import Row from './Row';
+import InternationalAddressInput from './InternationalAddressInput';
 
 const readEvent = (e) => { return { [e.target.name]: e.target.value }; };
 
@@ -45,7 +45,7 @@ class AddressInput extends React.Component {
     },
     onBlur: () => {},
     onChange: () => {},
-    showCountry: true,
+    showCountry: false,
     showLabels: false,
     value: {},
   };
@@ -67,9 +67,14 @@ class AddressInput extends React.Component {
     this.inputAddress1.focus();
   }
 
-  render() {
-    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
+  useInternationAddressComponent = () => this.props.showCountry;
 
+  renderComponent = () => {
+    if (this.useInternationAddressComponent()) {
+      return (<InternationalAddressInput {...this.props} />);
+    }
+
+    const { className, countries, disabled, error, hints, id, labels, onBlur, showLabels } = this.props;
     return (
       <div className={className} id={id}>
         <FormLabelGroup
@@ -113,7 +118,7 @@ class AddressInput extends React.Component {
         <Row className="no-gutters">
           <Col sm={6} xs={12} className="pr-sm-3">
             <FormLabelGroup
-              rowClassName={classnames({ 'mb-sm-0': !showCountry })}
+              rowClassName={classnames({ 'mb-sm-0': true })}
               feedback={error.city}
               hint={hints.city}
               label={showLabels ? labels.city : null}
@@ -134,7 +139,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col md={2} sm={3} xs={4} className="pr-3">
             <FormLabelGroup
-              rowClassName={classnames({ 'mb-0': !showCountry })}
+              rowClassName={classnames({ 'mb-0': true })}
               feedback={error.state}
               hint={hints.state}
               label={showLabels ? labels.state : null}
@@ -156,7 +161,7 @@ class AddressInput extends React.Component {
           </Col>
           <Col md={4} sm={3} xs={8}>
             <FormLabelGroup
-              rowClassName={classnames({ 'mb-0': !showCountry })}
+              rowClassName={classnames({ 'mb-0': !false })}
               label={showLabels ? labels.postal : null}
               feedback={error.postal}
               hint={hints.postal}
@@ -176,28 +181,12 @@ class AddressInput extends React.Component {
             </FormLabelGroup>
           </Col>
         </Row>
-        {showCountry &&
-          <FormLabelGroup
-            feedback={error.countryCode}
-            hint={hints.countryCode}
-            rowClassName="mb-0"
-            label={showLabels ? labels.countryCode : null}
-            stacked
-          >
-            <CountryInput
-              className="w-100"
-              id={id ? `${id}_countryCode` : null}
-              name="countryCode"
-              placeholder={labels.countryCode}
-              {...this.propsFor('countryCode')}
-              invalid={!!error.countryCode}
-              onBlur={() => onBlur('countryCode')}
-              onChange={countryCode => this.onChange({ countryCode })}
-              disabled={disabled}
-            />
-          </FormLabelGroup>
-        }
-      </div>
+      </div>);
+  };
+
+  render() {
+    return (
+      this.renderComponent()
     );
   }
 }

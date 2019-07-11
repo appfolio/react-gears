@@ -3,11 +3,28 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
+import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label, InternationalAddressInput } from '../../src';
 import CA from '../../src/components/address/CAProvinces';
 import US from '../../src/components/address/USStates';
 
 describe('<AddressInput />', () => {
+  describe('with international', () => {
+    it('should show country when enabled', () => {
+      const component = mount(<AddressInput showCountry />);
+      assert.equal(component.find('CountryInput').length, 1);
+    });
+  });
+
+  describe('#useInternationAddressComponent', () => {
+    it('should return our showCountry Prop', () => {
+      const component = mount(<AddressInput showCountry />);
+      assert.strictEqual(component.prop('showCountry'), component.instance().useInternationAddressComponent());
+
+      component.setProps({ showCountry: false });
+      assert.strictEqual(component.prop('showCountry'), component.instance().useInternationAddressComponent());
+    });
+  });
+
   describe('uncontrolled', () => {
     const callback = sinon.spy();
     const component = mount(
@@ -77,16 +94,21 @@ describe('<AddressInput />', () => {
     });
 
     it('should have country', () => {
-      const input = component.find('[name="countryCode"]').hostNodes();
-      // assert.equal(input.prop('placeholder'), 'Country'); TODO selects don't have placeholders
-      assert.equal(input.prop('defaultValue'), 'US');
-      assert.equal(input.prop('value'), undefined);
+      const componentWithCountry = mount(
+        <AddressInput
+          defaultValue={{
+            address1: 'Wayne Enterprises',
+            address2: '1007 Mountain Drive',
+            city: 'Gotham',
+            state: 'NJ',
+            postal: '07001',
+            countryCode: 'US',
+          }}
+          showCountry
+        />);
 
-      input.simulate('change', { target: { value: 'US' } });
-      assert(callback.calledWith({ countryCode: 'US' }));
-
-      input.simulate('change', { target: { value: null } });
-      assert(callback.calledWith({ countryCode: null }));
+      assert(componentWithCountry.find(InternationalAddressInput).exists(),
+        'international component shoud exist');
     });
 
     it('should not set any color on FormGroups without errors', () => {
@@ -168,18 +190,6 @@ describe('<AddressInput />', () => {
 
       input.simulate('change', { target: { name: 'postal', value: '12345' } });
       assert(callback.calledWith(Object.assign({}, addressData, { postal: '12345' })));
-    });
-
-    it('should update country', () => {
-      const input = component.find('[name="countryCode"]').hostNodes();
-      assert.equal(input.prop('value'), 'US');
-      assert.equal(input.prop('defaultValue'), null);
-
-      input.simulate('change', { target: { value: 'US' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: 'US' })));
-
-      input.simulate('change', { target: { value: null } });
-      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
     });
 
     it('should clear values', () => {
@@ -316,7 +326,7 @@ describe('<AddressInput />', () => {
 
     it('should show labels when enabled', () => {
       const component = mount(<AddressInput showLabels />);
-      assert.equal(component.find('label').length, 6);
+      assert.equal(component.find('label').length, 5);
     });
 
     it('should show custom when enabled', () => {
@@ -330,7 +340,7 @@ describe('<AddressInput />', () => {
       };
       const component = mount(<AddressInput showLabels labels={labels} />);
       const formLabels = component.find(Label);
-      assert.equal(formLabels.length, 6);
+      assert.equal(formLabels.length, 5);
       formLabels.forEach(label => assert(Object.values(labels).includes(label.text())));
     });
 
@@ -368,13 +378,7 @@ describe('<AddressInput />', () => {
       assert.equal(component.find('#yo_city').hostNodes().length, 1, 'city id missing');
       assert.equal(component.find('#yo_state').hostNodes().length, 1, 'state id missing');
       assert.equal(component.find('#yo_postal').hostNodes().length, 1, 'postal id missing');
-      assert.equal(component.find('#yo_countryCode').hostNodes().length, 1, 'countryCode id missing');
     });
-  });
-
-  it('should show country when enabled', () => {
-    const component = mount(<AddressInput showCountry />);
-    assert.equal(component.find('CountryInput').length, 1);
   });
 
   it('should not show country when disabled', () => {
@@ -385,9 +389,10 @@ describe('<AddressInput />', () => {
   it('should call onBlur for each input', () => {
     const callback = sinon.spy();
     const component = mount(<AddressInput onBlur={callback} />);
-    const fields = ['address1', 'address2', 'city', 'state', 'postal', 'countryCode'];
+    const fields = ['address1', 'address2', 'city', 'state', 'postal'];
     fields.forEach((field) => {
       const input = component.find(`[name="${field}"]`).hostNodes();
+      console.log('field', field);
       input.simulate('blur');
       assert(callback.calledWith(field));
     });
