@@ -7,7 +7,7 @@ import isSameDay from 'date-fns/is_same_day';
 import { TimeInput, Select } from '../../src';
 
 const VALUE_SELECTOR = '[aria-selected="true"]';
-const OPTION_SELECTOR = 'button[role="option"]';
+const OPTION_SELECTOR = 'button[role="menuitem"]';
 
 describe('<TimeInput />', () => {
   it('should default to blank and today', () => {
