@@ -2,7 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { ActivityLog, Activity } from '../src';
+import { Activity } from '../src';
+import ActivityLog from '../src/components/ActivityLog.tsx';
 
 storiesOf('ActivityLog', module)
   .add('with props', () => (

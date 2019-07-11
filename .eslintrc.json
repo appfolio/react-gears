@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": "appfolio-react",
   "plugins": [
     "no-only-tests"
@@ -29,5 +29,10 @@
       ]
     }],
     "require-jsdoc": 0
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
   }
 }

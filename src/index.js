@@ -84,7 +84,7 @@ import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
 import Activity from './components/Activity.js';
-import ActivityLog from './components/ActivityLog.js';
+import ActivityLog from './components/ActivityLog.tsx';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
 import BlockPanel from './components/BlockPanel.js';
