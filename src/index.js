@@ -71,11 +71,15 @@ import Portal from './components/Portal';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
+import Toast from './components/Toast';
+import ToastBody from './components/ToastBody';
+import ToastHeader from './components/ToastHeader';
 import UncontrolledAlert from './components/UncontrolledAlert';
 import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown';
 import UncontrolledCarousel from './components/UncontrolledCarousel';
 import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
+import UncontrolledPopover from './components/UncontrolledPopover';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
@@ -228,11 +232,15 @@ export {
   TabContent,
   Table,
   TabPane,
+  Toast,
+  ToastBody,
+  ToastHeader,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCarousel,
   UncontrolledCollapse,
   UncontrolledDropdown,
+  UncontrolledPopover,
   UncontrolledTooltip,
 
   Select,
