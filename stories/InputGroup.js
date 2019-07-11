@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { InputGroup, InputGroupAddon, Input, InputGroupButton, InputGroupText } from '../src';
+import { Button, InputGroup, InputGroupAddon, Input, InputGroupText } from '../src';
 
 storiesOf('InputGroup', module)
   .add('with props', () => (
@@ -99,19 +99,27 @@ storiesOf('InputGroup', module)
   .add('Button Shorthand', () => (
     <div>
       <InputGroup>
-        <InputGroupButton addonType="prepend">To the Left!</InputGroupButton>
+        <InputGroupAddon addonType="prepend">
+          <Button color="danger">To the Left!</Button>
+        </InputGroupAddon>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupButton addonType="append" color="secondary">To the Right!</InputGroupButton>
+        <InputGroupAddon addonType="append">
+          <Button color="secondary">To the Right!</Button>
+        </InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupButton addonType="prepend" color="danger">To the Left!</InputGroupButton>
+        <InputGroupAddon addonType="prepend">
+          <Button addonType="prepend" color="success">To the Left!</Button>
+        </InputGroupAddon>
         <Input placeholder="and..." />
-        <InputGroupButton addonType="append" color="success">To the Right!</InputGroupButton>
+        <InputGroupAddon addonType="append">
+          <Button addonType="append" color="success">To the Right!</Button>
+        </InputGroupAddon>
       </InputGroup>
     </div>
   ));

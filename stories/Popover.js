@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
-import { Popover, PopoverBody } from '../src';
+import { Button, Popover, PopoverBody, PopoverHeader, UncontrolledPopover } from '../src';
 
 storiesOf('Popover', module)
   .add('Live example', () => (
@@ -24,5 +24,16 @@ storiesOf('Popover', module)
           {text('PopoverBody', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
         </PopoverBody>
       </Popover>
+    </div>
+  ))
+  .add('Uncontrolled', () => (
+    <div>
+      <Button id="UncontrolledPopover" type="button">
+        Launch Popover
+      </Button>
+      <UncontrolledPopover placement="bottom" target="UncontrolledPopover">
+        <PopoverHeader>Popover Title</PopoverHeader>
+        <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+      </UncontrolledPopover>
     </div>
   ));
