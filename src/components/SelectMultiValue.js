@@ -46,7 +46,7 @@ export default class SelectMultiValue extends React.Component {
         style={{ textTransform: 'none' }}
         {...props}
       >
-        {children} <Icon role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
+        {children} <Icon style={{ opacity: 0.5 }} role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
       </Badge>
     );
   }
