@@ -49,8 +49,6 @@ export default class ImageCarousel extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keyup', e => this.handleEscape(e));
-    const index = this.props.index;
-    this.goToIndex(index);
   }
 
   componentDidUpdate(prevProps) {
@@ -87,6 +85,7 @@ export default class ImageCarousel extends React.Component {
               items={items}
               ref={this.carousel}
               slide={slide}
+              defaultActiveIndex={index}
             />
           </div>
         }
