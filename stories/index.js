@@ -44,6 +44,7 @@ import './Steps';
 import './SummaryBox';
 import './Table';
 import './TimeInput';
+import './Toast';
 import './Tooltip';
 import './Waiting';
 
