@@ -6,7 +6,6 @@ import ButtonDropdown from './components/ButtonDropdown';
 import ButtonGroup from './components/ButtonGroup';
 import ButtonToolbar from './components/ButtonToolbar';
 import Card from './components/Card';
-import CardBlock from './components/CardBlock';
 import CardBody from './components/CardBody';
 import CardColumns from './components/CardColumns';
 import CardDeck from './components/CardDeck';
@@ -41,7 +40,6 @@ import FormText from './components/FormText';
 import Input from './components/Input';
 import InputGroup from './components/InputGroup';
 import InputGroupAddon from './components/InputGroupAddon';
-import InputGroupButton from './components/InputGroupButton';
 import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
 import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
@@ -58,7 +56,6 @@ import Nav from './components/Nav';
 import Navbar from './components/Navbar';
 import NavbarBrand from './components/NavbarBrand';
 import NavbarToggler from './components/NavbarToggler';
-import NavDropdown from './components/NavDropdown';
 import NavItem from './components/NavItem';
 import NavLink from './components/NavLink';
 import Pagination from './components/Pagination';
@@ -79,7 +76,6 @@ import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown'
 import UncontrolledCarousel from './components/UncontrolledCarousel';
 import UncontrolledCollapse from './components/UncontrolledCollapse';
 import UncontrolledDropdown from './components/UncontrolledDropdown';
-import UncontrolledNavDropdown from './components/UncontrolledNavDropdown';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
@@ -159,7 +155,6 @@ export {
   ButtonGroup,
   ButtonToolbar,
   Card,
-  CardBlock,
   CardBody,
   CardColumns,
   CardDeck,
@@ -197,7 +192,6 @@ export {
   Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupButton,
   InputGroupButtonDropdown,
   InputGroupText,
   InternationalAddressInput,
@@ -216,7 +210,6 @@ export {
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  NavDropdown,
   NavItem,
   NavLink,
   Pagination,
@@ -240,7 +233,6 @@ export {
   UncontrolledCarousel,
   UncontrolledCollapse,
   UncontrolledDropdown,
-  UncontrolledNavDropdown,
   UncontrolledTooltip,
 
   Select,
