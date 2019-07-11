@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import {
   BlockPanel,
@@ -14,10 +15,10 @@ import {
 } from '../src';
 
 storiesOf('BlockPanel', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <BlockPanel
       title={text('title', 'Some simple content would go here')}
-      onEdit={() => alert('Edit clicked!')}
+      onEdit={() => action('onEdit')}
       color={select('color', [
         '',
         'primary',
@@ -36,17 +37,17 @@ storiesOf('BlockPanel', module)
       Now you see me.
     </BlockPanel>
   ))
-  .addWithInfo('Initially closed', () => (
+  .add('Initially closed', () => (
     <BlockPanel
       title={text('title', 'Some simple content would go here')}
-      onEdit={() => alert('Edit clicked!')}
+      onEdit={() => action('onEdit')}
       expandable={boolean('expandable', true)}
       open={false}
     >
       Now you don't.
     </BlockPanel>
   ))
-  .addWithInfo('onToggle', () => (
+  .add('onToggle', () => (
     <BlockPanel
       title={text('title', 'Click me you fool')}
       onToggle={action('onToggle')}
@@ -55,7 +56,7 @@ storiesOf('BlockPanel', module)
       Now you don't.
     </BlockPanel>
   ))
-  .addWithInfo('components for title and controls', () => (
+  .add('components for title and controls', () => (
     <BlockPanel
       expandable
       title={

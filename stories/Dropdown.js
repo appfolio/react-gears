@@ -1,11 +1,11 @@
 import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from '../src';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '../node_modules/@storybook/addon-actions';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from '../src';
 
 storiesOf('Dropdown', module)
-  .addWithInfo('Uncontrolled', () => (
+  .add('Uncontrolled', () => (
     <UncontrolledDropdown
       direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
     >
@@ -27,7 +27,7 @@ storiesOf('Dropdown', module)
       </DropdownMenu>
     </UncontrolledDropdown>
   ))
-  .addWithInfo('Controlled', () => (
+  .add('Controlled', () => (
     <Dropdown
       direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
       isOpen={boolean('isOpen', false)}

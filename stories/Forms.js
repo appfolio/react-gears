@@ -1,7 +1,7 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
-import { text, boolean, number, object, select } from '@storybook/addon-knobs';
-
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { object } from '@storybook/addon-knobs';
 import {
   AddressInput,
   BoundForm,
@@ -33,7 +33,7 @@ const formData = {
 };
 
 storiesOf('Forms', module)
-  .addWithInfo('Inputs', () => (
+  .add('Inputs', () => (
     <div>
       <FormLabelGroup label="Input">
         <Input placeholder="Hello World" />
@@ -76,7 +76,7 @@ storiesOf('Forms', module)
       </FormLabelGroup>
     </div>
   ))
-  .addWithInfo('Form Rows', () => (
+  .add('Form Rows', () => (
     <form>
       <FormRow label="First Name" />
       <FormRow label="Last Name" feedback="can't be blank" color="danger" />
@@ -127,10 +127,10 @@ storiesOf('Forms', module)
       />
     </form>
   ))
-  .addWithInfo('Forms with Objects', () => (
+  .add('BoundForm', () => (
     <BoundForm
       object={formData}
-      errors={object('errors', { lastName: "can't be blank" })}
+      errors={object('errors', { lastName: 'Last Name is required' })}
       onSubmit={action('submit')}
     >
       <BoundFormRow label="First Name" name="firstName" />

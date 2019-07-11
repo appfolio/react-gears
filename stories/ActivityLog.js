@@ -1,10 +1,11 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { ActivityLog, Activity } from '../src';
 
 storiesOf('ActivityLog', module)
-  .addWithInfo('with props', () => (
+  .add('with props', () => (
     <ActivityLog flush={boolean('flush', false)}>
       <Activity date={new Date(2017, 10, 31, 23, 15)} action="Created" by="Services" />
       <Activity date={new Date(2017, 9, 13, 13, 0)} action="Edited" />
@@ -17,7 +18,7 @@ storiesOf('ActivityLog', module)
       </Activity>
     </ActivityLog>
   ))
-  .addWithInfo('Adding custom components', () => (
+  .add('Adding custom components', () => (
     <ActivityLog>
       <Activity date={new Date()} action="Edited" by="Jane Doe" />
       <Activity
@@ -31,7 +32,7 @@ storiesOf('ActivityLog', module)
       </Activity>
     </ActivityLog>
   ))
-  .addWithInfo('Activity', () => (
+  .add('Activity', () => (
     <Activity
       action={text('action', 'Published')}
       active={boolean('active', false)}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { InfoBox } from '../src';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { InfoBox } from '../src';
 
 storiesOf('InfoBox', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <div className="bg-light p-4">
       <div className="text-muted mb-3">
         <em>(Background color added for contrast)</em>

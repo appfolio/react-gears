@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Spinner } from '../src';
 import { storiesOf } from '@storybook/react';
 import { number, select } from '@storybook/addon-knobs';
+import { Button, Spinner } from '../src';
 
 storiesOf('Spinner', module)
-  .addWithInfo('Default', () => {
+  .add('Default', () => {
     const color = select('color', ['text-primary', 'text-muted', 'text-info', 'text-success', 'text-warning', 'text-danger'], 'text-primary');
     return (
       <div>
@@ -27,5 +27,4 @@ storiesOf('Spinner', module)
         </h1>
       </div>
     );
-  }
-);
+  });

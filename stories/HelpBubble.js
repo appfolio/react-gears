@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import { HelpBubble } from '../src';
 import { text, select } from '@storybook/addon-knobs';
+import { HelpBubble } from '../src';
 
 storiesOf('Help Bubble', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <div>
       <p>
         I can be placed in context to provide some contextual help!

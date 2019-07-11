@@ -1,10 +1,11 @@
 import React from 'react';
-import { Calendar, DateInput, Icon, FormRow, Label } from '../src';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
+import { Calendar, DateInput, Icon, FormRow, Label } from '../src';
 
 storiesOf('DateInput', module)
-  .addWithInfo('with props', () => (
+  .add('with props', () => (
     <div>
       <DateInput
         dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
@@ -17,7 +18,7 @@ storiesOf('DateInput', module)
       />
     </div>
   ))
-  .addWithInfo('with id', () => (
+  .add('with id', () => (
     <div>
       <Label for="calendar">Click this label to Focus Calendar Input:</Label>
       <DateInput
@@ -30,7 +31,7 @@ storiesOf('DateInput', module)
       />
     </div>
   ))
-  .addWithInfo('defaultValue (uncontrolled)', () => (
+  .add('defaultValue (uncontrolled)', () => (
     <div>
       <p>
         When defaultValue is set, component is 'uncontrolled' and maintains its own state.
@@ -43,7 +44,7 @@ storiesOf('DateInput', module)
       <FormRow type={DateInput} onChange={action('onChange')} label="'Garbage in'" defaultValue="Garbage in" />
     </div>
   ))
-  .addWithInfo('value (controlled)', () => (
+  .add('value (controlled)', () => (
     <div>
       <p>
         When value is set, component is 'controlled' and does not maintain its own state.
@@ -56,7 +57,7 @@ storiesOf('DateInput', module)
       <FormRow type={DateInput} onChange={action('onChange')} label="'Garbage in'" value="Garbage in" />
     </div>
   ))
-  .addWithInfo('Custom header and footer', () => (
+  .add('Custom header and footer', () => (
     <div className="d-inline-flex">
       <DateInput
         header={<h2 className="text-center text-danger p-2 font-italic">PIRELLI</h2>}
@@ -71,7 +72,7 @@ storiesOf('DateInput', module)
       />
     </div>
   ))
-  .addWithInfo('Calendar', () => (
+  .add('Calendar', () => (
     <div className="d-inline-flex">
       <Calendar
         dateFormat={text('dateFormat', Calendar.defaultProps.dateFormat)}

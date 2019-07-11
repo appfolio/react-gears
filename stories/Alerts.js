@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
-
-import { Alert } from '../src/index';
+import { Alert, Button } from '../src';
 
 storiesOf('Alerts', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Alert
       color={select('color', ['info', 'success', 'warning', 'danger'], 'info')}
       icon={boolean('icon', false)}
@@ -19,7 +17,7 @@ quis nostrud exercitation ullamco laboris nisi ut
 aliquip ex ea commodo consequat.`)}
     </Alert>
   ))
-  .addWithInfo('Colors', () => (
+  .add('Colors', () => (
     <div>
       <Alert>
         <p>The default alert is a "warning". It supports any sort of custom markup.</p>
@@ -34,7 +32,7 @@ aliquip ex ea commodo consequat.`)}
       </Alert>
     </div>
   ))
-  .addWithInfo('Icons', () => (
+  .add('Icons', () => (
     <div>
       <Alert icon>You can also add an icon!</Alert>
       <Alert icon color="success">
@@ -54,14 +52,14 @@ aliquip ex ea commodo consequat.`)}
       </Alert>
     </div>
   ))
-  .addWithInfo('Dismissible', () => (
+  .add('Dismissible', () => (
     <div>
       <Alert dismissible icon color="success">
         Alerts can also be dismissed. Simply add the <code>dismissible</code> prop.
       </Alert>
     </div>
   ))
-  .addWithInfo('Extras', () => (
+  .add('Extras', () => (
     <div>
       <Alert icon color="info">
         <h4 className="alert-heading">Well done!</h4>

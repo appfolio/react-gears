@@ -3,13 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { boolean, object, text, select } from '@storybook/addon-knobs';
 import { Alert, FormLabelGroup } from '../src';
 
-const description = `
-  Represents a form group consisting of a label + children, with built-in support for hint and
-  feedback.
-`;
-
 storiesOf('FormLabelGroup', module)
-  .addWithInfo('Live example', description, () => (
+  .add('Live example', () => (
     <div>
       <FormLabelGroup
         label={text('label', 'Some Input')}

@@ -4,7 +4,7 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import { Popover, PopoverBody } from '../src';
 
 storiesOf('Popover', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <div>
       <p>
         I can be placed in context to provide some contextual <strong id="popoverTarget">help</strong>!

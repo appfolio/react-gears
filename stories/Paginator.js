@@ -1,11 +1,12 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { number, select } from '@storybook/addon-knobs';
 
 import { Paginator } from '../src';
 
 storiesOf('Paginator', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Paginator
       currentPage={number('currentPage', 1, { min: 1, max: 19 })}
       onClick={action('onClick')}

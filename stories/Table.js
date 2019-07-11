@@ -2,7 +2,7 @@ import React from 'react';
 import fecha from 'fecha';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, number, object, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { Button, Table, SortableTable, UncontrolledTable } from '../src';
 
 const DATA = [
@@ -19,7 +19,7 @@ const DATA = [
 ];
 
 storiesOf('Table', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Table
       bordered={boolean('bordered', true)}
       responsive={boolean('responsive', true)}
@@ -48,7 +48,7 @@ storiesOf('Table', module)
       </tbody>
     </Table>
   ))
-  .addWithInfo('SortableTable', () => {
+  .add('SortableTable', () => {
     const column = select('active', ['first', 'last', 'dob', 'email'], 'last');
     const ascending = boolean('ascending', true);
     return (
@@ -110,7 +110,7 @@ storiesOf('Table', module)
       </div>
     );
   })
-  .addWithInfo('UncontrolledTable', () => (
+  .add('UncontrolledTable', () => (
     <div>
       <UncontrolledTable
         columns={[
@@ -153,56 +153,54 @@ storiesOf('Table', module)
       />
     </div>
   ))
-  .addWithInfo('custom footer', () => {
-    return (
-      <div>
-        <UncontrolledTable
-          columns={[
-            {
-              header: 'Date',
-              key: 'date',
-              cell: row => fecha.format(row.date, 'MM/DD/YYYY'),
-              width: '25%'
-            },
-            {
-              header: 'Description',
-              key: 'name',
-              cell: row => row.name,
-              width: '50%'
-            },
-            {
-              header: 'Cost',
-              key: 'cost',
-              cell: row => row.cost,
-              width: '25%',
-              align: 'right'
-            }
+  .add('custom footer', () => (
+    <div>
+      <UncontrolledTable
+        columns={[
+          {
+            header: 'Date',
+            key: 'date',
+            cell: row => fecha.format(row.date, 'MM/DD/YYYY'),
+            width: '25%'
+          },
+          {
+            header: 'Description',
+            key: 'name',
+            cell: row => row.name,
+            width: '50%'
+          },
+          {
+            header: 'Cost',
+            key: 'cost',
+            cell: row => row.cost,
+            width: '25%',
+            align: 'right'
+          }
+        ]}
+        rows={[
+          { key: '111', expanded: false, date: new Date(2016, 6, 15), name: 'Utility bill', cost: '$123.45' },
+          { key: '222', expanded: false, date: new Date(2016, 7, 17), name: 'Roof repair', cost: '$4000.00' },
+          { key: '333', expanded: false, date: new Date(2017, 4, 1), name: 'Plumbing', cost: '$350' },
+          { key: '444', expanded: false, date: new Date(2018, 8, 14), name: 'Painting', cost: '$1500' },
           ]}
-          rows={[
-            { key: '111', expanded: false, date: new Date(2016, 6, 15), name: 'Utility bill', cost: '$123.45' },
-            { key: '222', expanded: false, date: new Date(2016, 7, 17), name: 'Roof repair', cost: '$4000.00' },
-            { key: '333', expanded: false, date: new Date(2017, 4, 1), name: 'Plumbing', cost: '$350' },
-            { key: '444', expanded: false, date: new Date(2018, 8, 14), name: 'Painting', cost: '$1500' },
-            ]}
-          footer={[
-            <tr>
-              <td colSpan={2} className="text-right">Total Costs</td>
-              <td className="text-right">$5973.45</td>
-            </tr>,
-            <tr>
-              <td colSpan={2} className="text-right">Total Income</td>
-              <td className="text-right">$26,200.00</td>
-            </tr>,
-            <tr>
-              <td colSpan={2} className="text-right">Total Gain</td>
-              <td className="text-right">$20,226.55</td>
-            </tr>
-          ]}
-        />
-      </div>
-    );
-  })
-  .addWithInfo('custom expand column', () => (
+        footer={[
+          <tr>
+            <td colSpan={2} className="text-right">Total Costs</td>
+            <td className="text-right">$5973.45</td>
+          </tr>,
+          <tr>
+            <td colSpan={2} className="text-right">Total Income</td>
+            <td className="text-right">$26,200.00</td>
+          </tr>,
+          <tr>
+            <td colSpan={2} className="text-right">Total Gain</td>
+            <td className="text-right">$20,226.55</td>
+          </tr>
+        ]}
+      />
+    </div>
+  ))
+  .add('custom expand column', () => (
     <div>
       <UncontrolledTable
         columns={[
@@ -243,7 +241,7 @@ storiesOf('Table', module)
       />
     </div>
   ))
-  .addWithInfo('Align column', () => (
+  .add('Align column', () => (
     <div>
       <p className="text-warning">
         <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'UncontrolledTable' story.

@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number } from '@storybook/addon-knobs';
-
 import { Steps } from '../src';
 
 const steps = [
@@ -12,7 +11,7 @@ const steps = [
 ];
 
 storiesOf('Steps', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Steps
       steps={steps}
       step={number('step', 0)}

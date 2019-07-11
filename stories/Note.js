@@ -1,18 +1,8 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { EditableNote, Note } from '../src';
-
-const decription = `This component is used in conjunction with the "Notes" component to provide
-  views for both the "edit" and "add" note features.
-
-  If the note contains valid data,
-  then a note header will be rendered, otherwise the header is omitted.  This behavior allows
-  the component to be used for both "add" (no/minimal note data), or "edit" (with note data)
-  views.
-
-  This component also checks the "saving" property of the note in order to disable
-  the controls and change the text on the "Save" button.`;
 
 const noteToEdit = {
   date: new Date(),
@@ -21,7 +11,7 @@ const noteToEdit = {
 };
 
 storiesOf('Note', module)
-  .addWithInfo('Live example', () => {
+  .add('Live example', () => {
     const note = {
       date: new Date(),
       deleted: boolean('deleted', false),
@@ -48,7 +38,7 @@ storiesOf('Note', module)
       />
     );
   })
-  .addWithInfo('with children', () => {
+  .add('with children', () => {
     const note = {
       date: new Date(),
       deleted: boolean('deleted', false),
@@ -74,7 +64,7 @@ storiesOf('Note', module)
       </Note>
     );
   })
-  .addWithInfo('EditableNote with note prop', decription, () => {
+  .add('EditableNote with note prop', () => {
     const withNote = boolean('with note', true);
     const note = withNote ? noteToEdit : { text: '' };
 
@@ -88,7 +78,7 @@ storiesOf('Note', module)
       />
     );
   })
-  .addWithInfo('EditableNote with children', decription, () => {
+  .add('EditableNote with children', () => {
     const withNote = boolean('with note', true);
     const saving = boolean('saving', false);
     const note = withNote ? noteToEdit : { text: '' };

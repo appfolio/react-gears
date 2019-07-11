@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number, select } from '@storybook/addon-knobs';
-
 import { Progress } from '../src';
 
 storiesOf('Progress', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Progress
       color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
       animated={boolean('animated', Progress.defaultProps.animated)}

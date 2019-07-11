@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter, Input } from '../src';
 import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs';
+import { Button, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter, Input } from '../src';
 
 storiesOf('Modal', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Modal
       isOpen={boolean('isOpen', true)}
       backdrop={boolean('backdrop', true)}
@@ -28,7 +28,7 @@ storiesOf('Modal', module)
       </ModalFooter>
     </Modal>
   ))
-  .addWithInfo('Autofocus', () => (
+  .add('Autofocus', () => (
     <Modal
       isOpen={boolean('isOpen', true)}
       backdrop={boolean('backdrop', true)}

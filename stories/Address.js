@@ -1,6 +1,7 @@
 import React from 'react';
 import uncontrollable from 'uncontrollable';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, text, select, object } from '@storybook/addon-knobs';
 import { AddressInput, InternationalAddressInput, Label } from '../src';
 import states from '../src/components/address/USStates.js';
@@ -10,7 +11,7 @@ const UncontrolledInternationalAddressInput = uncontrollable(InternationalAddres
 UncontrolledInternationalAddressInput.displayName = 'InternationalAddressInput';
 
 storiesOf('AddressInput', module)
-  .addWithInfo('Live Example', () => (
+  .add('Live Example', () => (
     <div>
       <AddressInput
         defaultValue={{
@@ -33,7 +34,7 @@ storiesOf('AddressInput', module)
       />
     </div>
   ))
-  .addWithInfo('with id', () => (
+  .add('with id', () => (
     <div>
       <Label for="myid_address1">Click This Label to Focus First Input:</Label>
       <AddressInput
@@ -49,7 +50,7 @@ storiesOf('AddressInput', module)
       />
     </div>
   ))
-  .addWithInfo('controlled', () => (
+  .add('controlled', () => (
     <div>
       <AddressInput
         value={{
@@ -66,7 +67,7 @@ storiesOf('AddressInput', module)
       />
     </div>
   ))
-  .addWithInfo('InternationalAddressInput', () => (
+  .add('InternationalAddressInput', () => (
     <div>
       <UncontrolledInternationalAddressInput
         showLabels={boolean('showLabel', InternationalAddressInput.defaultProps.showLabels)}

@@ -1,38 +1,37 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Nav, NavItem, NavLink } from '../src';
+import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
-
-const onClick = () => alert('Clicked!');
+import { Nav, NavItem, NavLink } from '../src';
 
 storiesOf('Nav', module)
-  .addWithInfo('Tabs', () => {
+  .add('Tabs', () => {
     const activeTab = number('activeTab', 1);
     return (
       <div>
         <Nav tabs>
           <NavItem>
-            <NavLink href="#" active={activeTab === 1} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
               Receivables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 2} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 2} onClick={action('onClick')}>
               Payables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 3} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 3} onClick={action('onClick')}>
               Bank Accounts
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 4} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 4} onClick={action('onClick')}>
               Journal Entries
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 5} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 5} onClick={action('onClick')}>
               GL Accounts
             </NavLink>
           </NavItem>
@@ -40,33 +39,33 @@ storiesOf('Nav', module)
       </div>
     );
   })
-  .addWithInfo('Pills', () => {
+  .add('Pills', () => {
     const activeTab = number('activeTab', 1);
     return (
       <div>
         <Nav pills>
           <NavItem>
-            <NavLink href="#" active={activeTab === 1} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
               Receivables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 2} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 2} onClick={action('onClick')}>
               Payables
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 3} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 3} onClick={action('onClick')}>
               Bank Accounts
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 4} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 4} onClick={action('onClick')}>
               Journal Entries
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 5} onClick={onClick}>
+            <NavLink href="#" active={activeTab === 5} onClick={action('onClick')}>
               GL Accounts
             </NavLink>
           </NavItem>

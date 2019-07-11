@@ -1,8 +1,9 @@
 import React from 'react';
-import { CreditCardNumber } from '../src';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { array } from '@storybook/addon-knobs';
 import uncontrollable from 'uncontrollable';
+import { CreditCardNumber } from '../src';
 
 // Wrapping as uncontrolled so that story is easier to use:
 const UncontrolledCreditCardNumber = uncontrollable(CreditCardNumber, { value: 'onChange' });
@@ -11,7 +12,7 @@ UncontrolledCreditCardNumber.propTypes = CreditCardNumber.propTypes;
 UncontrolledCreditCardNumber.defaultProps = CreditCardNumber.defaultProps;
 
 storiesOf('CreditCardNumber', module)
-  .addWithInfo('Live Example', () => (
+  .add('Live Example', () => (
     <UncontrolledCreditCardNumber
       onChange={action('onChange')}
       types={array('types', [

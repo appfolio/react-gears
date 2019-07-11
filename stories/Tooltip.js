@@ -1,13 +1,13 @@
 import React from 'react';
-import { Tooltip } from '../src';
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
+import { Tooltip } from '../src';
 
 storiesOf('Tooltip', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <div>
       <p>
-        Somewhere in here is a <a id="TooltipExample">tooltip</a>.
+        Somewhere in here is a <span id="TooltipExample">tooltip</span>.
       </p>
       <Tooltip
         placement={select('placement', ['top', 'left', 'bottom', 'right'], 'right')}
@@ -16,5 +16,4 @@ storiesOf('Tooltip', module)
         Hello world!
       </Tooltip>
     </div>
-  )
-);
+  ));

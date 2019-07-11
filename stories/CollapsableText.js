@@ -1,7 +1,7 @@
 import React from 'react';
-import { CollapsableText, Icon } from '../src';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { boolean, number, text } from '@storybook/addon-knobs';
+import { CollapsableText, Icon } from '../src';
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -11,7 +11,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
 laborum.`;
 
 storiesOf('CollapsableText', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <CollapsableText
       collapsed={boolean('collapsed', CollapsableText.defaultProps.collapsed)}
       maxLength={number('maxLength', CollapsableText.defaultProps.maxLength)}
@@ -21,7 +21,7 @@ storiesOf('CollapsableText', module)
       {loremIpsum}
     </CollapsableText>
   ))
-  .addWithInfo('Shorter than maxLength', () => (
+  .add('Shorter than maxLength', () => (
     <div>
       <CollapsableText
         maxLength={number('maxLength', 2048)}
@@ -30,7 +30,7 @@ storiesOf('CollapsableText', module)
       </CollapsableText>
     </div>
   ))
-  .addWithInfo('Custom components', () => (
+  .add('Custom components', () => (
     <div>
       <CollapsableText
         moreLabel={<Icon name="plus-circle" className="text-success" />}

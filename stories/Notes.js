@@ -1,11 +1,8 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
-import { boolean, text } from '@storybook/addon-knobs';
-import { EditableNote, Note, Notes } from '../src';
-
-const description = 'The Notes component works in conjunction with other components.\n\nThe "Note" '
-  + 'child component represents each note, and works in conjunction with "EditableNote" and '
-  + 'DeletedNote components.';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
+import { Note, Notes } from '../src';
 
 const moreNotes = [
   {
@@ -23,7 +20,7 @@ const moreNotes = [
 ];
 
 storiesOf('Notes', module)
-  .addWithInfo('With notes prop', description, () => {
+  .add('With notes prop', () => {
     const notes = [
       {
         id: 0,
@@ -50,7 +47,7 @@ storiesOf('Notes', module)
       />
     );
   })
-  .addWithInfo('With children', description, () => {
+  .add('With children', () => {
     const notes = [
       {
         date: new Date(),

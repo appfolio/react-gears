@@ -1,13 +1,11 @@
 import React from 'react';
-import { FormRow, TimeInput } from '../src';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
-
-const description = 'TimeInput supports typing times without colons. ' +
-  'It also optionally supports times outside the initial list of options through the allowOtherTimes prop.';
+import { FormRow, TimeInput } from '../src';
 
 storiesOf('TimeInput', module)
-  .addWithInfo('with props', description, () => (
+  .add('with props', () => (
     <div>
       <TimeInput
         allowOtherTimes={boolean('allowOtherTimes', true)}
@@ -21,7 +19,7 @@ storiesOf('TimeInput', module)
       />
     </div>
   ))
-  .addWithInfo('defaultValue (uncontrolled)', () => (
+  .add('defaultValue (uncontrolled)', () => (
     <div>
       <p>
         When defaultValue is set, component is 'uncontrolled' and maintains its own state.
@@ -32,7 +30,7 @@ storiesOf('TimeInput', module)
       <FormRow type={TimeInput} onChange={action('onChange')} label="'Garbage in'" defaultValue="Garbage in" />
     </div>
   ))
-  .addWithInfo('value (controlled)', () => (
+  .add('value (controlled)', () => (
     <div>
       <p>
         When value is set, component is 'controlled' and does not maintain its own state.

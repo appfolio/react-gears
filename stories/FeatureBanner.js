@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, FeatureBanner, Icon } from '../src';
 import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs';
+import { Button, FeatureBanner, Icon } from '../src';
 
 storiesOf('FeatureBanner', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <FeatureBanner
       alertText={text('alertText', 'New')}
       color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], FeatureBanner.defaultProps.color)}

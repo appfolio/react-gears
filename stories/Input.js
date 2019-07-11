@@ -1,9 +1,8 @@
 import React from 'react';
-import { CustomInput, FormLabelGroup } from '../src';
 import { storiesOf } from '@storybook/react';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { CustomInput } from '../src';
 
-storiesOf('Input', module).addWithInfo('Custom Input', () => (
+storiesOf('Input', module).add('Custom Input', () => (
   <div>
     <p>
       For more customization and cross browser consistency, Bootstrap has custom form elements

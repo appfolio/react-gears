@@ -4,6 +4,11 @@ import classnames from 'classnames';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
 
+/**
+ * Datapairs are for displaying labeled data. Each element is comprised
+ * of two parts: the key (label) and a value. The key is an identifier for some form of data and
+ * the value can be text or links.
+ */
 const Datapair = (props) => {
   const { children, className, label, value, ...attributes } = props;
   const classNames = classnames(

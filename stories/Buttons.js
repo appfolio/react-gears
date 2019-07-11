@@ -1,11 +1,19 @@
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar, ButtonDropdown,
-         DropdownToggle, DropdownMenu, DropdownItem, Row } from 'reactstrap';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
+import {
+  Button,
+  ButtonGroup,
+  ButtonToolbar,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Row
+} from '../src';
 
 storiesOf('Buttons', module)
-  .addWithInfo('Live example', () => (
+  .add('Live example', () => (
     <Button
       color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'primary')}
       disabled={boolean('disabled', false)}
@@ -16,7 +24,7 @@ storiesOf('Buttons', module)
       {text('Label', 'Click Me')}
     </Button>
   ))
-  .addWithInfo('Colors', () => (
+  .add('Colors', () => (
     <ButtonToolbar>
       <Button>Default</Button>
       <Button color="primary">Primary</Button>
@@ -29,9 +37,8 @@ storiesOf('Buttons', module)
       <Button color="light">Light</Button>
       <Button color="link">Link</Button>
     </ButtonToolbar>
-    )
-  )
-  .addWithInfo('Disabled', () => (
+  ))
+  .add('Disabled', () => (
     <ButtonToolbar>
       <Button disabled>Default</Button>
       <Button disabled color="primary">Primary</Button>
@@ -44,9 +51,8 @@ storiesOf('Buttons', module)
       <Button disabled color="light">Light</Button>
       <Button disabled color="link">Link</Button>
     </ButtonToolbar>
-    )
-  )
-  .addWithInfo('Outline', () => (
+  ))
+  .add('Outline', () => (
     <ButtonToolbar>
       <Button outline>Default</Button>
       <Button outline color="primary">Primary</Button>
@@ -59,17 +65,15 @@ storiesOf('Buttons', module)
       <Button outline color="light">Light</Button>
       <Button outline color="link">Link</Button>
     </ButtonToolbar>
-    )
-  )
-  .addWithInfo('Sizes', () => (
+  ))
+  .add('Sizes', () => (
     <div>
       <Button color="primary" size="lg">Large button</Button>&nbsp;
       <Button color="primary" size="md">Medium button</Button>&nbsp;
       <Button color="primary" size="sm">Small button</Button>
     </div>
-    )
-  )
-  .addWithInfo('ButtonGroup', () => (
+  ))
+  .add('ButtonGroup', () => (
     <div>
       <Row className="mb-1">
         <Button size="lg" block>Block level button</Button>
@@ -124,6 +128,6 @@ storiesOf('Buttons', module)
     </div>
   ));
 // TODO
-//  .addWithInfo('with dropdowns', () => <h1>TODO</h1>)
-//  .addWithInfo('with split dropdowns', () => <h1>TODO</h1>)
-//  .addWithInfo('with dropups', () => <h1>TODO</h1>);
+//  .add('with dropdowns', () => <h1>TODO</h1>)
+//  .add('with split dropdowns', () => <h1>TODO</h1>)
+//  .add('with dropups', () => <h1>TODO</h1>);
