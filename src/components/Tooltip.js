@@ -4,11 +4,14 @@ import InnerTooltip from 'reactstrap/lib/Tooltip';
 
 export default class Tooltip extends React.Component {
   static propTypes = {
+    ...InnerTooltip.propTypes,
     isOpen: PropTypes.bool
   };
 
   static defaultProps = {
-    isOpen: false
+    ...InnerTooltip.defaultProps,
+    isOpen: false,
+    fade: false
   };
 
   state = {

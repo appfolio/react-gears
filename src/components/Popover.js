@@ -6,4 +6,9 @@ Popover.propTypes = {
   placement: PropTypes.oneOf(['top', 'bottom', 'left', 'right']) // Overrides reactstrap's unsupported options.
 };
 
+Popover.defaultProps = {
+  ...Popover.defaultProps,
+  fade: false
+};
+
 export default Popover;
