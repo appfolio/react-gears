@@ -32,12 +32,16 @@ export default class SelectMultiValue extends React.Component {
     } = this.props;
     const classNames = classnames(
       'ml-1',
+      'font-weight-normal',
+      'border',
       className
     );
 
     return (
       <Badge
         className={classNames}
+        color="light"
+        pill
         id={id}
         style={{ textTransform: 'none' }}
         {...props}
