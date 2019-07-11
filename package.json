@@ -30,8 +30,8 @@
     "postpublish": "git push --no-verify && git push --tags"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   },
   "dependencies": {
     "@types/reactstrap": "^8.0.1",
