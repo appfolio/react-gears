@@ -51,7 +51,11 @@ const config = {
       {
         test: /\.s?css$/,
         loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'
-      }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      },
     ]
   },
   plugins: [
@@ -61,7 +65,10 @@ const config = {
         NODE_ENV: JSON.stringify('production')
       }
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+  }
 };
 
 /*
@@ -70,7 +77,7 @@ const config = {
 const sourceRoot = path.resolve(__dirname, './src');
 const indexJs = path.resolve(sourceRoot, 'index.js');
 const files = {};
-glob.sync(`${sourceRoot}/**/*.js`).forEach((file) => {
+glob.sync(`${sourceRoot}/**/*.{js,ts,tsx}`, { ignore: [`${sourceRoot}/**/*d.ts`] }).forEach((file) => {
   if (file === indexJs) return;
   const relativePath = path.relative(sourceRoot, file);
   const parts = path.parse(relativePath);
