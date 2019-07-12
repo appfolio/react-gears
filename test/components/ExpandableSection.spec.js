@@ -56,6 +56,7 @@ describe('<ExpandableSection />', () => {
 
     assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     component.setProps({ open: true });
+    component.update();
     assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
 
@@ -66,10 +67,11 @@ describe('<ExpandableSection />', () => {
         <h1>Hello World!</h1>
       </ExpandableSection>
     );
-    component.find('header').simulate('click');
-    assert(onToggle.calledWith(true));
 
     component.find('header').simulate('click');
-    assert(onToggle.calledWith(false));
+    assert(onToggle.calledWith(true), 'onToggle called with true');
+
+    component.find('header').simulate('click');
+    assert(onToggle.calledWith(false), 'onToggle called with false');
   });
 });
