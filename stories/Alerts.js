@@ -2,13 +2,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import { Alert, Button } from '../src';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('Alerts', module)
   .add('Live example', () => (
     <Alert
-      color={select('color', ['info', 'success', 'warning', 'danger'], 'info')}
+      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'info')}
       icon={boolean('icon', false)}
       dismissible={boolean('dismissible', false)}
+      onToggle={action('onToggle')}
     >
       {text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
 elit, sed do eiusmod tempor incididunt ut labore
