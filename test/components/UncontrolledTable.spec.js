@@ -344,8 +344,8 @@ describe('<UncontrolledTable />', () => {
       />
     );
     const trs = wrapper.find('tbody tr');
-    assert.equal(trs.length, 4);
     // TODO assert rows
+    assert.equal(trs.length, 4);
   });
 
   it('should show correct rows on page change', () => {
