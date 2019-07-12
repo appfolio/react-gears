@@ -49,7 +49,6 @@ describe('<Alert />', () => {
   describe('when dismissible', () => {
     it('should toggle state when clicked', () => {
       const component = mount(<Alert dismissible />);
-      assert.equal(component.state('visible'), true);
 
       assert.equal(component.find(Inner).prop('isOpen'), true);
 
@@ -57,7 +56,6 @@ describe('<Alert />', () => {
         .find(Inner)
         .find('button')
         .simulate('click');
-      assert.equal(component.state('visible'), false);
       assert.equal(component.find(Inner).prop('isOpen'), false);
     });
 
@@ -65,10 +63,13 @@ describe('<Alert />', () => {
       const component = mount(<Alert dismissible />);
       const inner = component.find(Inner);
       inner.find('button').simulate('click');
-      assert.equal(component.state('visible'), false);
+
+      assert.equal(component.find(Inner).prop('isOpen'), false, 'inner prop should be false');
 
       component.setProps({ color: 'danger' });
-      assert.equal(component.state('visible'), true);
+      component.update();
+
+      assert.strictEqual(component.find(Inner).prop('isOpen'), true, 'Inner prop should be true');
     });
 
     it('should call onToggle if provided', () => {
@@ -87,8 +88,8 @@ describe('<Alert />', () => {
       const inner = component.find(Inner);
       inner.find('button').simulate('click');
 
-      assert.equal(called, true);
-      assert.equal(calledWith, false);
+      assert.equal(called, true, 'callback should be called');
+      assert.equal(calledWith, false, 'callback should be called with false');
     });
   });
 });
