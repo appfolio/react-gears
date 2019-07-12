@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select, object } from '@storybook/addon-knobs';
 import { AddressInput, InternationalAddressInput, Label } from '../src';
-import states from '../src/components/address/USStates.js';
+import states from '../src/components/address/USStates.ts';
 
 // Wrapping as uncontrolled so that story is easier to use:
 const UncontrolledInternationalAddressInput = uncontrollable(InternationalAddressInput, { value: 'onChange' });
@@ -80,4 +80,3 @@ storiesOf('AddressInput', module)
       />
     </div>
   ));
-
