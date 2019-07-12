@@ -8,7 +8,7 @@
  * @param {number} step The value to increment or decrement by.
  * @returns {Array} Returns the range of numbers.
  */
-export default function range(start, end, step) {
+export default function range(start: number, end: number, step: number): Array<number> {
   if (end === undefined) {
     end = start;
     start = 0;

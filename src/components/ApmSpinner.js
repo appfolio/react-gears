@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import range from '../util/range.js';
+import range from '../util/range.ts';
 
 // const since these don't behave well as live props, some animation issues:
 const DURATION = '1s';
@@ -58,4 +58,3 @@ ApmSpinner.defaultProps = {
 };
 
 export default ApmSpinner;
-
