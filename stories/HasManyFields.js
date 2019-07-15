@@ -37,6 +37,7 @@ const items = [
 storiesOf('HasManyFields', module)
   .add('Live Example', () => (
     <HasManyFields
+      animated={boolean('animated', false)}
       defaultValue={items}
       template={AddressInput}
       blank={{ countryCode: 'US' }}
@@ -53,6 +54,7 @@ storiesOf('HasManyFields', module)
   ))
   .add('Row Wrapper', () => (
     <HasManyFieldsRow
+      animated={boolean('animated', false)}
       onDelete={action('onDelete')}
       disabled={boolean('disabled', false)}
       disabledReason={text('disabledReason')}

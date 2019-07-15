@@ -38,6 +38,7 @@ const SortableContainer = ReorderableContainer(({ value, renderAddRow, renderHas
 
 class HasManyFields extends React.Component {
   static propTypes = {
+    animated: PropTypes.bool,
     blank: PropTypes.any,
     defaultValue: PropTypes.array,
     disabled: PropTypes.bool,
@@ -56,6 +57,7 @@ class HasManyFields extends React.Component {
   };
 
   static defaultProps = {
+    animated: false,
     defaultValue: [],
     errors: [],
     onAdd: noop,
@@ -162,14 +164,15 @@ class HasManyFields extends React.Component {
   };
 
   renderHasManyFieldsRow = (key, index, value) => {
-    const { template: Template, disabled, errors, minimumRows } = this.props;
+    const { animated, template: Template, disabled, errors, minimumRows } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
     return (
       <HasManyFieldsRow
+        animated={animated}
         onDelete={this.deleteItem(index)}
         key={key}
-        deletable={this.value.length > minimumRows}
+        // deletable={this.value.length > minimumRows}
         disabled={disabled}
       >
         <Template

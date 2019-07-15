@@ -1,5 +1,6 @@
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
+import { Animated } from 'react-animated-css';
 import classnames from 'classnames';
 import React from 'react';
 import Button from './Button';
@@ -17,6 +18,7 @@ function getID() {
 
 export default class HasManyFieldsRow extends React.Component {
   static propTypes = {
+    animated: PropTypes.bool,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -27,11 +29,25 @@ export default class HasManyFieldsRow extends React.Component {
   };
 
   static defaultProps = {
+    animated: false,
     disabledReasonPlacement: 'top',
     disabled: false,
     onDelete: noop,
     deletable: true
   };
+
+  state = { isVisible: true };
+
+  onDelete = () => {
+    if (this.props.animated) {
+      this.setState({ isVisible: false });
+      console.log('animating out');
+      console.log('deleting: ', this.state.isVisible);
+      setTimeout(() => this.props.onDelete(), 500);
+    } else {
+      this.props.onDelete();
+    }
+  }
 
   componentWillMount() {
     this.id = getID();
@@ -39,6 +55,7 @@ export default class HasManyFieldsRow extends React.Component {
 
   render() {
     const {
+      animated,
       children,
       className,
       disabledReason,
@@ -73,12 +90,30 @@ export default class HasManyFieldsRow extends React.Component {
         color="danger"
         confirmation="Delete"
         outline
-        onClick={onDelete}
+        onClick={animated ? this.onDelete : onDelete}
         className="p-2"
       >
         <Icon name="times-circle-o" size="lg" />
       </ConfirmationButton>
     );
+
+    console.log(button);
+    console.log(this.isVisible);
+    console.log(this.state.isVisible);
+
+    if (animated) {
+      return (
+        <Animated animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={this.state.isVisible}>
+          <Row className={classNames} noGutters>
+            <Col>{children}</Col>
+            <Col xs="auto" className="pl-3 d-flex">
+              {deletable ? button : null}
+              {tooltip}
+            </Col>
+          </Row>
+        </Animated>
+      );
+    }
 
     return (
       <Row className={classNames} noGutters>
