@@ -20,6 +20,14 @@ module.exports = {
           },
         ]
       },
+      {
+        test: /\.[jt]sx?$/,
+        include: [
+          path.resolve(__dirname, '../stories')
+        ],
+        loader: '@storybook/addon-storysource/loader',
+        enforce: 'pre'
+      }
     ]
   },
   resolve: {
