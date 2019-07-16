@@ -16,17 +16,4 @@ describe('<StaticInput />', () => {
   it('should have the plaintext prop', () => {
     assert.equal(component.prop('plaintext'), true);
   });
-
-  it('should forward the state', () => {
-    assert.equal(component.prop('invalid'), true);
-  });
-
-  it('should use value as child', () => {
-    assert.equal(component.find(Input).prop('children'), 'foobar');
-  });
-
-  it('should fallback to default value', () => {
-    component.setProps({ value: null, defaultValue: 'stuff' });
-    assert.equal(component.find(Input).prop('children'), 'stuff');
-  });
 });
