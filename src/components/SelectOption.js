@@ -68,7 +68,7 @@ export default class SelectOption extends React.Component {
 
   render() {
     const { option, instancePrefix, optionIndex, isDisabled, isFocused, isSelected } = this.props;
-    const className = classNames(this.props.className, option.className, {
+    const className = classNames(this.props.className, option.className, 'text-truncate', {
       'text-muted': isDisabled,
       'bg-light': isSelected && !isFocused,
       'bg-primary text-white': isFocused
