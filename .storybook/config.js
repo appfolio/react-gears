@@ -206,6 +206,10 @@ addDecorator((story, info) => (
   </div>
 ));
 
+addDecorator((Story) => (
+  <Story />
+))
+
 function loadStories() {
   require('../stories');
 
