@@ -2,13 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs';
 import { Callout } from '../src';
+import { colors } from './colors';
 
 storiesOf('Callout', module)
   .add('Live example', () => (
     <div>
       <Callout
-        color={select('color', ['primary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], Callout.defaultProps.color)}
-        background={select('background', ['primary', 'info', 'success', 'warning', 'danger', 'dark', 'light'], Callout.defaultProps.background)}
+        color={select('color', colors, Callout.defaultProps.color)}
+        background={select('background', colors, Callout.defaultProps.background)}
         placement={select('placement', ['top', 'right', 'bottom', 'left'], Callout.defaultProps.placement)}
       >
         <h3>Hello World</h3>

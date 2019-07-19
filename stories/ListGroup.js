@@ -28,7 +28,7 @@ storiesOf('ListGroup', module)
       <ListGroupItem
         active={boolean('active', false)}
         action={boolean('action', false)}
-        color={select('color', colors, '')}
+        color={select('color', ['', ...colors], undefined)}
         disabled={boolean('disabled', false)}
         onClick={action('onClick')}
       >

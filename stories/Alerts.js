@@ -3,11 +3,12 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import { Alert, Button } from '../src';
 import { action } from '@storybook/addon-actions';
+import { colors } from './colors';
 
 storiesOf('Alerts', module)
   .add('Live example', () => (
     <Alert
-      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'info')}
+      color={select('color', ['', ...colors], 'info')}
       icon={boolean('icon', false)}
       dismissible={boolean('dismissible', false)}
       onToggle={action('onToggle')}
@@ -18,21 +19,6 @@ et dolore magna aliqua.  Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut
 aliquip ex ea commodo consequat.`)}
     </Alert>
-  ))
-  .add('Colors', () => (
-    <div>
-      <Alert>
-        <p>The default alert is a "warning". It supports any sort of custom markup.</p>
-        <div><Button>Like This!</Button></div>
-      </Alert>
-      <Alert color="success">
-        You can specify an alert color. This one has <code>color="success"</code>
-      </Alert>
-      <Alert color="danger">This one looks dangerous!</Alert>
-      <Alert color="info">
-        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-      </Alert>
-    </div>
   ))
   .add('Icons', () => (
     <div>

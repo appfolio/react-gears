@@ -19,6 +19,7 @@ import {
   Table,
   UncontrolledTooltip
 } from '../src';
+import { buttonColors, bgColors, textColors } from './colors';
 
 const Tooltip = UncontrolledTooltip;
 
@@ -73,12 +74,12 @@ storiesOf('react-gears', module)
         <Col>
           {demoHeader('BUTTONS')}
           <ButtonToolbar className="mb-3">
-            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'link'].map(color => (
+            {buttonColors.map(color => (
               <Button color={color} className="mr-1 text-capitalize">{color}</Button>
             ))}
           </ButtonToolbar>
           <ButtonToolbar className="mb-3">
-            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light'].map(color => (
+            {buttonColors.map(color => (
               <Button color={color} outline className="mr-1 text-capitalize">{color}</Button>
             ))}
           </ButtonToolbar>
@@ -88,7 +89,7 @@ storiesOf('react-gears', module)
         <Col>
           {demoHeader('COLORS')}
           <div>
-            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'light'].map(color => (
+            {bgColors.map(color => (
               <div key={color} style={{ width: 100 }} className="d-inline-block mb-1">
                 <b>{`bg-${color}`}</b>
                 <div className={`bg-${color}`} style={{ height: 33 }} />
@@ -97,15 +98,8 @@ storiesOf('react-gears', module)
           </div>
 
           <div>
-            {['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'black-50'].map(color => (
-              <div key={color} className="mb-1">
-                <h3 className={`text-${color}`}>{`text-${color}`}</h3>
-              </div>
-            ))}
-          </div>
-          <div>
-            {['white', 'light', 'white-50'].map(color => (
-              <div key={color} className="mb-1 bg-dark">
+            {textColors.map(color => (
+              <div key={color} className={`mb-1 ${color.indexOf('white') === 0 ? 'bg-dark' : ''}`}>
                 <h3 className={`text-${color}`}>{`text-${color}`}</h3>
               </div>
             ))}

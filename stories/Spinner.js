@@ -2,10 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { number, select } from '@storybook/addon-knobs';
 import { Button, Spinner } from '../src';
+import { textColors } from './colors';
 
 storiesOf('Spinner', module)
   .add('Default', () => {
-    const color = select('color', ['text-primary', 'text-muted', 'text-info', 'text-success', 'text-warning', 'text-danger'], 'text-primary');
+    const color = select('color', textColors, 'primary');
     const type = select('type', ['spin', 'border', 'grow'], Spinner.default);
 
     return (
@@ -24,8 +25,8 @@ storiesOf('Spinner', module)
             <Spinner type={type} /> Loading
           </Button>
         </p>
-        <h1 className={color}>
-          {color}: <Spinner type={type} className={color} />
+        <h1 className={`text-${color}`}>
+          text-{color}: <Spinner type={type} className={`text-${color}`} />
         </h1>
       </div>
     );
