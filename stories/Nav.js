@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { number } from '@storybook/addon-knobs';
+import { number, boolean } from '@storybook/addon-knobs';
 import { Nav, NavItem, NavLink } from '../src';
 
 storiesOf('Nav', module)
@@ -31,8 +31,8 @@ storiesOf('Nav', module)
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 5} onClick={action('onClick')}>
-              GL Accounts
+            <NavLink href="#" active={activeTab === 5} disabled onClick={action('onClick')}>
+              Disabled
             </NavLink>
           </NavItem>
         </Nav>
@@ -43,7 +43,7 @@ storiesOf('Nav', module)
     const activeTab = number('activeTab', 1);
     return (
       <div>
-        <Nav pills>
+        <Nav pills vertical={boolean('vertical', false)}>
           <NavItem>
             <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
               Receivables
@@ -65,8 +65,8 @@ storiesOf('Nav', module)
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#" active={activeTab === 5} onClick={action('onClick')}>
-              GL Accounts
+            <NavLink href="#" active={activeTab === 5} disabled onClick={action('onClick')}>
+              Disabled
             </NavLink>
           </NavItem>
         </Nav>
