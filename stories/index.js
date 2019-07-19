@@ -36,6 +36,7 @@ import './Media';
 import './Modal';
 import './MonthInput';
 import './Nav';
+import './Navbar';
 import './Note';
 import './Notes';
 import './Pagination';
