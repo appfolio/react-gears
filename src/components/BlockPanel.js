@@ -35,32 +35,19 @@ export default function BlockPanel({
   title,
   ...props
 }) {
-  const [openState, setOpenState] = useState(open);
-  const [closedState, setClosedState] = useState(!open);
+  const [isOpen, setIsOpen] = useState(open);
 
   const toggle = () => {
-    if (openState) {
-      setClosedState(false);
-    }
-    setOpenState(!openState);
+    setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    onToggle(openState);
-  }, [openState]);
+  useEffect(() => onToggle(isOpen), [isOpen]);
 
   const onClosed = () => {
-    setClosedState(true);
+    setIsOpen(false);
   };
 
-  useEffect(() => {
-    if (open) {
-      setOpenState(true);
-      setClosedState(false);
-    } else {
-      setOpenState(false);
-    }
-  }, [open]);
+  useEffect(() => setIsOpen(open), [open]);
 
   // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
   const headerClassNames = classnames(
@@ -88,7 +75,7 @@ export default function BlockPanel({
             <Icon
               className={`${(color !== 'primary' && color !== 'dark') ? 'text-muted' : ''} mr-1`}
               name="caret-right"
-              rotate={openState ? 90 : undefined}
+              rotate={isOpen ? 90 : undefined}
               fixedWidth
               style={{ transition: 'transform 200ms ease-in-out' }}
             /> : null}
@@ -111,10 +98,10 @@ export default function BlockPanel({
       </CardHeader>
       {children && (
         <Collapse
-          isOpen={children && (!expandable || openState)}
+          isOpen={children && (!expandable || isOpen)}
           onExited={() => onClosed}
         >
-          {(!expandable || hideOnToggle || !closedState) ?
+          {(!expandable || hideOnToggle || isOpen) ?
             <CardBody>
               {children}
             </CardBody> :
