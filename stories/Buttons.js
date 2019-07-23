@@ -11,11 +11,12 @@ import {
   DropdownItem,
   Row
 } from '../src';
+import { buttonColors } from './colors';
 
 storiesOf('Buttons', module)
   .add('Live example', () => (
     <Button
-      color={select('color', ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'], 'primary')}
+      color={select('color', buttonColors, 'primary')}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       active={boolean('active', false)}

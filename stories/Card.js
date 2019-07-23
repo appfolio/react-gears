@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { Card, CardBody, CardFooter, CardHeader, CardTitle } from '../src/index';
+import { colors } from './colors';
 
 storiesOf('Card', module)
   .add('Live example', () => {
@@ -35,7 +36,7 @@ storiesOf('Card', module)
   })
   .add('Colors', () => (
     <div>
-      {[null, 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'dark', 'light'].map(color => (
+      {[null, ...colors].map(color => (
         <Card color={color} className="mb-4">
           <CardBody>
             <CardTitle>{color || 'default'}</CardTitle>
@@ -61,7 +62,7 @@ storiesOf('Card', module)
           </CardBody>
         </Card>
 
-        {['primary', 'secondary', 'info', 'success', 'warning', 'danger'].map(color => (
+        {colors.map(color => (
           <Card outline color={color} className={`mb-4 ${squareCorners ? 'rounded-0' : ''}`}>
             <CardBody>
               <CardTitle>{color}</CardTitle>

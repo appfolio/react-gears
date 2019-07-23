@@ -5,8 +5,9 @@ import { Button, Icon } from '../src';
 import icons from './icons.js';
 
 const colors = [
-  'primary', 'info', 'success', 'warning', 'danger', 'muted', 'gray-dark'
+  'primary', 'info', 'success', 'warning', 'danger', 'muted', 'dark'
 ];
+
 storiesOf('Icon', module)
   .add('Live example', () => (
     <Icon
