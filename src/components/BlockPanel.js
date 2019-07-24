@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import Button from './Button';
 import Card from './Card';
@@ -21,11 +21,14 @@ BlockPanelTitle.propTypes = {
   onClick: PropTypes.func
 };
 
-export default function BlockPanel({
+/**
+ * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
+ */
+const BlockPanel = ({
   children,
+  className,
   color,
   controls,
-  className,
   expandable,
   headerClassName,
   hideOnToggle,
@@ -34,20 +37,21 @@ export default function BlockPanel({
   open,
   title,
   ...props
-}) {
+}) => {
   const [isOpen, setIsOpen] = useState(open);
+  const [collapsed, setCollapsed] = useState(!open);
 
-  const toggle = () => {
-    setIsOpen(!isOpen);
+  const updateState = (willOpen) => {
+    setIsOpen(willOpen);
+    if (willOpen) {
+      setCollapsed(false);
+    }
+    onToggle(willOpen);
   };
 
-  useEffect(() => onToggle(isOpen), [isOpen]);
-
-  const onClosed = () => {
-    setIsOpen(false);
-  };
-
-  useEffect(() => setIsOpen(open), [open]);
+  useEffect(() => updateState(open), [open]);
+  const toggle = () => updateState(!isOpen);
+  const onClosed = () => setCollapsed(true);
 
   // TODO simplify - these styles should be default Card, CardHeader styles in theme, not util classes
   const headerClassNames = classnames(
@@ -67,18 +71,21 @@ export default function BlockPanel({
 
   return (
     <Card className={className} {...props}>
-      <CardHeader
-        className={headerClassNames}
-      >
-        <BlockPanelTitle className="d-inline-flex align-items-center" expandable={expandable} onClick={toggle}>
-          {expandable ?
+      <CardHeader className={headerClassNames}>
+        <BlockPanelTitle
+          className="d-inline-flex align-items-center"
+          expandable={expandable}
+          onClick={toggle}
+        >
+          {expandable && (
             <Icon
               className={`${(color !== 'primary' && color !== 'dark') ? 'text-muted' : ''} mr-1`}
               name="caret-right"
               rotate={isOpen ? 90 : undefined}
               fixedWidth
               style={{ transition: 'transform 200ms ease-in-out' }}
-            /> : null}
+            />
+          )}
           <CardTitle tag="h2" className="h5 m-0 my-1 mr-auto">
             {title}
           </CardTitle>
@@ -99,18 +106,16 @@ export default function BlockPanel({
       {children && (
         <Collapse
           isOpen={children && (!expandable || isOpen)}
-          onExited={() => onClosed}
+          onExited={() => onClosed()}
         >
-          {(!expandable || hideOnToggle || isOpen) ?
-            <CardBody>
-              {children}
-            </CardBody> :
-            null}
+          {(!expandable || hideOnToggle || !collapsed) && (
+            <CardBody>{children}</CardBody>
+          )}
         </Collapse>
       )}
     </Card>
   );
-}
+};
 
 BlockPanel.propTypes = {
   children: PropTypes.node,
@@ -133,3 +138,5 @@ BlockPanel.defaultProps = {
   hideOnToggle: false,
   onToggle: () => {}
 };
+
+export default BlockPanel;
