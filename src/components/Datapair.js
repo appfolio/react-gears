@@ -13,6 +13,7 @@ const Datapair = (props) => {
   const { children, className, label, value, ...attributes } = props;
   const classNames = classnames(
     'mb-1',
+    'js-datapair',
     className
   );
   return (
