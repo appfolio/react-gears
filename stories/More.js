@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { Alert } from '../src';
 
 storiesOf('and more...', module)
-  .add('', () => (
+  .add('reactstrap', () => (
     <section>
       <p>
         react-gears is mainly built around the open-source <code>reactstrap</code> library and <code>Bootstrap 4</code>.
