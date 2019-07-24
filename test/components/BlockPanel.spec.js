@@ -79,6 +79,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1, 'inner block should be visible');
       assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
       component.setProps({ open: false });
+      component.update();
 
       assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
     });
