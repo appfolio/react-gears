@@ -3,22 +3,27 @@ import { addParameters, configure, setAddon, addDecorator } from '@storybook/rea
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
 import { themes } from '@storybook/theming';
+import { withA11y } from '@storybook/addon-a11y';
 import { withInfo } from '@storybook/addon-info';
 import {
-  Button,
   Nav,
   Navbar,
   NavItem,
   NavLink,
-  NavbarToggler,
   Col,
   Container,
-  UncontrolledCollapse,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from '../src';
+
+addDecorator(withA11y)
+addParameters({
+  a11y: {
+    element: '#story-root'
+  }
+});
 
 addDecorator(withInfo({
   header: false,
@@ -102,7 +107,7 @@ const MYCASE_THEMES = [
   },
   {
     name: 'MyCase Focus',
-    url: 'https://assets.mycase.com/packs/bootstrap-mycase-focus-54fbc74952.min.css'
+    url: 'https://appfolio.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css'
   }
 ];
 
