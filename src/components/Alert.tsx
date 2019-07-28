@@ -1,35 +1,39 @@
-import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import AlertComponent from 'reactstrap/lib/Alert';
+import React, { FunctionComponent, useState, useEffect } from 'react';
+import { Alert as AlertComponent, AlertProps } from 'reactstrap';
 import Icon from './Icon';
 
-const ICON_MAP = {
+const noop = () => undefined;
+
+const ICON_MAP: {[key: string]: string} = {
   warning: 'exclamation-circle',
   success: 'check',
   info: 'info-circle',
   danger: 'ban'
 };
 
-export default function Alert({
-  color,
+type Props = {
+  icon?: boolean,
+  onToggle?: (open: boolean) => void
+} & AlertProps;
+
+/**
+ * Extension to Bootstrap [Alert](https://getbootstrap.com/docs/4.3/components/alert/)
+ * adding icon support and onToggle callback when dismissed.
+ */
+const Alert: FunctionComponent<Props> = ({
+  color = 'warning',
   children,
   className,
-  dismissible,
-  icon,
-  onToggle,
+  dismissible = false,
+  icon = false,
+  onToggle = noop,
   ...props
-}) {
+}) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     setVisible(true);
-  }, [color,
-    children,
-    className,
-    dismissible,
-    icon,
-    onToggle,
-  ]);
+  }, [color, children, className, dismissible, icon, onToggle]);
 
   const toggle = () => {
     setVisible(!visible);
@@ -40,7 +44,7 @@ export default function Alert({
     <AlertComponent
       color={color}
       isOpen={visible}
-      toggle={dismissible ? toggle : null}
+      toggle={dismissible ? toggle : undefined}
       className={className}
       {...props}
     >
@@ -58,19 +62,4 @@ export default function Alert({
   );
 }
 
-Alert.propTypes = {
-  children: PropTypes.node,
-  color: PropTypes.string,
-  dismissible: PropTypes.bool,
-  icon: PropTypes.bool,
-  className: PropTypes.string,
-  onToggle: PropTypes.func
-};
-
-Alert.defaultProps = {
-  className: '',
-  color: 'warning',
-  dismissible: false,
-  icon: false,
-  onToggle: () => {}
-};
+export default Alert;

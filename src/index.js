@@ -86,7 +86,7 @@ import UncontrolledTooltip from './components/UncontrolledTooltip';
 import Activity from './components/Activity.tsx';
 import ActivityLog from './components/ActivityLog.tsx';
 import AddressInput from './components/AddressInput.js';
-import Alert from './components/Alert.js';
+import Alert from './components/Alert.tsx';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
