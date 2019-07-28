@@ -83,7 +83,7 @@ import UncontrolledPopover from './components/UncontrolledPopover';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
-import Activity from './components/Activity.js';
+import Activity from './components/Activity.tsx';
 import ActivityLog from './components/ActivityLog.tsx';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.js';
