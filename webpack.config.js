@@ -50,7 +50,25 @@ const config = {
       },
       {
         test: /\.s?css$/,
-        loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'dts-css-modules-loader',
+            options: {
+              namedExport: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localsConvention: 'camelCaseOnly',
+              importLoaders: 2
+            }
+          },
+          { loader: 'postcss-loader' },
+          { loader: 'sass-loader' }
+        ]
       },
       {
         test: /\.tsx?$/,
