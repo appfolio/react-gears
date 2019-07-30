@@ -91,7 +91,7 @@ import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';
-import Callout from './components/Callout.js';
+import Callout from './components/Callout.tsx';
 import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
