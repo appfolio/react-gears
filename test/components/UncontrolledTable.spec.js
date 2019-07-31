@@ -332,6 +332,24 @@ describe('<UncontrolledTable />', () => {
     sinon.assert.calledWith(onSelect, rows);
   });
 
+  it('should call onPageChange on page change', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const onPageChange = sinon.stub();
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        paginated
+        pageSize={4}
+        onPageChange={onPageChange}
+      />
+    );
+
+    wrapper.find('.page-link').last().simulate('click');
+    sinon.assert.calledWith(onPageChange, 1);
+  });
+
   it('should show correct rows when paginated specified', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
