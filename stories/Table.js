@@ -150,6 +150,7 @@ storiesOf('Table', module)
         pageSize={number('pageSize', 10)}
         onSelect={action('onSelect')}
         onSort={action('onSort')}
+        onPageChange={action('onPageChange')}
       />
     </div>
   ))

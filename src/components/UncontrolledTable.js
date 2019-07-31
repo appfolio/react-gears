@@ -11,6 +11,7 @@ export default class UncontrolledTable extends React.Component {
     ...SortableTable.propTypes,
     expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     onExpand: PropTypes.func,
+    onPageChange: PropTypes.func,
     page: PropTypes.number,
     pageSize: PropTypes.number,
     selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -26,6 +27,7 @@ export default class UncontrolledTable extends React.Component {
     ...SortableTable.defaultProps,
     onExpand: () => {},
     expanded: [],
+    onPageChange: () => {},
     page: 0,
     pageSize: 10,
     selected: [],
@@ -113,6 +115,7 @@ export default class UncontrolledTable extends React.Component {
 
   setPage = (page) => {
     this.setState({ page });
+    this.props.onPageChange(page);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -139,7 +142,7 @@ export default class UncontrolledTable extends React.Component {
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowExpanded, rows, selectable, sort, onSelect, onExpand, onSort, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowExpanded, rows, selectable, sort, onSelect, onExpand, onSort, onPageChange, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
