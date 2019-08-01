@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { select, text } from '@storybook/addon-knobs';
 import { Button, Collapse, UncontrolledCollapse } from '../src';
 
 storiesOf('Collapse', module)

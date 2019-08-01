@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, boolean, select } from '@storybook/addon-knobs';
-import { Alert, Button } from '../src';
 import { action } from '@storybook/addon-actions';
+import { text, boolean, select } from '@storybook/addon-knobs';
+import { Alert } from '../src';
 import { colors } from './colors';
 
 storiesOf('Alerts', module)
