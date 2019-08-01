@@ -70,16 +70,26 @@ class AddressInput extends React.Component {
   render() {
     const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
 
+    const inputId = id || 'addressInput';
+    const address1Id = `${inputId}_address1`;
+    const address2Id = `${inputId}_address2`;
+    const cityId = `${inputId}_city`;
+    const stateId = `${inputId}_state`;
+    const postalId = `${inputId}_postal`;
+    const countryCodeId = `${inputId}_countryCode`;
+
     return (
       <div className={className} id={id}>
         <FormLabelGroup
-          label={showLabels ? labels.address1 : null}
+          label={labels.address1}
+          inputId={address1Id}
+          srLabel={!showLabels}
           feedback={error.address1}
           hint={hints.address1}
           stacked
         >
           <Input
-            id={id ? `${id}_address1` : null}
+            id={address1Id}
             name="address1"
             type="text"
             placeholder={labels.address1}
@@ -92,14 +102,16 @@ class AddressInput extends React.Component {
           />
         </FormLabelGroup>
         <FormLabelGroup
-          label={showLabels ? labels.address2 : null}
+          label={labels.address2}
+          inputId={address2Id}
+          srLabel={!showLabels}
           error={error.address2}
           feedback={error.address2}
           hint={hints.address2}
           stacked
         >
           <Input
-            id={id ? `${id}_address2` : null}
+            id={address2Id}
             name="address2"
             type="text"
             placeholder={labels.address2}
@@ -116,11 +128,13 @@ class AddressInput extends React.Component {
               rowClassName={classnames({ 'mb-sm-0': !showCountry })}
               feedback={error.city}
               hint={hints.city}
-              label={showLabels ? labels.city : null}
+              label={labels.city}
+              inputId={cityId}
+              srLabel={!showLabels}
               stacked
             >
               <Input
-                id={id ? `${id}_city` : null}
+                id={cityId}
                 type="text"
                 name="city"
                 placeholder={labels.city}
@@ -137,13 +151,15 @@ class AddressInput extends React.Component {
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
               hint={hints.state}
-              label={showLabels ? labels.state : null}
+              label={labels.state}
+              inputId={stateId}
+              srLabel={!showLabels}
               stacked
             >
               <StateInput
                 className="w-100"
                 countries={countries}
-                id={id ? `${id}_state` : null}
+                id={stateId}
                 name="state"
                 placeholder={labels.state}
                 {...this.propsFor('state')}
@@ -157,13 +173,15 @@ class AddressInput extends React.Component {
           <Col md={4} sm={3} xs={8}>
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
-              label={showLabels ? labels.postal : null}
+              label={labels.postal}
+              inputId={postalId}
+              srLabel={!showLabels}
               feedback={error.postal}
               hint={hints.postal}
               stacked
             >
               <Input
-                id={id ? `${id}_postal` : null}
+                id={postalId}
                 type="text"
                 name="postal"
                 placeholder={labels.postal}
@@ -181,12 +199,14 @@ class AddressInput extends React.Component {
             feedback={error.countryCode}
             hint={hints.countryCode}
             rowClassName="mb-0"
-            label={showLabels ? labels.countryCode : null}
+            label={labels.countryCode}
+            inputId={countryCodeId}
+            srLabel={!showLabels}
             stacked
           >
             <CountryInput
               className="w-100"
-              id={id ? `${id}_countryCode` : null}
+              id={countryCodeId}
               name="countryCode"
               placeholder={labels.countryCode}
               {...this.propsFor('countryCode')}

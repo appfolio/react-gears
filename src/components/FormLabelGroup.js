@@ -29,6 +29,7 @@ class FormLabelGroup extends React.Component {
     required: PropTypes.bool,
     rowClassName: PropTypes.string,
     size: PropTypes.string,
+    srLabel: PropTypes.bool,
     stacked: PropTypes.bool,
     validFeedback: PropTypes.node,
     width: PropTypes.object
@@ -37,6 +38,7 @@ class FormLabelGroup extends React.Component {
   static defaultProps = {
     inline: false,
     required: false,
+    srLabel: false,
     stacked: false,
     width: { xs: 12 }
   };
@@ -52,6 +54,7 @@ class FormLabelGroup extends React.Component {
       required,
       rowClassName,
       size,
+      srLabel,
       stacked,
       validFeedback,
       width
@@ -64,7 +67,8 @@ class FormLabelGroup extends React.Component {
     const labelClassNames = classnames({
       'text-sm-right pr-0': !stacked,
       'text-danger': feedback,
-      'text-success': validFeedback
+      'text-success': validFeedback,
+      'sr-only sr-only-focusable': srLabel
     });
     const hiddenClassNames = classnames({
       'is-invalid': feedback,
