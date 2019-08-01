@@ -14,6 +14,10 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
   const i18nLabels = { ...addressFormat.labels, ...labels };
   const states = addressFormat.states;
 
+  const inputId = id || 'addressInput';
+  const stateId = `${inputId}_state`;
+  const countryCodeId = `${inputId}_countryCode`;
+
   const onAddressChange = (field) => {
     onChange({ ...value, ...field }); // TODO state not resetting
   };
@@ -21,7 +25,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
   const inputFor = type => (
     <Input
       disabled={disabled}
-      id={id ? `${id}_${type}` : null}
+      id={`${inputId}_${type}`}
       invalid={!!error[type]}
       name={type}
       onBlur={() => onBlur(type)}
@@ -44,7 +48,9 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                   error={error[field]}
                   feedback={error[field]}
                   hint={hints[field]}
-                  label={showLabels ? label : undefined}
+                  inputId={`${inputId}_${field}`}
+                  label={label}
+                  srLabel={!showLabels}
                   rowClassName={index > 0 ? 'pl-sm-2' : undefined}
                   stacked
                 >
@@ -56,7 +62,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                     <CountryInput
                       className="w-100"
                       disabled={disabled}
-                      id={id ? `${id}_countryCode` : null}
+                      id={countryCodeId}
                       invalid={!!error.countryCode}
                       name="countryCode"
                       onBlur={() => onBlur('countryCode')}
@@ -69,7 +75,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                     <Input
                       className="custom-select"
                       disabled={disabled}
-                      id={id ? `${id}_state` : null}
+                      id={stateId}
                       invalid={!!error.state}
                       name="state"
                       onBlur={() => onBlur('state')}
