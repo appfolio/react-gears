@@ -6,17 +6,17 @@ interface CalloutProps extends HTMLProps<HTMLDivElement> {
   className?: string;
   color?: string;
   background?: string;
-  placement?: 'top' | 'bottom' | 'left' | 'right';
+  placement: 'top' | 'bottom' | 'left' | 'right';
 }
 
-const Callout: FunctionComponent<CalloutProps> = ({
-  className = '',
-  color = 'primary',
-  background = 'light',
-  placement = 'bottom',
+const Callout = ({
+  className,
+  color,
+  background,
+  placement,
   children,
   ...props
-}) => (
+} : CalloutProps) => (
     <div
       className={`callout ${styles.callout} text-${color} m${placement[0]}-5 ${className}`}
       {...props}
@@ -27,5 +27,12 @@ const Callout: FunctionComponent<CalloutProps> = ({
       </div>
     </div>
   );
+
+Callout.defaultProps = {
+  className: '',
+  color: 'primary',
+  background: 'light',
+  placement: 'bottom'
+};
 
 export default Callout;
