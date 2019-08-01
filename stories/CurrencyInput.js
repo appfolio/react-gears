@@ -1,17 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { CurrencyInput } from '../src';
 
 storiesOf('CurrencyInput', module)
   .add('default props', () => (
-    <CurrencyInput />
+    <CurrencyInput onChange={action('onChange')} />
   ))
   .add('allow negative', () => (
-    <CurrencyInput allowNegative />
+    <CurrencyInput allowNegative onChange={action('onChange')} />
   ))
   .add('disallow decimal', () => (
-    <CurrencyInput allowDecimal={false} />
+    <CurrencyInput allowDecimal={false} onChange={action('onChange')} />
   ))
   .add('disallow comma', () => (
-    <CurrencyInput includeThousandsSeparator={false} />
+    <CurrencyInput includeThousandsSeparator={false} onChange={action('onChange')} />
   ));
