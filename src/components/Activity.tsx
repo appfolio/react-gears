@@ -13,6 +13,10 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   dateFormat?: string;
 }
 
+/**
+ * Extension to Bootstrap [ListGroupItem](https://getbootstrap.com/docs/4.3/components/list-group-item/)
+ * representing a timeline event.
+ */
 const Activity: FunctionComponent<ActivityProps> = ({
   action,
   by,

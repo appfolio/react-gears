@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { ActivityLog, Activity } from '../src';
+import { colors } from './colors';
 
 storiesOf('ActivityLog', module)
   .add('with props', () => (
@@ -37,9 +38,9 @@ storiesOf('ActivityLog', module)
       action={text('action', 'Published')}
       active={boolean('active', false)}
       by={text('by', 'Joel Bandi')}
-      color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
+      color={select('color', ['', ...colors], '')}
       date={new Date()}
-      dateFormat={text('dateFormat', Activity.defaultProps.dateFormat)}
+      dateFormat={text('dateFormat')}
       disabled={boolean('disabled', false)}
       onClick={action('onClick')}
     >
