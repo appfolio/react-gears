@@ -7,7 +7,7 @@ import NavLink from './NavLink';
 import Col from './Col';
 import Row from './Row';
 import mod from '../util/mod.js';
-import range from '../util/range.ts';
+import range from '../util/range';
 
 import styles from './MonthCalendar.scss';
 

@@ -1,5 +1,5 @@
 import assert from 'assert';
-import range from '../../src/util/range.ts';
+import range from '../../src/util/range';
 
 describe('range', () => {
   it('should infer the sign of step when only end is given', () => {
