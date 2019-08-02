@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import range from '../util/range.ts';
+import range from '../util/range';
 
 // const since these don't behave well as live props, some animation issues:
 const DURATION = '1s';
