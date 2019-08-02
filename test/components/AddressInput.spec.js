@@ -334,9 +334,9 @@ describe('<AddressInput />', () => {
       formLabels.forEach(label => assert(Object.values(labels).includes(label.text())));
     });
 
-    it('should not show custom labels when disabled', () => {
+    it('should only show screen reader labels when disabled', () => {
       const component = mount(<AddressInput showLabels={false} />);
-      assert.equal(component.find('label').length, 0);
+      assert.equal(component.find('label.sr-only').length, 6);
     });
   });
 
