@@ -8,9 +8,9 @@ storiesOf('Callout', module)
   .add('Live example', () => (
     <div>
       <Callout
-        color={select('color', colors, 'primary')}
-        background={select('background', colors, 'light')}
-        placement={select('placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
+        color={select('color', colors, Callout.defaultProps.color)}
+        background={select('background', colors, Callout.defaultProps.background)}
+        placement={select('placement', ['top', 'right', 'bottom', 'left'], Callout.defaultProps.placement)}
       >
         <h3>Hello World</h3>
         {text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
