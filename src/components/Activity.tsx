@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import fecha from 'fecha';
 import { ListGroupItemProps } from 'reactstrap';
 import Col from './Col.js';
@@ -10,21 +10,14 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   by?: ReactNode;
   children?: ReactNode;
   date: Date;
-  dateFormat?: string;
+  dateFormat: string;
 }
 
 /**
  * Extension to Bootstrap [ListGroupItem](https://getbootstrap.com/docs/4.3/components/list-group-item/)
  * representing a timeline event.
  */
-const Activity: FunctionComponent<ActivityProps> = ({
-  action,
-  by,
-  children,
-  date,
-  dateFormat = 'MM/DD/YYYY hh:mmA',
-  ...props
-}) =>
+const Activity = ({ action, by, children, date, dateFormat, ...props }: ActivityProps) =>
   <ListGroupItem {...props}>
     <Row className="w-100 no-gutters">
       <Col xs={12} sm={4} md={3} className="text-nowrap">
@@ -47,4 +40,12 @@ const Activity: FunctionComponent<ActivityProps> = ({
     </Row>
   </ListGroupItem>;
 
+Activity.defaultProps = {
+  dateFormat: 'MM/DD/YYYY hh:mmA'
+};
+
 export default Activity;
+
+// Why does Callout work and not this:
+// error TS2741: Property 'dateFormat' is missing in type '{ date: Date; }' but required in type 'ActivityProps'.
+<Activity date={new Date()} />

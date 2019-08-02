@@ -29,3 +29,5 @@ Callout.defaultProps = {
 };
 
 export default Callout;
+
+<Callout />

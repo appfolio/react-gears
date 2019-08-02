@@ -17,9 +17,9 @@
     "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },
   "scripts": {
-    "tslint": "tsc --noEmit",
-    "eslint": "eslint src test",
-    "lint": "tsc --noEmit && eslint src test stories",
+    "lint:ts": "tsc --noEmit",
+    "lint:es": "eslint src test stories",
+    "lint": "npm run lint:ts && npm run lint:es",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",
     "test:watch": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --watch --require ./test/helpers.js",
