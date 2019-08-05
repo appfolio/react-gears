@@ -62,4 +62,6 @@ const Alert: FunctionComponent<Props> = ({
   );
 }
 
+Alert.displayName = 'Alert';
+
 export default Alert;

@@ -9,4 +9,6 @@ const ActivityLog: FC<ListGroupProps> = ({ children, ...props }) => (
   <ListGroup {...props}>{children}</ListGroup>
 );
 
+ActivityLog.displayName = 'ActivityLog';
+
 export default ActivityLog;
