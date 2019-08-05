@@ -48,7 +48,7 @@ export default class HasManyFieldsRow extends React.Component {
       deletable
     } = this.props;
 
-    const classNames = classnames('mb-3', className);
+    const classNames = classnames('mb-4', className);
     // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
 
     const tooltip =
