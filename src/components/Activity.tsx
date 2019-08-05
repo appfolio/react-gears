@@ -47,4 +47,6 @@ const Activity: FunctionComponent<ActivityProps> = ({
     </Row>
   </ListGroupItem>;
 
+Activity.displayName = 'Activity';
+
 export default Activity;

@@ -21,6 +21,8 @@ const Callout = ({ className, color, background, placement, children, ...props }
   </div>
 );
 
+Callout.displayName = 'Callout';
+
 Callout.defaultProps = {
   className: '',
   color: 'primary',
