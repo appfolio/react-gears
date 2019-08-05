@@ -6,10 +6,10 @@ import Button from './Button';
 import Icon from './Icon';
 
 const HasManyFieldsAdd = ({ children, className, ...props }) => {
-  const classes = classNames('text-success', className);
+  const classes = classNames('border-0', className);
 
   return (
-    <Button color="link" block {...props} className={classes}>
+    <Button color="success" block outline {...props} className={classes}>
       <Icon name="plus-circle" className="mr-2" />
       <span>
         {children}
