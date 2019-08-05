@@ -17,6 +17,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from '../src';
+import allThemes from './themes';
 
 addDecorator(withA11y)
 addParameters({
@@ -68,77 +69,6 @@ const ThemeLink = props => {
   );
 };
 
-const APM_THEMES = [
-  {
-    name: 'APM/Saffron',
-    url:
-      'https://d36t0nm30n26wn.cloudfront.net/saffron/4.3.1/bootstrap-saffron.min.css'
-  },
-  {
-    name: 'APM/Cayenne',
-    url:
-      'https://d36t0nm30n26wn.cloudfront.net/cayenne/bootstrap-cayenne.min.css'
-  },
-  {
-    name: 'APM/Listings',
-    url:
-      'https://d36t0nm30n26wn.cloudfront.net/listings/bootstrap-listings.min.css'
-  },
-  {
-    name: 'APM/OPortal',
-    url:
-      'https://d36t0nm30n26wn.cloudfront.net/oportal/bootstrap-oportal.min.css'
-  },
-  {
-    name: 'APM/Insights',
-    url:
-      'https://d36t0nm30n26wn.cloudfront.net/insights/bootstrap-insights.min.css'
-  },
-  {
-    name: 'APM/Dream',
-    url: 'https://d36t0nm30n26wn.cloudfront.net/dream/bootstrap-dream.min.css'
-  }
-];
-
-const MYCASE_THEMES = [
-  {
-    name: 'MyCase',
-    url: 'https://d36t0nm30n26wn.cloudfront.net/mycase/bootstrap-mycase.min.css'
-  },
-  {
-    name: 'MyCase Focus',
-    url: 'https://appfolio.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css'
-  }
-];
-
-const BS4_THEMES = [
-  {
-    name: 'Default',
-    url:
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'
-  },
-  {
-    name: 'Material',
-    url:
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/materia/bootstrap.min.css'
-  },
-  {
-    name: 'Metro',
-    url:
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cosmo/bootstrap.min.css'
-  },
-  {
-    name: 'Dark',
-    url:
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/darkly/bootstrap.min.css'
-  },
-  {
-    name: 'Sketch',
-    url:
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/sketchy/bootstrap.min.css'
-  }
-];
-
 addDecorator(
   withKnobs({
     escapeHTML: false,
@@ -149,54 +79,27 @@ addDecorator((story, info) => (
   <div>
     <Navbar color="light">
       <Nav>
-        <NavItem>
-          <UncontrolledDropdown>
-            <DropdownToggle nav caret>
-              APM
-            </DropdownToggle>
-            <DropdownMenu>
-              {APM_THEMES.map((theme, i) => (
-                <DropdownItem>
-                  <ThemeLink key={i} url={theme.url}>
-                    {theme.name}
-                  </ThemeLink>
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </NavItem>
-        <NavItem>
-          <UncontrolledDropdown>
-            <DropdownToggle nav caret>
-              MyCase
-            </DropdownToggle>
-            <DropdownMenu>
-              {MYCASE_THEMES.map((theme, i) => (
-                <DropdownItem>
-                  <ThemeLink key={i} url={theme.url}>
-                    {theme.name}
-                  </ThemeLink>
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </NavItem>
-        <NavItem>
-          <UncontrolledDropdown>
-            <DropdownToggle nav caret>
-              Bootstrap
-            </DropdownToggle>
-            <DropdownMenu>
-              {BS4_THEMES.map((theme, i) => (
-                <DropdownItem>
-                  <ThemeLink key={i} url={theme.url}>
-                    {theme.name}
-                  </ThemeLink>
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </NavItem>
+        {Object.keys(allThemes).map(name => {
+          const links = allThemes[name];
+          return (
+            <NavItem>
+              <UncontrolledDropdown>
+                <DropdownToggle nav caret>
+                  {name}
+                </DropdownToggle>
+                <DropdownMenu>
+                  {links.map((theme, i) => (
+                    <DropdownItem>
+                      <ThemeLink key={i} url={theme.url}>
+                        {theme.name}
+                      </ThemeLink>
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </NavItem>
+          );
+        })}
       </Nav>
     </Navbar>
     <Container fluid className="my-5">
