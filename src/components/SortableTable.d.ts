@@ -17,6 +17,7 @@ export interface SortableColumn<T>
 }
 
 interface SortableTableProps<T> extends TableProps {
+  className?: string;
   allSelected?: boolean;
   columns: SortableColumn<T>[];
   expandableColumn?: Partial<SortableColumn<T>>;
@@ -29,7 +30,7 @@ interface SortableTableProps<T> extends TableProps {
   rowClassName?: (row: T) => React.ReactNode | undefined;
   rowExpanded?: (row: T) => React.ReactNode | boolean;
   rowOnClick?: (row: T, evt: React.MouseEvent) => void;
-  trunate?: boolean;
+  truncate?: boolean;
 }
 
 declare class SortableTable<T> extends React.Component<
