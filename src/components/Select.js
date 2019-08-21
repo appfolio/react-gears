@@ -66,6 +66,7 @@ class Select extends React.Component {
       undefined);
     return (
       <SelectElement
+        autosize={false}
         arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
         clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
         optionComponent={Option}
