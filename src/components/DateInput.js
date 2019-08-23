@@ -62,6 +62,7 @@ export default class DateInput extends React.Component {
       PropTypes.string,
       PropTypes.object
     ]),
+    direction: PropTypes.string,
     disabled: PropTypes.bool,
     footer: PropTypes.node,
     header: PropTypes.node,
@@ -257,7 +258,7 @@ export default class DateInput extends React.Component {
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
-        <Dropdown isOpen={!disabled && open} toggle={this.toggle}>
+        <Dropdown direction={this.props.direction} isOpen={!disabled && open} toggle={this.toggle}>
           <DropdownToggle tag="div" disabled>
             <InputGroup className={className}>
               <input
