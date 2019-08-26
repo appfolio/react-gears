@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from 'reactstrap/lib/Popover';
 
@@ -15,6 +14,4 @@ Popover.defaultProps = {
   flip: false,
 };
 
-export default props => (
-  <Popover {...props} />
-);
+export default Popover;
