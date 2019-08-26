@@ -11,7 +11,10 @@ export default class Tooltip extends React.Component {
   static defaultProps = {
     ...InnerTooltip.defaultProps,
     isOpen: false,
-    fade: false
+    fade: false,
+    // This is a workaround for the reactstrap Tooltip memory leak issue.
+    // https://github.com/reactstrap/reactstrap/issues/1482
+    flip: false,
   };
 
   state = {
@@ -30,13 +33,6 @@ export default class Tooltip extends React.Component {
         isOpen={this.state.isOpen}
         toggle={this.toggle}
         {...props}
-        // This is a workaround for the reactstrap Tooltip memory leak issue.
-        // https://github.com/reactstrap/reactstrap/issues/1482
-        modifiers={{
-          flip: {
-              enabled: false,
-          },
-        }}
       />
     );
   }

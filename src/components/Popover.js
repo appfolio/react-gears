@@ -9,18 +9,12 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
   ...Popover.defaultProps,
-  fade: false
+  fade: false,
+  // This is a workaround for the reactstrap Tooltip memory leak issue.
+  // https://github.com/reactstrap/reactstrap/issues/1482
+  flip: false,
 };
 
 export default props => (
-  <Popover
-    {...props}
-    // This is a workaround for the reactstrap Tooltip memory leak issue.
-    // https://github.com/reactstrap/reactstrap/issues/1482
-    modifiers={{
-      flip: {
-          enabled: false,
-      },
-    }}
-  />
+  <Popover {...props} />
 );
