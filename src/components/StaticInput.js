@@ -5,6 +5,7 @@ import Input from './Input';
 const StaticInput = props => (
   <Input
     {...props}
+    type="text"
     plaintext
   />
 );
