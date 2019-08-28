@@ -16,6 +16,8 @@ storiesOf('FormRow', module)
         required={boolean('required', false)}
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}
+        type={select('type', ['checkbox', 'number', 'password', 'static', 'text'], 'text')}
+        value={text('value', 'Hello World')}
       />
     </div>
   ));
