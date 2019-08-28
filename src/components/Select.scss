@@ -26,10 +26,12 @@
   // overlap any placeholder text.
   .Select-input {
     padding-left: 0.5rem;
+    width: 100%;
   }
   .Select-input > input {
     height: 100%;
     padding: 0;
+    width: 100% !important;
 
     &::-webkit-contacts-auto-fill-button {
       visibility: hidden;
