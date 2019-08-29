@@ -87,15 +87,15 @@ class SortableTable extends React.Component {
       expandableColumn, onExpand, rowExpanded,
       ...props
     } = this.props;
-    const showColgroup = columns.some(column => column.width);
+    const selectable = rowSelected;
+    const expandable = onExpand;
+    const showColgroup = selectable || expandable || columns.some(column => column.width);
     const showFooter = columns.some(column => column.footer);
     const tableStyle = {
       tableLayout: truncate ? 'fixed' : 'auto',
       ...style
     };
 
-    const selectable = rowSelected;
-    const expandable = onExpand;
     const cols = [...columns];
 
     if (selectable) {
