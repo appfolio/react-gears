@@ -18,6 +18,12 @@ function determineElement(type) {
   return typeof type === 'string' ? typeTranslations[type] || Input : type;
 }
 
+function inputType(type) {
+  if (typeof type !== 'string') return null;
+  if (typeTranslations[type]) return null;
+  return type;
+}
+
 function parseFeedback(feedback) {
   return typeof feedback === 'object'
     ? [null, { error: feedback }]
@@ -79,7 +85,7 @@ const FormRow = (props) => {
       <InputElement
         id={id}
         size={size}
-        type={typeof type === 'string' ? type : null}
+        type={inputType(type)}
         {...validityThings}
         {...attributes}
         {...childFeedback}
