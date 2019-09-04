@@ -20,7 +20,7 @@ function determineElement(type) {
 
 function inputType(type) {
   if (typeof type !== 'string') return null;
-  if (typeTranslations[type]) return null;
+  if (type === 'static') return null;
   return type;
 }
 
@@ -91,7 +91,7 @@ const FormRow = (props) => {
         {...childFeedback}
       >
         {React.Children.map(children, child =>
-          React.cloneElement(child, { type })
+          React.cloneElement(child, { type: inputType(type) })
         )}
       </InputElement>
     </FormLabelGroup>
