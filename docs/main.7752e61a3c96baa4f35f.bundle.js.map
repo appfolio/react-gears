@@ -1,1 +1,0 @@
-{"version":3,"file":"main.7752e61a3c96baa4f35f.bundle.js","sources":["webpack:///./src/components/Icon.js"],"sourcesContent":["import React from 'react';\nimport FontAwesomeAPM from './icon/FontAwesomeAPM.js';\n\nconst Icon = props => <FontAwesomeAPM {...props} />;\n\nIcon.displayName = 'Icon';\n\nexport default Icon;\n"],"mappings":"AAGA","sourceRoot":""}
