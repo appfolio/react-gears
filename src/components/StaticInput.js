@@ -2,7 +2,7 @@ import React from 'react';
 
 import Input from './Input';
 
-const StaticInput = props => (
+const StaticInput = ({ children, ...props }) => (
   <Input
     {...props}
     type="text"
