@@ -101,7 +101,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should not be hidden');
     });
 
-    it('should call onToggle when clicked', () => {
+    it('should call onToggle when clicked and is initially open', () => {
       const onToggle = sinon.spy();
 
       const component = mount(
@@ -109,10 +109,28 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
+
+      assert.equal(onToggle.callCount, 0);
       component.find(CardTitle).simulate('click');
       assert.equal(onToggle.calledWith(false), true);
       component.find(CardTitle).simulate('click');
       assert.equal(onToggle.calledWith(true), true);
+    });
+
+    it('should call onToggle when clicked', () => {
+      const onToggle = sinon.spy();
+
+      const component = mount(
+        <BlockPanel title="Open" expandable onToggle={onToggle} open={false}>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+
+      assert.equal(onToggle.callCount, 0);
+      component.find(CardTitle).simulate('click');
+      assert.equal(onToggle.calledWith(true), true);
+      component.find(CardTitle).simulate('click');
+      assert.equal(onToggle.calledWith(false), true);
     });
   });
 
