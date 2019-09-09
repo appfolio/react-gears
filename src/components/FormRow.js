@@ -20,7 +20,7 @@ function determineElement(type) {
 
 function inputType(type) {
   if (typeof type !== 'string') return null;
-  if (typeTranslations[type]) return null;
+  if (type === 'static') return null;
   return type;
 }
 
@@ -59,8 +59,13 @@ const FormRow = (props) => {
   } = props;
 
   const InputElement = determineElement(type);
-
+  const inputElementType = inputType(type);
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
+  const shouldPassChildren = (
+    inputElementType === 'checkbox' ||
+    inputElementType === 'radio' ||
+    inputElementType === 'select'
+  );
 
   const validityThings = sanitizeProps(InputElement, {
     valid: !!validFeedback,
@@ -85,14 +90,14 @@ const FormRow = (props) => {
       <InputElement
         id={id}
         size={size}
-        type={inputType(type)}
+        type={inputElementType}
         {...validityThings}
         {...attributes}
         {...childFeedback}
       >
-        {React.Children.map(children, child =>
-          React.cloneElement(child, { type })
-        )}
+        {shouldPassChildren ? React.Children.map(children, child =>
+          React.cloneElement(child, { type: inputElementType })
+        ) : null}
       </InputElement>
     </FormLabelGroup>
   );

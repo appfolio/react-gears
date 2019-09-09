@@ -45,10 +45,6 @@ class FormChoice extends React.Component {
 
     const computedValue = value || children;
 
-    if (type !== 'checkbox' && type !== 'radio') {
-      throw new Error(`Type '${type}' is not supported`);
-    }
-
     const item = (
       <div className={labelClasses} check={!inline}>
         <Input

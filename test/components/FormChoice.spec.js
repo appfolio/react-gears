@@ -6,12 +6,6 @@ import { Input, Label, FormGroup, FormChoice } from '../../src';
 
 describe('<FormChoice />', () => {
   describe('unknown type', () => {
-    it('should throw an error', () => {
-      assert.throws(() => {
-        shallow(<FormChoice type="foobar">A</FormChoice>);
-      }, /Type 'foobar' is not supported/);
-    });
-
     it('should generate an id when not set', () => {
       const wrapper = shallow(<FormChoice type="radio">A</FormChoice>);
       assert(wrapper.find('Input[id^="form-choice-"]').exists());
