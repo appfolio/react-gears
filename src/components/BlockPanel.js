@@ -42,11 +42,13 @@ const BlockPanel = ({
   const [collapsed, setCollapsed] = useState(!open);
 
   const updateState = (willOpen) => {
-    setIsOpen(willOpen);
-    if (willOpen) {
-      setCollapsed(false);
+    if (willOpen !== isOpen) {
+      setIsOpen(willOpen);
+      if (willOpen) {
+        setCollapsed(false);
+      }
+      onToggle(willOpen);
     }
-    onToggle(willOpen);
   };
 
   useEffect(() => updateState(open), [open]);
