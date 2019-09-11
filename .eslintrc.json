@@ -2,7 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "extends": "appfolio-react",
   "plugins": [
-    "no-only-tests"
+    "no-only-tests",
+    "react-hooks"
   ],
   "rules": {
     "function-paren-newline": 0,
@@ -28,6 +29,8 @@
         "render"
       ]
     }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "require-jsdoc": 0
   },
   "settings": {
