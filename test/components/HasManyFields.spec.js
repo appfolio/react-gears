@@ -110,6 +110,16 @@ describe('<HasManyFields />', () => {
         assert.equal(component.instance().rowRefs.length, 0);
       });
     });
+
+    context('template props', () => {
+      it('should pass the template props to the template', () => {
+        props.templateProps = { foo: 'Gary' };
+        component = mount(<HasManyFields {...props} />);
+        component.find(Input).forEach((input) => {
+          assert.equal(input.prop('foo'), 'Gary');
+        });
+      });
+    });
   });
 
   describe('controlled', () => {

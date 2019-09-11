@@ -49,6 +49,7 @@ class HasManyFields extends React.Component {
     onChange: PropTypes.func,
     template: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
       .isRequired,
+    templateProps: PropTypes.object,
     value: PropTypes.array,
     minimumRows: PropTypes.number,
     maximumRows: PropTypes.number,
@@ -65,6 +66,7 @@ class HasManyFields extends React.Component {
     minimumRows: 1,
     maximumRows: Infinity,
     reorderable: false,
+    templateProps: {}
   };
 
   constructor(props) {
@@ -162,7 +164,7 @@ class HasManyFields extends React.Component {
   };
 
   renderHasManyFieldsRow = (key, index, value) => {
-    const { template: Template, disabled, errors, minimumRows } = this.props;
+    const { template: Template, disabled, errors, minimumRows, templateProps } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
     return (
@@ -178,6 +180,7 @@ class HasManyFields extends React.Component {
           onChange={this.updateItem(index)}
           disabled={disabled}
           {...refProps}
+          {...templateProps}
         />
       </HasManyFieldsRow>
     );
