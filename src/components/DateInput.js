@@ -289,7 +289,6 @@ export default class DateInput extends React.Component {
           <DropdownMenu
             className="p-0"
             onKeyDown={this.onKeyDown}
-            style={{ minWidth: '19rem' }}
             {...dropdownProps}
           >
             {header || (
@@ -323,6 +322,7 @@ export default class DateInput extends React.Component {
               dateVisible={dateVisible}
               onSelect={this.onSelect}
               className="m-0"
+              style={{ minWidth: '19rem' }}
             />
 
             {footer || (
