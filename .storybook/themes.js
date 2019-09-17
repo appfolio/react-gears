@@ -5,7 +5,8 @@ export default {
     { name: 'APM/Listings', url: 'https://appfolio.github.io/bootstrap-listings/bootstrap-listings.css' },
     { name: 'APM/OPortal', url: 'https://appfolio.github.io/bootstrap-oportal/bootstrap-oportal.css' },
     { name: 'APM/Insights', url: 'https://appfolio.github.io/bootstrap-insights/bootstrap-insights.css' },
-    { name: 'APM/Dream', url: 'https://appfolio.github.io/bootstrap-dream/bootstrap-dream.css' }
+    { name: 'APM/Dream', url: 'https://appfolio.github.io/bootstrap-dream/bootstrap-dream.css' },
+    { name: 'APM/Admin', url: 'https://appfolio.github.io/bootstrap-admin/bootstrap-admin.css' }
   ],
   MyCase: [
     { name: 'MyCase', url: 'https://appfolio.github.io/mycase-bootstrap-4/bootstrap-mycase.css' },
