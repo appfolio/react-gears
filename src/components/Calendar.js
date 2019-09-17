@@ -108,6 +108,15 @@ class Calendar extends React.Component {
         striped={false}
         {...props}
       >
+        <colgroup>
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+          <col style={{ width: '14.29%' }} />
+        </colgroup>
         <thead>
           <tr>
             {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat)}</th>)}
