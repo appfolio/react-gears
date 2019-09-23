@@ -34,6 +34,9 @@ export default class SelectMultiValue extends React.Component {
       'ml-1',
       'font-weight-normal',
       'border',
+      'd-inline-flex',
+      'align-items-center',
+      'text-left',
       className
     );
 
@@ -41,12 +44,11 @@ export default class SelectMultiValue extends React.Component {
       <Badge
         className={classNames}
         color="light"
-        pill
         id={id}
-        style={{ textTransform: 'none' }}
+        style={{ textTransform: 'none', whiteSpace: 'normal' }}
         {...props}
       >
-        {children} <Icon style={{ opacity: 0.5 }} role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
+        {children} <Icon className="ml-1" style={{ opacity: 0.5 }} role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
       </Badge>
     );
   }
