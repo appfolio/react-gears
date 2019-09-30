@@ -18,7 +18,7 @@ const ExpandableSection = (props) => {
   return (
     <section className={props.className}>
       <header>
-        <ClickableContainer onClick={toggle}>
+        <ClickableContainer aria-expanded={open} onClick={toggle}>
           <Icon
             name='caret-right'
             rotate={open ? 90 : undefined}
