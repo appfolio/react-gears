@@ -17,16 +17,18 @@ const ExpandableSection = (props) => {
 
   return (
     <section className={props.className}>
-      <ClickableContainer tag="header" onClick={toggle}>
-        <Icon
-          name='caret-right'
-          rotate={open ? 90 : undefined}
-          size="lg"
-          fixedWidth
-          style={{ transition: 'transform 200ms ease-in-out' }}
-        />
-        <b style={{ userSelect: 'none' }}>{props.title}</b>
-      </ClickableContainer>
+      <header>
+        <ClickableContainer onClick={toggle}>
+          <Icon
+            name='caret-right'
+            rotate={open ? 90 : undefined}
+            size="lg"
+            fixedWidth
+            style={{ transition: 'transform 200ms ease-in-out' }}
+          />
+          <b style={{ userSelect: 'none' }}>{props.title}</b>
+        </ClickableContainer>
+      </header>
       <Collapse isOpen={open}>
         <div className="py-3">
           {props.children}
