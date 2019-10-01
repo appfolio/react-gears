@@ -43,7 +43,7 @@ describe('<ExpandableSection />', () => {
     );
 
     assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
-    component.find('header').simulate('click');
+    component.find('[role="button"]').simulate('click');
     assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
 
@@ -68,10 +68,10 @@ describe('<ExpandableSection />', () => {
       </ExpandableSection>
     );
 
-    component.find('header').simulate('click');
+    component.find('[role="button"]').simulate('click');
     assert(onToggle.calledWith(true), 'onToggle called with true');
 
-    component.find('header').simulate('click');
+    component.find('[role="button"]').simulate('click');
     assert(onToggle.calledWith(false), 'onToggle called with false');
   });
 });
