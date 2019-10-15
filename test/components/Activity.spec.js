@@ -19,7 +19,7 @@ describe('<Activity />', () => {
   it('should render date', () => {
     const component = mount(<Activity date={new Date(2015, 1, 13, 12, 30)} />);
     const date = component.find('span').first();
-    assert.strictEqual(date.text(), '02/13/2015 12:30PM');
+    assert.strictEqual(date.text(), '02/13/2015 12:30 PM');
   });
 
   it('should render action', () => {
