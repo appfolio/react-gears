@@ -3,8 +3,8 @@ import * as React from 'react';
 
 interface FormRowPropTypes extends 
   Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
-  children?: (JSX.Element | string) | (JSX.Element | string)[];
-  label?: (JSX.Element | string) | (JSX.Element | string)[];
+  children?: ReactNode;
+  label?: ReactNode;
   labelSize?: string;
   hint?: string;
   feedback?: any;
@@ -15,7 +15,7 @@ interface FormRowPropTypes extends
   inline?: boolean;
   stacked?: boolean;
   size?: string;
-  validFeedback?: (JSX.Element | string) | (JSX.Element | string)[];
+  validFeedback?: ReactNode;
   width?: {
     size?: boolean | number | string
     push?: string | number

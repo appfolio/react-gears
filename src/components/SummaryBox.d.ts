@@ -8,7 +8,7 @@ interface SummaryItem {
 }
 
 interface SummaryBoxProps extends CardGroupProps {
-  children?: (JSX.Element | string) | (JSX.Element | string)[]; 
+  children?: ReactNode; 
   items?: SummaryItem[];
 }
 declare class SummaryBox extends React.Component<SummaryBoxProps, {}> { }

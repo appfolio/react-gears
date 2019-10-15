@@ -2,7 +2,7 @@ import Note from './TypeHelpers/NoteType';
 import * as React from 'react';
 
 interface EditableNoteProps {
-  children?: (JSX.Element | string)[] | JSX.Element | string;
+  children?: ReactNode;
   className?: string;
   note: Note;
   onCancel: (ev: React.MouseEventHandler<any>) => void;
@@ -10,8 +10,8 @@ interface EditableNoteProps {
   onSave: (ev: React.MouseEventHandler<any>) => void;
   rows?: number;
   saving?: boolean;
-  saveLabel?: (JSX.Element | string);
-  savingLabel?: (JSX.Element | string);
+  saveLabel?: ReactNode;
+  savingLabel?: ReactNode;
 }
 
 declare class EditableNote extends React.Component<EditableNoteProps, {}> { }
