@@ -22,7 +22,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
   by,
   children,
   date,
-  dateFormat = 'MM/DD/YYYY hh:mmA',
+  dateFormat = 'MM/DD/YYYY hh:mm A',
   ...props
 }) =>
   <ListGroupItem {...props}>
