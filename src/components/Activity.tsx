@@ -1,9 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import fecha from 'fecha';
 import { ListGroupItemProps } from 'reactstrap';
-import Col from './Col.js';
-import ListGroupItem from './ListGroupItem.js';
-import Row from './Row.js';
+import Col from './Col';
+import ListGroupItem from './ListGroupItem';
+import Row from './Row';
 
 interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   action?: ReactNode;
