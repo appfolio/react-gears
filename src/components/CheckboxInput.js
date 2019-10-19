@@ -10,5 +10,6 @@ const CheckboxInput = props =>
     <CheckboxBooleanInput {...props} />;
 
 CheckboxInput.propTypes = { children: PropTypes.element };
+// TODO should expose both prop types
 
 export default CheckboxInput;
