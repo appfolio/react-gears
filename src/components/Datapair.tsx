@@ -1,16 +1,20 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classnames from 'classnames';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
 
+interface DatapairProps extends FormLabelGroup {
+  className?: string;
+  label?: ReactNode;
+  value?: ReactNode;
+}
+
 /**
- * Datapairs are for displaying labeled data. Each element is comprised
+ * Datapairs are an extension to FormLabelGroup for displaying labeled data. Each element is comprised
  * of two parts: the key (label) and a value. The key is an identifier for some form of data and
  * the value can be text or links.
  */
-const Datapair = (props) => {
-  const { children, className, label, value, ...attributes } = props;
+const Datapair: FunctionComponent<DatapairProps> = ({ children, className, label, value, ...attributes }) => {
   const classNames = classnames(
     'mb-1',
     'js-datapair',
@@ -28,11 +32,6 @@ const Datapair = (props) => {
   );
 };
 
-Datapair.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  label: PropTypes.node.isRequired,
-  value: PropTypes.node,
-};
+Datapair.displayName = 'Datapair';
 
 export default Datapair;
