@@ -187,6 +187,19 @@ describe('<Paginator />', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
       assert.equal('Displaying: 241-256 of 256', wrapper.find('Summary').text());
     });
+
+    it('supports a custom summary', () => {
+      const wrapper = mount(
+        <Paginator
+          currentPage={1}
+          totalItems={0}
+          onClick={sinon.stub()}
+          summary={<h1 id="pagopago">HERE BE YE PAGES</h1>}
+        />
+      );
+      assert(wrapper.find('#pagopago').exists());
+      assert(!wrapper.find('Summary').exists());
+    });
   });
 
   describe('onclick', () => {
