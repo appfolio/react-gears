@@ -4,7 +4,7 @@ import * as React from 'react';
 
 interface CheckboxBooleanInputProps extends
   Omit<HTMLProps<HTMLInputElement>, 'type' | 'checked' | 'onChange' | 'value'> {
-  checkboxLabel: JSX.Element | string;
+  checkboxLabel: ReactNode;
   onChange?: (isChecked: boolean) => void;
   value?: boolean;
 }

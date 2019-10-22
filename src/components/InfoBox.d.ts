@@ -5,7 +5,7 @@ interface InfoBoxProps extends
   Omit<React.HTMLProps<HTMLDivElement>, 'className'>{
   className?: string;
   color?: string;
-  children: (JSX.Element | string) | (JSX.Element | string)[];
+  children: ReactNode;
   icon?: string;
   title?: string;
   vertical: boolean;

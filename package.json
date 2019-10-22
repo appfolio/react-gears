@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "5.0.10-0",
+  "version": "5.0.9",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -83,6 +83,7 @@
     "@storybook/addon-viewport": "^5.2.1",
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
+    "@types/classnames": "^2.2.9",
     "@types/react": "^16.8.6",
     "@typescript-eslint/parser": "^1.11.0",
     "assert": "~1.4.1",

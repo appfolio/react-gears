@@ -4,7 +4,7 @@ import * as React from 'react';
 
 interface WaitingProps extends Omit<ModalProps, 'toggle'> {
   backdrop?: boolean;
-  children?: (JSX.Element | string) | (JSX.Element | string)[];
+  children?: ReactNode;
   className?: string;
   isOpen?: boolean;
   title?: string;
