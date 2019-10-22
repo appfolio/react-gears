@@ -55,6 +55,7 @@ export default class Paginator extends React.Component {
     onClick: PropTypes.func.isRequired,
     perPage: PropTypes.number,
     size: PropTypes.oneOf(['sm', 'lg']),
+    summary: PropTypes.node,
     totalItems: PropTypes.number.isRequired,
   }
 
@@ -63,7 +64,7 @@ export default class Paginator extends React.Component {
   };
 
   render() {
-    const { currentPage, perPage, size, totalItems, onClick } = this.props;
+    const { currentPage, perPage, size, summary, totalItems, onClick } = this.props;
 
     const paginationState = new State(currentPage, totalItems, perPage);
     const { from, to } = paginationState.currentItemRange();
@@ -80,10 +81,10 @@ export default class Paginator extends React.Component {
     ));
 
     return (
-      <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center">
+      <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center mb-3">
         <div>
           {(paginationState.totalPages > 1) && (
-            <Pagination size={size} className="m-0 mb-3" listClassName="m-0 p-0 border-0 flex-row">
+            <Pagination size={size} listClassName="m-0 p-0 mb-2 mb-sm-0 border-0 flex-row">
               <FirstPageLink
                 page={1}
                 disabled={!paginationState.showPrevious()}
@@ -108,7 +109,7 @@ export default class Paginator extends React.Component {
             </Pagination>
           )}
         </div>
-        <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0 mb-3" />
+        {summary || <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0" />}
       </div>
     );
   }

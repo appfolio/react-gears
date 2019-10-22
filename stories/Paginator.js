@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { number, select } from '@storybook/addon-knobs';
+import { number, select, text } from '@storybook/addon-knobs';
 
 import { Paginator } from '../src';
 
@@ -12,6 +12,7 @@ storiesOf('Paginator', module)
       onClick={action('onClick')}
       perPage={select('perPage', [5, 10, 20, 25], 20)}
       size={select('size', ['', 'sm', 'lg'], '')}
+      summary={text('summary')}
       totalItems={100}
     />
   ));
