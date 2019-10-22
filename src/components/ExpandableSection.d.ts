@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ExpandableSectionProps {
-  children?: (JSX.Element | string) | (JSX.Element | string)[];
+  children?: ReactNode;
   className?: string;
   open?: boolean;
   title: string;

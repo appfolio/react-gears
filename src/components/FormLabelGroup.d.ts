@@ -1,20 +1,20 @@
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
-interface FormRowPropTypes extends 
+interface FormLabelGroupPropTypes extends 
   Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
   children?: ReactNode;
+  feedback?: any;
+  hint?: string;
+  inline?: boolean;
+  inputId?: string,
   label?: ReactNode;
   labelSize?: string;
-  hint?: string;
-  feedback?: any;
-  id?: string;
   required?: boolean;
   rowClassName?: string;
-  type?: any;
-  inline?: boolean;
-  stacked?: boolean;
   size?: string;
+  srLabel?: string,
+  stacked?: boolean;
   validFeedback?: ReactNode;
   width?: {
     size?: boolean | number | string
@@ -24,5 +24,5 @@ interface FormRowPropTypes extends
   }
 }
 
-declare class FormRow extends React.Component<FormRowPropTypes, {}> { }
-export default FormRow;
+declare class FormLabelGroup extends React.Component<FormLabelGroupPropTypes, {}> { }
+export default FormLabelGroup;

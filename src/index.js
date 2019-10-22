@@ -102,7 +102,7 @@ import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
 import CurrencyInput from './components/CurrencyInput.js';
-import Datapair from './components/Datapair.js';
+import Datapair from './components/Datapair.tsx';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
@@ -146,7 +146,6 @@ import Table from './components/Table.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
-import ValidatedFormGroup from './components/ValidatedFormGroup.js';
 import Waiting from './components/Waiting.js';
 
 export {
@@ -301,6 +300,5 @@ export {
   TimeInput,
   Tooltip,
   UncontrolledTable,
-  ValidatedFormGroup,
   Waiting,
 };

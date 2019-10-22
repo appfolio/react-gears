@@ -4,7 +4,7 @@ import * as React from 'react';
 
 interface HasManyFieldsAddProps extends Omit<ButtonProps,'color'> {
   className?: string;
-  children: (JSX.Element | string) | (JSX.Element | string)[];
+  children: ReactNode;
   disabled?: boolean;
 }
 declare class HasManyFieldsAdd extends React.Component<HasManyFieldsAddProps, {}> { }

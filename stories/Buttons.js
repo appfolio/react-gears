@@ -17,6 +17,7 @@ storiesOf('Buttons', module)
   .add('Live example', () => (
     <Button
       color={select('color', buttonColors, 'primary')}
+      block={boolean('block', false)}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       active={boolean('active', false)}

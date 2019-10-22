@@ -1,7 +1,7 @@
 import * as React from 'react';
 interface BlockPanelProps {
-  children?: (string | JSX.Element)[] | string | JSX.Element;
-  controls?: JSX.Element | JSX.Element[];
+  children?: ReactNode;
+  controls?: ReactNode;
   className?: string;
   color?: string;
   expandable?: boolean;
@@ -9,7 +9,7 @@ interface BlockPanelProps {
   onEdit?: React.MouseEventHandler<any>;
   onToggle?: (isOpen: boolean) => void;
   open?: boolean;
-  title: (string | JSX.Element)[] | string | JSX.Element;
+  title: ReactNode;
 }
 
 declare class BlockPanel extends React.Component<BlockPanelProps, {}> { }
