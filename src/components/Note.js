@@ -14,6 +14,7 @@ class Note extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    dateFormat: PropTypes.string,
     note: PropTypes.shape({
       deleted: PropTypes.bool,
       editing: PropTypes.bool,
@@ -33,6 +34,7 @@ class Note extends React.Component {
 
   static defaultProps = {
     className: 'bg-white mb-3',
+    dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
     rows: EditableNote.defaultProps.rows,
     saving: EditableNote.defaultProps.saving,
     saveLabel: EditableNote.defaultProps.saveLabel,
@@ -40,7 +42,7 @@ class Note extends React.Component {
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete, rows, saving, saveLabel, savingLabel }
+    const { children, className, dateFormat, note, onCancel, onChange, onDelete, onEdit, onSave, onUndelete, rows, saving, saveLabel, savingLabel }
       = this.props;
     const { deleted, editing, text } = note;
 
@@ -67,7 +69,7 @@ class Note extends React.Component {
     }
     return (
       <Card className={className}>
-        <NoteHeader note={note} onDelete={onDelete} onEdit={onEdit} />
+        <NoteHeader note={note} dateFormat={dateFormat} onDelete={onDelete} onEdit={onEdit} />
         <CardBody>
           <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
           {children}
