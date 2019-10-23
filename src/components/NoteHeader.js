@@ -24,12 +24,13 @@ class NoteHeader extends React.Component {
     }).isRequired,
     dateFormat: PropTypes.string,
     // TODO shortDateFormat ?
+    showTimezone: PropTypes.bool,
     onDelete: PropTypes.func,
     onEdit: PropTypes.func,
   };
 
   render() {
-    const { dateFormat, note, onDelete, onEdit } = this.props;
+    const { dateFormat, note, onDelete, onEdit, showTimezone } = this.props;
     const { date, edited, from, title } = note;
 
     const headerClassNames = classnames(
@@ -51,7 +52,7 @@ class NoteHeader extends React.Component {
             <span className="m-0 my-1 mr-auto">
               <span className="d-none d-sm-inline">
                 {edited ? 'Last edited' : 'Posted'}
-                {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)} {timezone(date)}</span>
+                {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
               </span>
               <span className="d-sm-none">
                 {from ? <span>{from} </span> : null}<span className="js-note-header__shortDate">{format(date, 'M/D/YY h:mm A')} {timezone(date)}</span>
