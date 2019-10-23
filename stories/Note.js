@@ -24,6 +24,7 @@ storiesOf('Note', module)
 
     return (
       <Note
+        dateFormat={text('dateFormat', Note.defaultProps.dateFormat)}
         note={note}
         onCancel={action('onCancel')}
         onChange={action('onChange')}

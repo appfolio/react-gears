@@ -14,9 +14,11 @@ describe('<NoteHeader />', () => {
     title: 'Whim Habors',
   };
 
+  const dateFormat = 'ddd, MMMM D, YYYY "at" h:mm A';
+
   describe('rendering', () => {
     context('with core information', () => {
-      const component = mount(<NoteHeader note={note} />);
+      const component = mount(<NoteHeader note={note} dateFormat={dateFormat} showTimezone={false} />);
 
       it('should render a single CardHeader', () => {
         const cardHeader = component.find('CardHeader');
