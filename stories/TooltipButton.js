@@ -10,13 +10,11 @@ storiesOf('TooltipButton', module)
   .add('Live example', () => (
     <TooltipButton
       color={select('color', buttonColors, 'primary')}
-      block={boolean('block', false)}
       disabled={boolean('disabled', false)}
-      outline={boolean('outline', false)}
-      active={boolean('active', false)}
-      text={text('Label', 'Click Me')}
-      tooltip="asdas"
-    />
+      tooltip="Here is a tooltip."
+    >
+      {text('Label', 'Click Me')}
+    </TooltipButton>
   ));
 
 // TODO

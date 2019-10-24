@@ -6,7 +6,6 @@ import { ButtonProps } from 'reactstrap/lib/Button';
 
 
 interface TooltipButtonProps extends ButtonProps {
-  text: string;
   tooltip?: string;
   tooltipPlacement?: string;
   gearsBtnContainerClass?: string;
@@ -14,10 +13,10 @@ interface TooltipButtonProps extends ButtonProps {
 
 const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
   tooltip = '',
-  onClick,
-  disabled,
+  disabled = false,
   text,
   tooltipPlacement = 'top',
+  children,
   gearsBtnContainerClass,
   ...props
 }) => {
@@ -34,12 +33,11 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
       )}
       <span id={id} className={gearsBtnContainerClass}>
         <Button
-          onClick={onClick}
           disabled={disabled}
           style={disabled ? { pointerEvents: 'none' } : {}} // for tooltip
           {...props}
         >
-          {text}
+          {children}
         </Button>
       </span>
     </Fragment>
