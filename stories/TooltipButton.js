@@ -16,8 +16,3 @@ storiesOf('TooltipButton', module)
       {text('Label', 'Click Me')}
     </TooltipButton>
   ));
-
-// TODO
-//  .add('with dropdowns', () => <h1>TODO</h1>)
-//  .add('with split dropdowns', () => <h1>TODO</h1>)
-//  .add('with dropups', () => <h1>TODO</h1>);
