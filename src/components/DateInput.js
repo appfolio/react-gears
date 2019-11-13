@@ -166,7 +166,10 @@ export default class DateInput extends React.Component {
     } : {
       value: format(date, this.props.dateFormat)
     };
-    this.setState(newState, () => this.props.onChange(date, true));
+    this.setState(newState, () => {
+      this.inputEl.setAttribute('value', newState.value);
+      this.props.onChange(date, true);
+    });
   };
 
   getCurrentValue = () => {
