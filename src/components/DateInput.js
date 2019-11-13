@@ -217,6 +217,7 @@ export default class DateInput extends React.Component {
 
     if (!isSame) {
       this.inputEl.value = currentValue;
+      this.inputEl.setAttribute('value', currentValue);
     }
   }
 
