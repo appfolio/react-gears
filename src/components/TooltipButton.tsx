@@ -1,13 +1,14 @@
-import React, { FunctionComponent, Fragment } from 'react';
+import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
+import * as Popper from 'popper.js';
 import Button from './Button';
 import Tooltip from './Tooltip';
 import uniqid from 'uniqid';
 import { ButtonProps } from 'reactstrap/lib/Button';
 
-
 interface TooltipButtonProps extends ButtonProps {
   tooltip?: string;
-  tooltipPlacement?: string;
+  tooltipPlacement?: Popper.Placement;
   gearsBtnContainerClass?: string;
 }
 
@@ -20,27 +21,26 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
   gearsBtnContainerClass,
   ...props
 }) => {
-
-
   const id = `tooltip-button-${uniqid()}`;
+  const className = classnames('d-inline-block', gearsBtnContainerClass)
 
   return (
-    <Fragment>
+    <>
       {tooltip && (
         <Tooltip placement={tooltipPlacement} target={id}>
           {tooltip}
         </Tooltip>
       )}
-      <span id={id} className={gearsBtnContainerClass}>
+      <div id={id} className={className}>
         <Button
           disabled={disabled}
-          style={disabled ? { pointerEvents: 'none' } : {}} // for tooltip
+          style={{ pointerEvents: tooltip ? 'none' : 'auto' }}
           {...props}
         >
           {children}
         </Button>
-      </span>
-    </Fragment>
+      </div>
+    </>
   );
 }
 
