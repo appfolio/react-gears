@@ -12,6 +12,15 @@ import Row from './Row';
 
 const readEvent = (e) => { return { [e.target.name]: e.target.value }; };
 
+export const addressPropType = {
+  address1: PropTypes.string,
+  address2: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  postal: PropTypes.string,
+  countryCode: PropTypes.string,
+};
+
 class AddressInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -221,14 +230,5 @@ class AddressInput extends React.Component {
     );
   }
 }
-
-export const addressPropType = {
-  address1: PropTypes.string,
-  address2: PropTypes.string,
-  city: PropTypes.string,
-  state: PropTypes.string,
-  postal: PropTypes.string,
-  countryCode: PropTypes.string,
-};
 
 export default AddressInput;
