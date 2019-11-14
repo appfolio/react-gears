@@ -226,7 +226,9 @@ export default class DateInput extends React.Component {
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
-      this.inputEl.value = format(parsedDate, this.props.dateFormat);
+      const value = format(parsedDate, this.props.dateFormat);
+      this.inputEl.value = value;
+      this.inputEl.setAttribute('value', value);
     }
   }
 
