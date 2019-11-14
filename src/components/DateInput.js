@@ -166,7 +166,10 @@ export default class DateInput extends React.Component {
     } : {
       value: format(date, this.props.dateFormat)
     };
-    this.setState(newState, () => this.props.onChange(date, true));
+    this.setState(newState, () => {
+      this.inputEl.setAttribute('value', newState.value);
+      this.props.onChange(date, true);
+    });
   };
 
   getCurrentValue = () => {
@@ -189,6 +192,7 @@ export default class DateInput extends React.Component {
     } else {
       this.props.onChange(value, false);
     }
+    this.inputEl.setAttribute('value', value);
   };
 
   close = () => this.setState({ open: false });
@@ -213,6 +217,7 @@ export default class DateInput extends React.Component {
 
     if (!isSame) {
       this.inputEl.value = currentValue;
+      this.inputEl.setAttribute('value', currentValue);
     }
   }
 
@@ -221,7 +226,9 @@ export default class DateInput extends React.Component {
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
-      this.inputEl.value = format(parsedDate, this.props.dateFormat);
+      const value = format(parsedDate, this.props.dateFormat);
+      this.inputEl.value = value;
+      this.inputEl.setAttribute('value', value);
     }
   }
 
@@ -248,7 +255,7 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, id, showOnFocus,
+    const { className, dateVisible, direction, disabled, footer, header, id, showOnFocus,
       dateFormat, defaultValue, keyboard, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
@@ -258,7 +265,7 @@ export default class DateInput extends React.Component {
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
     return (
       <div>
-        <Dropdown direction={this.props.direction} isOpen={!disabled && open} toggle={this.toggle}>
+        <Dropdown direction={direction} isOpen={!disabled && open} toggle={this.toggle}>
           <DropdownToggle tag="div" disabled>
             <InputGroup className={className}>
               <input
