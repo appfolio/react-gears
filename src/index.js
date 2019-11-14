@@ -147,6 +147,7 @@ import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
 import Waiting from './components/Waiting.js';
+import TooltipButton from './components/TooltipButton.tsx';
 
 export {
   // reactstrap
@@ -301,4 +302,5 @@ export {
   Tooltip,
   UncontrolledTable,
   Waiting,
+  TooltipButton,
 };

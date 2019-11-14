@@ -55,5 +55,6 @@ import './TimeInput';
 import './Toast';
 import './Tooltip';
 import './Waiting';
+import './TooltipButton';
 
 import './More';
