@@ -63,7 +63,7 @@
     "react-sortable-hoc": "^1.9.1",
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.9.0",
-    "reactstrap": "^8.0.1",
+    "reactstrap": "^8.1.1",
     "text-mask-addons": "^3.8.0",
     "uniqid": "^5.0.3"
   },

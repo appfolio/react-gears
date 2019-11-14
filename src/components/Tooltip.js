@@ -12,9 +12,6 @@ export default class Tooltip extends React.Component {
     ...InnerTooltip.defaultProps,
     isOpen: false,
     fade: false,
-    // This is a workaround for the reactstrap Tooltip memory leak issue.
-    // https://github.com/reactstrap/reactstrap/issues/1482
-    flip: false,
   };
 
   state = {
