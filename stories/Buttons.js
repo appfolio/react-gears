@@ -9,7 +9,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Row
+  Row,
+  TooltipButton
 } from '../src';
 import { buttonColors } from './colors';
 
@@ -74,6 +75,16 @@ storiesOf('Buttons', module)
       <Button color="primary" size="md">Medium button</Button>&nbsp;
       <Button color="primary" size="sm">Small button</Button>
     </div>
+  ))
+  .add('TooltipButton', () => (
+    <TooltipButton
+      color={select('color', buttonColors, 'primary')}
+      disabled={boolean('disabled', false)}
+      tooltip="Here is a tooltip."
+      tooltipPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
+    >
+      {text('Label', 'Click Me')}
+    </TooltipButton>
   ))
   .add('ButtonGroup', () => (
     <div>
