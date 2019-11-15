@@ -39,7 +39,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   ...props
 }) => {
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value || '');
   const dropdown = useRef<any>(null);
   const input = useRef(null);
   const visibleOptions = filterOptions(options, inputValue);
@@ -67,7 +67,8 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
     <Dropdown
       direction={direction}
       isOpen={!disabled && open}
-      toggle={() => setOpen(!open)}
+      toggle={() => {}}
+      onBlur={() => setOpen(false)}
     >
       <DropdownToggle tag="div" disabled={disabled}>
         <InputGroup className={className}>
@@ -75,6 +76,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
             disabled={disabled}
             ref={input}
             placeholder={placeholder}
+            onFocus={() => setOpen(true)}
             onChange={e => setInputValue(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'ArrowDown') {
@@ -112,8 +114,9 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
         {visibleOptions
           .map((option, i) => (
             <DropdownItem
+              key={option.value}
               active={isSelected(option, inputValue)}
-              onClick={() => setInputValue(option.label)}
+              onMouseDown={() => { setInputValue(option.label); setOpen(false); }}
               ref={i === 0 ? dropdown : null}
             >
               {renderOption(option)}
