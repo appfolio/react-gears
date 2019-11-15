@@ -99,6 +99,7 @@ import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
 import ClickableContainer from './components/ClickableContainer.js';
 import CollapsableText from './components/CollapsableText.js';
+import Combobox from './components/Combobox.tsx';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput.js';
 import CreditCardNumber from './components/CreditCardNumber.js';
@@ -269,6 +270,7 @@ export {
   CheckboxListInput,
   ClickableContainer,
   CollapsableText,
+  Combobox,
   ConfirmationButton,
   CountryInput,
   CreditCardNumber,
