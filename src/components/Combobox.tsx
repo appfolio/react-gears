@@ -134,7 +134,7 @@ Combobox.displayName = 'Combobox';
 Combobox.defaultProps = {
   noResultsLabel: 'No Results Found',
   onChange: () => {},
-  filterOptions: (options: Option[], value: any) => options.filter(option => value ? option.label.toLowerCase().indexOf(value) === 0 : true),
+  filterOptions: (options: Option[], value: any) => options.filter(option => value ? option.label.toLowerCase().indexOf(value.toLowerCase()) === 0 : true),
   isSelected: (option: Option, value: any) => value === option.label,
   renderInputValue: (option: Option) => option.label,
   renderOption: (option: Option) => option.label
