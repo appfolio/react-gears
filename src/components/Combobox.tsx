@@ -40,9 +40,17 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
 }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value || '');
+  const [visibleOptions, setVisibleOptions] = useState<Option[]>([]);
+  const [focusedOptionIndex, setFocusedOptionIndex] = useState<number>(0);
+
   const dropdown = useRef<any>(null);
   const input = useRef(null);
-  const visibleOptions = filterOptions(options, inputValue);
+
+  useEffect(() => {
+    if (visibleOptions.length > 0) {
+      setFocusedOptionIndex(0)
+    }
+  }, [visibleOptions]);
 
   useEffect(() => {
     const matchingOption = options.find(option => option.value === value);
@@ -50,6 +58,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   }, [value]);
 
   useEffect(() => {
+    setVisibleOptions(filterOptions(options, inputValue));
     const matchingOption = options.find(option => option.label === inputValue);
     // TODO 4 options:
     onChange(matchingOption ? matchingOption.value : null); // Matching or Null if no matching
@@ -57,6 +66,29 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
     // onChange(matchingOption ? matchingOption.value : inputValue); // Matching or inputValue if no matching
     // call onSelect from menu, maybe on enter when one choice
   }, [inputValue]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', onKeyPress);
+    };
+  });
+
+  const onKeyPress = ({ key }: KeyboardEvent) => {
+    if (key === 'Enter') {
+      selectOption(visibleOptions[focusedOptionIndex]);
+    } else if (key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
+      setFocusedOptionIndex(focusedOptionIndex + 1);
+    } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
+      setFocusedOptionIndex(focusedOptionIndex - 1);
+    }
+  };
+
+  const selectOption = (option: Option) => {
+    setInputValue(option.label);
+    setOpen(false);
+  }
 
   // TODO support enter to pick when one choice
   // TODO arrow down to dropdown from input
@@ -115,8 +147,9 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
           .map((option, i) => (
             <DropdownItem
               key={option.value}
-              active={isSelected(option, inputValue)}
-              onMouseDown={() => { setInputValue(option.label); setOpen(false); }}
+              active={focusedOptionIndex == i}
+              onMouseEnter={() => setFocusedOptionIndex(i)}
+              onMouseDown={() => selectOption(option)}
               ref={i === 0 ? dropdown : null}
             >
               {renderOption(option)}
