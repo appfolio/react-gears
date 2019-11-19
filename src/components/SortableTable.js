@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import uniqueId from 'lodash.uniqueid';
 import Header from './SortableTable/Header.js';
 import Button from './Button';
 import Icon from './Icon';
 import Table from './Table.js';
+import Label from './Label.js';
 
 function generateColumnClassName(column, truncate = false) {
   return classnames(
@@ -99,25 +101,36 @@ class SortableTable extends React.Component {
     const cols = [...columns];
 
     if (selectable) {
+      const selectAllId = uniqueId('select-all-');
       cols.unshift({
         align: 'center',
         key: 'select',
         header: (
-          <input
-            type="checkbox"
-            className="mx-1"
-            checked={allSelected}
-            onChange={e => onSelectAll(e.target.checked)}
-          />
+          <>
+            <Label for={selectAllId} hidden>Select all rows</Label>
+            <input
+              type="checkbox"
+              className="mx-1"
+              id={selectAllId}
+              checked={allSelected}
+              onChange={e => onSelectAll(e.target.checked)}
+            />
+          </>
         ),
-        cell: row => (
-          <input
-            type="checkbox"
-            className="mx-1"
-            checked={rowSelected(row)}
-            onChange={e => onSelect(row, e.target.checked)}
-          />
-        ),
+        cell: (row) => {
+          const selectRowId = uniqueId('select-row-');
+          return (
+            <>
+              <Label for={selectRowId} hidden>Select row</Label>
+              <input
+                id={selectRowId}
+                type="checkbox"
+                className="mx-1"
+                checked={rowSelected(row)}
+                onChange={e => onSelect(row, e.target.checked)}
+              />
+            </>);
+        },
         width: '2rem'
       });
     }
@@ -133,6 +146,7 @@ class SortableTable extends React.Component {
             onClick={() => onExpand(row)}
           >
             <Icon name="ellipsis-v" size="lg" />
+            <span className="sr-only">Expand row</span>
           </Button>
         ),
         width: '2rem',
