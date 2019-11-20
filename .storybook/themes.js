@@ -2,14 +2,13 @@ export default {
   APM: [
     { name: 'APM/Saffron', url: 'https://appfolio.github.io/bootstrap-saffron-4/bootstrap-saffron.css' },
     { name: 'APM/Cayenne', url: 'https://appfolio.github.io/bootstrap-cayenne/bootstrap-cayenne.css' },
+    { name: 'APM/Coastline', url: 'https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css' },
     { name: 'APM/Listings', url: 'https://appfolio.github.io/bootstrap-listings/bootstrap-listings.css' },
     { name: 'APM/OPortal', url: 'https://appfolio.github.io/bootstrap-oportal/bootstrap-oportal.css' },
-    { name: 'APM/Insights', url: 'https://appfolio.github.io/bootstrap-insights/bootstrap-insights.css' },
     { name: 'APM/Dream', url: 'https://appfolio.github.io/bootstrap-dream/bootstrap-dream.css' },
     { name: 'APM/Admin', url: 'https://appfolio.github.io/bootstrap-admin/bootstrap-admin.css' }
   ],
   MyCase: [
-    { name: 'MyCase', url: 'https://appfolio.github.io/mycase-bootstrap-4/bootstrap-mycase.css' },
     { name: 'MyCase Focus', url: 'https://appfolio.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css' }
   ],
   Bootstrap: [
