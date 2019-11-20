@@ -29,14 +29,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'awesome-typescript-loader',
-            options: {
-              "useBabel": true,
-              "babelOptions": {
-                "babelrc": true
-              },
-              "babelCore": "@babel/core", // needed for Babel v7
-            }
+            loader: 'babel-loader'
           },
           {
             loader: 'react-docgen-typescript-loader',

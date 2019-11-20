@@ -40,7 +40,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.[jt]sx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname,
@@ -69,17 +69,6 @@ const config = {
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' }
         ]
-      },
-      {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          "useBabel": true,
-          "babelOptions": {
-            "babelrc": true
-          },
-          "babelCore": "@babel/core", // needed for Babel v7
-        }
       }
     ]
   },
