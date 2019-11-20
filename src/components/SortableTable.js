@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
-import Header from './SortableTable/Header.js';
+import Header from './SortableTable/Header';
 import Button from './Button';
 import Icon from './Icon';
-import Table from './Table.js';
-import Label from './Label.js';
+import Label from './Label';
+import Table from './Table';
 
 function generateColumnClassName(column, truncate = false) {
   return classnames(
