@@ -52,6 +52,7 @@
     "lodash.some": "^4.6.0",
     "lodash.tolower": "^4.1.2",
     "lodash.topairs": "^4.3.0",
+    "lodash.uniqueid": "^4.0.1",
     "lodash.without": "^4.4.0",
     "memoize-one": "^5.0.4",
     "prop-types": "^15.7.2",
