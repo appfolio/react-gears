@@ -7,8 +7,8 @@ import format from 'date-fns/format';
 import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import Button from './Button';
-import ButtonGroup from './ButtonGroup';
 import Calendar from './MonthCalendar';
+import CalendarNav from './CalendarNav';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
@@ -271,29 +271,14 @@ export default class MonthInput extends React.Component {
             {...dropdownProps}
           >
             {header || (
-              <header className="d-flex py-2">
-                <ButtonGroup size="sm">
-                  <Button className="p-2 js-prev-year" color="link" onClick={() => this.prevYear()}>
-                    <Icon name="angle-double-left" fixedWidth />
-                  </Button>
-                  <Button className="p-2 js-prev-month" color="link" onClick={() => this.prevMonth()}>
-                    <Icon name="angle-left" fixedWidth />
-                  </Button>
-                </ButtonGroup>
-
-                <span className="m-auto">
-                  {format(date, 'MMMM YYYY')}
-                </span>
-
-                <ButtonGroup size="sm">
-                  <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
-                    <Icon name="angle-right" fixedWidth />
-                  </Button>
-                  <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
-                    <Icon name="angle-double-right" fixedWidth />
-                  </Button>
-                </ButtonGroup>
-              </header>
+              <CalendarNav
+                onFirst={() => this.prevYear()}
+                onPrevious={() => this.prevMonth()}
+                onNext={() => this.nextMonth()}
+                onLast={() => this.nextYear()}
+              >
+                {format(date, 'MMMM YYYY')}
+              </CalendarNav>
             )}
 
             <Calendar

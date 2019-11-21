@@ -180,7 +180,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking prev year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-      const prevYear = component.find('Button.js-prev-year');
+      const prevYear = component.find('button.js-prev-year');
 
       prevYear.simulate('click');
 
@@ -191,7 +191,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking next year', () => {
       callback.reset();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-      const nextYear = component.find('Button.js-next-year');
+      const nextYear = component.find('button.js-next-year');
 
       nextYear.simulate('click');
 
@@ -202,7 +202,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking prev month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-      const prevMonth = component.find('Button.js-prev-month');
+      const prevMonth = component.find('button.js-prev-month');
 
       prevMonth.simulate('click');
 
@@ -213,7 +213,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking next month', () => {
       callback.reset();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-      const nextMonth = component.find('Button.js-next-month');
+      const nextMonth = component.find('button.js-next-month');
 
       nextMonth.simulate('click');
 
