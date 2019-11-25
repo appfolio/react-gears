@@ -12,6 +12,8 @@ class EditableNote extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    dateFormat: PropTypes.string,
+    showTimezone: PropTypes.bool,
     note: PropTypes.shape({
       date: PropTypes.object,
       errors: PropTypes.string,
@@ -28,6 +30,8 @@ class EditableNote extends React.Component {
 
   static defaultProps = {
     className: 'bg-white mb-3',
+    dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
+    showTimezone: true,
     rows: 4,
     saving: false,
     saveLabel: 'Save',
@@ -35,12 +39,12 @@ class EditableNote extends React.Component {
   };
 
   render() {
-    const { children, className, note, onCancel, onChange, onSave, rows, saving, saveLabel, savingLabel } = this.props;
+    const { children, className, dateFormat, note, onCancel, onChange, onSave, rows, saving, saveLabel, savingLabel, showTimezone } = this.props;
     const { date, errors, text } = note;
 
     return (
       <Card className={className}>
-        {date && <NoteHeader note={note} />}
+        {date && <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />}
         <CardBody>
           <FormLabelGroup feedback={errors} stacked>
             <Input
