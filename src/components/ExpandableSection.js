@@ -20,7 +20,7 @@ const ExpandableSection = (props) => {
       <header>
         <ClickableContainer aria-expanded={open} onClick={toggle}>
           <Icon
-            name='caret-right'
+            name="caret-right"
             rotate={open ? 90 : undefined}
             size="lg"
             fixedWidth
@@ -53,4 +53,3 @@ ExpandableSection.defaultProps = {
 };
 
 export default ExpandableSection;
-

@@ -15,7 +15,7 @@ const DragHandler = withDragHandler();
 const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
   <div className="d-flex js-reorderable-item" key={key}>
     <DragHandler />
-    <div style={{ width: '100%' }} >
+    <div style={{ width: '100%' }}>
       {renderHasManyFieldsRow(null, sortIndex, value)}
     </div>
   </div>
