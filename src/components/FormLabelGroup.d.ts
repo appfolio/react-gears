@@ -1,11 +1,11 @@
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
-interface FormLabelGroupPropTypes extends 
-  Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
+export interface FormLabelGroupProps extends
+  Omit<React.HTMLAttributes<HTMLInputElement>, 'id'> {
   children?: ReactNode;
   feedback?: any;
-  hint?: string;
+  hint?: React.ReactNode;
   inline?: boolean;
   inputId?: string,
   label?: ReactNode;
@@ -24,5 +24,5 @@ interface FormLabelGroupPropTypes extends
   }
 }
 
-declare class FormLabelGroup extends React.Component<FormLabelGroupPropTypes, {}> { }
+declare class FormLabelGroup extends React.Component<FormLabelGroupProps, {}> { }
 export default FormLabelGroup;

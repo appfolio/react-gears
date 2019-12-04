@@ -1,9 +1,9 @@
 import { HTMLProps } from 'react';
 import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
+import { InputProps } from 'reactstrap/lib/Input';
 
-interface CheckboxBooleanInputProps extends
-  Omit<HTMLProps<HTMLInputElement>, 'type' | 'checked' | 'onChange' | 'value'> {
+interface CheckboxBooleanInputProps extends InputProps {
   checkboxLabel: ReactNode;
   onChange?: (isChecked: boolean) => void;
   value?: boolean;
