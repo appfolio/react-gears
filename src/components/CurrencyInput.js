@@ -9,7 +9,7 @@ import MaskedInput from 'react-text-mask';
 // The monkey patch imported below can be removed when the PR is merged and a new version of react-text-mask is
 // released.
 //
-//import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+// import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import createNumberMask from './CurrencyInput/createNumberMaskMonkeyPatch';
 
 import InputGroup from './InputGroup';

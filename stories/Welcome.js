@@ -126,14 +126,14 @@ storiesOf('react-gears', module)
 
           {demoHeader('TOOLTIPS')}
           <div className="d-flex justify-content-between">
-            <span id='tooltip-top'>Top</span>
-            <span id='tooltip-bottom'>Bottom</span>
-            <span id='tooltip-left'>Left</span>
-            <span id='tooltip-right'>Right</span>
-            <Tooltip placement="top" target='tooltip-top'>Tooltip on the top</Tooltip>
-            <Tooltip placement="bottom" target='tooltip-bottom'>Tooltip on the Bottom</Tooltip>
-            <Tooltip placement="left" target='tooltip-left'>Tooltip on the Left</Tooltip>
-            <Tooltip placement="right" target='tooltip-right'>Tooltip on the side</Tooltip>
+            <span id="tooltip-top">Top</span>
+            <span id="tooltip-bottom">Bottom</span>
+            <span id="tooltip-left">Left</span>
+            <span id="tooltip-right">Right</span>
+            <Tooltip placement="top" target="tooltip-top">Tooltip on the top</Tooltip>
+            <Tooltip placement="bottom" target="tooltip-bottom">Tooltip on the Bottom</Tooltip>
+            <Tooltip placement="left" target="tooltip-left">Tooltip on the Left</Tooltip>
+            <Tooltip placement="right" target="tooltip-right">Tooltip on the side</Tooltip>
           </div>
 
         </Col>

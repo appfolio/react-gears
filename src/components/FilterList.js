@@ -21,7 +21,7 @@ export default class FilterList extends React.Component {
       <div className={className}>
         {filters.map((filter, i) => (
           <LabelBadge
-            className='m-1'
+            className="m-1"
             key={i}
             label={filter.label}
             maxWidth={maxWidth}

@@ -96,7 +96,7 @@ class FormLabelGroup extends React.Component {
           {children}
           {(feedback || validFeedback) && <div className={hiddenClassNames} hidden />}
           {hint && <FormText color="muted">{hint}</FormText>}
-          {feedback && <FormFeedback className="d-flex" >{feedback}</FormFeedback>}
+          {feedback && <FormFeedback className="d-flex">{feedback}</FormFeedback>}
           {validFeedback && <FormFeedback className="d-flex" valid>{validFeedback}</FormFeedback>}
         </Col>
       </FormGroup>
