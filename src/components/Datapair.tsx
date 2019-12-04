@@ -1,9 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classnames from 'classnames';
-import FormLabelGroup, { FormLabelGroupPropTypes } from './FormLabelGroup';
+import FormLabelGroup, { FormLabelGroupProps } from './FormLabelGroup';
 import Input from './Input';
 
-interface DatapairProps extends FormLabelGroupPropTypes {
+interface DatapairProps extends FormLabelGroupProps {
   className?: string;
   label?: ReactNode;
   value?: ReactNode;
