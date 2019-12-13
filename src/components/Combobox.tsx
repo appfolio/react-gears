@@ -99,7 +99,9 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
 
   const onKeyPress = ({ key }: KeyboardEvent) => {
-    if (key === 'Enter') {
+    if (!open && key === 'ArrowDown') {
+      setOpen(true);
+    } else if (key === 'Enter') {
       selectOption(visibleOptions[focusedOptionIndex]);
     } else if (key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
       setFocusedOptionIndex(focusedOptionIndex + 1);
@@ -114,7 +116,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   }
 
   // TODO support enter to pick when one choice
-  // TODO arrow down to dropdown from input
   // TODO select all when click from blurred
   // TODO instead onSelect when clicked/enter?  onChange, value, etc can be passthrough?
 
