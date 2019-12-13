@@ -69,14 +69,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
     // call onSelect from menu, maybe on enter when one choice
   }, [inputValue]);
 
-  useEffect(() => {
-    window.addEventListener('keydown', onKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', onKeyPress);
-    };
-  });
-
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu === null) return;
     const focusedOptionNode = findDOMNode(focusedOption.current) as HTMLElement;
@@ -98,7 +90,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
 
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
 
-  const onKeyPress = ({ key }: KeyboardEvent) => {
+  const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
     if (!open && key === 'ArrowDown') {
       setOpen(true);
     } else if (key === 'Enter') {
@@ -132,8 +124,17 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
             disabled={disabled}
             ref={input}
             placeholder={placeholder}
-            onFocus={() => setOpen(true)}
-            onChange={e => setInputValue(e.target.value)}
+            onFocus={(ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              setOpen(true);
+            }}
+            onChange={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              setInputValue(e.target.value);
+            }}
+            onKeyDown={handleOptionsKeyboardNav}
             type="search"
             value={inputValue}
             {...props}
@@ -144,6 +145,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
               disabled={disabled}
               active={open}
               onMouseDown={(ev) => {
+                ev.preventDefault();
                 ev.stopPropagation();
                 setOpen(!open);
               }}
@@ -169,8 +171,16 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
             <DropdownItem
               key={option.value}
               active={focusedOptionIndex == i}
-              onMouseEnter={() => setFocusedOptionIndex(i)}
-              onMouseDown={() => selectOption(option)}
+              onMouseEnter={(ev) => {
+                ev.preventDefault();
+                ev.stopPropagation();
+                setFocusedOptionIndex(i);
+              }}
+              onMouseDown={(ev) => {
+                ev.preventDefault();
+                ev.stopPropagation();
+                selectOption(option);
+              }}
               ref={i === focusedOptionIndex ? focusedOption : null}
             >
               {renderOption(option)}
