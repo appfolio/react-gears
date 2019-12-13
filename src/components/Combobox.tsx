@@ -142,7 +142,10 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
               className="px-2"
               disabled={disabled}
               active={open}
-              onClick={() => setOpen(!open)}
+              onMouseDown={(ev) => {
+                ev.stopPropagation();
+                setOpen(!open);
+              }}
               type="button"
               tabIndex={-1}
             >
