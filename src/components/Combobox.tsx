@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, FunctionComponent, ReactNode } from 'react';
+import { findDOMNode } from 'react-dom';
 import { DropdownProps, InputProps } from 'reactstrap';
 import Button from './Button';
 import Dropdown from './Dropdown';
@@ -43,7 +44,8 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   const [visibleOptions, setVisibleOptions] = useState<Option[]>([]);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState<number>(0);
 
-  const dropdown = useRef<any>(null);
+  const dropdownMenu = useRef(null);
+  const focusedOption = useRef(null);
   const input = useRef(null);
 
   useEffect(() => {
@@ -74,6 +76,27 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
       window.removeEventListener('keydown', onKeyPress);
     };
   });
+
+  const scrollFocusedOptionIntoView = () => {
+    if (dropdownMenu === null) return;
+    const focusedOptionNode = findDOMNode(focusedOption.current) as HTMLElement;
+    const menuNode = findDOMNode(dropdownMenu.current) as HTMLElement;
+
+    if (focusedOptionNode === null || menuNode === null) return;
+
+    const scrollTop = menuNode.scrollTop;
+    const scrollBottom = scrollTop + menuNode.offsetHeight;
+    const optionTop = focusedOptionNode.offsetTop;
+    const optionBottom = optionTop + focusedOptionNode.offsetHeight;
+
+    if (scrollTop > optionTop) {
+      menuNode.scrollTop = menuNode.scrollTop - focusedOptionNode.offsetHeight;
+    } else if (scrollBottom < optionBottom) {
+      menuNode.scrollTop = menuNode.scrollTop + focusedOptionNode.offsetHeight;
+    }
+  }
+
+  useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
 
   const onKeyPress = ({ key }: KeyboardEvent) => {
     if (key === 'Enter') {
@@ -110,13 +133,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
             placeholder={placeholder}
             onFocus={() => setOpen(true)}
             onChange={e => setInputValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'ArrowDown') {
-                console.log(dropdown)
-                // console.log(dropdown.current)
-                dropdown!.current!.focus();
-              }
-            }}
             type="search"
             value={inputValue}
             {...props}
@@ -142,6 +158,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
           overflowY: 'auto'
         }}
         {...dropdownProps}
+        ref={dropdownMenu}
       >
         {visibleOptions
           .map((option, i) => (
@@ -150,7 +167,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
               active={focusedOptionIndex == i}
               onMouseEnter={() => setFocusedOptionIndex(i)}
               onMouseDown={() => selectOption(option)}
-              ref={i === 0 ? dropdown : null}
+              ref={i === focusedOptionIndex ? focusedOption : null}
             >
               {renderOption(option)}
             </DropdownItem>
