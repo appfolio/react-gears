@@ -46,7 +46,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
 
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
-  const input = useRef(null);
 
   useEffect(() => {
     if (visibleOptions.length > 0) {
@@ -122,7 +121,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
         <InputGroup className={className}>
           <Input
             disabled={disabled}
-            ref={input}
             placeholder={placeholder}
             onFocus={(ev) => {
               ev.preventDefault();
