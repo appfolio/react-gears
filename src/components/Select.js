@@ -44,7 +44,8 @@ class Select extends React.Component {
     this.selectEl.focus();
   }
 
-  componentWillReceiveProps(props) {
+  //eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(props) {
     if (props.value !== this.props.value) {
       this.setState({ value: props.value });
     }

@@ -118,7 +118,8 @@ export default class UncontrolledTable extends React.Component {
     this.props.onPageChange(page);
   }
 
-  componentWillReceiveProps(nextProps) {
+  //eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Clear selection if rows or selectable change
     if (nextProps.rows !== this.props.rows ||
       nextProps.selectable !== this.props.selectable) {
