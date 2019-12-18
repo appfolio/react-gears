@@ -30,8 +30,8 @@ describe('<Activity />', () => {
 
   it('should render by', () => {
     const component = mount(<Activity date={new Date()} action="Sleep" by="Gary Thomas" />);
-    const by = component.find('span').at(2);
-    assert.strictEqual(by.text(), 'Gary Thomas');
+    const by = component.find('span').at(1);
+    assert.strictEqual(by.text(), '– Gary Thomas');
   });
 
   it('should render children correctly', () => {
