@@ -33,7 +33,8 @@ export default class HasManyFieldsRow extends React.Component {
     deletable: true
   };
 
-  componentWillMount() {
+  //eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     this.id = getID();
   }
 

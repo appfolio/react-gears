@@ -40,7 +40,8 @@ export default class CollapsableText extends React.Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
+  //eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.collapsed !== this.props.collapsed) {
       this.setState({ collapsed: nextProps.collapsed });
     }
