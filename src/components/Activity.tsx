@@ -36,7 +36,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
             {action && <strong>{action}</strong>}
             {by && (
               <span className="pl-1">
-                {action ? 'by ' : ''}
+                {action ? '– ' : ''}
                 <span>{by}</span>
               </span>
             )}
