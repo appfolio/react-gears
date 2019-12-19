@@ -73,6 +73,13 @@ storiesOf('DateInput', module)
       />
     </div>
   ))
+  .add('dateEnabled', () => (
+    <div className="d-inline-flex">
+      <DateInput
+        dateEnabled={date => date.getDay() > 0 && date.getDay() < 6}
+      />
+    </div>
+  ))
   .add('Calendar', () => (
     <div className="d-inline-flex">
       <Calendar
