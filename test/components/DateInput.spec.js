@@ -163,7 +163,8 @@ describe('<DateInput />', () => {
       callback.reset();
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
-      firstDate.simulate('click');
+      const dayButton = component.find('.js-day').first();
+      dayButton.simulate('click');
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -172,7 +173,8 @@ describe('<DateInput />', () => {
       callback.reset();
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
-      lastDate.simulate('click');
+      const dayButton = component.find('.js-day').first();
+      dayButton.simulate('click');
       assert(callback.calledWith(expectedDate, true));
     });
 
@@ -283,6 +285,29 @@ describe('<DateInput />', () => {
     });
 
     it('should not allow to pick invisible date', () => {
+      callback.reset();
+      const currentDate = component.instance().getCurrentDate();
+      const firstDate = component.find('Day').first();
+      assert.equal(isSameDay(currentDate, firstDate.props().day.date), false);
+
+      firstDate.simulate('click');
+      assert(callback.notCalled);
+      assert(isSameDay(currentDate, component.instance().getCurrentDate()));
+    });
+  });
+
+  context('date picker with controlled enabled dates', () => {
+    const callback = sinon.spy();
+    const defaultDate = new Date(2017, 7, 14);
+    const dateEnabled = () => false;
+    const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateEnabled={dateEnabled} showOnFocus />);
+
+    it('should pass dateEnabled func to Calendar component', () => {
+      const calendar = component.find('Calendar');
+      assert.equal(calendar.props().dateEnabled, dateEnabled);
+    });
+
+    it('should not allow to pick disabled date', () => {
       callback.reset();
       const currentDate = component.instance().getCurrentDate();
       const firstDate = component.find('Day').first();

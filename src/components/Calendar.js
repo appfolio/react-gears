@@ -13,7 +13,6 @@ import isToday from 'date-fns/is_today';
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
-import style from './Calendar.scss';
 import Button from './Button';
 import Table from './Table';
 
@@ -27,6 +26,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
     { invisible: !day.visible }, // If date is (optionally) filtered out
   );
   const buttonClassNames = classnames(
+    'js-day',
     'p-2',
     { 'text-muted': !day.sameMonth }, // Lighten days in months before & after
     { 'text-white': day.selected }, // Highlight selected date
