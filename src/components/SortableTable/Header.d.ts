@@ -4,8 +4,8 @@ export interface HeaderProps {
   active?: boolean;
   ascending?: boolean;
   children: ReactNode;
-  className: string;
-  onSort: ((event: MouseEvent) => void) | null;
+  className?: string;
+  onSort?: ((event: MouseEvent) => void) | null;
 }
-declare class Header extends Component<HeaderProps, {}> {}
+declare class Header extends Component<HeaderProps, {}> { }
 export default Header;
