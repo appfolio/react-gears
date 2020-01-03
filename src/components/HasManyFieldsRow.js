@@ -84,10 +84,12 @@ export default class HasManyFieldsRow extends React.Component {
     return (
       <Row className={classNames} noGutters>
         <Col>{children}</Col>
-        <Col xs="auto" className="pl-3 d-flex">
-          {deletable ? button : null}
-          {tooltip}
-        </Col>
+        {deletable && (
+          <Col xs="auto" className="js-delete-col pl-3 d-flex">
+            {button}
+            {tooltip}
+          </Col>
+        )}
       </Row>
     );
   }

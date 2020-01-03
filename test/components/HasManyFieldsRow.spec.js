@@ -104,6 +104,7 @@ describe('<HasManyFieldsRow />', () => {
     );
     assert.equal(component.find(ConfirmationButton).length, 0);
     assert.equal(component.find(Button).length, 0);
+    assert.equal(component.find('.js-delete-col').length, 0);
   });
 
   describe('when disabled and disabled reason', () => {
