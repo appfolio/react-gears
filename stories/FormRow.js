@@ -61,16 +61,16 @@ storiesOf('FormRow', module)
         onChange={selection => setFavorites(selection)}
         type="checkbox"
       >
-        <FormChoice key={1} checked={favorites.includes('Alpha')} value="Alpha">
+        <FormChoice key={1} checked={favorites.includes('Alpha')} inline={boolean('inline', false)} value="Alpha">
           Alpha
         </FormChoice>
-        <FormChoice key={2} checked={favorites.includes('Bravo')} value="Bravo">
+        <FormChoice key={2} checked={favorites.includes('Bravo')} inline={boolean('inline', false)} value="Bravo">
           Bravo
         </FormChoice>
-        <FormChoice key={3} checked={favorites.includes('Charlie')} value="Charlie">
+        <FormChoice key={3} checked={favorites.includes('Charlie')} inline={boolean('inline', false)} value="Charlie">
           Charlie
         </FormChoice>
-        <FormChoice key={4} checked={favorites.includes('Delta')} value="Delta">
+        <FormChoice key={4} checked={favorites.includes('Delta')} inline={boolean('inline', false)} value="Delta">
           Delta
         </FormChoice>
       </FormRow>
@@ -85,16 +85,16 @@ storiesOf('FormRow', module)
         stacked={boolean('stacked', false)}
         type="radio"
       >
-        <FormChoice key={1} name="nato" checked={favorite === 'Alpha'} value="Alpha">
+        <FormChoice key={1} name="nato" checked={favorite === 'Alpha'} inline={boolean('inline', false)} value="Alpha">
           Alpha
         </FormChoice>
-        <FormChoice key={2} name="nato" checked={favorite === 'Bravo'} value="Bravo">
+        <FormChoice key={2} name="nato" checked={favorite === 'Bravo'} inline={boolean('inline', false)} value="Bravo">
           Bravo
         </FormChoice>
-        <FormChoice key={3} name="nato" checked={favorite === 'Charlie'} value="Charlie">
+        <FormChoice key={3} name="nato" checked={favorite === 'Charlie'} inline={boolean('inline', false)} value="Charlie">
           Charlie
         </FormChoice>
-        <FormChoice key={4} name="nato" checked={favorite === 'Delta'} value="Delta">
+        <FormChoice key={4} name="nato" checked={favorite === 'Delta'} inline={boolean('inline', false)} value="Delta">
           Delta
         </FormChoice>
       </FormRow>
