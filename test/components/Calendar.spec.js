@@ -69,4 +69,14 @@ describe('<Calendar />', () => {
     firstDate.simulate('click');
     assert(callback.notCalled);
   });
+
+  it('should not call onSelect if clicking on a disabled date', () => {
+    const specifiedDate = new Date(2017, 7, 14);
+    const dateEnabled = date => isSameDay(date, specifiedDate);
+    const callback = sinon.spy();
+    const component = mount(<Calendar date={specifiedDate} dateEnabled={dateEnabled} onSelect={callback} />);
+    const firstDate = component.find('Day').first();
+    firstDate.simulate('click');
+    assert(callback.notCalled);
+  });
 });

@@ -56,6 +56,7 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 export default class DateInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    dateEnabled: PropTypes.func,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
     defaultValue: PropTypes.oneOfType([
@@ -85,6 +86,7 @@ export default class DateInput extends React.Component {
   static defaultProps = {
     className: '',
     dateFormat: 'M/D/YYYY',
+    dateEnabled: () => true,
     dateVisible: () => true,
     disabled: false,
     keyboard: true,
@@ -255,7 +257,7 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, direction, disabled, footer, header, id, showOnFocus,
+    const { className, dateEnabled, dateVisible, direction, disabled, footer, header, id, showOnFocus,
       dateFormat, defaultValue, keyboard, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
@@ -290,6 +292,7 @@ export default class DateInput extends React.Component {
                   tabIndex={-1}
                 >
                   <Icon name="calendar" fixedWidth />
+                  <span className="sr-only">Open Calendar</span>
                 </Button>
               </InputGroupAddon>
             </InputGroup>
@@ -327,6 +330,7 @@ export default class DateInput extends React.Component {
 
             <Calendar
               date={date}
+              dateEnabled={dateEnabled}
               dateVisible={dateVisible}
               onSelect={this.onSelect}
               className="m-0"

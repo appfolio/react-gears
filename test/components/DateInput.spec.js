@@ -294,6 +294,29 @@ describe('<DateInput />', () => {
     });
   });
 
+  context('date picker with controlled enabled dates', () => {
+    const callback = sinon.spy();
+    const defaultDate = new Date(2017, 7, 14);
+    const dateEnabled = () => false;
+    const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateEnabled={dateEnabled} showOnFocus />);
+
+    it('should pass dateEnabled func to Calendar component', () => {
+      const calendar = component.find('Calendar');
+      assert.equal(calendar.props().dateEnabled, dateEnabled);
+    });
+
+    it('should not allow to pick disabled date', () => {
+      callback.reset();
+      const currentDate = component.instance().getCurrentDate();
+      const firstDate = component.find('Day').first();
+      assert.equal(isSameDay(currentDate, firstDate.props().day.date), false);
+
+      firstDate.simulate('click');
+      assert(callback.notCalled);
+      assert(isSameDay(currentDate, component.instance().getCurrentDate()));
+    });
+  });
+
   it('should render custom header prop', () => {
     const Custom = () => (<div className='custom-header'>Custom Header</div>);
     const component = mount(<DateInput header={<Custom />} />);
