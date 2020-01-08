@@ -41,7 +41,7 @@ class FormChoice extends React.Component {
       return <option {...attributes} value={value}>{children}</option>;
     }
 
-    const labelClasses = classname('form-check', { 'form-check-inline': inline });
+    const labelClasses = classname({ 'form-check-inline': inline });
 
     const computedValue = value || children;
 
