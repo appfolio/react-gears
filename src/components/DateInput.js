@@ -292,6 +292,7 @@ export default class DateInput extends React.Component {
                   tabIndex={-1}
                 >
                   <Icon name="calendar" fixedWidth />
+                  <span className="sr-only">Open Calendar</span>
                 </Button>
               </InputGroupAddon>
             </InputGroup>
