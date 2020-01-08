@@ -42,8 +42,7 @@ describe('<Calendar />', () => {
     const component = mount(<Calendar onSelect={callback} />);
     const firstDate = component.find('Day').first();
     const expectedDate = firstDate.props().day.date;
-    const dayButton = component.find('.js-day').first();
-    dayButton.simulate('click');
+    firstDate.simulate('click');
     assert(callback.calledWith(expectedDate));
   });
 
@@ -71,27 +70,12 @@ describe('<Calendar />', () => {
     assert(callback.notCalled);
   });
 
-  it('should disable dates which are not enabled based on dateEnabled', () => {
-    const specifiedDate = new Date(2017, 7, 14);
-    const dateEnabled = date => isSameDay(date, specifiedDate);
-    const component = mount(<Calendar date={specifiedDate} dateEnabled={dateEnabled} />);
-    component.find('Day').forEach((dayComponent) => {
-      const dayButton = dayComponent.find('.js-day').first();
-      if (isSameDay(dayComponent.props().day.date, specifiedDate)) {
-        assert.equal(dayButton.props().disabled, false);
-      } else {
-        assert.equal(dayButton.props().disabled, true);
-      }
-    });
-  });
-
   it('should not call onSelect if clicking on a disabled date', () => {
     const specifiedDate = new Date(2017, 7, 14);
     const dateEnabled = date => isSameDay(date, specifiedDate);
     const callback = sinon.spy();
     const component = mount(<Calendar date={specifiedDate} dateEnabled={dateEnabled} onSelect={callback} />);
-    const firstDate = component.find('.js-day').first();
-    assert.equal(firstDate.props().disabled, true);
+    const firstDate = component.find('Day').first();
     firstDate.simulate('click');
     assert(callback.notCalled);
   });

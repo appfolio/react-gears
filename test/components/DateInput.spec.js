@@ -163,8 +163,7 @@ describe('<DateInput />', () => {
       callback.reset();
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
-      const dayButton = component.find('.js-day').first();
-      dayButton.simulate('click');
+      firstDate.simulate('click');
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
       assert(callback.calledWith(expectedDate, true));
     });
@@ -173,8 +172,7 @@ describe('<DateInput />', () => {
       callback.reset();
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
-      const dayButton = component.find('.js-day').first();
-      dayButton.simulate('click');
+      lastDate.simulate('click');
       assert(callback.calledWith(expectedDate, true));
     });
 

@@ -19,45 +19,43 @@ import Table from './Table';
 // TODO locale/localize
 
 const Day = ({ day, dateFormat, onClick, ...props }) => {
+  const disabled = !day.enabled;
   const classNames = classnames(
-    'text-center p-0',
-    { 'bg-light ': !day.sameMonth }, // Lighten days in months before & after
-    { 'bg-primary': day.selected }, // Highlight selected date
+    'text-center',
+    { 'bg-light text-muted': !day.sameMonth || disabled }, // Lighten days in months before & after
+    { 'bg-primary text-white': day.selected }, // Highlight selected date
+    { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible }, // If date is (optionally) filtered out
   );
-  const buttonClassNames = classnames(
-    'js-day',
-    'p-2',
-    { 'text-muted': !day.sameMonth }, // Lighten days in months before & after
-    { 'text-white': day.selected }, // Highlight selected date
-    { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
-    { 'text-body': !day.selected } // Highlight selected date
-  );
+  const styles = disabled ? {
+    cursor: 'not-allowed'
+  } : {};
+
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <td
       className={classNames}
+      onClick={disabled ? undefined : onClick}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+      role="button"
+      style={styles}
       {...props}
     >
-      <Button
-        color="link"
-        className={buttonClassNames}
-        disabled={!day.enabled}
-        onClick={onClick}
-      >
-        {format(day.date, dateFormat)}
-      </Button>
+      {format(day.date, dateFormat)}
     </td>
   );
 };
 
 Day.propTypes = {
   day: PropTypes.shape({
+    enabled: PropTypes.bool,
     sameMonth: PropTypes.bool,
     selected: PropTypes.bool,
     date: PropTypes.instanceOf(Date),
     visible: PropTypes.bool
   }),
-  dateFormat: PropTypes.string
+  dateFormat: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 class Calendar extends React.Component {
