@@ -23,7 +23,7 @@ storiesOf('Select', module)
         onChange={action('onChange')}
       />
       <p className="pt-5">
-        Please see <a href="http://github.hubspot.com/react-select-plus/" rel="noopener noreferrer" target="_blank">react-select-plus documentation</a> for full usage and options.
+        Please see <a href="https://react-select.com/home" rel="noopener noreferrer" target="_blank">react-select documentation</a> for full usage and options.
       </p>
     </div>
   ))

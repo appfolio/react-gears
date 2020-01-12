@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactSelect from 'react-select-plus';
+import { default as ReactSelect } from 'react-select';
+import AsyncSelect from 'react-select/async';
+import AsyncCreatableSelect from 'react-select/async-creatable';
+import CreatableSelect from 'react-select/creatable';
 import classnames from 'classnames';
 import noop from 'lodash.noop';
 import Close from './Close';
@@ -56,11 +59,11 @@ class Select extends React.Component {
     delete props.onChange; // don't pass onChange prop to react-select
     let SelectElement = ReactSelect;
     if (this.props.loadOptions && this.props.creatable) {
-      SelectElement = ReactSelect.AsyncCreatable;
+      SelectElement = AsyncCreatableSelect;
     } else if (this.props.loadOptions) {
-      SelectElement = ReactSelect.Async;
+      SelectElement = AsyncSelect;
     } else if (this.props.creatable) {
-      SelectElement = ReactSelect.Creatable;
+      SelectElement = CreatableSelect;
     }
     const classNames = classnames(className, { 'select-async': this.props.loadOptions });
     const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue :
