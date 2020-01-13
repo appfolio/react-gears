@@ -16,8 +16,8 @@ storiesOf('Select', module)
     <div>
       <Select
         className="w-100"
-        disabled={boolean('disabled', false)}
-        multi={boolean('multi', false)}
+        isDisabled={boolean('isDisabled', false)}
+        isMulti={boolean('isMulti', false)}
         options={COUNTRIES}
         placeholder={text('placeholder')}
         onChange={action('onChange')}
@@ -66,7 +66,7 @@ storiesOf('Select', module)
     <Select
       className="w-100"
       creatable={boolean('creatable', true)}
-      multi
+      isMulti
       options={[
         { label: 'alpha@team.com', value: 'alpha@team.com' },
         { label: 'bravo@tv.com', value: 'bravo@tv.com' },
