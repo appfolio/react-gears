@@ -77,6 +77,6 @@ storiesOf('Select', module)
         { label: 'foxtrot@dance.com', value: 'foxtrot@dance.com' },
         { label: 'golf@club.com', value: 'golf@club.com' },
       ]}
-      isValidNewOption={({ label }) => validateEmail(label)}
+      isValidNewOption={(label) => validateEmail(label)}
       onChange={action('onChange')}
     />));
