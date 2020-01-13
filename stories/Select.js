@@ -44,21 +44,22 @@ storiesOf('Select', module)
     />
   ))
   .add('with async options', () => {
-    const getOptions = (input, callback) => {
-      setTimeout(() => {
-        callback(null, {
-          options: [
-            { value: 'oogah', label: 'Oogah' },
-            { value: 'chaka', label: 'Chaka' }
-          ],
-          complete: true
-        });
-      }, 1); // Tiny timeout for testing
-    };
+    const getOptions = inputValue => {
+      const filteredOptions =
+       COUNTRIES.filter(country => country.label.toLowerCase().includes(inputValue.toLowerCase()));
+      return filteredOptions;
+    }
+
+    const promiseOptions = inputValue =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve(getOptions(inputValue))
+        }, 1); // Tiny timeout for testing
+      });
 
     return (<Select
       className="w-100"
-      loadOptions={getOptions}
+      loadOptions={promiseOptions}
       onChange={action('onChange')}
     />);
   })
