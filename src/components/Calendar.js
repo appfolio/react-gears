@@ -22,7 +22,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(
     'text-center',
-    { 'bg-light text-muted': !day.sameMonth || disabled }, // Lighten days in months before & after
+    { 'bg-light text-muted': !day.sameMonth }, // Lighten days in months before & after
     { 'bg-primary text-white': day.selected }, // Highlight selected date
     { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible }, // If date is (optionally) filtered out
@@ -42,7 +42,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
       style={styles}
       {...props}
     >
-      {format(day.date, dateFormat)}
+      {disabled ? <s>{format(day.date, dateFormat)}</s> : format(day.date, dateFormat)}
     </td>
   );
 };
