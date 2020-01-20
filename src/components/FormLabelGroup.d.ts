@@ -3,19 +3,19 @@ import * as React from 'react';
 
 export interface FormLabelGroupProps extends
   Omit<React.HTMLAttributes<HTMLInputElement>, 'id'> {
-  children?: ReactNode;
+  children?: React.ReactNode;
   feedback?: any;
   hint?: React.ReactNode;
   inline?: boolean;
   inputId?: string,
-  label?: ReactNode;
+  label?: React.ReactNode;
   labelSize?: string;
   required?: boolean;
   rowClassName?: string;
   size?: string;
   srLabel?: string,
   stacked?: boolean;
-  validFeedback?: ReactNode;
+  validFeedback?: React.ReactNode;
   width?: {
     size?: boolean | number | string
     push?: string | number

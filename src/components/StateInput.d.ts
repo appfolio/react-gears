@@ -12,5 +12,5 @@ export interface StateInputProps {
 }
 
 export default class StateInput extends React.Component<StateInputProps, {}> {
-  render(): ReactNode;
+  render(): React.ReactNode;
 }

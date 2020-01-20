@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 export interface CheckboxInputProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
-const CheckboxInput: FunctionComponent<CheckboxInputProps>;
+declare const CheckboxInput: React.FunctionComponent<CheckboxInputProps>;
 
 export default CheckboxInput;

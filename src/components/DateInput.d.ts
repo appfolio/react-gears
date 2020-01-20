@@ -11,8 +11,8 @@ interface DateInputPropTypes extends Omit<
   dateFormat?: string;
   defaultValue?: DateOrString;
   disabled?: boolean;
-  footer?: ReactNode;
-  header?: ReactNode;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
   id?: string;
   keyboard?: boolean;
   onBlur?: (ev: React.FocusEvent<HTMLInputElement>) => void;

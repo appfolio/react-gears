@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TableProps } from './Table';
 import { HeaderProps } from './SortableTable/Header';
-import Omit from './TypeHelpers/Omit';
 
 type HorizontalAlignment = 'left' | 'center' | 'right';
 
