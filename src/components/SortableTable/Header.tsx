@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Icon from '../Icon';
 import styles from './Header.scss';
 
-interface HeaderProps {
+export interface HeaderProps {
   active?: boolean;
   ascending?: boolean;
   children: ReactNode;
