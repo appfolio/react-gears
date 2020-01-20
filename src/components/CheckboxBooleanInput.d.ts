@@ -6,8 +6,8 @@ interface CheckboxBooleanInputSpecificProps {
   onChange?: (isChecked: boolean) => void;
   value?: boolean;
 }
-type ProtoExtends<T, U> = U & Omit<T, keyof U>;
-type CheckboxBooleanInputProps = ProtoExtends<InputProps, CheckboxBooleanInputSpecificProps>;
+type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
+type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<InputProps, CheckboxBooleanInputSpecificProps>;
 
 declare class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps, {}> { }
 export default CheckboxBooleanInput;
