@@ -113,10 +113,8 @@ class SortableTable extends React.Component {
               className="mx-1"
               id={selectAllId}
               checked={allSelected}
-              onChange={(e) => {
-                e.stopPropagation();
-                onSelectAll(e.target.checked);
-              }}
+              onClick={e => e.stopPropagation()}
+              onChange={e => onSelectAll(e.target.checked)}
             />
           </>
         ),
@@ -130,10 +128,8 @@ class SortableTable extends React.Component {
                 type="checkbox"
                 className="mx-1"
                 checked={rowSelected(row)}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  onSelect(row, e.target.checked);
-                }}
+                onClick={e => e.stopPropagation()}
+                onChange={e => onSelect(row, e.target.checked)}
               />
             </>);
         },

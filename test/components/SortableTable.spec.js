@@ -403,5 +403,33 @@ describe('<SortableTable />', () => {
       wrapper.find('th input').first().simulate('change', { target: { checked: false } });
       assert(onSelectAll.calledWith(false));
     });
+
+    it('should not call rowOnClick when row checkbox is clicked', () => {
+      const targetRow = 'cool row';
+      const rows = [targetRow];
+      const onClick = sinon.spy();
+      const onSelect = sinon.spy();
+
+      const wrapper = mount(
+        <SortableTable
+          columns={columns}
+          rows={rows}
+          rowOnClick={onClick}
+          onSelect={onSelect}
+          onSelectAll={sinon.stub()}
+          rowExpanded={sinon.stub()}
+          rowSelected={sinon.stub()}
+        />
+      );
+
+      const clickEvent = { target: { checked: true } };
+      const changeEvent = { target: { checked: true } };
+      const checkbox = wrapper.find('tbody tr input').first();
+      checkbox.simulate('click', clickEvent);
+      checkbox.simulate('change', changeEvent);
+
+      assert(onSelect.calledWith(targetRow, clickEvent.target.checked));
+      assert(onClick.notCalled);
+    });
   });
 });
