@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DropdownProps, InputProps } from 'reactstrap';
 import Button from './Button';
@@ -12,10 +12,10 @@ import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
 type Direction =
-  | "up"
-  | "down"
-  | "left"
-  | "right";
+  | 'up'
+  | 'down'
+  | 'left'
+  | 'right';
 
 type Option = {
   label: string;
@@ -31,10 +31,10 @@ interface ComboboxProps extends InputProps {
   filterOptions: (options: Option[], value: any) => Option[];
   isSelected: (option: Option, value: any) => boolean;
   renderInputValue: (option: Option) => string;
-  renderOption: (option: Option) => ReactNode;
+  renderOption: (option: Option) => React.ReactNode;
 }
 
-const Combobox: FunctionComponent<ComboboxProps>= ({
+const Combobox: React.FunctionComponent<ComboboxProps> = ({
   className, direction, disabled, dropdownProps, noResultsLabel, onChange, options, placeholder, value,
   filterOptions, isSelected, renderInputValue, renderOption,
   ...props
@@ -49,7 +49,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
 
   useEffect(() => {
     if (visibleOptions.length > 0) {
-      setFocusedOptionIndex(0)
+      setFocusedOptionIndex(0);
     }
   }, [visibleOptions]);
 
@@ -69,9 +69,11 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
   }, [inputValue]);
 
   const scrollFocusedOptionIntoView = () => {
-    if (dropdownMenu === null) return;
+    if (dropdownMenu.current === null || focusedOption.current === null) return;
+    /* eslint-disable react/no-find-dom-node */
     const focusedOptionNode = findDOMNode(focusedOption.current) as HTMLElement;
     const menuNode = findDOMNode(dropdownMenu.current) as HTMLElement;
+    /* eslint-enable react/no-find-dom-node */
 
     if (focusedOptionNode === null || menuNode === null) return;
 
@@ -81,13 +83,18 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
     const optionBottom = optionTop + focusedOptionNode.offsetHeight;
 
     if (scrollTop > optionTop) {
-      menuNode.scrollTop = menuNode.scrollTop - focusedOptionNode.offsetHeight;
+      menuNode.scrollTop -= focusedOptionNode.offsetHeight;
     } else if (scrollBottom < optionBottom) {
-      menuNode.scrollTop = menuNode.scrollTop + focusedOptionNode.offsetHeight;
+      menuNode.scrollTop += focusedOptionNode.offsetHeight;
     }
-  }
+  };
 
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
+
+  const selectOption = (option: Option) => {
+    setInputValue(option.label);
+    setOpen(false);
+  };
 
   const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
     if (!open && key === 'ArrowDown') {
@@ -100,11 +107,6 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
       setFocusedOptionIndex(focusedOptionIndex - 1);
     }
   };
-
-  const selectOption = (option: Option) => {
-    setInputValue(option.label);
-    setOpen(false);
-  }
 
   // TODO support enter to pick when one choice
   // TODO select all when click from blurred
@@ -127,7 +129,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
               ev.stopPropagation();
               setOpen(true);
             }}
-            onChange={e => {
+            onChange={(e) => {
               e.preventDefault();
               e.stopPropagation();
               setInputValue(e.target.value);
@@ -168,7 +170,7 @@ const Combobox: FunctionComponent<ComboboxProps>= ({
           .map((option, i) => (
             <DropdownItem
               key={option.value}
-              active={focusedOptionIndex == i}
+              active={focusedOptionIndex === i}
               onMouseEnter={(ev) => {
                 ev.preventDefault();
                 ev.stopPropagation();
