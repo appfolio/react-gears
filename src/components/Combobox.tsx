@@ -23,24 +23,35 @@ type Option = {
 }
 
 interface ComboboxProps extends InputProps {
+  options: Option[];
   direction?: Direction;
   dropdownProps?: DropdownProps;
   noResultsLabel?: string;
-  onChange: (value: any) => void;
-  options: Option[];
-  filterOptions: (options: Option[], value: any) => Option[];
-  isSelected: (option: Option, value: any) => boolean;
-  renderInputValue: (option: Option) => string;
-  renderOption: (option: Option) => React.ReactNode;
+  onChange?: (value: any) => void;
+  filterOptions?: (options: Option[], value: any) => Option[];
+  renderInputValue?: (option: Option) => string;
+  renderOption?: (option: Option) => React.ReactNode;
 }
 
+const defaultProps = {
+  noResultsLabel: 'No results found',
+  onChange: () => {},
+  filterOptions: (o: Option[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) === 0 : true),
+  renderInputValue: (option: Option) => option.label,
+  renderOption: (option: Option) => option.label,
+};
+
 const Combobox: React.FunctionComponent<ComboboxProps> = ({
-  className, direction, disabled, dropdownProps, noResultsLabel, onChange, options, placeholder, value,
-  filterOptions, isSelected, renderInputValue, renderOption,
+  className, direction, disabled, dropdownProps, options, placeholder, value,
+  noResultsLabel = defaultProps.noResultsLabel,
+  onChange = defaultProps.onChange,
+  filterOptions = defaultProps.filterOptions,
+  renderInputValue = defaultProps.renderInputValue,
+  renderOption = defaultProps.renderOption,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value || '');
+  const [inputValue, setInputValue] = useState('');
   const [visibleOptions, setVisibleOptions] = useState<Option[]>([]);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState<number>(0);
 
@@ -107,10 +118,6 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       setFocusedOptionIndex(focusedOptionIndex - 1);
     }
   };
-
-  // TODO support enter to pick when one choice
-  // TODO select all when click from blurred
-  // TODO instead onSelect when clicked/enter?  onChange, value, etc can be passthrough?
 
   return (
     <Dropdown
@@ -197,14 +204,6 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
 };
 
 Combobox.displayName = 'Combobox';
-
-Combobox.defaultProps = {
-  noResultsLabel: 'No Results Found',
-  onChange: () => {},
-  filterOptions: (options: Option[], value: any) => options.filter(option => value ? option.label.toLowerCase().indexOf(value.toLowerCase()) === 0 : true),
-  isSelected: (option: Option, value: any) => value === option.label,
-  renderInputValue: (option: Option) => option.label,
-  renderOption: (option: Option) => option.label
-};
+Combobox.defaultProps = defaultProps;
 
 export default Combobox;
