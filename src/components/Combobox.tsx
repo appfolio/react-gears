@@ -19,7 +19,8 @@ type Direction =
 
 type Option = {
   label: string;
-  value: any
+  value: any;
+  disabled?: boolean;
 }
 
 interface ComboboxProps extends InputProps {
@@ -180,6 +181,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
         {visibleOptions
           .map((option, i) => (
             <DropdownItem
+              disabled={option.disabled}
               key={option.value}
               active={focusedOptionIndex === i}
               onMouseEnter={(ev) => {

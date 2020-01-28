@@ -87,7 +87,7 @@ storiesOf('Combobox', module)
     const [value, setValue] = useState();
     const mixedOptions = [
       { label: '7868 Watermelon Lane', value: 'address-1', type: 'address' },
-      { label: '439 Sunset Drive', value: 'address-2', type: 'address' },
+      { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
       { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
       { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
       { label: 'Panda', value: 'tenant-2', type: 'tenant' },
