@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import Fuse from 'fuse.js';
-import { action } from '@storybook/addon-actions';
-import { boolean, number, text } from '@storybook/addon-knobs';
-import { Badge, Col, Combobox, Input,Row } from '../src';
+import { boolean, text } from '@storybook/addon-knobs';
+import { Col, Combobox, Row } from '../src';
 
 const options = [
   { label: 'Alaska', value: 'AK' },
