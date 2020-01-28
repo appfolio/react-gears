@@ -67,7 +67,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   useEffect(() => {
     const matchingOption = options.find(option => option.value === value);
     setInputValue(matchingOption ? renderInputValue(matchingOption) : '');
-  }, [value]);
+  }, [value, options]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
@@ -77,7 +77,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
     // if (matchingOption) onChange(matchingOption.value);  // Matching only
     // onChange(matchingOption ? matchingOption.value : inputValue); // Matching or inputValue if no matching
     // call onSelect from menu, maybe on enter when one choice
-  }, [inputValue]);
+  }, [inputValue, setVisibleOptions, filterOptions, options, onChange]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;
