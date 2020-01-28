@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import Fuse from 'fuse.js';
 import { boolean, text } from '@storybook/addon-knobs';
-import { Col, Combobox, Row } from '../src';
+import { Combobox } from '../src';
 
 const options = [
   { label: 'Alaska', value: 'AK' },
@@ -72,46 +72,17 @@ storiesOf('Combobox', module)
   .add('Live Example', () => {
     const [value, setValue] = useState();
     return (
-      <Row>
-        <Col>
-          <Combobox
-            onChange={setValue}
-            options={options}
-            value={value}
-            disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-            noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-            placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-          />
-        </Col>
-        <Col>
-          {value}
-        </Col>
-      </Row>
+      <Combobox
+        onChange={setValue}
+        options={options}
+        value={value}
+        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      />
     );
   })
-  // .add('custom props', () => {
-  //   const [value, setValue] = useState();
-  //   return (
-  //     <Row>
-  //       <Col>
-  //         <Combobox
-  //           onChange={v => setValue(v)}
-  //           options={options}
-  //           value={value}
-  //           filterOptions={(option, v) => {
-  //             return v ? option.label.toLowerCase().indexOf(v.toLowerCase()) === 0 : true;
-  //           }}
-  //           // isSelected={(option, value) => true}
-  //           // renderInputValue={option => option.label.toLowerCase()}
-  //           renderOption={option => <>{option.label} <Badge>{option.value}</Badge></>}
-  //         />
-  //       </Col>
-  //       <Col>
-  //         {value}
-  //       </Col>
-  //     </Row>
-  //   );
-  // })
+
   .add('fuse', () => {
     const [value, setValue] = useState();
     const [fuse, setFuse] = useState(new Fuse(options, {
