@@ -62,6 +62,21 @@ storiesOf('Select', module)
       onChange={action('onChange')}
     />);
   })
+  .add('with disabled options', () => (
+    <Select
+      className="w-100"
+      options={[
+        { label: 'alpha@team.com', value: 'alpha@team.com' },
+        { label: 'bravo@tv.com', value: 'bravo@tv.com' },
+        { label: 'charlie@brown.com', value: 'charlie@brown.com', disabled: true },
+        { label: 'delta@force.com', value: 'delta@force.com', disabled: true },
+        { label: 'echo@bunnymen.com', value: 'echo@bunnymen.com', disabled: true },
+        { label: 'foxtrot@dance.com', value: 'foxtrot@dance.com' },
+        { label: 'golf@club.com', value: 'golf@club.com' },
+      ]}
+      isValidNewOption={({ label }) => validateEmail(label)}
+      onChange={action('onChange')}
+    />))
   .add('with multiple and creatable options', () => (
     <Select
       className="w-100"

@@ -69,7 +69,6 @@ export default class SelectOption extends React.Component {
   render() {
     const { option, instancePrefix, optionIndex, isDisabled, isFocused, isSelected } = this.props;
     const className = classNames(this.props.className, option.className, 'text-truncate', {
-      'text-muted': isDisabled,
       'bg-light': isSelected && !isFocused,
       'bg-primary text-white': isFocused
     });
@@ -80,6 +79,7 @@ export default class SelectOption extends React.Component {
         className={className}
         onMouseDown={this.blockEvent}
         onClick={this.handleDisabledOptionClick}
+        disabled
       >
         {this.props.children}
       </DropdownItem>

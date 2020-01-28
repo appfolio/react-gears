@@ -7,9 +7,10 @@
   // Override react-select styles to match Saffron (TODO move to theme?)
   $select-input-bg-disabled: #eceeef;
   $select-input-border-color: #d9d9d9;
+  $select-option-color: -appf-none; // We want to ignore this and inherit from dropdown-item
+  $select-option-disabled-color: -appf-none; // We want to ignore this and inherit from dropdown-item disabled
   $select-option-focused-bg: inherit;
   $select-option-focused-color: inherit;
-  $select-text-color: #55595c;
 
   // TODO correct inner padding, colors to match BS styles
 
