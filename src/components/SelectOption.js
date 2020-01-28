@@ -73,7 +73,7 @@ export default class SelectOption extends React.Component {
       'bg-primary text-white': isFocused
     });
 
-    return option.disabled ? (
+    return option.disabled || isDisabled ? (
       <DropdownItem
         tag="div" // Eliminates invalid nesting of anchors within a button (default tag)
         className={className}
