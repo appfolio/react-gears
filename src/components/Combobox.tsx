@@ -129,6 +129,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       <DropdownToggle tag="div" disabled={disabled}>
         <InputGroup className={className}>
           <Input
+            data-testid="combobox-input"
             disabled={disabled}
             placeholder={placeholder}
             onFocus={(ev) => {
@@ -149,6 +150,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
           <InputGroupAddon addonType="append">
             <Button
               className="px-2"
+              data-testid="combobox-caret"
               disabled={disabled}
               active={open}
               onMouseDown={(ev) => {
@@ -165,6 +167,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
         </InputGroup>
       </DropdownToggle>
       <DropdownMenu
+        data-testid="combobox-menu"
         className="p-0 w-100"
         style={{
           maxHeight: '12rem',
