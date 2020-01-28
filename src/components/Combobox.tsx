@@ -31,6 +31,7 @@ interface ComboboxProps extends InputProps {
   filterOptions?: (options: Option[], value: any) => Option[];
   renderInputValue?: (option: Option) => string;
   renderOption?: (option: Option) => React.ReactNode;
+  menuMaxHeight?: string;
 }
 
 const defaultProps = {
@@ -42,7 +43,7 @@ const defaultProps = {
 };
 
 const Combobox: React.FunctionComponent<ComboboxProps> = ({
-  className, direction, disabled, dropdownProps, options, placeholder, value,
+  className, direction, disabled, dropdownProps, options, placeholder, value, menuMaxHeight,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   filterOptions = defaultProps.filterOptions,
@@ -67,7 +68,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   useEffect(() => {
     const matchingOption = options.find(option => option.value === value);
     setInputValue(matchingOption ? renderInputValue(matchingOption) : '');
-  }, [value, options]);
+  }, [value, options, renderInputValue]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
@@ -170,7 +171,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
         data-testid="combobox-menu"
         className="p-0 w-100"
         style={{
-          maxHeight: '12rem',
+          maxHeight: menuMaxHeight || '12rem',
           overflowY: 'auto'
         }}
         {...dropdownProps}
