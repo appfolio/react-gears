@@ -38,7 +38,7 @@ interface ComboboxProps extends InputProps {
 const defaultProps = {
   noResultsLabel: 'No results found',
   onChange: () => {},
-  filterOptions: (o: Option[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) === 0 : true),
+  filterOptions: (o: Option[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true),
   renderInputValue: (option: Option) => option.label,
   renderOption: (option: Option) => option.label,
 };

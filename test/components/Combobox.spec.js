@@ -76,7 +76,8 @@ describe('<Combobox />', () => {
   });
 
   it('should select an option using the enter key', () => {
-    const combobox = render(<Combobox options={OPTIONS} />);
+    const mockOnChange = sinon.spy();
+    const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
 
     const input = combobox.getByTestId('combobox-input');
     fireEvent.focus(input);
@@ -87,7 +88,8 @@ describe('<Combobox />', () => {
     fireEvent.keyDown(input, { key: 'Enter', code: 13 });
 
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
-    assert.equal(combobox.getByTestId('combobox-input').getAttribute('value'), 'BB8');
+    sinon.assert.called(mockOnChange);
+    sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
 
   it('should open options with down key', () => {
@@ -137,6 +139,22 @@ describe('<Combobox />', () => {
 
       assert.equal(combobox.queryByText('D-O'), undefined);
       assert(combobox.getByText('BB8').classList.contains('active'));
+    });
+
+    it('should update filtered options when input is updated', () => {
+      const combobox = render(<Combobox options={OPTIONS} />);
+
+      const input = combobox.getByTestId('combobox-input');
+      fireEvent.focus(input);
+      fireEvent.change(input, { target: { value: 'd2' } });
+
+      assert.equal(combobox.queryByText('D-O'), undefined);
+      assert(combobox.getByText('R2-D2'));
+
+      fireEvent.change(input, { target: { value: 'd' } });
+
+      assert(combobox.getByText('D-O'));
+      assert(combobox.getByText('R2-D2'));
     });
   });
 });
