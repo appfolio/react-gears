@@ -57,6 +57,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   const [visibleOptions, setVisibleOptions] = useState<Option[]>([]);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState<number>(0);
 
+  const inputElement = useRef<HTMLInputElement>(null);
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
 
@@ -69,17 +70,12 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   useEffect(() => {
     const matchingOption = options.find(option => option.value === value);
     setInputValue(matchingOption ? renderInputValue(matchingOption) : '');
+    if (value && inputElement.current) inputElement.current.blur();
   }, [value, options, renderInputValue]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
-    const matchingOption = options.find(option => option.label === inputValue);
-    // TODO 4 options:
-    onChange(matchingOption ? matchingOption.value : null); // Matching or Null if no matching
-    // if (matchingOption) onChange(matchingOption.value);  // Matching only
-    // onChange(matchingOption ? matchingOption.value : inputValue); // Matching or inputValue if no matching
-    // call onSelect from menu, maybe on enter when one choice
-  }, [inputValue, setVisibleOptions, filterOptions, options, onChange]);
+  }, [inputValue, setVisibleOptions, filterOptions, options]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;
@@ -105,7 +101,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
 
   const selectOption = (option: Option) => {
-    setInputValue(option.label);
+    onChange(option.value);
     setOpen(false);
   };
 
@@ -131,6 +127,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       <DropdownToggle tag="div" disabled={disabled}>
         <InputGroup className={className}>
           <Input
+            innerRef={inputElement}
             data-testid="combobox-input"
             disabled={disabled}
             placeholder={placeholder}
