@@ -10,7 +10,7 @@ interface DragAndDropGridProps {
   items: DragAndDropItem[][];
   onReorder: (items: DragAndDropItem[][]) => void;
   gridStyle?: (isDraggingOver: boolean) => any;
-  itemStyle?: (isDragging: boolean, style: any) => any;
+  itemStyle?: (isDragging: boolean) => any;
 }
 
 const DragAndDropGrid = ({ items, onReorder, gridStyle = () => {}, itemStyle = () => {} }: DragAndDropGridProps) => {
@@ -47,6 +47,20 @@ const DragAndDropGrid = ({ items, onReorder, gridStyle = () => {}, itemStyle = (
     onReorder(updatedItems);
   };
 
+  const getGridStyle = (isDraggingOver: boolean) => {
+    return {
+      ...gridStyle(isDraggingOver),
+      display: 'flex',
+    };
+  };
+
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => {
+    return {
+      ...itemStyle(isDragging),
+      ...draggableStyle,
+    };
+  };
+
   return (
     <DragDropContext onDragEnd={onDragEnd} >
       {
@@ -55,7 +69,7 @@ const DragAndDropGrid = ({ items, onReorder, gridStyle = () => {}, itemStyle = (
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
-                style={gridStyle(snapshot.isDraggingOver)}
+                style={getGridStyle(snapshot.isDraggingOver)}
                 {...provided.droppableProps}
               >
                 {itemsRow.map((item, colIndex) => (
@@ -65,7 +79,7 @@ const DragAndDropGrid = ({ items, onReorder, gridStyle = () => {}, itemStyle = (
                         ref={dragProvided.innerRef}
                         {...dragProvided.draggableProps}
                         {...dragProvided.dragHandleProps}
-                        style={itemStyle(
+                        style={getItemStyle(
                           dragSnapshot.isDragging,
                           dragProvided.draggableProps.style
                         )}

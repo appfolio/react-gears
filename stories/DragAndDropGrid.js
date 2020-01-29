@@ -14,13 +14,12 @@ storiesOf('DragAndDropGrid', module)
     const getListStyle = (isDraggingOver) => {
       return {
         background: isDraggingOver ? 'lightblue' : 'lightgrey',
-        display: 'flex',
         padding: grid,
         overflow: 'auto',
       };
     };
 
-    const getItemStyle = (isDragging, draggableStyle) => {
+    const getItemStyle = (isDragging) => {
       return {
         // some basic styles to make the items look a bit nicer
         userSelect: 'none',
@@ -29,9 +28,6 @@ storiesOf('DragAndDropGrid', module)
 
         // change background colour if dragging
         background: isDragging ? 'lightgreen' : 'grey',
-
-        // styles we need to apply on draggables
-        ...draggableStyle,
       };
     };
 
