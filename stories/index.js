@@ -17,6 +17,7 @@ import './Collapse';
 import './CollapsableText';
 import './CreditCardNumber';
 import './CurrencyInput';
+import './DragAndDropGrid';
 import './Datapair';
 import './DateInput';
 import './Dropdown';

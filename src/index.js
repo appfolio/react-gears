@@ -27,6 +27,7 @@ import Col from './components/Col';
 import Collapse from './components/Collapse';
 import Container from './components/Container';
 import CustomInput from './components/CustomInput';
+import DragAndDropGrid from './components/DragAndDropGrid';
 import Dropdown from './components/Dropdown';
 import DropdownItem from './components/DropdownItem';
 import DropdownMenu from './components/DropdownMenu';
@@ -181,6 +182,7 @@ export {
   Collapse,
   Container,
   CustomInput,
+  DragAndDropGrid,
   DeletedNote,
   Dropdown,
   DropdownItem,
