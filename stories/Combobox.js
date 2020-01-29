@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import Fuse from 'fuse.js';
 import { boolean, text } from '@storybook/addon-knobs';
 import { Combobox, Icon } from '../src';
 
@@ -110,37 +109,4 @@ storiesOf('Combobox', module)
         menuMaxHeight="20rem"
       />
     );
-  })
-
-  .add('fuse', () => {
-    const [value, setValue] = useState();
-    const [fuse, setFuse] = useState(new Fuse(options, {
-      keys: ['label', 'value'],
-      threshold: 0.2
-    }));
-
-    useEffect(() => {
-      setFuse(new Fuse(options, {
-        keys: ['label', 'value'],
-        threshold: 0.2
-      }));
-    }, []);
-
-    return (
-      <>
-        <Combobox
-          onChange={setValue}
-          options={options}
-          value={value}
-          filterOptions={(os, v) => {
-            if (v && v.length) {
-              const results = fuse.search(v);
-              return results;
-            }
-            return os;
-          }}
-        />
-      </>
-    );
   });
-
