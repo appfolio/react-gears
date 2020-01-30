@@ -73,6 +73,7 @@ export default class HasManyFieldsRow extends React.Component {
       <ConfirmationButton
         color="danger"
         confirmation="Delete"
+        aria-label="Delete"
         outline
         onClick={onDelete}
         className="p-2"
