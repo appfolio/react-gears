@@ -8,4 +8,13 @@ storiesOf('Highlight', module)
     <Highlight caseSensitive={boolean('caseSensitive', false)} pattern={text('pattern', 'dog')}>
       {text('children', 'The quick brown fox jumps over the lazy dog.')}
     </Highlight>
+  ))
+  .add('DOM nodes as children', () => (
+    <Highlight caseSensitive={boolean('caseSensitive', false)} pattern={text('pattern', 'dog')}>
+      <div>The quick brown fox jumps over the lazy dog.</div>
+      <div>
+        Henlo, I am doge. Gib treatos pls.
+        <span>wowoweeow dogtor doglittle</span>
+      </div>
+    </Highlight>
   ));

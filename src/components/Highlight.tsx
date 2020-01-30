@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 interface Segment {
   start: number;
@@ -9,15 +9,17 @@ interface Segment {
 interface HighlightProps {
   pattern: string;
   caseSensitive?: boolean;
-  children: string;
+  children: ReactNode;
 }
 
+const escapePattern = (pattern: string) => pattern.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
+
 const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
-  const highlightedSegments = () => {
-    const regex = new RegExp(pattern, caseSensitive ? 'g' : 'gi');
+  const highlightedSegments = (text: string) => {
+    const regex = new RegExp(escapePattern(pattern), caseSensitive ? 'g' : 'gi');
 
     const segments: Segment[] = [];
-    let match: RegExpExecArray | null = regex.exec(children);
+    let match: RegExpExecArray | null = regex.exec(text);
 
     while (match) {
       const start = match.index;
@@ -27,13 +29,13 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
 
       if (match.index === regex.lastIndex) regex.lastIndex += 1;
 
-      match = regex.exec(children);
+      match = regex.exec(text);
     }
 
     return segments;
   };
 
-  const getSegments = (highlighted: Segment[]) => {
+  const getSegments = (text: string, highlighted: Segment[]) => {
     const segments: Segment[] = [];
     const addSegment = (start: number, end: number, highlight: boolean) => {
       if (end - start > 0) {
@@ -42,7 +44,7 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
     };
 
     if (highlighted.length === 0) {
-      addSegment(0, children.length, false);
+      addSegment(0, text.length, false);
     } else {
       let lastIndex = 0;
       highlighted.forEach((segment) => {
@@ -51,25 +53,31 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
         lastIndex = segment.end;
       });
 
-      addSegment(lastIndex, children.length, false);
+      addSegment(lastIndex, text.length, false);
     }
     return segments;
   };
 
-  return (
-    <div>
-      {
-        getSegments(highlightedSegments()).map(({ start, end, highlight }) => {
-          const text = children.slice(start, end);
-          if (highlight) {
-            return <mark>{text}</mark>;
-          }
+  const renderChildren = (node: ReactNode) : ReactNode => {
+    if (Array.isArray(node)) {
+      return node.map(renderChildren);
+    } else if (typeof node === 'string') {
+      return getSegments(node, highlightedSegments(node)).map(({ start, end, highlight }) => {
+        const text = node.slice(start, end);
+        if (highlight) {
+          return <mark>{text}</mark>;
+        }
 
-          return text;
-        })
-      }
-    </div>
-  );
+        return text;
+      });
+    } else if (React.isValidElement(node)) {
+      return React.cloneElement(node, [], renderChildren(node.props.children));
+    }
+
+    return node;
+  };
+
+  return renderChildren(children);
 };
 
 export default Highlight;
