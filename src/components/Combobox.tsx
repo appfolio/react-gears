@@ -61,6 +61,8 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
 
+  const selectedOption = options.find(option => option.value === value);
+
   useEffect(() => {
     if (visibleOptions.length > 0) {
       setFocusedOptionIndex(0);
@@ -68,14 +70,16 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   }, [visibleOptions]);
 
   useEffect(() => {
-    const matchingOption = options.find(option => option.value === value);
-    setInputValue(matchingOption ? renderInputValue(matchingOption) : '');
-    if (value && inputElement.current) inputElement.current.blur();
-  }, [value, options, renderInputValue]);
+    setInputValue(selectedOption ? renderInputValue(selectedOption) : '');
+    if (selectedOption && inputElement.current) inputElement.current.blur();
+  }, [selectedOption, options, renderInputValue]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
-  }, [inputValue, setVisibleOptions, filterOptions, options]);
+    if (selectedOption && selectedOption.label !== inputValue) {
+      onChange(undefined);
+    }
+  }, [inputValue, setVisibleOptions, filterOptions, options, selectedOption, onChange]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;

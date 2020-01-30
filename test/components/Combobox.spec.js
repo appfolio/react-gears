@@ -92,6 +92,27 @@ describe('<Combobox />', () => {
     sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
 
+  it('should deselect option if input value is changed', () => {
+    let value;
+    const mockOnChange = (v) => { value = v; };
+    let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
+    let input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+
+    const option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option);
+
+    assert.equal(OPTIONS[2].value, value);
+
+    cleanup();
+    combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
+    input = combobox.getByTestId('combobox-input');
+
+    fireEvent.change(input, { target: { value: 'd2' } });
+
+    assert.equal(undefined, value);
+  });
+
   it('should open options with down key', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
