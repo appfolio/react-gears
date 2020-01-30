@@ -15,4 +15,10 @@ storiesOf('CurrencyInput', module)
   ))
   .add('disallow comma', () => (
     <CurrencyInput includeThousandsSeparator={false} onChange={action('onChange')} />
+  ))
+  .add('right aligned', () => (
+    <CurrencyInput
+      inputProps={{ className: 'text-right' }}
+      onChange={action('onChange')}
+    />
   ));
