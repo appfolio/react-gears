@@ -108,4 +108,11 @@ describe('<CurrencyInput />', () => {
     const input = component.find('input');
     assert.equal(input.getDOMNode().value, '');
   });
+
+  it('should pass inputProps', () => {
+    const component = mount(<CurrencyInput inputProps={{ className: 'yowza', ariaLabel: 'yowza!' }} />);
+    const input = component.find('input.yowza');
+    assert(input.exists());
+    assert.equal(input.props().ariaLabel, 'yowza!');
+  });
 });

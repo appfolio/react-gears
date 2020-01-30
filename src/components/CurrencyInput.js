@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import MaskedInput from 'react-text-mask';
 
 //
@@ -29,36 +30,38 @@ function preventMultipleDecimalPoint(conformedValue, config) {
 }
 
 // TODO support I18n
-const CurrencyInput = ({ size, ...props }) => {
-  /* eslint-disable  no-unused-vars */
-  const {
-    state,
-    type,
-    allowDecimal,
-    allowNegative,
-    includeThousandsSeparator,
-    ...inputProps
-  } = props;
-  /* eslint-enable  no-unused-vars */
+const CurrencyInput = ({
+  allowDecimal,
+  allowNegative,
+  className,
+  includeThousandsSeparator,
+  inputProps,
+  size,
+  state,
+  type,
+  ...props
+}) => {
+  const inputClassNames = classnames('form-control', inputProps && inputProps.className);
 
   const maskedProps = {
     ...inputProps,
-    className: 'form-control',
+    ...props,
+    className: inputClassNames,
     // There is a weird bug in the MaskedInput where if the "value" prop gets set to null the
     // input value gets set to "_".  Setting guide to false instead of undefined solves the
     // problem.
     guide: false,
     mask: createNumberMask({
-      allowDecimal: props.allowDecimal,
-      allowNegative: props.allowNegative,
-      includeThousandsSeparator: props.includeThousandsSeparator,
+      allowDecimal,
+      allowNegative,
+      includeThousandsSeparator,
       prefix: ''
     }),
-    pipe: preventMultipleDecimalPoint,
+    pipe: preventMultipleDecimalPoint
   };
 
   return (
-    <InputGroup size={size} className={props.className}>
+    <InputGroup size={size} className={className}>
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
       <MaskedInput {...maskedProps} />
     </InputGroup>
@@ -76,6 +79,7 @@ CurrencyInput.propTypes = {
   allowNegative: PropTypes.bool,
   className: PropTypes.string,
   includeThousandsSeparator: PropTypes.bool,
+  inputProps: PropTypes.object,
   size: PropTypes.string,
   state: PropTypes.any,
   type: PropTypes.any
