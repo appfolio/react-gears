@@ -116,6 +116,7 @@ import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
+import Highlight from './components/Highlight.tsx';
 import ImageCarousel from './components/ImageCarousel.js';
 import InternationalAddressInput from './components/InternationalAddressInput.js';
 import Icon from './components/Icon.js';
@@ -193,6 +194,7 @@ export {
   FormGroup,
   FormLabelGroup,
   FormText,
+  Highlight,
   Input,
   InputGroup,
   InputGroupAddon,

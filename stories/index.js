@@ -27,6 +27,7 @@ import './FormLabelGroup';
 import './Forms';
 import './HasManyFields';
 import './HelpBubble';
+import './Highlight';
 import './Icon';
 import './ImageCarousel';
 import './Input';
