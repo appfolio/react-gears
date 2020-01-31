@@ -1,3 +1,5 @@
+import { configureActions } from '@storybook/addon-actions';
+
 import './Welcome';
 import './Layout';
 
@@ -57,3 +59,5 @@ import './Tooltip';
 import './Waiting';
 
 import './More';
+
+configureActions({ depth: 5 });
