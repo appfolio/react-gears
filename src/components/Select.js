@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import noop from 'lodash.noop';
 
 // Disables CSS modules to import as global:
-import './Select.scss';
+// import './Select.scss';
 
 class Select extends React.Component {
   static propTypes = {
