@@ -2,7 +2,7 @@
 $line: 1px;
 $todo: #818a91; // Saffron color-muted, needs to be text-muted
 
-.steps {
+.hsteps {
   align-items: flex-start;
   counter-reset: step;
   display: flex;
@@ -84,4 +84,40 @@ $todo: #818a91; // Saffron color-muted, needs to be text-muted
         }
       }
     }
+}
+
+.vsteps {
+  counter-reset: step;
+
+  .step { 
+    align-items: center;
+    display: flex;
+    margin-top: 1.5rem;
+
+    .bubble {
+      align-items: center;
+      background-color: white;
+      border: $line solid $todo;
+      border-radius: 100%;
+      display: flex;
+      font-size: 1.25rem;
+      font-weight: bold;
+      height: 2.5rem;
+      justify-content: center;
+      margin-right: 0.5rem;
+      width: 2.5rem;
+    }
+
+    &.active {
+      .bubble {
+        border: $line solid currentColor;
+      }
+    }
+
+    &.complete {
+      .bubble {
+        border: $line solid currentColor;
+      }
+    }
+  }
 }

@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import Icon from './Icon.js';
 import styles from './Steps.scss';
 
-const Steps = ({ collapse, complete, step, steps }) => {
+const Steps = ({ collapse, complete, step, steps, vertical }) => {
   const className = classNames({
     [styles.complete]: complete,
-    [styles.steps]: true,
+    [styles.hsteps]: !vertical,
+    [styles.vsteps]: vertical,
     'm-0': true
   });
   const activeStep = steps[step];
@@ -25,7 +26,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
           const stepComplete = !complete && index < step;
           const stepActive = !complete && index === step;
 
-          const liClasses = classNames({
+          const liClasses = classNames('mb-2', {
             [styles.step]: true,
             [styles.complete]: stepComplete,
             [styles.active]: stepActive,
@@ -49,7 +50,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
             'text-success': complete
           });
 
-          const textClasses = classNames('mb-2 js-step-label', {
+          const textClasses = classNames('js-step-label', {
             'd-none d-sm-inline': collapse !== false,
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
@@ -79,13 +80,15 @@ Steps.propTypes = {
   collapse: PropTypes.bool,
   complete: PropTypes.bool,
   step: PropTypes.number,
-  steps: PropTypes.array
+  steps: PropTypes.array,
+  vertical: PropTypes.bool,
 };
 
 Steps.defaultProps = {
   complete: false,
   step: 0,
-  steps: []
+  steps: [],
+  vertical: false,
 };
 
 export default Steps;
