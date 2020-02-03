@@ -10,7 +10,7 @@ const defaultFormat = {
   fields: [['address1'], ['address2'], ['city'], ['countryCode', 'postal']]
 };
 
-export const formats = {
+export const formats: { [key: string]: any } = {
   US: {
     name: 'United States',
     labels: {
@@ -4769,7 +4769,7 @@ export const formats = {
   }
 };
 
-export default function getAddressFormat(countryCode) {
+export default function getAddressFormat(countryCode: string) {
   const labels = countryCode ? {
     ...defaultFormat.labels,
     ...formats[countryCode].labels,
