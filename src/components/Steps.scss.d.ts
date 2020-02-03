@@ -1,4 +1,5 @@
 export const hsteps: string;
+export const vsteps: string;
 export const step: string;
 export const active: string;
 export const complete: string;

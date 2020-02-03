@@ -1,10 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon.js';
 import styles from './Steps.scss';
 
-const Steps = ({ collapse, complete, step, steps, vertical }) => {
+interface StepProps {
+  collapse?: boolean;
+  complete?: boolean;
+  step?: number;
+  steps?: string[];
+  vertical?: boolean;
+}
+
+const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = false }: StepProps) => {
   const className = classNames({
     [styles.complete]: complete,
     [styles.hsteps]: !vertical,
@@ -74,21 +81,6 @@ const Steps = ({ collapse, complete, step, steps, vertical }) => {
         </div> : null}
     </div>
   );
-};
-
-Steps.propTypes = {
-  collapse: PropTypes.bool,
-  complete: PropTypes.bool,
-  step: PropTypes.number,
-  steps: PropTypes.array,
-  vertical: PropTypes.bool,
-};
-
-Steps.defaultProps = {
-  complete: false,
-  step: 0,
-  steps: [],
-  vertical: false,
 };
 
 export default Steps;
