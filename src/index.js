@@ -122,6 +122,7 @@ import InternationalAddressInput from './components/InternationalAddressInput.js
 import Icon from './components/Icon.js';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
+import MaskedInput from './components/MaskedInput';
 import Modal from './components/Modal.js';
 import MonthCalendar from './components/MonthCalendar.js';
 import MonthInput from './components/MonthInput.js';
@@ -207,6 +208,7 @@ export {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  MaskedInput,
   Media,
   Modal,
   ModalBody,
