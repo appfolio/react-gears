@@ -68,7 +68,7 @@ const Steps = ({ collapse, complete, step, steps, vertical }) => {
           );
         })}
       </ol>
-      {collapse !== false ?
+      {collapse !== false && !vertical ?
         <div className={activeStepClasses}>
           <span className="mb-2 js-step-label">{activeStep}</span>
         </div> : null}
