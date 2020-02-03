@@ -13,7 +13,7 @@ export const srOnlyStyle: React.CSSProperties = {
   border: '0px'
 };
 
-interface FontAwesomeAPMProps {
+export interface FontAwesomeAPMProps {
   ariaLabel?: string;
   border?: boolean;
   className?: string;
