@@ -10,7 +10,7 @@ export interface Option {
 
 type CheckGroupProps = CheckboxGroupProps | RadioGroupProps;
 
-const CheckGroup = (props: CheckGroupProps) => {
+const CheckGroup: React.FunctionComponent<CheckGroupProps> = (props: CheckGroupProps) => {
   if (props.radio === true) return <RadioGroup {...props} />;
 
   return <CheckboxGroup {...props} />;
