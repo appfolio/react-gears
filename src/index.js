@@ -96,6 +96,7 @@ import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
+import CheckGroup from './components/CheckGroup';
 import ClickableContainer from './components/ClickableContainer.js';
 import CollapsableText from './components/CollapsableText.js';
 import ConfirmationButton from './components/ConfirmationButton.js';
@@ -262,6 +263,7 @@ export {
   CheckboxInput,
   CheckboxBooleanInput,
   CheckboxListInput,
+  CheckGroup,
   ClickableContainer,
   CollapsableText,
   ConfirmationButton,

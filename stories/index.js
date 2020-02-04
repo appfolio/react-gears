@@ -13,6 +13,7 @@ import './Buttons';
 import './Callout';
 import './Card';
 import './Carousel';
+import './CheckGroup';
 import './Collapse';
 import './CollapsableText';
 import './CreditCardNumber';
