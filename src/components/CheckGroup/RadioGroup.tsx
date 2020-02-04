@@ -12,8 +12,8 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
-  const handleCheckboxChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    if (ev.target.checked) onChange(ev.target.value);
+  const handleRadioChange = (checked: boolean, value: Value) => {
+    if (checked) onChange(value);
   };
 
   return (
@@ -26,7 +26,7 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
                 type="radio"
                 value={option.value}
                 checked={selected === option.value}
-                onChange={handleCheckboxChange}
+                onChange={ev => handleRadioChange(ev.target.checked, option.value)}
               />{' '}{option.label}
             </Label>
           </FormGroup>

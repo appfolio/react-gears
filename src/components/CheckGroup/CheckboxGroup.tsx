@@ -12,14 +12,13 @@ export interface CheckboxGroupProps {
 }
 
 const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
-  const handleCheckboxChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = ev.target.checked;
+  const handleCheckboxChange = (checked: boolean, value: Value) => {
     const newSelected = new Set(selected);
 
     if (checked) {
-      newSelected.add(ev.target.value);
+      newSelected.add(value);
     } else {
-      newSelected.delete(ev.target.value);
+      newSelected.delete(value);
     }
 
     onChange(newSelected);
@@ -35,7 +34,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
                 type="checkbox"
                 value={option.value}
                 checked={selected.has(option.value)}
-                onChange={handleCheckboxChange}
+                onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
               />{' '}{option.label}
             </Label>
           </FormGroup>

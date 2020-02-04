@@ -2,7 +2,7 @@ import React from 'react';
 import CheckboxGroup, { CheckboxGroupProps } from './CheckGroup/CheckboxGroup';
 import RadioGroup, { RadioGroupProps } from './CheckGroup/RadioGroup';
 
-export type Value = string | number;
+export type Value = any;
 export interface Option {
   label: string;
   value: Value;
