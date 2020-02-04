@@ -32,7 +32,6 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
             <Label check>
               <Input
                 type="checkbox"
-                value={option.value}
                 checked={selected.has(option.value)}
                 onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
               />{' '}{option.label}

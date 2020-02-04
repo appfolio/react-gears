@@ -24,7 +24,6 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
             <Label check>
               <Input
                 type="radio"
-                value={option.value}
                 checked={selected === option.value}
                 onChange={ev => handleRadioChange(ev.target.checked, option.value)}
               />{' '}{option.label}
