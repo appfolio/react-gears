@@ -59,4 +59,24 @@ describe('<CheckGroup />', () => {
       sinon.assert.calledWith(mockOnChange, 'watermelon');
     });
   });
+
+  it('should work with object values', () => {
+    const coolerOptions = [
+      { label: 'Boba', value: { id: 1, type: 'topping', price: '0.50' } },
+      { label: 'Aiyu Jelly', value: { id: 2, type: 'topping', price: '0.50' } },
+      { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
+    ];
+    const mockOnChange = sinon.spy();
+    const checkboxes = render(
+      <CheckGroup options={coolerOptions} selected={new Set([{ id: 1, type: 'topping', price: '0.50' }])} onChange={mockOnChange} />
+    );
+
+    const option = checkboxes.getByLabelText('Aiyu Jelly');
+    fireEvent.click(option);
+
+    sinon.assert.calledWith(
+      mockOnChange,
+      new Set([{ id: 1, type: 'topping', price: '0.50' }, { id: 2, type: 'topping', price: '0.50' }])
+    );
+  });
 });
