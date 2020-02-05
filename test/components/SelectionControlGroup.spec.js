@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 
-import CheckGroup from '../../src/components/CheckGroup';
+import SelectionControlGroup from '../../src/components/SelectionControlGroup';
 
 const options = [
   { label: 'Watermelon', value: 'watermelon' },
@@ -12,14 +12,14 @@ const options = [
   { label: 'Grape', value: 'grape' },
 ];
 
-describe('<CheckGroup />', () => {
+describe('<SelectionControlGroup />', () => {
   afterEach(cleanup);
 
   describe('Checkboxes', () => {
     it('should select option', () => {
       const mockOnChange = sinon.spy();
       const checkboxes = render(
-        <CheckGroup options={options} selected={new Set(['apple'])} onChange={mockOnChange} />
+        <SelectionControlGroup options={options} selected={new Set(['apple'])} onChange={mockOnChange} />
       );
 
       const option = checkboxes.getByLabelText('Orange');
@@ -31,7 +31,7 @@ describe('<CheckGroup />', () => {
     it('should deselect option', () => {
       const mockOnChange = sinon.spy();
       const checkboxes = render(
-        <CheckGroup options={options} selected={new Set(['apple', 'lemon'])} onChange={mockOnChange} />
+        <SelectionControlGroup options={options} selected={new Set(['apple', 'lemon'])} onChange={mockOnChange} />
       );
 
       const option = checkboxes.getByLabelText('Apple');
@@ -45,7 +45,7 @@ describe('<CheckGroup />', () => {
     it('should select only one option', () => {
       const mockOnChange = sinon.spy();
       const checkboxes = render(
-        <CheckGroup radio options={options} onChange={mockOnChange} />
+        <SelectionControlGroup radio options={options} onChange={mockOnChange} />
       );
 
       let option = checkboxes.getByLabelText('Apple');
@@ -68,7 +68,7 @@ describe('<CheckGroup />', () => {
     ];
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <CheckGroup options={coolerOptions} selected={new Set([{ id: 1, type: 'topping', price: '0.50' }])} onChange={mockOnChange} />
+      <SelectionControlGroup options={coolerOptions} selected={new Set([{ id: 1, type: 'topping', price: '0.50' }])} onChange={mockOnChange} />
     );
 
     const option = checkboxes.getByLabelText('Aiyu Jelly');

@@ -96,7 +96,6 @@ import Close from './components/Close.js';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
-import CheckGroup from './components/CheckGroup';
 import ClickableContainer from './components/ClickableContainer.js';
 import CollapsableText from './components/CollapsableText.js';
 import ConfirmationButton from './components/ConfirmationButton.js';
@@ -137,6 +136,7 @@ import RadioInput from './components/RadioInput.js';
 import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
+import SelectionControlGroup from './components/SelectionControlGroup';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput.js';
@@ -263,7 +263,6 @@ export {
   CheckboxInput,
   CheckboxBooleanInput,
   CheckboxListInput,
-  CheckGroup,
   ClickableContainer,
   CollapsableText,
   ConfirmationButton,
@@ -295,6 +294,7 @@ export {
   Progress,
   RadioInput,
   ScrollContainer,
+  SelectionControlGroup,
   Spinner,
   StateInput,
   StaticInput,

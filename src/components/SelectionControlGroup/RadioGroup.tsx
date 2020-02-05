@@ -2,7 +2,7 @@ import React from 'react';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
 import Input from '../Input';
-import { Option, Value } from '../CheckGroup';
+import { Option, Value } from '../SelectionControlGroup';
 
 export interface RadioGroupProps {
   options: Option[];

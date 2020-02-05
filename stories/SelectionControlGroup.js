@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { CheckGroup } from '../src';
+import { SelectionControlGroup } from '../src';
 
 const options = [
   { label: 'Watermelon', value: 'watermelon' },
@@ -10,14 +10,14 @@ const options = [
   { label: 'Grape', value: 'grape' },
 ];
 
-storiesOf('CheckGroup', module)
+storiesOf('SelectionControlGroup', module)
   .add('Checkboxes', () => {
     const [selected, setSelected] = useState(new Set());
 
     const onChange = (values) => { setSelected(values); };
 
     return (
-      <CheckGroup options={options} onChange={onChange} selected={selected} />
+      <SelectionControlGroup options={options} onChange={onChange} selected={selected} />
     );
   })
   .add('Radio buttons', () => {
@@ -26,6 +26,6 @@ storiesOf('CheckGroup', module)
     const onChange = (v) => { setSelected(v); };
 
     return (
-      <CheckGroup radio options={options} onChange={onChange} selected={selected} />
+      <SelectionControlGroup radio options={options} onChange={onChange} selected={selected} />
     );
   });
