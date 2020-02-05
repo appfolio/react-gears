@@ -1,14 +1,18 @@
 import React from 'react';
-import FormGroup from '../FormGroup';
-import Label from '../Label';
-import Input from '../Input';
-import { Option, Value } from '../SelectionControlGroup';
+import FormGroup from './FormGroup';
+import Label from './Label';
+import Input from './Input';
+
+type Value = any;
+interface Option {
+  label: string;
+  value: Value;
+}
 
 export interface CheckboxGroupProps {
   options: Option[];
   selected: Set<Value>;
   onChange: (values: Set<Value>) => void;
-  radio?: false;
 }
 
 const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {

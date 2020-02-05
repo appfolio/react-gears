@@ -1,14 +1,18 @@
 import React from 'react';
-import FormGroup from '../FormGroup';
-import Label from '../Label';
-import Input from '../Input';
-import { Option, Value } from '../SelectionControlGroup';
+import FormGroup from './FormGroup';
+import Label from './Label';
+import Input from './Input';
+
+type Value = any;
+interface Option {
+  label: string;
+  value: Value;
+}
 
 export interface RadioGroupProps {
   options: Option[];
   selected?: Value;
   onChange: (value?: Value) => void;
-  radio: true;
 }
 
 const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {

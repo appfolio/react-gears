@@ -93,6 +93,7 @@ import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';
 import Callout from './components/Callout.tsx';
 import Close from './components/Close.js';
+import CheckboxGroup from './components/CheckboxGroup';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
@@ -132,11 +133,11 @@ import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
+import RadioGroup from './components/RadioGroup';
 import RadioInput from './components/RadioInput.js';
 import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
-import SelectionControlGroup from './components/SelectionControlGroup';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput.js';
@@ -260,6 +261,7 @@ export {
   Calendar,
   Callout,
   Close,
+  CheckboxGroup,
   CheckboxInput,
   CheckboxBooleanInput,
   CheckboxListInput,
@@ -292,9 +294,9 @@ export {
   Notes,
   PatternInput,
   Progress,
+  RadioGroup,
   RadioInput,
   ScrollContainer,
-  SelectionControlGroup,
   Spinner,
   StateInput,
   StaticInput,
