@@ -38,7 +38,11 @@ class FormChoice extends React.Component {
     } = this.props;
 
     if (type === 'select') {
-      return <option {...attributes} value={value}>{children}</option>;
+      return (
+        <option {...attributes} disabled={disabled} value={value}>
+          {children}
+        </option>
+      );
     }
 
     const labelClasses = classname({ 'form-check-inline': inline });
