@@ -17,6 +17,7 @@ storiesOf('Steps', module)
       step={number('step', 0)}
       complete={boolean('complete', false)}
       vertical={boolean('vertical', false)}
+      collapse={boolean('collapse', false)}
     />
   ))
   .add('Vertical steps', () => (
@@ -25,5 +26,6 @@ storiesOf('Steps', module)
       step={number('step', 0)}
       complete={boolean('complete', false)}
       vertical={boolean('vertical', true)}
+      collapse={boolean('collapse', false)}
     />
   ));

@@ -58,7 +58,8 @@ const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = fa
           });
 
           const textClasses = classNames('js-step-label', {
-            'd-none d-sm-inline': collapse !== false,
+            'd-sm-inline': vertical && collapse !== false,
+            'd-none d-sm-inline': !vertical && collapse !== false,
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
             'text-success': complete,
@@ -70,7 +71,7 @@ const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = fa
               <div className={bubbleClasses}>
                 <span className={iconClasses}>{complete || stepComplete ? <Icon name="check" /> : index + 1}</span>
               </div>
-              {collapse !== true ? <span className={textClasses}>{name}</span> : null}
+              {collapse !== true || vertical ? <span className={textClasses}>{name}</span> : null}
             </li>
           );
         })}

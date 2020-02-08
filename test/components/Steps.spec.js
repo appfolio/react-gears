@@ -72,8 +72,7 @@ describe('<Steps />', () => {
     describe('collapse', () => {
       it('should default to showing responsive step labels', () => {
         const component = mount(<Steps steps={steps} vertical />);
-        assert.equal(component.find('span.js-step-label').length, steps.length);
-        assert.equal(component.find('span.d-none.d-sm-inline').length, steps.length);
+        assert.equal(component.find('span.js-step-label.d-sm-inline').length, steps.length);
       });
 
       it('should only show non-responsive step labels when collapse=false', () => {
@@ -81,9 +80,9 @@ describe('<Steps />', () => {
         assert.equal(component.find('.js-step-label').length, steps.length);
       });
 
-      it('should show no labels when collapse=true', () => {
+      it('should show all labels when collapse=true', () => {
         const component = mount(<Steps steps={steps} collapse vertical />);
-        assert.equal(component.find('.js-step-label').length, 0);
+        assert.equal(component.find('.js-step-label').length, steps.length);
       });
     });
   });
