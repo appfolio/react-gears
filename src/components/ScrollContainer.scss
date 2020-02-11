@@ -8,7 +8,7 @@
   right: 0px;
   pointer-events: none;
   position: absolute;
-  z-index: 20000; // TODO test
+  z-index: 990; // must be lower than Dropdown
 }
 
 $r: 8px;
