@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -36,6 +36,7 @@
     "react-dom": ">= 16.8"
   },
   "dependencies": {
+    "@types/lodash.topairs": "^4.3.6",
     "@types/reactstrap": "^8.0.6",
     "@types/uniqid": "^4.1.3",
     "classnames": "^2.2.6",

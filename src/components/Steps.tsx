@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Icon from './Icon.js';
+import Icon from './Icon';
 import styles from './Steps.scss';
 
 interface StepProps {

@@ -35,6 +35,13 @@ describe('<FormChoice />', () => {
     it('should pass the value to the element', () => {
       assert.equal(component.prop('value'), 'foobar');
     });
+
+    it('should pass the disabled prop to the element', () => {
+      assert.equal(component.prop('disabled'), undefined);
+
+      const enabledComponent = shallow(<FormChoice disabled type="select" />);
+      assert.equal(enabledComponent.prop('disabled'), true);
+    });
   });
 
   describe('type=checkbox', () => {
