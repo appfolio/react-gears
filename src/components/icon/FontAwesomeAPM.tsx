@@ -13,7 +13,7 @@ export const srOnlyStyle: React.CSSProperties = {
   border: '0px'
 };
 
-export interface FontAwesomeAPMProps extends React.HTMLAttributes<HTMLElement> {
+export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   ariaLabel?: string;
   border?: boolean;
   className?: string;

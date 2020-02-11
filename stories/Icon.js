@@ -99,7 +99,7 @@ storiesOf('Icon', module)
   .add('with other props', () => (
     <div className="bg-color-muted">
       <p>
-        <Icon name="camera" size="2x" /> Default
+        <Icon name="camera" size="2x" style={{ color: 'red' }} /> Default
       </p>
       <p>
         <Icon name="camera" size="2x" fixedWidth /> fixedWidth
