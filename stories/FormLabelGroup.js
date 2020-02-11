@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, object, text, select } from '@storybook/addon-knobs';
-import { CheckboxInput, Alert, FormLabelGroup, HelpBubble } from '../src';
+import { Label, CheckboxInput, Alert, FormLabelGroup, HelpBubble } from '../src';
 
 storiesOf('FormLabelGroup', module)
   .add('Live example', () => {
@@ -9,7 +9,7 @@ storiesOf('FormLabelGroup', module)
 
     return <div>
       <FormLabelGroup
-        label={<Fragment><span>Should eat cake?</span><HelpBubble className="ml-1" placement="top" title="" >Cake will make you fat though.</HelpBubble></Fragment>}
+        label={<Fragment><Label for="should-eat-cake">Should eat cake?</Label><HelpBubble className="ml-1" placement="top" title="" >Cake will make you fat though.</HelpBubble></Fragment>}
         labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
         feedback={text('feedback', 'You must give a first name')}
         validFeedback={text('validFeedback')}
@@ -18,7 +18,6 @@ storiesOf('FormLabelGroup', module)
         required={boolean('required', false)}
         inline={boolean('inline', false)}
         stacked={boolean('stacked', false)}
-        inputId="should-eat-cake"
       >
 
         <CheckboxInput

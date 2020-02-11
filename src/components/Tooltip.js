@@ -1,36 +1,33 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import InnerTooltip from 'reactstrap/lib/Tooltip';
 
-export default class Tooltip extends React.Component {
-  static propTypes = {
-    ...InnerTooltip.propTypes,
-    isOpen: PropTypes.bool
-  };
 
-  static defaultProps = {
-    ...InnerTooltip.defaultProps,
-    isOpen: false,
-    fade: false,
-  };
+const Tooltip = ({ isOpen, ...props }) => {
+  const [isOpenState, setIsOpenState] = useState(isOpen); 
 
-  state = {
-    isOpen: this.props.isOpen
-  };
+  const toggleIsOpenState = useCallback(() => { console.log('toggleIsOpenState'); setIsOpenState(!isOpenState); }, [setIsOpenState, isOpenState]); 
 
-  toggle = () => this.setState({
-    isOpen: !this.state.isOpen
-  });
+  return (
+    <InnerTooltip
+      isOpen={isOpenState}
+      toggle={toggleIsOpenState}
+      {...props}
+    />
+  );
+};
 
-  render() {
-    const { isOpen, ...props } = this.props; // eslint-disable-line no-unused-vars
+Tooltip.propTypes = {
+  ...InnerTooltip.propTypes,
+  isOpen: PropTypes.bool
+};
 
-    return (
-      <InnerTooltip
-        isOpen={this.state.isOpen}
-        toggle={this.toggle}
-        {...props}
-      />
-    );
-  }
-}
+Tooltip.defaultProps = {
+  ...InnerTooltip.defaultProps,
+  isOpen: false,
+  fade: false,
+};
+
+Tooltip.displayName = 'Tooltip';
+
+export default Tooltip;
