@@ -120,22 +120,31 @@ export default class UncontrolledTable extends React.Component {
 
   //eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
+    const rowsChanged = isEqual(this.props.rows, nextProps.rows);
+
+    const selectableChanged = nextProps.selectable !== this.props.selectable;
+    const expandableChanged = nextProps.expandable !== this.props.expandable;
+    const expandedChanged = nextProps.expanded !== this.props.expanded;
+    const selectedChanged = nextProps.selected !== this.props.selected;
+
     // Clear selection if rows or selectable change
-    if (nextProps.rows !== this.props.rows ||
-      nextProps.selectable !== this.props.selectable) {
+    if (rowsChanged || selectableChanged) {
       this.setState({ selected: [] });
     }
-    if (nextProps.rows !== this.props.rows ||
-      nextProps.expandable !== this.props.expandable) {
+
+    if (rowsChanged || expandableChanged) {
       this.setState({ expanded: [] });
     }
-    if (nextProps.rows !== this.props.rows) {
+
+    if (rowsChanged) {
       this.setState({ page: 0 });
     }
-    if (nextProps.selected) {
+
+    if (selectedChanged) {
       this.setState({ selected: nextProps.selected });
     }
-    if (nextProps.expanded !== this.props.expanded) {
+
+    if (expandedChanged) {
       this.setState({ expanded: nextProps.expanded });
     }
   }
