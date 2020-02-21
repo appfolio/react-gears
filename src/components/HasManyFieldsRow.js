@@ -5,6 +5,7 @@ import React from 'react';
 import Button from './Button';
 import ConfirmationButton from './ConfirmationButton';
 import Col from './Col';
+import Collapse from './Collapse';
 import Icon from './Icon';
 import Row from './Row';
 import Tooltip from './Tooltip';
@@ -33,9 +34,22 @@ export default class HasManyFieldsRow extends React.Component {
     deletable: true
   };
 
+  state = {
+    isOpen: false
+  };
+
   //eslint-disable-next-line camelcase
   UNSAFE_componentWillMount() {
     this.id = getID();
+  }
+
+  componentDidMount() {
+    this.setState({ isOpen: true });
+  }
+
+  closeCollapse = () => {
+    console.log('setting collapse closed');
+    this.setState({ isOpen: false });
   }
 
   render() {
@@ -75,7 +89,7 @@ export default class HasManyFieldsRow extends React.Component {
         confirmation="Delete"
         aria-label="Delete"
         outline
-        onClick={onDelete}
+        onClick={this.closeCollapse}
         className="p-2"
       >
         <Icon name="times-circle-o" size="lg" />
@@ -83,15 +97,17 @@ export default class HasManyFieldsRow extends React.Component {
     );
 
     return (
-      <Row className={classNames} noGutters>
-        <Col>{children}</Col>
-        {deletable && (
-          <Col xs="auto" className="js-delete-col pl-3 d-flex">
-            {button}
-            {tooltip}
-          </Col>
-        )}
-      </Row>
+      <Collapse isOpen={this.state.isOpen} onExited={() => { console.log('onexited'); onDelete(); }}>
+        <Row className={classNames} noGutters>
+          <Col>{children}</Col>
+          {deletable && (
+            <Col xs="auto" className="js-delete-col pl-3 d-flex">
+              {button}
+              {tooltip}
+            </Col>
+          )}
+        </Row>
+      </Collapse>
     );
   }
 }

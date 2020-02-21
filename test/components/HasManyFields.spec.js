@@ -11,7 +11,7 @@ import {
   Input
 } from '../../src';
 
-const items = ['monkey', 'cat', 'mouse'];
+const items = [{ key: '1', value: 'monkey' }, { key: '2', value: 'cat' }, { key: '3', value: 'mouse' }];
 const errors = [{ name: "can't be blank" }, {}, { foo: "can't be bar" }];
 
 describe('<HasManyFields />', () => {
@@ -112,12 +112,12 @@ describe('<HasManyFields />', () => {
     });
   });
 
-  describe('controlled', () => {
+  describe.only('controlled', () => {
     const onAdd = spy();
     const onRemove = spy();
     const onUpdate = spy();
     const onChange = spy();
-    const component = shallow(
+    const component = mount(
       <HasManyFields
         value={items}
         errors={errors}

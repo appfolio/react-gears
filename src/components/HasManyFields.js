@@ -2,6 +2,7 @@ import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import uniqid from 'uniqid';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
@@ -68,13 +69,14 @@ class HasManyFields extends React.Component {
   };
 
   constructor(props) {
+    console.log('constructor');
     super(props);
 
     this.isUncontrolled = typeof props.value === 'undefined';
 
     if (this.isUncontrolled) {
       this.state = {
-        value: props.defaultValue
+        value: props.defaultValue.map((item) => { return { key: item.key ? item.key : uniqid(), value: item }; })
       };
     }
 
@@ -94,18 +96,29 @@ class HasManyFields extends React.Component {
     this.props.onUpdate(i, update);
     this.value = [
       ...this.value.slice(0, i),
-      update,
+      { ...this.value[i], value: update },
       ...this.value.slice(i + 1)
     ];
   };
 
   addItem = () => {
+    // console.log('before on add');
     this.props.onAdd();
+    // console.log('after on add');
+    // console.log(this.props.blank);
     const blank =
       typeof this.props.blank === 'function'
         ? this.props.blank(this.value)
         : this.props.blank;
-    this.value = this.value.concat(blank);
+    // console.log('blank: ', blank);
+    // const blankWithKey =
+    //   typeof blank === 'object'
+    //   ? { key: uniqid(), ...blank }
+    //   : { key: uniqid(), value: blank };
+    const blankWithKey = { key: uniqid(), value: blank };
+    // console.log('blankWithKey: ', blankWithKey);
+    this.value = this.value.concat(blankWithKey);
+    // console.log(this.value);
     setTimeout(() => this.focusRow(this.rowRefs.length - 1));
   };
 
@@ -165,15 +178,16 @@ class HasManyFields extends React.Component {
     const { template: Template, disabled, errors, minimumRows } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
+    console.log('value.value: ', value.value);
     return (
       <HasManyFieldsRow
         onDelete={this.deleteItem(index)}
-        key={key}
+        key={value.key}
         deletable={this.value.length > minimumRows}
         disabled={disabled}
       >
         <Template
-          value={value}
+          value={value.value}
           errors={errors[index]}
           onChange={this.updateItem(index)}
           disabled={disabled}
@@ -185,6 +199,8 @@ class HasManyFields extends React.Component {
 
   render() {
     const { disabled, reorderable } = this.props;
+
+    console.log('rendering HMF');
 
     if (!disabled && reorderable) {
       return (

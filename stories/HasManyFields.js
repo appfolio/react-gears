@@ -12,6 +12,7 @@ import {
 
 const items = [
   {
+    key: '1',
     address1: '50 Castilian Dr.',
     address2: '',
     city: 'Goleta',
@@ -20,6 +21,7 @@ const items = [
     countryCode: 'US'
   },
   {
+    key: '2',
     address1: '70 Castilian Dr.',
     address2: '',
     city: 'Goleta',
@@ -28,6 +30,7 @@ const items = [
     countryCode: 'US'
   },
   {
+    key: '3',
     address1: '90 Castilian Dr.',
     address2: '',
     city: 'Goleta',
@@ -37,10 +40,24 @@ const items = [
   },
 ];
 
+function onAdd() {
+  items.push({
+    key: (items.length + 1).toString(),
+    address1: '90 Castilian Dr.',
+    address2: '',
+    city: 'San Diego',
+    state: 'CA',
+    postal: '93117',
+    countryCode: 'US'
+  });
+  console.log(items);
+}
+
 storiesOf('HasManyFields', module)
   .add('Live Example', () => (
     <HasManyFields
       defaultValue={items}
+      // value={items}
       template={AddressInput}
       blank={{
         address1: '',
@@ -53,6 +70,7 @@ storiesOf('HasManyFields', module)
       label="Add an Address"
       disabled={boolean('disabled', false)}
       onAdd={action('hasManyFields onAdd')}
+      // onAdd={onAdd}
       onRemove={action('hasManyFields onRemove')}
       onUpdate={action('hasManyFields onUpdate')}
       onChange={action('hasManyFields onChange')}

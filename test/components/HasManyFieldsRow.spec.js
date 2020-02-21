@@ -8,6 +8,7 @@ import {
   Button,
   ConfirmationButton,
   Col,
+  Collapse,
   HasManyFieldsRow,
   Tooltip
 } from '../../src';
@@ -33,12 +34,21 @@ describe('<HasManyFieldsRow />', () => {
       assert(deleteButton);
     });
 
-    it('should call onDelete', () => {
+    it('should call onDelete when collapse exits', () => {
       deleteButton.simulate('click');
       sinon.assert.notCalled(onDelete);
       assert.equal(deleteButton.text(), 'Delete');
       deleteButton.simulate('click');
-      sinon.assert.calledOnce(onDelete);
+      setTimeout(() => {
+        sinon.assert.calledOnce(onDelete);
+      }, 0);
+    });
+
+    it('should set isOpen to false when deleting', () => {
+      assert.strictEqual(component.state('isOpen'), true);
+      deleteButton.simulate('click');
+      deleteButton.simulate('click');
+      assert.strictEqual(component.state('isOpen'), false);
     });
 
     it('should put content in first column', () =>
