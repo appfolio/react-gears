@@ -14,8 +14,8 @@ interface StepProps {
 const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = false }: StepProps) => {
   const className = classNames({
     [styles.complete]: complete,
-    [styles.hsteps]: !vertical,
-    [styles.vsteps]: vertical,
+    [styles.steps]: true,
+    [styles.vertical]: vertical,
     'm-0': true
   });
   const activeStep = steps[step];

@@ -2,7 +2,7 @@
 $line: 1px;
 $todo: #818a91; // Saffron color-muted, needs to be text-muted
 
-.hsteps {
+.steps:not(.vertical) {
   align-items: flex-start;
   counter-reset: step;
   display: flex;
@@ -86,7 +86,7 @@ $todo: #818a91; // Saffron color-muted, needs to be text-muted
     }
 }
 
-.vsteps {
+.steps.vertical {
   counter-reset: step;
 
   .step { 
