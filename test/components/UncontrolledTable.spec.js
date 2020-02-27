@@ -554,6 +554,46 @@ describe('<UncontrolledTable />', () => {
     assert(instance.expanded({ name: 'Alpha' }) === true);
   });
 
+  describe('isEqualUsingKeys()', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = mount(
+        <UncontrolledTable columns={[]} rows={[]} expanded={[]} page={0} />
+      );
+    });
+
+    it('should use object comparison if no keys present in arrays', () => {
+      let oldArray = [1, 2, 3];
+      const newArray = [3, 4, 5];
+
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
+      oldArray = newArray;
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
+    });
+
+    it('should use object comparison if keys arent present in every object in the arrays, order agnostic', () => {
+      let oldArray = [{ key: 1 }, { key: 2 }, { name: 'Bob Barker' }];
+      const newArray = [{ key: 2 }, { key: 1 }, { name: 'Bob Barker' }];
+
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
+
+      oldArray = newArray;
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
+    });
+
+    it('should use key comparison if keys present in every object in the arrays, order agnostic', () => {
+      let oldArray = [{ key: 1 }, { key: 2 }];
+      const newArray = [{ key: 2 }, { key: 1 }];
+
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
+
+      oldArray = [{ key: 1 }, { key: 3 }];
+      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
+    });
+  });
+
+
   describe('UNSAFE_componentWillReceiveProps()', () => {
     let wrapper;
     beforeEach(() => {
@@ -567,7 +607,7 @@ describe('<UncontrolledTable />', () => {
       );
     });
 
-    it('should not reset state for expanded, page, and selected if a rows object reference has not changed', () => {
+    it('should not reset state for expanded, page, and selected if a rows key attributes have not changed', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
       assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
@@ -576,7 +616,7 @@ describe('<UncontrolledTable />', () => {
       const expectedStateSelected = wrapper.state().selected;
       const expectedStatePage = wrapper.state().page;
 
-      const newProps = wrapper.props();
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
       newProps.rows[0].name = 'Charlie';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
@@ -585,14 +625,13 @@ describe('<UncontrolledTable />', () => {
       assert.strictEqual(wrapper.state().page, expectedStatePage, 'the page state should not have been changed');
     });
 
-    it('should reset state for expanded, page, and selected if a rows object reference has changed', () => {
+    it('should reset state for expanded, page, and selected if a rows key attributes have changed', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
       assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
 
-      const newProps = wrapper.props();
-      const newRows = JSON.parse(JSON.stringify(newProps.rows));
-      newProps.rows = newRows;
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
+      newProps.rows[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(wrapper.state().expanded.length, 0, 'the expanded state should be reset to empty');
@@ -600,32 +639,26 @@ describe('<UncontrolledTable />', () => {
       assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
     });
 
-    it('should reset state for selected if selected objects reference has changed', () => {
+    it('should reset state for selected if a change is detected in the selected key attributes have changed', () => {
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
 
-      const newProps = wrapper.props();
-      const newSelected = JSON.parse(JSON.stringify(newProps.selected));
-      newProps.selected = newSelected;
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
       newProps.selected[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(wrapper.state().selected.length, 1, 'the selected state should have one entry');
       assert.strictEqual(wrapper.state().selected[0].key, '3', 'the selected state should be set to the new array');
-      assert.strictEqual(wrapper.state().page, 1, 'the page state should not have changed');
     });
 
-    it('should reset state for selected if selected objects reference has changed', () => {
+    it('should reset state for expanded if a change is detected in the expanded key attributes have changed', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
 
-      const newProps = wrapper.props();
-      const newExpanded = JSON.parse(JSON.stringify(newProps.selected));
-      newProps.expanded = newExpanded;
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
       newProps.expanded[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(wrapper.state().expanded.length, 1, 'the expanded state should have one entry');
       assert.strictEqual(wrapper.state().expanded[0].key, '3', 'the expanded state should be set to the new array');
-      assert.strictEqual(wrapper.state().page, 1, 'the page state should not have changed');
     });
   });
 });

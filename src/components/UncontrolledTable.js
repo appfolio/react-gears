@@ -118,14 +118,25 @@ export default class UncontrolledTable extends React.Component {
     this.props.onPageChange(page);
   }
 
+  isEqualUsingKeys = (newArray, oldArray) => {
+    const hasKey = element => element.key !== undefined;
+    if (!(newArray.every(hasKey) && oldArray.every(hasKey))) {
+      return newArray === oldArray;
+    }
+
+    const keys = oldArray.map(el => el.key).sort();
+    const newKeys = newArray.map(el => el.key).sort();
+    return isEqual(keys, newKeys);
+  }
+
   //eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const rowsChanged = this.props.rows !== nextProps.rows;
-
     const selectableChanged = nextProps.selectable !== this.props.selectable;
     const expandableChanged = nextProps.expandable !== this.props.expandable;
-    const expandedChanged = nextProps.expanded !== this.props.expanded;
-    const selectedChanged = nextProps.selected !== this.props.selected;
+
+    const expandedChanged = !this.isEqualUsingKeys(this.props.expanded, nextProps.expanded);
+    const selectedChanged = !this.isEqualUsingKeys(this.props.selected, nextProps.selected);
+    const rowsChanged = !this.isEqualUsingKeys(this.props.rows, nextProps.rows);
 
     // Clear selection if rows or selectable change
     if (rowsChanged || selectableChanged) {
