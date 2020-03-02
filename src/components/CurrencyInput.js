@@ -2,17 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import MaskedInput from 'react-text-mask';
-
-//
-// TODO there is currently a bug in MaskedInput that prevents users from entering decimal only currency values.
-// As of 06/05/2017 the issue has been fixed and has an open PR to react-text mask at
-// https://github.com/text-mask/text-mask/pull/542
-// The monkey patch imported below can be removed when the PR is merged and a new version of react-text-mask is
-// released.
-//
-// import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import createNumberMask from './CurrencyInput/createNumberMaskMonkeyPatch';
-
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
