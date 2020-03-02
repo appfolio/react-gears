@@ -11,6 +11,7 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   children?: ReactNode;
   date: Date;
   dateFormat?: string;
+  shortDateFormat?: string;
 }
 
 /**
