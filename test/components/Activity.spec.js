@@ -30,7 +30,7 @@ describe('<Activity />', () => {
 
   it('should render by', () => {
     const component = mount(<Activity date={new Date()} action="Sleep" by="Gary Thomas" />);
-    const by = component.find('span').at(1);
+    const by = component.find('.js-by').first();
     assert.strictEqual(by.text(), '– Gary Thomas');
   });
 

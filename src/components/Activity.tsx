@@ -11,6 +11,7 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   children?: ReactNode;
   date: Date;
   dateFormat?: string;
+  shortDateFormat?: string;
 }
 
 /**
@@ -23,19 +24,21 @@ const Activity: FunctionComponent<ActivityProps> = ({
   children,
   date,
   dateFormat = 'MM/DD/YYYY hh:mm A',
+  shortDateFormat = 'M/D/YY h:mm A',
   ...props
-}) =>
+}) => (
   <ListGroupItem {...props}>
     <Row className="w-100 no-gutters">
-      <Col xs={12} sm={4} md={3} className="text-nowrap">
-        <span>{fecha.format(date, dateFormat)}</span>
+      <Col xs={12} sm={3} className="text-nowrap text-truncate">
+        <span className="d-none d-md-inline">{fecha.format(date, dateFormat)}</span>
+        <span className="d-md-none">{fecha.format(date, shortDateFormat)}</span>
       </Col>
-      <Col>
+      <Col className="pl-md-1">
         {(action || date) && (
-          <div>
+          <div className="text-truncate">
             {action && <strong>{action}</strong>}
             {by && (
-              <span className="pl-1">
+              <span className="pl-1 js-by">
                 {action ? '– ' : ''}
                 <span>{by}</span>
               </span>
@@ -45,7 +48,8 @@ const Activity: FunctionComponent<ActivityProps> = ({
         {children}
       </Col>
     </Row>
-  </ListGroupItem>;
+  </ListGroupItem>
+);
 
 Activity.displayName = 'Activity';
 
