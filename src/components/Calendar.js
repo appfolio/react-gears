@@ -37,16 +37,18 @@ const Day = ({ day, dateFormat, onClick, dayClassName, ...props }) => {
     cursor: 'not-allowed'
   } : {};
 
+  const tdProps = {
+    className: classNames,
+    onClick: disabled ? undefined : onClick,
+    style: styles,
+    ...props,
+  };
+
+  if (onClick) tdProps.role = 'button';
+
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <td
-      className={classNames}
-      onClick={disabled ? undefined : onClick}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-      role="button"
-      style={styles}
-      {...props}
-    >
+    <td {...tdProps} >
       {disabled ? <s>{format(day.date, dateFormat)}</s> : format(day.date, dateFormat)}
     </td>
   );
@@ -88,7 +90,7 @@ class Calendar extends React.Component {
     dateEnabled: () => true,
     dateVisible: () => true,
     weekDayFormat: 'dd',
-    onSelect: () => {}
+    // onSelect: () => {}
   };
 
   // TODO extract as module to share or test easier?:
@@ -127,6 +129,7 @@ class Calendar extends React.Component {
     const weeks = this.visibleWeeks(date);
     delete props.dateEnabled; // Table doesn't need dateVisible
     delete props.dateVisible; // Table doesn't need dateVisible
+    const onClick = onSelect ? () => day.visible && onSelect(day.date) : undefined;
 
     return (
       <Table
@@ -157,7 +160,7 @@ class Calendar extends React.Component {
                   day={day}
                   dateFormat={dateFormat}
                   key={d}
-                  onClick={() => day.visible && onSelect(day.date)}
+                  onClick={onClick}
                   dayClassName={dayClassName}
                 />
               ))}
