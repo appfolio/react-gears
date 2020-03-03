@@ -18,7 +18,7 @@ import Table from './Table';
 
 // TODO locale/localize
 
-const Day = ({ day, dateFormat, onClick, ...props }) => {
+const Day = ({ day, dateFormat, onClick, dayClassName, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(
     'text-center',
@@ -26,6 +26,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
     { 'bg-primary text-white': day.selected }, // Highlight selected date
     { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible }, // If date is (optionally) filtered out
+    dayClassName ? dayClassName(day.date) : '',
     style.date
   );
   const styles = disabled ? {
@@ -55,6 +56,7 @@ Day.propTypes = {
     date: PropTypes.instanceOf(Date),
     visible: PropTypes.bool
   }),
+  dayClassName: PropTypes.func,
   dateFormat: PropTypes.string,
   onClick: PropTypes.func
 };
@@ -62,6 +64,7 @@ Day.propTypes = {
 class Calendar extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    dayClassName: PropTypes.func,
     date: PropTypes.instanceOf(Date),
     dateFormat: PropTypes.string,
     dateEnabled: PropTypes.func,
@@ -112,7 +115,7 @@ class Calendar extends React.Component {
   }
 
   render() {
-    const { date, dateFormat, onSelect, weekDayFormat, ...props } = this.props;
+    const { date, dateFormat, onSelect, weekDayFormat, dayClassName, ...props } = this.props;
     const weeks = this.visibleWeeks(date);
     delete props.dateEnabled; // Table doesn't need dateVisible
     delete props.dateVisible; // Table doesn't need dateVisible
@@ -147,6 +150,7 @@ class Calendar extends React.Component {
                   dateFormat={dateFormat}
                   key={d}
                   onClick={() => day.visible && onSelect(day.date)}
+                  dayClassName={dayClassName}
                 />
               ))}
             </tr>

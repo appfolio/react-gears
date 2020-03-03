@@ -79,4 +79,18 @@ describe('<Calendar />', () => {
     firstDate.simulate('click');
     assert(callback.notCalled);
   });
+
+  it('should have special class based on passed-in func prop', () => {
+    const specifiedDate = new Date(2017, 7, 14);
+    const dayClassName = date => isSameDay(date, specifiedDate) ? 'special-day' : '';
+    const component = mount(<Calendar date={specifiedDate} dayClassName={dayClassName} />);
+    component.find('Day').forEach((dayComponent) => {
+      const hasSpecialClass = dayComponent.find('td').hasClass('special-day');
+      if (isSameDay(dayComponent.prop('day').date, specifiedDate)) {
+        assert(hasSpecialClass);
+      } else {
+        assert(!hasSpecialClass);
+      }
+    });
+  });
 });
