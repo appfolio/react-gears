@@ -18,15 +18,19 @@ import Table from './Table';
 
 // TODO locale/localize
 
+const defaultDayClassName = (day) => {
+  if (day.selected) return 'bg-primary text-white';
+  else if (!day.selected && isToday(day.date)) return 'text-primary font-weight-bold';
+  return '';
+};
+
 const Day = ({ day, dateFormat, onClick, dayClassName, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(
     'text-center',
     { 'bg-light text-muted': !day.sameMonth }, // Lighten days in months before & after
-    { 'bg-primary text-white': day.selected }, // Highlight selected date
-    { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible }, // If date is (optionally) filtered out
-    dayClassName ? dayClassName(day.date) : '',
+    dayClassName(day),
     style.date
   );
   const styles = disabled ? {
@@ -59,6 +63,10 @@ Day.propTypes = {
   dayClassName: PropTypes.func,
   dateFormat: PropTypes.string,
   onClick: PropTypes.func
+};
+
+Day.defaultProps = {
+  dayClassName: defaultDayClassName
 };
 
 class Calendar extends React.Component {

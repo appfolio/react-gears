@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
-import { Calendar, DateInput, Icon, FormRow, Label } from '../src';
+import { DateInput, Icon, FormRow, Label } from '../src';
 
 storiesOf('DateInput', module)
   .add('with props', () => (
@@ -77,14 +77,6 @@ storiesOf('DateInput', module)
     <div className="d-inline-flex">
       <DateInput
         dateEnabled={date => date.getDay() > 0 && date.getDay() < 6}
-      />
-    </div>
-  ))
-  .add('Calendar', () => (
-    <div className="d-inline-flex">
-      <Calendar
-        dateFormat={text('dateFormat', Calendar.defaultProps.dateFormat)}
-        onSelect={action('onSelect')}
       />
     </div>
   ));
