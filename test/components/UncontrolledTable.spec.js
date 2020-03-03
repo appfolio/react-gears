@@ -553,4 +553,79 @@ describe('<UncontrolledTable />', () => {
     instance.toggleExpanded({ name: 'Alpha' });
     assert(instance.expanded({ name: 'Alpha' }) === true);
   });
+
+  describe('UNSAFE_componentWillReceiveProps()', () => {
+    let wrapper;
+    beforeEach(() => {
+      const columns = [{ header: 'Name', cell: row => row.name }];
+      const rows = [{ name: 'Alpha', key: '1' }, { name: 'Bravo', key: '2' }];
+      const expanded = [{ name: 'Alpha', key: '1' }];
+      const selected = [{ name: 'Bravo', key: '2' }];
+
+      wrapper = mount(
+        <UncontrolledTable columns={columns} rows={rows} expanded={expanded} page={1} selected={selected} />
+      );
+    });
+
+    it('should not reset state for expanded, page, and selected if a rows object reference has not changed', () => {
+      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
+      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
+      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
+
+      const expectedStateExpanded = wrapper.state().expanded;
+      const expectedStateSelected = wrapper.state().selected;
+      const expectedStatePage = wrapper.state().page;
+
+      const newProps = wrapper.props();
+      newProps.rows[0].name = 'Charlie';
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.deepEqual(wrapper.state().expanded.map(r => r.key), expectedStateExpanded.map(r => r.key), 'the expanded state should not have changed');
+      assert.deepEqual(wrapper.state().selected.map(r => r.key), expectedStateSelected.map(r => r.key), 'the selected state should not have changed');
+      assert.strictEqual(wrapper.state().page, expectedStatePage, 'the page state should not have been changed');
+    });
+
+    it('should reset state for expanded, page, and selected if a rows object reference has changed', () => {
+      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
+      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
+      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
+
+      const newProps = wrapper.props();
+      const newRows = JSON.parse(JSON.stringify(newProps.rows));
+      newProps.rows = newRows;
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(wrapper.state().expanded.length, 0, 'the expanded state should be reset to empty');
+      assert.strictEqual(wrapper.state().selected.length, 0, 'the selected state should be reset to empty');
+      assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
+    });
+
+    it('should reset state for selected if selected objects reference has changed', () => {
+      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
+
+      const newProps = wrapper.props();
+      const newSelected = JSON.parse(JSON.stringify(newProps.selected));
+      newProps.selected = newSelected;
+      newProps.selected[0].key = '3';
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(wrapper.state().selected.length, 1, 'the selected state should have one entry');
+      assert.strictEqual(wrapper.state().selected[0].key, '3', 'the selected state should be set to the new array');
+      assert.strictEqual(wrapper.state().page, 1, 'the page state should not have changed');
+    });
+
+    it('should reset state for selected if selected objects reference has changed', () => {
+      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
+
+      const newProps = wrapper.props();
+      const newExpanded = JSON.parse(JSON.stringify(newProps.selected));
+      newProps.expanded = newExpanded;
+      newProps.expanded[0].key = '3';
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(wrapper.state().expanded.length, 1, 'the expanded state should have one entry');
+      assert.strictEqual(wrapper.state().expanded[0].key, '3', 'the expanded state should be set to the new array');
+      assert.strictEqual(wrapper.state().page, 1, 'the page state should not have changed');
+    });
+  });
 });

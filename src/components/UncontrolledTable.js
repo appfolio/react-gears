@@ -120,7 +120,7 @@ export default class UncontrolledTable extends React.Component {
 
   //eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const rowsChanged = isEqual(this.props.rows, nextProps.rows);
+    const rowsChanged = this.props.rows !== nextProps.rows;
 
     const selectableChanged = nextProps.selectable !== this.props.selectable;
     const expandableChanged = nextProps.expandable !== this.props.expandable;
