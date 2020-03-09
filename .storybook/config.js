@@ -118,12 +118,22 @@ addDecorator((Story) => (
   <Story />
 ))
 
+function loadThemeFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const themeName = urlParams.get('theme');
+  return Object.values(allThemes)
+    .reduce((a, b) => a.concat(b), [])
+    .find(theme => theme.name == themeName);
+}
 function loadStories() {
   require('../stories');
 
+  const urlTheme = loadThemeFromUrl();
   const storybookTheme = localStorage.storybookTheme;
 
-  if (storybookTheme) {
+  if (urlTheme && urlTheme.url) {
+    changeTheme(urlTheme.url);
+  } else if (storybookTheme) {
     changeTheme(storybookTheme);
   }
 }
