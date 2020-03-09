@@ -53,12 +53,12 @@ setOptions({
 const changeTheme = url => {
   const link = document.getElementById('theme');
   link.href = url;
-  // TODO reenable after 4.0.0 release
-  // try {
-  //   localStorage.storybookTheme = index;
-  // } catch (err) {
-  //   // Safari private mode
-  // }
+
+  try {
+    localStorage.storybookTheme = url;
+  } catch (err) {
+    // Safari private mode
+  }
 };
 
 const ThemeLink = props => {
@@ -118,14 +118,24 @@ addDecorator((Story) => (
   <Story />
 ))
 
+function loadThemeFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const themeName = urlParams.get('theme');
+  return Object.values(allThemes)
+    .reduce((a, b) => a.concat(b), [])
+    .find(theme => theme.name == themeName);
+}
 function loadStories() {
   require('../stories');
 
-  // const storybookTheme = parseInt(localStorage.storybookTheme);
+  const urlTheme = loadThemeFromUrl();
+  const storybookTheme = localStorage.storybookTheme;
 
-  // if (storybookTheme) {
-  //   changeTheme(storybookTheme);
-  // }
+  if (urlTheme && urlTheme.url) {
+    changeTheme(urlTheme.url);
+  } else if (storybookTheme) {
+    changeTheme(storybookTheme);
+  }
 }
 
 configure(loadStories, module);
