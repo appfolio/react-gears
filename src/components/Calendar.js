@@ -67,6 +67,7 @@ class Calendar extends React.Component {
     dateEnabled: PropTypes.func,
     dateVisible: PropTypes.func,
     onSelect: PropTypes.func,
+    renderDay: PropTypes.func,
     weekDayFormat: PropTypes.string
   };
 
@@ -76,6 +77,14 @@ class Calendar extends React.Component {
     dateFormat: 'D',
     dateEnabled: () => true,
     dateVisible: () => true,
+    renderDay: (day, dateFormat, onSelect) => (
+      <Day
+        day={day}
+        dateFormat={dateFormat}
+        key={day.date.toString()}
+        onClick={() => day.visible && onSelect(day.date)}
+      />
+    ),
     weekDayFormat: 'dd',
     onSelect: () => {}
   };
@@ -112,7 +121,7 @@ class Calendar extends React.Component {
   }
 
   render() {
-    const { date, dateFormat, onSelect, weekDayFormat, ...props } = this.props;
+    const { date, dateFormat, onSelect, renderDay, weekDayFormat, ...props } = this.props;
     const weeks = this.visibleWeeks(date);
     delete props.dateEnabled; // Table doesn't need dateVisible
     delete props.dateVisible; // Table doesn't need dateVisible
@@ -141,14 +150,7 @@ class Calendar extends React.Component {
         <tbody>
           {weeks.map((days, w) => (
             <tr key={w}>
-              {days.map((day, d) => (
-                <Day
-                  day={day}
-                  dateFormat={dateFormat}
-                  key={d}
-                  onClick={() => day.visible && onSelect(day.date)}
-                />
-              ))}
+              {days.map(day => renderDay(day, dateFormat, onSelect))}
             </tr>
           ))}
         </tbody>
