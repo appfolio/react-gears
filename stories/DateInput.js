@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
@@ -85,6 +86,25 @@ storiesOf('DateInput', module)
       <Calendar
         dateFormat={text('dateFormat', Calendar.defaultProps.dateFormat)}
         onSelect={action('onSelect')}
+      />
+    </div>
+  ))
+  .add('Calendar custom day', () => (
+    <div className="d-inline-flex">
+      <Calendar
+        renderDay={(day) => {
+          const className = classNames('px-2 py-1 text-center', {
+            'text-danger': !day.future,
+            'text-muted': !day.sameMonth,
+            'text-white bg-primary': day.date.getDate() === 24,
+            'bg-info': day.date.getDate() === 28
+          });
+          return (
+            <td className={className}>
+              <div>{day.future ? day.date.getDate() : '✘'}</div>
+            </td>
+          );
+        }}
       />
     </div>
   ));

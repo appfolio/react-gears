@@ -79,4 +79,10 @@ describe('<Calendar />', () => {
     firstDate.simulate('click');
     assert(callback.notCalled);
   });
+
+  it('should render custom days', () => {
+    const component = mount(<Calendar renderDay={() => <td className="customDay">x</td>} />);
+    const days = component.find('.customDay');
+    assert.equal(days.length, 42);
+  });
 });
