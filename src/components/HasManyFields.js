@@ -167,6 +167,7 @@ class HasManyFields extends React.Component {
 
     return (
       <HasManyFieldsRow
+        animated={false}
         onDelete={this.deleteItem(index)}
         key={key}
         deletable={this.value.length > minimumRows}
