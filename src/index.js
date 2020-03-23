@@ -90,6 +90,7 @@ import Alert from './components/Alert.tsx';
 import BlockPanel from './components/BlockPanel.js';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
+import CalculateInput from './components/CalculateInput.tsx';
 import Calendar from './components/Calendar.js';
 import Callout from './components/Callout.tsx';
 import Close from './components/Close.js';
@@ -261,6 +262,7 @@ export {
   BlockPanel,
   BoundForm,
   BoundFormRow,
+  CalculateInput,
   Calendar,
   Callout,
   Close,

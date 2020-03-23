@@ -10,6 +10,7 @@ import './Badge';
 import './BlockPanel';
 import './Breadcrumb';
 import './Buttons';
+import './CalculateInput';
 import './Callout';
 import './Card';
 import './Carousel';
