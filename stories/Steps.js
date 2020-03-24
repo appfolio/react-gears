@@ -16,5 +16,16 @@ storiesOf('Steps', module)
       steps={steps}
       step={number('step', 0)}
       complete={boolean('complete', false)}
+      vertical={boolean('vertical', false)}
+      collapse={boolean('collapse', false)}
+    />
+  ))
+  .add('Vertical steps', () => (
+    <Steps
+      steps={steps}
+      step={number('step', 0)}
+      complete={boolean('complete', false)}
+      vertical={boolean('vertical', true)}
+      collapse={boolean('collapse', false)}
     />
   ));

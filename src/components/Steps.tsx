@@ -1,13 +1,21 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
 import styles from './Steps.scss';
 
-const Steps = ({ collapse, complete, step, steps }) => {
+interface StepProps {
+  collapse?: boolean;
+  complete?: boolean;
+  step?: number;
+  steps?: string[];
+  vertical?: boolean;
+}
+
+const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = false }: StepProps) => {
   const className = classNames({
     [styles.complete]: complete,
     [styles.steps]: true,
+    [styles.vertical]: vertical,
     'm-0': true
   });
   const activeStep = steps[step];
@@ -25,7 +33,7 @@ const Steps = ({ collapse, complete, step, steps }) => {
           const stepComplete = !complete && index < step;
           const stepActive = !complete && index === step;
 
-          const liClasses = classNames({
+          const liClasses = classNames('mb-2', {
             [styles.step]: true,
             [styles.complete]: stepComplete,
             [styles.active]: stepActive,
@@ -49,8 +57,9 @@ const Steps = ({ collapse, complete, step, steps }) => {
             'text-success': complete
           });
 
-          const textClasses = classNames('mb-2 js-step-label', {
-            'd-none d-sm-inline': collapse !== false,
+          const textClasses = classNames('js-step-label', {
+            'd-sm-inline': vertical && collapse !== false,
+            'd-none d-sm-inline': !vertical && collapse !== false,
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
             'text-success': complete,
@@ -62,30 +71,17 @@ const Steps = ({ collapse, complete, step, steps }) => {
               <div className={bubbleClasses}>
                 <span className={iconClasses}>{complete || stepComplete ? <Icon name="check" /> : index + 1}</span>
               </div>
-              {collapse !== true ? <span className={textClasses}>{name}</span> : null}
+              {collapse !== true || vertical ? <span className={textClasses}>{name}</span> : null}
             </li>
           );
         })}
       </ol>
-      {collapse !== false ?
+      {collapse !== false && !vertical ?
         <div className={activeStepClasses}>
           <span className="mb-2 js-step-label">{activeStep}</span>
         </div> : null}
     </div>
   );
-};
-
-Steps.propTypes = {
-  collapse: PropTypes.bool,
-  complete: PropTypes.bool,
-  step: PropTypes.number,
-  steps: PropTypes.array
-};
-
-Steps.defaultProps = {
-  complete: false,
-  step: 0,
-  steps: []
 };
 
 export default Steps;
