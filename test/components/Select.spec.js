@@ -129,4 +129,14 @@ describe('<Select />', () => {
     const component = shallow(<Select creatable />);
     assert.equal(component.type(), ReactSelect.Creatable);
   });
+
+  it('should pass name prop', () => {
+    const component = mount(<Select name="Yowza" />);
+    assert(component.find('input[name="Yowza"]').exists());
+  });
+
+  it('should pass inputProps name prop', () => {
+    const component = mount(<Select inputProps={{ name: 'Gonzo' }} />);
+    assert(component.find('input[name="Gonzo"]').exists());
+  });
 });
