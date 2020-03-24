@@ -37,6 +37,7 @@ import './InfoBox';
 import './InputGroup';
 import './LabelBadge';
 import './ListGroup';
+import './MaskedInput';
 import './Media';
 import './Modal';
 import './MonthInput';
