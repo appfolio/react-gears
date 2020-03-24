@@ -16,6 +16,7 @@ import './Carousel';
 import './CheckboxGroup';
 import './Collapse';
 import './CollapsableText';
+import './Combobox';
 import './CreditCardNumber';
 import './CurrencyInput';
 import './Datapair';
