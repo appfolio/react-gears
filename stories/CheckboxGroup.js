@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { CheckboxGroup } from '../src';
 
 const options = [
@@ -12,11 +13,9 @@ const options = [
 
 storiesOf('CheckboxGroup', module)
   .add('Live example', () => {
-    const [selected, setSelected] = useState([]);
-
-    const onChange = (values) => { setSelected(values); };
+    const selected = ['watermelon', 'lemon'];
 
     return (
-      <CheckboxGroup options={options} onChange={onChange} selected={selected} />
+      <CheckboxGroup options={options} onChange={action('onChange')} selected={selected} />
     );
   });

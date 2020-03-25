@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { RadioGroup } from '../src';
 
 const options = [
@@ -12,11 +13,9 @@ const options = [
 
 storiesOf('RadioGroup', module)
   .add('Live Example', () => {
-    const [selected, setSelected] = useState();
-
-    const onChange = (v) => { setSelected(v); };
+    const selected = 'lemon';
 
     return (
-      <RadioGroup radio options={options} onChange={onChange} selected={selected} />
+      <RadioGroup radio options={options} onChange={action('onChange')} selected={selected} />
     );
   });
