@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { CheckboxGroup } from '../src';
 
 const options = [
@@ -12,11 +13,14 @@ const options = [
 
 storiesOf('CheckboxGroup', module)
   .add('Live example', () => {
-    const [selected, setSelected] = useState(new Set());
+    const [selected, setSelected] = useState([]);
 
-    const onChange = (values) => { setSelected(values); };
+    const handleChange = (values) => {
+      setSelected(values);
+      action('onChange')(values);
+    };
 
     return (
-      <CheckboxGroup options={options} onChange={onChange} selected={selected} />
+      <CheckboxGroup options={options} onChange={handleChange} selected={selected} />
     );
   });

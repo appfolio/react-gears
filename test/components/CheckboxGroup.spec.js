@@ -18,25 +18,25 @@ describe('<CheckboxGroup />', () => {
   it('should select option', () => {
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <CheckboxGroup options={options} selected={new Set(['apple'])} onChange={mockOnChange} />
+      <CheckboxGroup options={options} selected={['apple']} onChange={mockOnChange} />
     );
 
     const option = checkboxes.getByLabelText('Orange');
     fireEvent.click(option);
 
-    sinon.assert.calledWith(mockOnChange, new Set(['apple', 'orange']));
+    sinon.assert.calledWith(mockOnChange, ['apple', 'orange']);
   });
 
   it('should deselect option', () => {
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <CheckboxGroup options={options} selected={new Set(['apple', 'lemon'])} onChange={mockOnChange} />
+      <CheckboxGroup options={options} selected={['apple', 'lemon']} onChange={mockOnChange} />
     );
 
     const option = checkboxes.getByLabelText('Apple');
     fireEvent.click(option);
 
-    sinon.assert.calledWith(mockOnChange, new Set(['lemon']));
+    sinon.assert.calledWith(mockOnChange, ['lemon']);
   });
 
   it('should work with object values', () => {
@@ -47,7 +47,7 @@ describe('<CheckboxGroup />', () => {
     ];
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <CheckboxGroup options={coolerOptions} selected={new Set([{ id: 1, type: 'topping', price: '0.50' }])} onChange={mockOnChange} />
+      <CheckboxGroup options={coolerOptions} selected={[{ id: 1, type: 'topping', price: '0.50' }]} onChange={mockOnChange} />
     );
 
     const option = checkboxes.getByLabelText('Aiyu Jelly');
@@ -55,7 +55,7 @@ describe('<CheckboxGroup />', () => {
 
     sinon.assert.calledWith(
       mockOnChange,
-      new Set([{ id: 1, type: 'topping', price: '0.50' }, { id: 2, type: 'topping', price: '0.50' }])
+      [{ id: 1, type: 'topping', price: '0.50' }, { id: 2, type: 'topping', price: '0.50' }]
     );
   });
 });
