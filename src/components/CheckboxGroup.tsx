@@ -11,8 +11,8 @@ interface Option {
 
 export interface CheckboxGroupProps {
   options: Option[];
-  selected: Set<Value>;
-  onChange: (values: Set<Value>) => void;
+  selected: Value[];
+  onChange: (values: Value[]) => void;
 }
 
 const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
@@ -25,7 +25,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
       newSelected.delete(value);
     }
 
-    onChange(newSelected);
+    onChange(Array.from(newSelected));
   };
 
   return (
@@ -36,7 +36,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
             <Label check>
               <Input
                 type="checkbox"
-                checked={selected.has(option.value)}
+                checked={selected.includes(option.value)}
                 onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
               />{' '}{option.label}
             </Label>

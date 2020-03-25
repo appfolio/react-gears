@@ -12,7 +12,7 @@ const options = [
 
 storiesOf('CheckboxGroup', module)
   .add('Live example', () => {
-    const [selected, setSelected] = useState(new Set());
+    const [selected, setSelected] = useState([]);
 
     const onChange = (values) => { setSelected(values); };
 
