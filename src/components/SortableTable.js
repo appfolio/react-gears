@@ -32,7 +32,14 @@ class SortableTable extends React.Component {
         width: PropTypes.string
       })
     ).isRequired,
-    rows: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    rows: PropTypes.oneOfType(
+      [
+        PropTypes.arrayOf(PropTypes.shape({
+          key: PropTypes.string // ensure each row has a unique key
+        })),
+        PropTypes.object,
+      ]
+    ),
     expandableColumn: PropTypes.object,
     footer: PropTypes.node,
     rowClassName: PropTypes.func,
