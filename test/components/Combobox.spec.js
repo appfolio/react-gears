@@ -92,7 +92,7 @@ describe('<Combobox />', () => {
     sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
 
-  it('should deselect option if input value is changed', () => {
+  it('should deselect option on backspace', () => {
     let value;
     const mockOnChange = (v) => { value = v; };
     let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
@@ -108,7 +108,7 @@ describe('<Combobox />', () => {
     combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
     input = combobox.getByTestId('combobox-input');
 
-    fireEvent.change(input, { target: { value: 'd2' } });
+    fireEvent.keyDown(input, { key: 'Backspace', code: 8 });
 
     assert.equal(undefined, value);
   });
