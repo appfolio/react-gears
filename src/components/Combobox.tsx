@@ -76,9 +76,6 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
-    if (selectedOption && selectedOption.label !== inputValue) {
-      onChange(undefined);
-    }
   }, [inputValue, setVisibleOptions, filterOptions, options, selectedOption, onChange]);
 
   const scrollFocusedOptionIntoView = () => {
@@ -118,6 +115,9 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
+    } else if (selectedOption && key === 'Backspace') {
+      setInputValue('');
+      onChange(undefined);
     }
   };
 
