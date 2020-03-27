@@ -74,7 +74,7 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
       return React.cloneElement(node, [], renderChildren(node.props.children));
     }
 
-    return node;
+    return node || null;
   };
 
   return renderChildren(children);
