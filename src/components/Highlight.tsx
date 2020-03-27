@@ -65,7 +65,7 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
       return getSegments(node, highlightedSegments(node)).map(({ start, end, highlight }) => {
         const text = node.slice(start, end);
         if (highlight) {
-          return <mark>{text}</mark>;
+          return <mark className="p-0">{text}</mark>;
         }
 
         return text;
@@ -74,7 +74,7 @@ const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
       return React.cloneElement(node, [], renderChildren(node.props.children));
     }
 
-    return node;
+    return node || null;
   };
 
   return renderChildren(children);
