@@ -61,6 +61,7 @@ class FormChoice extends React.Component {
         />
         <Label
           className="form-check-label"
+          check={!inline}
           for={this.id}
           style={{ cursor: disabled && 'not-allowed' }}
         >
