@@ -50,7 +50,7 @@ class FormChoice extends React.Component {
     const computedValue = value || children;
 
     const item = (
-      <div className={labelClasses} check={!inline}>
+      <div className={labelClasses}>
         <Input
           id={this.id}
           type={type}
@@ -61,6 +61,7 @@ class FormChoice extends React.Component {
         />
         <Label
           className="form-check-label"
+          check={!inline}
           for={this.id}
           style={{ cursor: disabled && 'not-allowed' }}
         >
