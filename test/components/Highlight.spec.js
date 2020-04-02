@@ -65,4 +65,14 @@ describe('<Highlight />', () => {
 
     assert.equal(0, highlighted.length);
   });
+
+  it('should not highlight special characters if ignoring', () => {
+    const highlight = render(
+      <Highlight ignoreSpecial pattern="dog's body.">The quick brown fox jumps over the lazy dog&apos;s body.</Highlight>
+    );
+
+    const highlighted = highlight.container.querySelector('mark');
+
+    assert.equal("dog's body", highlighted.innerHTML);
+  });
 });
