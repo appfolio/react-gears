@@ -9,13 +9,18 @@ interface Segment {
 interface HighlightProps {
   pattern: string;
   caseSensitive?: boolean;
+  /** Escaping single quotes */
+  ignoreSpecial?: boolean;
   children: ReactNode;
 }
 
 const escapePattern = (pattern: string) => pattern.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
 
-const Highlight = ({ pattern, caseSensitive, children }: HighlightProps) => {
+const ignoreSpecialCharacters = (pattern: string) => pattern.replace(/[^\w\s\']/gi, '');
+
+const Highlight = ({ pattern, caseSensitive, ignoreSpecial, children }: HighlightProps) => {
   const highlightedSegments = (text: string) => {
+    if (ignoreSpecial) pattern = ignoreSpecialCharacters(pattern);
     const regex = new RegExp(escapePattern(pattern), caseSensitive ? 'g' : 'gi');
 
     const segments: Segment[] = [];
