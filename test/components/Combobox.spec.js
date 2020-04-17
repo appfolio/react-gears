@@ -40,7 +40,7 @@ describe('<Combobox />', () => {
     fireEvent.mouseDown(option);
 
     sinon.assert.called(mockOnChange);
-    sinon.assert.calledWith(mockOnChange, OPTIONS[2].value);
+    sinon.assert.calledWith(mockOnChange, OPTIONS[2].value, OPTIONS[2]);
   });
 
   it('should close menu on blur', () => {

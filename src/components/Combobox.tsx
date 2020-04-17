@@ -28,7 +28,7 @@ interface ComboboxProps extends InputProps {
   direction?: Direction;
   dropdownProps?: DropdownProps;
   noResultsLabel?: string;
-  onChange?: (value: any) => void;
+  onChange?: (value: any, option?: Option) => void;
   filterOptions?: (options: Option[], value: any) => Option[];
   renderInputValue?: (option: Option) => string;
   renderOption?: (option: Option) => React.ReactNode;
@@ -102,7 +102,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
 
   const selectOption = (option: Option) => {
-    onChange(option.value);
+    onChange(option.value, option);
     setOpen(false);
   };
 
