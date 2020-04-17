@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import * as Popper from 'popper.js';
+import uniqid from 'uniqid';
 import Button from './Button';
 import Tooltip from './Tooltip';
-import uniqid from 'uniqid';
 import { ButtonProps } from 'reactstrap/lib/Button';
 
 interface TooltipButtonProps extends ButtonProps {
@@ -13,7 +13,7 @@ interface TooltipButtonProps extends ButtonProps {
 }
 
 const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
-  tooltip = '',
+  tooltip,
   disabled = false,
   text,
   tooltipPlacement = 'top',
@@ -34,7 +34,7 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
       <div id={id} className={className}>
         <Button
           disabled={disabled}
-          style={{ pointerEvents: tooltip ? 'none' : 'auto' }}
+          style={{ pointerEvents: disabled ? 'none' : 'auto' }}
           {...props}
         >
           {children}
@@ -42,9 +42,9 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
       </div>
     </>
   );
-}
+};
 
-TooltipButton.displayName = 'TooltipButton'
+TooltipButton.displayName = 'TooltipButton';
 
 
 export default TooltipButton;

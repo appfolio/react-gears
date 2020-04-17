@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import {
   Button,
@@ -80,7 +81,8 @@ storiesOf('Buttons', module)
     <TooltipButton
       color={select('color', buttonColors, 'primary')}
       disabled={boolean('disabled', false)}
-      tooltip="Here is a tooltip."
+      onClick={action('onClick')}
+      tooltip={text('tooltip', 'Here is a tooltip.')}
       tooltipPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
     >
       {text('Label', 'Click Me')}
