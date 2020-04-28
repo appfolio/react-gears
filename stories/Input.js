@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { CustomInput } from '../src';
+import { Alert, CustomInput } from '../src';
 
 storiesOf('Input', module).add('Custom Input', () => (
   <div>
@@ -9,6 +9,8 @@ storiesOf('Input', module).add('Custom Input', () => (
       to replace the browser defaults. They’re built on top of semantic and accessible markup,
       so they’re safe replacements for default form controls.
     </p>
+    <Alert color="warning" icon>Note: Custom checkbox and switches must have a unique <code>id</code> to function!</Alert>
+
     <div className="mb-4">
       <h3>Checkbox</h3>
       <div>
@@ -48,6 +50,29 @@ storiesOf('Input', module).add('Custom Input', () => (
         <CustomInput
           type="radio"
           id="exampleCustomRadio3"
+          label="But not this disabled one"
+          disabled
+        />
+      </div>
+    </div>
+    <div className="mb-4">
+      <h3>Switch</h3>
+      <div>
+        <CustomInput
+          type="switch"
+          id="exampleCustomSwitch"
+          name="customRadio"
+          label="Select this custom switch"
+        />
+        <CustomInput
+          type="switch"
+          id="exampleCustomSwitch2"
+          name="customRadio"
+          label="Or this one"
+        />
+        <CustomInput
+          type="switch"
+          id="exampleCustomSwitch3"
           label="But not this disabled one"
           disabled
         />
