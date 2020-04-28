@@ -232,12 +232,16 @@ describe('<SortableTable />', () => {
     const wrapper = shallow(
       <SortableTable
         columns={columns}
+        expandedRowClassName='bg-transparent'
         rows={rows}
         rowExpanded={row => row === 'Charlie' && <span className="expando">Hey</span>}
       />
     );
     const trs = wrapper.find('tbody tr');
     assert.equal(trs.length, rows.length + 2); // For expanded and hidden for stripeing
+
+    const expandedTr = wrapper.find('tbody tr.tr-expanded');
+    assert.equal(expandedTr.hasClass('bg-transparent'), true);
 
     const td = wrapper.find(`td[colSpan=${columns.length}]`);
     assert.equal(td.length, 1);

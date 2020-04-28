@@ -41,6 +41,7 @@ class SortableTable extends React.Component {
       ]
     ),
     expandableColumn: PropTypes.object,
+    expandedRowClassName: PropTypes.string,
     footer: PropTypes.node,
     rowClassName: PropTypes.func,
     onExpand: PropTypes.func,
@@ -57,13 +58,14 @@ class SortableTable extends React.Component {
   static defaultProps = {
     ...Table.defaultProps,
     expandableColumn: {},
+    expandedRowClassName: undefined,
     rows: [],
     rowClassName: () => undefined,
     rowExpanded: () => false,
     truncate: false
   };
 
-  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected) {
+  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, expandedRowClassName) {
     const expanded = rowExpanded(row);
     return [
       <tr
@@ -80,7 +82,7 @@ class SortableTable extends React.Component {
       </tr>,
       expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
       expanded && (
-        <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
+        <tr key={row.key ? `${row.key}-expanded` : null} className={classnames('tr-expanded', expandedRowClassName)}>
           <td className="border-top-0" colSpan={columns.length}>
             {expanded}
           </td>
@@ -93,7 +95,7 @@ class SortableTable extends React.Component {
     const {
       columns, footer, rowClassName, rowOnClick, rows, style, truncate,
       allSelected, onSelect, onSelectAll, rowSelected,
-      expandableColumn, onExpand, rowExpanded,
+      expandableColumn, onExpand, rowExpanded, expandedRowClassName,
       ...props
     } = this.props;
     const selectable = rowSelected;
@@ -191,7 +193,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
+          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, expandedRowClassName))}
         </tbody>
         {(showFooter || footer) && (
           <tfoot>
