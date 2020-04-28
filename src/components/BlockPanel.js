@@ -9,14 +9,16 @@ import CardTitle from './CardTitle';
 import ClickableContainer from './ClickableContainer';
 import Collapse from './Collapse';
 import Icon from './Icon';
+import styles from './BlockPanel.css';
 
-function BlockPanelTitle({ expandable, onClick, ...props }) {
+function BlockPanelTitle({ className, expandable, onClick, ...props }) {
   return expandable ?
-    <ClickableContainer onClick={onClick} {...props} /> :
+    <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
     <div {...props} />;
 }
 
 BlockPanelTitle.propTypes = {
+  className: PropTypes.string,
   expandable: PropTypes.bool,
   onClick: PropTypes.func
 };
@@ -71,6 +73,10 @@ const BlockPanel = ({
     headerClassName
   );
 
+  const iconClassName = classnames('mr-1', {
+    'text-muted': color !== 'primary' && color !== 'dark'
+  });
+
   return (
     <Card className={className} {...props}>
       <CardHeader className={headerClassNames}>
@@ -81,7 +87,7 @@ const BlockPanel = ({
         >
           {expandable && (
             <Icon
-              className={`${(color !== 'primary' && color !== 'dark') ? 'text-muted' : ''} mr-1`}
+              className={iconClassName}
               name="caret-right"
               rotate={isOpen ? 90 : undefined}
               fixedWidth
