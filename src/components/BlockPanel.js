@@ -13,7 +13,7 @@ import styles from './BlockPanel.css';
 
 function BlockPanelTitle({ className, expandable, onClick, ...props }) {
   return expandable ?
-    <ClickableContainer onClick={onClick} className={classnames(styles.header, className)} {...props} /> :
+    <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
     <div {...props} />;
 }
 

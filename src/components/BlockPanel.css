@@ -1,4 +1,3 @@
 .header:focus {
-  flex-grow: 1;
   outline: thin dotted;
 }
