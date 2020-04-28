@@ -11,6 +11,64 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+const groups = [
+  {
+    label: 'Black',
+    value: 'black'
+  },
+  {
+    label: 'Primary Colors',
+    options: [
+      {
+        label: 'Yellow',
+        value: 'yellow'
+      },
+      {
+        label: 'Red',
+        value: 'red'
+      },
+      {
+        label: 'Blue',
+        value: 'blue'
+      }
+    ]
+  },
+  {
+    label: 'Secondary Colors',
+    options: [
+      {
+        label: 'Orange',
+        value: 'orange'
+      },
+      {
+        label: 'Purple',
+        options: [
+          {
+            label: 'Light Purple',
+            value: 'light_purple'
+          },
+          {
+            label: 'Medium Purple',
+            value: 'medium_purple'
+          },
+          {
+            label: 'Dark Purple',
+            value: 'dark_purple'
+          }
+        ]
+      },
+      {
+        label: 'Green',
+        value: 'green'
+      }
+    ]
+  },
+  {
+    label: 'White',
+    value: 'white'
+  }
+];
+
 storiesOf('Select', module)
   .add('with options', () => (
     <div>
@@ -27,6 +85,18 @@ storiesOf('Select', module)
       </p>
     </div>
   ))
+  .add('with groups', () => (
+    <div>
+      <Select
+        className="w-100"
+        disabled={boolean('disabled', false)}
+        multi={boolean('multi', false)}
+        options={groups}
+        placeholder={text('placeholder')}
+        onChange={action('onChange')}
+      />
+    </div>
+  ))
   .add('with initial selection (uncontrolled)', () => (
     <Select
       className="w-100"
@@ -38,7 +108,11 @@ storiesOf('Select', module)
   .add('as a controlled input', () => (
     <Select
       className="w-100"
-      value={select('value', COUNTRIES.map(c => c.value), 'US')}
+      value={select(
+        'value',
+        COUNTRIES.map(c => c.value),
+        'US'
+      )}
       options={COUNTRIES}
       onChange={action('onChange')}
     />
@@ -56,11 +130,13 @@ storiesOf('Select', module)
       }, 1); // Tiny timeout for testing
     };
 
-    return (<Select
-      className="w-100"
-      loadOptions={getOptions}
-      onChange={action('onChange')}
-    />);
+    return (
+      <Select
+        className="w-100"
+        loadOptions={getOptions}
+        onChange={action('onChange')}
+      />
+    );
   })
   .add('with disabled options', () => (
     <Select
@@ -68,15 +144,24 @@ storiesOf('Select', module)
       options={[
         { label: 'alpha@team.com', value: 'alpha@team.com' },
         { label: 'bravo@tv.com', value: 'bravo@tv.com' },
-        { label: 'charlie@brown.com', value: 'charlie@brown.com', disabled: true },
+        {
+          label: 'charlie@brown.com',
+          value: 'charlie@brown.com',
+          disabled: true
+        },
         { label: 'delta@force.com', value: 'delta@force.com', disabled: true },
-        { label: 'echo@bunnymen.com', value: 'echo@bunnymen.com', disabled: true },
+        {
+          label: 'echo@bunnymen.com',
+          value: 'echo@bunnymen.com',
+          disabled: true
+        },
         { label: 'foxtrot@dance.com', value: 'foxtrot@dance.com' },
-        { label: 'golf@club.com', value: 'golf@club.com' },
+        { label: 'golf@club.com', value: 'golf@club.com' }
       ]}
       isValidNewOption={({ label }) => validateEmail(label)}
       onChange={action('onChange')}
-    />))
+    />
+  ))
   .add('with multiple and creatable options', () => (
     <Select
       className="w-100"
@@ -89,8 +174,9 @@ storiesOf('Select', module)
         { label: 'delta@force.com', value: 'delta@force.com' },
         { label: 'echo@bunnymen.com', value: 'echo@bunnymen.com' },
         { label: 'foxtrot@dance.com', value: 'foxtrot@dance.com' },
-        { label: 'golf@club.com', value: 'golf@club.com' },
+        { label: 'golf@club.com', value: 'golf@club.com' }
       ]}
       isValidNewOption={({ label }) => validateEmail(label)}
       onChange={action('onChange')}
-    />));
+    />
+  ));

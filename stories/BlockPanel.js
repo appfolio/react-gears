@@ -6,12 +6,16 @@ import {
   BlockPanel,
   Button,
   ButtonGroup,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  HelpBubble,
   Icon,
   Input,
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  HelpBubble
+  UncontrolledDropdown,
 } from '../src';
 
 storiesOf('BlockPanel', module)
@@ -87,5 +91,33 @@ storiesOf('BlockPanel', module)
       ]}
     >
       Hello
+    </BlockPanel>
+  ))
+  .add('Dropdown for controls', () => (
+    <BlockPanel
+      expandable
+      title={
+        <span className="text-uppercase">
+          {text('title', 'Invoices')}
+        </span>
+      }
+      controls={[
+        <UncontrolledDropdown>
+          <DropdownToggle id="toggle" outline={false} color="link" className="py-0 px-2" role="button" title="More options">
+            <Icon name="ellipsis-h" size="lg" />
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Eenie</DropdownItem>
+            <DropdownItem>Meenie</DropdownItem>
+            <DropdownItem>Min</DropdownItem>
+            <DropdownItem>Delta</DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      ]}
+    >
+      The symbolic resource $all, located at the service root, identifies the collection of all entities in a service, i.e. the union of all entity sets plus all singletons.
+      This symbolic resource is of type Collection(Edm.EntityType) and allows the $search system query option plus all other query options applicable to collections of entities.
+      The $all resource can be appended with a path segment containing the qualified name of an entity type in order to restrict the collections to entities of that type. Query options such as $select, $filter, $expand and $orderby can be applied to this restricted set according to the specified type.
+      Example 37: all entities in a service that somehow match red
     </BlockPanel>
   ));
