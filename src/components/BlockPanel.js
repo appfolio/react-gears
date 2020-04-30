@@ -9,7 +9,7 @@ import CardTitle from './CardTitle';
 import ClickableContainer from './ClickableContainer';
 import Collapse from './Collapse';
 import Icon from './Icon';
-import styles from './BlockPanel.css';
+import styles from './BlockPanel.scss';
 
 function BlockPanelTitle({ className, expandable, onClick, ...props }) {
   return expandable ?
