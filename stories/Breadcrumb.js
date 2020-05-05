@@ -6,10 +6,10 @@ storiesOf('Breadcrumb', module)
   .add('Live example', () => (
     <div>
       <Breadcrumb>
-        <BreadcrumbItem tag="a" href="#">Home</BreadcrumbItem>
-        <BreadcrumbItem tag="a" href="#">Library</BreadcrumbItem>
-        <BreadcrumbItem tag="a" href="#">Data</BreadcrumbItem>
-        <BreadcrumbItem active tag="span">Bootstrap</BreadcrumbItem>
+        <BreadcrumbItem><a href="/">Home</a></BreadcrumbItem>
+        <BreadcrumbItem><a href="/">Library</a></BreadcrumbItem>
+        <BreadcrumbItem><a href="/">Data</a></BreadcrumbItem>
+        <BreadcrumbItem active>Bootstrap</BreadcrumbItem>
       </Breadcrumb>
     </div>
   ));
