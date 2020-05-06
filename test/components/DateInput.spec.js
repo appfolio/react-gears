@@ -160,7 +160,7 @@ describe('<DateInput />', () => {
     const component = mount(<DateInput onChange={callback} showOnFocus />);
 
     it('should should set date after clicking a date', () => {
-      callback.reset();
+      callback.resetHistory();
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
       firstDate.simulate('click');
@@ -169,7 +169,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should call onChange after clicking a date', () => {
-      callback.reset();
+      callback.resetHistory();
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
       lastDate.simulate('click');
@@ -177,7 +177,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should set date after clicking prev year', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
       const prevYear = component.find('Button.js-prev-year');
 
@@ -188,7 +188,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should set date after clicking next year', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
       const nextYear = component.find('Button.js-next-year');
 
@@ -199,7 +199,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should set date after clicking prev month', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
       const prevMonth = component.find('Button.js-prev-month');
 
@@ -210,7 +210,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should set date after clicking next month', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
       const nextMonth = component.find('Button.js-next-month');
 
@@ -227,7 +227,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should call onChange after clicking today', () => {
-      callback.reset();
+      callback.resetHistory();
       const today = component.find('footer Button').at(0);
       today.simulate('click');
       assert(callback.called);
@@ -243,7 +243,7 @@ describe('<DateInput />', () => {
     });
 
     it('should should call onChange after clicking clear', () => {
-      callback.reset();
+      callback.resetHistory();
       const clear = component.find('footer Button').at(1);
       clear.simulate('click');
       assert(callback.calledWith('', false));
@@ -283,7 +283,7 @@ describe('<DateInput />', () => {
     });
 
     it('should not allow to pick invisible date', () => {
-      callback.reset();
+      callback.resetHistory();
       const currentDate = component.instance().getCurrentDate();
       const firstDate = component.find('Day').first();
       assert.equal(isSameDay(currentDate, firstDate.props().day.date), false);
@@ -306,7 +306,7 @@ describe('<DateInput />', () => {
     });
 
     it('should not allow to pick disabled date', () => {
-      callback.reset();
+      callback.resetHistory();
       const currentDate = component.instance().getCurrentDate();
       const firstDate = component.find('Day').first();
       assert.equal(isSameDay(currentDate, firstDate.props().day.date), false);

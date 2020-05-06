@@ -159,7 +159,7 @@ describe('<MonthInput />', () => {
     const component = mount(<MonthInput onChange={callback} showOnFocus />);
 
     it('should set date after clicking a date', () => {
-      callback.reset();
+      callback.resetHistory();
       const firstDate = component.find('Label').first();
       const firstDateLink = component.find('NavLink').first();
       const expectedDate = firstDate.props().date;
@@ -169,7 +169,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should call onChange after clicking a date', () => {
-      callback.reset();
+      callback.resetHistory();
       const lastDate = component.find('Label').first();
       const lastDateLink = component.find('NavLink').first();
       const expectedDate = lastDate.props().date;
@@ -178,7 +178,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should set date after clicking prev year', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
       const prevYear = component.find('Button.js-prev-year');
 
@@ -189,7 +189,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should set date after clicking next year', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
       const nextYear = component.find('Button.js-next-year');
 
@@ -200,7 +200,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should set date after clicking prev month', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
       const prevMonth = component.find('Button.js-prev-month');
 
@@ -211,7 +211,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should set date after clicking next month', () => {
-      callback.reset();
+      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
       const nextMonth = component.find('Button.js-next-month');
 
@@ -263,7 +263,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should not allow to pick invisible date', () => {
-      callback.reset();
+      callback.resetHistory();
       const currentDate = component.instance().getCurrentDate();
       const firstDate = component.find('Label').first();
       assert.equal(isSameDay(currentDate, firstDate.props().date), false);

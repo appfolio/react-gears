@@ -4,9 +4,8 @@ import sinon from 'sinon';
 import assert from 'assert';
 import { FileInput, Input } from '../../src';
 
-
 describe('<FileInput />', () => {
-  const sandbox = sinon.sandbox.create();
+  const sandbox = sinon.createSandbox();
   const onChangeStub = sandbox.stub();
 
   beforeEach(() => sandbox.restore());
