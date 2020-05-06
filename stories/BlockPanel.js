@@ -15,6 +15,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
+  StickyBlockPanel,
   UncontrolledDropdown,
 } from '../src';
 
@@ -120,4 +121,13 @@ storiesOf('BlockPanel', module)
       The $all resource can be appended with a path segment containing the qualified name of an entity type in order to restrict the collections to entities of that type. Query options such as $select, $filter, $expand and $orderby can be applied to this restricted set according to the specified type.
       Example 37: all entities in a service that somehow match red
     </BlockPanel>
+  ))
+  .add('StickyBlockPanel', () => (
+    <StickyBlockPanel
+      id="rememberMe"
+      // open={boolean('open', false)}
+      title={text('title', 'I remember open/close')}
+    >
+      I feel sticky, oh so sticky, I feel sticky, and witty, and wise.
+    </StickyBlockPanel>
   ));

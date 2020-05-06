@@ -145,6 +145,7 @@ import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput.js';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
+import StickyBlockPanel from './components/StickyBlockPanel';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
@@ -304,6 +305,7 @@ export {
   Spinner,
   StateInput,
   StaticInput,
+  StickyBlockPanel,
   SortableTable,
   Steps,
   SummaryBox,
