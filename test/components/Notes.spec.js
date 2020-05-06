@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import { Note, Notes } from '../../src';
 
 describe('<Notes />', () => {
-  const sandbox = sinon.sandbox.create();
+  const sandbox = sinon.createSandbox();
   const notes = [
     { id: '1', date: new Date(), text: 'Alpha' },
     { id: '2', date: new Date(), text: 'Bravo' },
