@@ -59,39 +59,8 @@ Day.propTypes = {
   onClick: PropTypes.func
 };
 
-class Calendar extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    dateFormat: PropTypes.string,
-    dateEnabled: PropTypes.func,
-    dateVisible: PropTypes.func,
-    onSelect: PropTypes.func,
-    renderDay: PropTypes.func,
-    weekDayFormat: PropTypes.string
-  };
-
-  static defaultProps = {
-    className: '',
-    date: new Date(),
-    dateFormat: 'D',
-    dateEnabled: () => true,
-    dateVisible: () => true,
-    renderDay: (day, dateFormat, onSelect) => (
-      <Day
-        day={day}
-        dateFormat={dateFormat}
-        key={day.date.toString()}
-        onClick={() => day.visible && onSelect(day.date)}
-      />
-    ),
-    weekDayFormat: 'dd',
-    onSelect: () => {}
-  };
-
-  // TODO extract as module to share or test easier?:
-
-  visibleDays(currentDate) {
+const Calendar = ({ date, dateFormat, onSelect, renderDay, weekDayFormat, ...props }) => {
+  const visibleDays = (currentDate) => {
     const start = startOfWeek(startOfMonth(currentDate));
     const end = endOfWeek(addWeeks(start, 5));
 
@@ -100,63 +69,89 @@ class Calendar extends React.Component {
       return {
         selected: isSameDay(currentDate, date),
         date: startOfDay(date),
-        enabled: this.props.dateEnabled(date),
-        visible: this.props.dateVisible(date),
+        enabled: props.dateEnabled(date),
+        visible: props.dateVisible(date),
         past: isPast(date),
         today: isToday(date),
         sameMonth: isSameMonth(currentDate, date),
         future: isFuture(date)
       };
     });
-  }
+  };
 
-  visibleWeeks(currentDate) {
-    const days = this.visibleDays(currentDate);
+  const visibleWeeks = (currentDate) => {
+    const days = visibleDays(currentDate);
     // Chunk into list of weeks:
     const weeks = [];
     for (let i = 0, len = days.length; i < len; i += 7) {
       weeks.push(days.slice(i, i + 7));
     }
     return weeks;
-  }
+  };
 
-  render() {
-    const { date, dateFormat, onSelect, renderDay, weekDayFormat, ...props } = this.props;
-    const weeks = this.visibleWeeks(date);
-    delete props.dateEnabled; // Table doesn't need dateVisible
-    delete props.dateVisible; // Table doesn't need dateVisible
+  const weeks = visibleWeeks(date);
+  delete props.dateEnabled; // Table doesn't need dateVisible
+  delete props.dateVisible; // Table doesn't need dateVisible
 
-    return (
-      <Table
-        bordered={false}
-        hover={false}
-        striped={false}
-        {...props}
-      >
-        <colgroup>
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-          <col style={{ width: '14.29%' }} />
-        </colgroup>
-        <thead>
-          <tr>
-            {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat)}</th>)}
+  return (
+    <Table
+      bordered={false}
+      hover={false}
+      striped={false}
+      {...props}
+    >
+      <colgroup>
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+        <col style={{ width: '14.29%' }} />
+      </colgroup>
+      <thead>
+        <tr>
+          {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat)}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {weeks.map((days, w) => (
+          <tr key={w}>
+            {days.map(day => renderDay(day, dateFormat, onSelect))}
           </tr>
-        </thead>
-        <tbody>
-          {weeks.map((days, w) => (
-            <tr key={w}>
-              {days.map(day => renderDay(day, dateFormat, onSelect))}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    );
-  }
-}
+        ))}
+      </tbody>
+    </Table>
+  );
+};
+
+Calendar.propTypes = {
+  className: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
+  dateFormat: PropTypes.string,
+  dateEnabled: PropTypes.func,
+  dateVisible: PropTypes.func,
+  onSelect: PropTypes.func,
+  renderDay: PropTypes.func,
+  weekDayFormat: PropTypes.string
+};
+
+Calendar.defaultProps = {
+  className: '',
+  date: new Date(),
+  dateFormat: 'D',
+  dateEnabled: () => true,
+  dateVisible: () => true,
+  renderDay: (day, dateFormat, onSelect) => (
+    <Day
+      day={day}
+      dateFormat={dateFormat}
+      key={day.date.toString()}
+      onClick={() => day.visible && onSelect(day.date)}
+    />
+  ),
+  weekDayFormat: 'dd',
+  onSelect: () => {}
+};
 
 export default Calendar;
