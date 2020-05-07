@@ -15,7 +15,6 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  StickyBlockPanel,
   UncontrolledDropdown,
 } from '../src';
 
@@ -123,11 +122,12 @@ storiesOf('BlockPanel', module)
     </BlockPanel>
   ))
   .add('StickyBlockPanel', () => (
-    <StickyBlockPanel
+    <BlockPanel
+      sticky
       id="rememberMe"
       // open={boolean('open', false)}
       title={text('title', 'I remember open/close')}
     >
       I feel sticky, oh so sticky, I feel sticky, and witty, and wise.
-    </StickyBlockPanel>
+    </BlockPanel>
   ));

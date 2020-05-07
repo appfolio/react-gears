@@ -1,32 +1,45 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FunctionComponent, ReactNode } from 'react';
 import classnames from 'classnames';
-import Button from './Button';
-import Card from './Card';
-import CardBody from './CardBody';
-import CardHeader from './CardHeader';
-import CardTitle from './CardTitle';
-import ClickableContainer from './ClickableContainer';
-import Collapse from './Collapse';
-import Icon from './Icon';
+import Button from '../Button';
+import Card from '../Card';
+import CardBody from '../CardBody';
+import CardHeader from '../CardHeader';
+import CardTitle from '../CardTitle';
+import ClickableContainer from '../ClickableContainer';
+import Collapse from '../Collapse';
+import Icon from '../Icon';
 import styles from './BlockPanel.scss';
 
-function BlockPanelTitle({ className, expandable, onClick, ...props }) {
-  return expandable ?
-    <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
-    <div {...props} />;
+interface BasicBlockPanelTitleProps {
+  className?: string,
+  expandable?: boolean,
+  onClick: () => void,
 }
 
-BlockPanelTitle.propTypes = {
-  className: PropTypes.string,
-  expandable: PropTypes.bool,
-  onClick: PropTypes.func
-};
+const BasicBlockPanelTitle: FunctionComponent<BasicBlockPanelTitleProps> = (
+  { className, expandable, onClick, ...props }: BasicBlockPanelTitleProps
+) => expandable ?
+  <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
+  <div {...props} />;
 
+
+export interface BasicBlockPanelProps {
+  children?: ReactNode,
+  color?: string,
+  controls?: ReactNode,
+  className?: string,
+  expandable?: boolean,
+  headerClassName?: string,
+  hideOnToggle?: boolean,
+  onEdit?: (event: React.MouseEvent<any, MouseEvent>) => void,
+  onToggle: (willOpen?: boolean) => void,
+  open?: boolean,
+  title: ReactNode,
+}
 /**
- * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
+ * BasicBlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
  */
-const BlockPanel = ({
+const BasicBlockPanel: FunctionComponent<BasicBlockPanelProps> = ({
   children,
   className,
   color,
@@ -39,11 +52,11 @@ const BlockPanel = ({
   open,
   title,
   ...props
-}) => {
+}: BasicBlockPanelProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [collapsed, setCollapsed] = useState(!open);
 
-  const updateState = (willOpen) => {
+  const updateState = (willOpen?: boolean) => {
     if (willOpen !== isOpen) {
       setIsOpen(willOpen);
       if (willOpen) {
@@ -53,6 +66,7 @@ const BlockPanel = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => updateState(open), [open]);
   const toggle = () => updateState(!isOpen);
   const onClosed = () => setCollapsed(true);
@@ -80,7 +94,7 @@ const BlockPanel = ({
   return (
     <Card className={className} {...props}>
       <CardHeader className={headerClassNames}>
-        <BlockPanelTitle
+        <BasicBlockPanelTitle
           className="d-inline-flex align-items-center"
           expandable={expandable}
           onClick={toggle}
@@ -97,7 +111,7 @@ const BlockPanel = ({
           <CardTitle tag="h2" className="h5 m-0 my-1 mr-auto">
             {title}
           </CardTitle>
-        </BlockPanelTitle>
+        </BasicBlockPanelTitle>
         <div className="d-inline-flex">
           {controls && controls}
           {onEdit && (
@@ -113,7 +127,7 @@ const BlockPanel = ({
       </CardHeader>
       {children && (
         <Collapse
-          isOpen={children && (!expandable || isOpen)}
+          isOpen={children ? (!expandable || isOpen) : false}
           onExited={() => onClosed()}
         >
           {(!expandable || hideOnToggle || !collapsed) && (
@@ -125,26 +139,12 @@ const BlockPanel = ({
   );
 };
 
-BlockPanel.propTypes = {
-  children: PropTypes.node,
-  color: PropTypes.string,
-  controls: PropTypes.node,
-  className: PropTypes.string,
-  expandable: PropTypes.bool,
-  headerClassName: PropTypes.string,
-  hideOnToggle: PropTypes.bool,
-  onEdit: PropTypes.func,
-  onToggle: PropTypes.func,
-  open: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
-};
-
-BlockPanel.defaultProps = {
+BasicBlockPanel.defaultProps = {
   className: '',
   open: true,
   expandable: false,
   hideOnToggle: false,
-  onToggle: () => {}
+  onToggle: () => {},
 };
 
-export default BlockPanel;
+export default BasicBlockPanel;

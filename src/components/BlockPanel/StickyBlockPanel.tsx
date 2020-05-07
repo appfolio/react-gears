@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import BlockPanel from './BlockPanel';
-import useLocalStorage from '../hooks/useLocalStorage';
+import BasicBlockPanel, { BasicBlockPanelProps } from './BlockPanel';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-const StickyBlockPanel = ({ open, id, expandable, ...props }) => {
+export interface StickyBlockPanelProps extends BasicBlockPanelProps {
+  id: string,
+}
+
+const StickyBlockPanel = ({ open, id, expandable, ...props }: StickyBlockPanelProps) => {
   const [isOpen, setIsOpen] = useLocalStorage(`BlockPanel-open-${id}`, open);
 
   useEffect(() => {
@@ -11,18 +14,13 @@ const StickyBlockPanel = ({ open, id, expandable, ...props }) => {
   }, [open, setIsOpen]);
 
   return (
-    <BlockPanel
+    <BasicBlockPanel
       {...props}
       expandable
       open={isOpen}
       onToggle={value => setIsOpen(value)}
     />
   );
-};
-
-StickyBlockPanel.propTypes = {
-  id: PropTypes.string.isRequired,
-  ...BlockPanel.propTypes
 };
 
 export default StickyBlockPanel;

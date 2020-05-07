@@ -87,7 +87,7 @@ import Activity from './components/Activity.tsx';
 import ActivityLog from './components/ActivityLog.tsx';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.tsx';
-import BlockPanel from './components/BlockPanel.js';
+import BlockPanel from './components/BlockPanel';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';
@@ -145,7 +145,6 @@ import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput.js';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
-import StickyBlockPanel from './components/StickyBlockPanel';
 import SummaryBox from './components/SummaryBox.js';
 import SummaryBoxItem from './components/SummaryBoxItem.js';
 import Table from './components/Table.js';
@@ -305,7 +304,6 @@ export {
   Spinner,
   StateInput,
   StaticInput,
-  StickyBlockPanel,
   SortableTable,
   Steps,
   SummaryBox,
