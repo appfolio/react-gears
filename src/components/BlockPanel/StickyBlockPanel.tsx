@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
+import useLocalStorageState from 'use-local-storage-state';
 import BasicBlockPanel, { BasicBlockPanelProps } from './BlockPanel';
-import useLocalStorage from '../../hooks/useLocalStorage';
 
 export interface StickyBlockPanelProps extends BasicBlockPanelProps {
   id: string,
 }
 
 const StickyBlockPanel = ({ open, id, expandable, ...props }: StickyBlockPanelProps) => {
-  const [isOpen, setIsOpen] = useLocalStorage(`BlockPanel-open-${id}`, open);
+  const [isOpen, setIsOpen] = useLocalStorageState(`BlockPanel-open-${id}`, open);
 
   useEffect(() => {
     if (open) setIsOpen(open);
