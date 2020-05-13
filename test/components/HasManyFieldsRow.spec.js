@@ -184,4 +184,12 @@ describe('<HasManyFieldsRow />', () => {
       assert.equal(disabledTooltip.prop('placement'), 'left');
     });
   });
+
+  it('should render properly a delete button that ignores tabbing', () => {
+    component = shallow(
+      <HasManyFieldsRow tabbingIgnoreDelete>Stuff</HasManyFieldsRow>
+    );
+    assert.strictEqual(component.find(ConfirmationButton).length, 1);
+    assert.strictEqual(component.find(ConfirmationButton).props().tabIndex, -1);
+  });
 });

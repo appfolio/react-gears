@@ -25,7 +25,8 @@ export default class HasManyFieldsRow extends React.Component {
     disabledReason: PropTypes.node,
     disabledReasonPlacement: PropTypes.string,
     onDelete: PropTypes.func,
-    deletable: PropTypes.bool
+    deletable: PropTypes.bool,
+    tabbingIgnoreDelete: PropTypes.bool
   };
 
   static defaultProps = {
@@ -33,7 +34,8 @@ export default class HasManyFieldsRow extends React.Component {
     disabledReasonPlacement: 'top',
     disabled: false,
     onDelete: noop,
-    deletable: true
+    deletable: true,
+    tabbingIgnoreDelete: false
   };
 
   state = {
@@ -66,7 +68,8 @@ export default class HasManyFieldsRow extends React.Component {
       onDelete,
       disabled,
       disabledReasonPlacement,
-      deletable
+      deletable,
+      tabbingIgnoreDelete
     } = this.props;
 
     const classNames = classnames('mb-4', className);
@@ -88,6 +91,7 @@ export default class HasManyFieldsRow extends React.Component {
           onClick={e => e.preventDefault()}
           outline
           className="p-2 disabled"
+          tabIndex={tabbingIgnoreDelete ? -1 : 0}
         >
           <Icon name="times-circle-o" size="lg" />
         </Button>
@@ -101,6 +105,7 @@ export default class HasManyFieldsRow extends React.Component {
           outline
           onClick={this.closeCollapse}
           className="p-2"
+          tabIndex={tabbingIgnoreDelete ? -1 : 0}
         >
           <Icon name="times-circle-o" size="lg" />
         </ConfirmationButton>
@@ -114,6 +119,7 @@ export default class HasManyFieldsRow extends React.Component {
           outline
           onClick={onDelete}
           className="p-2"
+          tabIndex={tabbingIgnoreDelete ? -1 : 0}
         >
           <Icon name="times-circle-o" size="lg" />
         </ConfirmationButton>
