@@ -38,6 +38,12 @@ class Select extends React.Component {
     this.props.onChange(value);
   }
 
+  onInputKeyDown = (event) => {
+    if (event.keyCode === 9) { // TAB Behavior
+      event.preventDefault = () => {};
+    }
+  }
+
   bindInput = (el) => { this.selectEl = el; };
 
   focus() {
@@ -73,6 +79,7 @@ class Select extends React.Component {
         inputProps={{ name, ...inputProps }}
         multi={multi}
         onChange={this.onChange}
+        onInputKeyDown={this.onInputKeyDown}
         value={value || this.state.value}
         valueComponent={valueComponentRenderer}
         ref={this.bindInput}
