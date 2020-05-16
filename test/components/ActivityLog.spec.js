@@ -1,26 +1,26 @@
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
+import { assertAccessibleContainer } from '../a11yHelpers';
 import { ActivityLog, Activity } from '../../src';
 
 describe('<ActivityLog />', () => {
-  it('should render each <Activity /> correctly', () => {
-    const component = mount(
+  it('should render each <Activity /> correctly', async () => {
+    const { container } = render(
       <ActivityLog>
         <Activity date={new Date()} action="Edited" by="Jane Doe" />
         <Activity date={new Date()} action="Created" by="John Doe" />
-      </ActivityLog>);
-    assert(component);
-    const activities = component.find(Activity);
-    assert.equal(2, activities.length);
-    assert.equal('Edited', activities.get(0).props.action);
-    assert.equal('Created', activities.get(1).props.action);
+      </ActivityLog>
+    );
+
+    assert(screen.queryByText('Edited'));
+    assert(screen.queryByText('Created'));
+    await assertAccessibleContainer(container);
   });
 
-  it('should render an empty component', () => {
-    const component = mount(<ActivityLog />);
-    assert(component);
-    assert.equal(0, component.find(Activity).length);
+  it('should render an empty component', async () => {
+    const { container } = render(<ActivityLog />);
+    await assertAccessibleContainer(container);
   });
 });
