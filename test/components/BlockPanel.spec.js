@@ -11,6 +11,14 @@ describe('<BlockPanel />', () => {
     assert.equal(component.find('CardBody').length, 0);
   });
 
+  it('sticky block panel should render correctly', () => {
+    const wrapper = mount(<BlockPanel expandable stickyId="yadda" title="My Block Panel" />);
+
+    const inner = wrapper.find('BlockPanel');
+    assert.equal(inner.length, 1);
+    assert.equal(inner.prop('expandable'), true);
+  });
+
   context('is expandable', () => {
     it('should be open by default', () => {
       const component = mount(
@@ -33,7 +41,7 @@ describe('<BlockPanel />', () => {
     });
 
     it('should be closed when false passed as prop', () => {
-      const component = shallow(
+      const component = mount(
         <BlockPanel title="Open" open={false} expandable>
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
@@ -136,7 +144,7 @@ describe('<BlockPanel />', () => {
 
   context('contains headerComponent', () => {
     it('should render headerComponent', () => {
-      const component = shallow(
+      const component = mount(
         <BlockPanel title="Open" controls={<p id="edit">Edit</p>}>
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>

@@ -87,7 +87,7 @@ import Activity from './components/Activity.tsx';
 import ActivityLog from './components/ActivityLog.tsx';
 import AddressInput from './components/AddressInput.js';
 import Alert from './components/Alert.tsx';
-import BlockPanel from './components/BlockPanel.js';
+import BlockPanel from './components/BlockPanel';
 import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';

@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "5.7.6",
+  "version": "5.7.7-beta.1",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "@types/lodash.topairs": "^4.3.6",
-    "@types/react-text-mask": "^5.4.6",
     "@types/react-dom": "^16.9.4",
+    "@types/react-text-mask": "^5.4.6",
     "@types/reactstrap": "^8.0.6",
     "@types/uniqid": "^4.1.3",
     "classnames": "^2.2.6",
@@ -69,7 +69,8 @@
     "react-transition-group": "^2.9.0",
     "reactstrap": "^8.1.1",
     "text-mask-addons": "^3.8.0",
-    "uniqid": "^5.0.3"
+    "uniqid": "^5.0.3",
+    "use-local-storage-state": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
