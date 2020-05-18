@@ -50,7 +50,11 @@ class SortableTable extends React.Component {
     rowSelected: PropTypes.func,
     rowOnClick: PropTypes.func,
     allSelected: PropTypes.bool,
-    truncate: PropTypes.bool
+    truncate: PropTypes.bool,
+    groupExpanded: PropTypes.func,
+    groupOnClick: PropTypes.func,
+    onSelectGroup: PropTypes.func,
+    groupSelected: PropTypes.func,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
@@ -63,7 +67,35 @@ class SortableTable extends React.Component {
     truncate: false
   };
 
-  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected) {
+  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, groupExpanded, groupOnClick, onSelectGroup, groupSelected) {
+    if (row.rows) {
+      const expanded = groupExpanded(row.id);
+
+      return [
+        <tr
+          key={row.id}
+          className={`table-${row.color || 'secondary'}`}
+          onClick={e => groupOnClick && groupOnClick(row.id, e)}
+          role={groupOnClick ? 'button' : null}
+        >
+          <td>
+            <Label for={row.id} hidden>Select group</Label>
+            <input
+              id={row.id}
+              type="checkbox"
+              className="mx-1"
+              checked={groupSelected(row.id)}
+              onClick={e => e.stopPropagation()}
+              onChange={e => onSelectGroup(row.id, e.target.checked)}
+            />
+          </td>
+          <td colSpan={columns.length - 2}>{row.label}</td>
+          <td className="text-right"><i className={`fa fa-angle-${expanded ? 'up' : 'down'}`} /></td>
+        </tr>,
+        ...(expanded ? row.rows.map(r => this.renderRow(r, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected)) : [])
+      ];
+    }
+
     const expanded = rowExpanded(row);
     return [
       <tr
@@ -94,6 +126,7 @@ class SortableTable extends React.Component {
       columns, footer, rowClassName, rowOnClick, rows, style, truncate,
       allSelected, onSelect, onSelectAll, rowSelected,
       expandableColumn, onExpand, rowExpanded,
+      groupExpanded, groupOnClick, onSelectGroup, groupSelected,
       ...props
     } = this.props;
     const selectable = rowSelected;
@@ -191,7 +224,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
+          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, groupExpanded, groupOnClick, onSelectGroup, groupSelected))}
         </tbody>
         {(showFooter || footer) && (
           <tfoot>

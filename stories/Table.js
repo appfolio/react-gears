@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import fecha from 'fecha';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -48,6 +48,87 @@ storiesOf('Table', module)
       </tbody>
     </Table>
   ))
+  .add('Table with Grouped Rows', () => {
+    const column = select('active', ['first', 'last', 'dob', 'email'], 'last');
+    const ascending = boolean('ascending', true);
+    const [expandedGroups, setExpandedGroups] = useState([]);
+    const groupOnClick = (id) => {
+      const groupIndex = expandedGroups.indexOf(id);
+
+      if (groupIndex === -1) {
+        setExpandedGroups([...expandedGroups, id]);
+      } else {
+        const newExpandedGroups = [...expandedGroups];
+        newExpandedGroups.splice(groupIndex, 1);
+        setExpandedGroups(newExpandedGroups);
+      }
+    };
+
+    const groupExpanded = id => expandedGroups.indexOf(id) > -1;
+
+    return (
+      <div>
+        <p className="text-warning">
+          <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'UncontrolledTable' story.
+        </p>
+        <SortableTable
+          bordered={boolean('bordered', false)}
+          hover={boolean('hover', true)}
+          responsive={boolean('responsive', true)}
+          size={select('size', ['', 'sm', 'lg'], 'sm')}
+          striped={boolean('striped', true)}
+          truncate={boolean('truncate', false)}
+          columns={[
+            {
+              active: column === 'first',
+              ascending,
+              header: 'First',
+              key: 'first',
+              cell: row => row.first,
+              onSort: action('onSort', 'First'),
+              width: '20%'
+            },
+            {
+              active: column === 'last',
+              ascending,
+              header: 'Last',
+              key: 'last',
+              cell: row => row.last,
+              onSort: action('onSort', 'Last'),
+              width: '30%'
+            },
+            {
+              active: column === 'dob',
+              ascending,
+              header: 'DOB',
+              key: 'dob',
+              cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+              onSort: action('onSort', 'DOB'),
+              width: '15%'
+            },
+            {
+              active: column === 'email',
+              ascending,
+              header: <span>Email</span>,
+              key: 'email',
+              cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+              onSort: action('onSort', 'Email'),
+              width: '35%'
+            }
+          ]}
+          rows={[{ id: 1, label: 'Group 1', rows: DATA }, { id: 2, label: 'Group 2', color: 'success', rows: DATA }]}
+          rowSelected={row => row.key === '777'}
+          onExpand={action('onExpand')}
+          onSelect={action('onSelect')}
+          onSelectAll={action('onSelectAll')}
+          groupOnClick={groupOnClick}
+          groupExpanded={groupExpanded}
+          groupSelected={group => group === 1}
+          onSelectGroup={action('onSelectGroup')}
+        />
+      </div>
+    );
+  })
   .add('SortableTable', () => {
     const column = select('active', ['first', 'last', 'dob', 'email'], 'last');
     const ascending = boolean('ascending', true);
