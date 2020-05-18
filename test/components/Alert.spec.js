@@ -2,12 +2,17 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import Inner from 'reactstrap/lib/Alert';
+import { assertAccessible } from '../a11yHelpers';
 
 import { Icon, Alert } from '../../src';
 
 describe('<Alert />', () => {
   describe('default', () => {
     const component = shallow(<Alert />);
+
+    it('should be accessible', async () => {
+      assertAccessible(<Alert />);
+    });
 
     it('should not be dismissible', () => {
       assert.equal(component.prop('toggle'), null);
@@ -47,6 +52,10 @@ describe('<Alert />', () => {
   });
 
   describe('when dismissible', () => {
+    it('should be accessible', () => {
+      assertAccessible(<Alert dismissible />);
+    });
+
     it('should toggle state when clicked', () => {
       const component = mount(<Alert dismissible />);
 

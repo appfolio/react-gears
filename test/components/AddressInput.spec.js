@@ -3,26 +3,34 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
+import { assertAccessible } from '../a11yHelpers';
 import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
 import CA from '../../src/components/address/CAProvinces';
 import US from '../../src/components/address/USStates';
 
-describe('<AddressInput />', () => {
+describe('AddressInput', () => {
   describe('uncontrolled', () => {
     const callback = sinon.spy();
+    const defaultValue = {
+      address1: 'Wayne Enterprises',
+      address2: '1007 Mountain Drive',
+      city: 'Gotham',
+      state: 'NJ',
+      postal: '07001',
+      countryCode: 'US'
+    };
     const component = mount(
       <AddressInput
-        defaultValue={{
-          address1: 'Wayne Enterprises',
-          address2: '1007 Mountain Drive',
-          city: 'Gotham',
-          state: 'NJ',
-          postal: '07001',
-          countryCode: 'US'
-        }}
+        defaultValue={defaultValue}
         onChange={callback}
       />
     );
+
+    it('should be accessible', async () => {
+      await assertAccessible(
+        <AddressInput defaultValue={defaultValue} onChange={callback} />
+      );
+    });
 
     it('should have address1', () => {
       const input = component.find('[name="address1"]').hostNodes();
@@ -200,19 +208,30 @@ describe('<AddressInput />', () => {
       countryCode: 'countryCode error'
     };
 
+    const defaultValue = {
+      address1: 'Wayne Enterprises',
+      address2: '1007 Mountain Drive',
+      city: 'Gotham',
+      state: 'NJ',
+      postal: '07001',
+      countryCode: 'US'
+    };
+
     const component = shallow(
       <AddressInput
-        defaultValue={{
-          address1: 'Wayne Enterprises',
-          address2: '1007 Mountain Drive',
-          city: 'Gotham',
-          state: 'NJ',
-          postal: '07001',
-          countryCode: 'US'
-        }}
+        defaultValue={defaultValue}
         error={errors}
       />
     );
+
+    it('should be accessible', async () => {
+      await assertAccessible(
+        <AddressInput
+          defaultValue={defaultValue}
+          error={errors}
+        />
+      );
+    });
 
     it('should set color of each FormGroup', () => {
       const groups = component.find(FormGroup);
@@ -246,19 +265,30 @@ describe('<AddressInput />', () => {
       countryCode: 'countryCode hint'
     };
 
+    const defaultValue = {
+      address1: 'Wayne Enterprises',
+      address2: '1007 Mountain Drive',
+      city: 'Gotham',
+      state: 'NJ',
+      postal: '07001',
+      countryCode: 'US'
+    };
+
     const component = shallow(
       <AddressInput
-        defaultValue={{
-          address1: 'Wayne Enterprises',
-          address2: '1007 Mountain Drive',
-          city: 'Gotham',
-          state: 'NJ',
-          postal: '07001',
-          countryCode: 'US'
-        }}
+        defaultValue={defaultValue}
         hints={hints}
       />
     );
+
+    it('should be accessible', async () => {
+      await assertAccessible(
+        <AddressInput
+          defaultValue={defaultValue}
+          hints={hints}
+        />
+      );
+    });
 
     it('should show the corresponding hint for each input', () => {
       const groups = component.find(FormGroup);
@@ -273,17 +303,19 @@ describe('<AddressInput />', () => {
   });
 
   describe('disabled', () => {
+    const defaultValue = {
+      address1: 'Wayne Enterprises',
+      address2: '1007 Mountain Drive',
+      city: 'Gotham',
+      state: 'NJ',
+      postal: '07001',
+      countryCode: 'US'
+    };
+
     function disabledTestCase(disabledProp, expected) {
       const component = shallow(
         <AddressInput
-          defaultValue={{
-            address1: 'Wayne Enterprises',
-            address2: '1007 Mountain Drive',
-            city: 'Gotham',
-            state: 'NJ',
-            postal: '07001',
-            countryCode: 'US'
-          }}
+          defaultValue={defaultValue}
           disabled={disabledProp}
         />
       );
@@ -294,6 +326,16 @@ describe('<AddressInput />', () => {
       inputs.forEach(input => assert.equal(input.prop('disabled'), expected));
       selects.forEach(select => assert.equal(select.prop('disabled'), expected));
     }
+
+    it('should be accessible', async () => {
+      await assertAccessible(
+        <AddressInput
+          defaultValue={defaultValue}
+          disabled
+        />
+      );
+    });
+
 
     it('should disable all the fields when true', () => {
       disabledTestCase(true, true);
@@ -309,6 +351,12 @@ describe('<AddressInput />', () => {
   });
 
   describe('labels', () => {
+    it('should be accessible', async () => {
+      await assertAccessible(
+        <AddressInput showLabels />
+      );
+    });
+
     it('should not show labels by default', () => {
       const component = mount(<AddressInput showLabels />);
       assert(component.find('label').length, 0);
@@ -369,6 +417,12 @@ describe('<AddressInput />', () => {
       assert.equal(component.find('#yo_state').hostNodes().length, 1, 'state id missing');
       assert.equal(component.find('#yo_postal').hostNodes().length, 1, 'postal id missing');
       assert.equal(component.find('#yo_countryCode').hostNodes().length, 1, 'countryCode id missing');
+    });
+
+    it('should be accessible when specifying an id', async () => {
+      await assertAccessible(
+        <AddressInput id="yo" />
+      );
     });
   });
 
