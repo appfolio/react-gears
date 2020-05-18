@@ -58,11 +58,11 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
 }: BlockPanelProps) => {
   const useIsOpen = createIsOpenHook(stickyId);
   const [isOpen, setIsOpen] = useIsOpen(open);
-  const [collapsed, setCollapsed] = useState(!open);
+  const [collapsed, setCollapsed] = useState(!isOpen);
 
-  const updateState = (willOpen: boolean) => {
+  const updateState = (willOpen?: boolean) => {
     if (willOpen !== isOpen) {
-      setIsOpen(willOpen);
+      setIsOpen(willOpen as boolean);
       if (willOpen) {
         setCollapsed(false);
       }
@@ -71,7 +71,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => updateState(open || false), [open]);
+  useEffect(() => { if (!stickyId) updateState(open); }, [open]);
   const toggle = () => updateState(!isOpen);
   const onClosed = () => setCollapsed(true);
 
