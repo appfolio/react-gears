@@ -12,9 +12,9 @@ describe('<BlockPanel />', () => {
   });
 
   it('sticky block panel should render correctly', () => {
-    const wrapper = mount(<BlockPanel sticky id="yadda" title="My Block Panel" />);
+    const wrapper = mount(<BlockPanel expandable stickyId="yadda" title="My Block Panel" />);
 
-    const inner = wrapper.find('BasicBlockPanel');
+    const inner = wrapper.find('BlockPanel');
     assert.equal(inner.length, 1);
     assert.equal(inner.prop('expandable'), true);
   });

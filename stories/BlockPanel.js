@@ -123,9 +123,8 @@ storiesOf('BlockPanel', module)
   ))
   .add('StickyBlockPanel', () => (
     <BlockPanel
-      sticky
-      id="rememberMe"
-      // open={boolean('open', false)}
+      expandable
+      stickyId="rememberMe"
       title={text('title', 'I remember open/close')}
     >
       I feel sticky, oh so sticky, I feel sticky, and witty, and wise.
