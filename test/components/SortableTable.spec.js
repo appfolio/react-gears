@@ -35,6 +35,21 @@ describe('<SortableTable />', () => {
     headers.forEach((th, i) => assert.equal(th.text(), columns[i].header));
   });
 
+  it('should support custom rendered rows', () => {
+    const columns = [{ header: 'Name', cell: row => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+
+    function renderRow(rowData) {
+      return (
+        <tr id={`row-${rowData}`}>
+          <td>{`Custom ${rowData}`}</td>
+        </tr>
+      );
+    }
+    const wrapper = mount(<SortableTable columns={columns} rows={rows} renderRow={renderRow} />);
+    assert(wrapper.find('#row-Bravo').text().includes('Custom Bravo'));
+  });
+
   it('should render all rows', () => {
     const columns = [{ header: 'Name', cell: row => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];

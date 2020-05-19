@@ -16,6 +16,32 @@ function generateColumnClassName(column, truncate = false) {
   );
 }
 
+function defaultRenderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected) {
+  const expanded = rowExpanded(row);
+  return [
+    <tr
+      key={row.key}
+      className={classnames({ 'table-info': rowSelected && rowSelected(row) }, rowClassName(row))}
+      onClick={e => rowOnClick && rowOnClick(row, e)}
+      role={rowOnClick ? 'button' : null}
+    >
+      {columns.map(column => (
+        <td key={column.key} className={generateColumnClassName(column, truncate)}>
+          {column.cell(row)}
+        </td>
+      ))}
+    </tr>,
+    expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
+    expanded && (
+      <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
+        <td className="border-top-0" colSpan={columns.length}>
+          {expanded}
+        </td>
+      </tr>
+    ),
+  ];
+}
+
 class SortableTable extends React.Component {
   static propTypes = {
     ...Table.propTypes,
@@ -50,7 +76,8 @@ class SortableTable extends React.Component {
     rowSelected: PropTypes.func,
     rowOnClick: PropTypes.func,
     allSelected: PropTypes.bool,
-    truncate: PropTypes.bool
+    truncate: PropTypes.bool,
+    renderRow: PropTypes.func,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
@@ -60,40 +87,15 @@ class SortableTable extends React.Component {
     rows: [],
     rowClassName: () => undefined,
     rowExpanded: () => false,
-    truncate: false
+    truncate: false,
+    renderRow: defaultRenderRow,
   };
-
-  renderRow(row, columns, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected) {
-    const expanded = rowExpanded(row);
-    return [
-      <tr
-        key={row.key}
-        className={classnames({ 'table-info': rowSelected && rowSelected(row) }, rowClassName(row))}
-        onClick={e => rowOnClick && rowOnClick(row, e)}
-        role={rowOnClick ? 'button' : null}
-      >
-        {columns.map(column => (
-          <td key={column.key} className={generateColumnClassName(column, truncate)}>
-            {column.cell(row)}
-          </td>
-        ))}
-      </tr>,
-      expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
-      expanded && (
-        <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
-          <td className="border-top-0" colSpan={columns.length}>
-            {expanded}
-          </td>
-        </tr>
-      ),
-    ];
-  }
 
   render() {
     const {
       columns, footer, rowClassName, rowOnClick, rows, style, truncate,
       allSelected, onSelect, onSelectAll, rowSelected,
-      expandableColumn, onExpand, rowExpanded,
+      expandableColumn, onExpand, rowExpanded, renderRow,
       ...props
     } = this.props;
     const selectable = rowSelected;
@@ -191,7 +193,7 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => this.renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
+          {rows.map(row => renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected))}
         </tbody>
         {(showFooter || footer) && (
           <tfoot>
