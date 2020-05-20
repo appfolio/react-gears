@@ -184,4 +184,12 @@ describe('<HasManyFieldsRow />', () => {
       assert.equal(disabledTooltip.prop('placement'), 'left');
     });
   });
+
+  it('should pass down props to delete button', () => {
+    component = shallow(
+      <HasManyFieldsRow deleteProps={{ tabIndex: -1 }}>Stuff</HasManyFieldsRow>
+    );
+    assert.strictEqual(component.find(ConfirmationButton).length, 1);
+    assert.strictEqual(component.find(ConfirmationButton).props().tabIndex, -1);
+  });
 });

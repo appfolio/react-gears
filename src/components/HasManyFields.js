@@ -41,6 +41,7 @@ class HasManyFields extends React.Component {
     blank: PropTypes.any,
     defaultValue: PropTypes.array,
     disabled: PropTypes.bool,
+    deleteProps: PropTypes.object,
     errors: PropTypes.array,
     label: PropTypes.string.isRequired,
     onAdd: PropTypes.func,
@@ -162,7 +163,7 @@ class HasManyFields extends React.Component {
   };
 
   renderHasManyFieldsRow = (key, index, value) => {
-    const { template: Template, disabled, errors, minimumRows } = this.props;
+    const { template: Template, disabled, deleteProps, errors, minimumRows } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
     return (
@@ -172,6 +173,7 @@ class HasManyFields extends React.Component {
         key={key}
         deletable={this.value.length > minimumRows}
         disabled={disabled}
+        deleteProps={deleteProps}
       >
         <Template
           value={value}
