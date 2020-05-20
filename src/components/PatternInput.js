@@ -34,7 +34,6 @@ export default class PatternInput extends React.Component {
       <Input
         {...inputProps}
         ref={(self) => { this.input = self; }}
-        onKeyPress={!!restrictInput && this.handleChange}
         onChange={this.handleChange}
         pattern={pattern?.source}
       />
