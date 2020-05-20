@@ -49,6 +49,7 @@ import './Note';
 import './Notes';
 import './Pagination';
 import './Paginator';
+import './PatternInput';
 import './Popover';
 import './Progress';
 import './RadioGroup';
