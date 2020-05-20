@@ -56,7 +56,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
   stickyId,
   ...props
 }: BlockPanelProps) => {
-  const useIsOpen = createIsOpenHook(stickyId);
+  const useIsOpen = createIsOpenHook(stickyId, open);
   const [isOpen, setIsOpen] = useIsOpen(open);
   const [collapsed, setCollapsed] = useState(!isOpen);
 
