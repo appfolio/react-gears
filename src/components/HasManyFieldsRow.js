@@ -25,7 +25,8 @@ export default class HasManyFieldsRow extends React.Component {
     disabledReason: PropTypes.node,
     disabledReasonPlacement: PropTypes.string,
     onDelete: PropTypes.func,
-    deletable: PropTypes.bool
+    deletable: PropTypes.bool,
+    deleteProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -66,7 +67,8 @@ export default class HasManyFieldsRow extends React.Component {
       onDelete,
       disabled,
       disabledReasonPlacement,
-      deletable
+      deletable,
+      deleteProps
     } = this.props;
 
     const classNames = classnames('mb-4', className);
@@ -101,6 +103,7 @@ export default class HasManyFieldsRow extends React.Component {
           outline
           onClick={this.closeCollapse}
           className="p-2"
+          {...deleteProps}
         >
           <Icon name="times-circle-o" size="lg" />
         </ConfirmationButton>
@@ -114,6 +117,7 @@ export default class HasManyFieldsRow extends React.Component {
           outline
           onClick={onDelete}
           className="p-2"
+          {...deleteProps}
         >
           <Icon name="times-circle-o" size="lg" />
         </ConfirmationButton>

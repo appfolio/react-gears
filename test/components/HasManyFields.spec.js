@@ -198,6 +198,21 @@ describe('<HasManyFields />', () => {
     assert(!component.find(HasManyFieldsRow).at(2).props().deletable);
   });
 
+  it('should pass the delete buttons props down', () => {
+    const expectedProps = { tabIndex: -1 };
+    const component = shallow(
+      <HasManyFields
+        template={Input}
+        blank="foo"
+        deleteProps={expectedProps}
+        value={items}
+        label="Add an Animal"
+        minimumRows={3}
+      />
+    );
+    assert.deepStrictEqual(component.find(HasManyFieldsRow).at(0).props().deleteProps, expectedProps);
+  });
+
   it('should hide the add button if it has the maximum number of rows', () => {
     const component = shallow(
       <HasManyFields
