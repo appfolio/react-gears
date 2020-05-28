@@ -1,5 +1,6 @@
 # react-gears
 
+[![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 A refresh of [Gears](https://qa.qa.appfolio.com/gears/) & [Saffron](https://qa.qa.appfolio.com/saffron/) components using 
 [React](https://reactstrap.github.io),
 [Bootstrap 4](http://v4-alpha.getbootstrap.com), 
@@ -32,5 +33,10 @@ If using [Cypress](https://www.cypress.io) for integration testing, you can use 
 
 - Runs [ESLint](http://eslint.org/) using [appfolio-react](https://github.com/appfolio/eslint-config-appfolio-react) as the base configuration
 
+### Updating Release Notes
+
+    gren release
+
+- Uses [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for setup [here](https://github.com/github-tools/github-release-notes#setup).
 ----
 
