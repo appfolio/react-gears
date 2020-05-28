@@ -33,10 +33,11 @@ If using [Cypress](https://www.cypress.io) for integration testing, you can use 
 
 - Runs [ESLint](http://eslint.org/) using [appfolio-react](https://github.com/appfolio/eslint-config-appfolio-react) as the base configuration
 
-### Updating Release Notes
+### Publishing
 
-    gren release
+    npm version (major|minor|patch)
+    npm publish
 
-- Uses [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for setup [here](https://github.com/github-tools/github-release-notes#setup).
+- Release notes are generated in the postpublish script using [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for setup [here](https://github.com/github-tools/github-release-notes#setup).
 ----
 
