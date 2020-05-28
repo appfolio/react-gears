@@ -61,7 +61,7 @@ class SortableTable extends React.Component {
     rows: PropTypes.oneOfType(
       [
         PropTypes.arrayOf(PropTypes.shape({
-          key: PropTypes.string // ensure each row has a unique key
+          key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]) // ensure each row has a unique key
         })),
         PropTypes.object,
       ]
