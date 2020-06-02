@@ -2,6 +2,8 @@ import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
+
+import { assertAccessible } from '../a11yHelpers';
 import { Button, CardTitle, Collapse, Icon, BlockPanel } from '../../src';
 
 describe('<BlockPanel />', () => {
@@ -11,12 +13,26 @@ describe('<BlockPanel />', () => {
     assert.equal(component.find('CardBody').length, 0);
   });
 
-  it('sticky block panel should render correctly', () => {
+  it('should be accessible when empty', async () => {
+    await assertAccessible(
+      <BlockPanel
+        title="Open"
+      />
+    );
+  });
+
+  it('sticky block panel should render correctly', async () => {
     const wrapper = mount(<BlockPanel expandable stickyId="yadda" title="My Block Panel" />);
 
     const inner = wrapper.find('BlockPanel');
     assert.equal(inner.length, 1);
     assert.equal(inner.prop('expandable'), true);
+  });
+
+  it('should be accessible when sticky', async () => {
+    await assertAccessible(
+      <BlockPanel expandable stickyId="yadda" title="My Block Panel" />
+    );
   });
 
   context('is expandable', () => {
@@ -40,6 +56,14 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1);
     });
 
+    it('should be accessible when open', async () => {
+      await assertAccessible(
+        <BlockPanel title="Open" expandable>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+    });
+
     it('should be closed when false passed as prop', () => {
       const component = mount(
         <BlockPanel title="Open" open={false} expandable>
@@ -49,6 +73,14 @@ describe('<BlockPanel />', () => {
 
       assert.equal(component.find('#hi').length, 0);
       assert.equal(component.find(Collapse).prop('isOpen'), false, 'inner block should be hidden');
+    });
+
+    it('should be accessible when closed', async () => {
+      await assertAccessible(
+        <BlockPanel title="Open" open={false} expandable>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
     });
 
     it('should be open when true passed as prop', () => {
@@ -153,6 +185,14 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1);
       assert.equal(component.find('#edit').length, 1);
     });
+
+    it('should be accessible with headerComponent', async () => {
+      await assertAccessible(
+        <BlockPanel title="Open" controls={<p id="edit">Edit</p>}>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+    });
   });
 
   context('header components', () => {
@@ -174,6 +214,14 @@ describe('<BlockPanel />', () => {
       );
       const editButton = component.find(Button);
       assert.strictEqual(editButton.length, 1);
+    });
+
+    it('should be accessible when passed onEdit', async () => {
+      await assertAccessible(
+        <BlockPanel title="Open" onEdit={() => {}}>
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
     });
 
     it('should call onEdit when clicked', () => {
@@ -200,6 +248,17 @@ describe('<BlockPanel />', () => {
       );
       assert.equal(component.find('#title').first().text(), 'WE ARE THE CHAMPIONS');
       assert.equal(component.find('#action').first().text(), 'Go!');
+    });
+
+    it('should be accessible when passed title components', async () => {
+      await assertAccessible(
+        <BlockPanel
+          title={<span id="title">WE ARE THE CHAMPIONS</span>}
+          controls={<Button id="action">Go!</Button>}
+        >
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
     });
   });
 });

@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
 
+import { assertAccessible } from '../a11yHelpers';
 import { BoundForm } from '../../src';
 
 describe('<BoundForm />', () => {
@@ -79,5 +80,11 @@ describe('<BoundForm />', () => {
 
   it('should forward other props to child form', () => {
     assert.equal(component.prop('other'), 'stuff');
+  });
+
+  it('should be accessible', async () => {
+    await assertAccessible(
+      <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff" />
+    );
   });
 });
