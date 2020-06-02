@@ -1,0 +1,15 @@
+{
+    "dataSource": "prs",
+    "onlyMilestones": false,
+    "groupBy": {
+        "New Components": ["new component"],
+        "Enhancements:": ["enhancement"],
+        "Bug Fixes:": ["bug"],
+        "Other": ["closed"]
+    },
+    "noLabel": "Other",
+    "changelogFilename": "CHANGELOG.md",
+    "template": {
+        "label": ""
+    }
+}

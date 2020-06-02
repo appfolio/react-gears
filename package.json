@@ -29,7 +29,7 @@
     "dist:types": "tsc --declaration --emitDeclarationOnly --noEmit false --allowJs false --isolatedModules false --outDir lib/",
     "dist": "npm run dist:copy-d-ts-files && npm run dist:types && webpack -p",
     "prepublishOnly": "npm run dist",
-    "postpublish": "git push --no-verify && git push --tags"
+    "postpublish": "git push --no-verify && git push --tags && gren release"
   },
   "peerDependencies": {
     "react": ">= 16.8",
