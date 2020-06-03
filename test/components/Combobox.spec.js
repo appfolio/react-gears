@@ -29,6 +29,16 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
 
+  it('should show all options when there is a selected option', () => {
+    const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+
+    OPTIONS.forEach((o) => {
+      combobox.getByText(o.label);
+    });
+  });
+
   it('should call onChange when value changes', () => {
     const mockOnChange = sinon.spy();
     const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
