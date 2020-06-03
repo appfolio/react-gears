@@ -70,7 +70,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   }, [visibleOptions]);
 
   useEffect(() => {
-    setInputValue(selectedOption ? renderInputValue(selectedOption) : '');
+    setInputValue('');
     if (selectedOption && inputElement.current) inputElement.current.blur();
   }, [selectedOption, options, renderInputValue]);
 
@@ -115,8 +115,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
-    } else if (selectedOption && key === 'Backspace') {
-      setInputValue('');
+    } else if (selectedOption && key === 'Backspace' && inputValue === '') {
       onChange(undefined);
     }
   };
@@ -126,7 +125,10 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       direction={direction}
       isOpen={!disabled && open}
       toggle={() => {}}
-      onBlur={() => setOpen(false)}
+      onBlur={() => {
+        setInputValue(selectedOption ? renderInputValue(selectedOption) : '');
+        setOpen(false);
+      }}
     >
       <DropdownToggle tag="div" disabled={disabled}>
         <InputGroup className={className}>
@@ -134,11 +136,12 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
             innerRef={inputElement}
             data-testid="combobox-input"
             disabled={disabled}
-            placeholder={placeholder}
+            placeholder={selectedOption ? renderInputValue(selectedOption) : placeholder}
             onFocus={(ev) => {
               ev.preventDefault();
               ev.stopPropagation();
               setOpen(true);
+              setInputValue('');
             }}
             onChange={(e) => {
               e.preventDefault();
