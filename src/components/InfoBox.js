@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import Icon from './Icon';
-import styles from './InfoBox.scss';
 
 export default class InfoBox extends React.Component {
   static propTypes = {
@@ -22,7 +21,7 @@ export default class InfoBox extends React.Component {
 
   render() {
     const { className, color, icon, title, children, vertical, ...props } = this.props;
-    const classNames = classnames(styles.infobox, 'bg-white', 'shadow-sm', 'p-3', className, {
+    const classNames = classnames('rg-InfoBox', 'bg-white', 'shadow-sm', 'p-3', className, {
       [`border-${color}`]: color,
       'border-top': vertical,
       'border-left': !vertical
@@ -30,17 +29,26 @@ export default class InfoBox extends React.Component {
     const headerClasses = `text-${color} font-weight-normal d-flex justify-content-between m-0 mb-3`;
 
     return (
-      <div className={classNames} {...props}>
-        {title &&
-          <h1 className={headerClasses}>
-            {title}
-            {icon ? <Icon name={icon} /> : null}
-          </h1>
-        }
-        <div className="infobox-body">
-          {children}
+      <>
+        <div className={classNames} {...props}>
+          {title &&
+            <h1 className={headerClasses}>
+              {title}
+              {icon ? <Icon name={icon} /> : null}
+            </h1>
+          }
+          <div className="infobox-body">
+            {children}
+          </div>
         </div>
-      </div>
+        <style jsx>{`
+          .rg-InfoBox {
+            border-width: 0.55rem !important; 
+            flex: 1 1 auto;
+          }
+        `}
+        </style>
+      </>
     );
   }
 }
