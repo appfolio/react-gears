@@ -9,7 +9,6 @@ import HasManyFieldsRow from './HasManyFieldsRow';
 import withDragHandler from './Reorderable/DragHandler';
 import ReorderableContainer from './Reorderable/ReorderableContainer';
 import ReorderableElement from './Reorderable/ReorderableElement';
-import styles from './Reorderable/Reorderable.scss';
 
 const DragHandler = withDragHandler();
 
@@ -194,7 +193,7 @@ class HasManyFields extends React.Component {
 
     if (!disabled && reorderable) {
       return (
-        <div className={styles.noSelect}>
+        <div>
           <SortableContainer
             className="js-reorderable-container"
             helperClass="hmf-dragging"
@@ -205,6 +204,16 @@ class HasManyFields extends React.Component {
             renderHasManyFieldsRow={this.renderHasManyFieldsRow}
             renderAddRow={this.renderAddRow}
           />
+          <style jsx>{`
+            div {
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+          `}
+          </style>
         </div>
       );
     }
