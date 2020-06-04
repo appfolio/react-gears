@@ -126,17 +126,26 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       isOpen={!disabled && open}
       toggle={() => {}}
       onBlur={() => {
-        setInputValue(selectedOption ? renderInputValue(selectedOption) : '');
+        setInputValue('');
         setOpen(false);
       }}
     >
       <DropdownToggle tag="div" disabled={disabled}>
+        { selectedOption && inputValue === '' &&
+          <div
+            aria-label="Selected value"
+            className="py-2 px-3"
+            style={{ position: 'absolute', zIndex: 4, left: 1 }}
+          >
+            {selectedOption && renderInputValue(selectedOption)}
+          </div>
+        }
         <InputGroup className={className}>
           <Input
             innerRef={inputElement}
             data-testid="combobox-input"
             disabled={disabled}
-            placeholder={selectedOption ? renderInputValue(selectedOption) : placeholder}
+            placeholder={selectedOption ? undefined : placeholder}
             onFocus={(ev) => {
               ev.preventDefault();
               ev.stopPropagation();
