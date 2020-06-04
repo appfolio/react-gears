@@ -69,6 +69,7 @@
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.9.0",
     "reactstrap": "^8.1.1",
+    "styled-jsx": "^3.3.0",
     "text-mask-addons": "^3.8.0",
     "uniqid": "^5.0.3",
     "use-local-storage-state": "^3.0.1",
