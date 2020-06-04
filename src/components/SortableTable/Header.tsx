@@ -1,7 +1,5 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import classnames from 'classnames';
 import Icon from '../Icon';
-import styles from './Header.scss';
 
 export interface HeaderProps {
   active?: boolean;
@@ -11,27 +9,34 @@ export interface HeaderProps {
   onSort?: ((event: MouseEvent) => void) | undefined;
 }
 
-const Header = ({ active, ascending, children, className, onSort, ...props }: HeaderProps) => {
-  const classNames = classnames(className, styles.header);
-  return (
-    <th
-      className={classNames}
-      onClick={onSort}
-      style={{
-        cursor: onSort ? 'pointer' : 'initial'
-      }}
-      {...props}
-    >
-      {children}
-      {onSort &&
-        <Icon
-          name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'}
-          fixedWidth
-        />
+const Header = ({ active, ascending, children, className, onSort, ...props }: HeaderProps) => (
+  <th
+    className={className}
+    onClick={onSort}
+    style={{
+      cursor: onSort ? 'pointer' : 'initial',
+    }}
+    {...props}
+  >
+    {children}
+    {onSort &&
+      <Icon
+        name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'}
+        fixedWidth
+      />
+    }
+    <style jsx>{`
+      th {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
-    </th>
-  );
-};
+    `}
+    </style>
+  </th>
+);
 
 Header.displayName = 'Header';
 
