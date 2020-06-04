@@ -9,8 +9,6 @@ import Row from './Row';
 import mod from '../util/mod.js';
 import range from '../util/range';
 
-import styles from './MonthCalendar.scss';
-
 const { format } = Fecha;
 
 const Label = ({ selected, label, onClick, visible = true }) => (
@@ -21,6 +19,7 @@ const Label = ({ selected, label, onClick, visible = true }) => (
       color="primary"
       onClick={onClick}
       outline
+      style={{ cursor: 'pointer', listStyle: 'none' }}
     >
       {label}
     </NavLink>
@@ -65,39 +64,47 @@ export default class MonthCalendar extends React.Component {
     const { date, dateVisible, monthFormat, onSelect, yearFormat } = this.props;
 
     return (
-      <div className={styles.picker}>
-        <Row className="no-gutters">
-          <Col>
-            <Nav pills className="d-block p-1 m-0">
-              {this.getMonths(date).map((monthYear, i) => (
-                <Label
-                  selected={date.getMonth() === monthYear.getMonth()}
-                  label={format(monthYear, monthFormat)}
-                  date={monthYear}
-                  key={i}
-                  onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
-                  visible={dateVisible(monthYear)}
-                />
-              ))}
-            </Nav>
-          </Col>
+      <>
+        <div className="rg-MonthCalendar">
+          <Row className="no-gutters">
+            <Col>
+              <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
+                {this.getMonths(date).map((monthYear, i) => (
+                  <Label
+                    selected={date.getMonth() === monthYear.getMonth()}
+                    label={format(monthYear, monthFormat)}
+                    date={monthYear}
+                    key={i}
+                    onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
+                    visible={dateVisible(monthYear)}
+                  />
+                ))}
+              </Nav>
+            </Col>
 
-          <Col className="border-left">
-            <Nav pills className="d-block p-1 m-0">
-              {this.getYears(date).map((monthYear, i) => (
-                <Label
-                  selected={date.getFullYear() === monthYear.getFullYear()}
-                  label={format(monthYear, yearFormat)}
-                  date={monthYear}
-                  key={i}
-                  onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
-                  visible={dateVisible(monthYear)}
-                />
-              ))}
-            </Nav>
-          </Col>
-        </Row>
-      </div>
+            <Col className="border-left">
+              <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
+                {this.getYears(date).map((monthYear, i) => (
+                  <Label
+                    selected={date.getFullYear() === monthYear.getFullYear()}
+                    label={format(monthYear, yearFormat)}
+                    date={monthYear}
+                    key={i}
+                    onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
+                    visible={dateVisible(monthYear)}
+                  />
+                ))}
+              </Nav>
+            </Col>
+          </Row>
+        </div>
+        <style jsx>{`
+          .rg-MonthCalendar {
+            min-width: 16em;
+          }
+        `}
+        </style>
+      </>
     );
   }
 }

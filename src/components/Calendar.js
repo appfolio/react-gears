@@ -13,7 +13,6 @@ import isToday from 'date-fns/is_today';
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
-import style from './Calendar.scss';
 import Table from './Table';
 
 // TODO locale/localize
@@ -25,8 +24,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
     { 'bg-light text-muted': !day.sameMonth }, // Lighten days in months before & after
     { 'bg-primary text-white': day.selected }, // Highlight selected date
     { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
-    { invisible: !day.visible }, // If date is (optionally) filtered out
-    style.date
+    { invisible: !day.visible } // If date is (optionally) filtered out
   );
   const styles = disabled ? {
     cursor: 'not-allowed'
@@ -43,6 +41,11 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
       {...props}
     >
       {disabled ? <s>{format(day.date, dateFormat)}</s> : format(day.date, dateFormat)}
+      <style jsx>{`
+        td:hover {
+          font-weight: bold;
+        }
+      `}</style>
     </td>
   );
 };
