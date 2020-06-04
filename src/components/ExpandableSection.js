@@ -18,15 +18,24 @@ const ExpandableSection = (props) => {
   return (
     <section className={props.className}>
       <header>
-        <ClickableContainer aria-expanded={open} onClick={toggle}>
+        <ClickableContainer aria-expanded={open} className="d-flex align-items-center" onClick={toggle}>
           <Icon
-            name="caret-right"
-            rotate={open ? 90 : undefined}
-            size="lg"
+            name={`chevron-${open ? 'up' : 'down'}`}
+            className="text-muted mr-1"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
-          <b style={{ userSelect: 'none' }}>{props.title}</b>
+          <h3 className="m-0 d-inline">{props.title}</h3>
+          <style jsx>{`
+            h3 {
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+          `}
+          </style>
         </ClickableContainer>
       </header>
       <Collapse isOpen={open}>
@@ -43,7 +52,7 @@ ExpandableSection.propTypes = {
   className: PropTypes.string,
   onToggle: PropTypes.func,
   open: PropTypes.bool,
-  title: PropTypes.string.isRequired
+  title: PropTypes.node.isRequired
 };
 
 ExpandableSection.defaultProps = {
