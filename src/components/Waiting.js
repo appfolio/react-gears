@@ -4,8 +4,6 @@ import classnames from 'classnames';
 import Modal from './Modal';
 import Spinner from './Spinner';
 
-import styles from './Waiting.scss';
-
 const noop = () => {};
 
 /**
@@ -32,16 +30,24 @@ export default class Waiting extends React.Component {
       ...props
     } = this.props;
 
-    const spinnerClasses = classnames('text-white', styles.spinner);
     return (
-      <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
+      <Modal
+        {...props}
+        className={className}
+        contentClassName="bg-dark border-0 text-center text-light"
+        toggle={noop}
+        style={{
+          margin: '40vh auto',
+          width: '9rem'
+        }}
+      >
         {title ?
-          <header className="text-center text-white px-4 pt-4">
+          <header className="px-4 pt-4">
             {title}
           </header>
           : null}
-        <div className="text-center p-4">
-          {children || <Spinner className={spinnerClasses} />}
+        <div className="p-4">
+          {children || <Spinner style={{ fontSize: '30px' }} />}
         </div>
       </Modal>
     );
