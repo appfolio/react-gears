@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
-import styles from './Steps.scss';
+import styles from './Steps.style';
 
 interface StepProps {
   collapse?: boolean;
@@ -13,9 +13,9 @@ interface StepProps {
 
 const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = false }: StepProps) => {
   const className = classNames({
-    [styles.complete]: complete,
-    [styles.steps]: true,
-    [styles.vertical]: vertical,
+    complete,
+    'rg-steps': true,
+    vertical,
     'm-0': true
   });
   const activeStep = steps[step];
@@ -34,16 +34,16 @@ const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = fa
           const stepActive = !complete && index === step;
 
           const liClasses = classNames('mb-2', {
-            [styles.step]: true,
-            [styles.complete]: stepComplete,
-            [styles.active]: stepActive,
+            step: true,
+            complete: stepComplete,
+            active: stepActive,
             'text-success': complete,
             'text-primary': !complete && (stepComplete || stepActive),
             'text-muted': !(stepComplete || stepActive || complete)
           });
 
           const bubbleClasses = classNames({
-            [styles.bubble]: true,
+            bubble: true,
             'text-success': complete,
             'bg-primary': stepActive,
             'text-primary': stepActive || stepComplete,
@@ -80,6 +80,9 @@ const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = fa
         <div className={activeStepClasses}>
           <span className="mb-2 js-step-label">{activeStep}</span>
         </div> : null}
+      <style jsx>
+        {styles}
+      </style>
     </div>
   );
 };
