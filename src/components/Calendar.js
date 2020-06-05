@@ -45,7 +45,8 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
         td:hover {
           font-weight: bold;
         }
-      `}</style>
+      `}
+      </style>
     </td>
   );
 };
