@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import Icon from './Icon';
 import Modal from './Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
-import styles from './ImageCarousel.scss';
 
 export default class ImageCarousel extends React.Component {
   static propTypes = {
@@ -78,7 +77,7 @@ export default class ImageCarousel extends React.Component {
             />
             <UncontrolledCarousel
               autoPlay={autoPlay}
-              className={classnames('d-flex align-items-center h-100', styles.carousel)}
+              className={classnames('d-flex align-items-center h-100', 'carousel')}
               controls={controls}
               indicators={indicators}
               interval={autoPlay ? interval : 0}
@@ -87,6 +86,19 @@ export default class ImageCarousel extends React.Component {
               slide={slide}
               defaultActiveIndex={index}
             />
+            <style jsx>
+              {`
+                .carousel :global img {
+                  display: inline-block !important;
+                  max-height: 100vh;
+                  max-width: 100vw;
+                  width: auto !important;
+                }
+                .carousel :global .carousel-item {
+                  text-align: center !important;
+                }
+              `}
+            </style>
           </div>
         }
         {...props}
