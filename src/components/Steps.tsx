@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
-import styles from './Steps.style';
+import styles from './Steps.styles';
 
 interface StepProps {
   collapse?: boolean;
