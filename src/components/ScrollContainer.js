@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Resize from 'react-resize-detector';
-import styles from './ScrollContainer.scss';
+import styles from './ScrollContainer.styles';
 
 export default class ScrollContainer extends React.Component {
   static propTypes = {
@@ -19,10 +19,10 @@ export default class ScrollContainer extends React.Component {
 
   static defaultProps = {
     theme: {
-      overflowTop: styles.overflowTop,
-      overflowBottom: styles.overflowBottom,
-      overflowLeft: styles.overflowLeft,
-      overflowRight: styles.overflowRight
+      overflowTop: 'overflow-top',
+      overflowBottom: 'overflow-bottom',
+      overflowLeft: 'overflow-left',
+      overflowRight: 'overflow-right'
     }
   }
 
@@ -59,7 +59,7 @@ export default class ScrollContainer extends React.Component {
   render() {
     const { children, className, height, theme, ...props } = this.props;
     const { overflowTop, overflowBottom, overflowLeft, overflowRight } = this.state;
-    const classNames = classnames(className, 'position-relative', {
+    const classNames = classnames(className, 'scroll-container', 'position-relative', {
       [theme.overflowTop]: overflowTop,
       [theme.overflowBottom]: overflowBottom,
       [theme.overflowLeft]: overflowLeft,
@@ -82,7 +82,10 @@ export default class ScrollContainer extends React.Component {
           {children}
         </div>
         <Resize handleWidth handleHeight onResize={() => this.detectOverflow()} className="d-none" />
-        <div className={styles.shadow} />
+        <div className='container-shadow' />
+        <style jsx>
+          {styles}
+        </style>
       </div>
     );
   }
