@@ -59,7 +59,6 @@ storiesOf('HasManyFields', module)
       minimumRows={number('minimumRows', 1)}
       maximumRows={number('maximumRows', 5)}
       reorderable={boolean('reorderable', false)}
-      animated={boolean('animated', false)}
     />
   ))
   .add('Row Wrapper', () => (
