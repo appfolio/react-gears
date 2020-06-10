@@ -173,7 +173,7 @@ class HasManyFields extends React.Component {
         deletable={this.value.length > minimumRows}
         disabled={disabled}
         deleteProps={deleteProps}
-        >
+      >
         <Template
           value={value}
           errors={errors[index]}
