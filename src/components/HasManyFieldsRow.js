@@ -5,7 +5,6 @@ import React from 'react';
 import Button from './Button';
 import ConfirmationButton from './ConfirmationButton';
 import Col from './Col';
-import Collapse from './Collapse';
 import Icon from './Icon';
 import Row from './Row';
 import Tooltip from './Tooltip';
@@ -18,7 +17,6 @@ function getID() {
 
 export default class HasManyFieldsRow extends React.Component {
   static propTypes = {
-    animated: PropTypes.bool,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -30,15 +28,10 @@ export default class HasManyFieldsRow extends React.Component {
   };
 
   static defaultProps = {
-    animated: true,
     disabledReasonPlacement: 'top',
     disabled: false,
     onDelete: noop,
     deletable: true
-  };
-
-  state = {
-    isOpen: true
   };
 
   //eslint-disable-next-line camelcase
@@ -46,21 +39,8 @@ export default class HasManyFieldsRow extends React.Component {
     this.id = getID();
   }
 
-  componentDidMount() {
-    if (this.props.animated) {
-      setTimeout(() => {
-        this.setState({ isOpen: true });
-      });
-    }
-  }
-
-  closeCollapse = () => {
-    this.setState({ isOpen: false });
-  }
-
   render() {
     const {
-      animated,
       children,
       className,
       disabledReason,
@@ -81,62 +61,31 @@ export default class HasManyFieldsRow extends React.Component {
         </Tooltip>
       ) : null;
 
-    let button;
-    if (disabled) {
-      button = (
-        <Button
-          id={this.id}
-          color="danger"
-          onClick={e => e.preventDefault()}
-          outline
-          className="p-2 disabled"
-        >
-          <Icon name="times-circle-o" size="lg" />
-        </Button>
-      );
-    } else if (animated) {
-      button = (
-        <ConfirmationButton
-          color="danger"
-          confirmation="Delete"
-          aria-label="Delete"
-          outline
-          onClick={this.closeCollapse}
-          className="p-2"
-          {...deleteProps}
-        >
-          <Icon name="times-circle-o" size="lg" />
-        </ConfirmationButton>
-      );
-    } else {
-      button = (
-        <ConfirmationButton
-          color="danger"
-          confirmation="Delete"
-          aria-label="Delete"
-          outline
-          onClick={onDelete}
-          className="p-2"
-          {...deleteProps}
-        >
-          <Icon name="times-circle-o" size="lg" />
-        </ConfirmationButton>
-      );
-    }
-
-    return (animated ? (
-      <Collapse isOpen={this.state.isOpen} onExited={onDelete}>
-        <Row className={classNames} noGutters>
-          <Col>{children}</Col>
-          {deletable && (
-            <Col xs="auto" className="js-delete-col pl-3 d-flex">
-              {button}
-              {tooltip}
-            </Col>
-          )}
-        </Row>
-      </Collapse>
+    const button = disabled ? (
+      <Button
+        id={this.id}
+        color="danger"
+        onClick={e => e.preventDefault()}
+        outline
+        className="p-2 disabled"
+      >
+        <Icon name="times-circle-o" size="lg" />
+      </Button>
     ) : (
+      <ConfirmationButton
+        color="danger"
+        confirmation="Delete"
+        aria-label="Delete"
+        outline
+        onClick={onDelete}
+        className="p-2"
+        {...deleteProps}
+      >
+        <Icon name="times-circle-o" size="lg" />
+      </ConfirmationButton>
+    );
+
+    return (
       <Row className={classNames} noGutters>
         <Col>{children}</Col>
         {deletable && (
@@ -146,6 +95,6 @@ export default class HasManyFieldsRow extends React.Component {
           </Col>
         )}
       </Row>
-    ));
+    );
   }
 }

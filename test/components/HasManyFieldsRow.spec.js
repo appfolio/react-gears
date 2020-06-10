@@ -8,7 +8,6 @@ import {
   Button,
   ConfirmationButton,
   Col,
-  Collapse,
   HasManyFieldsRow,
   Tooltip
 } from '../../src';
@@ -34,36 +33,12 @@ describe('<HasManyFieldsRow />', () => {
       assert(deleteButton);
     });
 
-    it('should call closeCollapse when confirmation button not deleted and animated', () => {
-      const closeCollapse = sinon.spy();
-      component.instance().closeCollapse = closeCollapse;
-      component.instance().forceUpdate();
-
-      deleteButton.simulate('click');
-      sinon.assert.notCalled(closeCollapse);
-      assert.equal(deleteButton.text(), 'Delete');
-      deleteButton.simulate('click');
-      sinon.assert.calledOnce(closeCollapse);
-    });
-
-    it('should call onDelete when confirmation button not deleted or animated', () => {
-      component = mount(
-        <HasManyFieldsRow onDelete={onDelete} animated={false}>Stuff</HasManyFieldsRow>
-      );
-      deleteButton = component.find(ConfirmationButton);
-
+    it('should call onDelete', () => {
       deleteButton.simulate('click');
       sinon.assert.notCalled(onDelete);
       assert.equal(deleteButton.text(), 'Delete');
       deleteButton.simulate('click');
       sinon.assert.calledOnce(onDelete);
-    });
-
-    it('should set isOpen to false when deleting', () => {
-      assert.strictEqual(component.state('isOpen'), true);
-      deleteButton.simulate('click');
-      deleteButton.simulate('click');
-      assert.strictEqual(component.state('isOpen'), false);
     });
 
     it('should put content in first column', () =>
@@ -130,18 +105,6 @@ describe('<HasManyFieldsRow />', () => {
     assert.equal(component.find(ConfirmationButton).length, 0);
     assert.equal(component.find(Button).length, 0);
     assert.equal(component.find('.js-delete-col').length, 0);
-  });
-
-  it('should render Collapse when animated', () => {
-    component = shallow(<HasManyFieldsRow animated />);
-
-    assert.strictEqual(component.find(Collapse).length, 1);
-  });
-
-  it('should not render Collapse when not animated', () => {
-    component = shallow(<HasManyFieldsRow animated={false} />);
-
-    assert.strictEqual(component.find(Collapse).length, 0);
   });
 
   describe('when disabled and disabled reason', () => {
