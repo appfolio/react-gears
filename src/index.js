@@ -92,7 +92,7 @@ import BoundForm from './components/BoundForm';
 import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';
 import Callout from './components/Callout.tsx';
-import Close from './components/Close.js';
+import Close from './components/Close.tsx';
 import CheckboxGroup from './components/CheckboxGroup';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
