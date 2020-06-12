@@ -151,7 +151,7 @@ import Table from './components/Table.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
-import Waiting from './components/Waiting.js';
+import Waiting from './components/Waiting';
 import TooltipButton from './components/TooltipButton.tsx';
 
 export {
