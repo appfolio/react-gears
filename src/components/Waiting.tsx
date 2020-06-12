@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classnames from 'classnames';
+import { ModalProps } from 'reactstrap/lib/Modal';
 import Modal from './Modal';
 import Spinner from './Spinner';
 
@@ -8,21 +8,21 @@ import styles from './Waiting.scss';
 
 const noop = () => {};
 
+interface WaitingProps extends Omit<ModalProps, 'toggle'> {
+  backdrop?: boolean;
+  children?: ReactNode;
+  className?: string;
+  isOpen?: boolean;
+  title?: string;
+}
+
 /**
  * A 'Waiting' indicator for unknown durations. See https://qa.qa.appfolio.com/gears/waiting
  */
-export default class Waiting extends React.Component {
-  static propTypes = {
-    backdrop: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    isOpen: PropTypes.bool,
-    title: PropTypes.string,
-  }
-
+export default class Waiting extends React.Component<WaitingProps, {}> {
   static defaultProps = {
     title: 'Please Wait',
-  }
+  };
 
   render() {
     const {
