@@ -1,10 +1,30 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import { CardProps } from 'reactstrap/lib/Card';
+import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import Card from './Card';
 import CardBody from './CardBody';
+import Omit from './TypeHelpers/Omit';
 
-const SummaryBoxItem = ({ className, label, reverse, value, ...props }) => {
+interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
+  className?: string,
+  label?: string,
+  value?: string,
+  reverse: boolean
+}
+
+const defaultProps = {
+  label: '--',
+  reverse: true,
+  value: '--'
+};
+
+const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
+  className,
+  label = defaultProps.label,
+  reverse = defaultProps.reverse,
+  value = defaultProps.value,
+  ...props
+}) => {
   const bodyClassNames = classnames('text-center d-flex justify-content-end', {
     'flex-column-reverse': reverse,
     'flex-column': !reverse
@@ -29,17 +49,6 @@ const SummaryBoxItem = ({ className, label, reverse, value, ...props }) => {
   );
 };
 
-SummaryBoxItem.propTypes = {
-  className: PropTypes.string,
-  label: PropTypes.node,
-  reverse: PropTypes.bool,
-  value: PropTypes.node
-};
-
-SummaryBoxItem.defaultProps = {
-  label: '--',
-  reverse: true,
-  value: '--'
-};
+SummaryBoxItem.defaultProps = defaultProps;
 
 export default SummaryBoxItem;

@@ -146,7 +146,7 @@ import StateInput from './components/StateInput.js';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox.tsx';
-import SummaryBoxItem from './components/SummaryBoxItem.js';
+import SummaryBoxItem from './components/SummaryBoxItem.tsx';
 import Table from './components/Table.js';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
