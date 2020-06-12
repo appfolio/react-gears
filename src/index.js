@@ -136,7 +136,7 @@ import PatternInput from './components/PatternInput.js';
 import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioGroup from './components/RadioGroup';
-import RadioInput from './components/RadioInput.js';
+import RadioInput from './components/RadioInput.tsx';
 import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
