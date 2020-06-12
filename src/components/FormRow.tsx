@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import CheckboxInput from './CheckboxInput';
 import FileInput from './FileInput';
 import FormLabelGroup from './FormLabelGroup';
@@ -14,17 +14,17 @@ const typeTranslations = {
   file: FileInput
 };
 
-function determineElement(type) {
+function determineElement(type: any) {
   return typeof type === 'string' ? typeTranslations[type] || Input : type;
 }
 
-function inputType(type) {
+function inputType(type: any) {
   if (typeof type !== 'string') return null;
   if (type === 'static') return null;
   return type;
 }
 
-function parseFeedback(feedback) {
+function parseFeedback(feedback: any) {
   return typeof feedback === 'object'
     ? [null, { error: feedback }]
     : [feedback, {}];
@@ -39,7 +39,30 @@ function sanitizeProps(component, props) {
   return saneProps;
 }
 
-const FormRow = (props) => {
+interface FormRowPropTypes extends 
+  Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
+  children?: ReactNode;
+  label?: ReactNode;
+  labelSize?: string;
+  hint?: string;
+  feedback?: any;
+  id?: string;
+  required?: boolean;
+  rowClassName?: string;
+  type?: any;
+  inline?: boolean;
+  stacked?: boolean;
+  size?: string;
+  validFeedback?: ReactNode;
+  width?: {
+    size?: boolean | number | string
+    push?: string | number
+    pull?: string | number
+    offset?: string | number
+  }
+}
+
+const FormRow: FunctionComponent<FormRowPropTypes> = (props) => {
   const {
     children,
     feedback,
@@ -103,27 +126,6 @@ const FormRow = (props) => {
   );
 };
 
-FormRow.propTypes = {
-  children: PropTypes.node,
-  feedback: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
-  hint: PropTypes.node,
-  id: PropTypes.string,
-  inline: PropTypes.bool,
-  label: PropTypes.node,
-  labelSize: PropTypes.string,
-  required: PropTypes.bool,
-  rowClassName: PropTypes.string,
-  size: PropTypes.string,
-  stacked: PropTypes.bool,
-  type: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.func
-  ]),
-  validFeedback: PropTypes.node,
-  width: PropTypes.object
-};
-
 FormRow.defaultProps = {
   feedback: '',
   hint: '',
@@ -133,6 +135,6 @@ FormRow.defaultProps = {
   rowClassName: '',
   stacked: false,
   type: 'text'
-};
+} as Partial<FormRowPropTypes>;
 
 export default FormRow;
