@@ -147,7 +147,7 @@ import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox.tsx';
 import SummaryBoxItem from './components/SummaryBoxItem.tsx';
-import Table from './components/Table.js';
+import Table from './components/Table';
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
 import UncontrolledTable from './components/UncontrolledTable.js';
