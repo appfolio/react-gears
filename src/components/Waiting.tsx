@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, FunctionComponent } from 'react';
 import classnames from 'classnames';
 import { ModalProps } from 'reactstrap/lib/Modal';
 import Modal from './Modal';
@@ -19,31 +19,29 @@ interface WaitingProps extends Omit<ModalProps, 'toggle'> {
 /**
  * A 'Waiting' indicator for unknown durations. See https://qa.qa.appfolio.com/gears/waiting
  */
-export default class Waiting extends React.Component<WaitingProps, {}> {
-  static defaultProps = {
-    title: 'Please Wait',
-  };
+const Waiting: FunctionComponent<WaitingProps> = ({
+  children,
+  className,
+  title = 'Please Wait',
+  ...props
+}) => {
+  const spinnerClasses = classnames('text-white', styles.spinner);
+  return (
+    <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
+      {title ?
+        <header className="text-center text-white px-4 pt-4">
+          {title}
+        </header>
+        : null}
+      <div className="text-center p-4">
+        {children || <Spinner className={spinnerClasses} />}
+      </div>
+    </Modal>
+  );
+};
 
-  render() {
-    const {
-      children,
-      className,
-      title,
-      ...props
-    } = this.props;
+Waiting.defaultProps = {
+  title: 'Please Wait',
+};
 
-    const spinnerClasses = classnames('text-white', styles.spinner);
-    return (
-      <Modal {...props} className={classnames(styles.waiting, className)} toggle={noop}>
-        {title ?
-          <header className="text-center text-white px-4 pt-4">
-            {title}
-          </header>
-          : null}
-        <div className="text-center p-4">
-          {children || <Spinner className={spinnerClasses} />}
-        </div>
-      </Modal>
-    );
-  }
-}
+export default Waiting;
