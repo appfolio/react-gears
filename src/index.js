@@ -94,7 +94,7 @@ import Calendar from './components/Calendar.js';
 import Callout from './components/Callout.tsx';
 import Close from './components/Close.js';
 import CheckboxGroup from './components/CheckboxGroup';
-import CheckboxInput from './components/CheckboxInput.js';
+import CheckboxInput from './components/CheckboxInput';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
 import ClickableContainer from './components/ClickableContainer.js';
