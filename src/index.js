@@ -113,7 +113,7 @@ import FeatureBanner from './components/FeatureBanner.js';
 import FileInput from './components/FileInput.js';
 import FilterList from './components/FilterList.js';
 import FormChoice from './components/FormChoice.js';
-import FormRow from './components/FormRow.js';
+import FormRow from './components/FormRow.tsx';
 import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow.js';

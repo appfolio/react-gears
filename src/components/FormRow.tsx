@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ElementType, ReactNode, ReactElement } from 'react';
 import CheckboxInput from './CheckboxInput';
 import FileInput from './FileInput';
 import FormLabelGroup from './FormLabelGroup';
@@ -7,7 +6,7 @@ import Input from './Input';
 import RadioInput from './RadioInput';
 import StaticInput from './StaticInput';
 
-const typeTranslations = {
+const typeTranslations: { [key: string]: ElementType } = {
   checkbox: CheckboxInput,
   radio: RadioInput,
   static: StaticInput,
@@ -30,9 +29,9 @@ function parseFeedback(feedback: any) {
     : [feedback, {}];
 }
 
-function sanitizeProps(component, props) {
+function sanitizeProps(component: any, props: Object) {
   if (!component.propTypes) return props;
-  const saneProps = {};
+  const saneProps: { [key: string]: any } = {};
   Object.entries(props).forEach(([k, v]) => {
     if (component.propTypes[k]) saneProps[k] = v;
   });
@@ -65,19 +64,19 @@ interface FormRowPropTypes extends
 const FormRow: FunctionComponent<FormRowPropTypes> = (props) => {
   const {
     children,
-    feedback,
-    hint,
     id,
-    inline,
-    label,
     labelSize,
-    required,
-    rowClassName,
     size,
-    stacked,
-    type,
     validFeedback,
     width,
+    feedback = '',
+    hint = '',
+    inline = false,
+    label = '',
+    required = false,
+    rowClassName = '',
+    stacked = false,
+    type = 'text',
     ...attributes
   } = props;
 
@@ -119,22 +118,11 @@ const FormRow: FunctionComponent<FormRowPropTypes> = (props) => {
         {...childFeedback}
       >
         {shouldPassChildren ? React.Children.map(children, child =>
-          React.cloneElement(child, { type: inputElementType })
+          React.cloneElement(child as ReactElement, { type: inputElementType })
         ) : undefined}
       </InputElement>
     </FormLabelGroup>
   );
 };
-
-FormRow.defaultProps = {
-  feedback: '',
-  hint: '',
-  inline: false,
-  label: '',
-  required: false,
-  rowClassName: '',
-  stacked: false,
-  type: 'text'
-} as Partial<FormRowPropTypes>;
 
 export default FormRow;
