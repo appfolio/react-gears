@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import range from '../util/range';
 
 // const since these don't behave well as live props, some animation issues:
 const DURATION = '1s';
 const SEGMENTS = 12;
 
-const ApmSpinner = ({ color, size, ...props }) => (
+type Props = {
+  className: string,
+  color: string,
+  size: string
+};
+
+const ApmSpinner: FunctionComponent<Props> = ({ color, size, ...props }) => (
   <svg
     width={size}
     height={size}
@@ -30,7 +35,7 @@ const ApmSpinner = ({ color, size, ...props }) => (
       <g className="gears-spinner">
         {range(SEGMENTS).map((i) => {
           const opacity = (i / SEGMENTS).toFixed(2);
-          const rotate = i * (360 / SEGMENTS).toFixed(2);
+          const rotate = (i * (360 / SEGMENTS)).toFixed(2);
 
           return (
             <use
@@ -45,12 +50,6 @@ const ApmSpinner = ({ color, size, ...props }) => (
     </g>
   </svg>
 );
-
-ApmSpinner.propTypes = {
-  className: PropTypes.string,
-  color: PropTypes.string,
-  size: PropTypes.string
-};
 
 ApmSpinner.defaultProps = {
   color: 'currentColor',
