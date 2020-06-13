@@ -1,15 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, ReactNode } from 'react';
+import { InputProps } from 'reactstrap/lib/Input';
 
 import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';
 
-const CheckboxInput = props =>
-  props.children ?
-    <CheckboxListInput {...props} /> :
-    <CheckboxBooleanInput {...props} />;
+interface CheckboxListInputProps {
+  children: ReactNode;
+  onChange?: (isChecked: boolean) => void;
+  value?: boolean;
+}
 
-CheckboxInput.propTypes = { children: PropTypes.element };
-// TODO should expose both prop types
+interface CheckboxBooleanInputSpecificProps {
+  checkboxLabel: ReactNode;
+  onChange?: (isChecked: boolean) => void;
+  value?: boolean;
+}
+type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
+type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<InputProps, CheckboxBooleanInputSpecificProps>;
+
+type CheckboxInputProps = CheckboxListInputProps | CheckboxBooleanInputProps;
+
+const CheckboxInput: FunctionComponent<CheckboxInputProps> = (props: CheckboxInputProps) =>
+    props.children ?
+      <CheckboxListInput {...props} /> :
+      <CheckboxBooleanInput {...(props as CheckboxBooleanInputProps)} />;
 
 export default CheckboxInput;
