@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cardTypeInfo from 'credit-card-type';
+import cardTypeInfo, { CardBrand } from 'credit-card-type';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupText from './InputGroupText';
 
-const ICONS = {
+const ICONS: {
+  [key: string]: IconName | undefined
+} = {
   'american-express': 'cc-amex',
   'diners-club': 'cc-diners-club',
   'master-card': 'cc-mastercard',
@@ -16,15 +18,29 @@ const ICONS = {
   visa: 'cc-visa'
 };
 
-function typeToIconName(type = '') {
+type CardType = 'visa' | 'master-card' | 'american-express' |'discover' | 'diners-club' | 'jcb';
+
+type IconName = 'cc-amex' | 'cc-diners-club' | 'cc-mastercard' | 'cc-discover'
+  | 'cc-jcb' | 'cc-visa' | 'credit-card';
+
+function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
 }
-function includes(array, value) {
-  return Array.isArray(array) && array.indexOf(value) !== -1;
+
+function includes(array: CardType[] | undefined, value?: CardBrand) {
+  return Array.isArray(array) && !!value && array.indexOf(value as CardType) !== -1;
 }
 
-export default class CreditCardNumber extends React.Component {
+interface CreditCardNumberProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  className?: string;
+  types?: CardType[];
+  value?: string;
+  onChange?: (value: string, type?: CardBrand) => void;
+}
+
+export default class CreditCardNumber extends React.Component<CreditCardNumberProps, {}> {
   static propTypes = {
+    // @ts-ignore
     ...Input.propTypes,
     className: PropTypes.string,
     types: PropTypes.arrayOf(PropTypes.string),
@@ -33,19 +49,26 @@ export default class CreditCardNumber extends React.Component {
   };
 
   static defaultProps = {
+    // @ts-ignore
     ...Input.defaultProps,
     className: '',
     types: Object.keys(ICONS),
     onChange: () => {},
   };
 
-  onChange = (e) => {
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const type = this.getType(value);
-    this.props.onChange(value, type);
-  }
+    if (this.props.onChange) {
+      this.props.onChange(value, type);
+    }
+  };
 
-  getType = (value) => {
+  getType = (value?: string): CardBrand | undefined => {
+    if (!value) {
+      return undefined
+    }
+
     const typeInfo = cardTypeInfo(value);
     // Return type if only one CC pattern matches and if allowed types includes type
     if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
@@ -53,7 +76,7 @@ export default class CreditCardNumber extends React.Component {
     }
 
     return undefined;
-  }
+  };
 
   render() {
     /* eslint-disable  no-unused-vars */
