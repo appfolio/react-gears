@@ -1,15 +1,13 @@
-// @ts-nocheck
 import React from 'react';
-import PropTypes from 'prop-types';
 
-class CheckboxListInput extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-    onChange: PropTypes.func,
-    value: PropTypes.array
-  };
+interface CheckboxListInputProps {
+  children?: React.ReactNode,
+  onChange?: (value: string[]) => void,
+  value?: string[],
+}
 
-  onChange = (e) => {
+class CheckboxListInput extends React.Component<CheckboxListInputProps, {}> {
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.onChange) {
       const { checked, value } = e.target;
       const currentSelection = (this.props.value || []).slice(0);
@@ -23,7 +21,7 @@ class CheckboxListInput extends React.Component {
 
       this.props.onChange(currentSelection);
     }
-  }
+  };
 
   render() {
     const {
@@ -35,7 +33,7 @@ class CheckboxListInput extends React.Component {
 
     return (
       <div>
-        {React.Children.map(children, choice => React.cloneElement(choice, {
+        {React.Children.map(children as React.ReactElement | React.ReactElement[], choice => React.cloneElement(choice, {
           type: 'checkbox',
           selected: value,
           onChange: this.onChange,
