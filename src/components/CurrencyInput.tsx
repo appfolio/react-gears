@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -11,7 +10,7 @@ import InputGroupAddon from './InputGroupAddon';
  * be to remove the original decimal point and keep the new one, resulting in the value being
  * multiplied by 100.  If we detect an additional decimal point we can ignore the extra character.
  */
-function preventMultipleDecimalPoint(conformedValue, config) {
+function preventMultipleDecimalPoint(conformedValue: string, config: any): string {
   let result = conformedValue;
   if (config.rawValue.match(/\..*\./)) {
     result = config.previousConformedValue;
@@ -19,18 +18,35 @@ function preventMultipleDecimalPoint(conformedValue, config) {
   return result;
 }
 
+type Props = {
+  allowDecimal?: boolean;
+  allowNegative?: boolean;
+  className?: string;
+  includeThousandsSeparator?: boolean;
+  inputProps?: { className?: string };
+  size?: string;
+  state?: any;
+  type?: any;
+};
+
+const defaultProps = {
+  allowDecimal: true,
+  allowNegative: false,
+  includeThousandsSeparator: true,
+}
+
 // TODO support I18n
-const CurrencyInput = ({
-  allowDecimal,
-  allowNegative,
+const CurrencyInput: FunctionComponent<Props> = ({
+  allowDecimal = defaultProps.allowDecimal,
+  allowNegative = defaultProps.allowNegative,
   className,
-  includeThousandsSeparator,
+  includeThousandsSeparator = defaultProps.includeThousandsSeparator,
   inputProps,
   size,
   state,
   type,
   ...props
-}) => {
+}: Props) => {
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
 
   const maskedProps = {
@@ -58,22 +74,7 @@ const CurrencyInput = ({
   );
 };
 
-CurrencyInput.defaultProps = {
-  allowDecimal: true,
-  allowNegative: false,
-  includeThousandsSeparator: true,
-};
-
-CurrencyInput.propTypes = {
-  allowDecimal: PropTypes.bool,
-  allowNegative: PropTypes.bool,
-  className: PropTypes.string,
-  includeThousandsSeparator: PropTypes.bool,
-  inputProps: PropTypes.object,
-  size: PropTypes.string,
-  state: PropTypes.any,
-  type: PropTypes.any
-};
-
+CurrencyInput.displayName = 'CurrencyInput';
+CurrencyInput.defaultProps = defaultProps;
 
 export default CurrencyInput;
