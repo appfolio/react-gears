@@ -96,7 +96,7 @@ import Close from './components/Close.tsx';
 import CheckboxGroup from './components/CheckboxGroup';
 import CheckboxInput from './components/CheckboxInput.js';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
-import CheckboxListInput from './components/CheckboxListInput.js';
+import CheckboxListInput from './components/CheckboxListInput';
 import ClickableContainer from './components/ClickableContainer.tsx';
 import CollapsableText from './components/CollapsableText.js';
 import Combobox from './components/Combobox.tsx';
