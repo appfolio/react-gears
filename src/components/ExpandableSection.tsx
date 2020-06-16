@@ -1,22 +1,35 @@
-import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import Collapse from './Collapse';
 import ClickableContainer from './ClickableContainer';
 import Icon from './Icon';
 
-const ExpandableSection = (props) => {
-  const [open, setOpen] = useState(props.open);
+interface ExpandableSectionProps {
+  children?: React.ReactNode;
+  className?: string;
+  onToggle: (open: boolean) => void;
+  open?: boolean;
+  title: string;
+}
+
+const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
+  children,
+  className,
+  onToggle,
+  open: defaultOpen,
+  title
+}) => {
+  const [open, setOpen] = useState(defaultOpen);
   useEffect(() => {
-    setOpen(props.open);
-  }, [props.open]);
+    setOpen(defaultOpen);
+  }, [defaultOpen]);
 
   const toggle = () => {
     setOpen(!open);
-    props.onToggle(!open);
+    onToggle(!open);
   };
 
   return (
-    <section className={props.className}>
+    <section className={className}>
       <header>
         <ClickableContainer aria-expanded={open} onClick={toggle}>
           <Icon
@@ -26,24 +39,16 @@ const ExpandableSection = (props) => {
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
-          <b style={{ userSelect: 'none' }}>{props.title}</b>
+          <b style={{ userSelect: 'none' }}>{title}</b>
         </ClickableContainer>
       </header>
       <Collapse isOpen={open}>
         <div className="py-3">
-          {props.children}
+          {children}
         </div>
       </Collapse>
     </section>
   );
-};
-
-ExpandableSection.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  onToggle: PropTypes.func,
-  open: PropTypes.bool,
-  title: PropTypes.string.isRequired
 };
 
 ExpandableSection.defaultProps = {

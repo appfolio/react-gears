@@ -108,7 +108,7 @@ import Datapair from './components/Datapair.tsx';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote.js';
 import EditableNote from './components/EditableNote.js';
-import ExpandableSection from './components/ExpandableSection.js';
+import ExpandableSection from './components/ExpandableSection';
 import FeatureBanner from './components/FeatureBanner.js';
 import FileInput from './components/FileInput.js';
 import FilterList from './components/FilterList.js';
