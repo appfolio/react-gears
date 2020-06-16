@@ -20,8 +20,8 @@ interface BlockPanelTitleProps {
 const BlockPanelTitle: FunctionComponent<BlockPanelTitleProps> = (
   { className, expandable, onClick, ...props }: BlockPanelTitleProps
 ) => expandable ?
-  <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
-  <div {...props} />;
+    <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
+    <div {...props} />;
 
 
 export interface BlockPanelProps {
@@ -33,25 +33,33 @@ export interface BlockPanelProps {
   headerClassName?: string,
   hideOnToggle?: boolean,
   onEdit?: (event: React.MouseEvent<any, MouseEvent>) => void,
-  onToggle: (willOpen?: boolean) => void,
+  onToggle?: (willOpen?: boolean) => void,
   open?: boolean,
   title: ReactNode,
   stickyId?: string,
 }
+
+const defaultProps = {
+  className: '',
+  open: true,
+  expandable: false,
+  hideOnToggle: false,
+  onToggle: () => { },
+};
 /**
  * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
  */
 const BlockPanel: FunctionComponent<BlockPanelProps> = ({
   children,
-  className,
+  className = defaultProps.className,
   color,
   controls,
-  expandable,
+  expandable = defaultProps.expandable,
   headerClassName,
-  hideOnToggle,
+  hideOnToggle = defaultProps.hideOnToggle,
   onEdit,
-  onToggle,
-  open,
+  onToggle = defaultProps.onToggle,
+  open = defaultProps.open,
   title,
   stickyId,
   ...props
@@ -143,12 +151,6 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
   );
 };
 
-BlockPanel.defaultProps = {
-  className: '',
-  open: true,
-  expandable: false,
-  hideOnToggle: false,
-  onToggle: () => {},
-};
+BlockPanel.defaultProps = defaultProps;
 
 export default BlockPanel;

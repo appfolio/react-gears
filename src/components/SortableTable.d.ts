@@ -5,7 +5,7 @@ import { HeaderProps } from './SortableTable/Header';
 type HorizontalAlignment = 'left' | 'center' | 'right';
 
 export interface SortableColumn<T>
-  extends Omit<HeaderProps, 'className' | 'children' | 'onSort'> {
+  extends Omit<HeaderProps, 'children' | 'onSort'> {
   align?: HorizontalAlignment;
   cell: (row: T) => React.ReactNode;
   footer?: React.ReactNode;
@@ -35,5 +35,5 @@ interface SortableTableProps<T> extends TableProps {
 declare class SortableTable<T> extends React.Component<
   SortableTableProps<T>,
   {}
-> {}
+  > { }
 export default SortableTable;
