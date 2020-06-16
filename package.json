@@ -19,7 +19,8 @@
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src test",
-    "lint": "tsc --noEmit && eslint src test stories && npm run dist",
+    "lint": "tsc --noEmit && eslint src test stories",
+    "lint:ts": "npm run dist",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",
     "test:watch": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --watch --require ./test/helpers.js",
