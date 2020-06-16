@@ -5,9 +5,9 @@ import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';
 
 interface CheckboxListInputProps {
-  children: ReactNode;
-  onChange?: (isChecked: boolean) => void;
-  value?: boolean;
+  children?: ReactNode;
+  onChange?: (value: string[]) => void;
+  value?: string[];
 }
 
 interface CheckboxBooleanInputSpecificProps {
