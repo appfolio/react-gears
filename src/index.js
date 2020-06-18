@@ -120,7 +120,7 @@ import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
 import Highlight from './components/Highlight.tsx';
 import ImageCarousel from './components/ImageCarousel.js';
-import InternationalAddressInput from './components/InternationalAddressInput.js';
+import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
