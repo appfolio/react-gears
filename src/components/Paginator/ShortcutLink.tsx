@@ -14,29 +14,32 @@ type ShortcutLinkProps = {
 /**
  * A clickable link to the first/previous/next/last page in the pagination bar
  */
-export default class ShortcutLink extends React.Component<ShortcutLinkProps, {}> {
-  static propTypes = {
-    children: PropTypes.node,
-    disabled: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    name: PropTypes.string,
-  };
-
-  onClick = (event: React.MouseEvent) => {
+const ShortcutLink: React.FunctionComponent<ShortcutLinkProps> = ({
+  page,
+  children,
+  disabled,
+  ...props
+}) => {
+  const onClick = (event: React.MouseEvent) => {
     event.preventDefault();
-    this.props.onClick(this.props.page);
+    props.onClick(page);
   };
 
-  render() {
-    const { children, disabled } = this.props;
+  return (
+    <PaginationItem disabled={disabled}>
+      <PaginationLink onClick={onClick} tabIndex={disabled ? -1 : undefined}>
+        {children}
+      </PaginationLink>
+    </PaginationItem>
+  );
+};
 
-    return (
-      <PaginationItem disabled={disabled}>
-        <PaginationLink onClick={this.onClick} tabIndex={disabled ? -1 : undefined}>
-          {children}
-        </PaginationLink>
-      </PaginationItem>
-    );
-  }
-}
+ShortcutLink.propTypes = {
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  name: PropTypes.string,
+};
+
+export default ShortcutLink;
