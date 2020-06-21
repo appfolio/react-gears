@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -13,48 +12,50 @@ interface CountryInputProps extends
   value?: string;
 }
 
-export default class CountryInput extends React.Component<CountryInputProps, {}> {
-  static propTypes = {
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    id: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    value: PropTypes.string
-  };
+const CountryInput: React.FunctionComponent<CountryInputProps> = ({
+  onChange = () => {},
+  ...otherProps
+}) => {
+  const {
+    className,
+    disabled,
+    id,
+    name,
+    placeholder,
+    ...props
+  } = otherProps;
 
-  static defaultProps = {
-    onChange: () => {}
-  };
+  const classNames = classnames('custom-select', className);
 
-  render() {
-    const {
-      className,
-      disabled,
-      id,
-      name,
-      onChange,
-      placeholder,
-      ...props
-    } = this.props;
+  return (
+    <Input
+      type="select"
+      {...props}
+      className={classNames}
+      disabled={disabled}
+      id={id}
+      name={name}
+      onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+    >
+      <option value="">{placeholder}</option>
+      {COUNTRIES.map(country =>
+        <option value={country.value} key={country.value}>{country.label}</option>)}
+    </Input>
+  );
+};
 
-    const classNames = classnames('custom-select', className);
+CountryInput.propTypes = {
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  value: PropTypes.string
+};
 
-    return (
-      <Input
-        type="select"
-        {...props}
-        className={classNames}
-        disabled={disabled}
-        id={id}
-        name={name}
-        onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
-      >
-        <option value="">{placeholder}</option>
-        {COUNTRIES.map(country =>
-          <option value={country.value} key={country.value}>{country.label}</option>)}
-      </Input>
-    );
-  }
-}
+CountryInput.defaultProps = {
+  onChange: () => {}
+};
+
+export default CountryInput;
