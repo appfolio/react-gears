@@ -55,7 +55,7 @@ type PaginatorProps = {
   currentPage: number,
   onClick: Function,
   perPage?: number,
-  size: 'sm' | 'lg',
+  size?: 'sm' | 'lg',
   summary: React.ReactNode,
   totalItems: number,
 }
@@ -64,68 +64,70 @@ type PaginatorProps = {
  * A component that generates a set of links that can be used for pagination.  Link selection is
  * communicated via the `onClick` callback.
  */
-export default class Paginator extends React.Component<PaginatorProps, {}> {
-  static propTypes = {
-    currentPage: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired,
-    perPage: PropTypes.number,
-    size: PropTypes.oneOf(['sm', 'lg']),
-    summary: PropTypes.node,
-    totalItems: PropTypes.number.isRequired,
-  };
+const Paginator: React.FunctionComponent<PaginatorProps> = ({
+  currentPage,
+  perPage = DEFAULT_PER_PAGE,
+  size,
+  summary,
+  totalItems,
+  onClick
+}) => {
 
-  static defaultProps = {
-    perPage: DEFAULT_PER_PAGE
-  };
+  const paginationState = new State(currentPage, totalItems, perPage);
+  const { from, to } = paginationState.currentItemRange();
 
-  render() {
-    const { currentPage, perPage, size, summary, totalItems, onClick } = this.props;
+  const rangeStart = paginationState.pageRange.from;
+  const rangeEnd = paginationState.pageRange.to + 1;
+  const pages = range(rangeStart, rangeEnd).map(page => (
+    <Page
+      key={page}
+      page={page}
+      current={currentPage === page}
+      onClick={onClick}
+    />
+  ));
 
-    const paginationState = new State(currentPage, totalItems, perPage);
-    const { from, to } = paginationState.currentItemRange();
-
-    const rangeStart = paginationState.pageRange.from;
-    const rangeEnd = paginationState.pageRange.to + 1;
-    const pages = range(rangeStart, rangeEnd).map(page => (
-      <Page
-        key={page}
-        page={page}
-        current={currentPage === page}
-        onClick={onClick}
-      />
-    ));
-
-    return (
-      <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center mb-3">
-        <div>
-          {(paginationState.totalPages > 1) && (
-            <Pagination size={size} listClassName="m-0 p-0 mb-2 mb-sm-0 border-0 flex-row">
-              <FirstPageLink
-                page={1}
-                disabled={!paginationState.showPrevious()}
-                onClick={onClick}
-              />
-              <PrevPageLink
-                page={currentPage - 1}
-                disabled={!paginationState.showPrevious()}
-                onClick={onClick}
-              />
-              {pages}
-              <NextPageLink
-                page={currentPage + 1}
-                disabled={!paginationState.showNext()}
-                onClick={onClick}
-              />
-              <LastPageLink
-                page={paginationState.totalPages}
-                disabled={!paginationState.showNext()}
-                onClick={onClick}
-              />
-            </Pagination>
-          )}
-        </div>
-        {summary || <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0" />}
+  return (
+    <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center mb-3">
+      <div>
+        {(paginationState.totalPages > 1) && (
+          <Pagination size={size} listClassName="m-0 p-0 mb-2 mb-sm-0 border-0 flex-row">
+            <FirstPageLink
+              page={1}
+              disabled={!paginationState.showPrevious()}
+              onClick={onClick}
+            />
+            <PrevPageLink
+              page={currentPage - 1}
+              disabled={!paginationState.showPrevious()}
+              onClick={onClick}
+            />
+            {pages}
+            <NextPageLink
+              page={currentPage + 1}
+              disabled={!paginationState.showNext()}
+              onClick={onClick}
+            />
+            <LastPageLink
+              page={paginationState.totalPages}
+              disabled={!paginationState.showNext()}
+              onClick={onClick}
+            />
+          </Pagination>
+        )}
       </div>
-    );
-  }
-}
+      {summary || <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0" />}
+    </div>
+  );
+};
+
+Paginator.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  perPage: PropTypes.number,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  summary: PropTypes.node,
+  totalItems: PropTypes.number.isRequired,
+};
+
+export default Paginator;
