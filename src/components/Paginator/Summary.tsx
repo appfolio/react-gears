@@ -1,35 +1,42 @@
-// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
+
+type SummaryProps = {
+  className?: string,
+  from: number,
+  size?: 'sm' | 'lg',
+  to: number,
+  totalItems: number,
+}
 
 /**
  * A text summary of the current pagination state
  */
-export default class Summary extends React.Component {
-  static displayName = 'Summary';
+const Summary: React.FunctionComponent<SummaryProps> = ({
+  className = '',
+  from,
+  size,
+  to,
+  totalItems
+}) => {
+  const start = Math.min(totalItems, from);
+  const end = Math.min(totalItems, to);
 
-  static propTypes = {
-    className: PropTypes.string,
-    from: PropTypes.number.isRequired,
-    size: PropTypes.string,
-    to: PropTypes.number.isRequired,
-    totalItems: PropTypes.number.isRequired,
-  }
+  const fontSize = (size === 'lg') ? 'larger' : (size === 'sm') ? 'smaller' : undefined;
 
-  static defaultProps = {
-    className: ''
-  }
+  return (
+    <p className={className} style={{ fontSize }}>Displaying: {start}-{end} of {totalItems}</p>
+  );
+};
 
-  render() {
-    const { className, from, size, to, totalItems } = this.props;
+Summary.propTypes = {
+  className: PropTypes.string,
+  from: PropTypes.number.isRequired,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  to: PropTypes.number.isRequired,
+  totalItems: PropTypes.number.isRequired,
+};
 
-    const start = Math.min(totalItems, from);
-    const end = Math.min(totalItems, to);
+Summary.displayName = 'Summary';
 
-    const fontSize = (size === 'lg') ? 'larger' : (size === 'sm') ? 'smaller' : null;
-
-    return (
-      <p className={className} style={{ fontSize }}>Displaying: {start}-{end} of {totalItems}</p>
-    );
-  }
-}
+export default Summary;
