@@ -1,14 +1,37 @@
-// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import Col from './Col';
 import CountryInput from './CountryInput';
 import FormLabelGroup from './FormLabelGroup';
-import getAddressFormat from './address/AddressFormats';
+import getAddressFormat, { AddressPropType } from './address/AddressFormats';
 import Input from './Input';
 import Row from './Row';
 
-const InternationalAddressInput = ({ className, disabled, error, hints, id, labels, onBlur, onChange, showLabels, value }) => {
+type InternationalAddressInputProps = {
+  className?: string,
+  disabled?: boolean,
+  error?: AddressPropType,
+  hints?: AddressPropType,
+  id?: string,
+  labels?: AddressPropType,
+  onBlur?: Function,
+  onChange?: Function,
+  showLabels?: boolean,
+  value?: AddressPropType & { countryCode: string },
+}
+
+const InternationalAddressInput: React.FunctionComponent<InternationalAddressInputProps> = ({
+  className,
+  disabled = false,
+  error = {},
+  hints = {},
+  id,
+  labels= {},
+  onBlur= () => {},
+  onChange= () => {},
+  showLabels = false,
+  value = { countryCode: 'US'}
+}) => {
   const countryCode = value.countryCode;
   const addressFormat = getAddressFormat(countryCode);
   const fields = getAddressFormat(countryCode).fields;
@@ -19,11 +42,11 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
   const stateId = `${inputId}_state`;
   const countryCodeId = `${inputId}_countryCode`;
 
-  const onAddressChange = (field) => {
+  const onAddressChange = (field: { [K in keyof AddressPropType]?: string }) => {
     onChange({ ...value, ...field }); // TODO state not resetting
   };
 
-  const inputFor = type => (
+  const inputFor = (type: keyof AddressPropType) => (
     <Input
       disabled={disabled}
       id={`${inputId}_${type}`}
@@ -46,7 +69,6 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
             return (
               <Col sm>
                 <FormLabelGroup
-                  error={error[field]}
                   feedback={error[field]}
                   hint={hints[field]}
                   inputId={`${inputId}_${field}`}
@@ -67,7 +89,10 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                       invalid={!!error.countryCode}
                       name="countryCode"
                       onBlur={() => onBlur('countryCode')}
-                      onChange={country => onAddressChange({ countryCode: country, state: undefined })}
+                      onChange={country => onAddressChange({
+                        countryCode: (country !== null) ? country : undefined,
+                        state: undefined
+                      })}
                       placeholder={i18nLabels.countryCode}
                       value={value.countryCode}
                     />
@@ -86,7 +111,7 @@ const InternationalAddressInput = ({ className, disabled, error, hints, id, labe
                       value={value.state}
                     >
                       <option value="">{i18nLabels.state}</option>
-                      {states.map(({ name, code }) => <option key={code} value={code}>{name}</option>)}
+                      {!!states && states.map(({ name, code }) => <option key={code} value={code}>{name}</option>)}
                     </Input>
                   )}
                 </FormLabelGroup>
@@ -105,7 +130,7 @@ const addressPropType = {
   city: PropTypes.string,
   state: PropTypes.string,
   postal: PropTypes.string,
-  countryCode: PropTypes.string,
+  countryCode: PropTypes.string.isRequired,
 };
 
 InternationalAddressInput.propTypes = {
