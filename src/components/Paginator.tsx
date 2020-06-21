@@ -12,8 +12,8 @@ const DEFAULT_PER_PAGE = 20;
 
 type LinkProps = {
   disabled?: boolean,
-  page?: number,
-  onClick?: Function,
+  page: number,
+  onClick: (page: number) => void,
 }
 
 const FirstPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
@@ -42,8 +42,8 @@ const LastPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onCl
 
 const linkPropTypes = {
   disabled: PropTypes.bool,
-  page: PropTypes.number,
-  onClick: PropTypes.func
+  page: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 FirstPageLink.propTypes = linkPropTypes;
@@ -53,7 +53,7 @@ LastPageLink.propTypes = linkPropTypes;
 
 type PaginatorProps = {
   currentPage: number,
-  onClick: Function,
+  onClick: (page: number) => void,
   perPage?: number,
   size?: 'sm' | 'lg',
   summary: React.ReactNode,
