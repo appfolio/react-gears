@@ -10,25 +10,31 @@ import Summary from './Paginator/Summary';
 
 const DEFAULT_PER_PAGE = 20;
 
-const FirstPageLink = ({ disabled, page, onClick }) => (
+type LinkProps = {
+  disabled?: boolean,
+  page?: number,
+  onClick?: Function,
+}
+
+const FirstPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="first" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-double-left" />
   </ShortcutLink>
 );
 
-const PrevPageLink = ({ disabled, page, onClick }) => (
+const PrevPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="previous" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-left" />
   </ShortcutLink>
 );
 
-const NextPageLink = ({ disabled, page, onClick }) => (
+const NextPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="next" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-right" />
   </ShortcutLink>
 );
 
-const LastPageLink = ({ disabled, page, onClick }) => (
+const LastPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="last" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-double-right" />
   </ShortcutLink>
@@ -45,11 +51,20 @@ PrevPageLink.propTypes = linkPropTypes;
 NextPageLink.propTypes = linkPropTypes;
 LastPageLink.propTypes = linkPropTypes;
 
+type PaginatorProps = {
+  currentPage: number,
+  onClick: Function,
+  perPage?: number,
+  size: 'sm' | 'lg',
+  summary: React.ReactNode,
+  totalItems: number,
+}
+
 /**
  * A component that generates a set of links that can be used for pagination.  Link selection is
  * communicated via the `onClick` callback.
  */
-export default class Paginator extends React.Component {
+export default class Paginator extends React.Component<PaginatorProps, {}> {
   static propTypes = {
     currentPage: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
@@ -57,7 +72,7 @@ export default class Paginator extends React.Component {
     size: PropTypes.oneOf(['sm', 'lg']),
     summary: PropTypes.node,
     totalItems: PropTypes.number.isRequired,
-  }
+  };
 
   static defaultProps = {
     perPage: DEFAULT_PER_PAGE
