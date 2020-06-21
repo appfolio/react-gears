@@ -101,7 +101,7 @@ import ClickableContainer from './components/ClickableContainer.tsx';
 import CollapsableText from './components/CollapsableText.js';
 import Combobox from './components/Combobox.tsx';
 import ConfirmationButton from './components/ConfirmationButton.js';
-import CountryInput from './components/CountryInput.js';
+import CountryInput from './components/CountryInput';
 import CreditCardNumber from './components/CreditCardNumber';
 import CurrencyInput from './components/CurrencyInput.tsx';
 import Datapair from './components/Datapair.tsx';

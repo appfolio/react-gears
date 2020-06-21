@@ -1,10 +1,19 @@
+// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Input from './Input';
+import { InputProps } from 'reactstrap'
 import COUNTRIES from './address/Countries'; // TODO i18n country names based on locale
 
-export default class CountryInput extends React.Component {
+interface CountryInputProps extends
+  Omit<InputProps, 'type' | 'onChange'> {
+  onChange?: (value: string | null) => void;
+  placeholder?: string;
+  value?: string;
+}
+
+export default class CountryInput extends React.Component<CountryInputProps, {}> {
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -13,11 +22,11 @@ export default class CountryInput extends React.Component {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     value: PropTypes.string
-  }
+  };
 
   static defaultProps = {
     onChange: () => {}
-  }
+  };
 
   render() {
     const {
