@@ -130,7 +130,7 @@ import MonthCalendar from './components/MonthCalendar.js';
 import MonthInput from './components/MonthInput.js';
 import Note from './components/Note';
 import NoteHeader from './components/NoteHeader.js';
-import Notes from './components/Notes.js';
+import Notes from './components/Notes';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';
 import Popover from './components/Popover.js';
