@@ -1,3 +1,4 @@
+// @ts-nocheck
 const PAGINATION_WINDOW_SIZE = 5;
 
 /**
