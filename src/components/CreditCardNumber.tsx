@@ -38,69 +38,74 @@ interface CreditCardNumberProps extends Omit<React.InputHTMLAttributes<HTMLInput
   onChange?: (value: string, type?: CardBrand) => void;
 }
 
-export default class CreditCardNumber extends React.Component<CreditCardNumberProps, {}> {
-  static propTypes = {
-    // @ts-ignore
-    ...Input.propTypes,
-    className: PropTypes.string,
-    types: PropTypes.arrayOf(PropTypes.string),
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-  };
-
-  static defaultProps = {
-    // @ts-ignore
-    ...Input.defaultProps,
-    className: '',
-    types: Object.keys(ICONS),
-    onChange: () => {},
-  };
-
-  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
+  types= Object.keys(ICONS) as CardType[],
+  onChange = () => {},
+  className = '',
+  ...props
+}) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const type = this.getType(value);
-    if (this.props.onChange) {
-      this.props.onChange(value, type);
+    const type = getType(value);
+    if (onChange) {
+      onChange(value, type);
     }
   };
 
-  getType = (value?: string): CardBrand | undefined => {
+  const getType = (value?: string): CardBrand | undefined => {
     if (!value) {
       return undefined
     }
 
     const typeInfo = cardTypeInfo(value);
     // Return type if only one CC pattern matches and if allowed types includes type
-    if (typeInfo.length === 1 && includes(this.props.types, typeInfo[0].type)) {
+    if (typeInfo.length === 1 && includes(types, typeInfo[0].type)) {
       return typeInfo[0].type;
     }
 
     return undefined;
   };
 
-  render() {
-    /* eslint-disable  no-unused-vars */
-    const { className, onChange, type, types, value, ...inputProps } = this.props;
+  /* eslint-disable  no-unused-vars */
+  const { type, value, ...inputProps } = props;
 
-    const ccType = this.getType(value);
+  const ccType = getType(value);
 
-    return (
-      <InputGroup className={className}>
-        <Input
-          value={value || ''}
-          onChange={this.onChange}
-          {...inputProps}
-        />
-        <InputGroupAddon addonType="append">
-          <InputGroupText className="p-0 px-2">
-            <Icon
-              name={typeToIconName(ccType)}
-              fixedWidth
-              size="lg"
-            />
-          </InputGroupText>
-        </InputGroupAddon>
-      </InputGroup>
-    );
-  }
-}
+  return (
+    <InputGroup className={className}>
+      <Input
+        value={value || ''}
+        onChange={onChangeHandler}
+        {...inputProps}
+      />
+      <InputGroupAddon addonType="append">
+        <InputGroupText className="p-0 px-2">
+          <Icon
+            name={typeToIconName(ccType)}
+            fixedWidth
+            size="lg"
+          />
+        </InputGroupText>
+      </InputGroupAddon>
+    </InputGroup>
+  );
+};
+
+CreditCardNumber.propTypes = {
+  // @ts-ignore
+  ...Input.propTypes,
+  className: PropTypes.string,
+  types: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+CreditCardNumber.defaultProps = {
+  // @ts-ignore: Property 'defaultProps' does not exist on type 'typeof Input'.
+  ...Input.defaultProps,
+  className: '',
+  types: Object.keys(ICONS),
+  onChange: () => {},
+};
+
+export default CreditCardNumber;
