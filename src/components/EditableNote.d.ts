@@ -1,13 +1,14 @@
 import Note from './TypeHelpers/NoteType';
 import * as React from 'react';
+import { ReactNode } from 'react';
 
 interface EditableNoteProps {
   children?: ReactNode;
   className?: string;
   note: Note;
-  onCancel: (ev: React.MouseEventHandler<any>) => void;
-  onChange: (ev: React.ChangeEventHandler<HTMLInputElement>) => void;
-  onSave: (ev: React.MouseEventHandler<any>) => void;
+  onCancel: (ev: React.MouseEvent) => void;
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  onSave: (ev: React.MouseEvent) => void;
   rows?: number;
   saving?: boolean;
   saveLabel?: ReactNode;
