@@ -4,6 +4,7 @@ import React from 'react';
 import Card from './Card';
 import CardBody from './CardBody';
 import CardText from './CardText';
+// @ts-ignore
 import NoteHeader from './NoteHeader.js';
 import DeletedNote from './DeletedNote.js';
 import EditableNote from './EditableNote.js';
