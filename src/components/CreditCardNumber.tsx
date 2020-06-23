@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cardTypeInfo, { CardBrand } from 'credit-card-type';
 import Icon from './Icon';
 import Input from './Input';
+import { InputProps } from 'reactstrap/lib/Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupText from './InputGroupText';
@@ -18,10 +19,9 @@ const ICONS: {
   visa: 'cc-visa'
 };
 
-type CardType = 'visa' | 'master-card' | 'american-express' |'discover' | 'diners-club' | 'jcb';
+type CardType = 'visa' | 'master-card' | 'american-express' | 'discover' | 'diners-club' | 'jcb';
 
-type IconName = 'cc-amex' | 'cc-diners-club' | 'cc-mastercard' | 'cc-discover'
-  | 'cc-jcb' | 'cc-visa' | 'credit-card';
+type IconName = 'cc-amex' | 'cc-diners-club' | 'cc-mastercard' | 'cc-discover' | 'cc-jcb' | 'cc-visa' | 'credit-card';
 
 function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
@@ -31,7 +31,7 @@ function includes(array: CardType[] | undefined, value?: CardBrand) {
   return Array.isArray(array) && !!value && array.indexOf(value as CardType) !== -1;
 }
 
-interface CreditCardNumberProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface CreditCardNumberProps extends Omit<InputProps, 'onChange'> {
   className?: string;
   types?: CardType[];
   value?: string;
