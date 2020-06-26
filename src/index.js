@@ -107,7 +107,7 @@ import CurrencyInput from './components/CurrencyInput.tsx';
 import Datapair from './components/Datapair.tsx';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote.js';
-import EditableNote from './components/EditableNote.js';
+import EditableNote from './components/EditableNote';
 import ExpandableSection from './components/ExpandableSection';
 import FeatureBanner from './components/FeatureBanner.js';
 import FileInput from './components/FileInput.js';
