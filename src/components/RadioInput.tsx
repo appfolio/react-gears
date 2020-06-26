@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
 type RadioInputProps = {
-  type: any,
+  type?: any,
   children: any,
-  value: any
+  value: any,
+  onChange?: (event: any) => void,
 }
 
 const RadioInput: FunctionComponent<RadioInputProps> = ({ type, children, value, ...props }) => (

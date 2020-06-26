@@ -5,7 +5,7 @@ import SummaryBoxItem from './SummaryBoxItem';
 
 interface SummaryItem {
   key?: string | number,
-  value: string,
+  value: ReactNode,
   label: string
 }
 
@@ -25,12 +25,12 @@ const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
   reverse = defaultProps.reverse,
   ...props
 }) => (
-  <CardGroup {...props}>
-    {items ?
-      items.map((item, i) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} reverse={reverse} />) :
-      children}
-  </CardGroup>
-);
+    <CardGroup {...props}>
+      {items ?
+        items.map((item, i) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} reverse={reverse} />) :
+        children}
+    </CardGroup>
+  );
 
 SummaryBox.defaultProps = defaultProps;
 
