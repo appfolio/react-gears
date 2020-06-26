@@ -32,6 +32,7 @@ type Props = {
   allowDecimal?: boolean;
   allowNegative?: boolean;
   className?: string;
+  id?: string;
   includeThousandsSeparator?: boolean;
   inputProps?: { className?: string };
   size?: string;

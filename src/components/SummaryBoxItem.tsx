@@ -8,8 +8,8 @@ import Omit from './TypeHelpers/Omit';
 interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string,
   label?: string,
-  value?: string,
-  reverse: boolean
+  value?: React.ReactNode,
+  reverse?: boolean
 }
 
 const defaultProps = {

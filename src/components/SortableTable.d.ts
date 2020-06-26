@@ -15,7 +15,7 @@ export interface SortableColumn<T>
   width?: string;
 }
 
-interface SortableTableProps<T> extends TableProps {
+interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
   className?: string;
   allSelected?: boolean;
   columns: SortableColumn<T>[];
