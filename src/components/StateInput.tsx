@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -6,61 +5,74 @@ import Input from './Input';
 import US from './address/USStates';
 import CA from './address/CAProvinces';
 
-const STATES_LOOKUP = {
+const STATES_LOOKUP: {
+  [key: string]: { label: string, value: string }[] | undefined
+  'US': { label: string, value: string }[],
+  'CA': { label: string, value: string }[],
+} = {
   CA,
   US
 };
 
-export default class StateInput extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    countries: PropTypes.arrayOf(PropTypes.string),
-    disabled: PropTypes.bool,
-    id: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    value: PropTypes.string
-  }
-
-  static defaultProps = {
-    countries: ['US'],
-    onChange: () => {}
-  }
-
-  render() {
-    const {
-      className,
-      countries,
-      disabled,
-      id,
-      name,
-      onChange,
-      placeholder,
-      ...props
-    } = this.props;
-
-    const classNames = classnames('custom-select', className);
-
-    const STATES = countries.reduce((result, country) => {
-      const states = STATES_LOOKUP[country] || [];
-      return [...result, ...states];
-    }, []);
-
-    return (
-      <Input
-        type="select"
-        {...props}
-        className={classNames}
-        disabled={disabled}
-        id={id}
-        name={name}
-        onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
-      >
-        <option value="">{placeholder}</option>
-        {STATES.map(state =>
-          <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
-      </Input>
-    );
-  }
+type StateInputProps = {
+  className?: string,
+  countries?: string[],
+  disabled?: boolean,
+  id?: string,
+  name?: string,
+  onChange?: (value: string | null) => any,
+  placeholder?: string,
+  value?: string,
 }
+
+const StateInput: React.FunctionComponent<StateInputProps> = ({
+  className,
+  countries = ['US'],
+  disabled,
+  id,
+  name,
+  onChange = () => {},
+  placeholder,
+  ...props
+}) => {
+  const classNames = classnames('custom-select', className);
+
+  const STATES = countries.reduce((result, country) => {
+    const states = STATES_LOOKUP[country] || [];
+    return [...result, ...states];
+  }, [] as { label: string, value: string }[]);
+
+  return (
+    <Input
+      type="select"
+      {...props}
+      className={classNames}
+      disabled={disabled}
+      id={id}
+      name={name}
+      onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+    >
+      <option value="">{placeholder}</option>
+      {STATES.map(state =>
+        <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
+    </Input>
+  );
+};
+
+StateInput.propTypes = {
+  className: PropTypes.string,
+  countries: PropTypes.arrayOf(PropTypes.string.isRequired),
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+};
+
+StateInput.defaultProps = {
+  countries: ['US'],
+  onChange: () => {},
+};
+
+export default StateInput;
