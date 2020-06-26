@@ -22,8 +22,8 @@ type NoteProps = {
   }
   onCancel: (note: NoteType) => void,
   onChange: React.ChangeEventHandler<HTMLInputElement>,
-  onDelete?: Function,
-  onEdit?: Function,
+  onDelete?: (note: Omit<NoteType, 'text'>) => void,
+  onEdit?: (note: Omit<NoteType, 'text'>) => void,
   onSave: (note: NoteType) => void,
   onUndelete?: (note: NoteType) => void,
   rows?: number,

@@ -18,8 +18,8 @@ type NoteHeaderProps = {
   dateFormat: string,
   // TODO shortDateFormat ?
   showTimezone?: boolean,
-  onDelete?: Function,
-  onEdit?: Function,
+  onDelete?: (note: Omit<NoteType, 'text'>) => void,
+  onEdit?: (note: Omit<NoteType, 'text'>) => void,
 }
 
 const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
