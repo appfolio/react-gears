@@ -128,7 +128,7 @@ import MaskedInput from './components/MaskedInput';
 import Modal from './components/Modal.js';
 import MonthCalendar from './components/MonthCalendar.js';
 import MonthInput from './components/MonthInput.js';
-import Note from './components/Note.js';
+import Note from './components/Note';
 import NoteHeader from './components/NoteHeader';
 import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
