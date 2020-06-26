@@ -106,7 +106,7 @@ import CreditCardNumber from './components/CreditCardNumber.js';
 import CurrencyInput from './components/CurrencyInput.tsx';
 import Datapair from './components/Datapair.tsx';
 import DateInput from './components/DateInput.js';
-import DeletedNote from './components/DeletedNote.js';
+import DeletedNote from './components/DeletedNote';
 import EditableNote from './components/EditableNote';
 import ExpandableSection from './components/ExpandableSection';
 import FeatureBanner from './components/FeatureBanner.js';
