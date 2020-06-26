@@ -129,7 +129,7 @@ import Modal from './components/Modal.js';
 import MonthCalendar from './components/MonthCalendar.js';
 import MonthInput from './components/MonthInput.js';
 import Note from './components/Note.js';
-import NoteHeader from './components/NoteHeader.js';
+import NoteHeader from './components/NoteHeader';
 import Notes from './components/Notes.js';
 import Paginator from './components/Paginator';
 import PatternInput from './components/PatternInput.js';

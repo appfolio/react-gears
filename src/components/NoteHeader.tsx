@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fecha from 'fecha';
 import PropTypes from 'prop-types';
 import React from 'react';

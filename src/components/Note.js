@@ -4,9 +4,9 @@ import React from 'react';
 import Card from './Card';
 import CardBody from './CardBody';
 import CardText from './CardText';
-import NoteHeader from './NoteHeader.js';
-import DeletedNote from './DeletedNote.js';
-import EditableNote from './EditableNote.js';
+import NoteHeader from './NoteHeader';
+import DeletedNote from './DeletedNote';
+import EditableNote from './EditableNote';
 
 class Note extends React.Component {
   static displayName = 'Note';
