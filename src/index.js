@@ -142,7 +142,7 @@ import Select from './components/Select.js';
 import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
-import StateInput from './components/StateInput.js';
+import StateInput from './components/StateInput';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox.tsx';
