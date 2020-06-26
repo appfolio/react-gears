@@ -1,8 +1,7 @@
 import { HTMLProps } from 'react';
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
-interface CountryInputProps extends 
+interface CountryInputProps extends
   Omit<HTMLProps<HTMLInputElement>, 'type' | 'onChange'> {
   onChange?: (value: string | null) => void;
   placeholder?: string;

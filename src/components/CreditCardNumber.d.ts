@@ -1,4 +1,3 @@
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
 type CardType = 'visa' | 'master-card' | 'american-express' |'discover' | 'diners-club' | 'jcb';
