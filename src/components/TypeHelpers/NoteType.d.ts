@@ -5,6 +5,6 @@ export default interface Note {
   edited?: boolean;
   editing?: boolean;
   from?: string;
-  error?: string;
+  errors?: string;
   text: string;
 }
