@@ -71,12 +71,15 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
 
   useEffect(() => {
     setInputValue('');
-    if (selectedOption && inputElement.current) inputElement.current.blur();
-  }, [selectedOption, options, renderInputValue]);
+  }, [selectedOption, open]);
+
+  useEffect(() => {
+    if (!open && inputElement.current) inputElement.current.blur();
+  }, [open]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
-  }, [inputValue, setVisibleOptions, filterOptions, options, selectedOption, onChange]);
+  }, [inputValue, setVisibleOptions, filterOptions, options]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;
@@ -125,10 +128,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       direction={direction}
       isOpen={!disabled && open}
       toggle={() => {}}
-      onBlur={() => {
-        setInputValue('');
-        setOpen(false);
-      }}
+      onBlur={() => { setOpen(false); }}
     >
       <DropdownToggle tag="div" disabled={disabled}>
         { selectedOption && inputValue === '' &&
@@ -149,8 +149,8 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
             onFocus={(ev) => {
               ev.preventDefault();
               ev.stopPropagation();
+
               setOpen(true);
-              setInputValue('');
             }}
             onChange={(e) => {
               e.preventDefault();
