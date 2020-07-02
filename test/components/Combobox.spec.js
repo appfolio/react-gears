@@ -66,6 +66,27 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
   });
 
+  it('should blur input on close', () => {
+    const combobox = render(<Combobox options={OPTIONS} />);
+    const input = combobox.getByTestId('combobox-input');
+    input.focus();
+
+    let option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option);
+
+    input.focus();
+
+    const sandbox = sinon.createSandbox();
+    sandbox.spy(input, 'blur');
+
+    option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option);
+
+    assert(input.blur.calledOnce);
+
+    sandbox.restore();
+  });
+
   it('should navigate options by up/down keys', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
