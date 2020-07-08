@@ -207,7 +207,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, index) => this.renderHasManyFieldsRow(index, index, item))}
+        {this.value.map((item, index) => this.renderHasManyFieldsRow(item.key || index, index, item))}
         {this.renderAddRow()}
       </div>
     );
