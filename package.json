@@ -72,7 +72,7 @@
     "reactstrap": "^8.1.1",
     "text-mask-addons": "^3.8.0",
     "uniqid": "^5.0.3",
-    "use-local-storage-state": "^3.0.1",
+    "use-local-storage-state": "^4.0.0",
     "uuid": "^8.1.0"
   },
   "devDependencies": {
