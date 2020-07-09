@@ -7,8 +7,10 @@ import {
   HasManyFields,
   HasManyFieldsAdd,
   HasManyFieldsRow,
-  Input
+  Input,
+  Select
 } from '../src';
+import COUNTRIES from '../src/components/address/Countries';
 
 const items = [
   {
@@ -37,7 +39,23 @@ const items = [
   },
 ];
 
+const UncontrolledSelect = () => <Select options={COUNTRIES} />;
+
 storiesOf('HasManyFields', module)
+  .add('Uncontrolled inputs', () => (
+    <HasManyFields
+      template={UncontrolledSelect}
+      label="Add a state"
+      disabled={boolean('disabled', false)}
+      onAdd={action('hasManyFields onAdd')}
+      onRemove={action('hasManyFields onRemove')}
+      onUpdate={action('hasManyFields onUpdate')}
+      onChange={action('hasManyFields onChange')}
+      minimumRows={number('minimumRows', 1)}
+      maximumRows={number('maximumRows', 5)}
+      reorderable={boolean('reorderable', false)}
+    />
+  ))
   .add('Live Example', () => (
     <HasManyFields
       defaultValue={items}
