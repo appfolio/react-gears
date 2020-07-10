@@ -32,7 +32,7 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
           {tooltip}
         </Tooltip>
       )}
-      <div id={id} className={className}>
+      <div tabIndex={disabled && tooltip ? 0 : -1} id={id} className={className}>
         <Button
           disabled={disabled}
           style={{ pointerEvents: disabled ? 'none' : 'auto' }}
