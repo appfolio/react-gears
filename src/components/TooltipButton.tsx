@@ -21,7 +21,8 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
   gearsBtnContainerClass,
   ...props
 }) => {
-  const id = `tooltip-button-${uniqid()}`;
+  const idRef = React.useRef(`tooltip-button-${uniqid()}`);
+  const id = idRef.current;
   const className = classnames('d-inline-block', gearsBtnContainerClass)
 
   return (
