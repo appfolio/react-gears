@@ -13,6 +13,7 @@
     "dist",
     "lib"
   ],
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },

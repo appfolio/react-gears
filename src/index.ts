@@ -83,23 +83,25 @@ import UncontrolledPopover from './components/UncontrolledPopover';
 import UncontrolledTooltip from './components/UncontrolledTooltip';
 
 // Gears:
-import Activity from './components/Activity.tsx';
-import ActivityLog from './components/ActivityLog.tsx';
+import Activity from './components/Activity';
+import ActivityLog from './components/ActivityLog';
 import AddressInput from './components/AddressInput.js';
-import Alert from './components/Alert.tsx';
+import Alert from './components/Alert';
 import BlockPanel from './components/BlockPanel';
+// @ts-ignore: implicitly has an 'any' type
 import BoundForm from './components/BoundForm';
+// @ts-ignore: implicitly has an 'any' type
 import BoundFormRow from './components/BoundFormRow';
 import Calendar from './components/Calendar.js';
-import Callout from './components/Callout.tsx';
-import Close from './components/Close.tsx';
+import Callout from './components/Callout';
+import Close from './components/Close';
 import CheckboxGroup from './components/CheckboxGroup';
 import CheckboxInput from './components/CheckboxInput';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
-import ClickableContainer from './components/ClickableContainer.tsx';
+import ClickableContainer from './components/ClickableContainer';
 import CollapsableText from './components/CollapsableText.js';
-import Combobox from './components/Combobox.tsx';
+import Combobox from './components/Combobox';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput';
 import CreditCardNumber from './components/CreditCardNumber';
@@ -118,7 +120,8 @@ import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow.js';
 import HelpBubble from './components/HelpBubble.js';
-import Highlight from './components/Highlight.tsx';
+import Highlight from './components/Highlight';
+// @ts-ignore: implicitly has an 'any' type
 import ImageCarousel from './components/ImageCarousel.js';
 import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
@@ -132,27 +135,33 @@ import Note from './components/Note';
 import NoteHeader from './components/NoteHeader';
 import Notes from './components/Notes';
 import Paginator from './components/Paginator';
+// @ts-ignore: implicitly has an 'any' type
 import PatternInput from './components/PatternInput.js';
+// @ts-ignore: implicitly has an 'any' type
 import Popover from './components/Popover.js';
 import Progress from './components/Progress.js';
 import RadioGroup from './components/RadioGroup';
-import RadioInput from './components/RadioInput.tsx';
+import RadioInput from './components/RadioInput';
 import ScrollContainer from './components/ScrollContainer';
+// @ts-ignore: implicitly has an 'any' type
 import Select from './components/Select.js';
+// @ts-ignore: implicitly has an 'any' type
 import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput';
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
-import SummaryBox from './components/SummaryBox.tsx';
-import SummaryBoxItem from './components/SummaryBoxItem.tsx';
+import SummaryBox from './components/SummaryBox';
+import SummaryBoxItem from './components/SummaryBoxItem';
 import Table from './components/Table';
+// @ts-ignore: implicitly has an 'any' type
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
+// @ts-ignore: implicitly has an 'any' type
 import UncontrolledTable from './components/UncontrolledTable.js';
 import Waiting from './components/Waiting';
-import TooltipButton from './components/TooltipButton.tsx';
+import TooltipButton from './components/TooltipButton';
 
 export {
   // reactstrap
