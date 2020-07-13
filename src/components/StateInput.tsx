@@ -25,13 +25,18 @@ type StateInputProps = {
   value?: string,
 }
 
+const defaultProps = {
+  countries: ['US'],
+  onChange: () => {},
+};
+
 const StateInput: React.FunctionComponent<StateInputProps> = ({
   className,
-  countries = ['US'],
+  countries = defaultProps.countries,
   disabled,
   id,
   name,
-  onChange = () => {},
+  onChange = defaultProps.onChange,
   placeholder,
   ...props
 }) => {
@@ -70,9 +75,6 @@ StateInput.propTypes = {
   value: PropTypes.string,
 };
 
-StateInput.defaultProps = {
-  countries: ['US'],
-  onChange: () => {},
-};
+StateInput.defaultProps = defaultProps;
 
 export default StateInput;
