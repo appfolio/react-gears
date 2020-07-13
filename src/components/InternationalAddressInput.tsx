@@ -143,7 +143,7 @@ const addressPropType = {
   city: PropTypes.string,
   state: PropTypes.string,
   postal: PropTypes.string,
-  countryCode: PropTypes.string.isRequired,
+  countryCode: PropTypes.string,
 };
 
 InternationalAddressInput.propTypes = {
@@ -156,7 +156,12 @@ InternationalAddressInput.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   showLabels: PropTypes.bool,
-  value: PropTypes.shape(addressPropType),
+  value: PropTypes.shape(
+    Object.assign(
+      {},
+      addressPropType,
+      { countryCode: PropTypes.string.isRequired }
+  )),
 };
 
 InternationalAddressInput.defaultProps = defaultProps;
