@@ -12,8 +12,12 @@ interface CountryInputProps extends
   value?: string;
 }
 
+const defaultProps = {
+  onChange: () => {},
+};
+
 const CountryInput: React.FunctionComponent<CountryInputProps> = ({
-  onChange = () => {},
+  onChange = defaultProps.onChange,
   ...otherProps
 }) => {
   const {
@@ -54,8 +58,6 @@ CountryInput.propTypes = {
   value: PropTypes.string
 };
 
-CountryInput.defaultProps = {
-  onChange: () => {}
-};
+CountryInput.defaultProps = defaultProps;
 
 export default CountryInput;

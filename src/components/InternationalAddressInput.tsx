@@ -20,17 +20,30 @@ type InternationalAddressInputProps = {
   value?: AddressPropType & { countryCode: string },
 }
 
+const defaultProps = {
+  disabled: false,
+  error: {} as AddressPropType,
+  hints: {} as AddressPropType,
+  labels: {} as AddressPropType,
+  onBlur: () => {},
+  onChange: () => {},
+  showLabels: false,
+  value: {
+    countryCode: 'US'
+  } as AddressPropType & { countryCode: string },
+};
+
 const InternationalAddressInput: React.FunctionComponent<InternationalAddressInputProps> = ({
   className,
-  disabled = false,
-  error = {},
-  hints = {},
+  disabled = defaultProps.disabled,
+  error = defaultProps.error,
+  hints = defaultProps.hints,
   id,
-  labels= {},
-  onBlur= () => {},
-  onChange= () => {},
-  showLabels = false,
-  value = { countryCode: 'US'}
+  labels= defaultProps.labels,
+  onBlur= defaultProps.onBlur,
+  onChange= defaultProps.onChange,
+  showLabels = defaultProps.showLabels,
+  value = defaultProps.value
 }) => {
   const countryCode = value.countryCode;
   const addressFormat = getAddressFormat(countryCode);
@@ -146,17 +159,6 @@ InternationalAddressInput.propTypes = {
   value: PropTypes.shape(addressPropType),
 };
 
-InternationalAddressInput.defaultProps = {
-  disabled: false,
-  error: {},
-  hints: {},
-  labels: {},
-  onBlur: () => {},
-  onChange: () => {},
-  showLabels: false,
-  value: {
-    countryCode: 'US'
-  },
-};
+InternationalAddressInput.defaultProps = defaultProps;
 
 export default InternationalAddressInput;
