@@ -27,6 +27,11 @@ describe('<TooltipButton />', () => {
       assert.equal(ButtonComponent.prop('disabled'), false);
     });
 
+    it('should not have a tabbable wrapper div by default', () => {
+      const buttonDiv = component.find('div');
+      assert.equal(buttonDiv.prop('tabIndex'), -1);
+    });
+
     it('should trigger onClick when enabled', () => {
       const ButtonComponent = component.find(Button);
 
@@ -47,6 +52,8 @@ describe('<TooltipButton />', () => {
       const TooltipComponent = wrapper.find(Tooltip);
       const ButtonComponent = component.find(Button);
 
+      const buttonDiv = wrapper.find('div');
+      assert.equal(buttonDiv.prop('tabIndex'), 0);
       assert(TooltipComponent.exists());
       ButtonComponent.simulate('click');
       sinon.assert.notCalled(dontCall);

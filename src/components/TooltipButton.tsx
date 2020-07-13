@@ -21,7 +21,8 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
   gearsBtnContainerClass,
   ...props
 }) => {
-  const id = `tooltip-button-${uniqid()}`;
+  const idRef = React.useRef(`tooltip-button-${uniqid()}`);
+  const id = idRef.current;
   const className = classnames('d-inline-block', gearsBtnContainerClass)
 
   return (
@@ -31,7 +32,7 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
           {tooltip}
         </Tooltip>
       )}
-      <div id={id} className={className}>
+      <div tabIndex={disabled && tooltip ? 0 : -1} id={id} className={className}>
         <Button
           disabled={disabled}
           style={{ pointerEvents: disabled ? 'none' : 'auto' }}
