@@ -162,6 +162,17 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
 
+  it('should open options if selected value label is clicked', async () => {
+    const combobox = render(<Combobox options={OPTIONS} value={3} />);
+
+    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+
+    const selectedValueLabel = await combobox.findByLabelText('Selected value');
+    fireEvent.mouseDown(selectedValueLabel);
+
+    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+  });
+
   it('should open/close options with dropdown toggle', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
