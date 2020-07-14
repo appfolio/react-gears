@@ -132,10 +132,15 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
     >
       <DropdownToggle tag="div" disabled={disabled}>
         { selectedOption && inputValue === '' &&
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
           <div
             aria-label="Selected value"
             className="py-2 px-3"
             style={{ position: 'absolute', zIndex: 4, left: 1 }}
+            onMouseDown={(ev) => {
+              ev.preventDefault();
+              if (inputElement.current) inputElement.current.focus();
+            }}
           >
             {selectedOption && renderInputValue(selectedOption)}
           </div>
