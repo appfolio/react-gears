@@ -37,6 +37,7 @@
     "react-dom": ">= 16.8"
   },
   "dependencies": {
+    "@types/credit-card-type": "^5.0.1",
     "@types/lodash.topairs": "^4.3.6",
     "@types/react-dom": "^16.9.4",
     "@types/react-text-mask": "^5.4.6",
