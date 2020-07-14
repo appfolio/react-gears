@@ -5,7 +5,13 @@ const PAGINATION_WINDOW_SIZE = 5;
  * items
  */
 export default class State {
-  constructor(currentPage, totalItems, pageSize) {
+  private readonly currentPage: number;
+  private readonly totalItems: number;
+  private readonly pageSize: number;
+  public totalPages: number;
+  public pageRange: { from: number, to: number };
+
+  constructor(currentPage: number, totalItems: number, pageSize: number) {
     this.currentPage = currentPage;
     this.pageSize = pageSize;
     this.totalItems = totalItems;
@@ -39,7 +45,7 @@ export default class State {
       from: itemsBeforePage + 1,
       to: itemsBeforePage + itemsOnPage
     };
-  }
+  };
 
   showPrevious = () => this.currentPage > 1;
   showNext = () => this.currentPage < this.totalPages;
