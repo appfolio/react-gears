@@ -38,6 +38,9 @@ If using [Cypress](https://www.cypress.io) for integration testing, you can use 
     npm version (major|minor|patch)
     npm publish
 
-- Release notes are generated in the postpublish script using [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for setup [here](https://github.com/github-tools/github-release-notes#setup).
+- Release notes are generated in the postpublish script using [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for installation and setup [here](https://github.com/github-tools/github-release-notes#setup). (Latest version has a breaking bug, so we should use the latest working version `0.17.1 `)
+
+    npm install -g github-release-notes@0.17.1 
+
 ----
 
