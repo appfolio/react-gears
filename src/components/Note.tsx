@@ -14,12 +14,7 @@ type NoteProps = {
   className?: string,
   dateFormat?: string,
   showTimezone?: boolean,
-  note: {
-    date: Date,
-    deleted?: boolean,
-    editing?: boolean,
-    text: string,
-  }
+  note: NoteType,
   onCancel: (note: NoteType) => void,
   onChange: React.ChangeEventHandler<HTMLInputElement>,
   onDelete?: (note: Omit<NoteType, 'text'>) => void,
@@ -45,7 +40,7 @@ const defaultProps = {
 const Note: React.FunctionComponent<NoteProps> = ({
   children,
   className = defaultProps.className,
-  dateFormat= defaultProps.dateFormat,
+  dateFormat = defaultProps.dateFormat,
   showTimezone = defaultProps.showTimezone,
   rows = defaultProps.rows,
   saving = defaultProps.saving,
@@ -101,9 +96,12 @@ Note.propTypes = {
   dateFormat: PropTypes.string,
   showTimezone: PropTypes.bool,
   note: PropTypes.shape({
+    title: PropTypes.string,
     date: PropTypes.instanceOf(Date).isRequired,
     deleted: PropTypes.bool,
     editing: PropTypes.bool,
+    from: PropTypes.string,
+    errors: PropTypes.string,
     text: PropTypes.string.isRequired
   }).isRequired,
   onCancel: PropTypes.func.isRequired,
