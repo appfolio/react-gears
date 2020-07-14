@@ -4769,7 +4769,27 @@ export const formats: { [key: string]: any } = {
   }
 };
 
-export default function getAddressFormat(countryCode: string) {
+export type AddressPropType = {
+  address1?: string,
+  address2?: string,
+  city?: string,
+  state?: string,
+  postal?: string,
+  countryCode?: string,
+}
+
+type StatesType = {
+  name: string,
+  code: string,
+}[]
+
+type AddressFormatsType = {
+  [k: string]: any,
+  fields: Array<Array<keyof AddressPropType>>,
+  states?: StatesType,
+}
+
+export default function getAddressFormat(countryCode: string) : AddressFormatsType {
   const labels = countryCode ? {
     ...defaultFormat.labels,
     ...formats[countryCode].labels,
