@@ -27,8 +27,8 @@ function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
 }
 
-function includes(array: CardType[] | undefined, value?: CardBrand) {
-  return Array.isArray(array) && !!value && array.indexOf(value as CardType) !== -1;
+function includes(array: CardBrand[], value?: CardBrand) {
+  return Array.isArray(array) && !!value && array.indexOf(value) !== -1;
 }
 
 interface CreditCardNumberProps extends Omit<InputProps, 'onChange'> {
@@ -38,10 +38,18 @@ interface CreditCardNumberProps extends Omit<InputProps, 'onChange'> {
   onChange?: (value: string, type?: CardBrand) => void;
 }
 
+const defaultProps = {
+  // @ts-ignore: Property 'defaultProps' does not exist on type 'typeof Input'.
+  ...Input.defaultProps,
+  className: '',
+  types: Object.keys(ICONS),
+  onChange: () => {},
+};
+
 const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
-  types= Object.keys(ICONS) as CardType[],
-  onChange = () => {},
-  className = '',
+  types= defaultProps.types,
+  onChange = defaultProps.onChange,
+  className = defaultProps.className,
   ...props
 }) => {
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,12 +108,6 @@ CreditCardNumber.propTypes = {
   onChange: PropTypes.func,
 };
 
-CreditCardNumber.defaultProps = {
-  // @ts-ignore: Property 'defaultProps' does not exist on type 'typeof Input'.
-  ...Input.defaultProps,
-  className: '',
-  types: Object.keys(ICONS),
-  onChange: () => {},
-};
+CreditCardNumber.defaultProps = defaultProps;
 
 export default CreditCardNumber;
