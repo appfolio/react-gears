@@ -89,7 +89,7 @@ const config = {
   Generate a config per file.
 */
 const sourceRoot = path.resolve(__dirname, './src');
-const indexJs = path.resolve(sourceRoot, 'index.js');
+const indexJs = path.resolve(sourceRoot, 'index.ts');
 const files = {};
 glob.sync(`${sourceRoot}/**/*.{js,ts,tsx}`, { ignore: [`${sourceRoot}/**/*d.ts`] }).forEach((file) => {
   if (file === indexJs) return;
