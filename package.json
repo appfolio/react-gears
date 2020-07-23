@@ -8,12 +8,11 @@
     "url": "https://github.com/appfolio/react-gears.git"
   },
   "license": "MIT",
-  "main": "dist/bundle.js",
+  "main": "lib/index.js",
   "files": [
     "dist",
     "lib"
   ],
-  "types": "lib/index.d.ts",
   "publishConfig": {
     "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },
