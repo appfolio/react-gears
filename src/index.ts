@@ -105,8 +105,8 @@ import Combobox from './components/Combobox';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput';
 import CreditCardNumber from './components/CreditCardNumber';
-import CurrencyInput from './components/CurrencyInput.tsx';
-import Datapair from './components/Datapair.tsx';
+import CurrencyInput from './components/CurrencyInput';
+import Datapair from './components/Datapair';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote';
 import EditableNote from './components/EditableNote';
@@ -150,6 +150,7 @@ import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput';
+// @ts-ignore: implicitly has an 'any' type
 import StaticInput from './components/StaticInput.js';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox';
