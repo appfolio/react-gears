@@ -3,10 +3,12 @@
     "target": "esnext",
     "moduleResolution": "node",
     "allowJs": true,
-    "noEmit": true,
+    "noEmit": false,
+    "outDir": "lib",
     "strict": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "declaration": true,
     "jsx": "react",
     "experimentalDecorators": true,
     "skipLibCheck": true // needed for .d.ts files TODO remove if all .ts
