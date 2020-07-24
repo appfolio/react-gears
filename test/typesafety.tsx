@@ -401,9 +401,9 @@ const LabelBadgeExample = () => {
 
 const MonthInputExample = () => {
   <MonthInput
-    dateFormat="MMM YYYY"
+    dateFormat="MMM yyyy"
     monthFormat="MMM"
-    yearFormat="YYY"
+    yearFormat="yyyy"
     showOnFocus={true}
     disabled={false}
     onBlur={() => {}}

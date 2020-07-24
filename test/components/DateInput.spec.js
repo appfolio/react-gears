@@ -1,13 +1,15 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import addDays from 'date-fns/add_days';
-import addMonths from 'date-fns/add_months';
-import addWeeks from 'date-fns/add_weeks';
-import addYears from 'date-fns/add_years';
-import isSameDay from 'date-fns/is_same_day';
-import isToday from 'date-fns/is_today';
-import startOfToday from 'date-fns/start_of_today';
+import {
+  addDays,
+  addMonths,
+  addWeeks,
+  addYears,
+  isSameDay,
+  isToday,
+  startOfToday
+} from 'date-fns';
 import frLocale from 'date-fns/locale/fr';
 import sinon from 'sinon';
 
@@ -473,8 +475,8 @@ describe('<DateInput />', () => {
 
   it('should call custom parse function', () => {
     const callback = sinon.spy(() => new Date(2003, 0, 2));
-    mount(<DateInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
-    assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
+    mount(<DateInput parse={callback} defaultValue="1-2-3" dateFormat="MM-dd-yy" />);
+    assert(callback.calledWith('1-2-3', 'MM-dd-yy'));
   });
 
   it('should support focus', () => {

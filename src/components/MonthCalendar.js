@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import Nav from './Nav';
 import NavItem from './NavItem';
 import NavLink from './NavLink';
 import Col from './Col';
 import Row from './Row';
+import { format } from '../util/date.js';
 import mod from '../util/mod.js';
 import range from '../util/range';
-
-const { format } = Fecha;
 
 const Label = ({ selected, label, onClick, visible = true }) => (
   <NavItem className={!visible ? 'invisible' : ''}>
@@ -46,7 +44,7 @@ export default class MonthCalendar extends React.Component {
     date: new Date(),
     dateVisible: () => true,
     monthFormat: 'MMM',
-    yearFormat: 'YYYY',
+    yearFormat: 'yyyy',
     onSelect: () => {}
   };
 

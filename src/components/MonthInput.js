@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import addMonths from 'date-fns/add_months';
-import addYears from 'date-fns/add_years';
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
-import format from 'date-fns/format';
-import isSameDay from 'date-fns/is_same_day';
-import isValid from 'date-fns/is_valid';
+import {
+  addMonths,
+  addYears,
+  isSameDay,
+  isValid,
+} from 'date-fns';
+import { format, parse } from '../util/date.js';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import Calendar from './MonthCalendar';
@@ -16,8 +17,6 @@ import Icon from './Icon';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-const { parse } = Fecha;
-
 // This is basically same as DateInput - maybe consider Dropdown+Input that encapsulates focus/blur/dropdown behavior?
 
 /**
@@ -26,8 +25,8 @@ const { parse } = Fecha;
  * | defaultValue   | date  | string         |
  * |----------------|-------|----------------|
  * | null,          | today | ''             |
- * | Date           | Date  | 'MMM YYYY'     |
- * | 'MMM YYYY'     | Date  | 'MMM YYYY'     |
+ * | Date           | Date  | 'MMM yyyy'     |
+ * | 'MMM yyyy'     | Date  | 'MMM yyyy'     |
  * | invalid string | today | invalid string |
  */
 function parseValue(defaultValue, dateFormat, parseDate) {
@@ -83,15 +82,15 @@ export default class MonthInput extends React.Component {
 
   static defaultProps = {
     className: '',
-    dateFormat: 'MMM YYYY',
+    dateFormat: 'MMM yyyy',
     dateVisible: () => true,
     disabled: false,
     keyboard: true,
     monthFormat: 'MMM',
-    yearFormat: 'YYYY',
+    yearFormat: 'yyyy',
     onBlur: () => {},
     onChange: () => {},
-    parse: (value, dateFormat) => parse(value, dateFormat),
+    parse: (value, dateFormat) => parse(value, dateFormat, new Date()),
     showOnFocus: true
   }
 
@@ -287,7 +286,7 @@ export default class MonthInput extends React.Component {
                 </ButtonGroup>
 
                 <span className="m-auto">
-                  {format(date, 'MMMM YYYY')}
+                  {format(date, 'MMMM yyyy')}
                 </span>
 
                 <ButtonGroup size="sm">

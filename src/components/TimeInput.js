@@ -1,26 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import addMinutes from 'date-fns/add_minutes';
-import addSeconds from 'date-fns/add_seconds';
-import fecha from 'fecha';
-import getHours from 'date-fns/get_hours';
-import getMinutes from 'date-fns/get_minutes';
-import isBefore from 'date-fns/is_before';
-import setHours from 'date-fns/set_hours';
-import setMinutes from 'date-fns/set_minutes';
-import startOfToday from 'date-fns/start_of_today';
-import startOfTomorrow from 'date-fns/start_of_tomorrow';
-
+import {
+  addMinutes,
+  addSeconds,
+  getHours,
+  getMinutes,
+  isBefore,
+  setHours,
+  setMinutes,
+  startOfToday,
+  startOfTomorrow
+} from 'date-fns';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
-
 import memoizeOne from 'memoize-one';
-
+import { format, parse } from '../util/date.js';
 import Icon from './Icon';
 import Select from './Select';
-
-const format = fecha.format;
-const parse = fecha.parse;
 
 const INVALID_DATE = new Date(undefined);
 
@@ -102,7 +98,7 @@ export default class TimeInput extends React.Component {
     onChange: () => {},
     step: 30,
     placeholder: 'Enter a time',
-    timeFormat: 'h:mm A',
+    timeFormat: 'h:mm a',
     noResultsText: 'Must be in the format HH:MM AM/PM'
   }
 

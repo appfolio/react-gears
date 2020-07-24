@@ -1,11 +1,13 @@
 import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
-import addMonths from 'date-fns/add_months';
-import addYears from 'date-fns/add_years';
-import isSameDay from 'date-fns/is_same_day';
-import isSameMonth from 'date-fns/is_same_month';
-import isToday from 'date-fns/is_today';
+import {
+  addMonths,
+  addYears,
+  isSameDay,
+  isSameMonth,
+  isToday
+} from 'date-fns';
 import sinon from 'sinon';
 
 import { MonthInput } from '../../src';
@@ -290,8 +292,8 @@ describe('<MonthInput />', () => {
 
   it('should call custom parse function', () => {
     const callback = sinon.spy(() => new Date(2003, 0, 2));
-    mount(<MonthInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
-    assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
+    mount(<MonthInput parse={callback} defaultValue="1-2-3" dateFormat="MM-dd-yy" />);
+    assert(callback.calledWith('1-2-3', 'MM-dd-yy'));
   });
 
   describe('accessibility', () => {

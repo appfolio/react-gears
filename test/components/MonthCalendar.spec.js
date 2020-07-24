@@ -2,9 +2,8 @@ import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import fecha from 'fecha';
-import isBefore from 'date-fns/is_before';
-import isSameDay from 'date-fns/is_same_day';
+import { isBefore, isSameDay } from 'date-fns';
+import { format } from '../../src/util/date.js';
 import { MonthCalendar } from '../../src';
 
 describe('<MonthCalendar />', () => {
@@ -19,7 +18,7 @@ describe('<MonthCalendar />', () => {
     const today = new Date();
     const month = component.find('.active').first();
     const year = component.find('.active').last();
-    assert.equal(month.text(), fecha.format(today, 'MMM'));
+    assert.equal(month.text(), format(today, 'MMM'));
     assert.equal(year.text(), today.getFullYear());
   });
 
@@ -28,7 +27,7 @@ describe('<MonthCalendar />', () => {
     const component = mount(<MonthCalendar date={date} />);
     const month = component.find('.active').first();
     const year = component.find('.active').last();
-    assert.equal(month.text(), fecha.format(date, 'MMM'));
+    assert.equal(month.text(), format(date, 'MMM'));
     assert.equal(year.text(), date.getFullYear());
   });
 
