@@ -67,6 +67,8 @@ const Note: React.FunctionComponent<NoteProps> = ({
     return (
       <EditableNote
         className={className}
+        dateFormat={dateFormat}
+        showTimezone={showTimezone}
         note={note}
         onCancel={onCancel}
         onChange={onChange}
