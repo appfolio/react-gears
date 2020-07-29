@@ -81,7 +81,7 @@ const Note: React.FunctionComponent<NoteProps> = ({
   }
   return (
     <Card className={className}>
-      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />
+      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} onDelete={onDelete} onEdit={onEdit} />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
         {children}
