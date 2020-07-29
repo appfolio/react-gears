@@ -70,13 +70,16 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
   }, [visibleOptions]);
 
   useEffect(() => {
-    setInputValue(selectedOption ? renderInputValue(selectedOption) : '');
-    if (selectedOption && inputElement.current) inputElement.current.blur();
-  }, [selectedOption, options, renderInputValue]);
+    setInputValue('');
+  }, [selectedOption, open]);
+
+  useEffect(() => {
+    if (!open && inputElement.current) inputElement.current.blur();
+  }, [open]);
 
   useEffect(() => {
     setVisibleOptions(filterOptions(options, inputValue));
-  }, [inputValue, setVisibleOptions, filterOptions, options, selectedOption, onChange]);
+  }, [inputValue, setVisibleOptions, filterOptions, options]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;
@@ -115,8 +118,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
-    } else if (selectedOption && key === 'Backspace') {
-      setInputValue('');
+    } else if (selectedOption && key === 'Backspace' && inputValue === '') {
       onChange(undefined);
     }
   };
@@ -126,18 +128,33 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       direction={direction}
       isOpen={!disabled && open}
       toggle={() => {}}
-      onBlur={() => setOpen(false)}
+      onBlur={() => { setOpen(false); }}
     >
       <DropdownToggle tag="div" disabled={disabled}>
+        { selectedOption && inputValue === '' &&
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+          <div
+            aria-label="Selected value"
+            className="py-2 px-3"
+            style={{ position: 'absolute', zIndex: 4, left: 1 }}
+            onMouseDown={(ev) => {
+              ev.preventDefault();
+              if (inputElement.current) inputElement.current.focus();
+            }}
+          >
+            {selectedOption && renderInputValue(selectedOption)}
+          </div>
+        }
         <InputGroup className={className}>
           <Input
             innerRef={inputElement}
             data-testid="combobox-input"
             disabled={disabled}
-            placeholder={placeholder}
+            placeholder={selectedOption ? undefined : placeholder}
             onFocus={(ev) => {
               ev.preventDefault();
               ev.stopPropagation();
+
               setOpen(true);
             }}
             onChange={(e) => {

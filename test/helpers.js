@@ -11,3 +11,19 @@ global.requestAnimationFrame = (cb) => {
 };
 
 global.cancelAnimationFrame = () => {};
+
+// Throw exceptions on unhandled promise rejections to prevent tests
+// from silently failing async. In the future mocha might handle this
+// automatically for us
+//
+let unhandledRejection = false;
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('unhandled rejection:', reason || promise); // eslint-disable-line no-console
+  unhandledRejection = true;
+  throw promise;
+});
+process.prependListener('exit', (code) => {
+  if (unhandledRejection && code === 0) {
+    process.exit(1);
+  }
+});

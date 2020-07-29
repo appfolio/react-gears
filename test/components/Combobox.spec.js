@@ -29,6 +29,16 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
 
+  it('should show all options when there is a selected option', () => {
+    const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+
+    OPTIONS.forEach((o) => {
+      combobox.getByText(o.label);
+    });
+  });
+
   it('should call onChange when value changes', () => {
     const mockOnChange = sinon.spy();
     const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
@@ -54,6 +64,27 @@ describe('<Combobox />', () => {
     fireEvent.blur(input);
 
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+  });
+
+  it('should blur input on close', () => {
+    const combobox = render(<Combobox options={OPTIONS} />);
+    const input = combobox.getByTestId('combobox-input');
+    input.focus();
+
+    let option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option);
+
+    input.focus();
+
+    const sandbox = sinon.createSandbox();
+    sandbox.spy(input, 'blur');
+
+    option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option);
+
+    assert(input.blur.calledOnce);
+
+    sandbox.restore();
   });
 
   it('should navigate options by up/down keys', () => {
@@ -127,6 +158,17 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
 
     fireEvent.keyDown(input, { key: 'ArrowDown', code: 40 });
+
+    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+  });
+
+  it('should open options if selected value label is clicked', async () => {
+    const combobox = render(<Combobox options={OPTIONS} value={3} />);
+
+    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+
+    const selectedValueLabel = await combobox.findByLabelText('Selected value');
+    fireEvent.mouseDown(selectedValueLabel);
 
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });

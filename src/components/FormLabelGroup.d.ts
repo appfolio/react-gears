@@ -13,7 +13,7 @@ export interface FormLabelGroupProps extends
   required?: boolean;
   rowClassName?: string;
   size?: string;
-  srLabel?: string,
+  srLabel?: boolean,
   stacked?: boolean;
   validFeedback?: React.ReactNode;
   width?: {

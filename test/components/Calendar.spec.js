@@ -7,6 +7,7 @@ import endOfWeek from 'date-fns/end_of_week';
 import isSameDay from 'date-fns/is_same_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
+import { assertAccessible } from '../a11yHelpers';
 import { Calendar } from '../../src';
 
 describe('<Calendar />', () => {
@@ -15,6 +16,13 @@ describe('<Calendar />', () => {
 
     assert(component);
   });
+
+  it('should be accessible', async () => {
+    await assertAccessible(
+      <Calendar />
+    );
+  });
+
 
   it('should default to current month and today', () => {
     const component = mount(<Calendar />);
@@ -59,6 +67,14 @@ describe('<Calendar />', () => {
     });
   });
 
+  it('should be accessible with hidden dates', async () => {
+    const specifiedDate = new Date(2017, 7, 14);
+    const dateVisible = date => isSameDay(date, specifiedDate);
+    await assertAccessible(
+      <Calendar date={specifiedDate} dateVisible={dateVisible} />
+    );
+  });
+
   it('should not call onSelect if clicking on a invisible date', () => {
     const specifiedDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, specifiedDate);
@@ -84,5 +100,11 @@ describe('<Calendar />', () => {
     const component = mount(<Calendar renderDay={() => <td className="customDay">x</td>} />);
     const days = component.find('.customDay');
     assert.equal(days.length, 42);
+  });
+
+  it('should be accessible with custom days', async () => {
+    await assertAccessible(
+      <Calendar renderDay={() => <td className="customDay">x</td>} />
+    );
   });
 });

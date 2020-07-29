@@ -81,7 +81,7 @@ describe('<InternationalAddressInput />', () => {
       sinon.assert.calledWith(callback, { ...addressData, state: undefined, countryCode: 'CA' });
 
       input.simulate('change', { target: { value: null } });
-      sinon.assert.calledWith(callback, { ...addressData, state: undefined, countryCode: null });
+      sinon.assert.calledWith(callback, { ...addressData, state: undefined, countryCode: undefined });
     });
 
     it('should clear values', () => {

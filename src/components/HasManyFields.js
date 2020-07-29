@@ -2,7 +2,6 @@ import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { v4 as uuid } from 'uuid';
 
 import HasManyFieldsAdd from './HasManyFieldsAdd';
 import HasManyFieldsRow from './HasManyFieldsRow';
@@ -16,7 +15,7 @@ const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyF
   <div className="d-flex js-reorderable-item" key={key}>
     <DragHandler />
     <div className="w-100">
-      {renderHasManyFieldsRow(uuid(), sortIndex, value)}
+      {renderHasManyFieldsRow(null, sortIndex, value)}
     </div>
   </div>
 ));
@@ -54,7 +53,6 @@ class HasManyFields extends React.Component {
     minimumRows: PropTypes.number,
     maximumRows: PropTypes.number,
     reorderable: PropTypes.bool,
-    animated: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -67,7 +65,6 @@ class HasManyFields extends React.Component {
     minimumRows: 1,
     maximumRows: Infinity,
     reorderable: false,
-    animated: false,
   };
 
   constructor(props) {
@@ -170,7 +167,6 @@ class HasManyFields extends React.Component {
 
     return (
       <HasManyFieldsRow
-        animated={this.props.animated}
         onDelete={this.deleteItem(index)}
         key={key}
         deletable={this.value.length > minimumRows}
@@ -220,7 +216,7 @@ class HasManyFields extends React.Component {
 
     return (
       <div>
-        {this.value.map((item, index) => this.renderHasManyFieldsRow(uuid(), index, item))}
+        {this.value.map((item, index) => this.renderHasManyFieldsRow(index, index, item))}
         {this.renderAddRow()}
       </div>
     );

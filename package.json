@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "5.7.13-beta.0",
+  "version": "5.8.2",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -13,6 +13,7 @@
     "dist",
     "lib"
   ],
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   },
@@ -20,6 +21,7 @@
     "tslint": "tsc --noEmit",
     "eslint": "eslint src test",
     "lint": "tsc --noEmit && eslint src test stories",
+    "lint:ts": "npm run dist",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",
     "test:watch": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --watch --require ./test/helpers.js",
@@ -29,13 +31,14 @@
     "dist:types": "tsc --declaration --emitDeclarationOnly --noEmit false --allowJs false --isolatedModules false --outDir lib/",
     "dist": "npm run dist:copy-d-ts-files && npm run dist:types && webpack -p",
     "prepublishOnly": "npm run dist",
-    "postpublish": "git push --no-verify && git push --tags"
+    "postpublish": "git push --no-verify && git push --tags && gren release"
   },
   "peerDependencies": {
     "react": ">= 16.8",
     "react-dom": ">= 16.8"
   },
   "dependencies": {
+    "@types/credit-card-type": "^5.0.1",
     "@types/lodash.topairs": "^4.3.6",
     "@types/react-dom": "^16.9.4",
     "@types/react-text-mask": "^5.4.6",
@@ -72,7 +75,7 @@
     "styled-jsx": "^3.3.0",
     "text-mask-addons": "^3.8.0",
     "uniqid": "^5.0.3",
-    "use-local-storage-state": "^3.0.1",
+    "use-local-storage-state": "^4.0.0",
     "uuid": "^8.1.0"
   },
   "devDependencies": {
@@ -96,6 +99,7 @@
     "@storybook/react": "^5.2.6",
     "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.9",
+    "@types/lodash.range": "^3.2.6",
     "@types/react": "^16.9.11",
     "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^2.17.0",

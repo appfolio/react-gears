@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InputProps } from 'reactstrap/lib/Input';
 
 interface CheckboxBooleanInputSpecificProps {
-  checkboxLabel: React.ReactNode;
+  checkboxLabel?: React.ReactNode;
   onChange?: (isChecked: boolean) => void;
   value?: boolean;
 }
