@@ -150,8 +150,7 @@ import SelectMultiValue from './components/SelectMultiValue.js';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput';
-// @ts-ignore: implicitly has an 'any' type
-import StaticInput from './components/StaticInput.js';
+import StaticInput from './components/StaticInput';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox';
 import SummaryBoxItem from './components/SummaryBoxItem';

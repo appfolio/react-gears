@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import cardTypeInfo, { CardBrand } from 'credit-card-type';
+import cardTypeInfo, { CardBrand, CreditCardTypeInfo } from 'credit-card-type';
 import Icon from './Icon';
 import Input from './Input';
 import { InputProps } from 'reactstrap/lib/Input';
@@ -19,6 +18,7 @@ const ICONS: {
   visa: 'cc-visa'
 };
 
+// runtime representation of card types for input validation
 type CardType = 'visa' | 'master-card' | 'american-express' | 'discover' | 'diners-club' | 'jcb';
 
 type IconName = 'cc-amex' | 'cc-diners-club' | 'cc-mastercard' | 'cc-discover' | 'cc-jcb' | 'cc-visa' | 'credit-card';
@@ -27,31 +27,53 @@ function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
 }
 
-function includes(array: CardBrand[], value?: CardBrand) {
-  return Array.isArray(array) && !!value && array.indexOf(value) !== -1;
-}
-
-interface CreditCardNumberProps extends Omit<InputProps, 'onChange'> {
+interface CreditCardNumberProps extends Omit<Omit<InputProps, 'onChange'>, 'types'> {
   className?: string;
   types?: CardType[];
   value?: string;
   onChange?: (value: string, type?: CardBrand) => void;
 }
 
+function removeTypes(props: InputProps): Omit<InputProps, 'types'> {
+  delete props.types;
+  return props;
+}
+
+function isAllowedCardType(x: string | undefined, allowedTypes: CardType[]): x is CardType {
+  // ok to cast here because we are inside the type card that validates the cast
+  return allowedTypes.includes(x as CardType);
+}
+
 const defaultProps = {
-  // @ts-ignore: Property 'defaultProps' does not exist on type 'typeof Input'.
-  ...Input.defaultProps,
+  ...removeTypes(Input.defaultProps),
   className: '',
-  types: Object.keys(ICONS),
+  types: Object.keys(ICONS) as CardType[],
   onChange: () => {},
 };
 
 const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
-  types= defaultProps.types,
+  types = defaultProps.types,
   onChange = defaultProps.onChange,
   className = defaultProps.className,
   ...props
-}) => {
+}: CreditCardNumberProps) => {
+  const getType = (value?: string): CardBrand | undefined => {
+    if (!value) {
+      return undefined;
+    }
+
+    const typeInfo = cardTypeInfo(value);
+    // Return type if only one CC pattern matches and if allowed types includes type
+    if (
+      typeInfo.length === 1 &&
+      isAllowedCardType(typeInfo[0].type, types)
+    ) {
+      return typeInfo[0].type;
+    }
+
+    return undefined;
+  };
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const type = getType(value);
@@ -60,19 +82,6 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
     }
   };
 
-  const getType = (value?: string): CardBrand | undefined => {
-    if (!value) {
-      return undefined
-    }
-
-    const typeInfo = cardTypeInfo(value);
-    // Return type if only one CC pattern matches and if allowed types includes type
-    if (typeInfo.length === 1 && includes(types, typeInfo[0].type)) {
-      return typeInfo[0].type;
-    }
-
-    return undefined;
-  };
 
   /* eslint-disable  no-unused-vars */
   const { type, value, ...inputProps } = props;
@@ -97,15 +106,6 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
       </InputGroupAddon>
     </InputGroup>
   );
-};
-
-CreditCardNumber.propTypes = {
-  // @ts-ignore
-  ...Input.propTypes,
-  className: PropTypes.string,
-  types: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.string,
-  onChange: PropTypes.func,
 };
 
 CreditCardNumber.defaultProps = defaultProps;
