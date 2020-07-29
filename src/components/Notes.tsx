@@ -71,7 +71,7 @@ Notes.propTypes = {
   onUndelete: PropTypes.func,
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      date: PropTypes.instanceOf(Date).isRequired,
+      date: PropTypes.instanceOf(Date),
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       editing: PropTypes.bool,

@@ -44,15 +44,18 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
         {edited && <Badge color="primary" className="text-uppercase mr-2 js-note-header__edited">Edited</Badge>}
         <div className="d-flex flex-column">
           {title && <CardTitle>{title}</CardTitle>}
-          <span className="m-0 my-1 mr-auto">
-            <span className="d-none d-sm-inline">
-              {edited ? 'Last edited' : 'Posted'}
-              {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
+          {
+            date &&
+            <span className="m-0 my-1 mr-auto">
+              <span className="d-none d-sm-inline">
+                {edited ? 'Last edited' : 'Posted'}
+                {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
+              </span>
+              <span className="d-sm-none">
+                {from ? <span>{from} </span> : null}<span className="js-note-header__shortDate">{format(date, 'M/D/YY h:mm A')} {timezone(date)}</span>
+              </span>
             </span>
-            <span className="d-sm-none">
-              {from ? <span>{from} </span> : null}<span className="js-note-header__shortDate">{format(date, 'M/D/YY h:mm A')} {timezone(date)}</span>
-            </span>
-          </span>
+          }
         </div>
       </div>
       <div className="d-inline-flex">

@@ -1,6 +1,6 @@
 export default interface Note {
   title?: string;
-  date: Date;
+  date?: Date;
   deleted?: boolean;
   edited?: boolean;
   editing?: boolean;

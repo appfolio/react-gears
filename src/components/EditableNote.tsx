@@ -45,11 +45,11 @@ const EditableNote: React.FunctionComponent<EditableNoteProps> = ({
   ...props
 }) => {
   const { children, note, onCancel, onChange, onSave } = props;
-  const { date, errors, text } = note;
+  const { errors, text } = note;
 
   return (
     <Card className={className}>
-      {date && <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />}
+      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />
       <CardBody>
         <FormLabelGroup feedback={errors} stacked>
           <Input
@@ -81,7 +81,7 @@ EditableNote.propTypes = {
   dateFormat: PropTypes.string,
   showTimezone: PropTypes.bool,
   note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
     deleted: PropTypes.bool,
     edited: PropTypes.bool,
     editing: PropTypes.bool,

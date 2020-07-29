@@ -81,7 +81,7 @@ const Note: React.FunctionComponent<NoteProps> = ({
   }
   return (
     <Card className={className}>
-      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} onDelete={onDelete} onEdit={onEdit} />
+      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
         {children}
@@ -99,7 +99,7 @@ Note.propTypes = {
   showTimezone: PropTypes.bool,
   note: PropTypes.shape({
     title: PropTypes.string,
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
     deleted: PropTypes.bool,
     editing: PropTypes.bool,
     from: PropTypes.string,
