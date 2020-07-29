@@ -95,13 +95,10 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       rotate && classNames.push(`rotate-${rotate}`);
       stack && classNames.push(`stack-${stack}`);
 
-      const icon = classNames.map(iconName => `icon-${iconName}`);
-      icon.push('icon');
-
       const fa = classNames.map(iconName => `fa-${iconName}`);
       fa.unshift('fa');
 
-      classNames = fa.concat(icon);
+      classNames = fa;
     }
 
     // Add any custom class names at the end.
