@@ -30,7 +30,7 @@ const DeletedNote: React.FunctionComponent<DeletedNoteProps> = ({
 DeletedNote.propTypes = {
   className: PropTypes.string,
   note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
     deleted: PropTypes.bool,
     edited: PropTypes.bool,
     editing: PropTypes.bool,

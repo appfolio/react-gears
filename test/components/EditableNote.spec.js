@@ -176,15 +176,6 @@ describe('<EditableNote />', () => {
       });
     });
 
-    context('if note has no date', () => {
-      it('should not render a NoteHeader', () => {
-        component = mount(<EditableNote {...props} />);
-        const header = component.find('NoteHeader');
-
-        assert.equal(0, header.length);
-      });
-    });
-
     context('if note has a date', () => {
       it('should render a NoteHeader', () => {
         props.note.date = new Date();

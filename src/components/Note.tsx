@@ -99,7 +99,7 @@ Note.propTypes = {
   showTimezone: PropTypes.bool,
   note: PropTypes.shape({
     title: PropTypes.string,
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
     deleted: PropTypes.bool,
     editing: PropTypes.bool,
     from: PropTypes.string,
