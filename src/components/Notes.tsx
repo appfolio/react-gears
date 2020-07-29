@@ -18,7 +18,10 @@ type NotesProps = {
 
 const defaultProps = {
   className: '',
-  notes: []
+  notes: [],
+  onCancel: () => {},
+  onChange: () => {},
+  onSave: () => {},
 };
 
 const Notes: React.FunctionComponent<NotesProps> = ({
