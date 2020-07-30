@@ -8,7 +8,6 @@ import CardTitle from '../CardTitle';
 import ClickableContainer from '../ClickableContainer';
 import Collapse from '../Collapse';
 import Icon from '../Icon';
-import styles from './BlockPanel.scss';
 import createIsOpenHook from './createIsOpenHook';
 
 interface BlockPanelTitleProps {
@@ -20,8 +19,8 @@ interface BlockPanelTitleProps {
 const BlockPanelTitle: FunctionComponent<BlockPanelTitleProps> = (
   { className, expandable, onClick, ...props }: BlockPanelTitleProps
 ) => expandable ?
-    <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', styles.header, className)} {...props} /> :
-    <div {...props} />;
+  <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', className)} {...props} /> :
+  <div {...props} />;
 
 
 export interface BlockPanelProps {

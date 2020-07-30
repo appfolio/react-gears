@@ -31,15 +31,24 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   return (
     <section className={className}>
       <header>
-        <ClickableContainer aria-expanded={open} onClick={toggle}>
+        <ClickableContainer aria-expanded={open} className="d-flex align-items-center" onClick={toggle}>
           <Icon
-            name="caret-right"
-            rotate={open ? 90 : undefined}
-            size="lg"
+            name={`chevron-${open ? 'up' : 'down'}`}
+            className="text-muted mr-1"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
-          <b style={{ userSelect: 'none' }}>{title}</b>
+          <b>{title}</b>
+          <style jsx>{`
+            b {
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+          `}
+          </style>
         </ClickableContainer>
       </header>
       <Collapse isOpen={open}>

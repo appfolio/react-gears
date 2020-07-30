@@ -32,7 +32,7 @@ describe('<SortableTable />', () => {
     const wrapper = mount(<SortableTable columns={columns} />);
     const headers = wrapper.find('th');
     assert.equal(headers.length, columns.length);
-    headers.forEach((th, i) => assert.equal(th.text(), columns[i].header));
+    headers.forEach((th, i) => assert(th.text().indexOf(columns[i].header) > -1));
   });
 
   it('should support custom rendered rows', () => {

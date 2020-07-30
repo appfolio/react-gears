@@ -32,7 +32,7 @@ describe('<UncontrolledTable />', () => {
     const wrapper = mount(<UncontrolledTable columns={columns} />);
     const headers = wrapper.find('th');
     assert.equal(headers.length, columns.length);
-    headers.forEach((th, i) => assert.equal(th.text(), columns[i].header));
+    headers.forEach((th, i) => assert(th.text().indexOf(columns[i].header) > -1));
   });
 
   it('should render all rows', () => {
@@ -213,7 +213,7 @@ describe('<UncontrolledTable />', () => {
     );
 
     const ths = wrapper.find('th');
-    assert.equal(ths.last().text(), 'whatever you want, homie');
+    assert(ths.last().text().indexOf('whatever you want, homie') > -1);
   });
 
   it('should update expanded rows when new expanded prop provided', () => {
