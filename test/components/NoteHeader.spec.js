@@ -55,6 +55,10 @@ describe('<NoteHeader />', () => {
       it('should render title', () => {
         assert(component.find('CardTitle').exists());
       });
+
+      it('has "ddd MMM DD YYYY HH:mm:ss" as default dateFormat prop', () => {
+        assert.strictEqual(component.prop('dateFormat'), 'ddd MMM DD YYYY HH:mm:ss');
+      });
     });
 
     context('without optional information', () => {
