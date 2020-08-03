@@ -3,7 +3,6 @@ import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import Card from './Card';
 import CardBody from './CardBody';
-import Omit from './TypeHelpers/Omit';
 
 interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string,

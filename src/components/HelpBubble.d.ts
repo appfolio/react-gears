@@ -1,4 +1,3 @@
-import Omit from './TypeHelpers/Omit';
 import { PopoverProps } from 'reactstrap/lib/Popover';
 import * as React from 'react';
 

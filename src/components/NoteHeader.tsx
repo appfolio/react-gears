@@ -15,17 +15,22 @@ const timezone = (date: Date) => date.toLocaleTimeString('en-us', { timeZoneName
 
 type NoteHeaderProps = {
   note: Omit<NoteType, 'text'>,
-  dateFormat: string,
+  dateFormat?: string,
   // TODO shortDateFormat ?
   showTimezone?: boolean,
   onDelete?: (note: Omit<NoteType, 'text'>) => void,
   onEdit?: (note: Omit<NoteType, 'text'>) => void,
 }
 
+const defaultProps = {
+  dateFormat: 'ddd MMM DD YYYY HH:mm:ss',
+};
+
 const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
+  dateFormat = defaultProps.dateFormat,
   ...props
 }) => {
-  const { dateFormat, note, onDelete, onEdit, showTimezone } = props;
+  const { note, onDelete, onEdit, showTimezone } = props;
   const { date, edited, from, title } = note;
 
   const headerClassNames = classnames(
@@ -75,12 +80,13 @@ NoteHeader.propTypes = {
     from: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
-  dateFormat: PropTypes.string.isRequired,
+  dateFormat: PropTypes.string,
   // TODO shortDateFormat ?
   showTimezone: PropTypes.bool,
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
 };
 
+NoteHeader.defaultProps = defaultProps;
 
 export default NoteHeader;

@@ -1,4 +1,3 @@
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
 interface FileInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type'> {

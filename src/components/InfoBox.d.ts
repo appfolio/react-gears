@@ -1,4 +1,3 @@
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
 interface InfoBoxProps extends

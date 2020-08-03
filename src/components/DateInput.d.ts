@@ -1,10 +1,9 @@
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 type DateOrString = Date | string;
 
 interface DateInputPropTypes extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
-  'className' | 'size' | 'id' | 'className' | 'type' | 'onBlur' | 'onChange' | 'onClick' | 'onFocus' | 'onKeyDown' | 'disabled' | 'value' | 'defaultValue'>
+  'className' | 'size' | 'id' | 'type' | 'onBlur' | 'onChange' | 'onClick' | 'onFocus' | 'onKeyDown' | 'disabled' | 'value' | 'defaultValue'>
 {
   className?: string;
   dateVisible?: (currentDate: Date) => any[];
