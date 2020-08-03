@@ -1,7 +1,6 @@
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
-interface FormRowPropTypes extends 
+interface FormRowPropTypes extends
   Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
   children?: ReactNode;
   label?: ReactNode;

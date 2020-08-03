@@ -1,5 +1,4 @@
 import { TableProps } from './Table';
-import Omit from './TypeHelpers/Omit';
 import * as React from 'react';
 
 interface CalendarProps extends Omit<TableProps, 'bordered' | 'hover' | 'striped'> {
