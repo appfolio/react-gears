@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface FormRowPropTypes extends
-  Omit<React.HTMLAttributes<HTMLInputElement>, 'id'>{
+  Omit<React.InputHTMLAttributes<HTMLInputElement> & React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'id'> {
   children?: ReactNode;
   label?: ReactNode;
   labelSize?: string;
