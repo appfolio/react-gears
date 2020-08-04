@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import { NoteHeader } from '../../src';
@@ -61,7 +61,7 @@ describe('<NoteHeader />', () => {
       });
     });
 
-    context('without optional information', () => {
+    context('without optional information other than date', () => {
       const note2 = {
         date: new Date(),
         text: 'Hello World!',
@@ -78,8 +78,16 @@ describe('<NoteHeader />', () => {
         assert.strictEqual(component.find('.js-note-header__edited').exists(), false);
       });
 
-      it('should render title', () => {
+      it('should not render title', () => {
         assert.strictEqual(component.find('CardTitle').exists(), false);
+      });
+    });
+
+    context('without any optinal information', () => {
+      const component = shallow(<NoteHeader note={{}} />);
+      it('should render an empty CardHeader', () => {
+        assert.strictEqual(component.find('.js-note-header__no_data').exists(), true);
+        assert.strictEqual(component.find('CardHeader').exists(), false);
       });
     });
   });
