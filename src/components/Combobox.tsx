@@ -11,11 +11,7 @@ import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-type Direction =
-  | 'up'
-  | 'down'
-  | 'left'
-  | 'right';
+type Direction = 'up' | 'down';
 
 type Option = {
   label: string;
@@ -189,9 +185,20 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       <DropdownMenu
         data-testid="combobox-menu"
         className="p-0 w-100"
-        style={{
-          maxHeight: menuMaxHeight || '12rem',
-          overflowY: 'auto'
+        modifiers={{
+          setMaxHeight: {
+            enabled: true,
+            fn: (data) => {
+              return {
+                ...data,
+                styles: {
+                  ...data.styles,
+                  overflowY: 'auto',
+                  maxHeight: menuMaxHeight || '12rem',
+                },
+              };
+            },
+          },
         }}
         {...dropdownProps}
         ref={dropdownMenu}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, select } from '@storybook/addon-knobs';
 import { Combobox, Icon } from '../src';
 
 const options = [
@@ -72,6 +72,7 @@ storiesOf('Combobox', module)
     const [value, setValue] = useState();
     return (
       <Combobox
+        direction={select('direction', ['', 'down', 'up'], '')}
         onChange={setValue}
         options={options}
         value={value}
