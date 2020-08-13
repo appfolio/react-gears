@@ -109,6 +109,10 @@ import CurrencyInput from './components/CurrencyInput';
 import Datapair from './components/Datapair';
 import DateInput from './components/DateInput.js';
 import DeletedNote from './components/DeletedNote';
+import DragHandler from './components/Reorderable/DragHandler';
+import ReorderableContainer from './components/Reorderable/ReorderableContainer';
+import ReorderableElement from './components/Reorderable/ReorderableElement';
+import SortableItem from './components/Reorderable/SortableItem';
 import EditableNote from './components/EditableNote';
 import ExpandableSection from './components/ExpandableSection';
 import FeatureBanner from './components/FeatureBanner.js';
@@ -286,6 +290,10 @@ export {
   CurrencyInput,
   Datapair,
   DateInput,
+  DragHandler,
+  ReorderableContainer,
+  ReorderableElement,
+  SortableItem,
   ExpandableSection,
   Badge as Flag,
   FeatureBanner,
