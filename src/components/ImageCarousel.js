@@ -86,15 +86,15 @@ export default class ImageCarousel extends React.Component {
               slide={slide}
               defaultActiveIndex={index}
             />
-            <style jsx>
+            <style jsx global>
               {`
-                .carousel :global img {
+                .carousel img {
                   display: inline-block !important;
                   max-height: 100vh;
                   max-width: 100vw;
                   width: auto !important;
                 }
-                .carousel :global .carousel-item {
+                .carousel .carousel-item {
                   text-align: center !important;
                 }
               `}
