@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@types/credit-card-type": "^5.0.1",
+    "@types/lodash-es": "^4.17.3",
     "@types/lodash.topairs": "^4.3.6",
     "@types/react-dom": "^16.9.4",
     "@types/react-text-mask": "^5.4.6",
@@ -50,6 +51,7 @@
     "date-fns": "^1.30.1",
     "enzyme-adapter-react-16": "^1.13.0",
     "fecha": "^2.3.3",
+    "lodash-es": "^4.17.15",
     "lodash.flow": "^3.5.0",
     "lodash.includes": "^4.3.0",
     "lodash.isequal": "^4.5.0",
