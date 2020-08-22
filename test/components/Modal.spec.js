@@ -29,7 +29,7 @@ describe('<Modal />', () => {
     assert(component);
   });
 
-  context('when autoFocus="true"', () => {
+  describe('when autoFocus="true"', () => {
     it('sets focus to the modal content', () => {
       const originalActiveElement = document.activeElement;
       component = mount(
@@ -49,7 +49,7 @@ describe('<Modal />', () => {
     });
   });
 
-  context('when autoFocus="false"', () => {
+  describe('when autoFocus="false"', () => {
     it('leaves focus as-is if elements within the modal are not autofocus', () => {
       const originalActiveElement = document.activeElement;
       component = mount(

@@ -11,7 +11,7 @@ import sinon from 'sinon';
 import { MonthInput } from '../../src';
 
 describe('<MonthInput />', () => {
-  context('defaultValue', () => {
+  describe('defaultValue', () => {
     it('should default to blank and today', () => {
       const component = mount(<MonthInput />);
       const input = component.find('input');
@@ -113,7 +113,7 @@ describe('<MonthInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
-  context('user input', () => {
+  describe('user input', () => {
     it('should set date after entering a valid date string', () => {
       const component = mount(<MonthInput />);
       const input = component.find('input');
@@ -154,7 +154,7 @@ describe('<MonthInput />', () => {
     });
   });
 
-  context('date picker', () => {
+  describe('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<MonthInput onChange={callback} showOnFocus />);
 
@@ -249,7 +249,7 @@ describe('<MonthInput />', () => {
     });
   });
 
-  context('date picker with controlled visible dates', () => {
+  describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, defaultDate);

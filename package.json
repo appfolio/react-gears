@@ -26,8 +26,8 @@
     "lint": "tsc --noEmit && eslint src test stories",
     "lint:ts": "npm run dist",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
-    "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",
-    "test:watch": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --watch --require ./test/helpers.js",
+    "test": "NODE_ENV=test nyc --reporter text --reporter lcov jest --coverage",
+    "test:watch": "NODE_ENV=test jest --watch",
     "docs": "BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist:copy-d-ts-files": "node ./scripts/copy_d_ts_files.js",
@@ -123,11 +123,13 @@
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-no-only-tests": "^2.3.0",
     "eslint-plugin-react-hooks": "^2.0.1",
+    "esm": "^3.2.25",
     "fs-extra": "5.0.0",
     "glob": "^7.1.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.4.1",
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "~3.5.3",
     "nyc": "^12.0.2",
     "postcss": "^7.0.16",
     "postcss-loader": "^3.0.0",
@@ -143,5 +145,13 @@
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
   },
-  "browserslist": "last 2 versions"
+  "browserslist": "last 2 versions",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "setupFiles": [
+      "<rootDir>test/helpers.js"
+    ]
+  }
 }

@@ -1,5 +1,0 @@
---compilers ts:ts-node/register
---require jsdom-global/register
---require @babel/register
---recursive
---timeout 10000
