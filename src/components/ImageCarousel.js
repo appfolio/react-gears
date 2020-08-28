@@ -40,14 +40,14 @@ export default class ImageCarousel extends React.Component {
     }
   }
 
-  handleEscape(e) {
+  handleEscape = (e) => {
     if (e.key === 'Escape') {
       this.props.toggle();
     }
   }
 
   componentDidMount() {
-    document.addEventListener('keyup', e => this.handleEscape(e));
+    document.addEventListener('keyup', this.handleEscape);
   }
 
   componentDidUpdate(prevProps) {
@@ -58,7 +58,7 @@ export default class ImageCarousel extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', e => this.handleEscape(e));
+    document.removeEventListener('keyup', this.handleEscape);
   }
 
   render() {
