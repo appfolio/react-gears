@@ -1,7 +1,7 @@
 import * as React from 'react';
 interface FeatureBannerProps {
   alertText?: string;
-  children?: ReactNode;
+  children?: React.ReactNode;
   color?: string;
   subtitle: string;
   title: string;

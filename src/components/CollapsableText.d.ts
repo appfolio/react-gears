@@ -3,9 +3,9 @@ import * as React from 'react';
 export interface CollapsableTextProps {
   children?: string;
   collapsed?: boolean;
-  lessLabel?: ReactNode;
+  lessLabel?: React.ReactNode;
   maxLength?: number;
-  moreLabel?: ReactNode;
+  moreLabel?: React.ReactNode;
 }
 
 export default class CollapsableText extends React.Component<CollapsableTextProps, any> {

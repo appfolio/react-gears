@@ -6,7 +6,7 @@ interface LabelBadgeProps {
   maxWidth?: number;
   onRemove?: React.MouseEventHandler<any>;
   removable?: boolean;
-  value: ReactNode;
+  value: React.ReactNode;
 }
 declare class LabelBadge extends React.Component<LabelBadgeProps, {}> { }
 export default LabelBadge;

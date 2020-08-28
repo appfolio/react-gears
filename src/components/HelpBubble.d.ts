@@ -3,7 +3,7 @@ import * as React from 'react';
 
 interface HelpBubbleProps extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {
   title: string;
-  children?: ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }
 declare class HelpBubble extends React.Component<HelpBubbleProps, {}> { }

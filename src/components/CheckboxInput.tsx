@@ -21,8 +21,8 @@ type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<InputProps, CheckboxBo
 type CheckboxInputProps = CheckboxListInputProps | CheckboxBooleanInputProps;
 
 const CheckboxInput: FunctionComponent<CheckboxInputProps> = (props: CheckboxInputProps) =>
-    props.children ?
-      <CheckboxListInput {...props} /> :
-      <CheckboxBooleanInput {...(props as CheckboxBooleanInputProps)} />;
+  props.children ?
+    <CheckboxListInput {...props as CheckboxListInputProps} /> :
+    <CheckboxBooleanInput {...props as CheckboxBooleanInputProps} />;
 
 export default CheckboxInput;
