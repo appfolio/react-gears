@@ -1,6 +1,6 @@
 {
   "name": "react-gears",
-  "version": "5.10.1",
+  "version": "5.10.3-0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -31,7 +31,7 @@
     "dist:types": "tsc --declaration --emitDeclarationOnly --noEmit false --allowJs false --isolatedModules false --outDir lib/",
     "dist": "npm run dist:copy-d-ts-files && npm run dist:types && webpack -p",
     "prepublishOnly": "npm run dist",
-    "postpublish": "git push --no-verify && git push --tags && gren release"
+    "postpublish": "git push --no-verify && git push --tags"
   },
   "peerDependencies": {
     "react": ">= 16.8",
