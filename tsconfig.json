@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "experimentalDecorators": true,
+    "sourceMap": false,
     "skipLibCheck": true // needed for .d.ts files TODO remove if all .ts
   },
   "include": ["src"]
