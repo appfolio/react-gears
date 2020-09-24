@@ -10,7 +10,7 @@
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-object-rest-spread",
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    "styled-jsx/babel"
+    ["styled-jsx/babel", { "sourceMaps":  false }]
   ],
   "env": {
     "storybook": {
