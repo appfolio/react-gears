@@ -11,3 +11,4 @@ dist
 *.log
 yarn.lock
 lib
+es
