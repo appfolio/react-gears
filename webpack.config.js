@@ -66,8 +66,7 @@ const config = {
               importLoaders: 2
             }
           },
-          { loader: 'postcss-loader' },
-          { loader: 'sass-loader' }
+          { loader: 'postcss-loader' }
         ]
       }
     ]
