@@ -63,19 +63,20 @@ class Select extends React.Component {
     const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue :
       undefined);
     return (
-      <SelectElement
-        arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
-        clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
-        optionComponent={Option}
-        inputProps={{ name, ...inputProps }}
-        multi={multi}
-        onChange={this.onChange}
-        value={value || this.state.value}
-        valueComponent={valueComponentRenderer}
-        ref={this.bindInput}
-        className={classNames}
-        {...props}
-      >
+      <>
+        <SelectElement
+          arrowRenderer={({ isOpen }) => <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
+          clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
+          optionComponent={Option}
+          inputProps={{ name, ...inputProps }}
+          multi={multi}
+          onChange={this.onChange}
+          value={value || this.state.value}
+          valueComponent={valueComponentRenderer}
+          ref={this.bindInput}
+          className={classNames}
+          {...props}
+        />
         <style jsx global>{`
           .Select {
             position: relative;
@@ -506,7 +507,7 @@ class Select extends React.Component {
           }
         `}
         </style>
-      </SelectElement>
+      </>
     );
   }
 }
