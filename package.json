@@ -13,7 +13,8 @@
   "sideEffects": false,
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "es"
   ],
   "types": "lib/index.d.ts",
   "publishConfig": {
