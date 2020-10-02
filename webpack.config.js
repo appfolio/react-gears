@@ -47,27 +47,6 @@ const config = {
         query: {
           cacheDirectory: true,
         }
-      },
-      {
-        test: /\.s?css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'dts-css-modules-loader',
-            options: {
-              namedExport: true
-            }
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localsConvention: 'camelCaseOnly',
-              importLoaders: 2
-            }
-          },
-          { loader: 'postcss-loader' }
-        ]
       }
     ]
   },
