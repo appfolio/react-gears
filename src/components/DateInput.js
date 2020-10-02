@@ -271,6 +271,7 @@ export default class DateInput extends React.Component {
           <DropdownToggle tag="div" disabled>
             <InputGroup className={className}>
               <input
+                aria-label="Date Input"
                 id={id}
                 className="form-control"
                 ref={(el) => { this.inputEl = el; }}
@@ -285,6 +286,7 @@ export default class DateInput extends React.Component {
               />
               <InputGroupAddon addonType="append" onClick={this.toggle}>
                 <Button
+                  aria-label="Date Input"
                   className="px-2"
                   disabled={disabled}
                   active={open}
