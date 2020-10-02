@@ -28,7 +28,7 @@
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "test": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --require ./test/helpers.js",
     "test:watch": "NODE_ENV=test nyc --reporter text --reporter lcov mocha  --watch --require ./test/helpers.js",
-    "docs": "BABEL_ENV=storybook build-storybook -o docs",
+    "docs": "exit 0 || BABEL_ENV=storybook build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "dist:copy-d-ts-files": "node ./scripts/copy_d_ts_files.js",
     "dist:types": "tsc --declaration --emitDeclarationOnly --noEmit false --allowJs false --isolatedModules false --outDir lib/",
