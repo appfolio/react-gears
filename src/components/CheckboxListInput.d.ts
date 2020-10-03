@@ -6,5 +6,5 @@ interface CheckboxListInputProps {
   value?: string[];
 }
 
-declare class CheckboxListInput extends Component<CheckboxBooleanInputProps, {}> { }
+declare class CheckboxListInput extends Component<CheckboxListInputProps, {}> { }
 export default CheckboxListInput;

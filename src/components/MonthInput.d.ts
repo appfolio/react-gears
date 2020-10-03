@@ -8,8 +8,8 @@ interface MonthInputProps {
   yearFormat?: string;
   defaultValue?: string | Date;
   disabled?: boolean;
-  footer?: ReactNode;
-  header?: ReactNode;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
   keyboard?: boolean;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (val: Date | string, isDate: boolean) => void;

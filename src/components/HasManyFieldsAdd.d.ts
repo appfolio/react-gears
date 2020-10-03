@@ -3,7 +3,7 @@ import * as React from 'react';
 
 interface HasManyFieldsAddProps extends Omit<ButtonProps,'color'> {
   className?: string;
-  children: ReactNode;
+  children: React.ReactNode;
   disabled?: boolean;
 }
 declare class HasManyFieldsAdd extends React.Component<HasManyFieldsAddProps, {}> { }
