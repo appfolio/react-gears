@@ -10,6 +10,7 @@
   "license": "MIT",
   "main": "dist/bundle.js",
   "module": "es/index.js",
+  "sideEffects": false,
   "files": [
     "dist",
     "lib",
