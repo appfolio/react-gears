@@ -468,4 +468,36 @@ describe('AddressInput', () => {
       assert.equal(allSupported.find('#test_state option').length, CA.length + US.length + 1);
     });
   });
+
+  describe('custom input namme', () => {
+    const inputName = {
+      address1: 'custom_name_address1',
+      address2: 'custom_name_address2',
+      city: 'custom_name_city',
+      state: 'custom_name_state',
+      postal: 'custom_name_postal',
+      countryCode: 'custom_name_countryCode'
+    };
+    const component = mount(<AddressInput inputName={inputName} />);
+
+    it('should pass custom names to the respective inputs', () => {
+      assert.equal(component.find('input[name="address1"]').length, 0);
+      assert.equal(component.find('input[name="custom_name_address1"]').length, 1);
+
+      assert.equal(component.find('input[name="address2"]').length, 0);
+      assert.equal(component.find('input[name="custom_name_address2"]').length, 1);
+
+      assert.equal(component.find('input[name="city"]').length, 0);
+      assert.equal(component.find('input[name="custom_name_city"]').length, 1);
+
+      assert.equal(component.find('select[name="state"]').length, 0);
+      assert.equal(component.find('select[name="custom_name_state"]').length, 1);
+
+      assert.equal(component.find('input[name="postal"]').length, 0);
+      assert.equal(component.find('input[name="custom_name_postal"]').length, 1);
+
+      assert.equal(component.find('select[name="countryCode"]').length, 0);
+      assert.equal(component.find('select[name="custom_name_countryCode"]').length, 1);
+    });
+  });
 });
