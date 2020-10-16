@@ -361,4 +361,23 @@ describe('<DateInput />', () => {
       assert.equal(component.find('input#yo').length, 1, 'input id missing');
     });
   });
+
+  context('accessibility', () => {
+    it('should contain screen reader only label for buttons', () => {
+      const component = mount(<DateInput />);
+      const nextYearLabel = component.find('.js-next-year').children().find('span');
+      const prevYearLabel = component.find('.js-prev-year').children().find('span');
+      const nextMonthLabel = component.find('.js-next-month').children().find('span');
+      const prevMonthLabel = component.find('.js-prev-month').children().find('span');
+
+      assert.strictEqual('Next Year', nextYearLabel.text());
+      assert.strictEqual('sr-only', nextYearLabel.prop('className'));
+      assert.strictEqual('Previous Year', prevYearLabel.text());
+      assert.strictEqual('sr-only', prevYearLabel.prop('className'));
+      assert.strictEqual('Next Month', nextMonthLabel.text());
+      assert.strictEqual('sr-only', nextMonthLabel.prop('className'));
+      assert.strictEqual('Previous Month', prevMonthLabel.text());
+      assert.strictEqual('sr-only', prevMonthLabel.prop('className'));
+    });
+  });
 });
