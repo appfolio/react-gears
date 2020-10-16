@@ -29,9 +29,7 @@ storiesOf('react-gears', module)
   .add('Introduction', () => (
     <section>
       <p>
-        react-gears is a JavaScript and React-friendly implementation of the
-        Appfolio <a href="https://qa.qa.appfolio.com/gears" target="new">Gears</a> UI components,
-        and (currently) includes some potentially generic <a href="https://qa.qa.appfolio.com/saffron">Saffron</a> UI components from APM.
+        react-gears is a React implementation of Appfolio UI components, using Bootstrap for theming.
       </p>
 
       <h3>Goals</h3>

@@ -1,9 +1,9 @@
 # react-gears
 
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
-A refresh of [Gears](https://qa.qa.appfolio.com/gears/) & [Saffron](https://qa.qa.appfolio.com/saffron/) components using 
+react-gears is a React implementation of Appfolio UI components, using 
 [React](https://reactstrap.github.io),
-[Bootstrap 4](http://v4-alpha.getbootstrap.com), 
+[Bootstrap 4](http://getbootstrap.com), 
 and [reactstrap](https://reactstrap.github.io).
 
 https://appfolio.github.io/react-gears

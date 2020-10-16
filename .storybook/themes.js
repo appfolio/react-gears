@@ -1,6 +1,5 @@
 export default {
   APM: [
-    { name: 'APM/Saffron', url: 'https://appfolio.github.io/bootstrap-saffron-4/bootstrap-saffron.css' },
     { name: 'APM/Coastline', url: 'https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css' },
     { name: 'APM/Coastline Dark', url: 'https://apm-prod-frontend-assets.s3.amazonaws.com/styles/bootstrap-coastline-dark.min.css' },
     { name: 'APM/Listings', url: 'https://appfolio.github.io/bootstrap-listings/bootstrap-listings.css' },
