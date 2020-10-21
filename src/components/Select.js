@@ -49,7 +49,7 @@ class Select extends React.Component {
   }
 
   render() {
-    const { className, inputProps, multi, name, value, valueComponent, ...props } = this.props;
+    const { arrowRenderer, className, inputProps, multi, name, value, valueComponent, ...props } = this.props;
     delete props.onChange; // don't pass onChange prop to react-select
     let SelectElement = ReactSelect;
     if (this.props.loadOptions && this.props.creatable) {
@@ -64,7 +64,7 @@ class Select extends React.Component {
 
     return (
       <SelectElement
-        arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} />}
+        arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
         clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
         optionComponent={Option}
         inputProps={{ name, ...inputProps }}
