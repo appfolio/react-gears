@@ -2,7 +2,7 @@ import { PopoverProps } from 'reactstrap/lib/Popover';
 import * as React from 'react';
 
 interface HelpBubbleProps extends Omit<PopoverProps, 'isOpen' | 'toggle' | 'target'> {
-  title: string;
+  title: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }
