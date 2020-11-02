@@ -28,7 +28,8 @@ addParameters({
 
 addDecorator(withInfo({
   header: false,
-  inline: true
+  inline: true,
+  source: false
 }));
 
 // Option defaults.
