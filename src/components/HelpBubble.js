@@ -65,7 +65,7 @@ class HelpBubble extends React.Component {
 }
 
 HelpBubble.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   children: PropTypes.node,
   className: PropTypes.any
 };
