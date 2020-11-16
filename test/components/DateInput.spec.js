@@ -7,6 +7,7 @@ import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isToday from 'date-fns/is_today';
+import startOfToday from 'date-fns/start_of_today';
 import sinon from 'sinon';
 
 import { DateInput } from '../../src';
@@ -220,10 +221,10 @@ describe('<DateInput />', () => {
       assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
-    it('should should set date after clicking today', () => {
+    it('should set date to start of today after clicking today', () => {
       const today = component.find('footer Button').at(0);
       today.simulate('click');
-      assert(isToday(component.instance().getCurrentDate()));
+      assert.deepEqual(component.instance().getCurrentDate(), startOfToday());
     });
 
     it('should should call onChange after clicking today', () => {

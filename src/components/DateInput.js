@@ -8,6 +8,7 @@ import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is relea
 import format from 'date-fns/format';
 import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
+import startOfToday from 'date-fns/start_of_today';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import Calendar from './Calendar';
@@ -203,7 +204,7 @@ export default class DateInput extends React.Component {
   prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
   show = () => this.setState({ open: true });
-  today = () => this.setDate(new Date(), true);
+  today = () => this.setDate(startOfToday(), true);
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
