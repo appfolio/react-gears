@@ -27,7 +27,7 @@ describe('<EditableNote />', () => {
       assert.equal(1, card.length);
     });
 
-    context('in default mode', () => {
+    describe('in default mode', () => {
       beforeEach(() => {
         component = mount(<EditableNote {...props} />);
       });
@@ -81,7 +81,7 @@ describe('<EditableNote />', () => {
       });
     });
 
-    context('in default mode with children', () => {
+    describe('in default mode with children', () => {
       const text = 'This is some additional text to be rendered';
 
       beforeEach(() => {
@@ -118,7 +118,7 @@ describe('<EditableNote />', () => {
       });
     });
 
-    context('with errors', () => {
+    describe('with errors', () => {
       beforeEach(() => {
         props.note.errors = 'oh snap!';
         component = mount(<EditableNote {...props} />);
@@ -139,7 +139,7 @@ describe('<EditableNote />', () => {
       });
     });
 
-    context('in saving mode', () => {
+    describe('in saving mode', () => {
       beforeEach(() => {
         component = mount(<EditableNote saving {...props} />);
       });
@@ -176,7 +176,7 @@ describe('<EditableNote />', () => {
       });
     });
 
-    context('if note has a date', () => {
+    describe('if note has a date', () => {
       it('should render a NoteHeader', () => {
         props.note.date = new Date();
         component = mount(<EditableNote {...props} />);

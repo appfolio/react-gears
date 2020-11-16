@@ -5,7 +5,7 @@ import withDragHandler from '../../../src/components/Reorderable/DragHandler';
 import Icon from '../../../src/components/Icon';
 
 describe('#withDragHandler', () => {
-  context('using default handler UI', () => {
+  describe('using default handler UI', () => {
     it('renders a bar', () => {
       const Handler = withDragHandler();
       const wrapper = mount(<Handler />);
@@ -15,7 +15,7 @@ describe('#withDragHandler', () => {
     });
   });
 
-  context('not using default handler UI', () => {
+  describe('not using default handler UI', () => {
     it('renders the passed in component', () => {
       const wrappedHandler = () => <span className='js-handler'>::</span>;
       const Handler = withDragHandler(wrappedHandler, false);

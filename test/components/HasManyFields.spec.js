@@ -97,7 +97,7 @@ describe('<HasManyFields />', () => {
       sinon.assert.calledWith(onUpdate, 1, expectedItems[1]);
     });
 
-    context('template ref', () => {
+    describe('template ref', () => {
       it('should have the ref prop', () => {
         component = mount(<HasManyFields {...props} />);
         const expected = component.find(Input).length;
@@ -251,7 +251,7 @@ describe('<HasManyFields />', () => {
       );
     });
 
-    context('includes reorderable items', () => {
+    describe('includes reorderable items', () => {
       it('renders a container', () => {
         const containerWrapper = component.find('.js-reorderable-container');
 

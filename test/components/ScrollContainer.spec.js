@@ -10,7 +10,7 @@ describe('<ScrollContainer />', () => {
     assert(component);
   });
 
-  it('should not overflow when children less than width and no height specified');
-  it('should overflow horizontally');
-  it('should overflow vertically when height is specified');
+  it('should not overflow when children less than width and no height specified', () => {});
+  it('should overflow horizontally', () => {});
+  it('should overflow vertically when height is specified', () => {});
 });

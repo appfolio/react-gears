@@ -17,7 +17,7 @@ describe('<NoteHeader />', () => {
   const dateFormat = 'ddd, MMMM D, YYYY "at" h:mm A';
 
   describe('rendering', () => {
-    context('with core information', () => {
+    describe('with core information', () => {
       const component = mount(<NoteHeader note={note} dateFormat={dateFormat} showTimezone={false} />);
 
       it('should render a single CardHeader', () => {
@@ -41,7 +41,7 @@ describe('<NoteHeader />', () => {
       });
     });
 
-    context('with optional information', () => {
+    describe('with optional information', () => {
       const component = mount(<NoteHeader note={note} />);
 
       it('should render from', () => {
@@ -61,7 +61,7 @@ describe('<NoteHeader />', () => {
       });
     });
 
-    context('without optional information other than date', () => {
+    describe('without optional information other than date', () => {
       const note2 = {
         date: new Date(),
         text: 'Hello World!',
@@ -83,7 +83,7 @@ describe('<NoteHeader />', () => {
       });
     });
 
-    context('without any optinal information', () => {
+    describe('without any optinal information', () => {
       const component = shallow(<NoteHeader note={{}} />);
       it('should render an empty CardHeader', () => {
         assert.strictEqual(component.find('.js-note-header__no_data').exists(), true);
@@ -93,7 +93,7 @@ describe('<NoteHeader />', () => {
   });
 
   describe('edit', () => {
-    context('rendering', () => {
+    describe('rendering', () => {
       const onEdit = sinon.spy();
       const component = mount(<NoteHeader note={note} onEdit={onEdit} />);
 
@@ -110,7 +110,7 @@ describe('<NoteHeader />', () => {
   });
 
   describe('delete', () => {
-    context('rendering', () => {
+    describe('rendering', () => {
       const onDelete = sinon.spy();
       const component = mount(<NoteHeader note={note} onDelete={onDelete} />);
 

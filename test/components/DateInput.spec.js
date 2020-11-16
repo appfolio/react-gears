@@ -12,7 +12,7 @@ import sinon from 'sinon';
 import { DateInput } from '../../src';
 
 describe('<DateInput />', () => {
-  context('defaultValue', () => {
+  describe('defaultValue', () => {
     it('should default to blank and today', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
@@ -114,7 +114,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
-  context('user input', () => {
+  describe('user input', () => {
     it('should should set date after entering a valid date string', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
@@ -155,7 +155,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker', () => {
+  describe('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<DateInput onChange={callback} showOnFocus />);
 
@@ -271,7 +271,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker with controlled visible dates', () => {
+  describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, defaultDate);
@@ -294,7 +294,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker with controlled enabled dates', () => {
+  describe('date picker with controlled enabled dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateEnabled = () => false;
@@ -350,7 +350,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('input[rando="yadda"]').length, 1);
   });
 
-  context('id', () => {
+  describe('id', () => {
     it('should not show id by default', () => {
       const component = mount(<DateInput />);
       assert.equal(component.find('input#yo').length, 0, 'div id visible');
@@ -362,7 +362,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('accessibility', () => {
+  describe('accessibility', () => {
     it('should contain screen reader only label for buttons', () => {
       const component = mount(<DateInput />);
       const nextYearLabel = component.find('.js-next-year').children().find('span');
