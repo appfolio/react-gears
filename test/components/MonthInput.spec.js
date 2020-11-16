@@ -294,7 +294,7 @@ describe('<MonthInput />', () => {
     assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
   });
 
-  context('accessibility', () => {
+  describe('accessibility', () => {
     it('should contain screen reader only label for buttons', () => {
       const component = mount(<MonthInput />);
       const nextYearLabel = component.find('.js-next-year').children().find('span');

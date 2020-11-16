@@ -362,7 +362,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('accessibility', () => {
+  describe('accessibility', () => {
     it('should contain screen reader only label for buttons', () => {
       const component = mount(<DateInput />);
       const nextYearLabel = component.find('.js-next-year').children().find('span');
