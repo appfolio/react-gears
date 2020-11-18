@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../stories/index.js'],
+  stories: ['../stories/*.stories.js'],
   addons: [
     {
       name: '@storybook/addon-essentials',
@@ -17,9 +17,8 @@ module.exports = {
       name: '@storybook/addon-storysource',
       options: {
         rule: {
-          include: [path.resolve(__dirname, '../stories')], // You can specify directories
           enforce: 'pre'
-        }
+        },
       }
     },
     '@storybook/addon-viewport',
