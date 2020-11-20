@@ -11,7 +11,6 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
   children?: ReactNode;
   date: Date;
   dateFormat?: string;
-  shortDateFormat?: string;
 }
 
 /**
@@ -24,18 +23,19 @@ const Activity: FunctionComponent<ActivityProps> = ({
   children,
   date,
   dateFormat = 'MM/DD/YYYY hh:mm A',
-  shortDateFormat = 'M/D/YY h:mm A',
   ...props
 }) => (
   <ListGroupItem {...props}>
-    <Row className="w-100 no-gutters">
-      <Col xs={12} sm={3} className="text-nowrap text-truncate">
-        <span className="d-none d-md-inline">{fecha.format(date, dateFormat)}</span>
-        <span className="d-md-none">{fecha.format(date, shortDateFormat)}</span>
+    <Row className="w-100 no-gutters align-items-center">
+      <Col className="mr-2" style={{ maxWidth: '11em' }}>
+        <span className="d-none d-inline js-date">{fecha.format(date, dateFormat)}</span>
       </Col>
-      <Col className="pl-md-1">
+      {/* Force the next column to break to new line at the xs breakpoint; specifying `xs` in the first column
+        * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
+      <div className="w-100 d-xs-block d-sm-none" />
+      <Col className="js-action">
         {(action || date) && (
-          <div className="text-truncate">
+          <div>
             {action && <strong>{action}</strong>}
             {by && (
               <span className="pl-1 js-by">
