@@ -18,7 +18,7 @@ describe('<Activity />', () => {
 
   it('should render date', () => {
     const component = mount(<Activity date={new Date(2015, 1, 13, 12, 30)} />);
-    const date = component.find('span').first();
+    const date = component.find('.js-date').first();
     assert.strictEqual(date.text(), '02/13/2015 12:30 PM');
   });
 
@@ -47,7 +47,7 @@ describe('<Activity />', () => {
 
   it('should support custom date formats', () => {
     const component = mount(<Activity dateFormat="M/D/YYYY" date={new Date(2010, 4, 9)} />);
-    const date = component.find('span').first();
+    const date = component.find('.js-date').first();
     assert.strictEqual(date.text(), '5/9/2010');
   });
 });
