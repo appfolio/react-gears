@@ -1,8 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Alert, CustomInput } from '../src';
 
-storiesOf('Input', module).add('Custom Input', () => (
+export default {
+  title: 'Input',
+  component: CustomInput,
+};
+
+export const CustomInputExample = () => (
   <div>
     <p>
       For more customization and cross browser consistency, Bootstrap has custom form elements
@@ -117,4 +121,4 @@ storiesOf('Input', module).add('Custom Input', () => (
       />
     </div>
   </div>
-));
+);

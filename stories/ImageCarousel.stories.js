@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, number } from '@storybook/addon-knobs';
 import { ImageCarousel } from '../src';
 
@@ -26,17 +25,21 @@ const items = [
   }
 ];
 
-storiesOf('ImageCarousel', module)
-  .add('default props', () => (
-    <ImageCarousel
-      autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
-      controls={boolean('controls', true)}
-      fade={boolean('fade', ImageCarousel.defaultProps.fade)}
-      slide={boolean('slide', ImageCarousel.defaultProps.slide)}
-      index={number('index', 0)}
-      indicators={boolean('indicators', true)}
-      interval={number('interval', ImageCarousel.defaultProps.interval)}
-      isOpen={boolean('isOpen', true)}
-      items={items}
-    />
-  ));
+export default {
+  title: 'ImageCarousel',
+  component: ImageCarousel,
+};
+
+export const DefaultProps = () => (
+  <ImageCarousel
+    autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
+    controls={boolean('controls', true)}
+    fade={boolean('fade', ImageCarousel.defaultProps.fade)}
+    slide={boolean('slide', ImageCarousel.defaultProps.slide)}
+    index={number('index', 0)}
+    indicators={boolean('indicators', true)}
+    interval={number('interval', ImageCarousel.defaultProps.interval)}
+    isOpen={boolean('isOpen', true)}
+    items={items}
+  />
+);

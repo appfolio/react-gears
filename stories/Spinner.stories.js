@@ -1,33 +1,36 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { number, select } from '@storybook/addon-knobs';
 import { Button, Spinner } from '../src';
 import { textColors } from './colors';
 
-storiesOf('Spinner', module)
-  .add('Default', () => {
-    const color = select('color', textColors, 'primary');
-    const type = select('type', ['spin', 'border', 'grow'], Spinner.default);
+export default {
+  title: 'Spinner',
+  component: Spinner,
+};
 
-    return (
-      <div>
-        <p style={{ fontSize: `${number('fontSize', 1, { range: true, min: 1, max: 5, step: 0.25 })}rem` }}>
-          The <Spinner type={type} /> will scale with the font size of its container,
-        </p>
+export const Default = () => {
+  const color = select('color', textColors, 'primary');
+  const type = select('type', ['spin', 'border', 'grow'], Spinner.default);
 
-        <hr />
-        <h3>...and inherit color from it's container:</h3>
-        <p>
-          <Button color="secondary" size="lg" className="mr-3">
-            <Spinner type={type} /> Loading
-          </Button>
-          <Button color="primary" outline size="lg">
-            <Spinner type={type} /> Loading
-          </Button>
-        </p>
-        <h1 className={`text-${color}`}>
-          text-{color}: <Spinner type={type} className={`text-${color}`} />
-        </h1>
-      </div>
-    );
-  });
+  return (
+    <div>
+      <p style={{ fontSize: `${number('fontSize', 1, { range: true, min: 1, max: 5, step: 0.25 })}rem` }}>
+        The <Spinner type={type} /> will scale with the font size of its container,
+      </p>
+
+      <hr />
+      <h3>...and inherit color from it's container:</h3>
+      <p>
+        <Button color="secondary" size="lg" className="mr-3">
+          <Spinner type={type} /> Loading
+        </Button>
+        <Button color="primary" outline size="lg">
+          <Spinner type={type} /> Loading
+        </Button>
+      </p>
+      <h1 className={`text-${color}`}>
+        text-{color}: <Spinner type={type} className={`text-${color}`} />
+      </h1>
+    </div>
+  );
+};

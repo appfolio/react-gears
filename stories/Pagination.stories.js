@@ -1,9 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 import { Pagination, PaginationItem, PaginationLink } from '../src';
 
-storiesOf('Pagination', module).add('Live example', () => (
+export default {
+  title: 'Pagination',
+  component: Pagination,
+};
+
+export const LiveExample = () => (
   <Pagination size={select('size', ['', 'sm', 'lg'])}>
     <PaginationItem>
       <PaginationLink first href="#" />
@@ -36,4 +40,4 @@ storiesOf('Pagination', module).add('Live example', () => (
       <PaginationLink last href="#" />
     </PaginationItem>
   </Pagination>
-));
+);

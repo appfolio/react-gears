@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { UncontrolledCarousel } from 'reactstrap';
 
 const items = [
@@ -23,7 +22,9 @@ const items = [
   }
 ];
 
-storiesOf('Carousel', module)
-  .add('UncontrolledCarousel', () => (
-    <UncontrolledCarousel items={items} />
-  ));
+export default {
+  title: 'Carousel',
+  component: UncontrolledCarousel,
+};
+
+export const Uncontrolled = () => <UncontrolledCarousel items={items} />;

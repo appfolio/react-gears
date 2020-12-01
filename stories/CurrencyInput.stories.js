@@ -1,24 +1,31 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { CurrencyInput } from '../src';
 
-storiesOf('CurrencyInput', module)
-  .add('default props', () => (
-    <CurrencyInput onChange={action('onChange')} />
-  ))
-  .add('allow negative', () => (
-    <CurrencyInput allowNegative onChange={action('onChange')} />
-  ))
-  .add('disallow decimal', () => (
-    <CurrencyInput allowDecimal={false} onChange={action('onChange')} />
-  ))
-  .add('disallow comma', () => (
-    <CurrencyInput includeThousandsSeparator={false} onChange={action('onChange')} />
-  ))
-  .add('right aligned', () => (
-    <CurrencyInput
-      inputProps={{ className: 'text-right' }}
-      onChange={action('onChange')}
-    />
-  ));
+export default {
+  title: 'CurrencyInput',
+  component: CurrencyInput,
+};
+
+export const DefaultProps = () => (
+  <CurrencyInput onChange={action('onChange')} />
+);
+
+export const AllowNegative = () => (
+  <CurrencyInput allowNegative onChange={action('onChange')} />
+);
+
+export const DisallowDecimals = () => (
+  <CurrencyInput allowDecimal={false} onChange={action('onChange')} />
+);
+
+export const DisallowCommas = () => (
+  <CurrencyInput includeThousandsSeparator={false} onChange={action('onChange')} />
+);
+
+export const RightAligned = () => (
+  <CurrencyInput
+    inputProps={{ className: 'text-right' }}
+    onChange={action('onChange')}
+  />
+);

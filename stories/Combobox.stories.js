@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { Combobox, Icon } from '../src';
 
@@ -67,47 +66,51 @@ const options = [
   { label: 'Virgin Islands', value: 'VI' }
 ];
 
-storiesOf('Combobox', module)
-  .add('Live Example', () => {
-    const [value, setValue] = useState();
-    return (
-      <Combobox
-        direction={select('direction', ['', 'down', 'up'], '')}
-        onChange={setValue}
-        options={options}
-        value={value}
-        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-      />
-    );
-  })
+export default {
+  title: 'Combobox',
+  component: Combobox,
+};
 
-  .add('Custom options rendering', () => {
-    const [value, setValue] = useState();
-    const mixedOptions = [
-      { label: '7868 Watermelon Lane', value: 'address-1', type: 'address' },
-      { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
-      { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
-      { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
-      { label: 'Panda', value: 'tenant-2', type: 'tenant' },
-      { label: '77 Snowball Blvd', value: 'address-4', type: 'address' },
-      { label: 'Bob', value: 'tenant-3', type: 'tenant' },
-    ];
-    const renderOption = option => (
-      <div>
-        <Icon name={option.type === 'address' ? 'home' : 'user'} className="mr-2 py-4" />
-        { option.label }
-      </div>
-    );
+export const LiveExample = () => {
+  const [value, setValue] = useState();
+  return (
+    <Combobox
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      options={options}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+    />
+  );
+};
 
-    return (
-      <Combobox
-        onChange={setValue}
-        options={mixedOptions}
-        value={value}
-        renderOption={renderOption}
-        menuMaxHeight="20rem"
-      />
-    );
-  });
+export const CustomOptions = () => {
+  const [value, setValue] = useState();
+  const mixedOptions = [
+    { label: '7868 Watermelon Lane', value: 'address-1', type: 'address' },
+    { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
+    { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
+    { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
+    { label: 'Panda', value: 'tenant-2', type: 'tenant' },
+    { label: '77 Snowball Blvd', value: 'address-4', type: 'address' },
+    { label: 'Bob', value: 'tenant-3', type: 'tenant' },
+  ];
+  const renderOption = option => (
+    <div>
+      <Icon name={option.type === 'address' ? 'home' : 'user'} className="mr-2 py-4" />
+      { option.label }
+    </div>
+  );
+
+  return (
+    <Combobox
+      onChange={setValue}
+      options={mixedOptions}
+      value={value}
+      renderOption={renderOption}
+      menuMaxHeight="20rem"
+    />
+  );
+};

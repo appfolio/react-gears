@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
 import SummaryBox from '../src/components/SummaryBox';
 import SummaryBoxItem from '../src/components/SummaryBoxItem';
@@ -13,23 +12,29 @@ const items = [
   { label: 'Hotel' }
 ];
 
-storiesOf('SummaryBox', module)
-  .add('with items', () => (
-    <SummaryBox items={items} reverse={boolean('reverse', SummaryBox.defaultProps.reverse)} />
-  ))
-  .add('with children', () => (
-    <SummaryBox reverse={boolean('reverse', SummaryBox.defaultProps.reverse)}>
-      <SummaryBoxItem value={link} label="Bravo" />
-      <SummaryBoxItem value="Charlie" />
-      <SummaryBoxItem label="Foxtrot" />
-      <SummaryBoxItem value="Golf" label="Hotel" />
-      <SummaryBoxItem value="India" />
-    </SummaryBox>
-  ))
-  .add('SummaryBoxItem', () => (
-    <SummaryBoxItem
-      value={text('value', 'Live from New York')}
-      label={text('label', 'It\'s Saturday Night')}
-      reverse={boolean('reverse', SummaryBoxItem.defaultProps.reverse)}
-    />
-  ));
+export default {
+  title: 'SummaryBox',
+  component: SummaryBox,
+};
+
+export const WithItems = () => (
+  <SummaryBox items={items} reverse={boolean('reverse', SummaryBox.defaultProps.reverse)} />
+);
+
+export const WithChildren = () => (
+  <SummaryBox reverse={boolean('reverse', SummaryBox.defaultProps.reverse)}>
+    <SummaryBoxItem value={link} label="Bravo" />
+    <SummaryBoxItem value="Charlie" />
+    <SummaryBoxItem label="Foxtrot" />
+    <SummaryBoxItem value="Golf" label="Hotel" />
+    <SummaryBoxItem value="India" />
+  </SummaryBox>
+);
+
+export const SummaryBoxItemExample = () => (
+  <SummaryBoxItem
+    value={text('value', 'Live from New York')}
+    label={text('label', 'It\'s Saturday Night')}
+    reverse={boolean('reverse', SummaryBoxItem.defaultProps.reverse)}
+  />
+);

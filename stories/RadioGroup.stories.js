@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { RadioGroup } from '../src';
 
@@ -11,16 +10,20 @@ const options = [
   { label: 'Grape', value: 'grape' },
 ];
 
-storiesOf('RadioGroup', module)
-  .add('Live Example', () => {
-    const [selected, setSelected] = useState('');
+export default {
+  title: 'RadioGroup',
+  component: RadioGroup,
+};
 
-    const handleChange = (value) => {
-      setSelected(value);
-      action('onChange')(value);
-    };
+export const LiveExample = () => {
+  const [selected, setSelected] = useState('');
 
-    return (
-      <RadioGroup radio options={options} onChange={handleChange} selected={selected} />
-    );
-  });
+  const handleChange = (value) => {
+    setSelected(value);
+    action('onChange')(value);
+  };
+
+  return (
+    <RadioGroup radio options={options} onChange={handleChange} selected={selected} />
+  );
+};
