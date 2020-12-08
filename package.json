@@ -1,6 +1,6 @@
 {
-  "name": "react-gears",
-  "version": "5.12.4",
+  "name": "@appfolio/react-gears",
+  "version": "5.12.5-beta.0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -17,9 +17,6 @@
     "es"
   ],
   "types": "lib/index.d.ts",
-  "publishConfig": {
-    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
-  },
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src test",
@@ -48,11 +45,9 @@
     "@types/react-text-mask": "^5.4.6",
     "@types/reactstrap": "^8.7.2",
     "@types/uniqid": "^4.1.3",
-    "axe-core": "^3.5.5",
     "classnames": "^2.2.6",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.30.1",
-    "enzyme-adapter-react-16": "^1.15.5",
     "fecha": "^2.3.3",
     "lodash.flow": "^3.5.0",
     "lodash.includes": "^4.3.0",
@@ -111,12 +106,14 @@
     "@typescript-eslint/parser": "^2.34.0",
     "assert": "~1.4.1",
     "autoprefixer": "^9.8.6",
+    "axe-core": "^3.5.5",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-add-react-displayname": "0.0.5",
     "css-loader": "^3.6.0",
     "dts-css-modules-loader": "^1.1.1",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^5.16.0",
     "eslint-config-appfolio-react": "^1.2.1",
     "eslint-import-resolver-webpack": "^0.11.1",
