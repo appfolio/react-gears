@@ -9,17 +9,35 @@ and [reactstrap](https://reactstrap.github.io).
 https://appfolio.github.io/react-gears
 
 ----
+## Getting Started
 
-### Setup
+    npm install @appfolio/react-gears
+    
+### Example
+
+```
+import React from 'react';
+import { Button } from '@appfolio/react-gears';
+
+export default (props) => {
+  return (
+    <Button color="danger">Danger!</Button>
+  );
+};
+```
+
+## Development
+
+Install dependencies:
 
     npm install
 
-### Develop
+Run storybook examples:
 
     npm start
 Open [http://localhost:6006](http://localhost:6006) in browser
 
-### Test
+Run tests & coverage report:
 
     npm test
 
@@ -27,13 +45,13 @@ Open [http://localhost:6006](http://localhost:6006) in browser
 
 If using [Cypress](https://www.cypress.io) for integration testing, you can use [react-gears-cypress](https://github.com/appfolio/react-gears-cypress) for testing react-gears components.
 
-### Lint
+Run Linter
 
     npm run lint
 
 - Runs [ESLint](http://eslint.org/) using [appfolio-react](https://github.com/appfolio/eslint-config-appfolio-react) as the base configuration
 
-### Publishing
+## Publishing
 
     npm version (major|minor|patch)
     npm publish
