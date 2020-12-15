@@ -58,6 +58,7 @@ export default class MonthInput extends React.Component {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
+    id: PropTypes.string,
     monthFormat: PropTypes.string,
     yearFormat: PropTypes.string,
     defaultValue: PropTypes.oneOfType([
@@ -226,7 +227,7 @@ export default class MonthInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, id, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -240,6 +241,7 @@ export default class MonthInput extends React.Component {
             <InputGroup className={className}>
               <input
                 className="form-control"
+                id={id}
                 ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
