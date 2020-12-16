@@ -131,7 +131,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
               className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ml-2 mr-1`}
               onClick={onEdit}
             >
-              edit
+              Edit
             </Button>
           )}
         </div>
