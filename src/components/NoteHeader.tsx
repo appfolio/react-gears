@@ -67,8 +67,8 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
           </div>
         </div>
         <div className="d-inline-flex">
-          {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit mr-3 p-0">edit</Button> : null}
-          {onDelete ? <Button color="link" onClick={() => onDelete(note)} className="js-note-header__delete p-0">delete</Button> : null}
+          {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit mr-3 p-0">Edit</Button> : null}
+          {onDelete ? <Button color="link" onClick={() => onDelete(note)} className="js-note-header__delete p-0">Delete</Button> : null}
         </div>
       </CardHeader>
       :
