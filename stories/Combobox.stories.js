@@ -89,7 +89,7 @@ export const LiveExample = () => {
 export const CustomOptions = () => {
   const [value, setValue] = useState();
   const mixedOptions = [
-    { label: '7868 Watermelon Lane', value: 'address-1', type: 'address' },
+    { label: '71548561868 Super-duper long word like impossibly long Lane', value: 'address-1', type: 'address' },
     { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
     { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
     { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
@@ -104,12 +104,19 @@ export const CustomOptions = () => {
     </div>
   );
 
+  const renderInputValue = option => (
+    <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+      {option.label}
+    </div>
+  );
+
   return (
     <Combobox
       onChange={setValue}
       options={mixedOptions}
       value={value}
       renderOption={renderOption}
+      renderInputValue={renderInputValue}
       menuMaxHeight="20rem"
     />
   );

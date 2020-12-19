@@ -132,7 +132,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
           <div
             aria-label="Selected value"
             className="py-2 px-3"
-            style={{ position: 'absolute', zIndex: 4, left: 1 }}
+            style={{ position: 'absolute', width: 'calc(100% - 1.5rem)', zIndex: 4, left: 1 }}
             onMouseDown={(ev) => {
               ev.preventDefault();
               if (inputElement.current) inputElement.current.focus();
