@@ -6,7 +6,7 @@ import Icon from './Icon';
 interface ExpandableSectionProps {
   children?: React.ReactNode;
   className?: string;
-  onToggle: (open: boolean) => void;
+  onToggle?: (open: boolean) => void;
   open?: boolean;
   title: string;
 }
@@ -14,7 +14,7 @@ interface ExpandableSectionProps {
 const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   children,
   className,
-  onToggle,
+  onToggle = () => {},
   open: defaultOpen,
   title
 }) => {
