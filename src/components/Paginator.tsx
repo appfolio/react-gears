@@ -56,7 +56,7 @@ type PaginatorProps = {
   onClick: (page: number) => void,
   perPage?: number,
   size?: 'sm' | 'lg',
-  summary: React.ReactNode,
+  summary?: React.ReactNode,
   totalItems: number,
 }
 
