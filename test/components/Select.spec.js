@@ -135,6 +135,15 @@ describe('<Select />', () => {
     assert(component.find('input[name="Yowza"]').exists());
   });
 
+  it('should use name prop for underlying hidden input', () => {
+    const component = mount(<Select name="Yowza" options={OPTIONS} />);
+    assert(component.find('input[name="Yowza"]').exists());
+    assert(!component.find('input[name="Yowza"][type="hidden"]').exists());
+    component.instance().onChange(OPTIONS[3]);
+    component.update();
+    assert(component.find('input[name="Yowza"][type="hidden"]').exists());
+  });
+
   it('should pass inputProps name prop', () => {
     const component = mount(<Select inputProps={{ name: 'Gonzo' }} />);
     assert(component.find('input[name="Gonzo"]').exists());
