@@ -1,9 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 class CheckboxListInput extends React.Component {
   static propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.array
   };
@@ -28,12 +29,13 @@ class CheckboxListInput extends React.Component {
     const {
       value,
       children,
+      className,
       onChange,
       ...props
     } = this.props;
 
     return (
-      <div>
+      <div className={className}>
         {React.Children.map(children, choice => React.cloneElement(choice, {
           type: 'checkbox',
           selected: value,

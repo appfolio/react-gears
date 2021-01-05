@@ -1,8 +1,9 @@
-import React from 'react';
 import assert from 'assert';
-import { shallow } from 'enzyme';
 
-import { Input, Label, FormGroup, FormChoice } from '../../src';
+import { shallow } from 'enzyme';
+import React from 'react';
+
+import { FormChoice, FormGroup, Input, Label } from '../../src';
 
 describe('<FormChoice />', () => {
   describe('unknown type', () => {
@@ -62,6 +63,14 @@ describe('<FormChoice />', () => {
 
       assert.equal(component.find(Input).prop('type'), 'checkbox');
       assert.equal(component.find(Label).props().children, 'my type');
+    });
+
+    it('should pass on containerClassName as className', () => {
+      const component = shallow(
+        <FormChoice type="checkbox" containerClassName="myClass" inline>my type</FormChoice>
+      );
+
+      assert(/\bmyClass\b/.test(component.find('div').prop('className')));
     });
 
     describe('with computed value', () => {
