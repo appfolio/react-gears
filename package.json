@@ -17,9 +17,6 @@
     "es"
   ],
   "types": "lib/index.d.ts",
-  "publishConfig": {
-    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
-  },
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src test",
