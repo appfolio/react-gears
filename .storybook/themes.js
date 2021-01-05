@@ -5,7 +5,7 @@ export default {
     { name: 'APM/Admin', url: 'https://appfolio.github.io/bootstrap-admin/bootstrap-admin.css' },
   ],
   MyCase: [
-    { name: 'Focus', url: 'https://appfolio.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css' }
+    { name: 'Focus', url: 'https://mycase.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css' }
   ],
   IM: [
     { name: 'IM/GP', url: 'https://s3-us-east-2.amazonaws.com/af-im-ui/branches/master/gp/style.css' },
