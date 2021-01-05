@@ -102,6 +102,7 @@ class AddressInput extends React.Component {
           stacked
         >
           <Input
+            autoComplete="address-line1"
             id={address1Id}
             name={this.nameFor('address1')}
             type="text"
@@ -124,6 +125,7 @@ class AddressInput extends React.Component {
           stacked
         >
           <Input
+            autoComplete="address-line2"
             id={address2Id}
             name={this.nameFor('address2')}
             type="text"
@@ -147,6 +149,7 @@ class AddressInput extends React.Component {
               stacked
             >
               <Input
+                autoComplete="address-level2"
                 id={cityId}
                 type="text"
                 name={this.nameFor('city')}
@@ -170,6 +173,7 @@ class AddressInput extends React.Component {
               stacked
             >
               <StateInput
+                autoComplete="address-level1"
                 className="w-100"
                 countries={countries}
                 id={stateId}
@@ -194,6 +198,7 @@ class AddressInput extends React.Component {
               stacked
             >
               <Input
+                autoComplete="postal-code"
                 id={postalId}
                 type="text"
                 name={this.nameFor('postal')}
@@ -218,6 +223,7 @@ class AddressInput extends React.Component {
             stacked
           >
             <CountryInput
+              autoComplete="country"
               className="w-100"
               id={countryCodeId}
               name={this.nameFor('countryCode')}
