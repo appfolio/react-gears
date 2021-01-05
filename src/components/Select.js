@@ -74,6 +74,7 @@ class Select extends React.Component {
         valueComponent={valueComponentRenderer}
         ref={this.bindInput}
         className={classNames}
+        name={name}
         {...props}
       />
     );
