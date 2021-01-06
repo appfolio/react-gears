@@ -15,7 +15,8 @@
     "dist",
     "lib",
     "es",
-    "src"
+    "src",
+    ".babelrc"
   ],
   "types": "lib/index.d.ts",
   "publishConfig": {
