@@ -14,7 +14,8 @@
   "files": [
     "dist",
     "lib",
-    "es"
+    "es",
+    "src"
   ],
   "types": "lib/index.d.ts",
   "publishConfig": {
