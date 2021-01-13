@@ -145,6 +145,27 @@ describe('<SortableTable />', () => {
     footers.forEach(td => assert(td.hasClass('total')));
   });
 
+  it('should render custom header', () => {
+    const columns = [{ header: 'Name' }];
+    const wrapper = mount(
+      <SortableTable
+        columns={columns}
+        header={[
+          <tr>
+            <th className="custom-header">Custom Header</th>,
+            <th className="custom-header">Custom Header 2</th>
+          </tr>,
+        ]}
+      />
+    );
+
+    const header = wrapper.find('thead');
+    assert(header.exists());
+
+    const headers = wrapper.find('thead th.custom-header');
+    assert.strictEqual(headers.length, 2);
+  });
+
   it('should render sorting controls when onSort present', () => {
     const columns = [
       { header: 'Alpha', onSort: () => {} },

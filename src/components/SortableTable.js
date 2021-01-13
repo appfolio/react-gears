@@ -67,6 +67,7 @@ class SortableTable extends React.Component {
       ]
     ),
     expandableColumn: PropTypes.object,
+    header: PropTypes.node,
     footer: PropTypes.node,
     rowClassName: PropTypes.func,
     onExpand: PropTypes.func,
@@ -93,7 +94,7 @@ class SortableTable extends React.Component {
 
   render() {
     const {
-      columns, footer, rowClassName, rowOnClick, rows, style, truncate,
+      columns, header, footer, rowClassName, rowOnClick, rows, style, truncate,
       allSelected, onSelect, onSelectAll, rowSelected,
       expandableColumn, onExpand, rowExpanded, renderRow,
       ...props
@@ -178,6 +179,7 @@ class SortableTable extends React.Component {
           </colgroup>
         }
         <thead>
+          {header}
           <tr>
             {cols.map((column, index) => (
               <Header

@@ -160,6 +160,45 @@ export const UncontrolledTableExample = () => (
   </div>
 );
 
+export const CustomHeader = () => (
+  <UncontrolledTable
+    columns={[
+      {
+        header: 'First',
+        key: 'first',
+        cell: row => row.first,
+        width: '20%'
+      },
+      {
+        header: 'Last',
+        key: 'last',
+        cell: row => row.last,
+        width: '30%'
+      },
+      {
+        header: 'DOB',
+        key: 'dob',
+        cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+        width: '15%'
+      },
+      {
+        header: 'Email',
+        key: 'email',
+        cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+        width: '35%'
+      }
+    ]}
+    rows={DATA}
+    rowExpanded={row => <div>{row.first} {row.last}</div>}
+    sort={{ column: 'last', ascending: true }}
+    header={[
+      <tr>
+        <th colSpan={3}>Basic Info</th> <th colSpan={1}>Contact Info</th>
+      </tr>
+    ]}
+  />
+);
+
 export const CustomFooter = () => (
   <div>
     <UncontrolledTable
