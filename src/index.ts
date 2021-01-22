@@ -151,6 +151,7 @@ import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput';
 import StaticInput from './components/StaticInput';
+import Status from './components/Status';
 import Steps from './components/Steps';
 import SummaryBox from './components/SummaryBox';
 import SummaryBoxItem from './components/SummaryBoxItem';
@@ -314,6 +315,7 @@ export {
   StateInput,
   StaticInput,
   SortableTable,
+  Status,
   Steps,
   SummaryBox,
   SummaryBoxItem,
