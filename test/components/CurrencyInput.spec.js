@@ -22,7 +22,7 @@ describe('<CurrencyInput />', () => {
     assert.equal(input.getDOMNode().value, '1,234.56');
   });
 
-  context('thousands separators', () => {
+  describe('thousands separators', () => {
     it('should default to true', () => {
       const component = mount(<CurrencyInput onChange={callback} value="123,456,789.99999" />);
       const input = component.find('input');
@@ -36,7 +36,7 @@ describe('<CurrencyInput />', () => {
     });
   });
 
-  context('negative numbers', () => {
+  describe('negative numbers', () => {
     it('should be disabled by default', () => {
       const component = mount(<CurrencyInput value="-123" />);
       const input = component.find('input');
@@ -50,7 +50,7 @@ describe('<CurrencyInput />', () => {
     });
   });
 
-  context('decimals', () => {
+  describe('decimals', () => {
     it('should be enabled by default', () => {
       const component = mount(<CurrencyInput value="123.45" />);
       const input = component.find('input');

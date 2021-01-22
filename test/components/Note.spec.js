@@ -28,7 +28,7 @@ describe('<Note />', () => {
   });
 
   describe('rendering', () => {
-    context('in default mode', () => {
+    describe('in default mode', () => {
       beforeEach(() => {
         component = mount(<Note {...props} />);
       });
@@ -61,7 +61,7 @@ describe('<Note />', () => {
       });
     });
 
-    context('in default mode with children', () => {
+    describe('in default mode with children', () => {
       const text = 'This is some additional text to be rendered';
 
       beforeEach(() => {
@@ -87,7 +87,7 @@ describe('<Note />', () => {
       });
     });
 
-    context('in deleted mode', () => {
+    describe('in deleted mode', () => {
       it('should render a single DeletedNote', () => {
         props.note.deleted = true;
         component = mount(<Note {...props} />);
@@ -100,7 +100,7 @@ describe('<Note />', () => {
       });
     });
 
-    context('in editing mode', () => {
+    describe('in editing mode', () => {
       it('should render a single EditableNote', () => {
         props.note.editing = true;
         component = mount(<Note {...props} />);

@@ -58,6 +58,7 @@ export default class MonthInput extends React.Component {
     className: PropTypes.string,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
+    id: PropTypes.string,
     monthFormat: PropTypes.string,
     yearFormat: PropTypes.string,
     defaultValue: PropTypes.oneOfType([
@@ -226,7 +227,7 @@ export default class MonthInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
+    const { className, dateVisible, disabled, footer, header, id, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -240,6 +241,7 @@ export default class MonthInput extends React.Component {
             <InputGroup className={className}>
               <input
                 className="form-control"
+                id={id}
                 ref={(el) => { this.inputEl = el; }}
                 type="text"
                 onBlur={this.onBlur}
@@ -259,6 +261,7 @@ export default class MonthInput extends React.Component {
                   tabIndex={-1}
                 >
                   <Icon name="calendar-o" fixedWidth />
+                  <span className="sr-only">Open Calendar</span>
                 </Button>
               </InputGroupAddon>
             </InputGroup>
@@ -275,9 +278,11 @@ export default class MonthInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="p-2 js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
+                    <span className="sr-only">Previous Year</span>
                   </Button>
                   <Button className="p-2 js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
+                    <span className="sr-only">Previous Month</span>
                   </Button>
                 </ButtonGroup>
 
@@ -288,9 +293,11 @@ export default class MonthInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
+                    <span className="sr-only">Next Month</span>
                   </Button>
                   <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
+                    <span className="sr-only">Next Year</span>
                   </Button>
                 </ButtonGroup>
               </header>

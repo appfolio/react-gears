@@ -26,6 +26,7 @@ class AddressInput extends React.Component {
     className: PropTypes.string,
     countries: PropTypes.arrayOf(PropTypes.string),
     defaultValue: PropTypes.shape(addressPropType),
+    inputName: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
     hints: PropTypes.shape(addressPropType),
@@ -41,6 +42,7 @@ class AddressInput extends React.Component {
   static defaultProps = {
     className: '',
     defaultValue: {},
+    inputName: {},
     disabled: false,
     error: {},
     hints: {},
@@ -70,6 +72,8 @@ class AddressInput extends React.Component {
     return { defaultValue: this.props.defaultValue[field] };
   }
 
+  nameFor = field => this.props.inputName[field] || field;
+
   bindAddress1 = (el) => { this.inputAddress1 = el; };
 
   focus() {
@@ -98,8 +102,9 @@ class AddressInput extends React.Component {
           stacked
         >
           <Input
+            autoComplete="address-line1"
             id={address1Id}
-            name="address1"
+            name={this.nameFor('address1')}
             type="text"
             placeholder={labels.address1}
             {...this.propsFor('address1')}
@@ -120,8 +125,9 @@ class AddressInput extends React.Component {
           stacked
         >
           <Input
+            autoComplete="address-line2"
             id={address2Id}
-            name="address2"
+            name={this.nameFor('address2')}
             type="text"
             placeholder={labels.address2}
             {...this.propsFor('address2')}
@@ -143,9 +149,10 @@ class AddressInput extends React.Component {
               stacked
             >
               <Input
+                autoComplete="address-level2"
                 id={cityId}
                 type="text"
-                name="city"
+                name={this.nameFor('city')}
                 placeholder={labels.city}
                 {...this.propsFor('city')}
                 invalid={!!error.city}
@@ -166,10 +173,11 @@ class AddressInput extends React.Component {
               stacked
             >
               <StateInput
+                autoComplete="address-level1"
                 className="w-100"
                 countries={countries}
                 id={stateId}
-                name="state"
+                name={this.nameFor('state')}
                 placeholder={labels.state}
                 {...this.propsFor('state')}
                 invalid={!!error.state}
@@ -190,9 +198,10 @@ class AddressInput extends React.Component {
               stacked
             >
               <Input
+                autoComplete="postal-code"
                 id={postalId}
                 type="text"
-                name="postal"
+                name={this.nameFor('postal')}
                 placeholder={labels.postal}
                 {...this.propsFor('postal')}
                 invalid={!!error.postal}
@@ -214,9 +223,10 @@ class AddressInput extends React.Component {
             stacked
           >
             <CountryInput
+              autoComplete="country"
               className="w-100"
               id={countryCodeId}
-              name="countryCode"
+              name={this.nameFor('countryCode')}
               placeholder={labels.countryCode}
               {...this.propsFor('countryCode')}
               invalid={!!error.countryCode}

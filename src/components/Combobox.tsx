@@ -11,11 +11,7 @@ import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-type Direction =
-  | 'up'
-  | 'down'
-  | 'left'
-  | 'right';
+type Direction = 'up' | 'down';
 
 type Option = {
   label: string;
@@ -136,7 +132,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
           <div
             aria-label="Selected value"
             className="py-2 px-3"
-            style={{ position: 'absolute', zIndex: 4, left: 1 }}
+            style={{ position: 'absolute', width: 'calc(100% - 1.5rem)', zIndex: 4, left: 1 }}
             onMouseDown={(ev) => {
               ev.preventDefault();
               if (inputElement.current) inputElement.current.focus();
@@ -189,9 +185,20 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
       <DropdownMenu
         data-testid="combobox-menu"
         className="p-0 w-100"
-        style={{
-          maxHeight: menuMaxHeight || '12rem',
-          overflowY: 'auto'
+        modifiers={{
+          setMaxHeight: {
+            enabled: true,
+            fn: (data) => {
+              return {
+                ...data,
+                styles: {
+                  ...data.styles,
+                  overflowY: 'auto',
+                  maxHeight: menuMaxHeight || '12rem',
+                },
+              };
+            },
+          },
         }}
         {...dropdownProps}
         ref={dropdownMenu}

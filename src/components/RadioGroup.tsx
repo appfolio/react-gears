@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import FormGroup from './FormGroup';
 import Label from './Label';
 import Input from './Input';
@@ -16,6 +17,8 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
+  const [groupId] = useState(uuidv4());
+
   const handleRadioChange = (checked: boolean, value: Value) => {
     if (checked) onChange(value);
   };
@@ -23,20 +26,23 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
   return (
     <FormGroup>
       {
-        options.map(option => (
-          <FormGroup check key={option.value} className="col-form-label d-flex align-items-center h-100">
-            <Input
-              type="radio"
-              checked={selected === option.value}
-              onChange={ev => handleRadioChange(ev.target.checked, option.value)}
-              className="my-0"
-              id={`option-${option.label}`}
-            />
-            <Label check className="my-0" for={`option-${option.label}`}>
-              {' '}{option.label}
-            </Label>
-          </FormGroup>
-        ))
+        options.map((option) => {
+          const id = `option-${option.label}-${groupId}`;
+          return (
+            <FormGroup check key={option.value} className="py-1 col-form-label d-flex align-items-center">
+              <Input
+                type="radio"
+                checked={selected === option.value}
+                onChange={ev => handleRadioChange(ev.target.checked, option.value)}
+                className="my-0"
+                id={id}
+              />
+              <Label check className="my-0" for={id}>
+                {' '}{option.label}
+              </Label>
+            </FormGroup>
+        );
+})
       }
     </FormGroup>
   );

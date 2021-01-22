@@ -40,14 +40,14 @@ export default class ImageCarousel extends React.Component {
     }
   }
 
-  handleEscape(e) {
+  handleEscape = (e) => {
     if (e.key === 'Escape') {
       this.props.toggle();
     }
   }
 
   componentDidMount() {
-    document.addEventListener('keyup', e => this.handleEscape(e));
+    document.addEventListener('keyup', this.handleEscape);
   }
 
   componentDidUpdate(prevProps) {
@@ -58,7 +58,7 @@ export default class ImageCarousel extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', e => this.handleEscape(e));
+    document.removeEventListener('keyup', this.handleEscape);
   }
 
   render() {
@@ -86,15 +86,15 @@ export default class ImageCarousel extends React.Component {
               slide={slide}
               defaultActiveIndex={index}
             />
-            <style jsx>
+            <style jsx global>
               {`
-                .carousel :global img {
+                .carousel img {
                   display: inline-block !important;
                   max-height: 100vh;
                   max-width: 100vw;
                   width: auto !important;
                 }
-                .carousel :global .carousel-item {
+                .carousel .carousel-item {
                   text-align: center !important;
                 }
               `}

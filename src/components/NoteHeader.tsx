@@ -43,31 +43,36 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
     'bg-info'
   );
 
+  const anyDataExisting = date || from || title;
+
   return (
-    <CardHeader className={headerClassNames}>
-      <div className="d-inline-flex align-items-center">
-        {edited && <Badge color="primary" className="text-uppercase mr-2 js-note-header__edited">Edited</Badge>}
-        <div className="d-flex flex-column">
-          {title && <CardTitle>{title}</CardTitle>}
-          {
-            date &&
-            <span className="m-0 my-1 mr-auto">
-              <span className="d-none d-sm-inline">
-                {edited ? 'Last edited' : 'Posted'}
-                {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
+    anyDataExisting ?
+      <CardHeader className={headerClassNames}>
+        <div className="d-inline-flex align-items-center">
+          {edited && <Badge color="primary" className="text-uppercase mr-2 js-note-header__edited">Edited</Badge>}
+          <div className="d-flex flex-column">
+            {title && <CardTitle>{title}</CardTitle>}
+            {
+              date &&
+              <span className="m-0 my-1 mr-auto">
+                <span className="d-none d-sm-inline">
+                  {edited ? 'Last edited' : 'Posted'}
+                  {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
+                </span>
+                <span className="d-sm-none">
+                  {from ? <span>{from} </span> : null}<span className="js-note-header__shortDate">{format(date, 'M/D/YY h:mm A')} {timezone(date)}</span>
+                </span>
               </span>
-              <span className="d-sm-none">
-                {from ? <span>{from} </span> : null}<span className="js-note-header__shortDate">{format(date, 'M/D/YY h:mm A')} {timezone(date)}</span>
-              </span>
-            </span>
-          }
+            }
+          </div>
         </div>
-      </div>
-      <div className="d-inline-flex">
-        {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit mr-3 p-0">edit</Button> : null}
-        {onDelete ? <Button color="link" onClick={() => onDelete(note)} className="js-note-header__delete p-0">delete</Button> : null}
-      </div>
-    </CardHeader>
+        <div className="d-inline-flex">
+          {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit mr-3 p-0">Edit</Button> : null}
+          {onDelete ? <Button color="link" onClick={() => onDelete(note)} className="js-note-header__delete p-0">Delete</Button> : null}
+        </div>
+      </CardHeader>
+      :
+      <div className='js-note-header__no_data'/>
   );
 };
 
@@ -75,7 +80,7 @@ NoteHeader.displayName = 'NoteHeader';
 
 NoteHeader.propTypes = {
   note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
     edited: PropTypes.bool,
     from: PropTypes.string,
     title: PropTypes.string,

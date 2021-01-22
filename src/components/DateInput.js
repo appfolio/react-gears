@@ -8,6 +8,7 @@ import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is relea
 import format from 'date-fns/format';
 import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
+import startOfToday from 'date-fns/start_of_today';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import Calendar from './Calendar';
@@ -203,7 +204,7 @@ export default class DateInput extends React.Component {
   prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
   show = () => this.setState({ open: true });
-  today = () => this.setDate(new Date(), true);
+  today = () => this.setDate(startOfToday(), true);
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
@@ -307,9 +308,11 @@ export default class DateInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
+                    <span className="sr-only">Previous Year</span>
                   </Button>
                   <Button className="js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
+                    <span className="sr-only">Previous Month</span>
                   </Button>
                 </ButtonGroup>
 
@@ -320,9 +323,11 @@ export default class DateInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
+                    <span className="sr-only">Next Month</span>
                   </Button>
                   <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
+                    <span className="sr-only">Next Year</span>
                   </Button>
                 </ButtonGroup>
               </header>

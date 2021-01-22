@@ -7,12 +7,13 @@ import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isToday from 'date-fns/is_today';
+import startOfToday from 'date-fns/start_of_today';
 import sinon from 'sinon';
 
 import { DateInput } from '../../src';
 
 describe('<DateInput />', () => {
-  context('defaultValue', () => {
+  describe('defaultValue', () => {
     it('should default to blank and today', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
@@ -114,7 +115,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
-  context('user input', () => {
+  describe('user input', () => {
     it('should should set date after entering a valid date string', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
@@ -155,7 +156,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker', () => {
+  describe('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<DateInput onChange={callback} showOnFocus />);
 
@@ -220,10 +221,10 @@ describe('<DateInput />', () => {
       assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
-    it('should should set date after clicking today', () => {
+    it('should set date to start of today after clicking today', () => {
       const today = component.find('footer Button').at(0);
       today.simulate('click');
-      assert(isToday(component.instance().getCurrentDate()));
+      assert.deepEqual(component.instance().getCurrentDate(), startOfToday());
     });
 
     it('should should call onChange after clicking today', () => {
@@ -271,7 +272,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker with controlled visible dates', () => {
+  describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, defaultDate);
@@ -294,7 +295,7 @@ describe('<DateInput />', () => {
     });
   });
 
-  context('date picker with controlled enabled dates', () => {
+  describe('date picker with controlled enabled dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateEnabled = () => false;
@@ -350,7 +351,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('input[rando="yadda"]').length, 1);
   });
 
-  context('id', () => {
+  describe('id', () => {
     it('should not show id by default', () => {
       const component = mount(<DateInput />);
       assert.equal(component.find('input#yo').length, 0, 'div id visible');
@@ -359,6 +360,25 @@ describe('<DateInput />', () => {
     it('should show id by when specified', () => {
       const component = mount(<DateInput id="yo" />);
       assert.equal(component.find('input#yo').length, 1, 'input id missing');
+    });
+  });
+
+  describe('accessibility', () => {
+    it('should contain screen reader only label for buttons', () => {
+      const component = mount(<DateInput />);
+      const nextYearLabel = component.find('.js-next-year').children().find('span');
+      const prevYearLabel = component.find('.js-prev-year').children().find('span');
+      const nextMonthLabel = component.find('.js-next-month').children().find('span');
+      const prevMonthLabel = component.find('.js-prev-month').children().find('span');
+
+      assert.strictEqual('Next Year', nextYearLabel.text());
+      assert.strictEqual('sr-only', nextYearLabel.prop('className'));
+      assert.strictEqual('Previous Year', prevYearLabel.text());
+      assert.strictEqual('sr-only', prevYearLabel.prop('className'));
+      assert.strictEqual('Next Month', nextMonthLabel.text());
+      assert.strictEqual('sr-only', nextMonthLabel.prop('className'));
+      assert.strictEqual('Previous Month', prevMonthLabel.text());
+      assert.strictEqual('sr-only', prevMonthLabel.prop('className'));
     });
   });
 });

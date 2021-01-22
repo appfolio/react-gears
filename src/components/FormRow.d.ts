@@ -14,7 +14,7 @@ interface FormRowPropTypes extends
   inline?: boolean;
   stacked?: boolean;
   size?: string;
-  validFeedback?: ReactNode;
+  validFeedback?: React.ReactNode;
   width?: {
     size?: boolean | number | string
     push?: string | number

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import MaskedInput from 'react-text-mask';
+import MaskedInput, { MaskedInputProps } from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
@@ -34,11 +34,11 @@ type Props = {
   className?: string;
   id?: string;
   includeThousandsSeparator?: boolean;
-  inputProps?: { className?: string };
+  inputProps?: MaskedInputProps;
   size?: string;
   state?: any;
   type?: any;
-};
+} & MaskedInputProps;
 
 const defaultProps = {
   allowDecimal: true,

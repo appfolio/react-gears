@@ -1,13 +1,11 @@
 export default {
   APM: [
-    { name: 'APM/Saffron', url: 'https://appfolio.github.io/bootstrap-saffron-4/bootstrap-saffron.css' },
     { name: 'APM/Coastline', url: 'https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css' },
     { name: 'APM/Coastline Dark', url: 'https://apm-prod-frontend-assets.s3.amazonaws.com/styles/bootstrap-coastline-dark.min.css' },
-    { name: 'APM/Listings', url: 'https://appfolio.github.io/bootstrap-listings/bootstrap-listings.css' },
     { name: 'APM/Admin', url: 'https://appfolio.github.io/bootstrap-admin/bootstrap-admin.css' },
   ],
   MyCase: [
-    { name: 'Focus', url: 'https://appfolio.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css' }
+    { name: 'Focus', url: 'https://mycase.github.io/bootstrap-mycase-focus/bootstrap-mycase-focus.css' }
   ],
   IM: [
     { name: 'IM/GP', url: 'https://s3-us-east-2.amazonaws.com/af-im-ui/branches/master/gp/style.css' },

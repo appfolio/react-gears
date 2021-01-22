@@ -35,7 +35,7 @@ describe('<BlockPanel />', () => {
     );
   });
 
-  context('is expandable', () => {
+  describe('is expandable', () => {
     it('should be open by default', () => {
       const component = mount(
         <BlockPanel title="Open">
@@ -174,7 +174,7 @@ describe('<BlockPanel />', () => {
     });
   });
 
-  context('contains headerComponent', () => {
+  describe('contains headerComponent', () => {
     it('should render headerComponent', () => {
       const component = mount(
         <BlockPanel title="Open" controls={<p id="edit">Edit</p>}>
@@ -195,7 +195,7 @@ describe('<BlockPanel />', () => {
     });
   });
 
-  context('header components', () => {
+  describe('header components', () => {
     it('should not render edit link by default', () => {
       const component = mount(
         <BlockPanel title="Open">

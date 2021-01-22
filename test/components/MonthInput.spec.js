@@ -11,7 +11,7 @@ import sinon from 'sinon';
 import { MonthInput } from '../../src';
 
 describe('<MonthInput />', () => {
-  context('defaultValue', () => {
+  describe('defaultValue', () => {
     it('should default to blank and today', () => {
       const component = mount(<MonthInput />);
       const input = component.find('input');
@@ -113,7 +113,7 @@ describe('<MonthInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
-  context('user input', () => {
+  describe('user input', () => {
     it('should set date after entering a valid date string', () => {
       const component = mount(<MonthInput />);
       const input = component.find('input');
@@ -154,7 +154,7 @@ describe('<MonthInput />', () => {
     });
   });
 
-  context('date picker', () => {
+  describe('date picker', () => {
     const callback = sinon.spy();
     const component = mount(<MonthInput onChange={callback} showOnFocus />);
 
@@ -249,7 +249,7 @@ describe('<MonthInput />', () => {
     });
   });
 
-  context('date picker with controlled visible dates', () => {
+  describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, defaultDate);
@@ -292,5 +292,24 @@ describe('<MonthInput />', () => {
     const callback = sinon.spy(() => new Date(2003, 0, 2));
     mount(<MonthInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
     assert(callback.calledWith('1-2-3', 'MM-DD-YY'));
+  });
+
+  describe('accessibility', () => {
+    it('should contain screen reader only label for buttons', () => {
+      const component = mount(<MonthInput />);
+      const nextYearLabel = component.find('.js-next-year').children().find('span');
+      const prevYearLabel = component.find('.js-prev-year').children().find('span');
+      const nextMonthLabel = component.find('.js-next-month').children().find('span');
+      const prevMonthLabel = component.find('.js-prev-month').children().find('span');
+
+      assert.strictEqual('Next Year', nextYearLabel.text());
+      assert.strictEqual('sr-only', nextYearLabel.prop('className'));
+      assert.strictEqual('Previous Year', prevYearLabel.text());
+      assert.strictEqual('sr-only', prevYearLabel.prop('className'));
+      assert.strictEqual('Next Month', nextMonthLabel.text());
+      assert.strictEqual('sr-only', nextMonthLabel.prop('className'));
+      assert.strictEqual('Previous Month', prevMonthLabel.text());
+      assert.strictEqual('sr-only', prevMonthLabel.prop('className'));
+    });
   });
 });

@@ -1,6 +1,0 @@
---compilers ts:ts-node/register
---require jsdom-global/register
---require @babel/register
---require ignore-styles
---recursive
---timeout 10000

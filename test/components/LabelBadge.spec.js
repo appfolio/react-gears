@@ -45,7 +45,7 @@ describe('<LabelBadge />', () => {
     assert(wrapper.hasClass('cc'));
   });
 
-  context('on click X', () => {
+  describe('on click X', () => {
     it('calls the passed onRemove function', () => {
       const onRemove = sinon.stub();
       const wrapper = mount(<LabelBadge onRemove={onRemove} value="Yep" />);

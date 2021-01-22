@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classname from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import FormGroup from './FormGroup';
 import Input from './Input';
 import Label from './Label';
@@ -16,6 +17,7 @@ class FormChoice extends React.Component {
     inline: PropTypes.bool,
     disabled: PropTypes.bool,
     children: PropTypes.node,
+    containerClassName: PropTypes.string,
     id: PropTypes.string,
     type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
     value: PropTypes.any
@@ -32,6 +34,7 @@ class FormChoice extends React.Component {
       inline,
       disabled,
       children,
+      containerClassName,
       type,
       value,
       ...attributes
@@ -45,12 +48,12 @@ class FormChoice extends React.Component {
       );
     }
 
-    const labelClasses = classname({ 'form-check-inline': inline });
+    const containerClasses = classname({ 'form-check-inline': inline }, containerClassName);
 
     const computedValue = value || children;
 
     const item = (
-      <div className={labelClasses}>
+      <div className={containerClasses}>
         <Input
           id={this.id}
           type={type}
