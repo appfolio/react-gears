@@ -7,7 +7,7 @@ export default class FeatureBanner extends React.Component {
     alertText: PropTypes.string,
     children: PropTypes.node,
     color: PropTypes.string,
-    subtitle: PropTypes.string.isRequired,
+    subtitle: PropTypes.node.isRequired,
     title: PropTypes.string.isRequired,
   };
 
@@ -47,7 +47,7 @@ export default class FeatureBanner extends React.Component {
             .body @media (min-width: 576px) {
               border-left: 1px solid rgba(0, 0, 0, 0.1);
             }
-            
+
             .info {
               flex: 1 1 auto;
             }
