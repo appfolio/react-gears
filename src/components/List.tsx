@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import uniqueId from 'lodash.uniqueid';
 import CustomInput from './CustomInput';
-import ListGroup from './ListGroup';
+import ListGroup, { ListGroupProps } from './ListGroup';
 import ListGroupItem from './ListGroupItem';
 import ScrollContainer from './ScrollContainer';
 import ListItem from './ListItem';
 import useSet from '../hooks/useSet';
 
-interface ListProps<T> extends ListGroup {
-  // header, height, itemClassName, items, children: render, onExpand, select, selected, onSelect, 
+interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
+  // header, height, itemClassName, items, children: render, onExpand, select, selected, onSelect,
   children?: React.ReactNode;
   flush?: boolean;
   header: React.ReactNode;
@@ -21,10 +21,10 @@ interface ListProps<T> extends ListGroup {
   onSelect: (selected: T[]) => void;
 }
 
-const List = ({ flush, header, height, itemClassName, items, children: render, onExpand, select, selected, onSelect, ...props }: ListProps) => {
+function List<T extends { expanded?: boolean, key: string }>({ flush, header, height, itemClassName, items, children: render, onExpand, select, selected, onSelect, ...props }: ListProps<T>) {
   const [selection, hasItem, addItem, removeItem, , clearSelection, replaceSelection] = useSet(selected);
   const [selectAllId] = useState(() => uniqueId('selectall-'));
-  const selectAllRef = useRef();
+  const selectAllRef = useRef<HTMLInputElement>();
   const showHeader = select === 'checkbox' || select === 'switch' || header;
 
   useEffect(() => onSelect(Array.from(selection)), [selection, onSelect]);
@@ -33,7 +33,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
 
   useEffect(() => {
     selection.forEach((item) => { if (!items.includes(item)) removeItem(item); });
-  }, [items, selection]);
+  }, [items, selection, removeItem]);
 
   useEffect(() => {
     if (selectAllRef.current) {
@@ -41,7 +41,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
     }
   }, [items, selection]);
 
-  const handleSelection = (item, checked) => {
+  const handleSelection = (item: T, checked: boolean) => {
     if (select === 'checkbox' || select === 'switch') {
       if (hasItem(item) && !checked) removeItem(item);
       else if (checked) addItem(item);
@@ -52,7 +52,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
   };
 
   const handleSelectAll = () => {
-    if (selection.size === items.length) replaceSelection();
+    if (selection.size === items.length) replaceSelection([]);
     else replaceSelection(items);
   };
 
@@ -68,7 +68,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
               <CustomInput
                 id={selectAllId}
                 type={select}
-                checked={items.length && selection.size === items.length}
+                checked={!!items.length && selection.size === items.length}
                 disabled={items.length === 0}
                 label={<span className="sr-only">Select all</span>}
                 onChange={() => handleSelectAll()}
@@ -84,7 +84,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
       <ScrollContainer height={height}>
         <ListGroup flush={flush} striped className="border-top-0">
           {items.map((item, i) => (
-            <ListItem
+            <ListItem<T>
               className={itemClassName}
               expanded={item.expanded || false}
               item={item}
@@ -101,7 +101,7 @@ const List = ({ flush, header, height, itemClassName, items, children: render, o
       </ScrollContainer>
     </ListGroup>
   );
-};
+}
 
 List.defaultProps = {
   children: () => <></>,

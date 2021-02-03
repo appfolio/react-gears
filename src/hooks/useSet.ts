@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function useSet<T>(defaultValue: T) {
+export default function useSet<T>(defaultValue: T[]) {
   const [set, setSet] = useState(new Set<T>(defaultValue));
   const has = (value: T) => set.has(value);
   const add = (value: T) => {
@@ -24,6 +24,6 @@ export default function useSet<T>(defaultValue: T) {
     remove,
     toggle,
     clear,
-    (values: T) => setSet(new Set(values))
-  ];
+    (values: T[]) => setSet(new Set(values))
+  ] as const;
 }

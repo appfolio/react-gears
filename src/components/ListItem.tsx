@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import Button from './Button';
@@ -19,9 +19,9 @@ interface ListItemProps<T> extends ListGroupItem {
   onSelect: (item: T, checked: boolean) => void
 }
 
-const ListItem = ({
+function ListItem<T>({
   item, children: render, className, color, expanded: defaultExpanded = false, onExpand, selected, select, onSelect, ...props
-}: ListItemProps) => {
+}: ListItemProps<T>) {
   const isExpandable = onExpand !== undefined;
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [id] = useState(() => uniqueId('listitem-'));
@@ -64,7 +64,7 @@ const ListItem = ({
       )}
     </ListGroupItem>
   );
-};
+}
 
 ListItem.displayName = 'ListItem';
 
