@@ -127,6 +127,8 @@ import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
 import InfoBox from './components/InfoBox.js';
 import LabelBadge from './components/LabelBadge.js';
+import List from './components/List';
+import ListItem from './components/ListItem';
 import MaskedInput from './components/MaskedInput';
 import Modal from './components/Modal.js';
 import MonthCalendar from './components/MonthCalendar.js';
@@ -147,6 +149,7 @@ import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select.js';
 // @ts-ignore: implicitly has an 'any' type
 import SelectMultiValue from './components/SelectMultiValue.js';
+import SortableList from './components/SortableList';
 import SortableTable from './components/SortableTable.js';
 import Spinner from './components/Spinner.js';
 import StateInput from './components/StateInput';
@@ -301,6 +304,8 @@ export {
   ImageCarousel,
   InfoBox,
   LabelBadge,
+  List,
+  ListItem,
   MonthCalendar,
   MonthInput,
   Note,
@@ -311,6 +316,7 @@ export {
   RadioGroup,
   RadioInput,
   ScrollContainer,
+  SortableList,
   Spinner,
   StateInput,
   StaticInput,
