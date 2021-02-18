@@ -82,6 +82,7 @@ export const LiveExample = () => {
       disabled={boolean('disabled', Combobox.defaultProps.disabled)}
       noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
       placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('js-no-autofocus', '')}
     />
   );
 };

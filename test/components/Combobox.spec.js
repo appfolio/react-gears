@@ -29,6 +29,13 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
 
+  it('should pass inputClassName to Input', () => {
+    const innerClassName = 'js-no-autofocus';
+    const combobox = render(<Combobox options={OPTIONS} inputClassName={innerClassName} />);
+
+    assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
+  });
+
   it('should show all options when there is a selected option', () => {
     const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
     const input = combobox.getByTestId('combobox-input');
