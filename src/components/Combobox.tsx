@@ -40,7 +40,7 @@ const defaultProps = {
 };
 
 const Combobox: React.FunctionComponent<ComboboxProps> = ({
-  className, direction, disabled, dropdownProps, options, placeholder, value, menuMaxHeight,
+  className, direction, disabled, dropdownProps, inputClassName, options, placeholder, value, menuMaxHeight,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   filterOptions = defaultProps.filterOptions,
@@ -146,6 +146,7 @@ const Combobox: React.FunctionComponent<ComboboxProps> = ({
             innerRef={inputElement}
             data-testid="combobox-input"
             disabled={disabled}
+            className={inputClassName}
             placeholder={selectedOption ? undefined : placeholder}
             onFocus={(ev) => {
               ev.preventDefault();
