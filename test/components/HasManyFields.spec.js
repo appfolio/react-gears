@@ -148,6 +148,12 @@ describe('<HasManyFields />', () => {
       });
     });
 
+    it('should pass the index to each template', () => {
+      component.find(Input).forEach((input, i) => {
+        assert.equal(input.prop('index'), i);
+      });
+    });
+
     it('should pass the errors to each template', () => {
       component.find(Input).forEach((input, i) => {
         assert.deepEqual(input.prop('errors'), errors[i]);

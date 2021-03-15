@@ -178,6 +178,7 @@ class HasManyFields extends React.Component {
           errors={errors[index]}
           onChange={this.updateItem(index)}
           disabled={disabled}
+          index={index}
           {...refProps}
         />
       </HasManyFieldsRow>
