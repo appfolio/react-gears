@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Direction } from 'reactstrap/lib/Dropdown';
 type DateOrString = Date | string;
 
 interface DateInputPropTypes extends Omit<
@@ -9,6 +10,7 @@ interface DateInputPropTypes extends Omit<
   dateVisible?: (currentDate: Date) => any[];
   dateFormat?: string;
   defaultValue?: DateOrString;
+  direction?: Direction;
   disabled?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
