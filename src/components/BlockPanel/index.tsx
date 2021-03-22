@@ -113,8 +113,8 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
           {expandable && (
             <Icon
               className={iconClassName}
-              name="caret-right"
-              rotate={isOpen ? 90 : undefined}
+              name="chevron-up"
+              rotate={!isOpen ? 180 : undefined}
               fixedWidth
               style={{ transition: 'transform 200ms ease-in-out' }}
             />
