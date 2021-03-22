@@ -21,19 +21,22 @@ function defaultRenderRow(row, columns, rowClassName, rowExpanded, rowOnClick, t
   return [
     <tr
       key={row.key}
-      className={classnames({ 'table-info': rowSelected && rowSelected(row) }, rowClassName(row))}
+      className={classnames({ 'table-primary': rowSelected && rowSelected(row) }, rowClassName(row))}
       onClick={e => rowOnClick && rowOnClick(row, e)}
       role={rowOnClick ? 'button' : null}
     >
       {columns.map(column => (
         <td key={column.key} className={generateColumnClassName(column, truncate)}>
-          {column.cell(row)}
+          {column.cell(row, expanded)}
         </td>
       ))}
     </tr>,
     expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
     expanded && (
-      <tr key={row.key ? `${row.key}-expanded` : null} className="tr-expanded">
+      <tr
+        key={row.key ? `${row.key}-expanded` : null}
+        className={classnames({ 'table-primary': rowSelected && rowSelected(row) }, 'tr-expanded')}
+      >
         <td className="border-top-0" colSpan={columns.length}>
           {expanded}
         </td>
@@ -151,13 +154,13 @@ class SortableTable extends React.Component {
       cols.push({
         align: 'center',
         key: 'expand',
-        cell: row => (
+        cell: (row, expanded) => (
           <Button
             className="px-2 py-0"
             color="link"
             onClick={() => onExpand(row)}
           >
-            <Icon name="ellipsis-v" size="lg" />
+            <Icon name={expanded ? 'angle-up' : 'angle-down'} />
             <span className="sr-only">Expand row</span>
           </Button>
         ),
