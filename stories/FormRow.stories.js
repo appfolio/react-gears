@@ -11,6 +11,7 @@ export default {
 export const LiveExample = () => (
   <div>
     <FormRow
+      id="firstName"
       label={text('label', 'First Name')}
       labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
       feedback={text('feedback', 'You must give a first name')}
@@ -35,6 +36,7 @@ export const WithSelect = () => {
   const [favorite, setFavorite] = useState('Bravo');
   return (
     <FormRow
+      id="nato"
       label={text('label', 'Favorite NATO Phonetic')}
       onChange={e => setFavorite(e.target.value)}
       stacked={boolean('stacked', false)}
@@ -61,6 +63,7 @@ export const WithCheckboxes = () => {
   const [favorites, setFavorites] = useState(['Bravo']);
   return (
     <FormRow
+      id="nato"
       label={text('label', 'Favorite NATO Phonetics')}
       stacked={boolean('stacked', false)}
       onChange={selection => setFavorites(selection)}
@@ -86,6 +89,7 @@ export const WithRadioButtons = () => {
   const [favorite, setFavorite] = useState('Bravo');
   return (
     <FormRow
+      id="nato"
       label={text('label', 'Favorite NATO Phonetic')}
       onChange={e => setFavorite(e.target.value)}
       stacked={boolean('stacked', false)}

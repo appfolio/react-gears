@@ -37,8 +37,8 @@ export default {
 
 export const Inputs = () => (
   <div>
-    <FormLabelGroup label="Input">
-      <Input placeholder="Hello World" />
+    <FormLabelGroup label="Input" inputId="hello">
+      <Input placeholder="Hello World" id="hello" />
     </FormLabelGroup>
     <p>
       See all supported Input types here:{' '}
@@ -49,54 +49,56 @@ export const Inputs = () => (
     </p>
     <hr />
 
-    <FormLabelGroup label="CheckboxInput">
-      <CheckboxInput id="hello" checkboxLabel="Hello World" />
+    <FormLabelGroup label="CheckboxInput" inputId="helloworld">
+      <CheckboxInput id="helloworld" checkboxLabel="Hello World" />
     </FormLabelGroup>
-    <FormLabelGroup label="CountryInput">
-      <CountryInput />
+    <FormLabelGroup label="CountryInput" inputId="countryinput">
+      <CountryInput id="countryinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="CreditCardNumber">
-      <CreditCardNumber value="4111111111111111" />
+    <FormLabelGroup label="CreditCardNumber" inputId="creditcardnumber">
+      <CreditCardNumber value="4111111111111111" id="creditcardnumber" />
     </FormLabelGroup>
-    <FormLabelGroup label="CurrencyInput">
-      <CurrencyInput value={123456.789} />
+    <FormLabelGroup label="CurrencyInput" inputId="currencyinput">
+      <CurrencyInput value={123456.789} id="currencyinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="DateInput">
-      <DateInput />
+    <FormLabelGroup label="DateInput" inputId="dateinput">
+      <DateInput id="dateinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="FileInput">
-      <FileInput />
+    <FormLabelGroup label="FileInput" inputId="fileinput">
+      <FileInput id="fileinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="MonthInput">
-      <MonthInput />
+    <FormLabelGroup label="MonthInput" inputId="monthinput">
+      <MonthInput id="monthinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="StateInput">
-      <StateInput />
+    <FormLabelGroup label="StateInput" inputId="stateinput">
+      <StateInput id="stateinput" />
     </FormLabelGroup>
-    <FormLabelGroup label="StaticInput">
-      <StaticInput value="No Change" />
+    <FormLabelGroup label="StaticInput" inputId="staticinput">
+      <StaticInput value="No Change" id="staticinput" />
     </FormLabelGroup>
   </div>
 );
 
 export const FormRows = () => (
   <form>
-    <FormRow label="First Name" />
-    <FormRow label="Last Name" feedback="can't be blank" color="danger" />
-    <FormRow label="Nickname" hint="A fun name to describe yourself!" />
-    <FormRow label="DOB" required />
-    <FormRow label="Disabled Field" disabled />
+    <FormRow label="First Name" id="first" />
+    <FormRow label="Last Name" feedback="can't be blank" color="danger" id="last" />
+    <FormRow label="Nickname" hint="A fun name to describe yourself!" id="nick" />
+    <FormRow label="DOB" required id="dob" />
+    <FormRow label="Disabled Field" disabled id="disabled" />
     <FormRow
       label="Who is Luke's Father?"
       value="Darth Vader"
       type="static"
+      id="luke"
     />
-    <FormRow type="textarea" label="Notes" />
+    <FormRow type="textarea" label="Notes" id="notes" />
     <FormRow
       type="select"
       label="Select Movie"
       color="success"
       feedback="Awesome!"
+      id="movie"
     >
       <FormChoice value="override">A New Hope</FormChoice>
       <FormChoice>The Empire Strikes Back</FormChoice>
@@ -107,26 +109,28 @@ export const FormRows = () => (
       label="Select Ship"
       hint="Some ships are unreliable..."
       name="ship"
+      id="ship"
     >
       <FormChoice color="danger">Death Star</FormChoice>
       <FormChoice color="warning">Millennium Falcon</FormChoice>
       <FormChoice color="success">Imperial Shuttle</FormChoice>
     </FormRow>
-    <FormRow type="checkbox" label="Select the character(s) you like">
+    <FormRow type="checkbox" label="Select the character(s) you like" id="characters">
       <FormChoice>Darth Vader</FormChoice>
       <FormChoice>Luke Skywalker</FormChoice>
       <FormChoice disabled>Emperor Palpatine</FormChoice>
       <FormChoice>Rey</FormChoice>
       <FormChoice>TK-421</FormChoice>
     </FormRow>
-    <FormRow type="checkbox" label="Use Jedi mind tricks?" />
-    <FormRow type="radio" label="Do you like Star Wars?" inline name="movie">
+    <FormRow type="checkbox" label="Use Jedi mind tricks?" id="jedi" />
+    <FormRow type="radio" label="Do you like Star Wars?" inline name="movie" id="starwars">
       <FormChoice>Yes</FormChoice>
       <FormChoice disabled>No</FormChoice>
     </FormRow>
     <FormRow
       type={CurrencyInput}
       label="How much would you pay to meet the cast?"
+      id="pay"
     />
   </form>
 );
@@ -137,14 +141,15 @@ export const Bound = () => (
     errors={object('errors', { lastName: 'Last Name is required' })}
     onSubmit={action('submit')}
   >
-    <BoundFormRow label="First Name" name="firstName" />
-    <BoundFormRow label="Last Name" name="lastName" required />
+    <BoundFormRow label="First Name" name="firstName" id="firstName" />
+    <BoundFormRow label="Last Name" name="lastName" required id="lastName" />
     <BoundFormRow
       type={CurrencyInput}
       label="How much would you pay to meet the cast?"
       name="amount"
+      id="pay"
     />
-    <BoundFormRow type="select" label="Select Movie" name="movie">
+    <BoundFormRow type="select" label="Select Movie" name="movie" id="movie">
       <FormChoice>A New Hope</FormChoice>
       <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
       <FormChoice>The Force Awakens</FormChoice>
@@ -153,6 +158,7 @@ export const Bound = () => (
       type="checkbox"
       label="Select the character(s) you like"
       name="characters"
+      id="characters"
     >
       <FormChoice>Darth Vader</FormChoice>
       <FormChoice>Luke Skywalker</FormChoice>
@@ -164,17 +170,19 @@ export const Bound = () => (
       type="checkbox"
       label="Use Jedi mind tricks?"
       name="mindTricks"
+      id="mindTricks"
     />
-    <BoundFormRow type="radio" label="Select Ship" name="ship">
+    <BoundFormRow type="radio" label="Select Ship" name="ship" id="ship">
       <FormChoice>Death Star</FormChoice>
       <FormChoice>Millennium Falcon</FormChoice>
       <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
     </BoundFormRow>
-    <BoundFormRow type={AddressInput} name="address" label="Address" />
+    <BoundFormRow type={AddressInput} name="address" label="Address" id="address" />
     <BoundFormRow
       type="file"
       label="Death Star Schematics"
       name="deathStarPlans"
+      id="deathStarPlans"
       multiple
     />
     <button className="btn btn-primary">Submit</button>
