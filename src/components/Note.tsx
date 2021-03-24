@@ -15,11 +15,11 @@ type NoteProps = {
   dateFormat?: string,
   showTimezone?: boolean,
   note: NoteType,
-  onCancel: (note: NoteType) => void,
-  onChange: React.ChangeEventHandler<HTMLInputElement>,
+  onCancel?: (note: NoteType) => void,
+  onChange?: React.ChangeEventHandler<HTMLInputElement>,
   onDelete?: (note: Omit<NoteType, 'text'>) => void,
   onEdit?: (note: Omit<NoteType, 'text'>) => void,
-  onSave: (note: NoteType) => void,
+  onSave?: (note: NoteType) => void,
   onUndelete?: (note: NoteType) => void,
   rows?: number,
   saving?: boolean,
@@ -63,7 +63,7 @@ const Note: React.FunctionComponent<NoteProps> = ({
         note={note}
         onUndelete={onUndelete}
       />);
-  } else if (editing) {
+  } else if (editing && onCancel && onChange && onSave) {
     return (
       <EditableNote
         className={className}
@@ -106,11 +106,11 @@ Note.propTypes = {
     errors: PropTypes.string,
     text: PropTypes.string.isRequired
   }).isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
   onUndelete: PropTypes.func,
   rows: PropTypes.number,
   saving: PropTypes.bool,
