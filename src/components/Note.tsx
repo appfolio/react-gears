@@ -16,7 +16,7 @@ type NoteProps = {
   showTimezone?: boolean,
   note: NoteType,
   onCancel?: (note: NoteType) => void,
-  onChange?: React.ChangeEventHandler<HTMLInputElement>,
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
   onDelete?: (note: Omit<NoteType, 'text'>) => void,
   onEdit?: (note: Omit<NoteType, 'text'>) => void,
   onSave?: (note: NoteType) => void,
