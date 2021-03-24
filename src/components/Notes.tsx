@@ -8,7 +8,7 @@ type NotesProps = {
   children?: React.ReactNode,
   className?: string,
   onCancel?: (note: NoteType) => void,
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
   onDelete?: (note: Omit<NoteType, 'text'>) => void,
   onEdit?: (note: Omit<NoteType, 'text'>) => void,
   onSave?: (note: NoteType) => void,
@@ -54,11 +54,11 @@ const Notes: React.FunctionComponent<NotesProps> = ({
 Notes.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  onCancel: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
   onUndelete: PropTypes.func,
   notes: PropTypes.arrayOf(
     PropTypes.shape({
