@@ -1,3 +1,3 @@
-import Collapse from 'reactstrap/lib/Collapse';
+import { Collapse } from 'reactstrap';
 
 export default Collapse;

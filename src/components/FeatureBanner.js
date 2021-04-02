@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Alert from 'reactstrap/lib/Alert';
+import { Alert } from 'reactstrap';
 
 export default class FeatureBanner extends React.Component {
   static propTypes = {

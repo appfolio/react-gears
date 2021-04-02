@@ -1,8 +1,8 @@
 import React from 'react';
 import cardTypeInfo, { CardBrand, CreditCardTypeInfo } from 'credit-card-type';
+import { InputProps } from 'reactstrap';
 import Icon from './Icon';
 import Input from './Input';
-import { InputProps } from 'reactstrap/lib/Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupText from './InputGroupText';

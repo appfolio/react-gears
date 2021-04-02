@@ -1,3 +1,3 @@
-import ButtonToolbar from 'reactstrap/lib/ButtonToolbar';
+import { ButtonToolbar } from 'reactstrap';
 
 export default ButtonToolbar;

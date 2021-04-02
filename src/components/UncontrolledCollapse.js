@@ -1,3 +1,3 @@
-import UncontrolledCollapse from 'reactstrap/lib/UncontrolledCollapse';
+import { UncontrolledCollapse } from 'reactstrap';
 
 export default UncontrolledCollapse;

@@ -1,4 +1,4 @@
-import Popover from 'reactstrap/lib/Popover';
+import { Popover } from 'reactstrap';
 
 Popover.defaultProps = {
   ...Popover.defaultProps,

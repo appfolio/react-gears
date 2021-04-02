@@ -1,3 +1,3 @@
-import Jumbotron from 'reactstrap/lib/Jumbotron';
+import { Jumbotron } from 'reactstrap';
 
 export default Jumbotron;

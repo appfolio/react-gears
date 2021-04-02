@@ -1,3 +1,3 @@
-import CardColumns from 'reactstrap/lib/CardColumns';
+import { CardColumns } from 'reactstrap';
 
 export default CardColumns;

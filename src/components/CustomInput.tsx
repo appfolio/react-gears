@@ -1,3 +1,3 @@
-import CustomInput from 'reactstrap/lib/CustomInput';
+import { CustomInput } from 'reactstrap';
 
 export default CustomInput;

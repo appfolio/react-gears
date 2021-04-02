@@ -1,3 +1,3 @@
-import Button from 'reactstrap/lib/Button';
+import { Button } from 'reactstrap';
 
 export default Button;

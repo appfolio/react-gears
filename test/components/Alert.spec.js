@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
-import Inner from 'reactstrap/lib/Alert';
+import { Alert as Inner } from 'reactstrap';
 import { assertAccessible } from '../a11yHelpers';
 
 import { Icon, Alert } from '../../src';

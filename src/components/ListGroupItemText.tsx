@@ -1,3 +1,3 @@
-import ListGroupItemText from 'reactstrap/lib/ListGroupItemText';
+import { ListGroupItemText } from 'reactstrap';
 
 export default ListGroupItemText;

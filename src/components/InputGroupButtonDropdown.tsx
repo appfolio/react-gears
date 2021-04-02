@@ -1,3 +1,3 @@
-import InputGroupButtonDropdown from 'reactstrap/lib/InputGroupButtonDropdown';
+import { InputGroupButtonDropdown } from 'reactstrap';
 
 export default InputGroupButtonDropdown;

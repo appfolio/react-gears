@@ -1,3 +1,3 @@
-import UncontrolledCarousel from 'reactstrap/lib/UncontrolledCarousel';
+import { UncontrolledCarousel } from 'reactstrap';
 
 export default UncontrolledCarousel;

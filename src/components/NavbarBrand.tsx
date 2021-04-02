@@ -1,3 +1,3 @@
-import NavbarBrand from 'reactstrap/lib/NavbarBrand';
+import { NavbarBrand } from 'reactstrap';
 
 export default NavbarBrand;

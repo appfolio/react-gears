@@ -1,5 +1,5 @@
 import React, { ReactNode, FunctionComponent } from 'react';
-import { ModalProps } from 'reactstrap/lib/Modal';
+import { ModalProps } from 'reactstrap';
 import Modal from './Modal';
 import Spinner from './Spinner';
 

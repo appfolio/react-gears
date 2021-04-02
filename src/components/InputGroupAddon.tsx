@@ -1,3 +1,3 @@
-import InputGroupAddon from 'reactstrap/lib/InputGroupAddon';
+import { InputGroupAddon } from 'reactstrap';
 
 export default InputGroupAddon;
