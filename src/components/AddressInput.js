@@ -187,7 +187,7 @@ class AddressInput extends React.Component {
                 {...this.propsFor(inputName.state)}
                 invalid={!!error.state}
                 onBlur={() => onBlur(inputName.state)}
-                onChange={state => this.onChange({ state })}
+                onChange={state => this.onChange({ [inputName.state]: state })}
                 disabled={disabled}
               />
             </FormLabelGroup>
@@ -236,7 +236,7 @@ class AddressInput extends React.Component {
               {...this.propsFor(inputName.countryCode)}
               invalid={!!error.countryCode}
               onBlur={() => onBlur(inputName.countryCode)}
-              onChange={countryCode => this.onChange({ countryCode })}
+              onChange={countryCode => this.onChange({ [inputName.countryCode]: countryCode })}
               disabled={disabled}
             />
           </FormLabelGroup>
