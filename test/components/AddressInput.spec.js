@@ -478,9 +478,10 @@ describe('AddressInput', () => {
       postal: 'custom_name_postal',
       countryCode: 'custom_name_countryCode'
     };
-    const component = mount(<AddressInput inputName={inputName} />);
 
     it('should pass custom names to the respective inputs', () => {
+      const component = mount(<AddressInput inputName={inputName} />);
+
       assert.equal(component.find('input[name="address1"]').length, 0);
       assert.equal(component.find('input[name="custom_name_address1"]').length, 1);
 
@@ -498,6 +499,51 @@ describe('AddressInput', () => {
 
       assert.equal(component.find('select[name="countryCode"]').length, 0);
       assert.equal(component.find('select[name="custom_name_countryCode"]').length, 1);
+    });
+
+    it('should respect custom input names for values', () => {
+      const value = {
+        custom_name_address1: '123 Sesame St',
+        custom_name_address2: '',
+        custom_name_city: 'Sesame City',
+        custom_name_state: 'CA',
+        custom_name_postal: '92108',
+        custom_name_countryCode: 'US'
+      };
+
+      const component = mount(<AddressInput
+        inputName={inputName}
+        value={value}
+      />);
+
+      assert.strictEqual(component.find('input[name="custom_name_address1"]').first().prop('value'), value.custom_name_address1);
+      assert.strictEqual(component.find('input[name="custom_name_address2"]').first().prop('value'), value.custom_name_address2);
+      assert.strictEqual(component.find('input[name="custom_name_city"]').first().prop('value'), value.custom_name_city);
+      assert.strictEqual(component.find('select[name="custom_name_state"]').first().prop('value'), value.custom_name_state);
+      assert.strictEqual(component.find('input[name="custom_name_postal"]').first().prop('value'), value.custom_name_postal);
+      assert.strictEqual(component.find('select[name="custom_name_countryCode"]').first().prop('value'), value.custom_name_countryCode);
+    });
+
+    it('should use custom input names for onChange', () => {
+      const onChange = sinon.spy();
+      const component = mount(<AddressInput onChange={onChange} inputName={inputName} />);
+
+      Object.values(inputName).forEach((field) => {
+        const input = component.find(`[name="${field}"]`).hostNodes();
+        input.simulate('change', { target: { name: field, value: '' } });
+        assert(onChange.called);
+      });
+    });
+
+    it('should use custom input names for onBlur', () => {
+      const onBlur = sinon.spy();
+      const component = mount(<AddressInput onBlur={onBlur} inputName={inputName} />);
+
+      Object.values(inputName).forEach((field) => {
+        const input = component.find(`[name="${field}"]`).hostNodes();
+        input.simulate('blur');
+        assert(onBlur.calledWith(field));
+      });
     });
   });
 });
