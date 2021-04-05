@@ -25,7 +25,7 @@ class AddressInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     countries: PropTypes.arrayOf(PropTypes.string),
-    defaultValue: PropTypes.shape(addressPropType),
+    defaultValue: PropTypes.object,
     inputName: PropTypes.shape(addressPropType),
     disabled: PropTypes.bool,
     error: PropTypes.shape(addressPropType),
@@ -36,13 +36,12 @@ class AddressInput extends React.Component {
     onChange: PropTypes.func,
     showCountry: PropTypes.bool,
     showLabels: PropTypes.bool,
-    value: PropTypes.shape(addressPropType),
+    value: PropTypes.object,
   };
 
   static defaultProps = {
     className: '',
     defaultValue: {},
-    inputName: {},
     disabled: false,
     error: {},
     hints: {},
@@ -53,6 +52,14 @@ class AddressInput extends React.Component {
       state: 'State',
       postal: 'Zip',
       countryCode: 'Country',
+    },
+    inputName: {
+      address1: 'address1',
+      address2: 'address2',
+      city: 'city',
+      state: 'state',
+      postal: 'postal',
+      countryCode: 'countryCode',
     },
     onBlur: () => {},
     onChange: () => {},
@@ -72,8 +79,6 @@ class AddressInput extends React.Component {
     return { defaultValue: this.props.defaultValue[field] };
   }
 
-  nameFor = field => this.props.inputName[field] || field;
-
   bindAddress1 = (el) => { this.inputAddress1 = el; };
 
   focus() {
@@ -81,7 +86,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels } = this.props;
+    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName } = this.props;
 
     const inputId = id || 'addressInput';
     const address1Id = `${inputId}_address1`;
@@ -104,12 +109,12 @@ class AddressInput extends React.Component {
           <Input
             autoComplete="address-line1"
             id={address1Id}
-            name={this.nameFor('address1')}
+            name={inputName.address1}
             type="text"
             placeholder={labels.address1}
-            {...this.propsFor('address1')}
+            {...this.propsFor(inputName.address1)}
             invalid={!!error.address1}
-            onBlur={() => onBlur('address1')}
+            onBlur={() => onBlur(inputName.address1)}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
             ref={this.bindAddress1}
@@ -127,12 +132,12 @@ class AddressInput extends React.Component {
           <Input
             autoComplete="address-line2"
             id={address2Id}
-            name={this.nameFor('address2')}
+            name={inputName.address2}
             type="text"
             placeholder={labels.address2}
-            {...this.propsFor('address2')}
+            {...this.propsFor(inputName.address2)}
             invalid={!!error.address2}
-            onBlur={() => onBlur('address2')}
+            onBlur={() => onBlur(inputName.address2)}
             onChange={flow([readEvent, this.onChange])}
             disabled={disabled}
           />
@@ -152,11 +157,11 @@ class AddressInput extends React.Component {
                 autoComplete="address-level2"
                 id={cityId}
                 type="text"
-                name={this.nameFor('city')}
+                name={inputName.city}
                 placeholder={labels.city}
-                {...this.propsFor('city')}
+                {...this.propsFor(inputName.city)}
                 invalid={!!error.city}
-                onBlur={() => onBlur('city')}
+                onBlur={() => onBlur(inputName.city)}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
@@ -177,12 +182,12 @@ class AddressInput extends React.Component {
                 className="w-100"
                 countries={countries}
                 id={stateId}
-                name={this.nameFor('state')}
+                name={inputName.state}
                 placeholder={labels.state}
-                {...this.propsFor('state')}
+                {...this.propsFor(inputName.state)}
                 invalid={!!error.state}
-                onBlur={() => onBlur('state')}
-                onChange={state => this.onChange({ state })}
+                onBlur={() => onBlur(inputName.state)}
+                onChange={state => this.onChange({ [inputName.state]: state })}
                 disabled={disabled}
               />
             </FormLabelGroup>
@@ -201,11 +206,11 @@ class AddressInput extends React.Component {
                 autoComplete="postal-code"
                 id={postalId}
                 type="text"
-                name={this.nameFor('postal')}
+                name={inputName.postal}
                 placeholder={labels.postal}
-                {...this.propsFor('postal')}
+                {...this.propsFor(inputName.postal)}
                 invalid={!!error.postal}
-                onBlur={() => onBlur('postal')}
+                onBlur={() => onBlur(inputName.postal)}
                 onChange={flow([readEvent, this.onChange])}
                 disabled={disabled}
               />
@@ -226,12 +231,12 @@ class AddressInput extends React.Component {
               autoComplete="country"
               className="w-100"
               id={countryCodeId}
-              name={this.nameFor('countryCode')}
+              name={inputName.countryCode}
               placeholder={labels.countryCode}
-              {...this.propsFor('countryCode')}
+              {...this.propsFor(inputName.countryCode)}
               invalid={!!error.countryCode}
-              onBlur={() => onBlur('countryCode')}
-              onChange={countryCode => this.onChange({ countryCode })}
+              onBlur={() => onBlur(inputName.countryCode)}
+              onChange={countryCode => this.onChange({ [inputName.countryCode]: countryCode })}
               disabled={disabled}
             />
           </FormLabelGroup>
