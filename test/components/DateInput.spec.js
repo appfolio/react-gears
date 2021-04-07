@@ -8,6 +8,7 @@ import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isToday from 'date-fns/is_today';
 import startOfToday from 'date-fns/start_of_today';
+import frLocale from 'date-fns/locale/fr';
 import sinon from 'sinon';
 
 import { DateInput } from '../../src';
@@ -318,11 +319,29 @@ describe('<DateInput />', () => {
     });
   });
 
-  it('should render custom header prop', () => {
-    const Custom = () => (<div className='custom-header'>Custom Header</div>);
-    const component = mount(<DateInput header={<Custom />} />);
-    assert.equal(component.find('div.custom-header').length, 1);
-    assert.equal(component.find('header.py-2').length, 0);
+  describe('header', () => {
+    it('should render custom header prop', () => {
+      const Custom = () => (<div className='custom-header'>Custom Header</div>);
+      const component = mount(<DateInput header={<Custom />} />);
+      assert.strictEqual(component.find('div.custom-header').length, 1);
+      assert.strictEqual(component.find('header.py-2').length, 0);
+    });
+
+    it('should render selected month in english by default', () => {
+      const defaultDate = new Date(2017, 6, 14);
+      const component = mount(<DateInput defaultValue={defaultDate} />);
+      const header = component.find('.js-date-header');
+
+      assert.strictEqual(header.text(), 'July 2017');
+    });
+
+    it('should render selected month in provided locale', () => {
+      const defaultDate = new Date(2017, 6, 14);
+      const component = mount(<DateInput defaultValue={defaultDate} locale={frLocale} />);
+      const header = component.find('.js-date-header');
+
+      assert.strictEqual(header.text(), 'juillet 2017');
+    });
   });
 
   it('should render custom footer prop', () => {
