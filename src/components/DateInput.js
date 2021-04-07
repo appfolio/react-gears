@@ -9,6 +9,7 @@ import format from 'date-fns/format';
 import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import startOfToday from 'date-fns/start_of_today';
+import enLocale from 'date-fns/locale/en';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import Calendar from './Calendar';
@@ -70,6 +71,7 @@ export default class DateInput extends React.Component {
     header: PropTypes.node,
     id: PropTypes.string,
     keyboard: PropTypes.bool,
+    locale: PropTypes.object,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onClose: PropTypes.func,
@@ -91,6 +93,7 @@ export default class DateInput extends React.Component {
     dateVisible: () => true,
     disabled: false,
     keyboard: true,
+    locale: enLocale,
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
@@ -102,7 +105,7 @@ export default class DateInput extends React.Component {
 
     let value = props.defaultValue || '';
     if (props.defaultValue instanceof Date) {
-      value = format(value, props.dateFormat);
+      value = format(value, props.dateFormat, { locale: props.locale });
     }
 
     this.state = {
@@ -164,10 +167,10 @@ export default class DateInput extends React.Component {
 
   setDate = (date, close = false) => {
     const newState = close ? {
-      value: format(date, this.props.dateFormat),
+      value: format(date, this.props.dateFormat, { locale: this.props.locale }),
       open: false
     } : {
-      value: format(date, this.props.dateFormat)
+      value: format(date, this.props.dateFormat, { locale: this.props.locale })
     };
     this.setState(newState, () => {
       this.inputEl.setAttribute('value', newState.value);
@@ -178,7 +181,7 @@ export default class DateInput extends React.Component {
   getCurrentValue = () => {
     if (this.props.value !== undefined) {
       if (this.props.value instanceof Date) {
-        return format(this.props.value, this.props.dateFormat);
+        return format(this.props.value, this.props.dateFormat, { locale: this.props.locale });
       }
       return this.props.value;
     }
@@ -229,7 +232,7 @@ export default class DateInput extends React.Component {
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
-      const value = format(parsedDate, this.props.dateFormat);
+      const value = format(parsedDate, this.props.dateFormat, { locale: this.props.locale });
       this.inputEl.value = value;
       this.inputEl.setAttribute('value', value);
     }
@@ -259,7 +262,7 @@ export default class DateInput extends React.Component {
 
   render() {
     const { className, dateEnabled, dateVisible, direction, disabled, footer, header, id, showOnFocus,
-      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
+      dateFormat, defaultValue, keyboard, locale, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -316,8 +319,8 @@ export default class DateInput extends React.Component {
                   </Button>
                 </ButtonGroup>
 
-                <span className="m-auto">
-                  {format(date, 'MMMM YYYY')}
+                <span className="js-date-header m-auto">
+                  {format(date, 'MMMM YYYY', { locale })}
                 </span>
 
                 <ButtonGroup size="sm">
@@ -337,6 +340,7 @@ export default class DateInput extends React.Component {
               date={date}
               dateEnabled={dateEnabled}
               dateVisible={dateVisible}
+              locale={locale}
               onSelect={this.onSelect}
               className="m-0"
               style={{ minWidth: '19rem' }}
