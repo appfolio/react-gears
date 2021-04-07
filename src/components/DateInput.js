@@ -262,7 +262,7 @@ export default class DateInput extends React.Component {
 
   render() {
     const { className, dateEnabled, dateVisible, direction, disabled, footer, header, id, showOnFocus,
-      dateFormat, defaultValue, keyboard, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
+      dateFormat, defaultValue, keyboard, locale, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -320,7 +320,7 @@ export default class DateInput extends React.Component {
                 </ButtonGroup>
 
                 <span className="js-date-header m-auto">
-                  {format(date, 'MMMM YYYY', { locale: this.props.locale })}
+                  {format(date, 'MMMM YYYY', { locale })}
                 </span>
 
                 <ButtonGroup size="sm">
@@ -340,6 +340,7 @@ export default class DateInput extends React.Component {
               date={date}
               dateEnabled={dateEnabled}
               dateVisible={dateVisible}
+              locale={locale}
               onSelect={this.onSelect}
               className="m-0"
               style={{ minWidth: '19rem' }}
