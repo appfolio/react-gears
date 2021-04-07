@@ -16,8 +16,6 @@ import startOfWeek from 'date-fns/start_of_week';
 import enLocale from 'date-fns/locale/en';
 import Table from './Table';
 
-// TODO locale/localize
-
 const Day = ({ day, dateFormat, locale, onClick, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(
