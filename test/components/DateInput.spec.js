@@ -11,7 +11,7 @@ import startOfToday from 'date-fns/start_of_today';
 import frLocale from 'date-fns/locale/fr';
 import sinon from 'sinon';
 
-import { DateInput } from '../../src';
+import { DateInput, Button, Icon } from '../../src';
 
 describe('<DateInput />', () => {
   describe('defaultValue', () => {
@@ -327,6 +327,80 @@ describe('<DateInput />', () => {
       assert.strictEqual(component.find('header.py-2').length, 0);
     });
 
+    describe('renderHeader', () => {
+      const onChange = sinon.spy();
+      const renderHeader = (prevMonth, nextMonth, prevYear, nextYear) => (
+        <div className="d-flex py-2 custom-header">
+          <Button className="js-prev-year" color="link" onClick={prevYear}>
+            <Icon name="angle-double-left" fixedWidth />
+          </Button>
+          <Button className="js-prev-month" color="link" onClick={prevMonth}>
+            <Icon name="angle-left" fixedWidth />
+          </Button>
+          <Button className="js-next-month" color="link" onClick={nextMonth}>
+            <Icon name="angle-right" fixedWidth />
+          </Button>
+          <Button className="js-next-year" color="link" onClick={nextYear}>
+            <Icon name="angle-double-right" fixedWidth />
+          </Button>
+        </div>
+      );
+      let component;
+
+      beforeEach(() => {
+        component = mount(<DateInput renderHeader={renderHeader} onChange={onChange} />);
+      });
+
+      it('should render custom header', () => {
+        assert.strictEqual(component.find('div.custom-header').length, 1);
+        assert.strictEqual(component.find('header.py-2').length, 0);
+      });
+
+      it('should allow setting to prev year', () => {
+        onChange.resetHistory();
+        const expectedDate = addYears(component.instance().getCurrentDate(), -1);
+        const prevYear = component.find('Button.js-prev-year');
+
+        prevYear.simulate('click');
+
+        assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+        assert(isSameDay(onChange.firstCall.args[0], expectedDate));
+      });
+
+      it('should allow setting to next year', () => {
+        onChange.resetHistory();
+        const expectedDate = addYears(component.instance().getCurrentDate(), 1);
+        const nextYear = component.find('Button.js-next-year');
+
+        nextYear.simulate('click');
+
+        assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+        assert(isSameDay(onChange.firstCall.args[0], expectedDate));
+      });
+
+      it('should allow setting to prev month', () => {
+        onChange.resetHistory();
+        const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
+        const prevMonth = component.find('Button.js-prev-month');
+
+        prevMonth.simulate('click');
+
+        assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+        assert(isSameDay(onChange.firstCall.args[0], expectedDate));
+      });
+
+      it('should allow setting to next month', () => {
+        onChange.resetHistory();
+        const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
+        const nextMonth = component.find('Button.js-next-month');
+
+        nextMonth.simulate('click');
+
+        assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+        assert(isSameDay(onChange.firstCall.args[0], expectedDate));
+      });
+    });
+
     it('should render selected month in english by default', () => {
       const defaultDate = new Date(2017, 6, 14);
       const component = mount(<DateInput defaultValue={defaultDate} />);
@@ -344,11 +418,57 @@ describe('<DateInput />', () => {
     });
   });
 
-  it('should render custom footer prop', () => {
-    const Custom = () => (<div className='custom-footer'>Custom Footer</div>);
-    const component = mount(<DateInput footer={<Custom />} />);
-    assert.equal(component.find('div.custom-footer').length, 1);
-    assert.equal(component.find('footer.pb-2').length, 0);
+  describe('footer', () => {
+    it('should render custom footer prop', () => {
+      const Custom = () => (<div className='custom-footer'>Custom Footer</div>);
+      const component = mount(<DateInput footer={<Custom />} />);
+      assert.equal(component.find('div.custom-footer').length, 1);
+      assert.equal(component.find('footer.pb-2').length, 0);
+    });
+
+    describe('renderFooter', () => {
+      const onChange = sinon.spy();
+      const renderFooter = (today, clear) => (
+        <div className="custom-footer">
+          <Button onClick={today} className="mr-2 today-button">Today</Button>
+          <Button onClick={clear} className="mr-2 clear-button">Clear</Button>
+        </div>
+      );
+      let component;
+
+      beforeEach(() => {
+        onChange.resetHistory();
+        component = mount(<DateInput renderFooter={renderFooter} onChange={onChange} />);
+      });
+
+      it('should render custom footer', () => {
+        assert.strictEqual(component.find('div.custom-footer').length, 1);
+        assert.strictEqual(component.find('footer.pb-2').length, 0);
+      });
+
+      it('should allow setting date to today', () => {
+        onChange.resetHistory();
+        const today = component.find('Button.today-button').first();
+        today.simulate('click');
+
+        assert.deepStrictEqual(component.instance().getCurrentDate(), startOfToday());
+        assert(onChange.called);
+
+        const spyCall = onChange.getCall(0);
+
+        assert(isToday(spyCall.args[0]));
+        assert.strictEqual(spyCall.args[1], true);
+      });
+
+      it('should allow clearing date', () => {
+        onChange.resetHistory();
+        const clear = component.find('Button.clear-button').first();
+        clear.simulate('click');
+
+        assert.strictEqual(component.instance().inputEl.value, '');
+        assert(onChange.calledWith('', false));
+      });
+    });
   });
 
   it('should call custom parse function', () => {

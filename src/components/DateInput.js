@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import deprecated from 'deprecated-prop-type';
 import React from 'react';
 import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
@@ -67,8 +68,10 @@ export default class DateInput extends React.Component {
     ]),
     direction: PropTypes.string,
     disabled: PropTypes.bool,
-    footer: PropTypes.node,
-    header: PropTypes.node,
+    footer: deprecated(PropTypes.node, 'Use renderFooter instead.'),
+    header: deprecated(PropTypes.node, 'Use renderHeader insread.'),
+    renderFooter: PropTypes.func,
+    renderHeader: PropTypes.func,
     id: PropTypes.string,
     keyboard: PropTypes.bool,
     locale: PropTypes.object,
@@ -83,7 +86,6 @@ export default class DateInput extends React.Component {
       PropTypes.string,
       PropTypes.object
     ])
-    // TODO allow custom header/footer, header & day format?
   }
 
   static defaultProps = {
@@ -201,6 +203,7 @@ export default class DateInput extends React.Component {
     this.inputEl.setAttribute('value', value);
   };
 
+  clear = () => this.onChange('');
   close = () => this.setState({ open: false });
   nextMonth = () => this.setDate(addMonths(this.getCurrentDate(), 1));
   nextYear = () => this.setDate(addYears(this.getCurrentDate(), 1));
@@ -261,7 +264,7 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateEnabled, dateVisible, direction, disabled, footer, header, id, showOnFocus,
+    const { className, dateEnabled, dateVisible, direction, disabled, footer, header, renderFooter, renderHeader, id, showOnFocus,
       dateFormat, defaultValue, keyboard, locale, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
@@ -306,7 +309,7 @@ export default class DateInput extends React.Component {
             onKeyDown={this.onKeyDown}
             {...dropdownProps}
           >
-            {header || (
+            {(renderHeader && renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear)) || header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
                   <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
@@ -346,11 +349,11 @@ export default class DateInput extends React.Component {
               style={{ minWidth: '19rem' }}
             />
 
-            {footer || (
+            {(renderFooter && renderFooter(this.today, this.clear)) || footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
                   <Button onClick={this.today} className="mr-2">Today</Button>
-                  <Button onClick={() => this.onChange('')} className="mr-2">Clear</Button>
+                  <Button onClick={this.clear} className="mr-2">Clear</Button>
                 </div>
               </footer>
             )}
