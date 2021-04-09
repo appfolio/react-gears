@@ -99,6 +99,8 @@ export default class DateInput extends React.Component {
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
+    renderHeader: () => {},
+    renderFooter: () => {},
     showOnFocus: true
   }
 
@@ -309,7 +311,7 @@ export default class DateInput extends React.Component {
             onKeyDown={this.onKeyDown}
             {...dropdownProps}
           >
-            {(renderHeader && renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear)) || header || (
+            {(renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear)) || header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
                   <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
@@ -349,7 +351,7 @@ export default class DateInput extends React.Component {
               style={{ minWidth: '19rem' }}
             />
 
-            {(renderFooter && renderFooter(this.today, this.clear)) || footer || (
+            {(renderFooter(this.today, this.clear)) || footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
                   <Button onClick={this.today} className="mr-2">Today</Button>
