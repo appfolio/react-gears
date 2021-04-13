@@ -1,32 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import MaskedInput, { MaskedInputProps } from 'react-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { IMaskInput, IMaskInputProps } from 'react-imask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
-
-type Config = {
-  guide?: boolean,
-  previousConformedValue: string,
-  placeholderChar?: string,
-  placeholder?: string,
-  currentCaretPosition?: number,
-  keepCharPositions?: boolean,
-  rawValue: string,
-}
-
-/**
- * In the case where the user enters an extra "." at the end of the input the default behavior will
- * be to remove the original decimal point and keep the new one, resulting in the value being
- * multiplied by 100.  If we detect an additional decimal point we can ignore the extra character.
- */
-function preventMultipleDecimalPoint(conformedValue: string, config: Config): string {
-  let result = conformedValue;
-  if (config.rawValue.match(/\..*\./)) {
-    result = config.previousConformedValue;
-  }
-  return result;
-}
+// eslint-disable-next-line import/no-unresolved
+import './TypeHelpers/react-imask.d.ts';
 
 type Props = {
   allowDecimal?: boolean;
@@ -34,17 +12,18 @@ type Props = {
   className?: string;
   id?: string;
   includeThousandsSeparator?: boolean;
-  inputProps?: MaskedInputProps;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  padZeros?: boolean,
   size?: string;
-  state?: any;
-  type?: any;
-} & MaskedInputProps;
+  value?: string | number;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const defaultProps = {
   allowDecimal: true,
   allowNegative: false,
   includeThousandsSeparator: true,
-}
+  padZeros: true,
+};
 
 // TODO support I18n
 const CurrencyInput: FunctionComponent<Props> = ({
@@ -53,9 +32,10 @@ const CurrencyInput: FunctionComponent<Props> = ({
   className,
   includeThousandsSeparator = defaultProps.includeThousandsSeparator,
   inputProps,
+  padZeros = defaultProps.padZeros,
   size,
-  state,
-  type,
+  value,
+  onChange: onAccept,
   ...props
 }: Props) => {
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
@@ -64,23 +44,20 @@ const CurrencyInput: FunctionComponent<Props> = ({
     ...inputProps,
     ...props,
     className: inputClassNames,
-    // There is a weird bug in the MaskedInput where if the "value" prop gets set to null the
-    // input value gets set to "_".  Setting guide to false instead of undefined solves the
-    // problem.
-    guide: false,
-    mask: createNumberMask({
-      allowDecimal,
-      allowNegative,
-      includeThousandsSeparator,
-      prefix: ''
-    }),
-    pipe: preventMultipleDecimalPoint
+    mask: Number,
+    onAccept,
+    padFractionalZeros: allowDecimal && padZeros,
+    radix: '.',
+    scale: allowDecimal ? 2 : 0,
+    signed: allowNegative,
+    thousandsSeparator: includeThousandsSeparator ? ',' : '',
+    value: value?.toString(),
   };
 
   return (
     <InputGroup size={size} className={className}>
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-      <MaskedInput {...maskedProps} />
+      <IMaskInput {...maskedProps} />
     </InputGroup>
   );
 };
