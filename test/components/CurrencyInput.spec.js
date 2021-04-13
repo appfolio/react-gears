@@ -84,8 +84,7 @@ describe('<CurrencyInput />', () => {
       assert.strictEqual(input.getDOMNode().value, '0.00');
     });
 
-    // TODO skipped pending this issue/question: https://github.com/text-mask/text-mask/issues/372
-    it.skip('should zero pad 1 decimal', () => {
+    it('should zero pad 1 decimal', () => {
       const component = mount(<CurrencyInput onChange={callback} value={1234.5} />);
       const input = component.find('input');
 
