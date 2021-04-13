@@ -32,7 +32,7 @@ describe('<CurrencyInput />', () => {
     it('can be disabled', () => {
       const component = mount(<CurrencyInput value="123,456" includeThousandsSeparator={false} />);
       const input = component.find('input');
-      assert.equal(input.getDOMNode().value, '123456');
+      assert.equal(input.getDOMNode().value, '123456.00');
     });
   });
 
@@ -40,13 +40,13 @@ describe('<CurrencyInput />', () => {
     it('should be disabled by default', () => {
       const component = mount(<CurrencyInput value="-123" />);
       const input = component.find('input');
-      assert.equal(input.getDOMNode().value, '123');
+      assert.equal(input.getDOMNode().value, '123.00');
     });
 
     it('can be enabled', () => {
       const component = mount(<CurrencyInput value="-123" allowNegative />);
       const input = component.find('input');
-      assert.equal(input.getDOMNode().value, '-123');
+      assert.equal(input.getDOMNode().value, '-123.00');
     });
   });
 
@@ -71,20 +71,17 @@ describe('<CurrencyInput />', () => {
     });
 
     it('should ignore additional decimal points', () => {
-      const component = mount(<CurrencyInput value={1234.56} />);
+      const component = mount(<CurrencyInput value="1234.56." />);
       const input = component.find('input');
-      input.getDOMNode().value = '1,234.56.';
-      input.simulate('input');
-      assert.equal(input.getDOMNode().value, '1,234.56');
+
+      assert.strictEqual(input.getDOMNode().value, '1,234.56');
     });
 
     it('should prefix decimal only currency with 0', () => {
-      const component = mount(<CurrencyInput onChange={callback} />);
+      const component = mount(<CurrencyInput onChange={callback} value="." />);
       const input = component.find('input');
 
-      input.getDOMNode().value = '.';
-      input.simulate('input');
-      assert.equal(input.getDOMNode().value, '0.');
+      assert.strictEqual(input.getDOMNode().value, '0.00');
     });
 
     // TODO skipped pending this issue/question: https://github.com/text-mask/text-mask/issues/372
