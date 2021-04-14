@@ -4,8 +4,6 @@ import { IMaskInput, IMaskInputProps } from 'react-imask';
 import IMask from 'imask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
-// eslint-disable-next-line import/no-unresolved
-import './TypeHelpers/react-imask.d.ts';
 
 type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, | 'max' | 'min' >;
 
