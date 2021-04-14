@@ -1,10 +1,12 @@
 import React from 'react';
-import MaskedInputBase, { MaskedInputProps } from 'react-text-mask';
+import { IMaskInput, IMaskInputProps } from 'react-imask';
+// eslint-disable-next-line import/no-unresolved
+import './TypeHelpers/react-imask.d.ts';
 
-const MaskedInput: React.FunctionComponent<MaskedInputProps> = (
-  { guide = false, ...props }: MaskedInputProps
+const MaskedInput: React.FunctionComponent<IMaskInputProps> = (
+  props: IMaskInputProps
 ) => (
-  <MaskedInputBase className="form-control" guide={guide} {...props} />
+  <IMaskInput className="form-control" {...props} />
 );
 
 export default MaskedInput;
