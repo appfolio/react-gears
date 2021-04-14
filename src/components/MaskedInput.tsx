@@ -1,10 +1,15 @@
 import React from 'react';
-import MaskedInputBase, { MaskedInputProps } from 'react-text-mask';
+import { IMaskInput, IMaskInputProps } from 'react-imask';
+import classnames from 'classnames';
+import IMask from 'imask';
 
-const MaskedInput: React.FunctionComponent<MaskedInputProps> = (
-  { guide = false, ...props }: MaskedInputProps
-) => (
-  <MaskedInputBase className="form-control" guide={guide} {...props} />
-);
+function MaskedInput<MaskOptions extends IMask.AnyMaskedOptions>({ className: classes, ...props }: IMaskInputProps<MaskOptions>) {
+  const className = classnames('form-control', classes);
+  const maskProps = { className, ...props };
+  return (
+    // @ts-ignore
+    <IMaskInput {...maskProps} />
+  );
+}
 
 export default MaskedInput;
