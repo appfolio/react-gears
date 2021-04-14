@@ -1,22 +1,21 @@
 declare module 'react-imask' {
-  import Imask from 'imask';
+  import IMask from 'imask';
 
   // https://github.com/uNmAnNeR/imaskjs/blob/master/packages/react-imask/src/mixin.js
-
-  export type IMaskInputProps = Imask.AnyMaskedOptions & {
+  export type IMaskInputProps<MaskOptions extends IMask.AnyMaskedOptions> = MaskOptions & {
     unmask?: boolean;
     value?: any,
     prepare?: (value: string) => string,
-    validate?: (value: string, masked: string) => void,
-    commit?: (value: string, masked: string) => void,
+    validate?: (value: string, masked: IMask.Masked<MaskOptions['mask']>) => void,
+    commit?: (value: string, masked: IMask.Masked<MaskOptions['mask']>) => void,
     overwrite?: boolean,
-    onAccept?: (value: string, masked: string) => void;
-    onComplete?: (value: string, masked: string) => void;
+    onAccept?: (value: string, mask: IMask.InputMask<MaskOptions>) => void;
+    onComplete?: (value: string, mask: IMask.InputMask<MaskOptions>) => void;
   } & React.InputHTMLAttributes<HTMLInputElement>;
 
-  export function IMaskMixin<T, D>(
-    Component: React.ComponentType<{ inputRef: React.Ref<D> } & T>
-  ): React.ComponentType<T & IMaskInputProps>;
+  export function IMaskMixin<T, TProps, MaskOptions extends IMask.AnyMaskedOptions>(
+    Component: React.ComponentType<{ inputRef: React.Ref<T> } & TProps>
+  ): React.ComponentType<TProps & IMaskInputProps<MaskOptions>>;
 
-  export const IMaskInput: React.ComponentType<IMaskInputProps>;
+  export function IMaskInput<MaskOptions extends IMask.AnyMaskedOptions>(props: IMaskInputProps<MaskOptions>): JSX.Element;
 }

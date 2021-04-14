@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import { IMaskInput, IMaskInputProps } from 'react-imask';
+import IMask from 'imask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 // eslint-disable-next-line import/no-unresolved
@@ -18,7 +19,6 @@ type Props = {
   padZeros?: boolean,
   size?: string;
   value?: string | number;
-  onChange?: (value: string, masked: string) => void,
 } & InputProps;
 
 const defaultProps = {
@@ -38,12 +38,20 @@ const CurrencyInput: FunctionComponent<Props> = ({
   padZeros = defaultProps.padZeros,
   size,
   value,
-  onChange: onAccept,
+  onChange,
   ...props
 }: Props) => {
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
+  const onAccept = (val: string, mask: IMask.InputMask<IMask.MaskedNumberOptions>) => {
+    if (onChange) {
+      const ev = new Event('change') as unknown as React.ChangeEvent<HTMLInputElement>;
+      // @ts-ignore
+      mask.el.input.dispatchEvent(ev);
+      onChange(ev);
+    }
+  };
 
-  const maskedProps = {
+  const maskedProps: IMaskInputProps<IMask.MaskedNumberOptions> = {
     ...inputProps,
     ...props,
     className: inputClassNames,
