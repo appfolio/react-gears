@@ -125,6 +125,7 @@
     "fs-extra": "5.0.0",
     "glob": "^7.1.6",
     "identity-obj-proxy": "^3.0.0",
+    "imask": "^6.0.7",
     "jest": "^26.4.1",
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
