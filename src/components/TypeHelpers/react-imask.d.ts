@@ -10,9 +10,9 @@ declare module 'react-imask' {
     validate?: (value: string, masked: string) => void,
     commit?: (value: string, masked: string) => void,
     overwrite?: boolean,
-    onAccept?: <T>(...args: T[]) => void;
-    onComplete?: <T>(...args: T[]) => void;
-  };
+    onAccept?: (value: string, masked: string) => void;
+    onComplete?: (value: string, masked: string) => void;
+  } & React.InputHTMLAttributes<HTMLInputElement>;
 
   export function IMaskMixin<T, D>(
     Component: React.ComponentType<{ inputRef: React.Ref<D> } & T>

@@ -6,17 +6,20 @@ import InputGroupAddon from './InputGroupAddon';
 // eslint-disable-next-line import/no-unresolved
 import './TypeHelpers/react-imask.d.ts';
 
+type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, | 'max' | 'min' >;
+
 type Props = {
   allowDecimal?: boolean;
   allowNegative?: boolean;
   className?: string;
   id?: string;
   includeThousandsSeparator?: boolean;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: InputProps;
   padZeros?: boolean,
   size?: string;
   value?: string | number;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  onChange?: (value: string, masked: string) => void,
+} & InputProps;
 
 const defaultProps = {
   allowDecimal: true,
