@@ -1,5 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
 import { CurrencyInput } from '../src';
 
 export default {
@@ -7,20 +8,14 @@ export default {
   component: CurrencyInput,
 };
 
-export const DefaultProps = () => (
-  <CurrencyInput onChange={action('onChange')} />
-);
-
-export const AllowNegative = () => (
-  <CurrencyInput allowNegative onChange={action('onChange')} />
-);
-
-export const DisallowDecimals = () => (
-  <CurrencyInput allowDecimal={false} onChange={action('onChange')} />
-);
-
-export const DisallowCommas = () => (
-  <CurrencyInput includeThousandsSeparator={false} onChange={action('onChange')} />
+export const Example = () => (
+  <CurrencyInput
+    onChange={action('onChange')}
+    allowDecimal={boolean('allowDecimal', true)}
+    allowNegative={boolean('allowNegative', true)}
+    includeThousandsSeparator={boolean('includeThousandsSeparator', true)}
+    padZeros={boolean('padZeros', true)}
+  />
 );
 
 export const RightAligned = () => (
