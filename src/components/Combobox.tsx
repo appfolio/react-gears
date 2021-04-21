@@ -160,8 +160,8 @@ function Combobox<T>({
         {
           multi &&
           (selected as Option<T>[]).map((o: Option<T>) => (
-            <Button color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)}>
-              <Badge key={`${o.value}`} style={{ textTransform: 'none' }} className="p-2">
+            <Button key={`${o.value}`} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${o.value}`}>
+              <Badge style={{ textTransform: 'none' }} className="p-2">
                 {o.label}{' '} <Icon name="close" />
               </Badge>
             </Button>
@@ -197,19 +197,20 @@ function Combobox<T>({
               className={inputClassName}
               placeholder={selected ? undefined : placeholder}
               onFocus={(ev) => {
-              ev.preventDefault();
-              ev.stopPropagation();
+                ev.preventDefault();
+                ev.stopPropagation();
 
-              setOpen(true);
-            }}
+                setOpen(true);
+              }}
               onChange={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setInputValue(e.target.value);
-            }}
+                e.preventDefault();
+                e.stopPropagation();
+                setInputValue(e.target.value);
+              }}
               onKeyDown={handleOptionsKeyboardNav}
               type="search"
               value={inputValue}
+              aria-label="Filter options"
               {...props}
             />
             <InputGroupAddon addonType="append">
@@ -219,12 +220,13 @@ function Combobox<T>({
                 disabled={disabled}
                 active={open}
                 onMouseDown={(ev) => {
-                ev.preventDefault();
-                ev.stopPropagation();
-                setOpen(!open);
-              }}
+                  ev.preventDefault();
+                  ev.stopPropagation();
+                  setOpen(!open);
+                }}
                 type="button"
                 tabIndex={-1}
+                aria-label="Toggle options menu"
               >
                 <Icon name={open ? 'caret-up' : 'caret-down'} fixedWidth />
               </Button>
@@ -252,34 +254,37 @@ function Combobox<T>({
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"
-          aria-activedescendant={`option-${options[focusedOptionIndex].value}`}
+          aria-activedescendant={visibleOptions[focusedOptionIndex] && `option-${visibleOptions[focusedOptionIndex].value}`}
           aria-multiselectable={multi}
         >
           {options
-          .map((option, i) => (
-            <DropdownItem
-              disabled={option.disabled}
-              className={`${isOptionVisible(option) ? '' : 'd-none'}`}
-              key={`${option.value}`}
-              id={`option-${option.value}`}
-              active={focusedOptionIndex === i}
-              onMouseEnter={(ev) => {
+          .map((option) => {
+            const visibleIndex = visibleOptions.indexOf(option);
+            return (
+              <DropdownItem
+                disabled={option.disabled}
+                className={`${isOptionVisible(option) ? '' : 'd-none'}`}
+                key={`${option.value}`}
+                id={`option-${option.value}`}
+                active={focusedOptionIndex === visibleIndex}
+                onMouseEnter={(ev) => {
                 ev.preventDefault();
                 ev.stopPropagation();
-                setFocusedOptionIndex(i);
+                setFocusedOptionIndex(visibleIndex);
               }}
-              onMouseDown={(ev) => {
+                onMouseDown={(ev) => {
                 ev.preventDefault();
                 ev.stopPropagation();
                 selectOption(option);
               }}
-              ref={i === focusedOptionIndex ? focusedOption : null}
-              role="option"
-              aria-selected={isOptionSelected(option)}
-            >
-              {renderOption(option)}
-            </DropdownItem>
-          ))}
+                ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
+                role="option"
+                aria-selected={isOptionSelected(option)}
+              >
+                {renderOption(option)}
+              </DropdownItem>
+          );
+            })}
           {visibleOptions.length === 0 && (
           <DropdownItem disabled>
             {noResultsLabel}
