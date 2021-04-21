@@ -20,7 +20,7 @@ type Option<T> = {
   disabled?: boolean;
 }
 
-interface BaseComboboxProps<T> extends Omit<InputProps, 'onChange'> {
+interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   options: Option<T>[];
   direction?: Direction;
   dropdownProps?: DropdownProps;
@@ -30,13 +30,8 @@ interface BaseComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   renderInputValue?: (option: Option<T>) => string;
   renderOption?: (option: Option<T>) => React.ReactNode;
   menuMaxHeight?: string;
+  multi?: boolean;
 }
-
-interface MultiComboboxProps<T> extends BaseComboboxProps<T> {
-  multi: true
-}
-
-type ComboboxProps<T> = BaseComboboxProps<T> | MultiComboboxProps<T>;
 
 const defaultProps = {
   noResultsLabel: 'No results found',
@@ -111,6 +106,15 @@ function Combobox<T>({
   };
 
   useEffect(scrollFocusedOptionIntoView, [focusedOptionIndex]);
+
+  const isOptionVisible = (option: Option<T>) => visibleOptions.indexOf(option) > -1;
+
+  const isOptionSelected = (option: Option<T>) => {
+    if (multi) {
+      return value?.indexOf(option.value) > -1;
+    }
+    return value === option.value;
+  };
 
   const selectOption = (option: Option<T>) => {
     if (multi) {
@@ -247,12 +251,17 @@ function Combobox<T>({
         }}
           {...dropdownProps}
           ref={dropdownMenu}
+          role="listbox"
+          aria-activedescendant={`option-${options[focusedOptionIndex].value}`}
+          aria-multiselectable={multi}
         >
-          {visibleOptions
+          {options
           .map((option, i) => (
             <DropdownItem
               disabled={option.disabled}
+              className={`${isOptionVisible(option) ? '' : 'd-none'}`}
               key={`${option.value}`}
+              id={`option-${option.value}`}
               active={focusedOptionIndex === i}
               onMouseEnter={(ev) => {
                 ev.preventDefault();
@@ -265,6 +274,8 @@ function Combobox<T>({
                 selectOption(option);
               }}
               ref={i === focusedOptionIndex ? focusedOption : null}
+              role="option"
+              aria-selected={isOptionSelected(option)}
             >
               {renderOption(option)}
             </DropdownItem>
