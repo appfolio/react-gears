@@ -235,6 +235,32 @@ describe('<Combobox />', () => {
     });
   });
 
+  it('should support grouped options', () => {
+    const groupedOptions = [
+      { label: 'Droids', options: OPTIONS },
+      { label: 'Ships', options: [{ label: 'X-Wing', value: 'xwing' }, { label: 'Millenium Falcon', value: 'falcon' }] },
+    ];
+
+    const combobox = render(<Combobox options={groupedOptions} />);
+
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+
+    const droidLabel = combobox.getByText('Droids');
+    assert(droidLabel.classList.contains('dropdown-header'));
+
+    groupedOptions[0].options.forEach((o) => {
+      combobox.findByText(o.label);
+    });
+
+    const shipsLabel = combobox.getByText('Ships');
+    assert(shipsLabel.classList.contains('dropdown-header'));
+
+    groupedOptions[1].options.forEach((o) => {
+      combobox.findByText(o.label);
+    });
+  });
+
   describe('multiselect', () => {
     it('should render multiple values as buttons to remove the option', () => {
       const combobox = render(<Combobox options={OPTIONS} value={[1, 2]} multi />);
