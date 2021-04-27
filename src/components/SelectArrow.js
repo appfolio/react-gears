@@ -52,7 +52,6 @@ const SelectArrow = ({ isOpen, render }) => (
           border-bottom-right-radius: 0;
           border-bottom-left-radius: 0;
           background: #fff;
-          border-color: silver #d9d9d9 #e6e6e6;
         }
         .Select.is-open > .Select-control .Select-arrow {
           top: -2px;
@@ -138,9 +137,8 @@ const SelectArrow = ({ isOpen, render }) => (
         }
         .Select-control {
           background-color: #fff;
-          border-color: #e6e6e6 #d9d9d9 silver;
-          border-radius: 4px;
-          border: 1px solid #d9d9d9;
+          border-radius: 0.15rem;
+          border: 1px solid #a9b7c1;
           color: #333;
           cursor: default;
           display: table;
