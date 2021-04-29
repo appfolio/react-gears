@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-// import { useSessionStorage } from 'react-use';
 import classnames from 'classnames';
 import Resize from 'react-resize-detector';
 import useSavedScroll from '../hooks/useSavedScroll';
