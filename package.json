@@ -1,6 +1,6 @@
 {
   "name": "@appfolio/react-gears",
-  "version": "5.19.2",
+  "version": "6.1.1",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -48,7 +48,9 @@
     "classnames": "^2.2.6",
     "credit-card-type": "^5.0.1",
     "date-fns": "^1.30.1",
+    "deprecated-prop-type": "^1.0.0",
     "fecha": "^2.3.3",
+    "imask": "^6.0.7",
     "lodash.flow": "^3.5.0",
     "lodash.includes": "^4.3.0",
     "lodash.isequal": "^4.5.0",
@@ -63,6 +65,7 @@
     "memoize-one": "^5.1.1",
     "prop-types": "^15.7.2",
     "react-fontawesome": "^1.7.1",
+    "react-imask": "^6.0.7",
     "react-onclickoutside": "^6.9.0",
     "react-popper": "^1.3.7",
     "react-resize-detector": "^4.2.3",

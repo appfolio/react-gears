@@ -7,6 +7,7 @@ import endOfWeek from 'date-fns/end_of_week';
 import isSameDay from 'date-fns/is_same_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
+import frLocale from 'date-fns/locale/fr';
 import { assertAccessible } from '../a11yHelpers';
 import { Calendar } from '../../src';
 
@@ -106,5 +107,31 @@ describe('<Calendar />', () => {
     await assertAccessible(
       <Calendar renderDay={() => <td className="customDay">x</td>} />
     );
+  });
+
+  describe('weeks', () => {
+    it('should render weeks in english by default', () => {
+      const specifiedDate = new Date(2017, 6, 14);
+      const component = mount(<Calendar date={specifiedDate} />);
+      const weekdays = component.find('.js-calendar-weekdays th');
+
+      const names = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+      names.forEach((w, i) => {
+        assert.strictEqual(weekdays.at(i).text(), w);
+      });
+    });
+
+    it('should render weeks in provided locale', () => {
+      const specifiedDate = new Date(2017, 6, 14);
+      const component = mount(<Calendar date={specifiedDate} locale={frLocale} />);
+      const weekdays = component.find('.js-calendar-weekdays th');
+
+      const names = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'];
+
+      names.forEach((w, i) => {
+        assert.strictEqual(weekdays.at(i).text(), w);
+      });
+    });
   });
 });

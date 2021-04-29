@@ -28,7 +28,7 @@ type NoteProps = {
 }
 
 const defaultProps = {
-  className: 'bg-white mb-3',
+  className: 'mb-3',
   dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
   showTimezone: true,
   rows: EditableNoteDefaultProps.rows,

@@ -13,11 +13,10 @@ import isToday from 'date-fns/is_today';
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
+import enLocale from 'date-fns/locale/en';
 import Table from './Table';
 
-// TODO locale/localize
-
-const Day = ({ day, dateFormat, onClick, ...props }) => {
+const Day = ({ day, dateFormat, locale, onClick, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(
     'text-center',
@@ -29,6 +28,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
   const styles = disabled ? {
     cursor: 'not-allowed'
   } : {};
+  const dayString = format(day.date, dateFormat, { locale });
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -40,7 +40,7 @@ const Day = ({ day, dateFormat, onClick, ...props }) => {
       style={styles}
       {...props}
     >
-      {disabled ? <s>{format(day.date, dateFormat)}</s> : format(day.date, dateFormat)}
+      {disabled ? <s>{dayString}</s> : dayString}
       <style jsx>{`
         td:hover {
           font-weight: bold;
@@ -60,6 +60,7 @@ Day.propTypes = {
     visible: PropTypes.bool
   }),
   dateFormat: PropTypes.string,
+  locale: PropTypes.object,
   onClick: PropTypes.func
 };
 
@@ -70,6 +71,7 @@ class Calendar extends React.Component {
     dateFormat: PropTypes.string,
     dateEnabled: PropTypes.func,
     dateVisible: PropTypes.func,
+    locale: PropTypes.object,
     onSelect: PropTypes.func,
     renderDay: PropTypes.func,
     weekDayFormat: PropTypes.string
@@ -81,11 +83,13 @@ class Calendar extends React.Component {
     dateFormat: 'D',
     dateEnabled: () => true,
     dateVisible: () => true,
-    renderDay: (day, dateFormat, onSelect) => (
+    locale: enLocale,
+    renderDay: (day, dateFormat, onSelect, locale) => (
       <Day
         day={day}
         dateFormat={dateFormat}
         key={day.date.toString()}
+        locale={locale}
         onClick={() => day.visible && onSelect(day.date)}
       />
     ),
@@ -125,7 +129,7 @@ class Calendar extends React.Component {
   }
 
   render() {
-    const { date, dateFormat, onSelect, renderDay, weekDayFormat, ...props } = this.props;
+    const { date, dateFormat, locale, onSelect, renderDay, weekDayFormat, ...props } = this.props;
     const weeks = this.visibleWeeks(date);
     delete props.dateEnabled; // Table doesn't need dateVisible
     delete props.dateVisible; // Table doesn't need dateVisible
@@ -147,14 +151,14 @@ class Calendar extends React.Component {
           <col style={{ width: '14.29%' }} />
         </colgroup>
         <thead>
-          <tr>
-            {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat)}</th>)}
+          <tr className="js-calendar-weekdays">
+            {weeks[0].map((day, i) => <th key={i} className="text-center">{format(day.date, weekDayFormat, { locale })}</th>)}
           </tr>
         </thead>
         <tbody>
           {weeks.map((days, w) => (
             <tr key={w}>
-              {days.map(day => renderDay(day, dateFormat, onSelect))}
+              {days.map(day => renderDay(day, dateFormat, onSelect, locale))}
             </tr>
           ))}
         </tbody>
