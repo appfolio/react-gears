@@ -280,5 +280,16 @@ describe('<Combobox />', () => {
 
       assert.deepStrictEqual(value, [2]);
     });
+
+    it('should be able to remove remove all options', () => {
+      let value = [1, 2];
+      const mockOnChange = (v) => { value = v; };
+      const combobox = render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+
+      const removeOptionButton = combobox.getByLabelText('Remove all selected options');
+      fireEvent.click(removeOptionButton);
+
+      assert.deepStrictEqual(value, []);
+    });
   });
 });
