@@ -4,17 +4,15 @@ import Resize from 'react-resize-detector';
 import useSavedScroll from '../hooks/useSavedScroll';
 
 export type Theme = {
-  overflowTop?: string,
-  overflowBottom?: string,
-  overflowLeft?: string,
-  overflowRight?: string
+  overflowTop: string,
+  overflowBottom: string,
+  overflowLeft: string,
+  overflowRight: string
 }
 
-export interface Props extends Omit<React.HTMLProps<HTMLDivElement>, 'className'> {
-  className?: string;
-  children: React.ReactNode;
+export interface ScrollContainerProps extends React.HTMLProps<HTMLDivElement> {
   height?: string | number;
-  savePosition?: string;
+  scrollPositionKey?: string;
   theme?: Theme;
 }
 
@@ -29,7 +27,7 @@ const ScrollContainer = ({
   children,
   className,
   height,
-  savePosition,
+  scrollPositionKey,
   theme = defaultTheme,
   ...props
 }: ScrollContainerProps) => {
@@ -39,8 +37,8 @@ const ScrollContainer = ({
     overflowLeft: false,
     overflowRight: false
   });
-  const container = useRef<HTMLElement>(null);
-  useSavedScroll(container, savePosition);
+  const container = useRef<HTMLDivElement>(null);
+  useSavedScroll(container, scrollPositionKey);
 
   function detectOverflow() {
     if (container.current) {
@@ -80,11 +78,11 @@ const ScrollContainer = ({
           maxHeight: height,
           overflow: 'auto'
         }}
-        onScroll={e => detectOverflow(e.target)}
+        onScroll={() => detectOverflow()}
       >
         {children}
       </div>
-      <Resize handleWidth handleHeight onResize={() => detectOverflow()} className="d-none" />
+      <Resize handleWidth handleHeight onResize={() => detectOverflow()} />
       <div className='container-shadow' />
       <style jsx>
         {`
