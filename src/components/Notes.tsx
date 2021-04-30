@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Note from './Note';
@@ -50,26 +49,6 @@ const Notes: React.FunctionComponent<NotesProps> = ({
       }
   </div>
 );
-
-Notes.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  onCancel: PropTypes.func,
-  onChange: PropTypes.func,
-  onDelete: PropTypes.func,
-  onEdit: PropTypes.func,
-  onSave: PropTypes.func,
-  onUndelete: PropTypes.func,
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      date: PropTypes.instanceOf(Date),
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-      editing: PropTypes.bool,
-      saving: PropTypes.bool,
-    }).isRequired
-  ).isRequired,
-};
 
 Notes.defaultProps = defaultProps;
 

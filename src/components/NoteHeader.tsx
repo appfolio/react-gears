@@ -1,6 +1,5 @@
-import fecha from 'fecha';
-import PropTypes from 'prop-types';
 import React from 'react';
+import fecha from 'fecha';
 import classnames from 'classnames';
 import Badge from './Badge';
 import Button from './Button';
@@ -77,20 +76,6 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
 };
 
 NoteHeader.displayName = 'NoteHeader';
-
-NoteHeader.propTypes = {
-  note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date),
-    edited: PropTypes.bool,
-    from: PropTypes.string,
-    title: PropTypes.string,
-  }).isRequired,
-  dateFormat: PropTypes.string,
-  // TODO shortDateFormat ?
-  showTimezone: PropTypes.bool,
-  onDelete: PropTypes.func,
-  onEdit: PropTypes.func,
-};
 
 NoteHeader.defaultProps = defaultProps;
 

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Card from './Card';
@@ -91,32 +90,6 @@ const Note: React.FunctionComponent<NoteProps> = ({
 };
 
 Note.displayName = 'Note';
-
-Note.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  dateFormat: PropTypes.string,
-  showTimezone: PropTypes.bool,
-  note: PropTypes.shape({
-    title: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    deleted: PropTypes.bool,
-    editing: PropTypes.bool,
-    from: PropTypes.string,
-    errors: PropTypes.string,
-    text: PropTypes.string.isRequired
-  }).isRequired,
-  onCancel: PropTypes.func,
-  onChange: PropTypes.func,
-  onDelete: PropTypes.func,
-  onEdit: PropTypes.func,
-  onSave: PropTypes.func,
-  onUndelete: PropTypes.func,
-  rows: PropTypes.number,
-  saving: PropTypes.bool,
-  saveLabel: PropTypes.node,
-  savingLabel: PropTypes.node
-};
 
 Note.defaultProps = defaultProps;
 
