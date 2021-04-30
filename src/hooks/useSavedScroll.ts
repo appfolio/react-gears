@@ -2,8 +2,13 @@ import { RefObject, useEffect, useLayoutEffect } from 'react';
 import { useSessionStorage, useScroll } from 'react-use';
 import { v4 as uuidv4 } from 'uuid';
 
-function useSavedScroll(container: HTMLInputElement, key: string) {
-  const [position, setPosition] = useSessionStorage(key);
+type Position = {
+  x: number,
+  y: number
+};
+
+function useSavedScroll(container: RefObject<HTMLElement>, key: string | undefined) {
+  const [position, setPosition] = useSessionStorage<Position>(key || uuidv4());
   const scrollPosition = useScroll(container);
 
   useEffect(() => {
