@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Button from './Button';
 import ButtonToolbar from './ButtonToolbar';
@@ -73,29 +72,6 @@ const EditableNote: React.FunctionComponent<EditableNoteProps> = ({
       </CardBody>
     </Card>
   );
-};
-
-EditableNote.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  dateFormat: PropTypes.string,
-  showTimezone: PropTypes.bool,
-  note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date),
-    deleted: PropTypes.bool,
-    edited: PropTypes.bool,
-    editing: PropTypes.bool,
-    from: PropTypes.string,
-    errors: PropTypes.string,
-    text: PropTypes.string.isRequired
-  }).isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  rows: PropTypes.number,
-  saving: PropTypes.bool,
-  saveLabel: PropTypes.node,
-  savingLabel: PropTypes.node
 };
 
 EditableNote.defaultProps = {
