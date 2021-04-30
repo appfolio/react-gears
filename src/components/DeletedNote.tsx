@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Alert from './Alert';
 import Button from './Button';
@@ -25,20 +24,6 @@ const DeletedNote: React.FunctionComponent<DeletedNoteProps> = ({
       }
     </Alert>
   );
-};
-
-DeletedNote.propTypes = {
-  className: PropTypes.string,
-  note: PropTypes.shape({
-    date: PropTypes.instanceOf(Date),
-    deleted: PropTypes.bool,
-    edited: PropTypes.bool,
-    editing: PropTypes.bool,
-    from: PropTypes.string,
-    errors: PropTypes.string,
-    text: PropTypes.string.isRequired
-  }).isRequired,
-  onUndelete: PropTypes.func,
 };
 
 export default DeletedNote;

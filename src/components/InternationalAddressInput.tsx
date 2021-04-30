@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Col from './Col';
 import CountryInput from './CountryInput';
 import FormLabelGroup from './FormLabelGroup';
@@ -33,18 +32,18 @@ const defaultProps = {
   } as AddressPropType & { countryCode: string },
 };
 
-const InternationalAddressInput: React.FunctionComponent<InternationalAddressInputProps> = ({
+const InternationalAddressInput = ({
   className,
   disabled = defaultProps.disabled,
   error = defaultProps.error,
   hints = defaultProps.hints,
   id,
-  labels= defaultProps.labels,
-  onBlur= defaultProps.onBlur,
-  onChange= defaultProps.onChange,
+  labels = defaultProps.labels,
+  onBlur = defaultProps.onBlur,
+  onChange = defaultProps.onChange,
   showLabels = defaultProps.showLabels,
   value = defaultProps.value
-}) => {
+}: InternationalAddressInputProps) => {
   const countryCode = value.countryCode;
   const addressFormat = getAddressFormat(countryCode);
   const fields = getAddressFormat(countryCode).fields;
@@ -135,33 +134,6 @@ const InternationalAddressInput: React.FunctionComponent<InternationalAddressInp
       ))}
     </div>
   );
-};
-
-const addressPropType = {
-  address1: PropTypes.string,
-  address2: PropTypes.string,
-  city: PropTypes.string,
-  state: PropTypes.string,
-  postal: PropTypes.string,
-  countryCode: PropTypes.string,
-};
-
-InternationalAddressInput.propTypes = {
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  error: PropTypes.shape(addressPropType),
-  hints: PropTypes.shape(addressPropType),
-  id: PropTypes.string,
-  labels: PropTypes.shape(addressPropType),
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  showLabels: PropTypes.bool,
-  value: PropTypes.shape(
-    Object.assign(
-      {},
-      addressPropType,
-      { countryCode: PropTypes.string.isRequired }
-  )),
 };
 
 InternationalAddressInput.defaultProps = defaultProps;
