@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { Combobox, Icon } from '../src';
-import { bool } from 'prop-types';
 
 const options = [
   { label: 'Alaska', value: 'AK' },
