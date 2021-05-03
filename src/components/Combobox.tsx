@@ -231,7 +231,7 @@ function Combobox<T>({
             createOption();
           }}
         >
-          {`Add option: ${inputValue}`}
+          {`Create "${inputValue}"`}
         </DropdownItem>
       );
     }
