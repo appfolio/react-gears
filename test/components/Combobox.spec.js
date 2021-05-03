@@ -8,6 +8,7 @@ import {
 } from '@testing-library/react';
 
 import Combobox from '../../src/components/Combobox';
+import { assertAccessible } from '../a11yHelpers';
 
 const OPTIONS = [
   { label: 'R2-D2', value: 1 },
@@ -18,6 +19,12 @@ const OPTIONS = [
 
 describe('<Combobox />', () => {
   afterEach(cleanup);
+
+  it('should be accessible', async () => {
+    await assertAccessible(
+      <Combobox options={OPTIONS} />
+    );
+  });
 
   it('should show options when focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
@@ -207,7 +214,7 @@ describe('<Combobox />', () => {
 
       fireEvent.change(input, { target: { value: 'bb8' } });
 
-      assert.equal(combobox.queryByText('D-O'), undefined);
+      assert(combobox.queryByText('D-O').classList.contains('sr-only'));
       assert(combobox.getByText('BB8').classList.contains('active'));
     });
 
@@ -218,13 +225,71 @@ describe('<Combobox />', () => {
       fireEvent.focus(input);
       fireEvent.change(input, { target: { value: 'd2' } });
 
-      assert.equal(combobox.queryByText('D-O'), undefined);
+      assert(combobox.queryByText('D-O').classList.contains('sr-only'));
       assert(combobox.getByText('R2-D2'));
 
       fireEvent.change(input, { target: { value: 'd' } });
 
       assert(combobox.getByText('D-O'));
       assert(combobox.getByText('R2-D2'));
+    });
+  });
+
+  describe('multiselect', () => {
+    it('should render multiple values as buttons to remove the option', () => {
+      const combobox = render(<Combobox options={OPTIONS} value={[1, 2]} multi />);
+
+      combobox.getByLabelText(`Remove option: ${OPTIONS[0].value}`);
+      combobox.getByLabelText(`Remove option: ${OPTIONS[1].value}`);
+    });
+
+    it('should remove last selected option if input is empty and backspace is pressed', () => {
+      let value;
+      const mockOnChange = (v) => { value = v; };
+      let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />);
+      let input = combobox.getByTestId('combobox-input');
+      fireEvent.focus(input);
+
+      const option1 = combobox.getByText('D-O');
+      fireEvent.mouseDown(option1);
+
+      cleanup();
+      combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />);
+
+      const option2 = combobox.getByText('BB8');
+      fireEvent.mouseDown(option2);
+
+      assert.deepStrictEqual(value, [OPTIONS[2].value, OPTIONS[1].value]);
+
+      cleanup();
+      combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />);
+      input = combobox.getByTestId('combobox-input');
+
+      fireEvent.keyDown(input, { key: 'Backspace', code: 8 });
+
+      assert.deepStrictEqual(value, [OPTIONS[2].value]);
+    });
+
+    it('should remove option if option badge is clicked', () => {
+      let value = [1, 2];
+      const mockOnChange = (v) => { value = v; };
+      const combobox = render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+
+      const removeOptionButton = combobox.getByLabelText(`Remove option: ${OPTIONS[0].value}`);
+      fireEvent.click(removeOptionButton);
+
+      assert.deepStrictEqual(value, [2]);
+    });
+
+    it('should be able to remove remove all options', () => {
+      let value = [1, 2];
+      const mockOnChange = (v) => { value = v; };
+      const combobox = render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+
+      const removeOptionButton = combobox.getByLabelText('Remove all selected options');
+      fireEvent.click(removeOptionButton);
+
+      assert.deepStrictEqual(value, []);
     });
   });
 });

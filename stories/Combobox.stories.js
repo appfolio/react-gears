@@ -87,6 +87,23 @@ export const LiveExample = () => {
   );
 };
 
+export const Multi = () => {
+  const [value, setValue] = useState();
+  return (
+    <Combobox
+      multi
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      options={options}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+    />
+  );
+};
+
 export const CustomOptions = () => {
   const [value, setValue] = useState();
   const mixedOptions = [
