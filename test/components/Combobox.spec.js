@@ -261,6 +261,24 @@ describe('<Combobox />', () => {
     });
   });
 
+  it('should support creating options', () => {
+    const mockOnChange = sinon.spy();
+
+    const onCreateObj = { onCreate: s => s };
+    const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
+
+    const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />);
+
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+
+    fireEvent.change(input, { target: { value: 'new option' } });
+    fireEvent.keyDown(input, { key: 'Enter', code: 13 });
+
+    sinon.assert.calledWith(mockOnCreate, 'new option');
+    sinon.assert.calledWith(mockOnChange, 'new option');
+  });
+
   describe('multiselect', () => {
     it('should render multiple values as buttons to remove the option', () => {
       const combobox = render(<Combobox options={OPTIONS} value={[1, 2]} multi />);
