@@ -104,6 +104,24 @@ export const Multi = () => {
   );
 };
 
+export const Grouped = () => {
+  const [value, setValue] = useState();
+  return (
+    <Combobox
+      multi={boolean('multi', false)}
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      options={[{ label: 'Colors', options: [{ label: 'Red', value: 'red' }, { label: 'Blue', value: 'blue' }] }, { label: 'States', options }]}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+      menuMaxHeight="20rem"
+    />
+  );
+};
+
 export const CustomOptions = () => {
   const [value, setValue] = useState();
   const mixedOptions = [

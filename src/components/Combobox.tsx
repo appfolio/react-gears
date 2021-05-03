@@ -14,6 +14,11 @@ import InputGroupAddon from './InputGroupAddon';
 
 type Direction = 'up' | 'down';
 
+type OptionGroup<T> = {
+  label: string;
+  options: Option<T>[];
+}
+
 type Option<T> = {
   label: string;
   value: T;
@@ -21,7 +26,7 @@ type Option<T> = {
 }
 
 interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
-  options: Option<T>[];
+  options: Option<T>[] | OptionGroup<T>[];
   direction?: Direction;
   dropdownProps?: DropdownProps;
   noResultsLabel?: string;
@@ -42,7 +47,7 @@ const defaultProps = {
 };
 
 function Combobox<T>({
-  className, direction, disabled, dropdownProps, inputClassName, options, placeholder, value, menuMaxHeight, multi,
+  className, direction, disabled, dropdownProps, inputClassName, options: optionsProp, placeholder, value, menuMaxHeight, multi,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   filterOptions = defaultProps.filterOptions,
@@ -58,6 +63,16 @@ function Combobox<T>({
   const inputElement = useRef<HTMLInputElement>(null);
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
+
+  const grouped = !!(optionsProp[0] as OptionGroup<T>).options;
+  const options: Option<T>[] = useMemo(() => {
+    if (optionsProp === [] || !optionsProp) return [];
+
+    if (grouped) {
+      return (optionsProp as OptionGroup<T>[]).reduce((o: Option<T>[], current: OptionGroup<T>) => [...o, ...current.options], []);
+    }
+    return optionsProp as Option<T>[];
+  }, [optionsProp, grouped]);
   const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => option.value === v)) : options.find(option => option.value === value), [value, options, multi]);
 
   useEffect(() => {
@@ -153,6 +168,42 @@ function Combobox<T>({
       onChange(undefined);
     }
   };
+
+  const renderOptions = (opts: Option<T>[]) => opts.map((option) => {
+    const visibleIndex = visibleOptions.indexOf(option);
+    return (
+      <DropdownItem
+        disabled={option.disabled}
+        className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
+        key={`${option.value}`}
+        id={`option-${option.value}`}
+        active={focusedOptionIndex === visibleIndex}
+        onMouseEnter={(ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          setFocusedOptionIndex(visibleIndex);
+        }}
+        onMouseDown={(ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          selectOption(option);
+        }}
+        ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
+        role="option"
+        aria-selected={isOptionSelected(option)}
+      >
+        {renderOption(option)}
+      </DropdownItem>
+    );
+  });
+
+  const renderGroupedOptions = (groups: OptionGroup<T>[]) => groups.map((group, i) => (
+    <>
+      <DropdownItem header>{group.label}</DropdownItem>
+      {renderOptions(group.options)}
+      {(i !== groups.length - 1) && <DropdownItem divider />}
+    </>
+  ));
 
   return (
     <>
@@ -262,34 +313,7 @@ function Combobox<T>({
           aria-activedescendant={visibleOptions[focusedOptionIndex] && `option-${visibleOptions[focusedOptionIndex].value}`}
           aria-multiselectable={multi}
         >
-          {options
-          .map((option) => {
-            const visibleIndex = visibleOptions.indexOf(option);
-            return (
-              <DropdownItem
-                disabled={option.disabled}
-                className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
-                key={`${option.value}`}
-                id={`option-${option.value}`}
-                active={focusedOptionIndex === visibleIndex}
-                onMouseEnter={(ev) => {
-                ev.preventDefault();
-                ev.stopPropagation();
-                setFocusedOptionIndex(visibleIndex);
-              }}
-                onMouseDown={(ev) => {
-                ev.preventDefault();
-                ev.stopPropagation();
-                selectOption(option);
-              }}
-                ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
-                role="option"
-                aria-selected={isOptionSelected(option)}
-              >
-                {renderOption(option)}
-              </DropdownItem>
-          );
-            })}
+          {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
           {visibleOptions.length === 0 && (
           <DropdownItem disabled>
             {noResultsLabel}
