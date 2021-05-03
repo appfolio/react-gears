@@ -156,7 +156,7 @@ function Combobox<T>({
     if (!onCreate) return;
 
     const optionValue = onCreate(inputValue);
-    selectOption(optionValue);
+    if (optionValue) selectOption(optionValue);
   };
 
   const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
