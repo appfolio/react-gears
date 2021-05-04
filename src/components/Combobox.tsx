@@ -31,6 +31,8 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   dropdownProps?: DropdownProps;
   noResultsLabel?: string;
   onChange?: (value?: T | T[]) => void;
+  onCreate?: (str: string) => T;
+  isValidNewOption?: (label: string) => boolean;
   filterOptions?: (options: Option<T>[], value: string) => Option<T>[];
   renderInputValue?: (option: Option<T>) => string;
   renderOption?: (option: Option<T>) => React.ReactNode;
@@ -42,6 +44,7 @@ const defaultProps = {
   noResultsLabel: 'No results found',
   onChange: () => {},
   filterOptions: (o: Option<any>[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true),
+  isValidNewOption: () => true,
   renderInputValue: (option: Option<any>) => option.label,
   renderOption: (option: Option<any>) => option.label,
 };
@@ -50,6 +53,8 @@ function Combobox<T>({
   className, direction, disabled, dropdownProps, inputClassName, options: optionsProp, placeholder, value, menuMaxHeight, multi,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
+  onCreate,
+  isValidNewOption = defaultProps.isValidNewOption,
   filterOptions = defaultProps.filterOptions,
   renderInputValue = defaultProps.renderInputValue,
   renderOption = defaultProps.renderOption,
@@ -74,6 +79,7 @@ function Combobox<T>({
     return optionsProp as Option<T>[];
   }, [optionsProp, grouped]);
   const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => option.value === v)) : options.find(option => option.value === value), [value, options, multi]);
+  const noMatches = visibleOptions.length === 0;
 
   useEffect(() => {
     if (visibleOptions.length > 0) {
@@ -131,12 +137,12 @@ function Combobox<T>({
     return value === option.value;
   };
 
-  const selectOption = (option: Option<T>) => {
+  const selectOption = (optionValue: T) => {
     if (multi) {
-      onChange([...(value || []), option.value]);
+      onChange([...(value || []), optionValue]);
       return;
     }
-    onChange(option.value);
+    onChange(optionValue);
     setOpen(false);
   };
 
@@ -149,11 +155,23 @@ function Combobox<T>({
     }
   };
 
+  const createOption = () => {
+    if (!onCreate) return;
+
+    const optionValue = onCreate(inputValue);
+    if (optionValue) selectOption(optionValue);
+  };
+
   const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
     if (!open && key === 'ArrowDown') {
       setOpen(true);
     } else if (key === 'Enter') {
-      selectOption(visibleOptions[focusedOptionIndex]);
+      if (noMatches) {
+        createOption();
+        return;
+      }
+
+      selectOption(visibleOptions[focusedOptionIndex].value);
     } else if (key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
@@ -186,7 +204,7 @@ function Combobox<T>({
         onMouseDown={(ev) => {
           ev.preventDefault();
           ev.stopPropagation();
-          selectOption(option);
+          selectOption(option.value);
         }}
         ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
         role="option"
@@ -204,6 +222,31 @@ function Combobox<T>({
       {(i !== groups.length - 1) && <DropdownItem divider />}
     </>
   ));
+
+  const renderNoOptions = () => {
+    if (onCreate) {
+      return (
+        <DropdownItem
+          active={noMatches}
+          data-testid="create-new-option"
+          disabled={!isValidNewOption(inputValue)}
+          onMouseDown={(ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            createOption();
+          }}
+        >
+          {`Create "${inputValue}"`}
+        </DropdownItem>
+      );
+    }
+
+    return (
+      <DropdownItem disabled>
+        {noResultsLabel}
+      </DropdownItem>
+    );
+  };
 
   return (
     <>
@@ -314,11 +357,7 @@ function Combobox<T>({
           aria-multiselectable={multi}
         >
           {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
-          {visibleOptions.length === 0 && (
-          <DropdownItem disabled>
-            {noResultsLabel}
-          </DropdownItem>
-        )}
+          {noMatches && renderNoOptions()}
         </DropdownMenu>
       </Dropdown>
     </>

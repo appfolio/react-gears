@@ -122,6 +122,32 @@ export const Grouped = () => {
   );
 };
 
+export const CreatableOptions = () => {
+  const [value, setValue] = useState();
+  const [opts, setOpts] = useState(options);
+
+  const onCreate = (str) => {
+    const newOpt = { value: str, label: str };
+    setOpts([...opts, newOpt]);
+
+    return newOpt.value;
+  };
+
+  return (
+    <Combobox
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      onCreate={onCreate}
+      options={opts}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+    />
+  );
+};
+
 export const CustomOptions = () => {
   const [value, setValue] = useState();
   const mixedOptions = [
