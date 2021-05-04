@@ -261,22 +261,48 @@ describe('<Combobox />', () => {
     });
   });
 
-  it('should support creating options', () => {
-    const mockOnChange = sinon.spy();
+  describe('creatable options', () => {
+    it('should support creating options', () => {
+      const mockOnChange = sinon.spy();
 
-    const onCreateObj = { onCreate: s => s };
-    const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
+      const onCreateObj = { onCreate: s => s };
+      const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
 
-    const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />);
+      const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />);
 
-    const input = combobox.getByTestId('combobox-input');
-    fireEvent.focus(input);
+      const input = combobox.getByTestId('combobox-input');
+      fireEvent.focus(input);
 
-    fireEvent.change(input, { target: { value: 'new option' } });
-    fireEvent.keyDown(input, { key: 'Enter', code: 13 });
+      fireEvent.change(input, { target: { value: 'new option' } });
+      fireEvent.keyDown(input, { key: 'Enter', code: 13 });
 
-    sinon.assert.calledWith(mockOnCreate, 'new option');
-    sinon.assert.calledWith(mockOnChange, 'new option');
+      sinon.assert.calledWith(mockOnCreate, 'new option');
+      sinon.assert.calledWith(mockOnChange, 'new option');
+    });
+
+    it('should validate creatable options', () => {
+      const mockOnChange = sinon.spy();
+
+      const onCreateObj = { onCreate: s => s };
+      const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
+
+      const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} isValidNewOption={s => s === 'foobar'} />);
+
+      const input = combobox.getByTestId('combobox-input');
+      fireEvent.focus(input);
+
+      fireEvent.change(input, { target: { value: 'new option' } });
+
+      let newOptionButton = combobox.getByTestId('create-new-option');
+
+      assert(newOptionButton.hasAttribute('disabled'));
+
+      fireEvent.change(input, { target: { value: 'foobar' } });
+
+      newOptionButton = combobox.getByTestId('create-new-option');
+
+      assert(!newOptionButton.hasAttribute('disabled'));
+    });
   });
 
   describe('multiselect', () => {

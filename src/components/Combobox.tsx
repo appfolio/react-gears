@@ -32,6 +32,7 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   noResultsLabel?: string;
   onChange?: (value?: T | T[]) => void;
   onCreate?: (str: string) => T;
+  isValidNewOption?: (label: string) => boolean;
   filterOptions?: (options: Option<T>[], value: string) => Option<T>[];
   renderInputValue?: (option: Option<T>) => string;
   renderOption?: (option: Option<T>) => React.ReactNode;
@@ -43,6 +44,7 @@ const defaultProps = {
   noResultsLabel: 'No results found',
   onChange: () => {},
   filterOptions: (o: Option<any>[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true),
+  isValidNewOption: () => true,
   renderInputValue: (option: Option<any>) => option.label,
   renderOption: (option: Option<any>) => option.label,
 };
@@ -52,6 +54,7 @@ function Combobox<T>({
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   onCreate,
+  isValidNewOption = defaultProps.isValidNewOption,
   filterOptions = defaultProps.filterOptions,
   renderInputValue = defaultProps.renderInputValue,
   renderOption = defaultProps.renderOption,
@@ -225,6 +228,8 @@ function Combobox<T>({
       return (
         <DropdownItem
           active={noMatches}
+          data-testid="create-new-option"
+          disabled={!isValidNewOption(inputValue)}
           onMouseDown={(ev) => {
             ev.preventDefault();
             ev.stopPropagation();
