@@ -17,6 +17,9 @@
     "es"
   ],
   "types": "lib/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src test",
@@ -31,8 +34,9 @@
     "dist:types": "tsc --declaration --emitDeclarationOnly --noEmit false --allowJs false --isolatedModules false --outDir lib/",
     "dist:es": "babel ./src --extensions .js,.jsx,.tsx,.ts --out-dir es --source-maps",
     "dist": "npm run dist:copy-d-ts-files && npm run dist:types && webpack -p && npm run dist:es",
+    "publish-npm": "npm publish --tag $TAG --access public --ignore-scripts --@appfolio:registry='https://registry.npmjs.org'",
     "prepublishOnly": "npm run dist",
-    "postpublish": "git push --no-verify && git push --tags"
+    "postpublish": "npm run publish-npm && git push --no-verify && git push --tags"
   },
   "peerDependencies": {
     "react": ">= 16.8",
