@@ -62,7 +62,7 @@ To publish:
     npm version (major|minor|patch)
     npm publish
     
-* If you're publishing a prerelease version, we don't want it to get tagged as the latest version, so run `TAG=beta npm publish --tag beta` instead.
+* If you're publishing a prerelease version, we don't want it to get tagged as the latest version, so run `npm publish:prerelease` instead.
 
 - Release notes are generated in the postpublish script using [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for installation and setup [here](https://github.com/github-tools/github-release-notes#setup). (Latest version has a breaking bug, so we should use the latest working version `0.17.1 `)
 
