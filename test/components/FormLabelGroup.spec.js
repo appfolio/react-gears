@@ -40,6 +40,17 @@ describe('<FormLabelGroup />', () => {
       const feedback = component.find(FormFeedback);
       assert.equal(feedback.length, 0);
     });
+
+    it('should pass row=true to FormGroup', () => {
+      assert.equal(component.find(FormGroup).prop('row'), true);
+    });
+  });
+
+  describe('without a row', () => {
+    it('should pass row=false to FormGroup', () => {
+      const component = shallow(<FormLabelGroup row={false}>Hello World</FormLabelGroup>);
+      assert.equal(component.find(FormGroup).prop('row'), false);
+    });
   });
 
   describe('with a label', () => {

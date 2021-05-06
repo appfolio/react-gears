@@ -10,6 +10,7 @@ export interface FormLabelGroupProps extends
   label?: React.ReactNode;
   labelSize?: string;
   required?: boolean;
+  row?: boolean;
   rowClassName?: string;
   size?: string;
   srLabel?: boolean,

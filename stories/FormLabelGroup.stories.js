@@ -19,6 +19,7 @@ export const LiveExample = () => (
       required={boolean('required', false)}
       inline={boolean('inline', false)}
       stacked={boolean('stacked', false)}
+      row={boolean('row', true)}
     >
       <Alert color="info" className="text-center p-4 mb-0" style={{ borderStyle: 'dashed' }}>
         Your content here

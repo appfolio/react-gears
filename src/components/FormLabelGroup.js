@@ -27,6 +27,7 @@ class FormLabelGroup extends React.Component {
     label: PropTypes.node,
     labelSize: PropTypes.oneOf([null, 'sm', 'md', 'lg']),
     required: PropTypes.bool,
+    row: PropTypes.bool,
     rowClassName: PropTypes.string,
     size: PropTypes.string,
     srLabel: PropTypes.bool,
@@ -40,6 +41,7 @@ class FormLabelGroup extends React.Component {
     required: false,
     srLabel: false,
     stacked: false,
+    row: true,
     width: { xs: 12 }
   };
 
@@ -52,6 +54,7 @@ class FormLabelGroup extends React.Component {
       label,
       labelSize,
       required,
+      row,
       rowClassName,
       size,
       srLabel,
@@ -85,7 +88,7 @@ class FormLabelGroup extends React.Component {
     });
 
     return (
-      <FormGroup row className={containerClassNames}>
+      <FormGroup row={row} className={containerClassNames}>
         {label && (
           <Label for={inputId} sm={labelWidth} size={size} className={labelClassNames}>
             {label}
