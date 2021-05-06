@@ -53,8 +53,16 @@ Run Linter
 
 ## Publishing
 
+Make sure to add a github auth token with package write permissions to your `~/.npmrc` file.
+
+    //npm.pkg.github.com/:_authToken=YOUR_TOKEN_HERE
+    
+To publish:
+
     npm version (major|minor|patch)
     npm publish
+    
+* If you're publishing a prerelease version, we don't want it to get tagged as the latest version, so run `npm publish:prerelease` instead.
 
 - Release notes are generated in the postpublish script using [Github Release Notes](https://github-tools.github.io/github-release-notes/). Instructions for installation and setup [here](https://github.com/github-tools/github-release-notes#setup). (Latest version has a breaking bug, so we should use the latest working version `0.17.1 `)
 
