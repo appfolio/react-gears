@@ -11,12 +11,14 @@ function useSavedScroll(container: RefObject<HTMLElement>, key: string | undefin
   const [position, setPosition] = useSessionStorage<Position>(key || uuidv4());
   const scrollPosition = useScroll(container);
 
+  console.log(`position: ${JSON.stringify(position)}`);
   useEffect(() => {
     if (key) setPosition(scrollPosition);
   }, [key, scrollPosition, setPosition]);
 
   useLayoutEffect(() => {
     if (container.current && position && key) {
+      console.log(`position: ${JSON.stringify(position)}`);
       container.current.scrollTo(position.x, position.y);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
