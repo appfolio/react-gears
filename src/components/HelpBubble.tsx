@@ -36,14 +36,6 @@ function HelpBubble(props: HelpBubbleProps) {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  // TODO: remove close and set Popover.toggle to this.toggle once we bump to reactstrap v5
-  // Fixes https://github.com/reactstrap/reactstrap/issues/465
-  const close = () => {
-    setTimeout(() => {
-      setIsOpen(false);
-    });
-  };
-
   const { title, children, className, ...other } = props;
 
   return (
@@ -54,7 +46,7 @@ function HelpBubble(props: HelpBubbleProps) {
         id={id}
         className="text-primary"
       />
-      <Popover isOpen={isOpen} toggle={close} target={id} {...other}>
+      <Popover isOpen={isOpen} toggle={toggle} target={id} {...other}>
         {title && <PopoverHeader>{title}</PopoverHeader>}
         <PopoverBody>{children}</PopoverBody>
       </Popover>
