@@ -1,8 +1,7 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
-
 import { ClickableContainer } from '../../src';
 
 describe('<ClickableContainer />', () => {
@@ -49,9 +48,5 @@ describe('<ClickableContainer />', () => {
       mount(<ClickableContainer tag="div" onClick={onClick} />);
       mount(<ClickableContainer tag={() => <div />} onClick={onClick} />);
     });
-
-    assert.throws(() => {
-      mount(<ClickableContainer tag={3.14159} onClick={onClick} />);
-    }, Error);
   });
 });
