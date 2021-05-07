@@ -9,7 +9,7 @@ interface HelpBubbleProps
     React.ComponentProps<typeof Popover>,
     'isOpen' | 'toggle' | 'target'
   > {
-  title: React.ReactNode;
+  title?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }
@@ -55,7 +55,7 @@ function HelpBubble(props: HelpBubbleProps) {
         className="text-primary"
       />
       <Popover isOpen={isOpen} toggle={close} target={id} {...other}>
-        <PopoverHeader>{title}</PopoverHeader>
+        {title && <PopoverHeader>{title}</PopoverHeader>}
         <PopoverBody>{children}</PopoverBody>
       </Popover>
     </span>
