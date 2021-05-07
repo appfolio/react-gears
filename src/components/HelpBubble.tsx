@@ -1,9 +1,18 @@
-import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { SyntheticEvent, useRef, useState } from 'react';
 import Icon from './Icon';
 import Popover from './Popover';
 import PopoverBody from './PopoverBody';
 import PopoverHeader from './PopoverHeader';
+
+interface HelpBubbleProps
+  extends Omit<
+    React.ComponentProps<typeof Popover>,
+    'isOpen' | 'toggle' | 'target'
+  > {
+  title: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+}
 
 let count = 0;
 
@@ -15,16 +24,16 @@ const style = {
   cursor: 'pointer',
 };
 
-function HelpBubble(props) {
-  const idRef = useRef();
+function HelpBubble(props: HelpBubbleProps) {
+  const idRef = useRef<string | undefined>();
   if (!idRef.current) idRef.current = getID();
   const id = idRef.current;
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = (e) => {
+  const toggle = (e: SyntheticEvent) => {
     e.stopPropagation();
-    setIsOpen(prevIsOpen => !prevIsOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   // TODO: remove close and set Popover.toggle to this.toggle once we bump to reactstrap v5
@@ -52,11 +61,5 @@ function HelpBubble(props) {
     </span>
   );
 }
-
-HelpBubble.propTypes = {
-  title: PropTypes.node.isRequired,
-  children: PropTypes.node,
-  className: PropTypes.any,
-};
 
 export default HelpBubble;

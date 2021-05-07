@@ -11,7 +11,7 @@ import {
 } from '../../src';
 
 describe('<HelpBubble />', () => {
-  let div;
+  let div: HTMLDivElement;
 
   beforeEach(() => {
     div = document.createElement('div');
@@ -72,7 +72,7 @@ describe('<HelpBubble />', () => {
     assert.equal(component.find(Popover).prop('isOpen'), false);
     component.find(Icon).simulate('click', event);
     assert.equal(component.find(Popover).prop('isOpen'), true);
-    component.find(Popover).prop('toggle')();
+    component.find(Popover).simulate('toggle');
     component.find(Icon).simulate('click', event);
     setTimeout(() => {
       assert.equal(component.find(Popover).prop('isOpen'), false);
