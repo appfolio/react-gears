@@ -7,7 +7,7 @@ import { Icon, Status } from '../../src';
 
 describe('<Status />', () => {
   it('should be accessible', async () => {
-    assertAccessible(<Status />);
+    await assertAccessible(<Status />);
   });
 
   it('should take a type option', () => {

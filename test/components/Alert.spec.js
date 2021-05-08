@@ -11,7 +11,7 @@ describe('<Alert />', () => {
     const component = shallow(<Alert />);
 
     it('should be accessible', async () => {
-      assertAccessible(<Alert />);
+      await assertAccessible(<Alert />);
     });
 
     it('should not be dismissible', () => {
@@ -52,8 +52,8 @@ describe('<Alert />', () => {
   });
 
   describe('when dismissible', () => {
-    it('should be accessible', () => {
-      assertAccessible(<Alert dismissible />);
+    it('should be accessible', async () => {
+      await assertAccessible(<Alert dismissible />);
     });
 
     it('should toggle state when clicked', () => {
