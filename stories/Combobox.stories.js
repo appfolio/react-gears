@@ -87,6 +87,67 @@ export const LiveExample = () => {
   );
 };
 
+export const Multi = () => {
+  const [value, setValue] = useState();
+  return (
+    <Combobox
+      multi
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      options={options}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+    />
+  );
+};
+
+export const Grouped = () => {
+  const [value, setValue] = useState();
+  return (
+    <Combobox
+      multi={boolean('multi', false)}
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      options={[{ label: 'Colors', options: [{ label: 'Red', value: 'red' }, { label: 'Blue', value: 'blue' }] }, { label: 'States', options }]}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+      menuMaxHeight="20rem"
+    />
+  );
+};
+
+export const CreatableOptions = () => {
+  const [value, setValue] = useState();
+  const [opts, setOpts] = useState(options);
+
+  const onCreate = (str) => {
+    const newOpt = { value: str, label: str };
+    setOpts([...opts, newOpt]);
+
+    return newOpt.value;
+  };
+
+  return (
+    <Combobox
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      onCreate={onCreate}
+      options={opts}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+    />
+  );
+};
+
 export const CustomOptions = () => {
   const [value, setValue] = useState();
   const mixedOptions = [
