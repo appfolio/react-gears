@@ -87,6 +87,32 @@ export const LiveExample = () => {
   );
 };
 
+export const Async = () => {
+  const [value, setValue] = useState();
+  const [asyncOptions, setAsyncOptions] = useState([]);
+
+  const onInputChange = async (s) => {
+    await new Promise((resolve) => { setTimeout(resolve, 1000); });
+
+    const newOptions = [...asyncOptions, { label: s, value: s }];
+    setAsyncOptions(newOptions);
+  };
+
+  return (
+    <Combobox
+      direction={select('direction', ['', 'down', 'up'], '')}
+      onChange={setValue}
+      onInputChange={onInputChange}
+      options={asyncOptions}
+      value={value}
+      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+      inputClassName={text('inputClassName', '')}
+    />
+  );
+};
+
 export const Multi = () => {
   const [value, setValue] = useState();
   return (
