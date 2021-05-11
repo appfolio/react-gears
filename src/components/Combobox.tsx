@@ -32,6 +32,7 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   noResultsLabel?: string;
   onChange?: (value?: T | T[]) => void;
   onCreate?: (str: string) => T;
+  onInputChange?: (str: string) => void | Promise<void>;
   isValidNewOption?: (label: string) => boolean;
   filterOptions?: (options: Option<T>[], value: string) => Option<T>[];
   renderInputValue?: (option: Option<T>) => string;
@@ -54,6 +55,7 @@ function Combobox<T>({
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   onCreate,
+  onInputChange,
   isValidNewOption = defaultProps.isValidNewOption,
   filterOptions = defaultProps.filterOptions,
   renderInputValue = defaultProps.renderInputValue,
@@ -61,6 +63,7 @@ function Combobox<T>({
   ...props
 }: ComboboxProps<T>) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [visibleOptions, setVisibleOptions] = useState<Option<T>[]>([]);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState<number>(0);
@@ -69,7 +72,7 @@ function Combobox<T>({
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
 
-  const grouped = !!(optionsProp[0] as OptionGroup<T>).options;
+  const grouped = !!(optionsProp[0] as OptionGroup<T>)?.options;
   const options: Option<T>[] = useMemo(() => {
     if (optionsProp === [] || !optionsProp) return [];
 
@@ -185,6 +188,14 @@ function Combobox<T>({
       }
       onChange(undefined);
     }
+  };
+
+  const handleInputChange = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+    if (!onInputChange) return;
+
+    setLoading(true);
+    await onInputChange(ev.target.value);
+    setLoading(false);
   };
 
   const renderOptions = (opts: Option<T>[]) => opts.map((option) => {
@@ -305,6 +316,7 @@ function Combobox<T>({
                 e.preventDefault();
                 e.stopPropagation();
                 setInputValue(e.target.value);
+                handleInputChange(e);
               }}
               onKeyDown={handleOptionsKeyboardNav}
               type="search"
@@ -316,7 +328,7 @@ function Combobox<T>({
               <Button
                 className="px-2"
                 data-testid="combobox-caret"
-                disabled={disabled}
+                disabled={disabled || loading}
                 active={open}
                 onMouseDown={(ev) => {
                   ev.stopPropagation();
@@ -325,7 +337,7 @@ function Combobox<T>({
                 type="button"
                 aria-label="Toggle options menu"
               >
-                <Icon name={open ? 'caret-up' : 'caret-down'} fixedWidth />
+                <Icon className={loading ? 'fa-spin' : ''} name={loading ? 'spinner' : open ? 'caret-up' : 'caret-down'} fixedWidth />
               </Button>
             </InputGroupAddon>
           </InputGroup>
