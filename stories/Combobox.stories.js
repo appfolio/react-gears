@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { Combobox, Icon } from '../src';
 
@@ -150,15 +151,9 @@ export const CreatableOptions = () => {
 
 export const CustomOptions = () => {
   const [value, setValue] = useState();
-  const mixedOptions = [
-    { label: '71548561868 Super-duper long word like impossibly long Lane', value: 'address-1', type: 'address' },
-    { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
-    { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
-    { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
-    { label: 'Panda', value: 'tenant-2', type: 'tenant' },
-    { label: '77 Snowball Blvd', value: 'address-4', type: 'address' },
-    { label: 'Bob', value: 'tenant-3', type: 'tenant' },
-  ];
+  const [asyncOptions, setAsyncOptions] = useState([]);
+  const [searching, setSearching] = useState(false);
+
   const renderOption = option => (
     <div>
       <Icon name={option.type === 'address' ? 'home' : 'user'} className="mr-2 py-4" />
@@ -172,14 +167,37 @@ export const CustomOptions = () => {
     </div>
   );
 
+  const search = val => {
+    action('onInputChange')(val);
+    setSearching(true);
+
+    new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    }).then(() => {
+      const newOpts = options.map(opt => (
+        Object.assign({}, opt, { label: `${val} ${opt.label}` })
+      ));
+      setAsyncOptions(newOpts);
+      setSearching(false);
+    });
+  };
+
+  const onChange = val => {
+    action('onChange')(val);
+    setValue(val);
+  };
+
   return (
     <Combobox
-      onChange={setValue}
-      options={mixedOptions}
+      multi
+      onChange={onChange}
+      onInputChange={search}
+      options={asyncOptions}
       value={value}
       renderOption={renderOption}
       renderInputValue={renderInputValue}
       menuMaxHeight="20rem"
+      icon={searching ? <Icon name="spinner" spin /> : undefined}
     />
   );
 };
