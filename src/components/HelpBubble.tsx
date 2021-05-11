@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useRef, useState } from 'react';
-import ClickableContainer from './ClickableContainer';
+import Button from './Button';
 import Icon from './Icon';
 import Popover from './Popover';
 import PopoverBody from './PopoverBody';
@@ -41,9 +41,9 @@ function HelpBubble(props: HelpBubbleProps) {
 
   return (
     <span className={className} style={style}>
-      <ClickableContainer aria-label="More Info" tag="span" onClick={toggle}>
+      <Button color="link" className="p-0" aria-label="More Info" onClick={toggle}>
         <Icon name="question-circle" id={id} className="text-primary" />
-      </ClickableContainer>
+      </Button>
       <Popover isOpen={isOpen} toggle={toggle} target={id} {...other}>
         <div aria-live="polite">
           {title && <PopoverHeader>{title}</PopoverHeader>}
