@@ -80,6 +80,19 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
   });
 
+  it('should close menu on blur of caret button', () => {
+    const combobox = render(<Combobox options={OPTIONS} />);
+
+    const caret = combobox.getByTestId('combobox-caret');
+    fireEvent.mouseDown(caret);
+
+    assert.strictEqual(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+
+    fireEvent.blur(caret);
+
+    assert.strictEqual(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+  });
+
   it('should blur input on close', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
     const input = combobox.getByTestId('combobox-input');
