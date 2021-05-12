@@ -319,12 +319,10 @@ function Combobox<T>({
                 disabled={disabled}
                 active={open}
                 onMouseDown={(ev) => {
-                  ev.preventDefault();
                   ev.stopPropagation();
                   setOpen(!open);
                 }}
                 type="button"
-                tabIndex={-1}
                 aria-label="Toggle options menu"
               >
                 <Icon name={open ? 'caret-up' : 'caret-down'} fixedWidth />
