@@ -1,6 +1,13 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow, mount } from 'enzyme';
+import {
+  render,
+  fireEvent,
+  cleanup,
+  getByText,
+  findByText,
+} from '@testing-library/react';
 import sinon from 'sinon';
 
 import ReactSelect from 'react-select-plus';
@@ -13,7 +20,15 @@ const OPTIONS = [
   { label: 'Moe', value: 4 }
 ];
 
+async function selectOption(container, optionText) {
+  const placeholder = getByText(container, 'Select...');
+  fireEvent.mouseDown(placeholder);
+  await findByText(container, optionText);
+  fireEvent.mouseDown(getByText(container, optionText));
+}
+
 describe('<Select />', () => {
+  afterEach(cleanup);
   describe('uncontrolled', () => {
     describe('without defaultValue', () => {
       const component = shallow(<Select options={OPTIONS} />);
@@ -110,12 +125,13 @@ describe('<Select />', () => {
     assert(component.hasClass('Select--multi'));
   });
 
-  it('should support focus', () => {
-    const wrapper = mount(<Select />);
-    const component = wrapper.instance();
-    sinon.spy(component.selectEl, 'focus');
-    component.focus();
-    sinon.assert.calledOnce(component.selectEl.focus);
+  it('should support focus', async () => {
+    const select = render(<Select options={OPTIONS} />);
+
+    await selectOption(select.container, OPTIONS[3].label);
+
+    const input = select.getByRole('combobox');
+    assert.strictEqual(document.activeElement, input);
   });
 
   it('should render AsyncCreatable if loadOptions and creatable', () => {
@@ -135,13 +151,16 @@ describe('<Select />', () => {
     assert(component.find('input[name="Yowza"]').exists());
   });
 
-  it('should use name prop for underlying hidden input', () => {
-    const component = mount(<Select name="Yowza" options={OPTIONS} />);
-    assert(component.find('input[name="Yowza"]').exists());
-    assert(!component.find('input[name="Yowza"][type="hidden"]').exists());
-    component.instance().onChange(OPTIONS[3]);
-    component.update();
-    assert(component.find('input[name="Yowza"][type="hidden"]').exists());
+  it('should use name prop for underlying hidden input', async () => {
+    const select = render(<Select name="Yowza" options={OPTIONS} />);
+    const selectNode = select.container.firstChild;
+
+    assert(selectNode.querySelector('input[name="Yowza"]'));
+    assert(!selectNode.querySelector('input[name="Yowza"][type="hidden"]'));
+
+    await selectOption(select.container, OPTIONS[3].label);
+
+    assert(selectNode.querySelector('input[name="Yowza"][type="hidden"]'));
   });
 
   it('should pass inputProps name prop', () => {

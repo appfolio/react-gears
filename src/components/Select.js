@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactSelect from 'react-select-plus';
 import classnames from 'classnames';
 import noop from 'lodash.noop';
@@ -8,77 +8,55 @@ import Option from './SelectOption.js';
 import SelectArrow from './SelectArrow';
 import SelectMultiValue from './SelectMultiValue.js';
 
-class Select extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.any,
-    loadOptions: PropTypes.func,
-    onChange: PropTypes.func,
-    value: PropTypes.any,
-    ...ReactSelect.propTypes
+const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valueProp, valueComponent, onChange, ...props }) => {
+  const [value, setValue] = useState(valueProp || props.defaultValue);
+
+  useEffect(() => setValue(valueProp), [valueProp]);
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+    onChange(newValue);
   };
 
-  static defaultProps = {
-    onChange: noop
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: props.defaultValue
-    };
+  let SelectElement = ReactSelect;
+  if (props.loadOptions && props.creatable) {
+    SelectElement = ReactSelect.AsyncCreatable;
+  } else if (props.loadOptions) {
+    SelectElement = ReactSelect.Async;
+  } else if (props.creatable) {
+    SelectElement = ReactSelect.Creatable;
   }
+  const classNames = classnames(className, { 'select-async': props.loadOptions });
+  const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
 
-  onChange = (value) => {
-    this.setState({ value });
-    this.props.onChange(value);
-  }
+  return (
+    <SelectElement
+      arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
+      clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
+      optionComponent={Option}
+      inputProps={{ name, ...inputProps }}
+      multi={multi}
+      onChange={handleChange}
+      value={valueProp || value}
+      valueComponent={valueComponentRenderer}
+      className={classNames}
+      name={name}
+      {...props}
+    />
+  );
+};
 
-  bindInput = (el) => { this.selectEl = el; };
+Select.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.any,
+  loadOptions: PropTypes.func,
+  onChange: PropTypes.func,
+  value: PropTypes.any,
+  ...ReactSelect.propTypes
+};
 
-  focus() {
-    this.selectEl.focus();
-  }
-
-  //eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(props) {
-    if (props.value !== this.props.value) {
-      this.setState({ value: props.value });
-    }
-  }
-
-  render() {
-    const { arrowRenderer, className, inputProps, multi, name, value, valueComponent, ...props } = this.props;
-    delete props.onChange; // don't pass onChange prop to react-select
-    let SelectElement = ReactSelect;
-    if (this.props.loadOptions && this.props.creatable) {
-      SelectElement = ReactSelect.AsyncCreatable;
-    } else if (this.props.loadOptions) {
-      SelectElement = ReactSelect.Async;
-    } else if (this.props.creatable) {
-      SelectElement = ReactSelect.Creatable;
-    }
-    const classNames = classnames(className, { 'select-async': this.props.loadOptions });
-    const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
-
-    return (
-      <SelectElement
-        arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
-        clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
-        optionComponent={Option}
-        inputProps={{ name, ...inputProps }}
-        multi={multi}
-        onChange={this.onChange}
-        value={value || this.state.value}
-        valueComponent={valueComponentRenderer}
-        ref={this.bindInput}
-        className={classNames}
-        name={name}
-        {...props}
-      />
-    );
-  }
-}
+Select.defaultProps = {
+  onChange: noop
+};
 
 export default Select;
