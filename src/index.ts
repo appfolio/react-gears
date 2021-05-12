@@ -100,7 +100,7 @@ import CheckboxInput from './components/CheckboxInput';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
 import ClickableContainer from './components/ClickableContainer';
-import CollapsableText from './components/CollapsableText.js';
+import CollapsableText from './components/CollapsableText';
 import Combobox from './components/Combobox';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput';
