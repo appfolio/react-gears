@@ -1,6 +1,6 @@
 {
   "name": "@appfolio/react-gears",
-  "version": "6.2.0",
+  "version": "6.2.1-0",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -78,6 +78,7 @@
     "react-sortable-hoc": "^1.11.0",
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.9.0",
+    "react-use": "^17.2.4",
     "reactstrap": "^8.7.1",
     "styled-jsx": "^3.3.2",
     "text-mask-addons": "^3.8.0",
@@ -105,6 +106,7 @@
     "@storybook/addons": "^6.1.9",
     "@storybook/react": "^6.1.9",
     "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^5.1.2",
     "@types/classnames": "^2.2.11",
     "@types/lodash.range": "^3.2.6",
     "@types/react": "^16.9.11",
@@ -138,6 +140,7 @@
     "nyc": "^12.0.2",
     "postcss": "^7.0.35",
     "postcss-loader": "^3.0.0",
+    "raf-stub": "^3.0.0",
     "react": "^16.14.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.14.0",
