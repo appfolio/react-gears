@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button from './Button';
+import { ButtonProps } from './Button';
 
-interface ConfirmationButtonProps extends Button {
+export interface ConfirmationButtonProps extends ButtonProps {
   children?: React.ReactNode;
   confirmation?: string
   onClick?: (...args: any[]) => any;

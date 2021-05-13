@@ -118,7 +118,7 @@ import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
-import HasManyFieldsRow from './components/HasManyFieldsRow.js';
+import HasManyFieldsRow from './components/HasManyFieldsRow';
 import HelpBubble from './components/HelpBubble.js';
 import Highlight from './components/Highlight';
 // @ts-ignore: implicitly has an 'any' type

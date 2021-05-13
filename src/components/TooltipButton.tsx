@@ -2,12 +2,11 @@ import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import * as Popper from 'popper.js';
 import uniqid from 'uniqid';
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 import Tooltip from './Tooltip';
-import { ButtonProps } from 'reactstrap/lib/Button';
 
 interface TooltipButtonProps extends ButtonProps {
-  tooltip?: string;
+  tooltip?: React.ReactNode;
   tooltipPlacement?: Popper.Placement;
   gearsBtnContainerClass?: string;
 }
