@@ -1,8 +1,9 @@
 import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import sinon from 'sinon';
 
-import { Steps } from '../../src';
+import { Button, Steps } from '../../src';
 
 const steps = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
 
@@ -44,6 +45,22 @@ describe('<Steps />', () => {
       it('should only show active step label when collapse=true', () => {
         const component = mount(<Steps steps={steps} collapse />);
         assert.equal(component.find('.js-step-label').length, 1);
+      });
+    });
+
+    describe('clickable', () => {
+      it('should render a button for each step', () => {
+        const component = shallow(<Steps steps={steps} onStepClick={sinon.spy()} />);
+        assert.equal(component.find(Button).length, steps.length);
+      });
+
+      it('should call onStepClick with the index when a step is clicked', () => {
+        const onStepClick = sinon.spy();
+        const component = shallow(<Steps steps={steps} onStepClick={onStepClick} />);
+        const buttons = component.find(Button);
+
+        buttons.at(2).simulate('click');
+        sinon.assert.calledOnceWithExactly(onStepClick, 2);
       });
     });
   });

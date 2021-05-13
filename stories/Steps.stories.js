@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { boolean, number } from '@storybook/addon-knobs';
 import { Steps } from '../src';
 
@@ -31,5 +32,17 @@ export const Vertical = () => (
     complete={boolean('complete', false)}
     vertical={boolean('vertical', true)}
     collapse={boolean('collapse', false)}
+  />
+);
+
+export const Clickable = () => (
+  <Steps
+    steps={steps}
+    step={number('step', 0)}
+    complete={boolean('complete', false)}
+    vertical={boolean('vertical', false)}
+    collapse={boolean('collapse', false)}
+    // eslint-disable-next-line no-alert
+    onStepClick={action('index')}
   />
 );

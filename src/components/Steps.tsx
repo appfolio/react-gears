@@ -1,16 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
+import Button from './Button';
 
 interface StepProps {
   collapse?: boolean;
   complete?: boolean;
+  onStepClick?: (stepIndex: number) => void;
   step?: number;
   steps?: string[];
   vertical?: boolean;
 }
 
-const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = false }: StepProps) => {
+const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], vertical = false }: StepProps) => {
   const className = classNames({
     complete,
     'rg-steps': true,
@@ -65,12 +67,35 @@ const Steps = ({ collapse, complete = false, step = 0, steps = [], vertical = fa
             'text-dark': stepActive,
           });
 
-          return (
-            <li key={index} className={liClasses}>
+          const buttonClasses = classNames('bg-transparent', 'border-0', 'd-flex', 'align-items-center', 'p-0', {
+            'flex-column': !vertical
+          });
+
+          const stepContent = (
+            <>
               <div className={bubbleClasses}>
-                <span className={iconClasses}>{complete || stepComplete ? <Icon name="check" /> : index + 1}</span>
+                <span className={iconClasses}>
+                  {complete || stepComplete ? <Icon name="check" /> : index + 1}
+                </span>
               </div>
               {collapse !== true || vertical ? <span className={textClasses}>{name}</span> : null}
+            </>
+          );
+
+          const wrappedStepContent = onStepClick ? (
+            <Button
+              onClick={() => onStepClick(index)}
+              className={buttonClasses}
+            >
+              {stepContent}
+            </Button>
+          ) : (
+            stepContent
+          );
+
+          return (
+            <li key={index} className={liClasses}>
+              {wrappedStepContent}
             </li>
           );
         })}
