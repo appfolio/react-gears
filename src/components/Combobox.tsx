@@ -280,8 +280,8 @@ function Combobox<T>({
               <div
                 data-testid="combobox-selected-value"
                 aria-label="Selected value"
-                className="py-2 px-3 text-truncated overflow-hidden"
-                style={{ position: 'absolute', width: 'calc(100% - 1.5rem)', zIndex: 4, left: 1 }}
+                className="py-2 px-3 text-truncate overflow-hidden"
+                style={{ position: 'absolute', width: 'calc(100% - 2rem)', zIndex: 4, left: 1 }}
                 onMouseDown={(ev) => {
                   ev.preventDefault();
                   if (inputElement.current) inputElement.current.focus();
