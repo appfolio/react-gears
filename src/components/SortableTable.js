@@ -159,9 +159,9 @@ class SortableTable extends React.Component {
             className="px-2 py-0"
             color="link"
             onClick={() => onExpand(row)}
+            aria-label="Expand row"
           >
             <Icon name={expanded ? 'angle-up' : 'angle-down'} />
-            <span className="sr-only">Expand row</span>
           </Button>
         ),
         width: '2rem',
