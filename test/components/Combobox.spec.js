@@ -6,6 +6,7 @@ import {
   fireEvent,
   cleanup,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Combobox from '../../src/components/Combobox';
 import { assertAccessible } from '../a11yHelpers';
@@ -298,8 +299,8 @@ describe('<Combobox />', () => {
       const input = combobox.getByTestId('combobox-input');
       fireEvent.focus(input);
 
-      fireEvent.change(input, { target: { value: 'new option' } });
-      fireEvent.keyDown(input, { key: 'Enter', code: 13 });
+      userEvent.type(input, 'new option');
+      userEvent.keyboard('[Enter]');
 
       sinon.assert.calledWith(mockOnCreate, 'new option');
       sinon.assert.calledWith(mockOnChange, 'new option');
@@ -314,15 +315,15 @@ describe('<Combobox />', () => {
       const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} isValidNewOption={s => s === 'foobar'} />);
 
       const input = combobox.getByTestId('combobox-input');
-      fireEvent.focus(input);
 
-      fireEvent.change(input, { target: { value: 'new option' } });
+      userEvent.type(input, 'new option');
 
       let newOptionButton = combobox.getByTestId('create-new-option');
 
       assert(newOptionButton.hasAttribute('disabled'));
 
-      fireEvent.change(input, { target: { value: 'foobar' } });
+      input.setSelectionRange(0, 'new option'.length);
+      userEvent.type(input, 'foobar');
 
       newOptionButton = combobox.getByTestId('create-new-option');
 

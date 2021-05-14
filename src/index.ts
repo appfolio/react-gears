@@ -119,7 +119,7 @@ import FormRow from './components/FormRow.js';
 import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
 import HasManyFieldsRow from './components/HasManyFieldsRow';
-import HelpBubble from './components/HelpBubble.js';
+import HelpBubble from './components/HelpBubble';
 import Highlight from './components/Highlight';
 // @ts-ignore: implicitly has an 'any' type
 import ImageCarousel from './components/ImageCarousel.js';
@@ -137,8 +137,7 @@ import Notes from './components/Notes';
 import Paginator from './components/Paginator';
 // @ts-ignore: implicitly has an 'any' type
 import PatternInput from './components/PatternInput.js';
-// @ts-ignore: implicitly has an 'any' type
-import Popover from './components/Popover.js';
+import Popover from './components/Popover';
 import Progress from './components/Progress.js';
 import RadioGroup from './components/RadioGroup';
 import RadioInput from './components/RadioInput';

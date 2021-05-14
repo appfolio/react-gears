@@ -1,18 +1,15 @@
 import React, { FunctionComponent, KeyboardEvent, SyntheticEvent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
-/**
- * Accessible generic container component that responds to click events
- * */
-
-type ClickableContainerTag = string | ((...args: any[]) => any);
-
 export interface ContainerProps extends HTMLAttributes<HTMLElement> {
   className?: string;
   onClick: (e: SyntheticEvent) => void;
-  tag?: ClickableContainerTag;
+  tag?: React.ElementType;
 }
 
+/**
+ * Accessible generic container component that responds to click events
+ * */
 const ClickableContainer: FunctionComponent<ContainerProps> = ({ className, onClick, tag: Tag = 'div', ...props }) => {
   const onKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
