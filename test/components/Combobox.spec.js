@@ -26,6 +26,11 @@ describe('<Combobox />', () => {
     );
   });
 
+  it('should render with empty options array', () => {
+    const combobox = render(<Combobox options={[]} />);
+    combobox.getByTestId('combobox-input');
+  });
+
   it('should show options when focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');

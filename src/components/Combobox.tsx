@@ -69,7 +69,7 @@ function Combobox<T>({
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
 
-  const grouped = !!(optionsProp[0] as OptionGroup<T>).options;
+  const grouped = !!(optionsProp[0] as OptionGroup<T>)?.options;
   const options: Option<T>[] = useMemo(() => {
     if (optionsProp === [] || !optionsProp) return [];
 
