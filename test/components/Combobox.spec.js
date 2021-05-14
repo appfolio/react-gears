@@ -43,6 +43,13 @@ describe('<Combobox />', () => {
     assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
   });
 
+  it('should have text-truncated and overflow-hidden classes on the selected value div', () => {
+    const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0].value} />);
+
+    assert(combobox.getByTestId('combobox-selected-value').classList.contains('text-truncated'));
+    assert(combobox.getByTestId('combobox-selected-value').classList.contains('overflow-hidden'));
+  });
+
   it('should show all options when there is a selected option', () => {
     const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
     const input = combobox.getByTestId('combobox-input');
