@@ -100,7 +100,7 @@ import CheckboxInput from './components/CheckboxInput';
 import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
 import CheckboxListInput from './components/CheckboxListInput.js';
 import ClickableContainer from './components/ClickableContainer';
-import CollapsableText from './components/CollapsableText.js';
+import CollapsableText from './components/CollapsableText';
 import Combobox from './components/Combobox';
 import ConfirmationButton from './components/ConfirmationButton.js';
 import CountryInput from './components/CountryInput';
@@ -118,7 +118,7 @@ import FormChoice from './components/FormChoice.js';
 import FormRow from './components/FormRow.js';
 import HasManyFields from './components/HasManyFields.js';
 import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
-import HasManyFieldsRow from './components/HasManyFieldsRow.js';
+import HasManyFieldsRow from './components/HasManyFieldsRow';
 import HelpBubble from './components/HelpBubble';
 import Highlight from './components/Highlight';
 // @ts-ignore: implicitly has an 'any' type

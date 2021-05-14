@@ -27,6 +27,11 @@ describe('<Combobox />', () => {
     );
   });
 
+  it('should render with empty options array', () => {
+    const combobox = render(<Combobox options={[]} />);
+    combobox.getByTestId('combobox-input');
+  });
+
   it('should show options when focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
@@ -42,6 +47,13 @@ describe('<Combobox />', () => {
     const combobox = render(<Combobox options={OPTIONS} inputClassName={innerClassName} />);
 
     assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
+  });
+
+  it('should have text-truncated and overflow-hidden classes on the selected value div', () => {
+    const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0].value} />);
+
+    assert(combobox.getByTestId('combobox-selected-value').classList.contains('text-truncated'));
+    assert(combobox.getByTestId('combobox-selected-value').classList.contains('overflow-hidden'));
   });
 
   it('should show all options when there is a selected option', () => {

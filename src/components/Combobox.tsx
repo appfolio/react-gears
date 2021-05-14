@@ -69,7 +69,7 @@ function Combobox<T>({
   const dropdownMenu = useRef(null);
   const focusedOption = useRef(null);
 
-  const grouped = !!(optionsProp[0] as OptionGroup<T>).options;
+  const grouped = !!(optionsProp[0] as OptionGroup<T>)?.options;
   const options: Option<T>[] = useMemo(() => {
     if (optionsProp === [] || !optionsProp) return [];
 
@@ -278,8 +278,9 @@ function Combobox<T>({
             { !multi && selected && inputValue === '' &&
               // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <div
+                data-testid="combobox-selected-value"
                 aria-label="Selected value"
-                className="py-2 px-3"
+                className="py-2 px-3 text-truncated overflow-hidden"
                 style={{ position: 'absolute', width: 'calc(100% - 1.5rem)', zIndex: 4, left: 1 }}
                 onMouseDown={(ev) => {
                   ev.preventDefault();
