@@ -17,6 +17,7 @@ type Props = {
   padZeros?: boolean,
   size?: string;
   value?: string | number;
+  onChange?: (ev: any) => void;
 } & InputProps;
 
 const defaultProps = {
@@ -40,12 +41,9 @@ const CurrencyInput: FunctionComponent<Props> = ({
   ...props
 }: Props) => {
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
-  const onAccept = (val: string, mask: IMask.InputMask<IMask.MaskedNumberOptions>) => {
+  const onAccept = (val: string) => {
     if (onChange) {
-      const ev = new Event('change') as unknown as React.ChangeEvent<HTMLInputElement>;
-      // @ts-ignore
-      mask.el.input.dispatchEvent(ev);
-      onChange(ev);
+      onChange({ target: { value: val } });
     }
   };
 
