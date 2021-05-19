@@ -21,7 +21,7 @@ export default class FeatureBanner extends React.Component {
     const alertStyle = 'font-weight-bold text-uppercase';
 
     return (
-      <Alert color={color} className="align-items-center d-flex p-0">
+      <Alert color={color} className="align-items-center d-flex p-0" fade={false}>
         {alertText ?
           <h2 className={`${alertStyle} text-center m-0 px-3 d-none d-sm-block`}>
             {alertText}
