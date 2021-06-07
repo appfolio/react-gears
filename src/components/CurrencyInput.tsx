@@ -42,7 +42,7 @@ const CurrencyInput: FunctionComponent<Props> = ({
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
   const onAccept = (val: string, mask: IMask.InputMask<IMask.MaskedNumberOptions>) => {
     if (onChange) {
-      const ev = new Event('change') as unknown as React.ChangeEvent<HTMLInputElement>;
+      const ev = new Event('currencyInputChange') as unknown as React.ChangeEvent<HTMLInputElement>;
       // @ts-ignore
       mask.el.input.dispatchEvent(ev);
       onChange(ev);
