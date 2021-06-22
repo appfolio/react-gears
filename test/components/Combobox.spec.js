@@ -146,6 +146,12 @@ describe('<Combobox />', () => {
     assert(combobox.getByText('R2-D2').classList.contains('active'));
   });
 
+  it('should support object values', () => {
+    const combobox = render(<Combobox options={[{ label: 'foo', value: { id: 1 } }, { label: 'bar', value: { id: 2 } }]} value={{ id: 2 }} />);
+
+    assert.strictEqual(combobox.getByTestId('combobox-selected-value').textContent, 'bar');
+  });
+
   it('should select an option using the enter key', () => {
     const mockOnChange = sinon.spy();
     const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { findDOMNode } from 'react-dom';
+import equal from 'fast-deep-equal';
 import { DropdownProps, InputProps } from 'reactstrap';
 import Badge from './Badge';
 import Button from './Button';
@@ -78,7 +79,7 @@ function Combobox<T>({
     }
     return optionsProp as Option<T>[];
   }, [optionsProp, grouped]);
-  const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => option.value === v)) : options.find(option => option.value === value), [value, options, multi]);
+  const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => equal(option.value, v))) : options.find(option => equal(option.value, value)), [value, options, multi]);
   const noMatches = visibleOptions.length === 0;
 
   useEffect(() => {
@@ -134,7 +135,7 @@ function Combobox<T>({
     if (multi) {
       return value?.indexOf(option.value) > -1;
     }
-    return value === option.value;
+    return equal(value, option.value);
   };
 
   const selectOption = (optionValue: T) => {
@@ -193,8 +194,8 @@ function Combobox<T>({
       <DropdownItem
         disabled={option.disabled}
         className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
-        key={`${option.value}`}
-        id={`option-${option.value}`}
+        key={`${JSON.stringify(option.value)}`}
+        id={`option-${JSON.stringify(option.value)}`}
         active={focusedOptionIndex === visibleIndex}
         onMouseEnter={(ev) => {
           ev.preventDefault();
@@ -255,7 +256,7 @@ function Combobox<T>({
         <div className="d-flex flex-wrap mb-2">
           {
             (selected as Option<T>[]).map((o: Option<T>) => (
-              <Button key={`${o.value}`} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${o.value}`}>
+              <Button key={`${JSON.stringify(o.value)}`} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${JSON.stringify(o.value)}`}>
                 <Badge style={{ textTransform: 'none' }} className="p-2">
                   {o.label}{' '} <Icon name="close" />
                 </Badge>
@@ -352,7 +353,7 @@ function Combobox<T>({
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"
-          aria-activedescendant={visibleOptions[focusedOptionIndex] && `option-${visibleOptions[focusedOptionIndex].value}`}
+          aria-activedescendant={visibleOptions[focusedOptionIndex] && `option-${JSON.stringify(visibleOptions[focusedOptionIndex].value)}`}
           aria-multiselectable={multi}
         >
           {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
