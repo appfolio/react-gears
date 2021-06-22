@@ -190,12 +190,13 @@ function Combobox<T>({
 
   const renderOptions = (opts: Option<T>[]) => opts.map((option) => {
     const visibleIndex = visibleOptions.indexOf(option);
+    const key = JSON.stringify(option.value);
     return (
       <DropdownItem
         disabled={option.disabled}
         className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
-        key={`${JSON.stringify(option.value)}`}
-        id={`option-${JSON.stringify(option.value)}`}
+        key={key}
+        id={`option-${key}`}
         active={focusedOptionIndex === visibleIndex}
         onMouseEnter={(ev) => {
           ev.preventDefault();
@@ -255,13 +256,16 @@ function Combobox<T>({
         multi && (selected as Option<T>[]).length > 0 &&
         <div className="d-flex flex-wrap mb-2">
           {
-            (selected as Option<T>[]).map((o: Option<T>) => (
-              <Button key={`${JSON.stringify(o.value)}`} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${JSON.stringify(o.value)}`}>
-                <Badge style={{ textTransform: 'none' }} className="p-2">
-                  {o.label}{' '} <Icon name="close" />
-                </Badge>
-              </Button>
-            ))
+            (selected as Option<T>[]).map((o: Option<T>) => {
+              const key = JSON.stringify(o.value);
+              return (
+                <Button key={key} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${key}`}>
+                  <Badge style={{ textTransform: 'none' }} className="p-2">
+                    {o.label}{' '} <Icon name="close" />
+                  </Badge>
+                </Button>
+            );
+              })
           }
           <Button key="clear-all" color="" className="btn-sm p-0 mr-1 text-secondary" onClick={() => onChange([])} aria-label="Remove all selected options">
             <Icon name="close" />
