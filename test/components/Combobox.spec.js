@@ -49,13 +49,6 @@ describe('<Combobox />', () => {
     assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
   });
 
-  it('should have text-truncate and overflow-hidden classes on the selected value div', () => {
-    const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0].value} />);
-
-    assert(combobox.getByTestId('combobox-selected-value').classList.contains('text-truncate'));
-    assert(combobox.getByTestId('combobox-selected-value').classList.contains('overflow-hidden'));
-  });
-
   it('should show all options when there is a selected option', () => {
     const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
     const input = combobox.getByTestId('combobox-input');
@@ -149,7 +142,10 @@ describe('<Combobox />', () => {
   it('should support object values', () => {
     const combobox = render(<Combobox options={[{ label: 'foo', value: { id: 1 } }, { label: 'bar', value: { id: 2 } }]} value={{ id: 2 }} />);
 
-    assert.strictEqual(combobox.getByTestId('combobox-selected-value').textContent, 'bar');
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.click(input);
+
+    assert.strictEqual(input.value, 'bar');
   });
 
   it('should select an option using the enter key', () => {
@@ -185,6 +181,7 @@ describe('<Combobox />', () => {
     combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
     input = combobox.getByTestId('combobox-input');
 
+    fireEvent.mouseDown(input);
     fireEvent.keyDown(input, { key: 'Backspace', code: 8 });
 
     assert.equal(undefined, value);
@@ -208,13 +205,13 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
 
-  it('should open options if selected value label is clicked', async () => {
+  it('should open options if input is clicked', async () => {
     const combobox = render(<Combobox options={OPTIONS} value={3} />);
 
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
 
-    const selectedValueLabel = await combobox.findByLabelText('Selected value');
-    fireEvent.mouseDown(selectedValueLabel);
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.mouseDown(input);
 
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
   });
@@ -281,15 +278,15 @@ describe('<Combobox />', () => {
     const droidLabel = combobox.getByText('Droids');
     assert(droidLabel.classList.contains('dropdown-header'));
 
-    groupedOptions[0].options.forEach((o) => {
-      combobox.findByText(o.label);
+    groupedOptions[0].options.forEach(async (o) => {
+      await combobox.findByText(o.label);
     });
 
     const shipsLabel = combobox.getByText('Ships');
     assert(shipsLabel.classList.contains('dropdown-header'));
 
-    groupedOptions[1].options.forEach((o) => {
-      combobox.findByText(o.label);
+    groupedOptions[1].options.forEach(async (o) => {
+      await combobox.findByText(o.label);
     });
   });
 
