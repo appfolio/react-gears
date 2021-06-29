@@ -35,7 +35,6 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   onCreate?: (str: string) => T;
   isValidNewOption?: (label: string) => boolean;
   filterOptions?: (options: Option<T>[], value: string) => Option<T>[];
-  renderInputValue?: (option: Option<T>) => string;
   renderOption?: (option: Option<T>) => React.ReactNode;
   menuMaxHeight?: string;
   multi?: boolean;
@@ -46,7 +45,6 @@ const defaultProps = {
   onChange: () => {},
   filterOptions: (o: Option<any>[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true),
   isValidNewOption: () => true,
-  renderInputValue: (option: Option<any>) => option.label,
   renderOption: (option: Option<any>) => option.label,
 };
 
@@ -57,7 +55,6 @@ function Combobox<T>({
   onCreate,
   isValidNewOption = defaultProps.isValidNewOption,
   filterOptions = defaultProps.filterOptions,
-  renderInputValue = defaultProps.renderInputValue,
   renderOption = defaultProps.renderOption,
   ...props
 }: ComboboxProps<T>) {
@@ -81,6 +78,7 @@ function Combobox<T>({
   }, [optionsProp, grouped]);
   const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => equal(option.value, v))) : options.find(option => equal(option.value, value)), [value, options, multi]);
   const noMatches = visibleOptions.length === 0;
+  const cursorAtStart = () => inputElement?.current?.selectionStart === 0 && inputElement?.current?.selectionEnd === 0;
 
   useEffect(() => {
     if (visibleOptions.length > 0) {
@@ -89,12 +87,18 @@ function Combobox<T>({
   }, [visibleOptions]);
 
   useEffect(() => {
-    setInputValue('');
-  }, [selected, open]);
+    setInputValue(!multi && selected ? (selected as Option<T>).label : '');
+  }, [selected, open, multi]);
 
   useEffect(() => {
     if (!open && inputElement.current) inputElement.current.blur();
-  }, [open]);
+
+    if (open && !multi && selected && inputElement?.current) {
+      window.setTimeout(() => {
+        inputElement!.current!.setSelectionRange(0, 0);
+      }, 1);
+    }
+  }, [open, multi, selected]);
 
   useEffect(() => {
     let selectableOptions = [...options];
@@ -103,8 +107,8 @@ function Combobox<T>({
       selectableOptions = options.filter(o => value.indexOf(o.value) === -1);
     }
 
-    setVisibleOptions(filterOptions(selectableOptions, inputValue));
-  }, [inputValue, setVisibleOptions, filterOptions, options, multi, value]);
+    setVisibleOptions(filterOptions(selectableOptions, !multi && selected && inputValue === (selected as Option<T>).label ? '' : inputValue));
+  }, [inputValue, setVisibleOptions, filterOptions, options, multi, value, selected]);
 
   const scrollFocusedOptionIntoView = () => {
     if (dropdownMenu.current === null || focusedOption.current === null) return;
@@ -147,6 +151,21 @@ function Combobox<T>({
     setOpen(false);
   };
 
+  const showSelectedPreview = () => {
+    setInputValue(`${(selected as Option<T>).label} `);
+    window.setTimeout(() => {
+      inputElement!.current!.setSelectionRange(0, 0);
+    }, 1);
+  };
+
+  const clearSelectedPreview = () => {
+    if (!multi && selected && (selected as Option<T>).label === inputValue) {
+      if (cursorAtStart()) {
+        setInputValue('');
+      }
+    }
+  };
+
   const removeOption = (option: Option<T>) => {
     const i = value.indexOf(option.value);
     if (i > -1) {
@@ -164,6 +183,10 @@ function Combobox<T>({
   };
 
   const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
+    const input = inputElement?.current;
+    const allSelected = input?.selectionStart === 0 && input.selectionEnd === input.value.length;
+    const isDisplayingSelected = !multi && selected && inputValue === (selected as Option<T>).label;
+
     if (!open && key === 'ArrowDown') {
       setOpen(true);
     } else if (key === 'Enter') {
@@ -177,7 +200,7 @@ function Combobox<T>({
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
-    } else if (selected && key === 'Backspace' && inputValue === '') {
+    } else if (selected && key === 'Backspace' && (cursorAtStart() || (allSelected && isDisplayingSelected))) {
       if (multi) {
         const newValue = [...value];
         newValue.pop();
@@ -185,6 +208,8 @@ function Combobox<T>({
         return;
       }
       onChange(undefined);
+    } else if (!multi && selected && key === 'Backspace' && ((input?.selectionStart === 1 && input?.selectionEnd === 1) || (allSelected && !isDisplayingSelected))) {
+      showSelectedPreview();
     }
   };
 
@@ -280,21 +305,6 @@ function Combobox<T>({
       >
         <DropdownToggle tag="div" disabled={disabled}>
           <InputGroup className={className}>
-            { !multi && selected && inputValue === '' &&
-              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-              <div
-                data-testid="combobox-selected-value"
-                aria-label="Selected value"
-                className="py-2 px-3 text-truncate overflow-hidden"
-                style={{ position: 'absolute', width: 'calc(100% - 2rem)', zIndex: 4, left: 1 }}
-                onMouseDown={(ev) => {
-                  ev.preventDefault();
-                  if (inputElement.current) inputElement.current.focus();
-                }}
-              >
-                {renderInputValue((selected as Option<T>))}
-              </div>
-            }
             <Input
               innerRef={inputElement}
               data-testid="combobox-input"
@@ -304,15 +314,30 @@ function Combobox<T>({
               onFocus={(ev) => {
                 ev.preventDefault();
                 ev.stopPropagation();
-
                 setOpen(true);
               }}
               onChange={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 setInputValue(e.target.value);
+
+                if (!multi && selected && cursorAtStart() && e.target.value === '') {
+                  onChange(undefined);
+                }
+              }}
+              onMouseDown={(e) => {
+                if (!multi && selected) {
+                  inputElement!.current!.setSelectionRange(0, 0);
+
+                  if ((selected as Option<T>).label === inputValue) e.preventDefault();
+                }
+
+                // @ts-ignore
+                e.target.focus();
               }}
               onKeyDown={handleOptionsKeyboardNav}
+              onKeyPress={clearSelectedPreview}
+              onPaste={clearSelectedPreview}
               type="search"
               value={inputValue}
               aria-label="Filter options"

@@ -74,16 +74,19 @@ export default {
 export const LiveExample = () => {
   const [value, setValue] = useState();
   return (
-    <Combobox
-      direction={select('direction', ['', 'down', 'up'], '')}
-      onChange={setValue}
-      options={options}
-      value={value}
-      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-      inputClassName={text('inputClassName', '')}
-    />
+    <>
+      <div>value: {value}</div>
+      <Combobox
+        direction={select('direction', ['', 'down', 'up'], '')}
+        onChange={setValue}
+        options={options}
+        value={value}
+        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+        inputClassName={text('inputClassName', '')}
+      />
+    </>
   );
 };
 
