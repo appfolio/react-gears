@@ -6,6 +6,7 @@ import {
   CheckboxInput,
   FileInput,
   FormRow,
+  FormChoice,
   Input,
   FormLabelGroup,
   RadioInput,
@@ -123,6 +124,31 @@ describe('<FormRow />', () => {
     it('should set the FormLabelGroup labelSize', () => {
       const formLabelGroup = component.find(FormLabelGroup);
       assert.equal(formLabelGroup.prop('labelSize'), 'sm');
+    });
+  });
+
+  describe('with children', () => {
+    const component = shallow(
+      <FormRow label='First Name' type='select'>
+        <FormChoice value='a'>A</FormChoice>
+        {false && <FormChoice value='b'>B</FormChoice>}
+        {undefined && <FormChoice value='c'>C</FormChoice>}
+        {true && <FormChoice value='d'>D</FormChoice>}
+      </FormRow>
+    );
+
+    it('should pass type to children', () => {
+      const input = component.find(Input);
+      input.children().forEach((child) => {
+        assert.equal(child.prop('type'), 'select');
+      });
+    });
+
+    it('should ignore falsy children', () => {
+      const input = component.find(Input);
+      assert.equal(input.children().length, 2);
+      assert.equal(input.childAt(0).children().text(), 'A');
+      assert.equal(input.childAt(1).children().text(), 'D');
     });
   });
 });

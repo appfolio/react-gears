@@ -96,7 +96,7 @@ const FormRow = (props) => {
         {...childFeedback}
       >
         {shouldPassChildren ? React.Children.map(children, child =>
-          React.cloneElement(child, { type: inputElementType })
+          React.isValidElement(child) && React.cloneElement(child, { type: inputElementType })
         ) : undefined}
       </InputElement>
     </FormLabelGroup>
