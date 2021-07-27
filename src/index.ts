@@ -158,6 +158,8 @@ import Table from './components/Table';
 // @ts-ignore: implicitly has an 'any' type
 import TimeInput from './components/TimeInput.js';
 import Tooltip from './components/Tooltip.js';
+import Tree from './components/Tree';
+import TreeItem from './components/TreeItem';
 // @ts-ignore: implicitly has an 'any' type
 import UncontrolledTable from './components/UncontrolledTable.js';
 import Waiting from './components/Waiting';
@@ -319,6 +321,8 @@ export {
   SummaryBox,
   SummaryBoxItem,
   TimeInput,
+  Tree,
+  TreeItem,
   Tooltip,
   UncontrolledTable,
   Waiting,
