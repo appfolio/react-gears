@@ -137,6 +137,7 @@ import Notes from './components/Notes';
 import Paginator from './components/Paginator';
 // @ts-ignore: implicitly has an 'any' type
 import PatternInput from './components/PatternInput.js';
+import Placeholder from './components/Placeholder';
 import Popover from './components/Popover';
 import Progress from './components/Progress.js';
 import RadioGroup from './components/RadioGroup';
@@ -306,6 +307,7 @@ export {
   NoteHeader,
   Notes,
   PatternInput,
+  Placeholder,
   Progress,
   RadioGroup,
   RadioInput,
