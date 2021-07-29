@@ -125,7 +125,7 @@ import Highlight from './components/Highlight';
 import ImageCarousel from './components/ImageCarousel.js';
 import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
-import InfoBox from './components/InfoBox.js';
+import InfoBox from './components/InfoBox';
 import LabelBadge from './components/LabelBadge.js';
 import MaskedInput from './components/MaskedInput';
 import Modal from './components/Modal.js';
