@@ -35,9 +35,8 @@ const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
 
   return (
     <Card
-      color="secondary"
       outline
-      className={classnames('rounded-0 shadow-none bg-white border-secondary', className)}
+      className={classnames('rounded-0 shadow-none', className)}
       {...props}
     >
       <CardBody className={bodyClassNames}>
