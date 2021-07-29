@@ -21,7 +21,7 @@ describe('<Steps />', () => {
 
     it('should activate the current step', () => {
       const component = mount(<Steps steps={steps} step={2} />);
-      assert.equal(component.find('span.text-dark.js-step-label').text(), steps[2]);
+      assert.equal(component.find('span.text-body.js-step-label').text(), steps[2]);
     });
 
     it('should show complete correctly', () => {
@@ -78,7 +78,7 @@ describe('<Steps />', () => {
 
     it('should activate the current step', () => {
       const component = mount(<Steps steps={steps} step={2} vertical />);
-      assert.equal(component.find('span.text-dark.js-step-label').text(), steps[2]);
+      assert.equal(component.find('span.text-body.js-step-label').text(), steps[2]);
     });
 
     it('should show complete correctly', () => {

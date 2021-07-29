@@ -21,7 +21,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
   });
   const activeStep = steps[step];
   const activeStepClasses = classNames({
-    'text-dark': !complete,
+    'text-body': !complete,
     'text-success': complete,
     'd-sm-none': collapse !== true,
     'text-center': true
@@ -46,6 +46,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           const bubbleClasses = classNames({
             bubble: true,
             'text-success': complete,
+            'bg-white': !stepActive,
             'bg-primary': stepActive,
             'text-primary': stepActive || stepComplete,
             'text-muted': !stepComplete && !stepActive
@@ -54,7 +55,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           const iconClasses = classNames({
             'text-primary': stepComplete,
             'text-white': stepActive,
-            'text-dark': !(complete || stepComplete || stepActive),
+            'text-body': !(complete || stepComplete || stepActive),
             'text-success': complete
           });
 
@@ -64,7 +65,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             'text-primary': stepComplete,
             'text-muted': !complete && index > step,
             'text-success': complete,
-            'text-dark': stepActive,
+            'text-body': stepActive,
           });
 
           const buttonClasses = classNames('bg-transparent', 'border-0', 'd-flex', 'align-items-center', 'p-0', {
@@ -146,7 +147,6 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           }
           .rg-steps:not(.vertical) .step .bubble {
             align-items: center;
-            background-color: white;
             border: 1px solid #818a91;
             border-radius: 100%;
             display: flex;
@@ -192,7 +192,6 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           }
           .rg-steps.vertical .step .bubble {
             align-items: center;
-            background-color: white;
             border: 1px solid #818a91;
             border-radius: 100%;
             display: flex;
