@@ -85,70 +85,70 @@ import UncontrolledTooltip from './components/UncontrolledTooltip';
 // Gears:
 import Activity from './components/Activity';
 import ActivityLog from './components/ActivityLog';
-import AddressInput from './components/AddressInput.js';
+import AddressInput from './components/AddressInput';
 import Alert from './components/Alert';
 import BlockPanel from './components/BlockPanel';
 // @ts-ignore: implicitly has an 'any' type
 import BoundForm from './components/BoundForm';
 // @ts-ignore: implicitly has an 'any' type
 import BoundFormRow from './components/BoundFormRow';
-import Calendar from './components/Calendar.js';
+import Calendar from './components/Calendar';
 import Callout from './components/Callout';
 import Close from './components/Close';
 import CheckboxGroup from './components/CheckboxGroup';
 import CheckboxInput from './components/CheckboxInput';
-import CheckboxBooleanInput from './components/CheckboxBooleanInput.js';
-import CheckboxListInput from './components/CheckboxListInput.js';
+import CheckboxBooleanInput from './components/CheckboxBooleanInput';
+import CheckboxListInput from './components/CheckboxListInput';
 import ClickableContainer from './components/ClickableContainer';
 import CollapsableText from './components/CollapsableText';
 import Combobox from './components/Combobox';
-import ConfirmationButton from './components/ConfirmationButton.js';
+import ConfirmationButton from './components/ConfirmationButton';
 import CountryInput from './components/CountryInput';
 import CreditCardNumber from './components/CreditCardNumber';
 import CurrencyInput from './components/CurrencyInput';
 import Datapair from './components/Datapair';
-import DateInput from './components/DateInput.js';
+import DateInput from './components/DateInput';
 import DeletedNote from './components/DeletedNote';
 import EditableNote from './components/EditableNote';
 import ExpandableSection from './components/ExpandableSection';
-import FeatureBanner from './components/FeatureBanner.js';
-import FileInput from './components/FileInput.js';
-import FilterList from './components/FilterList.js';
-import FormChoice from './components/FormChoice.js';
-import FormRow from './components/FormRow.js';
-import HasManyFields from './components/HasManyFields.js';
-import HasManyFieldsAdd from './components/HasManyFieldsAdd.js';
+import FeatureBanner from './components/FeatureBanner';
+import FileInput from './components/FileInput';
+import FilterList from './components/FilterList';
+import FormChoice from './components/FormChoice';
+import FormRow from './components/FormRow';
+import HasManyFields from './components/HasManyFields';
+import HasManyFieldsAdd from './components/HasManyFieldsAdd';
 import HasManyFieldsRow from './components/HasManyFieldsRow';
 import HelpBubble from './components/HelpBubble';
 import Highlight from './components/Highlight';
 // @ts-ignore: implicitly has an 'any' type
-import ImageCarousel from './components/ImageCarousel.js';
+import ImageCarousel from './components/ImageCarousel';
 import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
 import InfoBox from './components/InfoBox';
-import LabelBadge from './components/LabelBadge.js';
+import LabelBadge from './components/LabelBadge';
 import MaskedInput from './components/MaskedInput';
-import Modal from './components/Modal.js';
-import MonthCalendar from './components/MonthCalendar.js';
-import MonthInput from './components/MonthInput.js';
+import Modal from './components/Modal';
+import MonthCalendar from './components/MonthCalendar';
+import MonthInput from './components/MonthInput';
 import Note from './components/Note';
 import NoteHeader from './components/NoteHeader';
 import Notes from './components/Notes';
 import Paginator from './components/Paginator';
 // @ts-ignore: implicitly has an 'any' type
-import PatternInput from './components/PatternInput.js';
+import PatternInput from './components/PatternInput';
 import Placeholder from './components/Placeholder';
 import Popover from './components/Popover';
-import Progress from './components/Progress.js';
+import Progress from './components/Progress';
 import RadioGroup from './components/RadioGroup';
 import RadioInput from './components/RadioInput';
 import ScrollContainer from './components/ScrollContainer';
 // @ts-ignore: implicitly has an 'any' type
-import Select from './components/Select.js';
+import Select from './components/Select';
 // @ts-ignore: implicitly has an 'any' type
-import SelectMultiValue from './components/SelectMultiValue.js';
-import SortableTable from './components/SortableTable.js';
-import Spinner from './components/Spinner.js';
+import SelectMultiValue from './components/SelectMultiValue';
+import SortableTable from './components/SortableTable';
+import Spinner from './components/Spinner';
 import StateInput from './components/StateInput';
 import StaticInput from './components/StaticInput';
 import Status from './components/Status';
@@ -157,10 +157,10 @@ import SummaryBox from './components/SummaryBox';
 import SummaryBoxItem from './components/SummaryBoxItem';
 import Table from './components/Table';
 // @ts-ignore: implicitly has an 'any' type
-import TimeInput from './components/TimeInput.js';
-import Tooltip from './components/Tooltip.js';
+import TimeInput from './components/TimeInput';
+import Tooltip from './components/Tooltip';
 // @ts-ignore: implicitly has an 'any' type
-import UncontrolledTable from './components/UncontrolledTable.js';
+import UncontrolledTable from './components/UncontrolledTable';
 import Waiting from './components/Waiting';
 import TooltipButton from './components/TooltipButton';
 
