@@ -1,6 +1,6 @@
 import React from 'react';
 import { boolean, number } from '@storybook/addon-knobs';
-import { ImageCarousel } from '../src';
+import { ImageCarousel, Jumbotron } from '../src';
 
 const items = [
   {
@@ -20,7 +20,13 @@ const items = [
     altText: 'Slide 4'
   },
   {
-    src: 'https://picsum.photos/id/6/1200/900',
+    children: (
+      <Jumbotron className="h-100">
+        <h1>Wow</h1>
+        <p>Look you can put any React node in the carousel too.</p>
+        <img alt="Success" src="https://upload.wikimedia.org/wikipedia/en/f/ff/SuccessKid.jpg" />
+      </Jumbotron>
+    ),
     altText: 'Slide 5',
   }
 ];
