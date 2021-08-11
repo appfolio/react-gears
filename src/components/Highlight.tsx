@@ -11,17 +11,29 @@ interface HighlightProps {
   caseSensitive?: boolean;
   /** Escaping single quotes */
   ignoreSpecial?: boolean;
+  escape?: boolean;
   children: ReactNode;
 }
+
+const defaultProps = {
+  escape: true
+};
 
 const escapePattern = (pattern: string) => pattern.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
 
 const ignoreSpecialCharacters = (pattern: string) => pattern.replace(/[^\w\s\']/gi, '');
 
-const Highlight = ({ pattern, caseSensitive, ignoreSpecial, children }: HighlightProps) => {
+const Highlight = ({ 
+  pattern, 
+  caseSensitive, 
+  ignoreSpecial, 
+  children, 
+  escape = defaultProps.escape,
+}: HighlightProps) => {
   const highlightedSegments = (text: string) => {
     if (ignoreSpecial) pattern = ignoreSpecialCharacters(pattern);
-    const regex = new RegExp(escapePattern(pattern), caseSensitive ? 'g' : 'gi');
+    if (escape) pattern = escapePattern(pattern);
+    const regex = new RegExp(pattern, caseSensitive ? 'g' : 'gi');
 
     const segments: Segment[] = [];
     let match: RegExpExecArray | null = regex.exec(text);

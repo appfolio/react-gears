@@ -19,6 +19,19 @@ describe('<Highlight />', () => {
     assert.equal('the', highlighted[1].innerHTML);
   });
 
+  it('should highlight raw patterns without escape', () => {
+    const highlight = render(
+      <Highlight pattern="(The)|(FOX)" escape={false} >The quick brown fox jumps over the lazy dog.</Highlight>
+    );
+
+    const highlighted = highlight.container.querySelectorAll('mark');
+
+    assert.equal(3, highlighted.length);
+    assert.equal('The', highlighted[0].innerHTML);
+    assert.equal('fox', highlighted[1].innerHTML);
+    assert.equal('the', highlighted[2].innerHTML);
+  });
+
   it('should highlight patterns with special characters', () => {
     const highlight = render(
       <Highlight pattern="dog.">The quick brown fox jumps over the lazy dog.</Highlight>
