@@ -22,3 +22,10 @@ export const DOMNodesAsChildren = () => (
     </div>
   </Highlight>
 );
+
+export const UseRegexAsPattern = () => (
+  <Highlight caseSensitive={boolean('caseSensitive', false)} ignoreSpecial={boolean('ignoreSpecial', false)} escape={boolean('escape', false)} pattern={text('pattern', '(fox)|(dog)')}>
+    <div>The quick brown fox jumps over the lazy dog.</div>
+    <div>THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.</div>
+  </Highlight>
+);
