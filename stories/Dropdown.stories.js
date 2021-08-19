@@ -2,7 +2,7 @@ import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '../node_modules/@storybook/addon-actions';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from '../src';
-import { colors } from './colors';
+import { buttonColors } from './colors';
 
 export default {
   title: 'Dropdown',
@@ -14,11 +14,11 @@ export const Uncontrolled = () => (
     direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
   >
     <DropdownToggle
-      color={select('color', colors, 'primary')}
+      color={select('color', buttonColors, 'link')}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       size={select('size', ['', 'sm', 'lg'])}
-      caret
+      caret={boolean('caret', true)}
     >
       {text('text', 'Click Me')}
     </DropdownToggle>
@@ -39,11 +39,11 @@ export const Controlled = () => (
     toggle={action('toggle')}
   >
     <DropdownToggle
-      color={select('color', colors, 'primary')}
+      color={select('color', buttonColors, 'link')}
       disabled={boolean('disabled', false)}
       outline={boolean('outline', false)}
       size={select('size', ['', 'sm', 'lg'])}
-      caret
+      caret={boolean('caret', true)}
     >
       {text('text', 'Click Me')}
     </DropdownToggle>
