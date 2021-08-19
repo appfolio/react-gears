@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import orderBy from 'lodash.orderby';
 import Paginator from './Paginator';
 import SortableTable, {
@@ -73,6 +73,7 @@ function UncontrolledTable<T extends MayHaveKey>({
   paginated,
   ...props
 }: UncontrolledTableProps<T>) {
+  const isMounted = useRef(false);
   const { sortBy, sortKey, sortAscending } = useSort(sort.column, sort.ascending);
   const { expanded, setExpanded, isExpanded, toggleExpanded } = useExpand(expandedProp);
   const { currentPage, setCurrentPage, pageSize, totalItems } = usePagination({ page, size: pageSizeProp, total: props.rows.length });
@@ -90,9 +91,10 @@ function UncontrolledTable<T extends MayHaveKey>({
    * Reset selection/expansion/pagination state.
    */
   const rowsComp = keyComparableArray(props.rows);
-  useEffect(() => setSelected([]), [selectable, rowsComp, setSelected]);
-  useEffect(() => setExpanded([]), [expandable, rowsComp, setExpanded]);
-  useEffect(() => setCurrentPage(0), [rowsComp, setCurrentPage]);
+  useEffect(() => { if (isMounted.current) setSelected([]); }, [selectable, rowsComp, setSelected]);
+  useEffect(() => { if (isMounted.current) setExpanded([]); }, [expandable, rowsComp, setExpanded]);
+  useEffect(() => { if (isMounted.current) setCurrentPage(0); }, [rowsComp, setCurrentPage]);
+  useEffect(() => { isMounted.current = true; }, []);
 
   /*
    * Trigger provided callback functions.
@@ -154,5 +156,7 @@ function UncontrolledTable<T extends MayHaveKey>({
     </div>
   );
 }
+
+UncontrolledTable.defaultProps = defaultProps;
 
 export default UncontrolledTable;
