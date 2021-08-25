@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import orderBy from 'lodash.orderby';
 import Paginator from './Paginator';
+import Placeholder from './Placeholder';
 import SortableTable, {
-  SortableTablePropsBase, MayHaveKey, defaultProps as sortableTableDefaultProps
+  SortableTablePropsBase, TableRow, defaultProps as sortableTableDefaultProps
 } from './SortableTable';
 import { useExpand, useMultiSelect, usePagination, useSort } from '../hooks/table';
 
@@ -11,7 +12,16 @@ interface Sort {
   ascending: boolean,
 }
 
-interface UncontrolledTableProps<T extends MayHaveKey> extends SortableTablePropsBase<T> {
+interface LoadRowsParams {
+  paginated?: boolean;
+  currentPage: number;
+  pageSize: number;
+  sortAscending: boolean;
+  sortKey?: string;
+  rows?: any[];
+}
+
+interface UncontrolledTableProps<T extends TableRow> extends SortableTablePropsBase<T> {
   expandable?: boolean,
   expanded?: T[],
   rowExpanded?: (row: T) => React.ReactNode,
@@ -25,6 +35,7 @@ interface UncontrolledTableProps<T extends MayHaveKey> extends SortableTableProp
   onPageChange?: (page: number) => void,
   page?: number,
   pageSize?: number,
+  loadRows?: (params: LoadRowsParams) => Promise<T[]> | T[],
 }
 
 const defaultProps = {
@@ -40,16 +51,17 @@ const defaultProps = {
   sort: {
     ascending: true
   },
-  onSort: () => {}
+  onSort: () => {},
+  loadRows: ({ paginated, currentPage, pageSize, sortAscending, sortKey, rows = [] }: LoadRowsParams) => {
+    const sortedRows = orderBy(rows, [sortKey], [sortAscending ? 'asc' : 'desc']);
+
+    const start = currentPage * pageSize;
+    const end = start + pageSize;
+    return paginated ? sortedRows.slice(start, end) : sortedRows;
+  }
 };
 
-const sortedData = (rows: any[], column: string | undefined, ascending: boolean) => orderBy(
-  rows,
-  [column],
-  [ascending ? 'asc' : 'desc']
-);
-
-function keyComparableArray<T extends MayHaveKey>(arr: T[]) {
+function keyComparableArray<T extends TableRow>(arr: T[]) {
   const keys = arr.map(el => el.key);
   const keySet = new Set(keys);
 
@@ -57,7 +69,7 @@ function keyComparableArray<T extends MayHaveKey>(arr: T[]) {
   return JSON.stringify(keys.sort());
 }
 
-function UncontrolledTable<T extends MayHaveKey>({
+function UncontrolledTable<T extends TableRow>({
   onExpand = defaultProps.onExpand,
   expanded: expandedProp = defaultProps.expanded,
   rowExpanded = defaultProps.rowExpanded,
@@ -71,13 +83,29 @@ function UncontrolledTable<T extends MayHaveKey>({
   expandable,
   selectable,
   paginated,
+  loadRows = defaultProps.loadRows,
+  rows: rowsProp,
   ...props
 }: UncontrolledTableProps<T>) {
   const isMounted = useRef(false);
+  const [loading, setLoading] = useState(false);
+  const [rows, setRows] = useState<T[]>([]);
   const { sortBy, sortKey, sortAscending } = useSort(sort.column, sort.ascending);
   const { expanded, setExpanded, isExpanded, toggleExpanded } = useExpand(expandedProp);
-  const { currentPage, setCurrentPage, pageSize, totalItems } = usePagination({ page, size: pageSizeProp, total: props.rows.length });
+  const { currentPage, setCurrentPage, pageSize, totalItems } = usePagination({ page, size: pageSizeProp, total: rowsProp.length });
   const { selected, setSelected, allSelected, isSelected, toggleAll, toggleSelection } = useMultiSelect(selectedProp);
+
+  useEffect(() => {
+    const fetchRows = async () => {
+      setLoading(true);
+      const r = await loadRows({ paginated, currentPage, pageSize, sortAscending, sortKey, rows: rowsProp });
+      setRows(r);
+      setLoading(false);
+    };
+
+    fetchRows();
+  }, [rowsProp, loadRows, currentPage, pageSize, sortAscending, sortKey, paginated, setRows, setLoading]);
+
   /*
    * State updates triggered by prop changes. We should eventually remove this feature,
    * since this component is supposed to be uncontrolled.
@@ -90,7 +118,7 @@ function UncontrolledTable<T extends MayHaveKey>({
   /*
    * Reset selection/expansion/pagination state.
    */
-  const rowsComp = keyComparableArray(props.rows);
+  const rowsComp = keyComparableArray(rowsProp);
   useEffect(() => { if (isMounted.current) setSelected([]); }, [selectable, rowsComp, setSelected]);
   useEffect(() => { if (isMounted.current) setExpanded([]); }, [expandable, rowsComp, setExpanded]);
   useEffect(() => { if (isMounted.current) setCurrentPage(0); }, [rowsComp, setCurrentPage]);
@@ -110,18 +138,19 @@ function UncontrolledTable<T extends MayHaveKey>({
     .filter(col => !col.hidden)
     .map(col => (col.sortable !== false) ?
       {
+        ...col,
         active: sortKey === col.key,
         ascending: sortAscending,
         onSort: (asc: boolean) => sortBy(col.key, asc),
-        ...col
+        cell: loading ? () => <Placeholder /> : col.cell,
       } : col
     );
 
   const selectableProps = selectable ? {
     rowSelected: (row: T) => isSelected(row),
     onSelect: (row: T) => toggleSelection(row),
-    onSelectAll: () => toggleAll(props.rows),
-    allSelected: allSelected(props.rows)
+    onSelectAll: () => toggleAll(rowsProp),
+    allSelected: allSelected(rowsProp)
   } : undefined;
 
   const expandableProps = expandable ? {
@@ -129,17 +158,12 @@ function UncontrolledTable<T extends MayHaveKey>({
     onExpand: (row: T) => toggleExpanded(row)
   } : undefined;
 
-  const start = currentPage * pageSize;
-  const end = start + pageSize;
-  const sortedRows = sortedData(props.rows, sortKey, sortAscending);
-  const visibleRows = paginated ? sortedRows.slice(start, end) : sortedRows;
-
   return (
     <div>
       <SortableTable
         {...props}
         columns={cols}
-        rows={visibleRows}
+        rows={loading ? Array.from(Array(pageSize), () => ({ disabled: true } as T)) : rows}
         {...expandableProps}
         {...selectableProps}
       />

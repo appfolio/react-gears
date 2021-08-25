@@ -15,7 +15,7 @@ function generateColumnClassName<T>(column: SortableColumn<T>, truncate = false)
   );
 }
 
-function defaultRenderRow<T extends MayHaveKey>(
+function defaultRenderRow<T extends TableRow>(
   row: T, columns: SortableColumn<T>[], rowClassName: SortableTableProps<T>['rowClassName'],
   rowExpanded: SortableTablePropsExpandable<T>['rowExpanded'], rowOnClick: SortableTableProps<T>['rowOnClick'],
   truncate: SortableTableProps<T>['truncate'], rowSelected: SortableTablePropsSelectable<T>['rowSelected']
@@ -50,11 +50,12 @@ function defaultRenderRow<T extends MayHaveKey>(
 
 type HorizontalAlignment = 'left' | 'center' | 'right';
 
-export interface MayHaveKey {
+export interface TableRow {
   key?: string;
+  disabled?: boolean;
 }
 
-export interface SortableColumn<T extends MayHaveKey>
+export interface SortableColumn<T extends TableRow>
   extends Omit<HeaderProps, 'children' | 'onSort'> {
   align?: HorizontalAlignment;
   cell: (row: T, expanded?: React.ReactNode) => React.ReactNode;
@@ -66,7 +67,7 @@ export interface SortableColumn<T extends MayHaveKey>
   [key: string]: any;
 }
 
-export interface SortableTablePropsBase<T extends MayHaveKey> extends Omit<TableProps, 'children'> {
+export interface SortableTablePropsBase<T extends TableRow> extends Omit<TableProps, 'children'> {
   className?: string;
   allSelected?: boolean;
   columns: SortableColumn<T>[];
@@ -80,18 +81,18 @@ export interface SortableTablePropsBase<T extends MayHaveKey> extends Omit<Table
   truncate?: boolean;
 }
 
-interface SortableTablePropsExpandable<T extends MayHaveKey> extends SortableTablePropsBase<T> {
+interface SortableTablePropsExpandable<T extends TableRow> extends SortableTablePropsBase<T> {
   onExpand: (row: T) => void;
   rowExpanded: (row: T) => React.ReactNode | boolean;
 }
 
-interface SortableTablePropsSelectable<T extends MayHaveKey> extends SortableTablePropsBase<T> {
+interface SortableTablePropsSelectable<T extends TableRow> extends SortableTablePropsBase<T> {
   onSelect: (row: T, selected: boolean) => void;
   onSelectAll: (selected: boolean) => void;
   rowSelected: (row: T) => boolean;
 }
 
-interface SortableTablePropsExpandableSelectable<T extends MayHaveKey> extends SortableTablePropsBase<T> {
+interface SortableTablePropsExpandableSelectable<T extends TableRow> extends SortableTablePropsBase<T> {
   onExpand: (row: T) => void;
   rowExpanded: (row: T) => React.ReactNode | boolean;
   onSelect: (row: T, selected: boolean) => void;
@@ -99,7 +100,7 @@ interface SortableTablePropsExpandableSelectable<T extends MayHaveKey> extends S
   rowSelected: (row: T) => boolean;
 }
 
-export type SortableTableProps<T extends MayHaveKey> = SortableTablePropsBase<T> | SortableTablePropsExpandable<T> | SortableTablePropsSelectable<T> | SortableTablePropsExpandableSelectable<T>;
+export type SortableTableProps<T extends TableRow> = SortableTablePropsBase<T> | SortableTablePropsExpandable<T> | SortableTablePropsSelectable<T> | SortableTablePropsExpandableSelectable<T>;
 
 export const defaultProps = {
   ...Table.defaultProps,
@@ -111,7 +112,7 @@ export const defaultProps = {
   rows: [],
 };
 
-export default function SortableTable<T>({
+export default function SortableTable<T extends TableRow>({
   columns, header, footer, rowClassName = defaultProps.rowClassName, rowOnClick, rows = defaultProps.rows, style,
   truncate = defaultProps.truncate, allSelected, onSelect, onSelectAll, rowSelected,
   expandableColumn = defaultProps.expandableColumn, onExpand, rowExpanded = defaultProps.rowExpanded,
@@ -158,6 +159,7 @@ export default function SortableTable<T>({
               checked={rowSelected(row)}
               onClick={e => e.stopPropagation()}
               onChange={e => onSelect(row, e.target.checked)}
+              disabled={row.disabled}
             />
           </>);
       },
@@ -175,6 +177,7 @@ export default function SortableTable<T>({
           color="link"
           onClick={() => onExpand(row)}
           aria-label="Expand row"
+          disabled={row.disabled}
         >
           <Icon name={expanded ? 'angle-up' : 'angle-down'} />
         </Button>
