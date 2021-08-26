@@ -2,6 +2,7 @@ import React from 'react';
 import fecha from 'fecha';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
+import { orderBy } from 'lodash';
 import { Button, Table, SortableTable, UncontrolledTable } from '../src';
 
 const DATA = [
@@ -159,6 +160,59 @@ export const UncontrolledTableExample = () => (
     />
   </div>
 );
+
+export const ServerSidePaginatedExample = () => {
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  const loadRows = async ({ paginated, currentPage, pageSize, sortAscending, sortKey }) => {
+    await delay(1000);
+    const sortedRows = orderBy(DATA, [sortKey], [sortAscending ? 'asc' : 'desc']);
+
+    const start = currentPage * pageSize;
+    const end = start + pageSize;
+    return {
+      data: paginated ? sortedRows.slice(start, end) : sortedRows,
+      total: DATA.length,
+    };
+  };
+
+  return (
+    <div>
+      <UncontrolledTable
+        columns={[
+        {
+          header: 'First',
+          key: 'first',
+          cell: row => row.first,
+          width: '20%'
+        },
+        {
+          header: 'Last',
+          key: 'last',
+          cell: row => row.last,
+          width: '30%'
+        },
+        {
+          header: 'DOB',
+          key: 'dob',
+          cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+          width: '15%'
+        },
+        {
+          header: 'Email',
+          key: 'email',
+          cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+          width: '35%'
+        }
+      ]}
+        loadRows={loadRows}
+        selectable={boolean('selectable', true)}
+        paginated={boolean('paginated', true)}
+        pageSize={number('pageSize', 5)}
+      />
+    </div>
+  );
+};
 
 export const CustomHeader = () => (
   <UncontrolledTable
