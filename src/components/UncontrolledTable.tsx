@@ -21,6 +21,11 @@ interface LoadRowsParams {
   rows?: any[];
 }
 
+interface LoadRowsResult<T> {
+  data: T[],
+  total: number,
+}
+
 interface UncontrolledTableProps<T extends TableRow> extends SortableTablePropsBase<T> {
   expandable?: boolean,
   expanded?: T[],
@@ -35,7 +40,7 @@ interface UncontrolledTableProps<T extends TableRow> extends SortableTablePropsB
   onPageChange?: (page: number) => void,
   page?: number,
   pageSize?: number,
-  loadRows?: (params: LoadRowsParams) => Promise<T[]> | T[],
+  loadRows?: (params: LoadRowsParams) => Promise<LoadRowsResult<T>> | LoadRowsResult<T>,
 }
 
 const defaultProps = {
@@ -52,12 +57,15 @@ const defaultProps = {
     ascending: true
   },
   onSort: () => {},
-  loadRows: ({ paginated, currentPage, pageSize, sortAscending, sortKey, rows = [] }: LoadRowsParams) => {
+  loadRows: ({ paginated, currentPage, pageSize, sortAscending, sortKey, rows = [] }: LoadRowsParams): LoadRowsResult<any> => {
     const sortedRows = orderBy(rows, [sortKey], [sortAscending ? 'asc' : 'desc']);
 
     const start = currentPage * pageSize;
     const end = start + pageSize;
-    return paginated ? sortedRows.slice(start, end) : sortedRows;
+    return {
+      data: paginated ? sortedRows.slice(start, end) : sortedRows,
+      total: rows.length,
+    };
   }
 };
 
@@ -92,19 +100,20 @@ function UncontrolledTable<T extends TableRow>({
   const [rows, setRows] = useState<T[]>([]);
   const { sortBy, sortKey, sortAscending } = useSort(sort.column, sort.ascending);
   const { expanded, setExpanded, isExpanded, toggleExpanded } = useExpand(expandedProp);
-  const { currentPage, setCurrentPage, pageSize, totalItems } = usePagination({ page, size: pageSizeProp, total: rowsProp.length });
+  const { currentPage, setCurrentPage, pageSize, totalItems, setTotalItems } = usePagination({ page, size: pageSizeProp });
   const { selected, setSelected, allSelected, isSelected, toggleAll, toggleSelection } = useMultiSelect(selectedProp);
 
   useEffect(() => {
     const fetchRows = async () => {
       setLoading(true);
-      const r = await loadRows({ paginated, currentPage, pageSize, sortAscending, sortKey, rows: rowsProp });
-      setRows(r);
+      const { data, total } = await loadRows({ paginated, currentPage, pageSize, sortAscending, sortKey, rows: rowsProp });
+      setRows(data);
+      setTotalItems(total);
       setLoading(false);
     };
 
     fetchRows();
-  }, [rowsProp, loadRows, currentPage, pageSize, sortAscending, sortKey, paginated, setRows, setLoading]);
+  }, [rowsProp, loadRows, currentPage, pageSize, sortAscending, sortKey, paginated, setRows, setTotalItems, setLoading]);
 
   /*
    * State updates triggered by prop changes. We should eventually remove this feature,
