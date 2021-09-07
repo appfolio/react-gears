@@ -16,7 +16,9 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        # TODO: switch back to 16.x when this issue is resolved with 16.9
+        # https://github.com/nodejs/node/issues/40030
+        node-version: [12.x, 14.x, 16.8]
 
     steps:
     - uses: actions/checkout@v2

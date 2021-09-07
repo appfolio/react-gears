@@ -4,12 +4,12 @@ import Icon from './Icon';
 import { FontAwesomeAPMProps } from './icon/FontAwesomeAPM';
 
 interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {
-  type: 'info' | 'muted' | 'success' | 'danger' | 'warning';
+  type?: 'info' | 'muted' | 'success' | 'danger' | 'warning' | 'none';
   className?: string;
 }
 
-const Status = ({ type, className, ...props }: StatusProps) => {
-  let name = 'circle';
+const Status = ({ type = 'none', className, ...props }: StatusProps) => {
+  let name = '';
   switch (type) {
     case 'info':
       name = 'info-circle';
@@ -26,10 +26,14 @@ const Status = ({ type, className, ...props }: StatusProps) => {
     case 'warning':
       name = 'exclamation-circle';
       break;
+    case 'none':
+      name = 'circle';
+      break;
     default:
+      throw new Error(`Unsupported value for 'type' prop passed to Status component: "${type}"`);
   }
   return (
-    <Icon {...props} name={name} fixedWidth className={classnames(`text-${type || 'muted'}`, className)} />
+    <Icon {...props} name={name} fixedWidth className={classnames(`text-${type === 'none' ? 'muted' : type}`, className)} />
   );
 };
 
