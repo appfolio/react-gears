@@ -16,6 +16,18 @@ describe('<Status />', () => {
     assert.strictEqual(icon.prop('className'), 'text-info');
   });
 
+  it('should accept none as an option', () => {
+    const icon = shallow(<Status type='none' />).find(Icon);
+    assert.strictEqual(icon.prop('name'), 'circle');
+    assert.strictEqual(icon.prop('className'), 'text-muted');
+  });
+
+  it('should default to the "none" type', () => {
+    const icon = shallow(<Status />).find(Icon);
+    assert.strictEqual(icon.prop('name'), 'circle');
+    assert.strictEqual(icon.prop('className'), 'text-muted');
+  });
+
   it('should take a type option and classnames', () => {
     const icon = shallow(<Status type='muted' className='mx-5' />).find(Icon);
     assert.strictEqual(icon.prop('className'), 'text-muted mx-5');
