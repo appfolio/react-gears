@@ -16,19 +16,9 @@ describe('<Status />', () => {
     assert.strictEqual(icon.prop('className'), 'text-info');
   });
 
-  it('should take a type option', () => {
+  it('should take a type option and classnames', () => {
     const icon = shallow(<Status type='muted' className='mx-5' />).find(Icon);
     assert.strictEqual(icon.prop('className'), 'text-muted mx-5');
-  });
-
-  it('shouldnt let a name prop override type', () => {
-    const icon = shallow(<Status type='success' name='warning' />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'check-circle');
-  });
-
-  it('shouldnt let a name prop override type', () => {
-    const icon = shallow(<Status type='success' name='warning' />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'check-circle');
   });
 
   it('should take custom icon props', () => {
