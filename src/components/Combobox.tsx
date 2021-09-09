@@ -182,10 +182,11 @@ function Combobox<T>({
     if (optionValue) selectOption(optionValue);
   };
 
-  const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
+  const handleOptionsKeyboardNav = (e : React.KeyboardEvent<HTMLElement>) => {
     const input = inputElement?.current;
     const allSelected = input?.selectionStart === 0 && input.selectionEnd === input.value.length;
     const isDisplayingSelected = !multi && selected && inputValue === (selected as Option<T>).label;
+    const key = e.key;
 
     if (!open && key === 'ArrowDown') {
       setOpen(true);
@@ -196,6 +197,7 @@ function Combobox<T>({
       }
 
       selectOption(visibleOptions[focusedOptionIndex].value);
+      e.preventDefault();
     } else if (key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
