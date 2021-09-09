@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import orderBy from 'lodash.orderby';
+import Alert from './Alert';
+import Button from './Button';
 import Paginator from './Paginator';
 import Placeholder from './Placeholder';
 import SortableTable, {
@@ -101,10 +103,11 @@ function UncontrolledTable<T extends TableRow>({
   const { sortBy, sortKey, sortAscending } = useSort(sort.column, sort.ascending);
   const { expanded, setExpanded, isExpanded, toggleExpanded } = useExpand(expandedProp);
   const { currentPage, setCurrentPage, pageSize, totalItems, setTotalItems } = usePagination({ page, size: pageSizeProp });
-  const { selected, setSelected, allSelected, isSelected, toggleAll, toggleSelection } = useMultiSelect(selectedProp);
+  const { selected, setSelected, isSelected, toggleSelection } = useMultiSelect(selectedProp);
 
   useEffect(() => {
     const fetchRows = async () => {
+      setRows([]);
       setLoading(true);
       const { data, total } = await loadRows({ paginated, currentPage, pageSize, sortAscending, sortKey, rows: rowsProp });
       setRows(data);
@@ -158,8 +161,8 @@ function UncontrolledTable<T extends TableRow>({
   const selectableProps = selectable ? {
     rowSelected: (row: T) => isSelected(row),
     onSelect: (row: T) => toggleSelection(row),
-    onSelectAll: () => toggleAll(rowsProp),
-    allSelected: allSelected(rowsProp)
+    onSelectAll: () => toggleSelection(rows),
+    allSelected: isSelected(rows)
   } : undefined;
 
   const expandableProps = expandable ? {
@@ -169,6 +172,14 @@ function UncontrolledTable<T extends TableRow>({
 
   return (
     <div>
+      { rows.length !== totalItems && selected.length > 0 &&
+        <Alert color="info">
+          <div className="d-flex">
+            {`${selected.length}/${totalItems} items selected`}
+            <Button color="link" className="ml-auto p-0">{selected.length === totalItems ? 'Deselect ' : 'Select '} all</Button>
+          </div>
+        </Alert>
+      }
       <SortableTable
         {...props}
         columns={cols}
