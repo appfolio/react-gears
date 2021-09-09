@@ -182,25 +182,26 @@ function Combobox<T>({
     if (optionValue) selectOption(optionValue);
   };
 
-  const handleOptionsKeyboardNav = ({ key }: React.KeyboardEvent<HTMLElement>) => {
+  const handleOptionsKeyboardNav = (e : React.KeyboardEvent<HTMLElement>) => {
     const input = inputElement?.current;
     const allSelected = input?.selectionStart === 0 && input.selectionEnd === input.value.length;
     const isDisplayingSelected = !multi && selected && inputValue === (selected as Option<T>).label;
 
-    if (!open && key === 'ArrowDown') {
+    if (!open && e.key === 'ArrowDown') {
       setOpen(true);
-    } else if (key === 'Enter') {
+    } else if (e.key === 'Enter') {
       if (noMatches) {
         createOption();
         return;
       }
 
       selectOption(visibleOptions[focusedOptionIndex].value);
-    } else if (key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown' && focusedOptionIndex < visibleOptions.length - 1) {
       setFocusedOptionIndex(focusedOptionIndex + 1);
-    } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
+    } else if (e.key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
-    } else if (selected && key === 'Backspace' && (cursorAtStart() || (allSelected && isDisplayingSelected))) {
+    } else if (selected && e.key === 'Backspace' && (cursorAtStart() || (allSelected && isDisplayingSelected))) {
       if (multi) {
         const newValue = [...value];
         newValue.pop();
@@ -208,7 +209,7 @@ function Combobox<T>({
         return;
       }
       onChange(undefined);
-    } else if (!multi && selected && key === 'Backspace' && ((input?.selectionStart === 1 && input?.selectionEnd === 1) || (allSelected && !isDisplayingSelected))) {
+    } else if (!multi && selected && e.key === 'Backspace' && ((input?.selectionStart === 1 && input?.selectionEnd === 1) || (allSelected && !isDisplayingSelected))) {
       showSelectedPreview();
     }
   };
