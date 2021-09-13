@@ -10,7 +10,7 @@ export const LiveExample = () => (
   <Media>
     <Media left href="https://github.com/gthomas-appfolio">
       <Media
-        className="mr-2 rounded"
+        className="me-2 rounded"
         object
         src="https://avatars1.githubusercontent.com/u/18536746?s=460&v=4"
         alt="Gary"

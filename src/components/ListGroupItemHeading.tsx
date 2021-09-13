@@ -1,3 +1,3 @@
-import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading';
+import { ListGroupItemHeading } from 'reactstrap';
 
 export default ListGroupItemHeading;

@@ -1,3 +1,3 @@
-import CardDeck from 'reactstrap/lib/CardDeck';
+import { CardDeck } from 'reactstrap';
 
 export default CardDeck;

@@ -1,4 +1,4 @@
-import { CardGroupProps } from 'reactstrap/lib/CardGroup';
+import { CardGroupProps } from 'reactstrap';
 import React, { FunctionComponent, ReactNode } from 'react';
 import CardGroup from './CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
@@ -24,13 +24,13 @@ const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
   items,
   reverse = defaultProps.reverse,
   ...props
-}) => (
-    <CardGroup {...props}>
-      {items ?
-        items.map((item, i) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} reverse={reverse} />) :
+}: CardGroupProps) => (
+  <CardGroup {...props}>
+    {items ?
+        items.map((item: SummaryItem, i: number) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} reverse={reverse} />) :
         children}
-    </CardGroup>
-  );
+  </CardGroup>
+);
 
 SummaryBox.displayName = 'SummaryBox';
 SummaryBox.defaultProps = defaultProps;

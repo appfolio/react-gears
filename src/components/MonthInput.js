@@ -14,7 +14,6 @@ import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
 
 const { parse } = Fecha;
 
@@ -251,19 +250,17 @@ export default class MonthInput extends React.Component {
                 onKeyDown={this.onKeyDown}
                 disabled={disabled}
               />
-              <InputGroupAddon addonType="append">
-                <Button
-                  onClick={this.toggle}
-                  className="px-2"
-                  disabled={disabled}
-                  active={open}
-                  type="button"
-                  tabIndex={-1}
-                >
-                  <Icon name="calendar-o" fixedWidth />
-                  <span className="sr-only">Open Calendar</span>
-                </Button>
-              </InputGroupAddon>
+              <Button
+                onClick={this.toggle}
+                className="px-2"
+                disabled={disabled}
+                active={open}
+                type="button"
+                tabIndex={-1}
+              >
+                <Icon name="calendar-o" fixedWidth />
+                <span className="sr-only">Open Calendar</span>
+              </Button>
             </InputGroup>
           </DropdownToggle>
 
@@ -315,7 +312,7 @@ export default class MonthInput extends React.Component {
             {footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button onClick={this.today} className="mr-2">Today</Button>
+                  <Button onClick={this.today} className="me-2">Today</Button>
                 </div>
               </footer>
             )}

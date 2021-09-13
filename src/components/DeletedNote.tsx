@@ -18,7 +18,7 @@ const DeletedNote: React.FunctionComponent<DeletedNoteProps> = ({
     <Alert color="success" icon className={className}>
       <span className="align-middle">Note deleted.</span>
       {onUndelete &&
-        <Button color="link" onClick={() => onUndelete(note)} className="ml-1 p-0">
+        <Button color="link" onClick={() => onUndelete(note)} className="ms-1 p-0">
           Undo
         </Button>
       }

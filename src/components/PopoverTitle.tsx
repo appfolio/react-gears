@@ -1,3 +1,3 @@
-import PopoverHeader from 'reactstrap/lib/PopoverHeader';
+import { PopoverHeader } from 'reactstrap';
 
 export default PopoverHeader;

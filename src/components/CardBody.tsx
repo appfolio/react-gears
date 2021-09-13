@@ -1,3 +1,3 @@
-import CardBody from 'reactstrap/lib/CardBody';
+import { CardBody } from 'reactstrap';
 
 export default CardBody;

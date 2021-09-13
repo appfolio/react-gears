@@ -1,3 +1,3 @@
-import CardSubtitle from 'reactstrap/lib/CardSubtitle';
+import { CardSubtitle } from 'reactstrap';
 
 export default CardSubtitle;

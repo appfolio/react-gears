@@ -1,2 +1,2 @@
-import Modal from 'reactstrap/lib/Modal';
+import { Modal } from 'reactstrap';
 export default Modal;

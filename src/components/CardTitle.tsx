@@ -1,3 +1,3 @@
-import CardTitle from 'reactstrap/lib/CardTitle';
+import { CardTitle } from 'reactstrap';
 
 export default CardTitle;

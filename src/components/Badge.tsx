@@ -1,3 +1,3 @@
-import Badge from 'reactstrap/lib/Badge';
+import { Badge } from 'reactstrap';
 
 export default Badge;

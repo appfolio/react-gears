@@ -1,3 +1,3 @@
-import CardImgOverlay from 'reactstrap/lib/CardImgOverlay';
+import { CardImgOverlay } from 'reactstrap';
 
 export default CardImgOverlay;

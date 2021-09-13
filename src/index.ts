@@ -26,7 +26,6 @@ import CarouselItem from './components/CarouselItem';
 import Col from './components/Col';
 import Collapse from './components/Collapse';
 import Container from './components/Container';
-import CustomInput from './components/CustomInput';
 import Dropdown from './components/Dropdown';
 import DropdownItem from './components/DropdownItem';
 import DropdownMenu from './components/DropdownMenu';
@@ -39,7 +38,6 @@ import FormLabelGroup from './components/FormLabelGroup';
 import FormText from './components/FormText';
 import Input from './components/Input';
 import InputGroup from './components/InputGroup';
-import InputGroupAddon from './components/InputGroupAddon';
 import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
 import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
@@ -197,7 +195,6 @@ export {
   Col,
   Collapse,
   Container,
-  CustomInput,
   DeletedNote,
   Dropdown,
   DropdownItem,
@@ -214,7 +211,6 @@ export {
   Highlight,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupButtonDropdown,
   InputGroupText,
   InternationalAddressInput,

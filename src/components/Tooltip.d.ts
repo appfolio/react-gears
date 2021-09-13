@@ -1,3 +1,3 @@
-import Tooltip from 'reactstrap/lib/Tooltip';
+import { Tooltip } from 'reactstrap';
 
 export default Tooltip;

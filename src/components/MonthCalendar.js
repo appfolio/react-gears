@@ -66,7 +66,7 @@ export default class MonthCalendar extends React.Component {
     return (
       <>
         <div className="rg-MonthCalendar">
-          <Row className="no-gutters">
+          <Row className="gx-0">
             <Col>
               <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
                 {this.getMonths(date).map((monthYear, i) => (
@@ -82,7 +82,7 @@ export default class MonthCalendar extends React.Component {
               </Nav>
             </Col>
 
-            <Col className="border-left">
+            <Col className="border-start">
               <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
                 {this.getYears(date).map((monthYear, i) => (
                   <Label

@@ -1,3 +1,3 @@
-import CardHeader from 'reactstrap/lib/CardHeader';
+import { CardHeader } from 'reactstrap';
 
 export default CardHeader;
