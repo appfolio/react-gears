@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button, { ButtonProps } from './Button';
 
 const Toggle = ({ children, ...props }: ButtonProps) => (
-  <Button color="link" size="sm" className="p-0 m-0 ml-2" {...props}>
+  <Button color="link" size="sm" className="p-0 m-0 ms-2" {...props}>
     {children}
   </Button>
 );

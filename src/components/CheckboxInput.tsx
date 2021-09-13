@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { InputProps } from 'reactstrap/lib/Input';
+import { InputProps } from 'reactstrap';
 
 import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';

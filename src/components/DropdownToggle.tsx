@@ -1,3 +1,3 @@
-import DropdownToggle from 'reactstrap/lib/DropdownToggle';
+import { DropdownToggle } from 'reactstrap';
 
 export default DropdownToggle;

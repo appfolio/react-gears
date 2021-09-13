@@ -12,7 +12,6 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupText,
   UncontrolledDropdown,
 } from '../src';
@@ -80,13 +79,11 @@ export const ComponentsForTitleAndControls = () => (
     controls={[
       <InputGroup>
         <Input placeholder="Search" />
-        <InputGroupAddon addonType="append">
-          <InputGroupText className="p-0 px-2">
-            <Icon name="search" />
-          </InputGroupText>
-        </InputGroupAddon>
+        <InputGroupText className="p-0 px-2">
+          <Icon name="search" />
+        </InputGroupText>
       </InputGroup>,
-      <ButtonGroup className="ml-1">
+      <ButtonGroup className="ms-1">
         <Button active>
           <Icon name="list" />
         </Button>

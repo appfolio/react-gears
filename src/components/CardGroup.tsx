@@ -1,3 +1,3 @@
-import CardGroup from 'reactstrap/lib/CardGroup';
+import { CardGroup } from 'reactstrap';
 
 export default CardGroup;

@@ -1,3 +1,3 @@
-import ModalHeader from 'reactstrap/lib/ModalHeader';
+import { ModalHeader } from 'reactstrap';
 
 export default ModalHeader;

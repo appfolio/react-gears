@@ -1,3 +1,3 @@
-import TabContent from 'reactstrap/lib/TabContent';
+import { TabContent } from 'reactstrap';
 
 export default TabContent;

@@ -1,3 +1,3 @@
-import Portal from 'reactstrap/lib/Portal';
+import { Portal } from 'reactstrap';
 
 export default Portal;

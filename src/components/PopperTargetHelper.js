@@ -1,3 +1,3 @@
-import PopperTargetHelper from 'reactstrap/lib/PopperTargetHelper';
+import { PopperTargetHelper } from 'reactstrap';
 
 export default PopperTargetHelper;
