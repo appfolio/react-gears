@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { InputProps } from 'reactstrap/lib/Input';
+import { InputProps } from 'reactstrap';
 
 import Input from './Input';
 
@@ -10,7 +10,7 @@ export interface StaticInputProps extends InputProps {
 const StaticInput: FunctionComponent<InputProps> = ({
   children,
   ...props
-}) => (
+}: StaticInputProps) => (
   <Input
     {...props}
     type="text"

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Direction } from 'reactstrap/lib/Dropdown';
+import { Direction } from 'reactstrap/types/lib/Dropdown';
 type DateOrString = Date | string;
 
 interface DateInputPropTypes extends Omit<

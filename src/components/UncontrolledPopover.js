@@ -1,4 +1,4 @@
-import UncontrolledPopover from 'reactstrap/lib/UncontrolledPopover';
+import { UncontrolledPopover } from 'reactstrap';
 
 UncontrolledPopover.defaultProps = {
   ...UncontrolledPopover.defaultProps,

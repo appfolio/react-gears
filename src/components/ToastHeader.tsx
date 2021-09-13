@@ -1,3 +1,3 @@
-import ToastHeader from 'reactstrap/lib/ToastHeader';
+import { ToastHeader } from 'reactstrap';
 
 export default ToastHeader;

@@ -26,9 +26,9 @@ const Activity: FunctionComponent<ActivityProps> = ({
   ...props
 }) => (
   <ListGroupItem {...props}>
-    <Row className="w-100 no-gutters align-items-center">
-      <Col className="mr-2" style={{ maxWidth: '11em' }}>
-        <span className="d-none d-inline js-date">{fecha.format(date, dateFormat)}</span>
+    <Row className="w-100 gx-0 align-items-center">
+      <Col className="me-2 px-0" style={{ maxWidth: '11em' }}>
+        <span className="d-inline js-date">{fecha.format(date, dateFormat)}</span>
       </Col>
       {/* Force the next column to break to new line at the xs breakpoint; specifying `xs` in the first column
         * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
@@ -38,7 +38,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
           <div>
             {action && <strong>{action}</strong>}
             {by && (
-              <span className="pl-1 js-by">
+              <span className="ps-1 js-by">
                 {action ? '– ' : ''}
                 <span>{by}</span>
               </span>

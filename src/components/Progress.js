@@ -1,4 +1,4 @@
-import Progress from 'reactstrap/lib/Progress';
+import { Progress } from 'reactstrap';
 
 Progress.defaultProps = {
   ...Progress.defaultProps,

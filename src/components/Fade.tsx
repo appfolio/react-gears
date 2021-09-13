@@ -1,3 +1,3 @@
-import Fade from 'reactstrap/lib/Fade';
+import { Fade } from 'reactstrap';
 
 export default Fade;
