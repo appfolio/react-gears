@@ -1,3 +1,3 @@
-import Navbar from 'reactstrap/lib/Navbar';
+import { Navbar } from 'reactstrap';
 
 export default Navbar;

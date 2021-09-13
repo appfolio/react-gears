@@ -373,7 +373,7 @@ const HasManyFieldsRowDisabledExample = () => {
 const HelpBubbleExample = () => {
   <p>
     I can be placed in context to provide some contextual help!
-    <HelpBubble title="Test" className="ml-1">
+    <HelpBubble title="Test" className="ms-1">
       Some text
     </HelpBubble>
   </p>;

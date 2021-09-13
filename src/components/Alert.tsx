@@ -50,7 +50,7 @@ const Alert: FunctionComponent<Props> = ({
     >
       <div className="d-flex align-items-start">
         {icon ? (
-          <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" />
+          <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-1" />
         ) : null}
         {icon ? (
           <div className="w-100" style={{ overflow: 'hidden' }}>{children}</div>

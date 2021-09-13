@@ -24,7 +24,7 @@ export const LiveExample = () => {
         <NavbarBrand href="/">react-gears</NavbarBrand>
         <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className="ms-auto" navbar>
             <NavItem>
               <NavLink href="#">Components</NavLink>
             </NavItem>

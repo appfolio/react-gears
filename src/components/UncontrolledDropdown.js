@@ -1,3 +1,3 @@
-import UncontrolledDropdown from 'reactstrap/lib/UncontrolledDropdown';
+import { UncontrolledDropdown } from 'reactstrap';
 
 export default UncontrolledDropdown;

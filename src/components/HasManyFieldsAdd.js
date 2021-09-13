@@ -10,7 +10,7 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
 
   return (
     <Button color="success" block outline {...props} className={classes}>
-      <Icon name="plus-circle" className="mr-2" />
+      <Icon name="plus-circle" className="me-2" />
       <span>
         {children}
       </span>

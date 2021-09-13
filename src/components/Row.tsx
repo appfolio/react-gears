@@ -1,3 +1,3 @@
-import Row from 'reactstrap/lib/Row';
+import { Row } from 'reactstrap';
 
 export default Row;

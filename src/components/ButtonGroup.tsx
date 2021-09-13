@@ -1,3 +1,3 @@
-import ButtonGroup from 'reactstrap/lib/ButtonGroup';
+import { ButtonGroup } from 'reactstrap';
 
 export default ButtonGroup;

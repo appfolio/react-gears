@@ -1,3 +1,3 @@
-import FormText from 'reactstrap/lib/FormText';
+import { FormText } from 'reactstrap';
 
 export default FormText;

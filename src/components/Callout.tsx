@@ -47,7 +47,7 @@ const Callout = ({ className, color, background, placement, children, ...props }
         }
         .callout .bottom {
           border-top-color: transparent; // TODO fixes Firefox artifacts
-          border-left-color: transparent;
+          border-start-color: transparent;
           left: 50%;
           top: 100%;
         }

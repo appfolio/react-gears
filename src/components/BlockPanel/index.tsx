@@ -91,16 +91,16 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
     'align-items-center',
     'justify-content-between',
     'py-2',
-    'pr-2',
+    'pe-2',
     {
-      'pl-2': expandable,
+      'ps-2': expandable,
       [`bg-${color}`]: color,
       'text-white': color === 'primary' || color === 'dark'
     },
     headerClassName
   );
 
-  const iconClassName = classnames('mr-1', {
+  const iconClassName = classnames('me-1', {
     'text-muted': color !== 'primary' && color !== 'dark'
   });
 
@@ -121,7 +121,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
               style={{ transition: 'transform 200ms ease-in-out' }}
             />
           )}
-          <CardTitle tag="h2" className="h5 m-0 my-1 mr-auto">
+          <CardTitle tag="h2" className="h5 m-0 my-1 me-auto">
             {title}
           </CardTitle>
         </BlockPanelTitle>
@@ -130,7 +130,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
           {onEdit && (
             <Button
               color="link"
-              className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ml-2 mr-1`}
+              className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ms-2 me-1`}
               onClick={onEdit}
             >
               Edit
