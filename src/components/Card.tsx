@@ -1,3 +1,3 @@
-import Card from 'reactstrap/lib/Card';
+import { Card } from 'reactstrap';
 
 export default Card;

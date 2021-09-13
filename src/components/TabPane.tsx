@@ -1,3 +1,3 @@
-import TabPane from 'reactstrap/lib/TabPane';
+import { TabPane } from 'reactstrap';
 
 export default TabPane;

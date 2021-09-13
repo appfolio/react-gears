@@ -20,7 +20,7 @@ export const Example = () => (
 
 export const RightAligned = () => (
   <CurrencyInput
-    inputProps={{ className: 'text-right' }}
+    inputProps={{ className: 'text-end' }}
     onChange={action('onChange')}
   />
 );

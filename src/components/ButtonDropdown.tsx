@@ -1,3 +1,3 @@
-import ButtonDropdown from 'reactstrap/lib/ButtonDropdown';
+import { ButtonDropdown } from 'reactstrap';
 
 export default ButtonDropdown;

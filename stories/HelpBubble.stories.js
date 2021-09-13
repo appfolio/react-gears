@@ -11,7 +11,7 @@ export const LiveExample = () => (
   <div>
     <p>
       I can be placed in context to provide some contextual help!
-      <HelpBubble title={text('title', 'What does this mean?')} className="ml-1" placement={select('placement', ['top', 'left', 'bottom', 'right'], 'bottom')}>
+      <HelpBubble title={text('title', 'What does this mean?')} className="ms-1" placement={select('placement', ['top', 'left', 'bottom', 'right'], 'bottom')}>
         {text('content', 'Help bubbles are a handy way of explaining things.')}
       </HelpBubble>
     </p>

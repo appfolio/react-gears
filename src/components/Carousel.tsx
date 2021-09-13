@@ -1,3 +1,3 @@
-import Carousel from 'reactstrap/lib/Carousel';
+import { Carousel } from 'reactstrap';
 
 export default Carousel;

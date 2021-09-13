@@ -142,8 +142,8 @@ class AddressInput extends React.Component {
             disabled={disabled}
           />
         </FormLabelGroup>
-        <Row className="no-gutters">
-          <Col sm={6} xs={12} className="pr-sm-3">
+        <Row className="gx-3">
+          <Col sm={6} xs={12} className="pe-sm-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-sm-0': !showCountry })}
               feedback={error.city}
@@ -167,7 +167,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col md={2} sm={3} xs={4} className="pr-3">
+          <Col md={2} sm={3} xs={4} className="pe-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}

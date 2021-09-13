@@ -1,3 +1,3 @@
-import ModalBody from 'reactstrap/lib/ModalBody';
+import { ModalBody } from 'reactstrap';
 
 export default ModalBody;

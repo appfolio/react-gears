@@ -1,2 +1,2 @@
-import { UncontrolledAlert } from 'reactstrap/lib/Uncontrolled';
+import { UncontrolledAlert } from 'reactstrap';
 export default UncontrolledAlert;

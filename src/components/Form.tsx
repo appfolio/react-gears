@@ -1,3 +1,3 @@
-import Form from 'reactstrap/lib/Form';
+import { Form } from 'reactstrap';
 
 export default Form;

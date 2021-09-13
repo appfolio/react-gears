@@ -1,5 +1,5 @@
 import React, { ReactNode, FunctionComponent } from 'react';
-import { ModalProps } from 'reactstrap/lib/Modal';
+import { ModalProps } from 'reactstrap';
 import Modal from './Modal';
 import Spinner from './Spinner';
 
@@ -21,7 +21,7 @@ const Waiting: FunctionComponent<WaitingProps> = ({
   className,
   title = 'Please Wait',
   ...props
-}) => (
+}: WaitingProps) => (
   <Modal
     {...props}
     className={className}
