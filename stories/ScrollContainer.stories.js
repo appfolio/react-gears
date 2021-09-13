@@ -37,8 +37,8 @@ export const CustomTheme = () => (
     theme={{
       overflowTop: 'border-dark border-top',
       overflowBottom: 'border-dark border-bottom',
-      overflowLeft: 'border-dark border-left',
-      overflowRight: 'border-dark border-right'
+      overflowLeft: 'border-dark border-start',
+      overflowRight: 'border-dark border-end'
     }}
   >
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png" alt="Map" />

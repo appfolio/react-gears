@@ -1,4 +1,4 @@
-import { ButtonProps } from 'reactstrap/lib/Button';
+import { ButtonProps } from 'reactstrap';
 import * as React from 'react';
 
 interface HasManyFieldsAddProps extends Omit<ButtonProps,'color'> {

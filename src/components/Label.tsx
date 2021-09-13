@@ -1,3 +1,3 @@
-import Label from 'reactstrap/lib/Label';
+import { Label } from 'reactstrap';
 
 export default Label;

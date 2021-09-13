@@ -1,3 +1,3 @@
-import FormGroup from 'reactstrap/lib/FormGroup';
+import { FormGroup } from 'reactstrap';
 
 export default FormGroup;

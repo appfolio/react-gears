@@ -332,16 +332,16 @@ describe('<DateInput />', () => {
       const renderHeader = (prevMonth, nextMonth, prevYear, nextYear) => (
         <div className="d-flex py-2 custom-header">
           <Button className="js-prev-year" color="link" onClick={prevYear}>
-            <Icon name="angle-double-left" fixedWidth />
+            <Icon name="angle-double-start" fixedWidth />
           </Button>
           <Button className="js-prev-month" color="link" onClick={prevMonth}>
-            <Icon name="angle-left" fixedWidth />
+            <Icon name="angle-start" fixedWidth />
           </Button>
           <Button className="js-next-month" color="link" onClick={nextMonth}>
-            <Icon name="angle-right" fixedWidth />
+            <Icon name="angle-end" fixedWidth />
           </Button>
           <Button className="js-next-year" color="link" onClick={nextYear}>
-            <Icon name="angle-double-right" fixedWidth />
+            <Icon name="angle-double-end" fixedWidth />
           </Button>
         </div>
       );
@@ -430,8 +430,8 @@ describe('<DateInput />', () => {
       const onChange = sinon.spy();
       const renderFooter = (today, clear) => (
         <div className="custom-footer">
-          <Button onClick={today} className="mr-2 today-button">Today</Button>
-          <Button onClick={clear} className="mr-2 clear-button">Clear</Button>
+          <Button onClick={today} className="me-2 today-button">Today</Button>
+          <Button onClick={clear} className="me-2 clear-button">Clear</Button>
         </div>
       );
       let component;

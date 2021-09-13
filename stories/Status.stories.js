@@ -3,7 +3,7 @@ import { select } from '@storybook/addon-knobs';
 import { Status } from '../src';
 
 const types = [
-  '', 'info', 'muted', 'success', 'danger', 'warning'
+  'none', 'info', 'muted', 'success', 'danger', 'warning'
 ];
 
 export default {

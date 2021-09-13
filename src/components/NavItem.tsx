@@ -1,3 +1,3 @@
-import NavItem from 'reactstrap/lib/NavItem';
+import { NavItem } from 'reactstrap';
 
 export default NavItem;

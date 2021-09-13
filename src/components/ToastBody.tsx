@@ -1,3 +1,3 @@
-import ToastBody from 'reactstrap/lib/ToastBody';
+import { ToastBody } from 'reactstrap';
 
 export default ToastBody;

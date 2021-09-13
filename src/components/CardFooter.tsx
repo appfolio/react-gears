@@ -1,3 +1,3 @@
-import CardFooter from 'reactstrap/lib/CardFooter';
+import { CardFooter } from 'reactstrap';
 
 export default CardFooter;

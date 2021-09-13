@@ -1,3 +1,3 @@
-import PopperContent from 'reactstrap/lib/PopperContent';
+import { PopperContent } from 'reactstrap';
 
 export default PopperContent;

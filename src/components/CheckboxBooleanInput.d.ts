@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InputProps } from 'reactstrap/lib/Input';
+import { InputProps } from 'reactstrap';
 
 interface CheckboxBooleanInputSpecificProps {
   checkboxLabel?: React.ReactNode;

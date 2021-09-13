@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Alert from 'reactstrap/lib/Alert';
+import { Alert } from 'reactstrap';
 
 export default class FeatureBanner extends React.Component {
   static propTypes = {
@@ -27,9 +27,9 @@ export default class FeatureBanner extends React.Component {
             {alertText}
           </h2> : null}
         <div className="body d-flex flex-wrap p-3 w-100">
-          <div className="info mr-auto">
+          <div className="info me-auto">
             <div className="d-inline-block m-0">
-              {alertText ? <h2 className={`${alertStyle} d-inline d-sm-none mr-2`}>{alertText}</h2> : null}
+              {alertText ? <h2 className={`${alertStyle} d-inline d-sm-none me-2`}>{alertText}</h2> : null}
               <h3 className="d-inline">{title}</h3>
             </div>
             <p className="m-0">{subtitle}</p>
@@ -45,7 +45,7 @@ export default class FeatureBanner extends React.Component {
             }
 
             .body @media (min-width: 576px) {
-              border-left: 1px solid rgba(0, 0, 0, 0.1);
+              border-start: 1px solid rgba(0, 0, 0, 0.1);
             }
 
             .info {

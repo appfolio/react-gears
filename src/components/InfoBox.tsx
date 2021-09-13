@@ -29,7 +29,7 @@ const InfoBox = ({
     {
       [`border-${color}`]: color,
       'border-top': vertical,
-      'border-left': !vertical,
+      'border-start': !vertical,
     }
   );
   const headerClasses = classnames('font-weight-normal d-flex justify-content-between m-0', {

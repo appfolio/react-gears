@@ -61,7 +61,7 @@ describe('<FormLabelGroup />', () => {
       assert.equal(label.prop('for'), 'someID');
       assert.equal(label.prop('sm'), 3);
       assert.equal(label.prop('size'), 'sm');
-      assert.equal(label.prop('className'), 'text-sm-right pr-0');
+      assert.equal(label.prop('className'), 'text-sm-end pe-0');
       assert.equal(label.children().text(), 'First Name');
     });
 

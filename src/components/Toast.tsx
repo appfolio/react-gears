@@ -1,3 +1,3 @@
-import Toast from 'reactstrap/lib/Toast';
+import { Toast } from 'reactstrap';
 
 export default Toast;

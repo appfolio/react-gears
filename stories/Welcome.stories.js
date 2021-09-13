@@ -77,12 +77,12 @@ export const StyleOverview = () => (
         {demoHeader('BUTTONS')}
         <ButtonToolbar className="mb-3">
           {buttonColors.map(color => (
-            <Button color={color} className="mr-1 text-capitalize">{color}</Button>
+            <Button color={color} className="me-1 text-capitalize">{color}</Button>
           ))}
         </ButtonToolbar>
         <ButtonToolbar className="mb-3">
           {buttonColors.map(color => (
-            <Button color={color} outline className="mr-1 text-capitalize">{color}</Button>
+            <Button color={color} outline className="me-1 text-capitalize">{color}</Button>
           ))}
         </ButtonToolbar>
       </Col>
@@ -131,11 +131,11 @@ export const StyleOverview = () => (
           <span id="tooltip-top">Top</span>
           <span id="tooltip-bottom">Bottom</span>
           <span id="tooltip-left">Left</span>
-          <span id="tooltip-right">Right</span>
+          <span id="tooltip-end">Right</span>
           <Tooltip placement="top" target="tooltip-top">Tooltip on the top</Tooltip>
           <Tooltip placement="bottom" target="tooltip-bottom">Tooltip on the Bottom</Tooltip>
           <Tooltip placement="left" target="tooltip-left">Tooltip on the Left</Tooltip>
-          <Tooltip placement="right" target="tooltip-right">Tooltip on the side</Tooltip>
+          <Tooltip placement="right" target="tooltip-end">Tooltip on the side</Tooltip>
         </div>
 
       </Col>
