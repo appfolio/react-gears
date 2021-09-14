@@ -29,15 +29,14 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
         options.map((option) => {
           const id = `option-${option.label}-${groupId}`;
           return (
-            <FormGroup check key={option.value} className="py-1 col-form-label d-flex align-items-center">
+            <FormGroup check key={option.value}>
               <Input
                 type="radio"
                 checked={selected === option.value}
                 onChange={ev => handleRadioChange(ev.target.checked, option.value)}
-                className="my-0"
                 id={id}
               />
-              <Label check className="my-0" for={id}>
+              <Label check for={id}>
                 {' '}{option.label}
               </Label>
             </FormGroup>
