@@ -24,7 +24,7 @@ export default {
 
 export const LiveExample = () => (
   <Table
-    bordered={boolean('bordered', true)}
+    bordered={boolean('bordered', false)}
     responsive={boolean('responsive', true)}
     striped={boolean('striped', true)}
     hover={boolean('hover', true)}
