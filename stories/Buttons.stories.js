@@ -9,7 +9,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Row,
   TooltipButton
 } from '../src';
 import { buttonColors } from './colors';
@@ -99,17 +98,17 @@ export const TooltipButtonExample = () => (
 
 export const ButtonGroupExample = () => (
   <div>
-    <Row className="mb-1">
+    <div className="mb-1">
       <Button size="lg" block>Block level button</Button>
-    </Row>
-    <Row className="mb-1">
+    </div>
+    <div className="mb-1">
       <ButtonGroup>
         <Button>Left</Button>
         <Button active>Middle</Button>
         <Button>Right</Button>
       </ButtonGroup>
-    </Row>
-    <Row className="mb-1">
+    </div>
+    <div className="mb-1">
       <ButtonToolbar>
         <ButtonGroup>
           <Button>1</Button>
@@ -140,14 +139,14 @@ export const ButtonGroupExample = () => (
           </ButtonDropdown>
         </ButtonGroup>
       </ButtonToolbar>
-    </Row>
-    <Row>
+    </div>
+    <div>
       <ButtonGroup vertical>
         <Button>Button</Button>
         <Button active>Button</Button>
         <Button>Button</Button>
         <Button>Button</Button>
       </ButtonGroup>
-    </Row>
+    </div>
   </div>
 );
