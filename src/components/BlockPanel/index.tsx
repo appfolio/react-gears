@@ -36,6 +36,7 @@ export interface BlockPanelProps {
   open?: boolean,
   title: ReactNode,
   stickyId?: string,
+  bodyClassName?: string
 }
 
 const defaultProps = {
@@ -61,6 +62,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
   open = defaultProps.open,
   title,
   stickyId,
+  bodyClassName,
   ...props
 }: BlockPanelProps) => {
   const useIsOpen = createIsOpenHook(stickyId, open);
@@ -142,7 +144,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
           onExited={() => onClosed()}
         >
           {(!expandable || hideOnToggle || !collapsed) && (
-            <CardBody>{children}</CardBody>
+            <CardBody className={bodyClassName}>{children}</CardBody>
           )}
         </Collapse>
       )}
