@@ -3,20 +3,35 @@ import Collapse from './Collapse';
 import ClickableContainer from './ClickableContainer';
 import Icon from './Icon';
 
-interface ExpandableSectionProps {
+interface BaseExpandableSectionProps {
   children?: React.ReactNode;
   className?: string;
   onToggle?: (open: boolean) => void;
   open?: boolean;
+  title?: string;
+  TitleTemplate?: React.Factory<any>;
+}
+
+interface TitleStringExpandableSectionProps extends BaseExpandableSectionProps {
   title: string;
 }
+
+interface TitleTemplateExpandableSectionProps
+  extends BaseExpandableSectionProps {
+  TitleTemplate: React.Factory<any>;
+}
+
+type ExpandableSectionProps =
+  | TitleStringExpandableSectionProps
+  | TitleTemplateExpandableSectionProps;
 
 const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   children,
   className,
   onToggle = () => {},
   open: defaultOpen,
-  title
+  title,
+  TitleTemplate,
 }) => {
   const [open, setOpen] = useState(defaultOpen);
   useEffect(() => {
@@ -31,30 +46,33 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   return (
     <section className={className}>
       <header>
-        <ClickableContainer aria-expanded={open} className="d-flex align-items-center" onClick={toggle}>
+        <ClickableContainer
+          aria-expanded={open}
+          className="d-flex align-items-center"
+          onClick={toggle}
+        >
           <Icon
             name={`chevron-${open ? 'up' : 'down'}`}
             className="text-muted mr-1"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
-          <b>{title}</b>
-          <style jsx>{`
-            b {
-              -webkit-touch-callout: none;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
-          `}
+          {TitleTemplate ? <TitleTemplate /> : <b>{title}</b>}
+          <style jsx>
+            {`
+              b {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+            `}
           </style>
         </ClickableContainer>
       </header>
       <Collapse isOpen={open}>
-        <div className="py-3">
-          {children}
-        </div>
+        <div className="py-3">{children}</div>
       </Collapse>
     </section>
   );
@@ -63,7 +81,7 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
 ExpandableSection.defaultProps = {
   className: '',
   open: false,
-  onToggle: () => {}
+  onToggle: () => {},
 };
 
 export default ExpandableSection;
