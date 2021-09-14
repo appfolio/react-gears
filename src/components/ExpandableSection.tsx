@@ -8,7 +8,7 @@ interface ExpandableSectionProps {
   className?: string;
   onToggle?: (open: boolean) => void;
   open?: boolean;
-  title: string;
+  title: React.ReactNode;
 }
 
 const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
@@ -31,14 +31,14 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   return (
     <section className={className}>
       <header>
-        <ClickableContainer aria-expanded={open} className="d-flex align-items-center" onClick={toggle}>
+        <ClickableContainer aria-expanded={open} className="d-flex align-items-center w-100" onClick={toggle}>
           <Icon
             name={`chevron-${open ? 'up' : 'down'}`}
             className="text-muted mr-1"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
-          <b>{title}</b>
+          {title}
           <style jsx>{`
             b {
               -webkit-touch-callout: none;
