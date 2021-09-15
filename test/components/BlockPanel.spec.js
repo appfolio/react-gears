@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import { assertAccessible } from '../a11yHelpers';
-import { Button, CardTitle, Collapse, Icon, BlockPanel } from '../../src';
+import { Button, CardBody, CardTitle, Collapse, Icon, BlockPanel } from '../../src';
 
 describe('<BlockPanel />', () => {
   it('should be empty with no children', () => {
@@ -171,6 +171,18 @@ describe('<BlockPanel />', () => {
       assert.equal(onToggle.calledWith(true), true);
       component.find(CardTitle).simulate('click');
       assert.equal(onToggle.calledWith(false), true);
+    });
+
+    it('should add bodyClassName to CardBody classes', () => {
+      const onToggle = sinon.spy();
+
+      const component = mount(
+        <BlockPanel title="Open" expandable onToggle={onToggle} open bodyClassName="fake-class-name">
+          <h1 id="hi">Hello World!</h1>
+        </BlockPanel>
+      );
+
+      assert.equal(component.find(CardBody).hasClass('fake-class-name'), true);
     });
   });
 
