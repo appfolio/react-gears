@@ -34,6 +34,8 @@ export const LiveExample = () => (
       showLabels={boolean('showLabels', false)}
       labels={object('labels', AddressInput.defaultProps.labels)}
       hints={object('hints', AddressInput.defaultProps.hints)}
+      cityColClassName={text('cityColClassName', AddressInput.defaultProps.cityColClassName)}
+      stateColClassName={text('stateColClassName', AddressInput.defaultProps.stateColClassName)}
       width={object('width', AddressInput.defaultProps.width)}
     />
   </div>

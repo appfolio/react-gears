@@ -456,6 +456,40 @@ describe('AddressInput', () => {
     assert.equal(component.find('.address-component').hostNodes().length, 1);
   });
 
+  describe('cityColClassName', () => {
+    it('should have the default value', () => {
+      const wrapper = shallow(<AddressInput />);
+
+      const cityCol = wrapper.find('.js-city-col');
+      expect(cityCol.hasClass('pr-sm-3')).toEqual(true);
+    });
+
+    it('can have custom class', () => {
+      const wrapper = shallow(<AddressInput cityColClassName="py-5" />);
+
+      const cityCol = wrapper.find('.js-city-col');
+      expect(cityCol.hasClass('pr-sm-3')).toEqual(false);
+      expect(cityCol.hasClass('py-5')).toEqual(true);
+    });
+  });
+
+  describe('stateColClassName', () => {
+    it('should have the default value', () => {
+      const wrapper = shallow(<AddressInput />);
+
+      const cityCol = wrapper.find('.js-state-col');
+      expect(cityCol.hasClass('pr-3')).toEqual(true);
+    });
+
+    it('can have custom class', () => {
+      const wrapper = shallow(<AddressInput stateColClassName="mx-3" />);
+
+      const cityCol = wrapper.find('.js-state-col');
+      expect(cityCol.hasClass('pr-3')).toEqual(false);
+      expect(cityCol.hasClass('mx-3')).toEqual(true);
+    });
+  });
+
   describe('states', () => {
     it('should support different countries', () => {
       const defaultStates = mount(<AddressInput id="test" />);

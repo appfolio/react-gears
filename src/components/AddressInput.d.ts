@@ -21,6 +21,7 @@ interface ColWidthInterface {
 
 interface AddressInputProps {
   className?: string;
+  cityColClassName?: string;
   defaultValue?: AddressInterface;
   disabled?: boolean;
   error?: AddressInterface;
@@ -30,6 +31,7 @@ interface AddressInputProps {
   onChange?: (inputName: AddressNames) => void;
   showCountry?: boolean;
   showLabels?: boolean;
+  stateColClassName?: string;
   value?: AddressInterface;
   width?: {
     city: ColWidthInterface;
