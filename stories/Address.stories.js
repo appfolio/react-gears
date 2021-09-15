@@ -34,6 +34,7 @@ export const LiveExample = () => (
       showLabels={boolean('showLabels', false)}
       labels={object('labels', AddressInput.defaultProps.labels)}
       hints={object('hints', AddressInput.defaultProps.hints)}
+      width={object('width', AddressInput.defaultProps.width)}
     />
   </div>
 );

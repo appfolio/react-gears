@@ -469,7 +469,7 @@ describe('AddressInput', () => {
     });
   });
 
-  describe('custom input namme', () => {
+  describe('custom input name', () => {
     const inputName = {
       address1: 'custom_name_address1',
       address2: 'custom_name_address2',
@@ -544,6 +544,52 @@ describe('AddressInput', () => {
         input.simulate('blur');
         assert(onBlur.calledWith(field));
       });
+    });
+  });
+
+  describe('width', () => {
+    it('should have default widths', () => {
+      const wrapper = shallow(<AddressInput />);
+
+      const cityCol = wrapper.find('.js-city-col');
+      expect(cityCol.prop('xs')).toEqual(12);
+      expect(cityCol.prop('sm')).toEqual(6);
+
+      const stateCol = wrapper.find('.js-state-col');
+      expect(stateCol.prop('xs')).toEqual(4);
+      expect(stateCol.prop('sm')).toEqual(3);
+      expect(stateCol.prop('md')).toEqual(2);
+
+      const postalCol = wrapper.find('.js-postal-col');
+      expect(postalCol.prop('xs')).toEqual(8);
+      expect(postalCol.prop('sm')).toEqual(3);
+      expect(postalCol.prop('md')).toEqual(4);
+    });
+
+    it('can have custom col widths', () => {
+      const wrapper = shallow(
+        <AddressInput
+          width={{
+            city: { xs: 12 },
+            state: { xs: 12, lg: 3 },
+            postal: { md: 6, lg: 9 },
+          }}
+        />
+      );
+
+      const cityCol = wrapper.find('.js-city-col');
+      expect(cityCol.prop('xs')).toEqual(12);
+      expect(cityCol.prop('sm')).toEqual(undefined);
+
+      const stateCol = wrapper.find('.js-state-col');
+      expect(stateCol.prop('xs')).toEqual(12);
+      expect(stateCol.prop('sm')).toEqual(undefined);
+      expect(stateCol.prop('lg')).toEqual(3);
+
+      const postalCol = wrapper.find('.js-postal-col');
+      expect(postalCol.prop('xs')).toEqual(undefined);
+      expect(postalCol.prop('md')).toEqual(6);
+      expect(postalCol.prop('lg')).toEqual(9);
     });
   });
 });

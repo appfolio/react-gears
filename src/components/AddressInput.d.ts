@@ -11,6 +11,14 @@ interface AddressInterface {
 
 type AddressNames = keyof AddressInterface;
 
+interface ColWidthInterface {
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+}
+
 interface AddressInputProps {
   className?: string;
   defaultValue?: AddressInterface;
@@ -23,6 +31,11 @@ interface AddressInputProps {
   showCountry?: boolean;
   showLabels?: boolean;
   value?: AddressInterface;
+  width?: {
+    city: ColWidthInterface;
+    state: ColWidthInterface;
+    postal: ColWidthInterface;
+  };
 }
 
 declare class AddressInput extends React.Component<AddressInputProps, {}> { }

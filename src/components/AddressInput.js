@@ -21,6 +21,14 @@ export const addressPropType = {
   countryCode: PropTypes.string,
 };
 
+const colWidthPropType = {
+  xs: PropTypes.number,
+  sm: PropTypes.number,
+  md: PropTypes.number,
+  lg: PropTypes.number,
+  xl: PropTypes.number,
+};
+
 class AddressInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -37,6 +45,11 @@ class AddressInput extends React.Component {
     showCountry: PropTypes.bool,
     showLabels: PropTypes.bool,
     value: PropTypes.object,
+    width: PropTypes.shape({
+      city: colWidthPropType,
+      state: colWidthPropType,
+      postal: colWidthPropType,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -66,6 +79,11 @@ class AddressInput extends React.Component {
     showCountry: true,
     showLabels: false,
     value: {},
+    width: {
+      city: { xs: 12, sm: 6 },
+      state: { xs: 4, sm: 3, md: 2 },
+      postal: { xs: 8, sm: 3, md: 4 },
+    },
   };
 
   onChange = (update) => {
@@ -86,7 +104,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName } = this.props;
+    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName, width } = this.props;
 
     const inputId = id || 'addressInput';
     const address1Id = `${inputId}_address1`;
@@ -143,7 +161,7 @@ class AddressInput extends React.Component {
           />
         </FormLabelGroup>
         <Row className="no-gutters">
-          <Col sm={6} xs={12} className="pr-sm-3">
+          <Col {...width.city} className="js-city-col pr-sm-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-sm-0': !showCountry })}
               feedback={error.city}
@@ -167,7 +185,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col md={2} sm={3} xs={4} className="pr-3">
+          <Col {...width.state} className="js-state-col pr-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
@@ -192,7 +210,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col md={4} sm={3} xs={8}>
+          <Col {...width.postal} className="js-postal-col">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               label={labels.postal}
