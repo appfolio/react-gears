@@ -21,8 +21,6 @@ const Header = ({ active, ascending, children, className, onSort, ...props }: He
     {children}
     {onSort &&
       <Icon
-        data-testid="sort-icon"
-        ariaLabel={active ? `sort-${ascending ? 'ascending' : 'descending'}` : 'sort'}
         name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'}
         fixedWidth
       />
