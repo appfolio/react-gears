@@ -2,6 +2,17 @@
 
 import React from 'react';
 
+export const srOnlyStyle: React.CSSProperties = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: '0px',
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0px, 0px, 0px, 0px)',
+  border: '0px'
+};
+
 export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   ariaLabel?: string;
   border?: boolean;
@@ -98,8 +109,9 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
         {...props}
         aria-hidden
         className={classNames.join(' ')}
-        aria-label={ariaLabel}
-      />
+      >
+        {ariaLabel && <span style={srOnlyStyle}>ariaLabel</span>}
+      </Tag>
     );
   }
 }
