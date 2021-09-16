@@ -116,4 +116,6 @@ const Placeholder = ({
   );
 };
 
+Placeholder.displayName = 'Placeholder';
+
 export default Placeholder;

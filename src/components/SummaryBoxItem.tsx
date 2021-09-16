@@ -47,6 +47,7 @@ const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
   );
 };
 
+SummaryBoxItem.displayName = 'SummaryBoxItem';
 SummaryBoxItem.defaultProps = defaultProps;
 
 export default SummaryBoxItem;

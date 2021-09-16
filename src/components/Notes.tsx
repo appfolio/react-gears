@@ -50,6 +50,7 @@ const Notes: React.FunctionComponent<NotesProps> = ({
   </div>
 );
 
+Notes.displayName = 'Notes';
 Notes.defaultProps = defaultProps;
 
 export default Notes;

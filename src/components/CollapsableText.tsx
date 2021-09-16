@@ -52,4 +52,6 @@ CollapsableText.defaultProps = {
   moreLabel: 'Show More'
 };
 
+CollapsableText.displayName = 'CollapsableText';
+
 export default CollapsableText;

@@ -18,6 +18,8 @@ const StaticInput: FunctionComponent<InputProps> = ({
   />
 );
 
+StaticInput.displayName = 'StaticInput';
+
 StaticInput.defaultProps = {
   ...Input.defaultProps
 };

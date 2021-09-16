@@ -60,4 +60,6 @@ CountryInput.propTypes = {
 
 CountryInput.defaultProps = defaultProps;
 
+CountryInput.displayName = 'CountryInput';
+
 export default CountryInput;

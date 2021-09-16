@@ -17,4 +17,6 @@ const RadioInput: FunctionComponent<RadioInputProps> = ({ type, children, value,
   </div>
 );
 
+RadioInput.displayName = 'RadioInput';
+
 export default RadioInput;

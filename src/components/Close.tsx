@@ -6,4 +6,6 @@ const Close: FunctionComponent<React.ComponentPropsWithoutRef<'button'>> = ({ cl
   </button>
 );
 
+Close.displayName = 'Close';
+
 export default Close;

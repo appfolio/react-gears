@@ -56,4 +56,6 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
   );
 };
 
+CheckboxGroup.displayName = 'CheckboxGroup';
+
 export default CheckboxGroup;

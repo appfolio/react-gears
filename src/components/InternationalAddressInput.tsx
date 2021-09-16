@@ -138,4 +138,6 @@ const InternationalAddressInput = ({
 
 InternationalAddressInput.defaultProps = defaultProps;
 
+InternationalAddressInput.displayName = 'InternationalAddressInput';
+
 export default InternationalAddressInput;

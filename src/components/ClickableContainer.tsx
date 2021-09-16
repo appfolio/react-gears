@@ -38,4 +38,6 @@ const ClickableContainer: FunctionComponent<ContainerProps> = ({ className, onCl
   );
 };
 
+ClickableContainer.displayName = 'ClickableContainer';
+
 export default ClickableContainer;

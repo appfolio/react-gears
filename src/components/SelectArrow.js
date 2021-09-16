@@ -446,4 +446,6 @@ const SelectArrow = ({ isOpen, render }) => (
   </>
 );
 
+SelectArrow.displayName = 'SelectArrow';
+
 export default SelectArrow;

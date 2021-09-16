@@ -42,4 +42,6 @@ ShortcutLink.propTypes = {
   name: PropTypes.string,
 };
 
+ShortcutLink.displayName = 'ShortcutLink';
+
 export default ShortcutLink;

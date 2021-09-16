@@ -47,4 +47,6 @@ Waiting.defaultProps = {
   title: 'Please Wait',
 };
 
+Waiting.displayName = 'Waiting';
+
 export default Waiting;

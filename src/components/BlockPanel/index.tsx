@@ -153,5 +153,6 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
 };
 
 BlockPanel.defaultProps = defaultProps;
+BlockPanel.displayName = 'BlockPanel';
 
 export default BlockPanel;

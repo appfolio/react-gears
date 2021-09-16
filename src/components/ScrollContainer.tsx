@@ -149,5 +149,7 @@ const ScrollContainer = ({
   );
 };
 
+ScrollContainer.displayName = 'ScrollContainer';
+
 export default ScrollContainer;
 

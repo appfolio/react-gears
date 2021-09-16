@@ -48,4 +48,6 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
   );
 };
 
+RadioGroup.displayName = 'RadioGroup';
+
 export default RadioGroup;

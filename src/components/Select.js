@@ -59,4 +59,6 @@ Select.defaultProps = {
   onChange: noop
 };
 
+Select.displayName = 'Select';
+
 export default Select;
