@@ -109,5 +109,6 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
 };
 
 CreditCardNumber.defaultProps = defaultProps;
+CreditCardNumber.displayName = 'CreditCardNumber';
 
 export default CreditCardNumber;

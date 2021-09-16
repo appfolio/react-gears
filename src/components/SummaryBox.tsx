@@ -32,6 +32,7 @@ const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
     </CardGroup>
   );
 
+SummaryBox.displayName = 'SummaryBox';
 SummaryBox.defaultProps = defaultProps;
 
 export default SummaryBox;

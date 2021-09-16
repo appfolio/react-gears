@@ -23,11 +23,11 @@ const escapePattern = (pattern: string) => pattern.replace(/[-[\]/{}()*+?.\\^$|]
 
 const ignoreSpecialCharacters = (pattern: string) => pattern.replace(/[^\w\s\']/gi, '');
 
-const Highlight = ({ 
-  pattern, 
-  caseSensitive, 
-  ignoreSpecial, 
-  children, 
+const Highlight = ({
+  pattern,
+  caseSensitive,
+  ignoreSpecial,
+  children,
   escape = defaultProps.escape,
 }: HighlightProps) => {
   const highlightedSegments = (text: string) => {
@@ -96,5 +96,7 @@ const Highlight = ({
 
   return renderChildren(children);
 };
+
+Highlight.displayName = 'Highlight';
 
 export default Highlight;

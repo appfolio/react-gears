@@ -56,4 +56,6 @@ ApmSpinner.defaultProps = {
   size: '1em'
 };
 
+ApmSpinner.displayName = 'ApmSpinner';
+
 export default ApmSpinner;

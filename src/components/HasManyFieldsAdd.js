@@ -24,4 +24,6 @@ HasManyFieldsAdd.propTypes = {
   disabled: PropTypes.bool
 };
 
+HasManyFieldsAdd.displayName = 'HasManyFieldsAdd';
+
 export default HasManyFieldsAdd;

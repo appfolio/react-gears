@@ -83,5 +83,5 @@ EditableNote.defaultProps = {
   saveLabel: EditableNoteDefaultProps.saveLabel,
   savingLabel: EditableNoteDefaultProps.savingLabel,
 };
-
+EditableNote.displayName = 'EditableNote';
 export default EditableNote;

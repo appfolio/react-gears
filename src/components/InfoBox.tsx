@@ -60,4 +60,6 @@ const InfoBox = ({
   );
 };
 
+InfoBox.displayName = 'InfoBox';
+
 export default InfoBox;

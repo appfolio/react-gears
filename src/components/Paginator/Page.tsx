@@ -35,4 +35,6 @@ Page.propTypes = {
   page: PropTypes.number.isRequired,
 };
 
+Page.displayName = 'Page';
+
 export default Page;

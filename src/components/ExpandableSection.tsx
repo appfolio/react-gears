@@ -66,4 +66,6 @@ ExpandableSection.defaultProps = {
   onToggle: () => {}
 };
 
+ExpandableSection.displayName = 'ExpandableSection';
+
 export default ExpandableSection;

@@ -26,4 +26,6 @@ const DeletedNote: React.FunctionComponent<DeletedNoteProps> = ({
   );
 };
 
+DeletedNote.displayName = 'DeletedNote';
+
 export default DeletedNote;

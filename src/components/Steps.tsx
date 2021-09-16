@@ -214,4 +214,6 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
   );
 };
 
+Steps.displayName = 'Steps';
+
 export default Steps;

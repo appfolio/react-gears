@@ -130,4 +130,6 @@ Paginator.propTypes = {
   totalItems: PropTypes.number.isRequired,
 };
 
+Paginator.displayName = 'Paginator';
+
 export default Paginator;

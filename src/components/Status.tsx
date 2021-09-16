@@ -37,4 +37,6 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
   );
 };
 
+Status.displayName = 'Status';
+
 export default Status;

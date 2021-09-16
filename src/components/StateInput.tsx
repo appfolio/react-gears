@@ -76,5 +76,6 @@ StateInput.propTypes = {
 };
 
 StateInput.defaultProps = defaultProps;
+StateInput.displayName = 'StateInput';
 
 export default StateInput;
