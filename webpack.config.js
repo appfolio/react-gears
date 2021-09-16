@@ -30,7 +30,7 @@ const config = {
     }
   ],
   optimization: {
-    minimize: true
+    minimize: false
   },
   output: {
     path: path.resolve(__dirname, './dist'),
