@@ -8,9 +8,7 @@ export default function withDragHandler(WrappedComponent, useDefault = true) {
       <>
         <div className="rg-DragHandler mr-3 align-self-stretch">
           <span className="d-flex flex-column align-items-center justify-content-center h-100 pr-1">
-            <Icon name="angle-up" />
-            <Icon name="circle-thin" />
-            <Icon name="angle-down" />
+            <Icon name="grip-vertical" size="lg" />
           </span>
         </div>
         <style jsx>{`
