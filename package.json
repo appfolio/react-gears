@@ -44,6 +44,7 @@
     "react-dom": ">= 16.8"
   },
   "dependencies": {
+    "@popperjs/core": "^2.10.1",
     "@types/credit-card-type": "^5.0.1",
     "@types/lodash.topairs": "^4.3.6",
     "@types/react-dom": "^16.9.10",

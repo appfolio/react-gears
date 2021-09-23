@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import * as Popper from 'popper.js';
+import { Placement } from '@popperjs/core';
 import uniqid from 'uniqid';
 import Button, { ButtonProps } from './Button';
 import Tooltip from './Tooltip';
 
 interface TooltipButtonProps extends ButtonProps {
   tooltip?: React.ReactNode;
-  tooltipPlacement?: Popper.Placement;
+  tooltipPlacement?: Placement;
   gearsBtnContainerClass?: string;
 }
 
