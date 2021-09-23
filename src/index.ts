@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader
@@ -173,6 +178,11 @@ import TruncatedText from './components/TruncatedText';
 
 export {
   // reactstrap
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
   Badge,
   Breadcrumb,
   BreadcrumbItem,
