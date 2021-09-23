@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader
@@ -172,6 +177,11 @@ import TooltipButton from './components/TooltipButton';
 
 export {
   // reactstrap
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
   Badge,
   Breadcrumb,
   BreadcrumbItem,
