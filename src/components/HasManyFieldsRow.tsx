@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Placement } from 'popper.js';
+import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
 import Button from './Button';
 import ConfirmationButton, { ConfirmationButtonProps } from './ConfirmationButton';
