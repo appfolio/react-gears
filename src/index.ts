@@ -1,3 +1,8 @@
+import {
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader
+} from 'reactstrap';
 import Badge from './components/Badge';
 import Breadcrumb from './components/Breadcrumb';
 import BreadcrumbItem from './components/BreadcrumbItem';
@@ -233,6 +238,9 @@ export {
   NavbarToggler,
   NavItem,
   NavLink,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
   Pagination,
   PaginationItem,
   PaginationLink,
