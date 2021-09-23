@@ -12,7 +12,8 @@ export const LiveExample = () => (
     isOpen={boolean('isOpen', true)}
     backdrop={boolean('backdrop', true)}
     fade={boolean('fade', false)}
-    size={select('size', [null, 'sm', 'md', 'lg'], null)}
+    fullscreen={select('fullscreen', [null, true, 'sm', 'md', 'lg', 'xl', 'xxl'], null)}
+    size={select('size', [null, 'sm', 'lg', 'xl'], null)}
   >
     <ModalHeader toggle={() => {}}>Modal title</ModalHeader>
     <ModalBody>
