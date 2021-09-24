@@ -8,10 +8,22 @@ import Icon from './Icon';
 import Label from './Label';
 import Table from './Table';
 
+const getAlignment = (align) => {
+  switch (align) {
+    case 'left':
+      console.warn('SortableTable: align="left" is deprecated. Please use align="start" instead.');
+      return 'start';
+    case 'right':
+      console.warn('SortableTable: align="right" is deprecated. Please use align="end" instead.');
+      return 'end';
+    default: return align;
+  }
+};
+
 function generateColumnClassName(column, truncate = false) {
   return classnames(
     truncate && 'text-truncate',
-    column.align && `text-${column.align}`,
+    column.align && `text-${getAlignment(column.align)}`,
     column.className
   );
 }
@@ -50,7 +62,7 @@ class SortableTable extends React.Component {
     ...Table.propTypes,
     columns: PropTypes.arrayOf(
       PropTypes.shape({
-        align: PropTypes.oneOf(['left', 'center', 'right']),
+        align: PropTypes.oneOf(['left', 'center', 'right', 'start', 'end']),
         active: PropTypes.bool,
         ascending: PropTypes.bool,
         cell: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
