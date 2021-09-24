@@ -60,7 +60,7 @@ const Alert: FunctionComponent<Props> = ({
       </div>
     </AlertComponent>
   );
-}
+};
 
 Alert.displayName = 'Alert';
 
