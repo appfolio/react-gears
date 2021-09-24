@@ -22,12 +22,12 @@ describe('<LabelBadge />', () => {
   });
 
   it('the default prop for removable is true', () => {
-    const closeButton = mount(<LabelBadge value="Yep" />).find('.close');
+    const closeButton = mount(<LabelBadge value="Yep" />).find('.btn-close');
     assert.equal(closeButton.length, 1);
   });
 
   it('does not render X when removable is false', () => {
-    const closeButton = mount(<LabelBadge removable={false} value="Yep" />).find('.close');
+    const closeButton = mount(<LabelBadge removable={false} value="Yep" />).find('.btn-close');
     assert.equal(closeButton.length, 0);
   });
 
@@ -49,7 +49,7 @@ describe('<LabelBadge />', () => {
     it('calls the passed onRemove function', () => {
       const onRemove = sinon.stub();
       const wrapper = mount(<LabelBadge onRemove={onRemove} value="Yep" />);
-      wrapper.find('.close').simulate('click');
+      wrapper.find('.btn-close').simulate('click');
       sinon.assert.calledWith(onRemove);
     });
   });

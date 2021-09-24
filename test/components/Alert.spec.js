@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
-import { Inner } from 'reactstrap/lib/Alert';
+import { Alert as AlertComponent } from 'reactstrap';
 import { assertAccessible } from '../a11yHelpers';
 
 import { Icon, Alert } from '../../src';
@@ -59,26 +59,26 @@ describe('<Alert />', () => {
     it('should toggle state when clicked', () => {
       const component = mount(<Alert dismissible />);
 
-      assert.equal(component.find(Inner).prop('isOpen'), true);
+      assert.equal(component.find(AlertComponent).prop('isOpen'), true);
 
       component
-        .find(Inner)
+        .find(AlertComponent)
         .find('button')
         .simulate('click');
-      assert.equal(component.find(Inner).prop('isOpen'), false);
+      assert.equal(component.find(AlertComponent).prop('isOpen'), false);
     });
 
     it('should become visible when receiving new props', () => {
       const component = mount(<Alert dismissible />);
-      const inner = component.find(Inner);
+      const inner = component.find(AlertComponent);
       inner.find('button').simulate('click');
 
-      assert.equal(component.find(Inner).prop('isOpen'), false, 'inner prop should be false');
+      assert.equal(component.find(AlertComponent).prop('isOpen'), false, 'inner prop should be false');
 
       component.setProps({ color: 'danger' });
       component.update();
 
-      assert.strictEqual(component.find(Inner).prop('isOpen'), true, 'Inner prop should be true');
+      assert.strictEqual(component.find(AlertComponent).prop('isOpen'), true, 'AlertComponent isOpen prop should be true');
     });
 
     it('should call onToggle if provided', () => {
@@ -94,7 +94,7 @@ describe('<Alert />', () => {
           }}
         />
       );
-      const inner = component.find(Inner);
+      const inner = component.find(AlertComponent);
       inner.find('button').simulate('click');
 
       assert.equal(called, true, 'callback should be called');
