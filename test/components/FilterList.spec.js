@@ -39,7 +39,7 @@ describe('<FilterList />', () => {
   it('passes onRemove callback to LabelBadge', () => {
     const onRemove = sinon.stub();
     const wrapper = mount(<FilterList filters={[{ label: 'hello', value: 'world' }]} onRemove={onRemove} />);
-    wrapper.find('.close').simulate('click');
+    wrapper.find('.btn-close').simulate('click');
     sinon.assert.calledWith(onRemove);
   });
 
