@@ -48,16 +48,16 @@ describe('<DateInput />', () => {
   it('should not tab to the calendar button', () => {
     const component = mount(<DateInput />);
 
-    const toggle = component.find('InputGroupAddon');
+    const toggle = component.find('InputGroup');
     const calendarButton = toggle.find('Button');
     assert.equal(calendarButton.props().tabIndex, -1);
   });
 
-  it('should should open and close when input addon clicked', () => {
+  it('should open and close when input addon clicked', () => {
     const component = mount(<DateInput />);
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroupAddon');
+    const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
     assert.equal(component.find('Dropdown').props().isOpen, true);
 
@@ -65,7 +65,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, false);
   });
 
-  it('should should open when focused if showOnFocus is true', () => {
+  it('should open when focused if showOnFocus is true', () => {
     const component = mount(<DateInput showOnFocus />);
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
@@ -74,7 +74,7 @@ describe('<DateInput />', () => {
     assert.equal(component.find('Dropdown').props().isOpen, true);
   });
 
-  it('should should not open when focused if showOnFocus is false', () => {
+  it('should not open when focused if showOnFocus is false', () => {
     const component = mount(<DateInput showOnFocus={false} />);
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
@@ -84,13 +84,13 @@ describe('<DateInput />', () => {
     assert.equal(dropdown.props().isOpen, false);
   });
 
-  it('should should not open when disabled is ture', () => {
+  it('should not open when disabled is ture', () => {
     const component = mount(<DateInput disabled />);
 
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
 
-    const toggle = component.find('InputGroupAddon');
+    const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
     assert.equal(dropdown.props().isOpen, false);
 
@@ -99,7 +99,7 @@ describe('<DateInput />', () => {
     assert.equal(dropdown.props().isOpen, false);
   });
 
-  it('should should close when tab or esc pressed', () => {
+  it('should close when tab or esc pressed', () => {
     const component = mount(<DateInput showOnFocus />);
     const input = component.find('input');
 
@@ -117,21 +117,21 @@ describe('<DateInput />', () => {
   });
 
   describe('user input', () => {
-    it('should should set date after entering a valid date string', () => {
+    it('should set date after entering a valid date string', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
       input.simulate('change', { target: { value: '12/3/2014' } });
       assert(isSameDay(component.instance().getCurrentDate(), new Date(2014, 11, 3)));
     });
 
-    it('should should reset date after entering an invalid date string', () => {
+    it('should reset date after entering an invalid date string', () => {
       const component = mount(<DateInput />);
       const input = component.find('input');
       input.simulate('change', { target: { value: 'Sandwiches' } });
       assert(isToday(component.instance().getCurrentDate()));
     });
 
-    it('should should reset date after clearing input', () => {
+    it('should reset date after clearing input', () => {
       const callback = sinon.spy();
       const component = mount(<DateInput onChange={callback} />);
       const input = component.find('input');
@@ -140,7 +140,7 @@ describe('<DateInput />', () => {
       assert(callback.calledWith('', false));
     });
 
-    it('should should call onChange after entering an invalid date string', () => {
+    it('should call onChange after entering an invalid date string', () => {
       const callback = sinon.spy();
       const component = mount(<DateInput onChange={callback} />);
       const input = component.find('input');
@@ -148,7 +148,7 @@ describe('<DateInput />', () => {
       assert(callback.calledWith('Grape Jelly', false));
     });
 
-    it('should should call onBlur after losing focus', () => {
+    it('should call onBlur after losing focus', () => {
       const callback = sinon.spy();
       const component = mount(<DateInput onBlur={callback} />);
       const input = component.find('input');
@@ -161,7 +161,7 @@ describe('<DateInput />', () => {
     const callback = sinon.spy();
     const component = mount(<DateInput onChange={callback} showOnFocus />);
 
-    it('should should set date after clicking a date', () => {
+    it('should set date after clicking a date', () => {
       callback.resetHistory();
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
@@ -170,7 +170,7 @@ describe('<DateInput />', () => {
       assert(callback.calledWith(expectedDate, true));
     });
 
-    it('should should call onChange after clicking a date', () => {
+    it('should call onChange after clicking a date', () => {
       callback.resetHistory();
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
@@ -178,7 +178,7 @@ describe('<DateInput />', () => {
       assert(callback.calledWith(expectedDate, true));
     });
 
-    it('should should set date after clicking prev year', () => {
+    it('should set date after clicking prev year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
       const prevYear = component.find('Button.js-prev-year');
@@ -189,7 +189,7 @@ describe('<DateInput />', () => {
       assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
-    it('should should set date after clicking next year', () => {
+    it('should set date after clicking next year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
       const nextYear = component.find('Button.js-next-year');
@@ -200,7 +200,7 @@ describe('<DateInput />', () => {
       assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
-    it('should should set date after clicking prev month', () => {
+    it('should set date after clicking prev month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
       const prevMonth = component.find('Button.js-prev-month');
@@ -211,7 +211,7 @@ describe('<DateInput />', () => {
       assert(isSameDay(callback.firstCall.args[0], expectedDate));
     });
 
-    it('should should set date after clicking next month', () => {
+    it('should set date after clicking next month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
       const nextMonth = component.find('Button.js-next-month');
@@ -228,7 +228,7 @@ describe('<DateInput />', () => {
       assert.deepEqual(component.instance().getCurrentDate(), startOfToday());
     });
 
-    it('should should call onChange after clicking today', () => {
+    it('should call onChange after clicking today', () => {
       callback.resetHistory();
       const today = component.find('footer Button').at(0);
       today.simulate('click');
@@ -238,20 +238,20 @@ describe('<DateInput />', () => {
       assert.equal(spyCall.args[1], true);
     });
 
-    it('should should clear date after clicking clear', () => {
+    it('should clear date after clicking clear', () => {
       const clear = component.find('footer Button').at(1);
       clear.simulate('click');
       assert.equal(component.instance().inputEl.value, '');
     });
 
-    it('should should call onChange after clicking clear', () => {
+    it('should call onChange after clicking clear', () => {
       callback.resetHistory();
       const clear = component.find('footer Button').at(1);
       clear.simulate('click');
       assert(callback.calledWith('', false));
     });
 
-    it('should should set date when using arrow keys', () => {
+    it('should set date when using arrow keys', () => {
       const input = component.find('input');
       input.simulate('focus');
 
