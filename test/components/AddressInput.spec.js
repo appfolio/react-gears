@@ -386,7 +386,7 @@ describe('AddressInput', () => {
 
     it('should only show screen reader labels when disabled', () => {
       const component = mount(<AddressInput showLabels={false} />);
-      assert.equal(component.find('label.sr-only').length, 6);
+      assert.equal(component.find('label.visually-hidden').length, 6);
     });
   });
 
