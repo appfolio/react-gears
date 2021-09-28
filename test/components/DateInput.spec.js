@@ -511,13 +511,13 @@ describe('<DateInput />', () => {
       const prevMonthLabel = component.find('.js-prev-month').children().find('span');
 
       assert.strictEqual('Next Year', nextYearLabel.text());
-      assert.strictEqual('sr-only', nextYearLabel.prop('className'));
+      assert.strictEqual('visually-hidden', nextYearLabel.prop('className'));
       assert.strictEqual('Previous Year', prevYearLabel.text());
-      assert.strictEqual('sr-only', prevYearLabel.prop('className'));
+      assert.strictEqual('visually-hidden', prevYearLabel.prop('className'));
       assert.strictEqual('Next Month', nextMonthLabel.text());
-      assert.strictEqual('sr-only', nextMonthLabel.prop('className'));
+      assert.strictEqual('visually-hidden', nextMonthLabel.prop('className'));
       assert.strictEqual('Previous Month', prevMonthLabel.text());
-      assert.strictEqual('sr-only', prevMonthLabel.prop('className'));
+      assert.strictEqual('visually-hidden', prevMonthLabel.prop('className'));
     });
   });
 });
