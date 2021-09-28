@@ -8,7 +8,7 @@ export interface TableProps extends ReactStrapTableProps {
   striped?: boolean;
   dark?: boolean;
   hover?: boolean;
-  responsive?: boolean;
+  responsive?: boolean | 'sm' | 'md' | 'lg' | 'xl';
   children: React.ReactNode;
 }
 
