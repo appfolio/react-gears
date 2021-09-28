@@ -243,7 +243,7 @@ describe('<Combobox />', () => {
 
       fireEvent.change(input, { target: { value: 'bb8' } });
 
-      assert(combobox.queryByText('D-O').classList.contains('sr-only'));
+      assert(combobox.queryByText('D-O').classList.contains('visually-hidden'));
       assert(combobox.getByText('BB8').classList.contains('active'));
     });
 
@@ -254,7 +254,7 @@ describe('<Combobox />', () => {
       fireEvent.focus(input);
       fireEvent.change(input, { target: { value: 'd2' } });
 
-      assert(combobox.queryByText('D-O').classList.contains('sr-only'));
+      assert(combobox.queryByText('D-O').classList.contains('visually-hidden'));
       assert(combobox.getByText('R2-D2'));
 
       fireEvent.change(input, { target: { value: 'd' } });

@@ -221,7 +221,7 @@ function Combobox<T>({
     return (
       <DropdownItem
         disabled={option.disabled}
-        className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
+        className={`${isOptionVisible(option) ? '' : 'visually-hidden'}`}
         key={key}
         id={`option-${key}`}
         active={focusedOptionIndex === visibleIndex}
