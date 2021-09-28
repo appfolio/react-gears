@@ -15,7 +15,7 @@ export const LiveExample = () => (
     title={text('title', 'Company-Wide View of Text Messages')}
     subtitle={text('subtitle', 'View all text messages sent by your company from this page.')}
   >
-    <Button color="primary" outline className="font-weight-bold text-uppercase">
+    <Button color="primary" outline className="fw-bold text-uppercase">
       <Icon name="envelope" className="me-2" />
       Feedback
     </Button>

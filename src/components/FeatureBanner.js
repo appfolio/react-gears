@@ -18,7 +18,7 @@ export default class FeatureBanner extends React.Component {
 
   render() {
     const { alertText, color, title, subtitle, children } = this.props;
-    const alertStyle = 'font-weight-bold text-uppercase';
+    const alertStyle = 'fw-bold text-uppercase';
 
     return (
       <Alert color={color} className="align-items-center d-flex p-0" fade={false}>

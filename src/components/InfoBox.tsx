@@ -32,7 +32,7 @@ const InfoBox = ({
       'border-start': !vertical,
     }
   );
-  const headerClasses = classnames('font-weight-normal d-flex justify-content-between m-0', {
+  const headerClasses = classnames('fw-normal d-flex justify-content-between m-0', {
     [`text-${color}`]: color,
     'mb-3': !!children
   });
