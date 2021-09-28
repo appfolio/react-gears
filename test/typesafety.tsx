@@ -248,7 +248,7 @@ const FeatureBannerExample = () => {
   <FeatureBanner alertText={'New'} title={'Hi'} subtitle={'Some title'}>
     <div>
       <Button
-        className="font-weight-bold text-uppercase bg-muted text-primary"
+        className="fw-bold text-uppercase bg-muted text-primary"
         outline
       >
         Test
