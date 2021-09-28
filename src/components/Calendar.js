@@ -22,7 +22,7 @@ const Day = ({ day, dateFormat, locale, onClick, ...props }) => {
     'text-center',
     { 'bg-light text-muted': !day.sameMonth }, // Lighten days in months before & after
     { 'bg-primary text-white': day.selected }, // Highlight selected date
-    { 'text-primary font-weight-bold': !day.selected && isToday(day.date) }, // Highlight today's date
+    { 'text-primary fw-bold': !day.selected && isToday(day.date) }, // Highlight today's date
     { invisible: !day.visible } // If date is (optionally) filtered out
   );
   const styles = disabled ? {
