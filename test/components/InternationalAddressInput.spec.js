@@ -213,13 +213,13 @@ describe('<InternationalAddressInput />', () => {
   describe('labels', () => {
     it('should not show labels by default', () => {
       const component = mount(<InternationalAddressInput showLabels={false} />);
-      assert.equal(component.find('label.sr-only').length, 6);
+      assert.equal(component.find('label.visually-hidden').length, 6);
     });
 
     it('should show labels when enabled', () => {
       const component = mount(<InternationalAddressInput showLabels />);
       assert.equal(component.find('label').length, 6);
-      assert.equal(component.find('label.sr-only').length, 0);
+      assert.equal(component.find('label.visually-hidden').length, 0);
     });
 
     it('should show custom when enabled', () => {
@@ -239,7 +239,7 @@ describe('<InternationalAddressInput />', () => {
 
     it('should not show custom labels when disabled', () => {
       const component = mount(<InternationalAddressInput showLabels={false} />);
-      assert.equal(component.find('label.sr-only').length, 6);
+      assert.equal(component.find('label.visually-hidden').length, 6);
     });
   });
 
