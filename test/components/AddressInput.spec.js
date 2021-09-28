@@ -388,6 +388,21 @@ describe('AddressInput', () => {
     });
   });
 
+  it('should support compact mode', () => {
+    const compact = mount(<AddressInput compact />);
+
+    assert.strictEqual(compact.find('.col-12 #addressInput_city').hostNodes().length, 1);
+    assert.strictEqual(compact.find('.col-sm-6 #addressInput_city').hostNodes().length, 0);
+
+    assert.strictEqual(compact.find('.col-4 #addressInput_state').hostNodes().length, 1);
+    assert.strictEqual(compact.find('.col-sm-3 #addressInput_state').hostNodes().length, 0);
+    assert.strictEqual(compact.find('.col-md-2 #addressInput_state').hostNodes().length, 0);
+
+    assert.strictEqual(compact.find('.col-8 #addressInput_postal').hostNodes().length, 1);
+    assert.strictEqual(compact.find('.col-sm-3 #addressInput_postal').hostNodes().length, 0);
+    assert.strictEqual(compact.find('.col-md-4 #addressInput_postal').hostNodes().length, 0);
+  });
+
   it('should support focus', () => {
     const wrapper = mount(<AddressInput />);
     const component = wrapper.instance();
