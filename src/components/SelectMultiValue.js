@@ -32,7 +32,7 @@ export default class SelectMultiValue extends React.Component {
     } = this.props;
     const classNames = classnames(
       'ms-1',
-      'font-weight-normal',
+      'fw-normal',
       'border',
       'd-inline-flex',
       'align-items-center',
