@@ -15,7 +15,7 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
       name = 'info-circle';
       break;
     case 'muted':
-      name = 'circle-thin';
+      name = 'grip-vertical';
       break;
     case 'success':
       name = 'check-circle';

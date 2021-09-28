@@ -285,6 +285,7 @@ export default [
   'graduation-cap',
   'gratipay',
   'grav',
+  'grip-vertical',
   'h-square',
   'hacker-news',
   'hand-lizard-o',
