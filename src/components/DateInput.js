@@ -300,7 +300,7 @@ export default class DateInput extends React.Component {
                 onClick={this.toggle}
               >
                 <Icon name="calendar" fixedWidth />
-                <span className="sr-only">Open Calendar</span>
+                <span className="visually-hidden">Open Calendar</span>
               </Button>
             </InputGroup>
           </DropdownToggle>
@@ -314,11 +314,11 @@ export default class DateInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
-                    <span className="sr-only">Previous Year</span>
+                    <span className="visually-hidden">Previous Year</span>
                   </Button>
                   <Button className="js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
-                    <span className="sr-only">Previous Month</span>
+                    <span className="visually-hidden">Previous Month</span>
                   </Button>
                 </ButtonGroup>
 
@@ -329,11 +329,11 @@ export default class DateInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
-                    <span className="sr-only">Next Month</span>
+                    <span className="visually-hidden">Next Month</span>
                   </Button>
                   <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
-                    <span className="sr-only">Next Year</span>
+                    <span className="visually-hidden">Next Year</span>
                   </Button>
                 </ButtonGroup>
               </header>
