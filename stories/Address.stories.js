@@ -25,6 +25,7 @@ export const LiveExample = () => (
         postal: '12345-1234',
         countryCode: 'US'
       }}
+      compact={boolean('compact', false)}
       onBlur={action('address onBlur')}
       onChange={action('address onChange')}
       countries={object('countries', ['US'])}

@@ -24,6 +24,7 @@ export const addressPropType = {
 class AddressInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    compact: PropTypes.bool,
     countries: PropTypes.arrayOf(PropTypes.string),
     defaultValue: PropTypes.object,
     inputName: PropTypes.shape(addressPropType),
@@ -86,7 +87,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { className, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName } = this.props;
+    const { className, compact, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName } = this.props;
 
     const inputId = id || 'addressInput';
     const address1Id = `${inputId}_address1`;
@@ -143,7 +144,7 @@ class AddressInput extends React.Component {
           />
         </FormLabelGroup>
         <Row className="no-gutters">
-          <Col sm={6} xs={12} className="pr-sm-3">
+          <Col sm={compact ? undefined : 6} xs={12} className="pr-sm-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-sm-0': !showCountry })}
               feedback={error.city}
@@ -167,7 +168,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col md={2} sm={3} xs={4} className="pr-3">
+          <Col md={compact ? undefined : 2} sm={compact ? undefined : 3} xs={4} className="pr-3">
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               feedback={error.state}
@@ -192,7 +193,7 @@ class AddressInput extends React.Component {
               />
             </FormLabelGroup>
           </Col>
-          <Col md={4} sm={3} xs={8}>
+          <Col md={compact ? undefined : 4} sm={compact ? undefined : 3} xs={8}>
             <FormLabelGroup
               rowClassName={classnames({ 'mb-0': !showCountry })}
               label={labels.postal}
