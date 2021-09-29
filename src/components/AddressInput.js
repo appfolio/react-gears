@@ -144,9 +144,9 @@ class AddressInput extends React.Component {
           />
         </FormLabelGroup>
         <Row className="no-gutters">
-          <Col sm={compact ? undefined : 6} xs={12} className="pr-sm-3">
+          <Col sm={compact ? undefined : 6} xs={12} className={compact ? undefined : 'pr-sm-3'}>
             <FormLabelGroup
-              rowClassName={classnames({ 'mb-sm-0': !showCountry })}
+              rowClassName={classnames({ 'mb-sm-0': !showCountry && !compact })}
               feedback={error.city}
               hint={hints.city}
               label={labels.city}
