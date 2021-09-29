@@ -53,6 +53,8 @@ describe('AddressInput', () => {
     });
 
     it('should have city', () => {
+      assert.strictEqual(component.find('.col-sm-6.pr-sm-3 #addressInput_city').hostNodes().length, 1);
+
       const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'City');
       assert.equal(input.prop('defaultValue'), 'Gotham');
@@ -392,6 +394,8 @@ describe('AddressInput', () => {
     const compact = mount(<AddressInput compact />);
 
     assert.strictEqual(compact.find('.col-12 #addressInput_city').hostNodes().length, 1);
+    assert.strictEqual(compact.find('.col-12.pr-sm-3 #addressInput_city').hostNodes().length, 0);
+    assert.strictEqual(compact.find('.col-sm-6 #addressInput_city').hostNodes().length, 0);
     assert.strictEqual(compact.find('.col-sm-6 #addressInput_city').hostNodes().length, 0);
 
     assert.strictEqual(compact.find('.col-4 #addressInput_state').hostNodes().length, 1);
