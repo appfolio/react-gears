@@ -340,7 +340,7 @@ function Combobox<T>({
               onKeyDown={handleOptionsKeyboardNav}
               onKeyPress={clearSelectedPreview}
               onPaste={clearSelectedPreview}
-              type="search"
+              type={props.type || 'search'}
               value={inputValue}
               aria-label="Filter options"
               {...props}

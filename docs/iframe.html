@@ -37,6 +37,7 @@
     margin: 0;
     padding: 1rem;
     display: block;
+    box-sizing: border-box;
   }
 
   .sb-wrapper {
@@ -108,12 +109,21 @@
   window.onerror = function onerror(message, source, line, column, err) {
     if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
     // eslint-disable-next-line no-var, vars-on-top
-    var error = { message: err.message, name: err.name, stack: err.stack };
-    window.fetch('/runtime-error', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, source, line, column, error, origin: 'preview' }),
-    });
+    var xhr = new window.XMLHttpRequest();
+    xhr.open('POST', '/runtime-error');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(
+      JSON.stringify({
+        /* eslint-disable object-shorthand */
+        message: message,
+        source: source,
+        line: line,
+        column: column,
+        error: err && { message: err.message, name: err.name, stack: err.stack },
+        origin: 'preview',
+        /* eslint-enable object-shorthand */
+      })
+    );
   };</script><link id="theme" rel="stylesheet" href="https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/all.min.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/v4-shims.min.css"><link href="https://use.typekit.net/uao7jmm.css" rel="stylesheet"><style>#story-root {
     margin-bottom: 3rem;
   }</style><style>#root[hidden],
@@ -123,4 +133,8 @@
             
         
             
-              window['FRAMEWORK_OPTIONS'] = {};</script><script src="runtime~main.f48e0e81d42d51a771ad.bundle.js"></script><script src="vendors~main.f48e0e81d42d51a771ad.bundle.js"></script><script src="main.f48e0e81d42d51a771ad.bundle.js"></script></body></html>
+              window['FRAMEWORK_OPTIONS'] = {};
+            
+        
+            
+              window['FEATURES'] = {"postcss":true};</script><script src="runtime~main.4797b735.iframe.bundle.js"></script><script src="vendors~main.f7af279e.iframe.bundle.js"></script><script src="main.debe1194.iframe.bundle.js"></script></body></html>
