@@ -49,6 +49,20 @@ describe('<Combobox />', () => {
     assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
   });
 
+  it('should have "search" as default Input type', () => {
+    const combobox = render(<Combobox options={[]} />);
+    const input = combobox.getByTestId('combobox-input');
+
+    assert.strictEqual(input.type, 'search');
+  });
+
+  it('should pass type to Input', () => {
+    const combobox = render(<Combobox options={[]} type="text" />);
+    const input = combobox.getByTestId('combobox-input');
+
+    assert.strictEqual(input.type, 'text');
+  });
+
   it('should show all options when there is a selected option', () => {
     const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
     const input = combobox.getByTestId('combobox-input');
