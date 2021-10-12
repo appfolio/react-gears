@@ -93,9 +93,61 @@ export const ButtonShorthand = () => (
     </InputGroup>
     <br />
     <InputGroup>
-      <Button addonType="prepend" color="success">To the Left!</Button>
+      <Button color="success">To the Left!</Button>
       <Input placeholder="and..." />
-      <Button addonType="append" color="success">To the Right!</Button>
+      <Button color="success">To the Right!</Button>
     </InputGroup>
   </div>
+);
+
+export const MultipleInputs = () => (
+  <>
+    <InputGroup>
+      <InputGroupText>
+        <Input
+          addon
+          type="checkbox"
+        />
+      </InputGroupText>
+      <Input
+        type="select"
+        defaultValue="dues"
+      >
+        <option value="dues">
+          Dues Owed
+        </option>
+        <option value="total">
+          Total owed
+        </option>
+      </Input>
+      <Input
+        type="select"
+        defaultValue=">"
+      >
+        <option value="=">
+          Equal to
+        </option>
+        <option value="<>">
+          Exclude
+        </option>
+        <option value=">">
+          Greater than
+        </option>
+        <option value=">=">
+          Greater than or equal to
+        </option>
+        <option value="<">
+          Less than
+        </option>
+        <option value="<=">
+          Less than or equal to
+        </option>
+      </Input>
+      <Input
+        placeholder="0"
+        type="number"
+        inputMode="numeric"
+      />
+    </InputGroup>
+  </>
 );
