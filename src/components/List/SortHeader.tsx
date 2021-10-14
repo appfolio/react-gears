@@ -3,7 +3,21 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import { Button, Col, CustomInput, Icon, Label } from '../../index';
 
-const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChangeAscending, onChangeProperty }) => {
+interface SortOption {
+  label: string;
+  value: string | string[];
+}
+
+export interface SortHeaderProps {
+  ascending?: boolean,
+  onChangeAscending: (asc: boolean) => void,
+  onChangeProperty: (sortBy: SortOption['value']) => void,
+  sortByLabel: string,
+  sortOptions: SortOption[],
+  sortProperty?: SortOption['value'],
+}
+
+const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChangeAscending, onChangeProperty }: SortHeaderProps) => {
   const [sortId] = useState(() => uniqueId('sort-'));
   return (
     <Col xs="12" sm="auto" className="ml-sm-auto mr-n1 pt-2 pt-sm-0 d-flex align-items-center js-sort-header">
@@ -20,7 +34,7 @@ const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChang
         {sortProperty === undefined && <option value="">--</option>}
         {sortOptions.map(({ label, value }) => (
           <option
-            key={value}
+            key={value.toString()}
             value={Array.isArray(value) ? value.join(',') : value}
           >
             {label}

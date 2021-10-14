@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
+import { ListGroupItemProps } from 'reactstrap';
 import { Button, Collapse, CustomInput, Icon, ListGroupItem } from '../../index';
 
-interface ListItemProps<T> extends ListGroupItem {
+export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   children: (item: T, selected?: boolean) => React.ReactNode,
   className?: string,
   color?: string,
   expanded?: boolean,
   item: T,
   onExpand?: (item: T) => React.ReactNode | undefined,
-  onSelect: (item: T, checked: boolean) => void
-  select?: 'checkbox' | 'radio' | 'switch',
+  onSelect: (item: T, checked?: boolean) => void
+  select?: 'checkbox' | 'radio' | 'switch' | '',
   selected?: boolean,
 }
 
-// TODO any to <T>
-const ListItem = ({
+function ListItem<T>({
   children: render,
   className,
   color,
@@ -27,7 +27,7 @@ const ListItem = ({
   select,
   selected,
   ...props
-}: ListItemProps<any>) => {
+}: ListItemProps<T>) {
   const isExpandable = onExpand !== undefined;
   // @ts-ignore
   const ExpandedItem = isExpandable ? onExpand!(item) : undefined;
@@ -72,7 +72,7 @@ const ListItem = ({
       )}
     </ListGroupItem>
   );
-};
+}
 
 ListItem.displayName = 'ListItem';
 

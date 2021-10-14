@@ -2,34 +2,78 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+import { ListGroupProps } from 'reactstrap';
 import { Col, CustomInput, ListGroup, ListGroupItem, Row, ScrollContainer } from '../../index';
-import FilterHeader from './FilterHeader';
-import SortHeader from './SortHeader';
-import ListItem from './ListItem';
-import useMap from '../../hooks/useMap';
+import FilterHeader, { FilterHeaderProps } from './FilterHeader';
+import SortHeader, { SortHeaderProps } from './SortHeader';
+import ListItem, { ListItemProps } from './ListItem';
+import useMap, { MapKey } from '../../hooks/useMap';
 
-const List = ({
-  children: render,
+interface Sort {
+  property?: string | string [];
+  ascending?: boolean;
+}
+
+interface Item {
+  expanded?: boolean;
+  key?: string;
+}
+
+export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
+  children?: ListItemProps<T>['children'];
+  filter?: string;
+  filterPlaceholder?: string;
+  header?: React.ReactNode;
+  height?: string | number;
+  scrollPositionKey?: string;
+  onExpand?: ListItemProps<T>['onExpand'];
+  onFilter?: FilterHeaderProps['onChange'];
+  itemClassName?: string;
+  items?: T[],
+  select?: 'checkbox' | 'switch' | 'radio' | '',
+  selected?: T[],
+  onSelect?: (items: T[]) => void,
+  onSort?: ({ property, ascending }: Sort) => void,
+  selectedKeyMapper?: (item: T) => MapKey,
+  sort?: Sort,
+  sortByLabel?: SortHeaderProps['sortByLabel'],
+  sortOptions?: SortHeaderProps['sortOptions'],
+}
+
+const defaultProps = {
+  children: () => <></>,
+  filterPlaceholder: 'Search',
+  items: [],
+  onSelect: () => {},
+  select: '' as ListProps<any>['select'],
+  selected: [],
+  selectedKeyMapper: (x: any) => x.toString(),
+  sort: {},
+  sortByLabel: 'Sort by',
+};
+
+function List<T extends Item>({
+  children: render = defaultProps.children,
   filter,
-  filterPlaceholder,
+  filterPlaceholder = defaultProps.filterPlaceholder,
   flush,
   header,
   height,
   scrollPositionKey,
   itemClassName,
-  items,
+  items = defaultProps.items,
   onExpand,
   onFilter,
-  onSelect,
+  onSelect = defaultProps.onSelect,
   onSort,
-  select,
-  selected,
-  selectedKeyMapper,
-  sort,
-  sortByLabel,
+  select = defaultProps.select,
+  selected = defaultProps.selected,
+  selectedKeyMapper = defaultProps.selectedKeyMapper,
+  sort = defaultProps.sort,
+  sortByLabel = defaultProps.sortByLabel,
   sortOptions,
   ...props
-}) => {
+}: ListProps<T>) {
   const {
     map: selection,
     has: hasItem,
@@ -39,13 +83,13 @@ const List = ({
     replace: replaceSelection
   } = useMap(selected, selectedKeyMapper);
   const [selectAllId] = useState(() => uniqueId('selectall-'));
-  const selectAllRef = useRef();
+  const selectAllRef = useRef<HTMLInputElement>(null);
 
   useDeepCompareEffect(() => onSelect(Array.from(selection.values())), [Array.from(selection.values()), onSelect]);
   useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);
 
   useDeepCompareEffect(() => {
-    const includes = (xs, x) => xs.map(selectedKeyMapper).includes(selectedKeyMapper(x));
+    const includes = (xs: T[], x: T) => xs.map(selectedKeyMapper).includes(selectedKeyMapper(x));
     selection.forEach((item) => { if (!includes(items, item)) removeItem(item); });
   }, [items, Array.from(selection.values()), selectedKeyMapper]);
 
@@ -55,7 +99,7 @@ const List = ({
     }
   }, [items, Array.from(selection.values())]);
 
-  const handleSelection = (item, checked) => {
+  const handleSelection = (item: T, checked?: boolean) => {
     if (select === 'checkbox' || select === 'switch') {
       if (hasItem(item) && !checked) removeItem(item);
       else if (checked) addItem(item);
@@ -66,7 +110,7 @@ const List = ({
   };
 
   const handleSelectAll = () => {
-    if (selection.size === items.length) replaceSelection();
+    if (selection.size === items.length) replaceSelection([]);
     else replaceSelection(items);
   };
 
@@ -95,7 +139,7 @@ const List = ({
               <CustomInput
                 id={selectAllId}
                 type={select}
-                checked={items.length && selection.size === items.length}
+                checked={items.length > 0 && selection.size === items.length}
                 disabled={items.length === 0}
                 label={<span className="sr-only">Select all</span>}
                 onChange={() => handleSelectAll()}
@@ -152,7 +196,7 @@ const List = ({
       </ScrollContainer>
     </ListGroup>
   );
-};
+}
 
 List.propTypes = {
   ...ListGroup.propTypes,
@@ -179,16 +223,6 @@ List.propTypes = {
   sortOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
-List.defaultProps = {
-  children: () => <></>,
-  filterPlaceholder: 'Search',
-  items: [],
-  onSelect: () => {},
-  select: '',
-  selected: [],
-  selectedKeyMapper: x => x,
-  sort: {},
-  sortByLabel: 'Sort by',
-};
+List.defaultProps = defaultProps;
 
 export default List;

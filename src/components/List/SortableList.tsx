@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import orderBy from 'lodash.orderby';
-import List from './List';
+import List, { ListProps } from './List';
 
-const SortableList = ({ filterBy, onFilter, items, scrollPositionKey, sort, sortOptions, ...props }) => {
+export interface SortableListProps<T> extends Omit<ListProps<T>, 'onFilter'> {
+  filterBy: string; // initial filter value
+  onFilter?: (filter: string, item: T) => boolean;
+}
+
+const defaultProps = {
+  ...List.defaultProps
+};
+
+function SortableList<T>({ filterBy, onFilter, items = defaultProps.items, scrollPositionKey, sort = defaultProps.sort, sortOptions, ...props }: SortableListProps<T>) {
   const [filter, setFilter] = useState(filterBy);
   const [sortProperty, setSortProperty] = useState(sort.property);
-  const [ascending, setAscending] = useState(sort.ascending === undefined ? true : sort.ascending);
+  const [ascending, setAscending] = useState<boolean | undefined>(sort.ascending === undefined ? true : sort.ascending);
   const [sorted, setSorted] = useState(items);
 
   useEffect(() => {
@@ -15,16 +24,16 @@ const SortableList = ({ filterBy, onFilter, items, scrollPositionKey, sort, sort
 
     setSorted(
       orderBy(
-        filter ? items.filter(item => onFilter(filter, item)) : items,
+        (filter && onFilter) ? items.filter((item: T) => onFilter(filter, item)) : items,
         properties,
         direction
       )
     );
   }, [ascending, filter, items, onFilter, sortProperty]);
 
-  const handleSort = (sortBy) => {
-    setSortProperty(sortBy.property);
-    setAscending(sortBy.ascending);
+  const handleSort = (sortBy: SortableListProps<T>['sort']) => {
+    setSortProperty(sortBy?.property);
+    setAscending(sortBy?.ascending);
   };
 
   return (
@@ -40,17 +49,13 @@ const SortableList = ({ filterBy, onFilter, items, scrollPositionKey, sort, sort
       {...props}
     />
   );
-};
+}
 
 SortableList.propTypes = {
   ...List.propTypes,
   filterBy: PropTypes.any,
-  items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
-SortableList.defaultProps = {
-  ...List.defaultProps,
-  items: [],
-};
+SortableList.defaultProps = defaultProps;
 
 export default SortableList;
