@@ -127,6 +127,9 @@ import InternationalAddressInput from './components/InternationalAddressInput';
 import Icon from './components/Icon';
 import InfoBox from './components/InfoBox';
 import LabelBadge from './components/LabelBadge';
+import List from './components/List/List';
+import SortableList from './components/List/SortableList';
+import ListItem from './components/List/ListItem';
 import MaskedInput from './components/MaskedInput';
 import Modal from './components/Modal';
 import MonthCalendar from './components/MonthCalendar';
@@ -301,6 +304,9 @@ export {
   ImageCarousel,
   InfoBox,
   LabelBadge,
+  List,
+  SortableList,
+  ListItem,
   MonthCalendar,
   MonthInput,
   Note,
