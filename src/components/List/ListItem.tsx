@@ -6,6 +6,7 @@ import { Button, Collapse, CustomInput, Icon, ListGroupItem } from '../../index'
 
 export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   children: (item: T, selected?: boolean) => React.ReactNode,
+  id?: string,
   className?: string,
   color?: string,
   expanded?: boolean,
@@ -18,6 +19,7 @@ export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
 
 function ListItem<T>({
   children: render,
+  id: itemId,
   className,
   color,
   expanded: defaultExpanded = false,
@@ -47,7 +49,7 @@ function ListItem<T>({
               id={id}
               type={select}
               checked={selected}
-              label={<span className="sr-only">Select</span>}
+              label={<span className="sr-only">Select {itemId}</span>}
               onChange={e => onSelect(item, e.target.checked)}
             />
           </div>
@@ -63,7 +65,7 @@ function ListItem<T>({
             }}
           >
             <Icon name={`chevron-${expanded ? 'up' : 'down'}`} />
-            <span className="sr-only">Expand</span>
+            <span className="sr-only">Expand {itemId}</span>
           </Button>
         )}
       </div>

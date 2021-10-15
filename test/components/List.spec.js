@@ -2,6 +2,7 @@ import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { List, ListItem } from '../../src';
 
@@ -107,6 +108,42 @@ describe('<List />', () => {
   });
 
   describe('selection', () => {
+    it('should select and deselect all', () => {
+      const component = render(
+        <List items={items} select="checkbox">
+          {item => <div id={item.toLowerCase()}>{item}</div>}
+        </List>
+      );
+
+      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, 0);
+
+      component.getByTestId('select-all').click();
+
+      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, items.length + 1);
+
+      component.getByTestId('select-all').click();
+
+      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, 0);
+    });
+
+    it('should select and deselect item', () => {
+      const objs = items.map((i) => { return { value: i, key: i }; });
+      const component = render(
+        <List items={objs} select="checkbox">
+          {item => <div id={item.key}>{item.value}</div>}
+        </List>
+      );
+
+      component.getByLabelText('Select Charlie').click();
+
+      assert.strictEqual(component.getByLabelText('Select Charlie').checked, true);
+      assert.strictEqual(component.container.querySelectorAll('input:indeterminate').length, 1);
+
+      component.getByLabelText('Select Charlie').click();
+
+      assert.strictEqual(component.getByLabelText('Select Charlie').checked, false);
+    });
+
     it('should not render selection controls by default', () => {
       const component = mount(
         <List items={items}>
