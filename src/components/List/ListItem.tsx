@@ -49,8 +49,8 @@ function ListItem<T>({
     >
       <div className="d-flex align-items-center">
         {select && (
-          <div className="pr-2">
-            <CustomInput
+          <div className="pe-2">
+            <Input
               id={id}
               type={select}
               checked={selected}
@@ -61,12 +61,12 @@ function ListItem<T>({
             <Label for={id} className="sr-only">Select {itemId}</Label>
           </div>
         )}
-        <div className="mr-auto w-100 px-2">{render(item, selected)}</div>
+        <div className="me-auto w-100 px-2">{render(item, selected)}</div>
         {isExpandable && (
           <Button
             color="link"
             onClick={() => setExpanded(!expanded)}
-            className="mr-n3"
+            className="pe-0"
             style={{
               visibility: ExpandedItem === undefined ? 'hidden' : 'visible'
             }}
