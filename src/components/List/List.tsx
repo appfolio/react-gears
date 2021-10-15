@@ -8,6 +8,7 @@ import FilterHeader, { FilterHeaderProps } from './FilterHeader';
 import SortHeader, { SortHeaderProps } from './SortHeader';
 import ListItem, { ListItemProps } from './ListItem';
 import useMap from '../../hooks/useMap';
+import { AllowWeakType } from '../../util/types';
 
 interface Sort {
   property?: string | string [];
@@ -52,7 +53,7 @@ const defaultProps = {
   sortByLabel: 'Sort by',
 };
 
-function List<T extends Item>({
+function List<T extends AllowWeakType<Item>>({
   children: render = defaultProps.children,
   filter,
   filterPlaceholder = defaultProps.filterPlaceholder,
