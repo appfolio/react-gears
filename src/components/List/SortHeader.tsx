@@ -25,7 +25,7 @@ const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChang
       <CustomInput
         id={sortId}
         type="select"
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           const value = e.target.value;
           onChangeProperty(value && value.includes(',') ? value.split(',') : value);
         }}
