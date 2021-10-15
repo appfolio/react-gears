@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import { ListGroupProps } from 'reactstrap';
-import { Col, CustomInput, ListGroup, ListGroupItem, Row, ScrollContainer } from '../../index';
+import { Col, Input, ListGroup, ListGroupItem, Row, ScrollContainer } from '../../index';
 import FilterHeader, { FilterHeaderProps } from './FilterHeader';
 import SortHeader, { SortHeaderProps } from './SortHeader';
 import ListItem, { ListItemProps } from './ListItem';
@@ -135,13 +135,13 @@ function List<T extends Item>({
       {showHeader && (
         <ListGroupItem tag="header" className="d-flex align-items-center bg-secondary js-header">
           {select && (select !== 'radio') && (
-            <div className="h-100 d-flex align-items-center mr-3">
-              <CustomInput
+            <div className="h-100 d-flex align-items-center me-3">
+              <Input
                 id={selectAllId}
                 type={select}
                 checked={items.length > 0 && selection.size === items.length}
                 disabled={items.length === 0}
-                label={<span className="sr-only">Select all</span>}
+                label={<span className="visually-hidden">Select all</span>}
                 onChange={() => handleSelectAll()}
                 innerRef={selectAllRef}
                 data-testid="select-all"
@@ -151,7 +151,7 @@ function List<T extends Item>({
           <div className="w-100">
             {(!sortOptions && !onFilter) ?
               (header) : (
-                <Row className="no-gutters">
+                <Row className="gx-0">
                   <Col xs="12" sm="6" md="4">
                     {header}
                     {!header && onFilter && (

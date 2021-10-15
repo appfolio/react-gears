@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
-import { Button, Col, CustomInput, Icon, Label } from '../../index';
+import { Button, Col, Input, Icon, Label } from '../../index';
 
 interface SortOption {
   label: string;
@@ -20,9 +20,9 @@ export interface SortHeaderProps {
 const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChangeAscending, onChangeProperty }: SortHeaderProps) => {
   const [sortId] = useState(() => uniqueId('sort-'));
   return (
-    <Col xs="12" sm="auto" className="ml-sm-auto mr-n1 pt-2 pt-sm-0 d-flex align-items-center js-sort-header">
-      <Label className="m-0 pr-2 text-nowrap col-form-label" for={sortId}>{sortByLabel}</Label>
-      <CustomInput
+    <Col xs="12" sm="auto" className="ms-sm-auto me-n1 pt-2 pt-sm-0 d-flex align-items-center js-sort-header">
+      <Label className="m-0 pe-2 text-nowrap col-form-label" for={sortId}>{sortByLabel}</Label>
+      <Input
         id={sortId}
         type="select"
         onChange={(e) => {
@@ -40,10 +40,10 @@ const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChang
             {label}
           </option>
         ))}
-      </CustomInput>
+      </Input>
       {sortProperty && (
         <Button
-          className="ml-1 pl-2 pr-0"
+          className="ms-1 ps-2 pe-0"
           color="link"
           disabled={!sortProperty}
           id="sort-button"
