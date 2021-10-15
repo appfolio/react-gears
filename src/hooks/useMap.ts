@@ -1,8 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export type MapKey = string | number | bigint | boolean | symbol;
-
-export default function useMap<T>(defaultValue: T[], keyMapper: (value: T) => MapKey = x => (x as any).toString()) {
+export default function useMap<T>(defaultValue: T[], keyMapper: (value: T) => any = x => x) {
   const [map, setMap] = useState(new Map(defaultValue.map((val: T) => [keyMapper(val), val])));
   const has = (value: T) => map.has(keyMapper(value));
   const add = (value: T) => {

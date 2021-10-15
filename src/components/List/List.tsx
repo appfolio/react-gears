@@ -7,7 +7,7 @@ import { Col, CustomInput, ListGroup, ListGroupItem, Row, ScrollContainer } from
 import FilterHeader, { FilterHeaderProps } from './FilterHeader';
 import SortHeader, { SortHeaderProps } from './SortHeader';
 import ListItem, { ListItemProps } from './ListItem';
-import useMap, { MapKey } from '../../hooks/useMap';
+import useMap from '../../hooks/useMap';
 
 interface Sort {
   property?: string | string [];
@@ -34,7 +34,7 @@ export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
   selected?: T[],
   onSelect?: (items: T[]) => void,
   onSort?: ({ property, ascending }: Sort) => void,
-  selectedKeyMapper?: (item: T) => MapKey,
+  selectedKeyMapper?: (item: T) => any,
   sort?: Sort,
   sortByLabel?: SortHeaderProps['sortByLabel'],
   sortOptions?: SortHeaderProps['sortOptions'],
@@ -47,7 +47,7 @@ const defaultProps = {
   onSelect: () => {},
   select: '' as ListProps<any>['select'],
   selected: [],
-  selectedKeyMapper: (x: any) => x.toString(),
+  selectedKeyMapper: (x: any) => x,
   sort: {},
   sortByLabel: 'Sort by',
 };
@@ -144,6 +144,7 @@ function List<T extends Item>({
                 label={<span className="sr-only">Select all</span>}
                 onChange={() => handleSelectAll()}
                 innerRef={selectAllRef}
+                data-testid="select-all"
               />
             </div>
           )}
@@ -180,6 +181,7 @@ function List<T extends Item>({
         <ListGroup flush={flush}>
           {items.map((item, i) => (
             <ListItem
+              id={item.key}
               className={itemClassName}
               expanded={item.expanded || false}
               item={item}
