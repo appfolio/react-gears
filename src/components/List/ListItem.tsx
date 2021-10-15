@@ -31,7 +31,6 @@ function ListItem<T>({
   ...props
 }: ListItemProps<T>) {
   const isExpandable = onExpand !== undefined;
-  // @ts-ignore
   const ExpandedItem = isExpandable ? onExpand!(item) : undefined;
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [id] = useState(() => uniqueId('listitem-'));
@@ -50,7 +49,7 @@ function ListItem<T>({
               type={select}
               checked={selected}
               label={<span className="sr-only">Select {itemId}</span>}
-              onChange={e => onSelect(item, e.target.checked)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect(item, e.target.checked)}
             />
           </div>
         )}

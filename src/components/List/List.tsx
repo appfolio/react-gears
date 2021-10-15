@@ -17,6 +17,7 @@ interface Sort {
 interface Item {
   expanded?: boolean;
   key?: string;
+  [key: string]: any;
 }
 
 export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
