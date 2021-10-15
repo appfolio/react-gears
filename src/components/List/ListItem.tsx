@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import { ListGroupItemProps } from 'reactstrap';
-import { Button, Collapse, CustomInput, Icon, ListGroupItem } from '../../index';
+import { Button, Collapse, Input, Icon, ListGroupItem } from '../../index';
 
 export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   children: (item: T, selected?: boolean) => React.ReactNode,
@@ -45,8 +45,8 @@ function ListItem<T>({
     >
       <div className="d-flex align-items-center">
         {select && (
-          <div className="pr-2">
-            <CustomInput
+          <div className="pe-2">
+            <Input
               id={id}
               type={select}
               checked={selected}
@@ -56,12 +56,12 @@ function ListItem<T>({
             />
           </div>
         )}
-        <div className="mr-auto w-100 px-2">{render(item, selected)}</div>
+        <div className="me-auto w-100 px-2">{render(item, selected)}</div>
         {isExpandable && (
           <Button
             color="link"
             onClick={() => setExpanded(!expanded)}
-            className="mr-n3"
+            className="pe-0"
             style={{
               visibility: ExpandedItem === undefined ? 'hidden' : 'visible'
             }}
