@@ -37,7 +37,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
         options.map((option) => {
           const id = `option-${option.label}-${groupId}`;
           return (
-            <FormGroup check key={option.value} className="col-form-label d-flex align-items-center">
+            <FormGroup check key={option.value} className="py-1 d-flex align-items-center">
               <Input
                 type="checkbox"
                 checked={selected.includes(option.value)}
