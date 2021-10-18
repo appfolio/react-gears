@@ -1,0 +1,23 @@
+name: Update docs for release
+on:
+  push:
+    branches:
+      - release-*
+jobs:
+  prepare-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REACT_GEARS_DOCS_GITHUB_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '*'
+          check-latest: true
+      - name: Install dependencies
+        run: npm ci
+      - name: Prepare dist
+        run: npm run docs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore(docs): update storybook for ${GITHUB_REF##*/}'
