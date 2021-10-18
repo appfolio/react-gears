@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REACT_GEARS_GITHUB_TOKEN }}
           release-type: node
           package-name: "@appfolio/react-gears"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
