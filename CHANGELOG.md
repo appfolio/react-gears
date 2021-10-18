@@ -1,5 +1,17 @@
 # Change Log
 
+### [6.8.1](https://www.github.com/appfolio/react-gears/compare/v6.8.0...v6.8.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* remove .col-form-label from RadioGroup and CheckboxGroup to prevent gray labels ([75419e8](https://www.github.com/appfolio/react-gears/commit/75419e8b95f41da3a02bd6638a7bdb6e620f4747))
+
+
+### Miscellaneous
+
+* update docs for 6.8.0 ([c5c1d51](https://www.github.com/appfolio/react-gears/commit/c5c1d517dba7e896b5194fb418b3f8f8390ab0a7))
+
 ## [6.8.0](https://www.github.com/appfolio/react-gears/compare/v6.7.8...v6.8.0) (2021-10-18)
 
 
