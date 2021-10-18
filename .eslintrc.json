@@ -1,0 +1,46 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "appfolio-react"
+  ],
+  "plugins": [
+    "no-only-tests",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "function-paren-newline": 0,
+    "import/newline-after-import": 1,
+    "max-len": 0,
+    "no-confusing-arrow": 0,
+    "no-only-tests/no-only-tests": 2,
+    "no-nested-ternary": 0,
+    "no-unused-vars": "off",
+    "react/default-props-match-prop-types": [2, { "allowRequiredDefaults": true }],
+    "react/no-array-index-key": 1, // TODO Remove this when warnings are addressed
+    "react/no-find-dom-node": 1, // TODO Remove this when warnings are addressed
+    "react/prefer-stateless-function": 0,
+    "react/prop-types": 1,
+    "react/sort-comp": [1, {
+      "order": [
+        "propTypes",
+        "defaultProps",
+        "static-methods",
+        "state",
+        "constructor",
+        "everything-else",
+        "lifecycle",
+        "render"
+      ]
+    }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "require-jsdoc": 0
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
+  }
+}

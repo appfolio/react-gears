@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["@babel/preset-env", { "modules": false }],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "add-react-displayname",
+    "@babel/plugin-proposal-optional-chaining",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-object-rest-spread",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["styled-jsx/babel", { "sourceMaps":  false }]
+  ],
+  "env": {
+    "storybook": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - update-docs-when-releasing
+name: release-please
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: "@appfolio/react-gears"
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Update Storybook Docs
+        run: |
+          npm ci
+          npm run version
+          git config user.name "Github Actions"
+          git config user.email "react-gears@appfolio.com"
+          git add .
+          git commit --amend --no-edit
+          git push -f

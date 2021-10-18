@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "react/no-unescaped-entities": 0
+  }
+}
