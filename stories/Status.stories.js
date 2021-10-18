@@ -3,7 +3,7 @@ import { select } from '@storybook/addon-knobs';
 import { Status } from '../src';
 
 const types = [
-  '', 'info', 'muted', 'success', 'danger', 'warning'
+  'none', 'info', 'muted', 'success', 'danger', 'warning'
 ];
 
 export default {
@@ -14,7 +14,7 @@ export default {
 export const LiveExample = () => (
   <div>
     <Status
-      type={select('type', types, '')}
+      type={select('type', types, 'none')}
     />
     <Status
       type='info'
