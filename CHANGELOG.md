@@ -1,5 +1,17 @@
 # Change Log
 
+## [6.9.0](https://www.github.com/appfolio/react-gears/compare/v6.8.1...v6.9.0) (2021-10-19)
+
+
+### Features
+
+* **List:** add a conditional prop that controls if a row is selectable ([500368d](https://www.github.com/appfolio/react-gears/commit/500368d2016f04472dc3032325adba576a42b083))
+
+
+### Miscellaneous
+
+* add commitlint github action ([750cf01](https://www.github.com/appfolio/react-gears/commit/750cf0184ac58f32c0f6863bea9452cb2539f572))
+
 ### [6.8.1](https://www.github.com/appfolio/react-gears/compare/v6.8.0...v6.8.1) (2021-10-18)
 
 
