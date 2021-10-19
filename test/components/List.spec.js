@@ -187,7 +187,22 @@ describe('<List />', () => {
       sinon.assert.calledWith(onSelect, [items[0], items[4]]);
     });
 
-    it('should call onSelect with all selectAll selection changes', () => {
+    it('should disable the selection icon if not selectable', () => {
+      const component = mount(
+        <List items={items} select='checkbox' selectable={item => item !== 'Alpha'}>
+          {item => <div id={item.toLowerCase()}>{item}</div>}
+        </List>
+      );
+      const checkboxes = component.find('input[type="checkbox"]');
+      assert.strictEqual(checkboxes.length, items.length + 1); // +1 for select all
+
+      assert(checkboxes.at(1).prop('disabled'));
+      for (let i = 2; i < items.length + 1; i += 1) {
+        assert(!checkboxes.at(i).prop('disabled'));
+      }
+    });
+
+    it('should call onSelect with all selectAll selection changes by default', () => {
       const onSelect = sinon.stub();
       const component = mount(
         <List items={items} select="checkbox" onSelect={onSelect}>
@@ -197,6 +212,38 @@ describe('<List />', () => {
       const checkboxes = component.find('input[type="checkbox"]');
       checkboxes.first().simulate('change', { target: { checked: true } });
       sinon.assert.calledWith(onSelect, items);
+    });
+
+    it('should call onSelect with all selectable items', () => {
+      const onSelect = sinon.stub();
+      const component = mount(
+        <List items={items} select='checkbox' onSelect={onSelect} selectable={item => item !== 'Alpha'}>
+          {item => <div id={item.toLowerCase()}>{item}</div>}
+        </List>
+      );
+      const checkboxes = component.find('input[type="checkbox"]');
+
+      checkboxes.first().simulate('change', { target: { checked: true } });
+      sinon.assert.calledWith(onSelect, ['Bravo', 'Charlie', 'Delta', 'Echo']);
+
+      checkboxes.first().simulate('change', { target: { checked: true } });
+      sinon.assert.calledWith(onSelect, []);
+    });
+
+    it('should only select and deselect selectable items', () => {
+      const onSelect = sinon.stub();
+      const component = mount(
+        <List items={items} select="checkbox" selected={['Alpha']} onSelect={onSelect} selectable={item => item !== 'Alpha'}>
+          {item => <div id={item.toLowerCase()}>{item}</div>}
+        </List>
+      );
+      const checkboxes = component.find('input[type="checkbox"]');
+
+      checkboxes.first().simulate('change', { target: { checked: true } });
+      sinon.assert.calledWith(onSelect, ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo']);
+
+      checkboxes.first().simulate('change', { target: { checked: true } });
+      sinon.assert.calledWith(onSelect, ['Alpha']);
     });
 
     it('should call onSelect when radio selection changes', () => {

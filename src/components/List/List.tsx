@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import useDeepCompareEffect from 'use-deep-compare-effect';
@@ -39,6 +39,7 @@ export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
   sort?: Sort,
   sortByLabel?: SortHeaderProps['sortByLabel'],
   sortOptions?: SortHeaderProps['sortOptions'],
+  selectable?: (item: T) => boolean,
 }
 
 const defaultProps = {
@@ -51,6 +52,7 @@ const defaultProps = {
   selectedKeyMapper: (x: any) => x,
   sort: {},
   sortByLabel: 'Sort by',
+  selectable: () => true
 };
 
 function List<T extends Item>({
@@ -73,6 +75,7 @@ function List<T extends Item>({
   sort = defaultProps.sort,
   sortByLabel = defaultProps.sortByLabel,
   sortOptions,
+  selectable = defaultProps.selectable,
   ...props
 }: ListProps<T>) {
   const {
@@ -100,6 +103,11 @@ function List<T extends Item>({
     }
   }, [items, Array.from(selection.values())]);
 
+  const allSelectableSelected = useMemo(
+    () => items.filter(item => selectable(item)).every(item => selection.has(item)),
+    [selection, items]
+  );
+
   const handleSelection = (item: T, checked?: boolean) => {
     if (select === 'checkbox' || select === 'switch') {
       if (hasItem(item) && !checked) removeItem(item);
@@ -111,8 +119,19 @@ function List<T extends Item>({
   };
 
   const handleSelectAll = () => {
-    if (selection.size === items.length) replaceSelection([]);
-    else replaceSelection(items);
+    const selectableItems = items.filter(item => selectable(item));
+    const unselectableItems = items.filter(item => !selectable(item));
+    const unselectableSelectedItems = unselectableItems.filter(
+      item => selected.includes(item)
+    );
+
+    if (allSelectableSelected) {
+      // deselecting all items except those are selected and unselectable
+      replaceSelection(unselectableSelectedItems);
+    } else {
+      // selecting all selectable items
+      replaceSelection(unselectableSelectedItems.concat(selectableItems));
+    }
   };
 
   const [sortProperty, setSortProperty] = useState(sort.property);
@@ -191,6 +210,7 @@ function List<T extends Item>({
               selected={hasItem(item)}
               onSelect={handleSelection}
               onExpand={onExpand}
+              selectable={selectable}
             >
               {render}
             </ListItem>

@@ -46,6 +46,7 @@ export const WithEverything = () => (
         { label: 'Last Name', value: ['last', 'first'] },
         { label: 'Late Fee', value: 'fee' },
       ]}
+    selectable={item => item.id % 2}
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
