@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.8.2](https://www.github.com/appfolio/react-gears/compare/v6.8.1...v6.8.2) (2021-10-19)
+
+
+### Miscellaneous
+
+* add commitlint github action ([750cf01](https://www.github.com/appfolio/react-gears/commit/750cf0184ac58f32c0f6863bea9452cb2539f572))
+
 ### [6.8.1](https://www.github.com/appfolio/react-gears/compare/v6.8.0...v6.8.1) (2021-10-18)
 
 
