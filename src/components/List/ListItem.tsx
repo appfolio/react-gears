@@ -15,6 +15,7 @@ export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   onSelect: (item: T, checked?: boolean) => void
   select?: 'checkbox' | 'radio' | 'switch' | '',
   selected?: boolean,
+  selectable: (item: T) => boolean
 }
 
 function ListItem<T>({
@@ -28,6 +29,7 @@ function ListItem<T>({
   onSelect,
   select,
   selected,
+  selectable,
   ...props
 }: ListItemProps<T>) {
   const isExpandable = onExpand !== undefined;
@@ -50,6 +52,7 @@ function ListItem<T>({
               checked={selected}
               label={<span className="sr-only">Select {itemId}</span>}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect(item, e.target.checked)}
+              disabled={!selectable(item)}
             />
           </div>
         )}
