@@ -2,9 +2,9 @@ on:
   push:
     branches:
       - master
-name: release-please
+name: release-please-pr
 jobs:
-  release-please:
+  release-pr:
     runs-on: ubuntu-latest
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
@@ -13,3 +13,26 @@ jobs:
           release-type: node
           package-name: "@appfolio/react-gears"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
+          command: release-pr
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release
+        with:
+          release-type: node
+          package-name: "@appfolio/react-gears"
+          command: github-release
+      - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '*'
+          check-latest: true
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.REACT_GEARS_GITHUB_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}
