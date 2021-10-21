@@ -2,17 +2,20 @@ on:
   push:
     branches:
       - daDocsRelease
+
 name: release-please-pr
 jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release-please
         with:
           release-type: node
           package-name: "@appfolio/react-gears"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
           command: release-pr
+          default-branch: daDocsRelease
       - uses: actions/github-script@v5
         if: ${{ steps.release-please.outputs.pr }}
         id: extract-branch
@@ -33,6 +36,7 @@ jobs:
         if: ${{ steps.release-please.outputs.pr }}
         with:
           ref: ${{ steps.extract-branch.outputs.result }}
+      - run: npm ci
       - run: npm run docs
         if: ${{ steps.release-please.outputs.pr }}
       - uses: stefanzweifel/git-auto-commit-action@v4
