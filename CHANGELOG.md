@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.9.0](https://www.github.com/appfolio/react-gears/compare/v6.8.1...v6.9.0) (2021-10-21)
+
+
+### Features
+
+* pretent feature ([0019214](https://www.github.com/appfolio/react-gears/commit/0019214e3119b51500eaa135bcb75391f2e7ac52))
+
 ### [6.8.1](https://www.github.com/appfolio/react-gears/compare/v6.8.0...v6.8.1) (2021-10-18)
 
 
