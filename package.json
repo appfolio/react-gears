@@ -36,6 +36,7 @@
     "dist": "npm run dist:copy-d-ts-files && npm run dist:types && webpack -p && npm run dist:es",
     "publish:prerelease": "TAG=beta npm publish --tag beta",
     "publish:npm": "npm publish --ignore-scripts --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
+    "publish:github": "npm publish --ignore-scripts",
     "prepublishOnly": "npm run dist",
     "postpublish": "npm run publish:npm && git push --no-verify && git push --tags"
   },
