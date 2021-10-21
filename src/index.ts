@@ -75,7 +75,6 @@ import PopoverHeader from './components/PopoverHeader';
 import PopoverTitle from './components/PopoverTitle';
 import PopperContent from './components/PopperContent';
 import PopperTargetHelper from './components/PopperTargetHelper';
-import Portal from './components/Portal';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
@@ -261,7 +260,6 @@ export {
   PopoverTitle,
   PopperContent,
   PopperTargetHelper,
-  Portal,
   Row,
   TabContent,
   Table,
