@@ -63,7 +63,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: npm run dist
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm publish:github
+      - run: npm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
@@ -71,7 +71,7 @@ jobs:
         with:
           registry-url: 'https://npm.pkg.github.com/'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm publish:npm
+      - run: npm run publish:npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
