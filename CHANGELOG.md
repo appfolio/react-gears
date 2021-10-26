@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.9.1](https://www.github.com/appfolio/react-gears/compare/v6.9.0...v6.9.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* add correct param type for AddressInput component's onChange prop ([d7d8db4](https://www.github.com/appfolio/react-gears/commit/d7d8db4b437ecfadf7b081bb2593b745f160588d))
+
 ## [6.9.0](https://www.github.com/appfolio/react-gears/compare/v6.8.1...v6.9.0) (2021-10-19)
 
 
