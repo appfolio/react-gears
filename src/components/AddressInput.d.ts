@@ -20,11 +20,11 @@ interface AddressInputProps {
   id?: string;
   labels?: AddressInterface;
   onBlur?: (inputName: AddressNames) => void;
-  onChange?: (inputName: AddressNames) => void;
+  onChange?: (address: AddressInterface) => void;
   showCountry?: boolean;
   showLabels?: boolean;
   value?: AddressInterface;
 }
 
-declare class AddressInput extends React.Component<AddressInputProps, {}> { }
+declare class AddressInput extends React.Component<AddressInputProps, {}> {}
 export default AddressInput;
