@@ -1,5 +1,18 @@
 # Change Log
 
+### [6.9.2](https://www.github.com/appfolio/react-gears/compare/v6.9.1...v6.9.2) (2021-10-28)
+
+
+### Bug Fixes
+
+* **CurrencyInput:** conditionally exclude `value` key from props before passing it to `IMaskInput` ([de4bfe5](https://www.github.com/appfolio/react-gears/commit/de4bfe5126b723b6b8ce19d2a3630e4a77c645f2))
+
+
+### Miscellaneous
+
+* bump imask packages to latest ([247cbe6](https://www.github.com/appfolio/react-gears/commit/247cbe6039d99676ceb10e5e5b71940a72f309ce))
+* move `[@types](https://www.github.com/types)` packages to dev dependencies ([815e780](https://www.github.com/appfolio/react-gears/commit/815e7800213f38d64ff86e69df3033823cd83bb6))
+
 ### [6.9.1](https://www.github.com/appfolio/react-gears/compare/v6.9.0...v6.9.1) (2021-10-26)
 
 
