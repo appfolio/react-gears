@@ -14,7 +14,7 @@ type Props = {
   id?: string;
   includeThousandsSeparator?: boolean;
   inputProps?: InputProps;
-  padZeros?: boolean,
+  padZeros?: boolean;
   size?: string;
   value?: string | number;
 } & InputProps;
@@ -60,8 +60,18 @@ const CurrencyInput: FunctionComponent<Props> = ({
     scale: allowDecimal ? 2 : 0,
     signed: allowNegative,
     thousandsSeparator: includeThousandsSeparator ? ',' : '',
-    value: value?.toString(),
   };
+
+  /**
+   * This allows persisting value between re-renders when using `CurrencyInput`
+   * as uncontrolled component.
+   * `react-imask` detects 'value' key in the props and sets the input value accordingly,
+   * even if it's passed as `undefined`.
+   * https://github.com/uNmAnNeR/imaskjs/blob/master/packages/react-imask/src/mixin.ts#L139-L147
+   */
+  if (value !== undefined) {
+    maskedProps.value = value.toString();
+  }
 
   return (
     <InputGroup size={size} className={className}>

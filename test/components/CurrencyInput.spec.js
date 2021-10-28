@@ -22,6 +22,17 @@ describe('<CurrencyInput />', () => {
     assert.equal(input.getDOMNode().value, '1,234.56');
   });
 
+  it('should not reset uncontrolled input value on re-renders', () => {
+    const wrapper = mount(<CurrencyInput onChange={jest.fn()} />);
+    const inputNode = wrapper.find('input').getDOMNode();
+    inputNode.value = '12123';
+    inputNode.dispatchEvent(new Event('input'));
+
+    // Manually causes a re-render by supplying another onChange prop
+    wrapper.setProps({ onChange: jest.fn() });
+    expect(wrapper.find('input').getDOMNode().value).toEqual('12,123');
+  });
+
   describe('thousands separators', () => {
     it('should default to true', () => {
       const component = mount(<CurrencyInput onChange={callback} value="123,456,789.99999" />);
