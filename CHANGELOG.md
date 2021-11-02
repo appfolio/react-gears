@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.9.3](https://www.github.com/appfolio/react-gears/compare/v6.9.2...v6.9.3) (2021-11-02)
+
+
+### Bug Fixes
+
+* **Combobox:** fix menu closing when vertical scrollbar is clicked ([112c498](https://www.github.com/appfolio/react-gears/commit/112c4981a6a153e30fc6e44e6bef4e2f95db2f47))
+
 ### [6.9.2](https://www.github.com/appfolio/react-gears/compare/v6.9.1...v6.9.2) (2021-10-28)
 
 
