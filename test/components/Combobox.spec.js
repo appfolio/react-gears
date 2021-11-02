@@ -100,6 +100,17 @@ describe('<Combobox />', () => {
     assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
   });
 
+  it('should not close menu when menu container is focused', () => {
+    const combobox = render(<Combobox options={OPTIONS} />);
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+    const dropdown = combobox.getByTestId('combobox-dropdown');
+    const menu = combobox.getByTestId('combobox-menu');
+    fireEvent.blur(dropdown, { relatedTarget: menu });
+
+    expect(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden')).toEqual('false');
+  });
+
   it('should close menu on blur of caret button', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
