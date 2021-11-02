@@ -300,10 +300,16 @@ function Combobox<T>({
         </div>
       }
       <Dropdown
+        data-testid="combobox-dropdown"
         direction={direction}
         isOpen={!disabled && open}
         toggle={() => {}}
-        onBlur={() => { setOpen(false); }}
+        onBlur={({ currentTarget: blurred, relatedTarget: focused }) => {
+          if (focused instanceof Node && blurred.contains(focused)) {
+            return;
+          }
+          setOpen(false);
+        }}
       >
         <DropdownToggle tag="div" disabled={disabled}>
           <InputGroup className={className}>
@@ -367,20 +373,20 @@ function Combobox<T>({
           data-testid="combobox-menu"
           className="p-0 w-100"
           modifiers={{
-          setMaxHeight: {
-            enabled: true,
-            fn: (data) => {
-              return {
-                ...data,
-                styles: {
-                  ...data.styles,
-                  overflowY: 'auto',
-                  maxHeight: menuMaxHeight || '12rem',
-                },
-              };
+            setMaxHeight: {
+              enabled: true,
+              fn: (data) => {
+                return {
+                  ...data,
+                  styles: {
+                    ...data.styles,
+                    overflowY: 'auto',
+                    maxHeight: menuMaxHeight || '12rem',
+                  },
+                };
+              },
             },
-          },
-        }}
+          }}
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"
