@@ -1,5 +1,5 @@
 {
-  "name": "react-gears",
+  "name": "@appfolio/react-gears",
   "version": "5.12.2",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
@@ -18,7 +18,7 @@
   ],
   "types": "lib/index.d.ts",
   "publishConfig": {
-    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "tslint": "tsc --noEmit",
