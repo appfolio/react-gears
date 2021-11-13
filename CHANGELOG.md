@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.9.4](https://www.github.com/appfolio/react-gears/compare/v6.9.3...v6.9.4) (2021-11-13)
+
+
+### Bug Fixes
+
+* sync DateInput types with PropTypes ([0804977](https://www.github.com/appfolio/react-gears/commit/0804977a80b1735c291ee05877adb9c5ad75c052))
+
 ### [6.9.3](https://www.github.com/appfolio/react-gears/compare/v6.9.2...v6.9.3) (2021-11-02)
 
 
