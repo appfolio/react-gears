@@ -28,7 +28,7 @@ class CheckboxBooleanInput extends React.Component {
 
   render() {
     const { checkboxLabel, className, onChange, value, ...inputProps } = this.props;
-    const classNames = classnames('col-form-label d-flex align-items-center h-100', className);
+    const classNames = classnames('pt-2', className);
 
     return (
       <FormGroup check className={classNames}>
@@ -38,10 +38,9 @@ class CheckboxBooleanInput extends React.Component {
           type="checkbox"
           checked={value}
           onChange={e => onChange && onChange(e.target.checked)}
-          className="my-0"
         />
         {checkboxLabel && (
-          <Label check for={this.id} className="my-0">
+          <Label check for={this.id}>
             {checkboxLabel}
           </Label>
         )}
