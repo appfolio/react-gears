@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 type RadioInputProps = {
   type?: any,
   children: any,
-  value: any,
+  value?: any,
   onChange?: (event: any) => void,
 }
 
