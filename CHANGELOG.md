@@ -1,5 +1,17 @@
 # Change Log
 
+## [6.10.0](https://www.github.com/appfolio/react-gears/compare/v6.9.4...v6.10.0) (2021-12-01)
+
+
+### Features
+
+* add generic to FormRow props so that inner component's props are strongly typed ([23ad41d](https://www.github.com/appfolio/react-gears/commit/23ad41db2674ca36ffde9901b88d245184166a5b))
+
+
+### Bug Fixes
+
+* make RadioInput's value prop optional ([be7dab2](https://www.github.com/appfolio/react-gears/commit/be7dab2fccf9868ede99df9ddb50e2c22a6d8301))
+
 ### [6.9.4](https://www.github.com/appfolio/react-gears/compare/v6.9.3...v6.9.4) (2021-11-13)
 
 
