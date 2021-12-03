@@ -13,6 +13,7 @@ type Props = {
   className?: string;
   id?: string;
   includeThousandsSeparator?: boolean;
+  innerRef?: React.Ref<HTMLInputElement>;
   inputProps?: InputProps;
   padZeros?: boolean;
   size?: string;
@@ -33,6 +34,7 @@ const CurrencyInput: FunctionComponent<Props> = ({
   className,
   includeThousandsSeparator = defaultProps.includeThousandsSeparator,
   inputProps,
+  innerRef,
   padZeros = defaultProps.padZeros,
   size,
   value,
@@ -71,6 +73,10 @@ const CurrencyInput: FunctionComponent<Props> = ({
    */
   if (value !== undefined) {
     maskedProps.value = value.toString();
+  }
+
+  if (innerRef) {
+    (maskedProps as any).inputRef = innerRef;
   }
 
   return (
