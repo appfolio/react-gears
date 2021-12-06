@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.11.0](https://www.github.com/appfolio/react-gears/compare/v6.10.0...v6.11.0) (2021-12-03)
+
+
+### Features
+
+* support innerRef for CurrencyInput ([14fd823](https://www.github.com/appfolio/react-gears/commit/14fd8233d6bb8a8ce56185bb4a5f5670a4340fc2))
+
 ## [6.10.0](https://www.github.com/appfolio/react-gears/compare/v6.9.4...v6.10.0) (2021-12-01)
 
 
