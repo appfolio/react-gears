@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import { ListGroupItemProps } from 'reactstrap';
-import { Button, Collapse, Input, Icon, ListGroupItem } from '../../index';
+import { Button, Collapse, Input, Icon, Label, ListGroupItem } from '../../index';
 
 export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   children: (item: T, selected?: boolean) => React.ReactNode,
@@ -50,10 +50,10 @@ function ListItem<T>({
               id={id}
               type={select}
               checked={selected}
-              label={<span className="sr-only">Select {itemId}</span>}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect(item, e.target.checked)}
               disabled={!selectable(item)}
             />
+            <Label for={id} className="sr-only">Select {itemId}</Label>
           </div>
         )}
         <div className="me-auto w-100 px-2">{render(item, selected)}</div>

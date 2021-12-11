@@ -16,16 +16,16 @@ const currency = new Intl.NumberFormat('en-US', {
 
 const ItemRow = React.forwardRef(({ item }, ref) => (
   <div ref={ref} className="d-flex justify-content-between flex-column flex-sm-row">
-    <div className="mr-auto pb-2">
+    <div className="me-auto pb-2">
       <h4 className="m-0">{item.first} {item.last}</h4>
       <p>{item.address}</p>
       <Label className="text-muted">Base late fee for October 2019:</Label> {currency.format(item.fee)}
     </div>
-    <div className="pr-3 pb-2">
+    <div className="pe-3 pb-2">
       {currency.format(item.fee)}
       <Label className="text-muted d-block">Late Fee Amount</Label>
     </div>
-    <div className="pr-3">
+    <div className="pe-3">
       {currency.format(item.fee)}
       <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
     </div>
