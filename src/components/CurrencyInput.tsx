@@ -82,7 +82,7 @@ const CurrencyInput: FunctionComponent<Props> = ({
    * https://github.com/uNmAnNeR/imaskjs/blob/master/packages/react-imask/src/mixin.ts#L139-L147
    */
   if (value !== undefined) {
-    maskedProps.value = value.toString();
+    maskedProps.value = value?.toString();
   }
 
   if (innerRef) {

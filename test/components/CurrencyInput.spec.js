@@ -38,6 +38,11 @@ describe('<CurrencyInput />', () => {
     expect(wrapper.find('input').getDOMNode().value).toEqual('12,123');
   });
 
+  it('should still render if null is provided to value', () => {
+    const component = mount(<CurrencyInput onChange={callback} value={null} />);
+    expect(component.find('input').length).toBeTruthy();
+  });
+
   describe('thousands separators', () => {
     it('should default to true', () => {
       const component = mount(<CurrencyInput onChange={callback} value="123,456,789.99999" />);
