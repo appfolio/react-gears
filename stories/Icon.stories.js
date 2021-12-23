@@ -15,7 +15,7 @@ export default {
 export const LiveExample = () => (
   <Icon
     name={text('name', 'motorcycle')}
-    size={select('size', ['', 'lg', '2x', '3x', '4x', '5x'], '4x')}
+    size={select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x')}
     spin={boolean('spin', false)}
     pulse={boolean('pulse', false)}
     rotate={select('rotate', ['', '90', '180', '270'], '')}
@@ -25,7 +25,7 @@ export const LiveExample = () => (
 );
 
 export const AvailableIcons = () => {
-  const size = select('size', ['', 'lg', '2x', '3x', '4x', '5x'], '4x');
+  const size = select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x');
   return (
     <div>
       <em>Hover over icon to view name:</em><br />
@@ -78,6 +78,8 @@ export const Buttons = () => (
 
 export const Size = () => (
   <div>
+    <Icon name="calendar" size="xs" /> xs<br />
+    <Icon name="calendar" size="sm" /> sm<br />
     <Icon name="calendar" size="lg" /> lg<br />
     <Icon name="calendar" size="2x" /> 2x<br />
     <Icon name="calendar" size="3x" /> 3x<br />
