@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.11.1](https://www.github.com/appfolio/react-gears/compare/v6.11.0...v6.11.1) (2021-12-27)
+
+
+### Bug Fixes
+
+* add allowed sze types for font awesome icons ([eb0b502](https://www.github.com/appfolio/react-gears/commit/eb0b5025092474c223b95fd5754e0342ee8a0d26))
+
 ## [6.11.0](https://www.github.com/appfolio/react-gears/compare/v6.10.0...v6.11.0) (2021-12-03)
 
 
