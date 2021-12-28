@@ -5,6 +5,7 @@ import {
   ComponentProps,
   ReactElement,
 } from 'react';
+import { InputType } from 'reactstrap/lib/Input';
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
 import Input from './Input';
@@ -19,12 +20,14 @@ type StringToComponentMap = {
   input: typeof Input;
 };
 
-type NestedComponent = ComponentType | keyof StringToComponentMap;
+type NestedComponent = ComponentType | keyof StringToComponentMap | InputType;
 
 type Lookup<
   TComponent extends NestedComponent
 > = TComponent extends keyof StringToComponentMap
   ? StringToComponentMap[TComponent]
+  : TComponent extends InputType
+  ? StringToComponentMap['input']
   : TComponent;
 
 type BaseFormRowProps<TComponent extends NestedComponent> = {
