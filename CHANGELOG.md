@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.11.2](https://www.github.com/appfolio/react-gears/compare/v6.11.1...v6.11.2) (2021-12-28)
+
+
+### Bug Fixes
+
+* **FormRow:** add typing support for all Input component's type ([ab13a34](https://www.github.com/appfolio/react-gears/commit/ab13a34de2309cd2802de312fd42a53230bdfa33))
+
 ### [6.11.1](https://www.github.com/appfolio/react-gears/compare/v6.11.0...v6.11.1) (2021-12-27)
 
 
