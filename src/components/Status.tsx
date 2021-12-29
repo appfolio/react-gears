@@ -30,7 +30,9 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
       name = 'circle';
       break;
     default:
-      throw new Error(`Unsupported value for 'type' prop passed to Status component: "${type}"`);
+      throw new Error(
+        `Unsupported value for 'type' prop passed to Status component: "${type}"`
+      );
   }
   return (
     <Icon {...props} name={name} fixedWidth className={classnames(`text-${type === 'none' ? 'muted' : type}`, className)} />
