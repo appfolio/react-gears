@@ -1,9 +1,8 @@
 import React from 'react';
-import assert from 'assert';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { assertAccessible } from '../a11yHelpers';
 
-import { Icon, Status } from '../../src';
+import { Status } from '../../src';
 
 describe('<Status />', () => {
   it('should be accessible', async () => {
@@ -11,30 +10,56 @@ describe('<Status />', () => {
   });
 
   it('should take a type option', () => {
-    const icon = shallow(<Status type="info" />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'info-circle');
-    assert.strictEqual(icon.prop('className'), 'text-info');
+    const icon = render(<Status type="info" />).getByTestId('status-icon');
+    expect(icon).toHaveClass('text-info', 'fa-info-circle');
   });
 
   it('should accept none as an option', () => {
-    const icon = shallow(<Status type="none" />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'circle');
-    assert.strictEqual(icon.prop('className'), 'text-muted');
+    const icon = render(<Status type="none" />).getByTestId('status-icon');
+    expect(icon).toHaveClass('text-muted', 'fa-circle');
   });
 
   it('should default to the "none" type', () => {
-    const icon = shallow(<Status />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'circle');
-    assert.strictEqual(icon.prop('className'), 'text-muted');
+    const icon = render(<Status />).getByTestId('status-icon');
+    expect(icon).toHaveClass('text-muted', 'fa-circle');
   });
 
   it('should take a type option and classnames', () => {
-    const icon = shallow(<Status type="muted" className="mx-5" />).find(Icon);
-    assert.strictEqual(icon.prop('className'), 'text-muted mx-5');
+    const icon = render(<Status type="muted" className="mx-5" />).getByTestId(
+      'status-icon'
+    );
+    expect(icon).toHaveClass('text-muted', 'mx-5');
   });
 
   it('should take custom icon props', () => {
-    const icon = shallow(<Status type="success" size="lg" />).find(Icon);
-    assert.strictEqual(icon.prop('size'), 'lg');
+    const icon = render(<Status type="success" size="lg" />).getByTestId(
+      'status-icon'
+    );
+    expect(icon).toHaveClass('fa-lg');
+  });
+
+  describe('semantic text', () => {
+    it('should have semantic text by default', () => {
+      render(<Status type="success" />);
+
+      expect(screen.queryByTitle('Completed')).toBeInTheDocument();
+      expect(screen.queryByText(/Completed/)).toBeInTheDocument();
+    });
+
+    it('should accept text as an argument', () => {
+      render(<Status type="success" text="Great success" />);
+
+      expect(screen.queryByTitle('Great success')).toBeInTheDocument();
+      expect(screen.queryByText(/Great success/)).toBeInTheDocument();
+    });
+
+    it('should accept mapTypeToText as an argument', () => {
+      render(
+        <Status type="success" mapTypeToText={{ success: 'Great success' }} />
+      );
+
+      expect(screen.queryByTitle('Great success')).toBeInTheDocument();
+      expect(screen.queryByText(/Great success/)).toBeInTheDocument();
+    });
   });
 });
