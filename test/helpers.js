@@ -1,6 +1,7 @@
 import 'regenerator-runtime';
 import Adapter from 'enzyme-adapter-react-16/build/index';
 import { configure } from 'enzyme';
+import '@testing-library/jest-dom';
 
 configure({ adapter: new Adapter() });
 
