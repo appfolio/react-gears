@@ -10,9 +10,13 @@ interface StepProps {
   step?: number;
   steps?: string[];
   vertical?: boolean;
+  percentComplete?: number;
 }
 
-const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], vertical = false }: StepProps) => {
+const getPercentageClass = (percentCompleted: number) =>
+  `p-${percentCompleted == null ? 'null' : Math.floor(percentCompleted / 50)}`;
+
+const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], vertical = false, percentComplete }: StepProps) => {
   const className = classNames({
     complete,
     'rg-steps': true,
@@ -40,7 +44,8 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             active: stepActive,
             'text-success': complete,
             'text-primary': !complete && (stepComplete || stepActive),
-            'text-muted': !(stepComplete || stepActive || complete)
+            'text-muted': !(stepComplete || stepActive || complete),
+            [getPercentageClass(percentComplete)]: true
           });
 
           const bubbleClasses = classNames({
@@ -95,7 +100,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           );
 
           return (
-            <li key={index} className={liClasses}>
+            <li key={name} className={liClasses}>
               {wrappedStepContent}
             </li>
           );
@@ -106,7 +111,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           <span className="mb-2 js-step-label">{activeStep}</span>
         </div> : null}
       <style jsx>
-        {`
+      {`
           .rg-steps:not(.vertical) {
             align-items: flex-start;
             counter-reset: step;
@@ -115,8 +120,8 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             padding: 0;
           }
           .rg-steps:not(.vertical) .step {
-            background-image: linear-gradient(to right, #818a91, #818a91);
-            background-size: 100% 1px;
+            background-image: linear-gradient(to right, #CDD5DB, #CDD5DB);
+            background-size: 100% 7px;
             background-position: center 1.26rem;
             background-repeat: repeat-x;
             align-items: center;
@@ -127,16 +132,17 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             padding: 0.1rem;
             text-align: center;
           }
-          .rg-steps:not(.vertical) .step:first-child {
-            background-image: linear-gradient(to right, transparent 50%, #818a91 50%, #818a91 100%);
-          }
-          .rg-steps:not(.vertical) .step:first-child.active {
-            background-image: linear-gradient(to right, transparent 50%, #818a91 50%, #818a91 100%);
+          .rg-steps:not(.vertical) .step.p-null {
+            background-size: 100% 1px;
+            background-image: linear-gradient(to right, currentColor, currentColor);
           }
           .rg-steps:not(.vertical) .step:first-child.complete {
             background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 100%);
           }
           .rg-steps:not(.vertical) .step:last-child {
+            background-image: linear-gradient(to right, #CDD5DB 50%, transparent 50%, transparent 100%);
+          }
+          .rg-steps:not(.vertical) .step.p-null:last-child {
             background-image: linear-gradient(to right, #818a91 50%, transparent 50%, transparent 100%);
           }
           .rg-steps:not(.vertical) .step:last-child.active {
@@ -160,6 +166,21 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           .rg-steps:not(.vertical) .step.active {
             background-image: linear-gradient(to right, currentColor 50%, #818a91 50%, #818a91 100%);
           }
+          .rg-steps:not(.vertical) .step.p-0.active {
+            background-image: linear-gradient(to right, #006EB7 0% 50%, #CDD5DB 50% 100%);
+          }
+          .rg-steps:not(.vertical) .step.p-null.active:first-child {
+            background-image: linear-gradient(to right, transparent 0% 50%, #818a91 50% 100%);
+          }
+          .rg-steps:not(.vertical) .step.p-0.active:first-child {
+            background-image: linear-gradient(to right, transparent 0% 50%, #CDD5DB 50% 100%);
+          }
+          .rg-steps:not(.vertical) .step.p-1.active:first-child {
+            background-image: linear-gradient(to right, transparent 0% 50%, #006EB7 50% 100%);
+          }
+          .rg-steps:not(.vertical) .step.p-1.active {
+            background-image: linear-gradient(to right, transparent 0% , #006EB7 0% 100%);
+          }
           .rg-steps:not(.vertical) .step.active .bubble {
             border: 1px solid currentColor;
           }
@@ -181,7 +202,6 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           .rg-steps:not(.vertical).complete .step:last-child {
             background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
           }
-
           .rg-steps.vertical {
             counter-reset: step;
           }
