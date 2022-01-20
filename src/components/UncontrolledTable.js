@@ -20,7 +20,8 @@ export default class UncontrolledTable extends React.Component {
       ascending: PropTypes.bool
     }),
     onSelect: PropTypes.func,
-    onSort: PropTypes.func
+    onSort: PropTypes.func,
+    onVisibleRowsChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -35,7 +36,8 @@ export default class UncontrolledTable extends React.Component {
       ascending: true
     },
     onSelect: () => {},
-    onSort: () => {}
+    onSort: () => {},
+    onVisibleRowsChange: () => {}
   };
 
   state = {
@@ -129,6 +131,34 @@ export default class UncontrolledTable extends React.Component {
     return isEqual(keys, newKeys);
   }
 
+  getVisibleRows = () => {
+    const { page } = this.state;
+    const { ascending, column } = this.state.sort;
+    const { paginated, pageSize, rows } = this.props;
+
+    const start = page * pageSize;
+    const end = start + pageSize;
+    const sortedRows = this.sortedData(rows, column, ascending);
+    return paginated ? sortedRows.slice(start, end) : sortedRows;
+  }
+
+  visibleRowsChanged(prevProps, prevState) {
+    const { page } = this.state;
+    const { ascending, column } = this.state.sort;
+    const { paginated, pageSize, rows } = this.props;
+
+    const { page: prevPage } = prevState;
+    const { ascending: prevAscending, column: prevColumn } = prevState.sort;
+    const { paginated: prevPaginated, pageSize: prevPageSize, rows: prevRows } = prevProps;
+
+    return page !== prevPage ||
+      ascending !== prevAscending ||
+      column !== prevColumn ||
+      paginated !== prevPaginated ||
+      pageSize !== prevPageSize ||
+      !this.isEqualUsingKeys(rows, prevRows);
+  }
+
   //eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     const selectableChanged = nextProps.selectable !== this.props.selectable;
@@ -160,10 +190,16 @@ export default class UncontrolledTable extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.visibleRowsChanged(prevProps, prevState)) {
+      this.props.onVisibleRowsChange(this.getVisibleRows());
+    }
+  }
+
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
-    const { columns, expandable, pageSize, paginated, rowExpanded, rows, selectable, sort, onSelect, onExpand, onSort, onPageChange, ...props } = this.props;
+    const { columns, expandable, pageSize, paginated, rowExpanded, rows, selectable, sort, onSelect, onExpand, onSort, onPageChange, onVisibleRowsChange, ...props } = this.props;
     const cols = columns
       .filter(col => !col.hidden)
       .map(col => (col.sortable !== false) ?
@@ -187,10 +223,7 @@ export default class UncontrolledTable extends React.Component {
       onExpand: row => this.toggleExpanded(row)
     } : undefined;
 
-    const start = page * pageSize;
-    const end = start + pageSize;
-    const sortedRows = this.sortedData(rows, column, ascending);
-    const visibleRows = paginated ? sortedRows.slice(start, end) : sortedRows;
+    const visibleRows = this.getVisibleRows();
 
     return (
       <div>
