@@ -156,6 +156,7 @@ export const UncontrolledTableExample = () => (
       onSelect={action('onSelect')}
       onSort={action('onSort')}
       onPageChange={action('onPageChange')}
+      onVisibleRowsChange={action('onVisibleRowsChange')}
     />
   </div>
 );

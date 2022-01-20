@@ -554,6 +554,60 @@ describe('<UncontrolledTable />', () => {
     assert(instance.expanded({ name: 'Alpha' }) === true);
   });
 
+  describe('onVisibleRowsChange', () => {
+    it('calls onVisibleRowsChange when the page changes', () => {
+      const columns = [{ header: 'Name', cell: row => row }];
+      const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+      const onVisibleRowsChange = sinon.stub();
+      const wrapper = mount(
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          paginated
+          pageSize={4}
+          onVisibleRowsChange={onVisibleRowsChange}
+        />
+      );
+
+      wrapper.find('.page-link').last().simulate('click');
+      sinon.assert.calledWith(onVisibleRowsChange, ['Echo', 'Foxtrot', 'Golf', 'Hotel']);
+    });
+
+    it('calls onVisibleRowsChange when pagination is enabled', () => {
+      const columns = [{ header: 'Name', cell: row => row }];
+      const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+      const onVisibleRowsChange = sinon.stub();
+      const wrapper = mount(
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          pageSize={4}
+          onVisibleRowsChange={onVisibleRowsChange}
+        />
+      );
+
+      sinon.assert.notCalled(onVisibleRowsChange);
+
+      wrapper.setProps({ paginated: true });
+      sinon.assert.calledWith(onVisibleRowsChange, ['Alpha', 'Bravo', 'Charlie', 'Delta']);
+    });
+
+    it('does not call onVisibleRowsChange when a row is expanded', () => {
+      const columns = [{ header: 'Name', cell: row => row.name }];
+      const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
+      const onVisibleRowsChange = sinon.stub();
+
+      const wrapper = mount(
+        <UncontrolledTable columns={columns} rows={rows} onVisibleRowsChange={onVisibleRowsChange} />
+      );
+      const instance = wrapper.instance();
+      instance.toggleExpanded({ name: 'Alpha' });
+      assert(instance.expanded({ name: 'Alpha' }) === true);
+
+      sinon.assert.notCalled(onVisibleRowsChange);
+    });
+  });
+
   describe('isEqualUsingKeys()', () => {
     let wrapper;
 
