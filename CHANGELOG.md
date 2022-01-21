@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.12.0](https://www.github.com/appfolio/react-gears/compare/v6.11.2...v6.12.0) (2022-01-20)
+
+
+### Features
+
+* add visible rows notification to UncontrolledTable ([9371a66](https://www.github.com/appfolio/react-gears/commit/9371a66d9a853ed4f17117ad83dd84f5d2bd48d3))
+
 ### [6.11.2](https://www.github.com/appfolio/react-gears/compare/v6.11.1...v6.11.2) (2021-12-28)
 
 
