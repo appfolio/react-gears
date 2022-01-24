@@ -586,7 +586,7 @@ describe('<UncontrolledTable />', () => {
         />
       );
 
-      sinon.assert.notCalled(onVisibleRowsChange);
+      sinon.assert.calledOnce(onVisibleRowsChange);
 
       wrapper.setProps({ paginated: true });
       sinon.assert.calledWith(onVisibleRowsChange, ['Alpha', 'Bravo', 'Charlie', 'Delta']);
@@ -604,7 +604,7 @@ describe('<UncontrolledTable />', () => {
       instance.toggleExpanded({ name: 'Alpha' });
       assert(instance.expanded({ name: 'Alpha' }) === true);
 
-      sinon.assert.notCalled(onVisibleRowsChange);
+      sinon.assert.calledOnce(onVisibleRowsChange);
     });
   });
 

@@ -196,6 +196,10 @@ export default class UncontrolledTable extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.onVisibleRowsChange(this.getVisibleRows());
+  }
+
   render() {
     const { page } = this.state;
     const { ascending, column } = this.state.sort;
