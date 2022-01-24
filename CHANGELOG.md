@@ -1,5 +1,19 @@
 # Change Log
 
+### [6.12.1](https://www.github.com/appfolio/react-gears/compare/v6.12.0...v6.12.1) (2022-01-24)
+
+
+### Bug Fixes
+
+* **CurrencyInput:** set latest value attr on the input html element ([34a5fb1](https://www.github.com/appfolio/react-gears/commit/34a5fb189d1f0e4c1816b59a448d943416f2c8ca))
+* report visible rows on initial render ([02a8a1f](https://www.github.com/appfolio/react-gears/commit/02a8a1febede7099ae17149b212466598ee11096))
+
+
+### Miscellaneous
+
+* **CurrencyInput:** covert test to pure jest ([7db5a5b](https://www.github.com/appfolio/react-gears/commit/7db5a5bf1fb326195a78433cbc020753897235fd))
+* **CurrencyInput:** run code formatter ([e57fafc](https://www.github.com/appfolio/react-gears/commit/e57fafcf2a835171d84ec8a5a8b2430fbbf43581))
+
 ## [6.12.0](https://www.github.com/appfolio/react-gears/compare/v6.11.2...v6.12.0) (2022-01-20)
 
 
