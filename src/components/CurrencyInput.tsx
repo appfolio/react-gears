@@ -52,13 +52,12 @@ const CurrencyInput: FunctionComponent<Props> = ({
     val: string,
     mask: IMask.InputMask<IMask.MaskedNumberOptions>
   ) => {
+    const input = (mask.el as IMask.HTMLMaskElement).input;
+    input.setAttribute('value', val);
     if (onChange) {
-      const ev = (new Event(
-        'change'
-      ) as unknown) as React.ChangeEvent<HTMLInputElement>;
-      // @ts-ignore
-      mask.el.input.dispatchEvent(ev);
-      onChange(ev);
+      const ev = new Event('change');
+      input.dispatchEvent(ev);
+      onChange((ev as unknown) as React.ChangeEvent<HTMLInputElement>);
     }
   };
 

@@ -20,6 +20,13 @@ describe('<CurrencyInput />', () => {
     expect(input.getDOMNode().value).toBe('1,234.56');
   });
 
+  it('should add html attribute to native input element', () => {
+    const component = mount(<CurrencyInput onChange={callback} value={1234.56} />);
+    const input = component.find('input');
+
+    expect(input.getDOMNode().getAttribute('value')).toBe('1,234.56');
+  });
+
   it('should not reset uncontrolled input value on re-renders', () => {
     const wrapper = mount(<CurrencyInput onChange={jest.fn()} />);
     const inputNode = wrapper.find('input').getDOMNode();
