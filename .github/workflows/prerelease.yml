@@ -1,0 +1,11 @@
+on:
+  pull_request:
+    branches: [ master ]
+name: prerelease
+jobs:
+  prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appfolio/npm-release-action/action.yml@main
+        with:
+          milliseconds: 1000
