@@ -36,7 +36,7 @@ class CheckboxListInput extends React.Component {
 
     return (
       <div className={className}>
-        {React.Children.map(children, choice => React.cloneElement(choice, {
+        {React.Children.map(children, choice => React.isValidElement(choice) && React.cloneElement(choice, {
           type: 'checkbox',
           selected: value,
           onChange: this.onChange,
