@@ -1,5 +1,14 @@
 # Change Log
 
+### [6.12.2](https://www.github.com/appfolio/react-gears/compare/v6.12.1...v6.12.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* allow conditional rendering of child elements ([64c199f](https://www.github.com/appfolio/react-gears/commit/64c199f6fbb4839703671b680d2050c256e2a27a))
+* currencyinput should only toString if it exists ([d5e7ff1](https://www.github.com/appfolio/react-gears/commit/d5e7ff1ae357e8a006160dab0010b1dee79d0afc))
+* listitem make selectable and onSelect optional ([9479a42](https://www.github.com/appfolio/react-gears/commit/9479a42c90ae0bb91d0eaea7896fafd5d7305295))
+
 ### [6.12.1](https://www.github.com/appfolio/react-gears/compare/v6.12.0...v6.12.1) (2022-01-24)
 
 
