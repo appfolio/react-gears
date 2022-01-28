@@ -12,10 +12,10 @@ export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   expanded?: boolean,
   item: T,
   onExpand?: (item: T) => React.ReactNode | undefined,
-  onSelect: (item: T, checked?: boolean) => void
+  onSelect?: (item: T, checked?: boolean) => void
   select?: 'checkbox' | 'radio' | 'switch' | '',
   selected?: boolean,
-  selectable: (item: T) => boolean
+  selectable?: (item: T) => boolean
 }
 
 function ListItem<T>({
@@ -51,8 +51,8 @@ function ListItem<T>({
               type={select}
               checked={selected}
               label={<span className="sr-only">Select {itemId}</span>}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect(item, e.target.checked)}
-              disabled={!selectable(item)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect && onSelect(item, e.target.checked)}
+              disabled={selectable ? !selectable(item) : false}
             />
           </div>
         )}
