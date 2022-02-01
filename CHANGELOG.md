@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.12.3](https://www.github.com/appfolio/react-gears/compare/v6.12.2...v6.12.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* allow containerClassName prop ([1aa2064](https://www.github.com/appfolio/react-gears/commit/1aa206411afff2aec87b535ce99c07067dd9a4f6))
+
 ### [6.12.2](https://www.github.com/appfolio/react-gears/compare/v6.12.1...v6.12.2) (2022-01-28)
 
 
