@@ -1,0 +1,11 @@
+on:
+  pull_request:
+    branches: [ master ]
+name: prerelease
+jobs:
+  prerelease:
+    uses: appfolio/npm-release-action/.github/workflows/prerelease.yml@main
+    with:
+      node-version: 14
+    secrets:
+      token: ${{ secrets.APPFOLIO_GITHUB_NPM_TOKEN }}
