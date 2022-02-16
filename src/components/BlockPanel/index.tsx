@@ -90,10 +90,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
     'flex-wrap',
     'align-items-center',
     'justify-content-between',
-    'py-2',
-    'pr-2',
     {
-      'pl-2': expandable,
       [`bg-${color}`]: color,
       'text-white': color === 'primary' || color === 'dark'
     },
