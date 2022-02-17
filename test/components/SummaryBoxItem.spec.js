@@ -9,14 +9,14 @@ describe('<SummaryBoxItem />', () => {
     const component = mount(<SummaryBoxItem label="Hello" value="World" />);
     assert(component);
     assert(component.find('.h3').text(), 'Hello');
-    assert(component.find('small').text(), 'World');
+    assert(component.find('span').text(), 'World');
   });
 
   it('should show the default label and value if none specified', () => {
     const component = mount(<SummaryBoxItem />);
     assert(component);
     assert(component.find('.h3').text(), '--');
-    assert(component.find('small').text(), '--');
+    assert(component.find('span').text(), '--');
   });
 
   it('should reverse when specified', () => {

@@ -40,7 +40,7 @@ const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
       {...props}
     >
       <CardBody className={bodyClassNames}>
-        <small className="text-muted text-uppercase">{label}</small>
+        <span className="text-muted">{label}</span>
         <div className={valueClassNames}>{value}</div>
       </CardBody>
     </Card>
