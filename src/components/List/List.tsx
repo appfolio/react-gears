@@ -204,6 +204,7 @@ function List<T extends Item>({
               id={item.key}
               className={itemClassName}
               expanded={item.expanded || false}
+              expandedColor={item.expandedColor}
               item={item}
               key={item.key || i}
               select={select}

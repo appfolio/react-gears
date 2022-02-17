@@ -7,6 +7,7 @@ export default [
     fee: 111,
     key: 'minea.wuori@example.com',
     expanded: false,
+    expandedColor: 'primary',
     dob: '1966-06-26T07:00:00.000Z',
     email: 'minea.wuori@example.com',
     nat: 'FI'
@@ -19,6 +20,7 @@ export default [
     fee: 13,
     key: 'antoine.brown@example.com',
     expanded: false,
+    expandedColor: 'secondary',
     dob: '1988-02-22T08:00:00.000Z',
     email: 'antoine.brown@example.com',
     nat: 'CA'
@@ -31,6 +33,7 @@ export default [
     fee: 138,
     key: 'abigail.thompson@example.com',
     expanded: false,
+    expandedColor: 'success',
     dob: '1996-03-02T08:00:00.000Z',
     email: 'abigail.thompson@example.com',
     nat: 'US'
@@ -43,6 +46,7 @@ export default [
     fee: 96,
     key: 'naomi.ortiz@example.com',
     expanded: false,
+    expandedColor: 'info',
     dob: '1988-04-22T07:00:00.000Z',
     email: 'naomi.ortiz@example.com',
     nat: 'AU'
@@ -55,6 +59,7 @@ export default [
     fee: 35,
     key: 'freja.christiansen@example.com',
     expanded: false,
+    expandedColor: 'warning',
     dob: '1944-09-21T07:00:00.000Z',
     email: 'freja.christiansen@example.com',
     nat: 'DK'
@@ -67,6 +72,7 @@ export default [
     fee: 130,
     key: 'jeremy.morrison@example.com',
     expanded: false,
+    expandedColor: 'danger',
     dob: '1954-03-01T08:00:00.000Z',
     email: 'jeremy.morrison@example.com',
     nat: 'IE'
