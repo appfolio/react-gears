@@ -1,5 +1,13 @@
 # Change Log
 
+### [6.12.4](https://www.github.com/appfolio/react-gears/compare/v6.12.3...v6.12.4) (2022-02-17)
+
+
+### Bug Fixes
+
+* let BlockPanel card-header class handle padding ([55d3598](https://www.github.com/appfolio/react-gears/commit/55d359848e02ce11a4c9277d75846a34eabb4115))
+* remove small uppercase style from SummaryBox ([3a07287](https://www.github.com/appfolio/react-gears/commit/3a07287491152e0e1868052ab4e82edc9a703ea0))
+
 ### [6.12.3](https://www.github.com/appfolio/react-gears/compare/v6.12.2...v6.12.3) (2022-02-01)
 
 
