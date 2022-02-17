@@ -10,6 +10,7 @@ export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   className?: string,
   color?: string,
   expanded?: boolean,
+  expandedColor?: string,
   item: T,
   onExpand?: (item: T) => React.ReactNode | undefined,
   onSelect?: (item: T, checked?: boolean) => void
@@ -24,6 +25,7 @@ function ListItem<T>({
   className,
   color,
   expanded: defaultExpanded = false,
+  expandedColor,
   item,
   onExpand,
   onSelect,
@@ -37,9 +39,11 @@ function ListItem<T>({
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [id] = useState(() => uniqueId('listitem-'));
 
+  const unselectedColor = (expanded && expandedColor) || color;
+
   return (
     <ListGroupItem
-      color={selected ? 'primary' : color}
+      color={selected ? 'primary' : unselectedColor}
       className={classnames('rounded-0', className)}
       {...props}
     >
