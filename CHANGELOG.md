@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.14.0](https://www.github.com/appfolio/react-gears/compare/v6.13.0...v6.14.0) (2022-02-18)
+
+
+### Features
+
+* add component for truncating text ([b70d9ef](https://www.github.com/appfolio/react-gears/commit/b70d9ef7a7895a4b9f45d271b6b3062defe382d5))
+
 ## [6.13.0](https://www.github.com/appfolio/react-gears/compare/v6.12.3...v6.13.0) (2022-02-17)
 
 
