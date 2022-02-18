@@ -166,6 +166,7 @@ import Tooltip from './components/Tooltip';
 import UncontrolledTable from './components/UncontrolledTable';
 import Waiting from './components/Waiting';
 import TooltipButton from './components/TooltipButton';
+import TruncatedText from './components/TruncatedText';
 
 export {
   // reactstrap
@@ -331,4 +332,5 @@ export {
   UncontrolledTable,
   Waiting,
   TooltipButton,
+  TruncatedText
 };
