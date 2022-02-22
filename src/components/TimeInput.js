@@ -50,7 +50,7 @@ function onInterval(time, interval) {
  * @param isTwoDigit whether the time to parse is a two digit (eg. 10:00) or
  * one digit (eg. 1:00) hour
  * @returns regex used to parse a string
-*/
+ */
 function buildhmmARegex(isTwoDigit) {
   const oneDigitHourAndColon = '\\d:?';
   const twoDigitHourAndColon = '\\d\\d:?';
@@ -63,7 +63,7 @@ function buildhmmARegex(isTwoDigit) {
 
 /** Helper for userInputProgress(). Returns whether a time is two digits in h:mm
  * format, ie. if a time is one of 12am, 10am, 11am, 12am, 10pm, 11pm
-*/
+ */
 function isTwoDigitHour(time) {
   return [0, 10, 11, 12, 22, 23].includes(getHours(time));
 }
@@ -78,6 +78,8 @@ function userInputProgress(input, time) {
   const [, hasTypedTens, hasTypedMin] = re.exec(input);
   return [!!hasTypedTens, !!hasTypedMin];
 }
+
+const ArrowRendererIcon = () => <Icon name="clock-o" />;
 
 export default class TimeInput extends React.Component {
   static propTypes = {
@@ -94,8 +96,8 @@ export default class TimeInput extends React.Component {
     noResultsText: PropTypes.string,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
-    value: PropTypes.string
-  }
+    value: PropTypes.string,
+  };
 
   static defaultProps = {
     allowOtherTimes: false,
@@ -103,14 +105,14 @@ export default class TimeInput extends React.Component {
     step: 30,
     placeholder: 'Enter a time',
     timeFormat: 'h:mm A',
-    noResultsText: 'Must be in the format HH:MM AM/PM'
-  }
+    noResultsText: 'Must be in the format HH:MM AM/PM',
+  };
 
   constructor(props) {
     super(props);
     const { defaultValue } = this.props;
     this.state = {
-      selectedOption: defaultValue && this.valueStrToOption(defaultValue)
+      selectedOption: defaultValue && this.valueStrToOption(defaultValue),
     };
   }
 
@@ -120,6 +122,7 @@ export default class TimeInput extends React.Component {
     return this.times().find(({ value }) => value === valueStr);
   }
 
+  /* eslint-disable-next-line react/no-unused-class-component-methods -- Fix this when we convert to functional component */
   focus() {
     // TODO JavaScript does not allow opening selects programmatically.
     this.inputEl.focus();
@@ -150,7 +153,7 @@ export default class TimeInput extends React.Component {
       times.push({
         label: format(time, timeFormat),
         value: format(time, this.valueFormat),
-        time
+        time,
       });
       time = addMinutes(time, step);
     } while (isBefore(time, max));
@@ -167,7 +170,7 @@ export default class TimeInput extends React.Component {
     } else {
       this.props.onChange('', INVALID_DATE);
     }
-  }
+  };
 
   /** Determines whether to display the current option given a particular user
    * input.
@@ -176,12 +179,12 @@ export default class TimeInput extends React.Component {
    * - leading zeroes "09:30 AM"
    * - missing whitespace "9:30AM"
    * - typing am/pm upper or lower case "9:30 am"
-  */
+   */
   filterOption = ({ label, time }, input) => {
     const { step } = this.props;
 
-    const removeWhitespace = str => str.replace(/\s/gi, '');
-    const removeLeadingZeros = str => str.replace(/^0*/, '');
+    const removeWhitespace = (str) => str.replace(/\s/gi, '');
+    const removeLeadingZeros = (str) => str.replace(/^0*/, '');
 
     const inputCandidate = flow(removeWhitespace, removeLeadingZeros, toLower)(input);
 
@@ -195,7 +198,7 @@ export default class TimeInput extends React.Component {
 
     const labelCandidate = flow(
       // Remove colon from option if input doesnt have one
-      str => inputCandidate.includes(':') ? str : str.replace(/:/gi, ''),
+      (str) => (inputCandidate.includes(':') ? str : str.replace(/:/gi, '')),
       removeWhitespace,
       removeLeadingZeros,
       toLower
@@ -205,9 +208,7 @@ export default class TimeInput extends React.Component {
   };
 
   selectedOption() {
-    return this.props.value ?
-      this.valueStrToOption(this.props.value) :
-      this.state.selectedOption;
+    return this.props.value ? this.valueStrToOption(this.props.value) : this.state.selectedOption;
   }
 
   render() {
@@ -228,7 +229,7 @@ export default class TimeInput extends React.Component {
     return (
       <Select
         {...props}
-        arrowRenderer={() => <Icon name="clock-o" />}
+        arrowRenderer={ArrowRendererIcon}
         disabled={disabled}
         filterOption={this.filterOption}
         noResultsText={this.props.noResultsText}

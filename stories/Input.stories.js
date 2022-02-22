@@ -9,11 +9,13 @@ export default {
 export const CustomInputExample = () => (
   <div>
     <p>
-      For more customization and cross browser consistency, Bootstrap has custom form elements
-      to replace the browser defaults. They’re built on top of semantic and accessible markup,
-      so they’re safe replacements for default form controls.
+      For more customization and cross browser consistency, Bootstrap has custom form elements to
+      replace the browser defaults. They’re built on top of semantic and accessible markup, so
+      they’re safe replacements for default form controls.
     </p>
-    <Alert color="warning" icon>Note: Custom checkbox and switches must have a unique <code>id</code> to function!</Alert>
+    <Alert color="warning" icon>
+      Note: Custom checkbox and switches must have a unique <code>id</code> to function!
+    </Alert>
 
     <div className="mb-4">
       <h3>Checkbox</h3>
@@ -23,11 +25,7 @@ export const CustomInputExample = () => (
           id="exampleCustomCheckbox"
           label="Check this custom checkbox"
         />
-        <CustomInput
-          type="checkbox"
-          id="exampleCustomCheckbox2"
-          label="Or this one"
-        />
+        <CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />
         <CustomInput
           type="checkbox"
           id="exampleCustomCheckbox3"
@@ -45,12 +43,7 @@ export const CustomInputExample = () => (
           name="customRadio"
           label="Select this custom radio"
         />
-        <CustomInput
-          type="radio"
-          id="exampleCustomRadio2"
-          name="customRadio"
-          label="Or this one"
-        />
+        <CustomInput type="radio" id="exampleCustomRadio2" name="customRadio" label="Or this one" />
         <CustomInput
           type="radio"
           id="exampleCustomRadio3"
@@ -91,12 +84,7 @@ export const CustomInputExample = () => (
           label="An inline custom input"
           inline
         />
-        <CustomInput
-          type="checkbox"
-          id="exampleCustomInline2"
-          label="and another one"
-          inline
-        />
+        <CustomInput type="checkbox" id="exampleCustomInline2" label="and another one" inline />
       </div>
     </div>
     <div className="mb-4">

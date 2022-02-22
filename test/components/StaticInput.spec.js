@@ -18,7 +18,7 @@ describe('<StaticInput />', () => {
   it('should not render children', () => {
     const componentWithChildren = shallow(
       <StaticInput value="foobar" invalid>
-        <div className='foo' />
+        <div className="foo" />
       </StaticInput>
     );
     const foo = componentWithChildren.find('.foo');

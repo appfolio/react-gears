@@ -62,10 +62,7 @@ export default class DateInput extends React.Component {
     dateEnabled: PropTypes.func,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     direction: PropTypes.string,
     disabled: PropTypes.bool,
     footer: deprecated(PropTypes.node, 'Use renderFooter instead.'),
@@ -82,11 +79,8 @@ export default class DateInput extends React.Component {
     positionFixed: PropTypes.bool,
     showOnFocus: PropTypes.bool,
     state: PropTypes.any,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ])
-  }
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  };
 
   static defaultProps = {
     className: '',
@@ -101,8 +95,8 @@ export default class DateInput extends React.Component {
     parse: (value, dateFormat) => parse(value, dateFormat),
     renderHeader: () => {},
     renderFooter: () => {},
-    showOnFocus: true
-  }
+    showOnFocus: true,
+  };
 
   constructor(props) {
     super(props);
@@ -114,24 +108,25 @@ export default class DateInput extends React.Component {
 
     this.state = {
       open: false,
-      value
+      value,
     };
   }
 
   onChange = (value) => {
     this.setState({
-      value
+      value,
     });
     this.parseInput(value);
-  }
+  };
 
-  onSelect = newDate => this.setDate(newDate, true);
+  onSelect = (newDate) => this.setDate(newDate, true);
 
   onKeyDown = (event) => {
     // Ignore arrows if closed, disabled, or modifiers are down:
-    const allowArrows = this.state.open &&
-                        this.props.keyboard &&
-                        !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
+    const allowArrows =
+      this.state.open &&
+      this.props.keyboard &&
+      !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
 
     switch (event.keyCode) {
       case 9: // TAB
@@ -170,12 +165,18 @@ export default class DateInput extends React.Component {
   };
 
   setDate = (date, close = false) => {
-    const newState = close ? {
-      value: format(date, this.props.dateFormat, { locale: this.props.locale }),
-      open: false
-    } : {
-      value: format(date, this.props.dateFormat, { locale: this.props.locale })
-    };
+    const newState = close
+      ? {
+          value: format(date, this.props.dateFormat, {
+            locale: this.props.locale,
+          }),
+          open: false,
+        }
+      : {
+          value: format(date, this.props.dateFormat, {
+            locale: this.props.locale,
+          }),
+        };
     this.setState(newState, () => {
       this.inputEl.setAttribute('value', newState.value);
       this.props.onChange(date, true);
@@ -185,14 +186,21 @@ export default class DateInput extends React.Component {
   getCurrentValue = () => {
     if (this.props.value !== undefined) {
       if (this.props.value instanceof Date) {
-        return format(this.props.value, this.props.dateFormat, { locale: this.props.locale });
+        return format(this.props.value, this.props.dateFormat, {
+          locale: this.props.locale,
+        });
       }
       return this.props.value;
     }
     return this.state.value;
   };
 
-  getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat, this.props.parse);
+  getCurrentDate = () =>
+    parseValue(
+      this.props.value !== undefined ? this.props.value : this.state.value,
+      this.props.dateFormat,
+      this.props.parse
+    );
 
   parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
@@ -206,13 +214,21 @@ export default class DateInput extends React.Component {
   };
 
   clear = () => this.onChange('');
+
   close = () => this.setState({ open: false });
+
   nextMonth = () => this.setDate(addMonths(this.getCurrentDate(), 1));
+
   nextYear = () => this.setDate(addYears(this.getCurrentDate(), 1));
+
   prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
+
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
+
   show = () => this.setState({ open: true });
+
   today = () => this.setDate(startOfToday(), true);
+
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
@@ -221,28 +237,33 @@ export default class DateInput extends React.Component {
     }
     const currentValue = this.getCurrentValue();
     const inputValue = this.inputEl.value;
-    const currentValueAsDate = currentValue && this.props.parse(currentValue, this.props.dateFormat);
+    const currentValueAsDate =
+      currentValue && this.props.parse(currentValue, this.props.dateFormat);
     const inputValueAsDate = this.props.parse(inputValue || '', this.props.dateFormat);
-    const isSame = ((currentValueAsDate && inputValueAsDate) &&
-                    isSameDay(currentValueAsDate, inputValueAsDate)) || (inputValue === currentValue);
+    const isSame =
+      (currentValueAsDate && inputValueAsDate && isSameDay(currentValueAsDate, inputValueAsDate)) ||
+      inputValue === currentValue;
 
     if (!isSame) {
       this.inputEl.value = currentValue;
       this.inputEl.setAttribute('value', currentValue);
     }
-  }
+  };
 
   onBlur = (e) => {
     this.props.onBlur(e);
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
-      const value = format(parsedDate, this.props.dateFormat, { locale: this.props.locale });
+      const value = format(parsedDate, this.props.dateFormat, {
+        locale: this.props.locale,
+      });
       this.inputEl.value = value;
       this.inputEl.setAttribute('value', value);
     }
-  }
+  };
 
+  /* eslint-disable-next-line react/no-unused-class-component-methods -- Fix this when we convert to functional component */
   focus() {
     this.inputEl.focus();
   }
@@ -266,8 +287,30 @@ export default class DateInput extends React.Component {
   }
 
   render() {
-    const { className, dateEnabled, dateVisible, direction, disabled, footer, header, renderFooter, renderHeader, id, showOnFocus,
-      dateFormat, defaultValue, keyboard, locale, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
+    const {
+      className,
+      dateEnabled,
+      dateVisible,
+      direction,
+      disabled,
+      footer,
+      header,
+      renderFooter,
+      renderHeader,
+      id,
+      showOnFocus,
+      dateFormat,
+      defaultValue,
+      keyboard,
+      locale,
+      onBlur,
+      onChange,
+      parse: _parse,
+      positionFixed,
+      value,
+      state,
+      ...props
+    } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -282,10 +325,12 @@ export default class DateInput extends React.Component {
               <input
                 id={id}
                 className="form-control"
-                ref={(el) => { this.inputEl = el; }}
+                ref={(el) => {
+                  this.inputEl = el;
+                }}
                 type="text"
                 onBlur={this.onBlur}
-                onChange={e => this.onChange(e.target.value)}
+                onChange={(e) => this.onChange(e.target.value)}
                 onClick={showOnFocus ? this.show : undefined}
                 onFocus={showOnFocus ? this.show : undefined}
                 onKeyDown={this.onKeyDown}
@@ -306,12 +351,8 @@ export default class DateInput extends React.Component {
               </InputGroupAddon>
             </InputGroup>
           </DropdownToggle>
-          <DropdownMenu
-            className="p-0"
-            onKeyDown={this.onKeyDown}
-            {...dropdownProps}
-          >
-            {(renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear)) || header || (
+          <DropdownMenu className="p-0" onKeyDown={this.onKeyDown} {...dropdownProps}>
+            {renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear) || header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
                   <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
@@ -351,16 +392,21 @@ export default class DateInput extends React.Component {
               style={{ minWidth: '19rem' }}
             />
 
-            {(renderFooter(this.today, this.clear)) || footer || (
+            {renderFooter(this.today, this.clear) || footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button onClick={this.today} className="mr-2">Today</Button>
-                  <Button onClick={this.clear} className="mr-2">Clear</Button>
+                  <Button onClick={this.today} className="mr-2">
+                    Today
+                  </Button>
+                  <Button onClick={this.clear} className="mr-2">
+                    Clear
+                  </Button>
                 </div>
               </footer>
             )}
           </DropdownMenu>
         </Dropdown>
-      </div>);
+      </div>
+    );
   }
 }

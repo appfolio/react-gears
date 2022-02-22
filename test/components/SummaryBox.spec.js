@@ -7,7 +7,7 @@ import { SummaryBox, SummaryBoxItem } from '../../src';
 const items = [
   { value: 'Alpha', label: 'Team' },
   { value: 'Bravo', label: 'Johnny' },
-  { value: 'Charlie', label: 'Brown' }
+  { value: 'Charlie', label: 'Brown' },
 ];
 
 describe('<SummaryBox />', () => {
@@ -41,13 +41,13 @@ describe('<SummaryBox />', () => {
   it('should reverse all items when specified', () => {
     const component = shallow(<SummaryBox items={items} reverse />);
     const children = component.find(SummaryBoxItem);
-    children.forEach(child => assert.equal(child.prop('reverse'), true));
+    children.forEach((child) => assert.equal(child.prop('reverse'), true));
   });
 
   it('should not reverse all items when specified', () => {
     const component = shallow(<SummaryBox items={items} reverse={false} />);
     const children = component.find(SummaryBoxItem);
-    children.forEach(child => assert.equal(child.prop('reverse'), false));
+    children.forEach((child) => assert.equal(child.prop('reverse'), false));
   });
 
   it('should render children', () => {

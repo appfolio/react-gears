@@ -16,7 +16,7 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   className,
   onToggle = () => {},
   open: defaultOpen,
-  title
+  title,
 }) => {
   const [open, setOpen] = useState(defaultOpen);
   useEffect(() => {
@@ -31,7 +31,11 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
   return (
     <section className={className}>
       <header>
-        <ClickableContainer aria-expanded={open} className="d-flex align-items-center w-100" onClick={toggle}>
+        <ClickableContainer
+          aria-expanded={open}
+          className="d-flex align-items-center w-100"
+          onClick={toggle}
+        >
           <Icon
             name={`chevron-${open ? 'up' : 'down'}`}
             className="text-muted mr-1"
@@ -39,22 +43,21 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
             style={{ transition: 'transform 200ms ease-in-out' }}
           />
           {title}
-          <style jsx>{`
-            b {
-              -webkit-touch-callout: none;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
-          `}
+          <style jsx>
+            {`
+              b {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+            `}
           </style>
         </ClickableContainer>
       </header>
       <Collapse isOpen={open}>
-        <div className="py-3">
-          {children}
-        </div>
+        <div className="py-3">{children}</div>
       </Collapse>
     </section>
   );
@@ -63,7 +66,7 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
 ExpandableSection.defaultProps = {
   className: '',
   open: false,
-  onToggle: () => {}
+  onToggle: () => {},
 };
 
 ExpandableSection.displayName = 'ExpandableSection';

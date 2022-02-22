@@ -6,13 +6,14 @@ import { shallow } from 'enzyme';
 import { CheckboxListInput, FormChoice } from '../../src';
 
 describe('<CheckboxListInput />', () => {
-  const render = ({ onChange = sinon.stub(), value = [] }) => shallow(
-    <CheckboxListInput value={value} onChange={onChange}>
-      <FormChoice>A</FormChoice>
-      <FormChoice value="stuff">B</FormChoice>
-      <FormChoice>Other</FormChoice>
-    </CheckboxListInput>
-  );
+  const render = ({ onChange = sinon.stub(), value = [] }) =>
+    shallow(
+      <CheckboxListInput value={value} onChange={onChange}>
+        <FormChoice>A</FormChoice>
+        <FormChoice value="stuff">B</FormChoice>
+        <FormChoice>Other</FormChoice>
+      </CheckboxListInput>
+    );
 
   it('should render with correct type', () => {
     const component = render({});

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Placement } from 'popper.js';
 import classnames from 'classnames';
 import Button from './Button';
-import ConfirmationButton, { ConfirmationButtonProps } from './ConfirmationButton';
+import ConfirmationButton from './ConfirmationButton';
+import type { ConfirmationButtonProps } from './ConfirmationButton';
 import Col from './Col';
 import Icon from './Icon';
 import Row from './Row';
@@ -53,7 +54,7 @@ const HasManyFieldsRow = ({
     <Button
       id={id}
       color="danger"
-      onClick={e => e.preventDefault()}
+      onClick={(e) => e.preventDefault()}
       outline
       className="p-2 disabled"
     >
@@ -90,7 +91,7 @@ HasManyFieldsRow.defaultProps = {
   disabledReasonPlacement: 'top',
   disabled: false,
   onDelete: noop,
-  deletable: true
+  deletable: true,
 };
 
 HasManyFieldsRow.displayName = 'HasManyFieldsRow';

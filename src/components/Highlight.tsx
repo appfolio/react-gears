@@ -16,12 +16,12 @@ interface HighlightProps {
 }
 
 const defaultProps = {
-  escape: true
+  escape: true,
 };
 
 const escapePattern = (pattern: string) => pattern.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
 
-const ignoreSpecialCharacters = (pattern: string) => pattern.replace(/[^\w\s\']/gi, '');
+const ignoreSpecialCharacters = (pattern: string) => pattern.replace(/[^\w\s']/gi, '');
 
 const Highlight = ({
   pattern,
@@ -75,10 +75,11 @@ const Highlight = ({
     return segments;
   };
 
-  const renderChildren = (node: ReactNode) : ReactNode => {
+  const renderChildren = (node: ReactNode): ReactNode => {
     if (Array.isArray(node)) {
       return node.map(renderChildren);
-    } else if (typeof node === 'string') {
+    }
+    if (typeof node === 'string') {
       return getSegments(node, highlightedSegments(node)).map(({ start, end, highlight }) => {
         const text = node.slice(start, end);
         if (highlight) {
@@ -87,7 +88,8 @@ const Highlight = ({
 
         return text;
       });
-    } else if (React.isValidElement(node)) {
+    }
+    if (React.isValidElement(node)) {
       return React.cloneElement(node, [], renderChildren(node.props.children));
     }
 

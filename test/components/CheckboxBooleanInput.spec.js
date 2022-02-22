@@ -8,9 +8,7 @@ import { CheckboxBooleanInput, Input, Label } from '../../src';
 describe('<CheckboxBooleanInput />', () => {
   const onChange = sinon.stub();
 
-  const wrapper = mount(
-    <CheckboxBooleanInput value onChange={onChange} />
-  );
+  const wrapper = mount(<CheckboxBooleanInput value onChange={onChange} />);
 
   const component = wrapper.find(Input);
 
@@ -39,9 +37,7 @@ describe('<CheckboxBooleanInput />', () => {
   });
 
   it('should allow you to pass through other props to the input', () => {
-    const checkbox = mount(
-      <CheckboxBooleanInput value onChange={onChange} disabled />
-    );
+    const checkbox = mount(<CheckboxBooleanInput value onChange={onChange} disabled />);
 
     const input = checkbox.find(Input);
 

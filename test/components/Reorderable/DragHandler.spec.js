@@ -17,7 +17,7 @@ describe('#withDragHandler', () => {
 
   describe('not using default handler UI', () => {
     it('renders the passed in component', () => {
-      const wrappedHandler = () => <span className='js-handler'>::</span>;
+      const wrappedHandler = () => <span className="js-handler">::</span>;
       const Handler = withDragHandler(wrappedHandler, false);
       const wrapper = mount(<Handler />);
 

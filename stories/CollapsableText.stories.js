@@ -27,11 +27,7 @@ export const LiveExample = () => (
 
 export const ShorterThanMaxLength = () => (
   <div>
-    <CollapsableText
-      maxLength={number('maxLength', 2048)}
-    >
-      {loremIpsum}
-    </CollapsableText>
+    <CollapsableText maxLength={number('maxLength', 2048)}>{loremIpsum}</CollapsableText>
   </div>
 );
 

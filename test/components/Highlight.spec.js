@@ -21,7 +21,9 @@ describe('<Highlight />', () => {
 
   it('should highlight raw patterns without escape', () => {
     const highlight = render(
-      <Highlight pattern="(The)|(FOX)" escape={false} >The quick brown fox jumps over the lazy dog.</Highlight>
+      <Highlight pattern="(The)|(FOX)" escape={false}>
+        The quick brown fox jumps over the lazy dog.
+      </Highlight>
     );
 
     const highlighted = highlight.container.querySelectorAll('mark');
@@ -56,12 +58,14 @@ describe('<Highlight />', () => {
     const highlighted = highlight.container.querySelectorAll('mark');
 
     assert.equal(4, highlighted.length);
-    highlighted.forEach(el => assert.equal('dog', el.innerHTML));
+    highlighted.forEach((el) => assert.equal('dog', el.innerHTML));
   });
 
   it('should highlight case sensitive patterns', () => {
     let highlight = render(
-      <Highlight caseSensitive pattern="the">The quick brown fox jumps over the lazy dog.</Highlight>
+      <Highlight caseSensitive pattern="the">
+        The quick brown fox jumps over the lazy dog.
+      </Highlight>
     );
 
     let highlighted = highlight.container.querySelectorAll('mark');
@@ -71,7 +75,9 @@ describe('<Highlight />', () => {
 
     cleanup();
     highlight = render(
-      <Highlight caseSensitive pattern="Dog">The quick brown fox jumps over the lazy dog.</Highlight>
+      <Highlight caseSensitive pattern="Dog">
+        The quick brown fox jumps over the lazy dog.
+      </Highlight>
     );
 
     highlighted = highlight.container.querySelectorAll('mark');
@@ -81,7 +87,9 @@ describe('<Highlight />', () => {
 
   it('should not highlight special characters if ignoring', () => {
     const highlight = render(
-      <Highlight ignoreSpecial pattern="dog's body.">The quick brown fox jumps over the lazy dog&apos;s body.</Highlight>
+      <Highlight ignoreSpecial pattern="dog's body.">
+        The quick brown fox jumps over the lazy dog&apos;s body.
+      </Highlight>
     );
 
     const highlighted = highlight.container.querySelector('mark');

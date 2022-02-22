@@ -22,7 +22,11 @@ describe('<Waiting />', () => {
   });
 
   it('uses passed in children', () => {
-    const wrapper = mount(<Waiting isOpen backdrop><div id="yo">YO...</div></Waiting>);
+    const wrapper = mount(
+      <Waiting isOpen backdrop>
+        <div id="yo">YO...</div>
+      </Waiting>
+    );
     assert.equal(false, wrapper.find(Spinner).exists());
   });
 

@@ -3,9 +3,7 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 import { Button, Icon } from '../src';
 import icons from './icons.js';
 
-const colors = [
-  'primary', 'info', 'success', 'warning', 'danger', 'muted', 'dark'
-];
+const colors = ['primary', 'info', 'success', 'warning', 'danger', 'muted', 'dark'];
 
 export default {
   title: 'Icon',
@@ -28,8 +26,17 @@ export const AvailableIcons = () => {
   const size = select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x');
   return (
     <div>
-      <em>Hover over icon to view name:</em><br />
-      {icons.map((name, i) => <Icon name={name} fixedWidth size={size} title={name} className={`py-2 text-${colors[i % colors.length]}`} />)}
+      <em>Hover over icon to view name:</em>
+      <br />
+      {icons.map((name, i) => (
+        <Icon
+          name={name}
+          fixedWidth
+          size={size}
+          title={name}
+          className={`py-2 text-${colors[i % colors.length]}`}
+        />
+      ))}
     </div>
   );
 };
@@ -78,13 +85,20 @@ export const Buttons = () => (
 
 export const Size = () => (
   <div>
-    <Icon name="calendar" size="xs" /> xs<br />
-    <Icon name="calendar" size="sm" /> sm<br />
-    <Icon name="calendar" size="lg" /> lg<br />
-    <Icon name="calendar" size="2x" /> 2x<br />
-    <Icon name="calendar" size="3x" /> 3x<br />
-    <Icon name="calendar" size="4x" /> 4x<br />
-    <Icon name="calendar" size="5x" /> 5x<br />
+    <Icon name="calendar" size="xs" /> xs
+    <br />
+    <Icon name="calendar" size="sm" /> sm
+    <br />
+    <Icon name="calendar" size="lg" /> lg
+    <br />
+    <Icon name="calendar" size="2x" /> 2x
+    <br />
+    <Icon name="calendar" size="3x" /> 3x
+    <br />
+    <Icon name="calendar" size="4x" /> 4x
+    <br />
+    <Icon name="calendar" size="5x" /> 5x
+    <br />
   </div>
 );
 
@@ -100,11 +114,16 @@ export const Animation = () => (
 
 export const RotateAndFlip = () => (
   <div>
-    <Icon name="female" rotate={90} /> 90<br />
-    <Icon name="female" rotate={180} /> 180<br />
-    <Icon name="female" rotate={270} /> 270<br />
-    <Icon name="music" flip="horizontal" /> horizontal<br />
-    <Icon name="music" flip="vertical" /> vertical<br />
+    <Icon name="female" rotate={90} /> 90
+    <br />
+    <Icon name="female" rotate={180} /> 180
+    <br />
+    <Icon name="female" rotate={270} /> 270
+    <br />
+    <Icon name="music" flip="horizontal" /> horizontal
+    <br />
+    <Icon name="music" flip="vertical" /> vertical
+    <br />
   </div>
 );
 

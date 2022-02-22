@@ -5,19 +5,19 @@ import { ImageCarousel, Jumbotron } from '../src';
 const items = [
   {
     src: 'https://picsum.photos/id/1/800/600',
-    altText: 'Slide 1'
+    altText: 'Slide 1',
   },
   {
     src: 'https://picsum.photos/id/2/1000/750',
-    altText: 'Slide 2'
+    altText: 'Slide 2',
   },
   {
     src: 'https://picsum.photos/id/4/1200/900',
-    altText: 'Slide 3'
+    altText: 'Slide 3',
   },
   {
     src: 'https://picsum.photos/id/5/1000/750',
-    altText: 'Slide 4'
+    altText: 'Slide 4',
   },
   {
     children: (
@@ -28,7 +28,7 @@ const items = [
       </Jumbotron>
     ),
     altText: 'Slide 5',
-  }
+  },
 ];
 
 export default {

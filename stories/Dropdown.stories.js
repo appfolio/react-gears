@@ -1,6 +1,6 @@
 import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { action } from '../node_modules/@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from '../src';
 import { colors } from './colors';
 
@@ -10,9 +10,7 @@ export default {
 };
 
 export const Uncontrolled = () => (
-  <UncontrolledDropdown
-    direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}
-  >
+  <UncontrolledDropdown direction={select('direction', ['', 'down', 'up', 'left', 'right'], '')}>
     <DropdownToggle
       color={select('color', colors, 'primary')}
       disabled={boolean('disabled', false)}

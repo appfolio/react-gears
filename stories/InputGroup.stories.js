@@ -100,11 +100,15 @@ export const ButtonShorthand = () => (
     <br />
     <InputGroup>
       <InputGroupAddon addonType="prepend">
-        <Button addonType="prepend" color="success">To the Left!</Button>
+        <Button addonType="prepend" color="success">
+          To the Left!
+        </Button>
       </InputGroupAddon>
       <Input placeholder="and..." />
       <InputGroupAddon addonType="append">
-        <Button addonType="append" color="success">To the Right!</Button>
+        <Button addonType="append" color="success">
+          To the Right!
+        </Button>
       </InputGroupAddon>
     </InputGroup>
   </div>

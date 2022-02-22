@@ -6,7 +6,11 @@ import { ScrollContainer } from '../../src';
 
 describe('<ScrollContainer />', () => {
   it('should render correctly', () => {
-    const component = mount(<ScrollContainer><div style={{ minHeight: '200px' }} /></ScrollContainer>);
+    const component = mount(
+      <ScrollContainer>
+        <div style={{ minHeight: '200px' }} />
+      </ScrollContainer>
+    );
     assert(component);
   });
 

@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import { ListGroupItemProps } from 'reactstrap';
-import { Button, Collapse, CustomInput, Icon, ListGroupItem } from '../../index';
+import Button from '../Button';
+import Collapse from '../Collapse';
+import ListGroupItem from '../ListGroupItem';
+import CustomInput from '../CustomInput';
+import Icon from '../Icon';
 
 export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
-  children: (item: T, selected?: boolean) => React.ReactNode,
-  id?: string,
-  className?: string,
-  color?: string,
-  expanded?: boolean,
-  expandedColor?: string,
-  item: T,
-  onExpand?: (item: T) => React.ReactNode | undefined,
-  onSelect?: (item: T, checked?: boolean) => void
-  select?: 'checkbox' | 'radio' | 'switch' | '',
-  selected?: boolean,
-  selectable?: (item: T) => boolean
+  children: (item: T, selected?: boolean) => React.ReactNode;
+  id?: string;
+  className?: string;
+  color?: string;
+  expanded?: boolean;
+  expandedColor?: string;
+  item: T;
+  onExpand?: (item: T) => React.ReactNode | undefined;
+  onSelect?: (item: T, checked?: boolean) => void;
+  select?: 'checkbox' | 'radio' | 'switch' | '';
+  selected?: boolean;
+  selectable?: (item: T) => boolean;
 }
 
-function ListItem<T>({
+const ListItem = <T extends unknown>({
   children: render,
   id: itemId,
   className,
@@ -33,7 +37,7 @@ function ListItem<T>({
   selected,
   selectable,
   ...props
-}: ListItemProps<T>) {
+}: ListItemProps<T>) => {
   const isExpandable = onExpand !== undefined;
   const ExpandedItem = isExpandable ? onExpand!(item) : undefined;
   const [expanded, setExpanded] = useState(defaultExpanded);
@@ -55,7 +59,9 @@ function ListItem<T>({
               type={select}
               checked={selected}
               label={<span className="sr-only">Select {itemId}</span>}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSelect && onSelect(item, e.target.checked)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onSelect && onSelect(item, e.target.checked)
+              }
               disabled={selectable ? !selectable(item) : false}
             />
           </div>
@@ -67,7 +73,7 @@ function ListItem<T>({
             onClick={() => setExpanded(!expanded)}
             className="mr-n3"
             style={{
-              visibility: ExpandedItem === undefined ? 'hidden' : 'visible'
+              visibility: ExpandedItem === undefined ? 'hidden' : 'visible',
             }}
           >
             <Icon name={`chevron-${expanded ? 'up' : 'down'}`} />
@@ -75,12 +81,10 @@ function ListItem<T>({
           </Button>
         )}
       </div>
-      {ExpandedItem === undefined || (
-        <Collapse isOpen={expanded}>{ExpandedItem}</Collapse>
-      )}
+      {ExpandedItem === undefined || <Collapse isOpen={expanded}>{ExpandedItem}</Collapse>}
     </ListGroupItem>
   );
-}
+};
 
 ListItem.displayName = 'ListItem';
 

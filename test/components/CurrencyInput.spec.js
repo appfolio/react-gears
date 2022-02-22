@@ -127,7 +127,9 @@ describe('<CurrencyInput />', () => {
   });
 
   it('should pass inputProps', () => {
-    const component = mount(<CurrencyInput inputProps={{ className: 'yowza', ariaLabel: 'yowza!' }} />);
+    const component = mount(
+      <CurrencyInput inputProps={{ className: 'yowza', ariaLabel: 'yowza!' }} />
+    );
     const input = component.find('input.yowza');
     expect(input.exists()).toBe(true);
     expect(input.props().ariaLabel).toBe('yowza!');

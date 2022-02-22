@@ -10,13 +10,11 @@ describe('<Notes />', () => {
     { id: '1', date: new Date(), text: 'Alpha' },
     { id: '2', date: new Date(), text: 'Bravo' },
     { id: '3', date: new Date(), text: 'Charlie' },
-    { id: '4', date: new Date(), text: 'Delta' }
+    { id: '4', date: new Date(), text: 'Delta' },
   ];
   let props;
 
-  function DummyNoteControl(note) {
-    return <span>{note.text}</span>;
-  }
+  const DummyNoteControl = (note) => <span>{note.text}</span>;
 
   beforeEach(() => {
     props = { notes };
@@ -35,7 +33,8 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(Note);
         assert.equal(4, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
+        for (let i = 0; i < noteCards.length; ++i) {
+          // eslint-disable-line no-plusplus
           assert.equal(notes[i], noteCards.at(i).props().note);
           assert.equal(props.onEdit, noteCards.at(i).props().onEdit);
           assert.equal(props.onDelete, noteCards.at(i).props().onDelete);
@@ -59,7 +58,8 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(DummyNoteControl);
         assert.equal(3, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
+        for (let i = 0; i < noteCards.length; ++i) {
+          // eslint-disable-line no-plusplus
           assert.equal(`${i + 1}`, noteCards.at(i).props().note.text);
         }
       });

@@ -41,7 +41,7 @@ describe('<LabelBadge />', () => {
   });
 
   it('passes classNames to outer span', () => {
-    const wrapper = mount(<LabelBadge className='cc' value="Yep" />);
+    const wrapper = mount(<LabelBadge className="cc" value="Yep" />);
     assert(wrapper.hasClass('cc'));
   });
 

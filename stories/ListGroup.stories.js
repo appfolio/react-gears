@@ -10,10 +10,7 @@ export default {
 };
 
 export const LiveExample = () => (
-  <ListGroup
-    flush={boolean('flush', false)}
-    striped={boolean('striped', false)}
-  >
+  <ListGroup flush={boolean('flush', false)} striped={boolean('striped', false)}>
     <ListGroupItem active>Alpha</ListGroupItem>
     <ListGroupItem action>Bravo</ListGroupItem>
     <ListGroupItem action onClick={action('onClick')}>

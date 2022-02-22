@@ -31,7 +31,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
         <span className="d-none d-inline js-date">{fecha.format(date, dateFormat)}</span>
       </Col>
       {/* Force the next column to break to new line at the xs breakpoint; specifying `xs` in the first column
-        * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
+       * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
       <div className="w-100 d-xs-block d-sm-none" />
       <Col className="js-action">
         {(action || date) && (

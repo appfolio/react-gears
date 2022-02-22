@@ -1,4 +1,4 @@
-import React, { HTMLProps, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import classnames from 'classnames';
 import Icon from './Icon';
 
@@ -20,21 +20,14 @@ const InfoBox = ({
   vertical = false,
   ...props
 }: InfoBoxProps) => {
-  const classNames = classnames(
-    'rg-InfoBox',
-    'bg-white',
-    'shadow',
-    'p-3',
-    className,
-    {
-      [`border-${color}`]: color,
-      'border-top': vertical,
-      'border-left': !vertical,
-    }
-  );
+  const classNames = classnames('rg-InfoBox', 'bg-white', 'shadow', 'p-3', className, {
+    [`border-${color}`]: color,
+    'border-top': vertical,
+    'border-left': !vertical,
+  });
   const headerClasses = classnames('font-weight-normal d-flex justify-content-between m-0', {
     [`text-${color}`]: color,
-    'mb-3': !!children
+    'mb-3': !!children,
   });
 
   return (

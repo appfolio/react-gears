@@ -8,5 +8,5 @@ interface LabelBadgeProps {
   removable?: boolean;
   value: React.ReactNode;
 }
-declare class LabelBadge extends React.Component<LabelBadgeProps, {}> { }
+declare class LabelBadge extends React.Component<LabelBadgeProps, {}> {}
 export default LabelBadge;

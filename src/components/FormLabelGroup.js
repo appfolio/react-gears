@@ -11,7 +11,7 @@ import Required from './Required';
 const labelSizeTranslations = {
   sm: 2,
   md: 3,
-  lg: 4
+  lg: 4,
 };
 
 // Note:  `inline` has no effect at the moment.  In reactstrap 5 and later, this property appears
@@ -32,7 +32,7 @@ class FormLabelGroup extends React.Component {
     srLabel: PropTypes.bool,
     stacked: PropTypes.bool,
     validFeedback: PropTypes.node,
-    width: PropTypes.object
+    width: PropTypes.object,
   };
 
   static defaultProps = {
@@ -40,7 +40,7 @@ class FormLabelGroup extends React.Component {
     required: false,
     srLabel: false,
     stacked: false,
-    width: { xs: 12 }
+    width: { xs: 12 },
   };
 
   render() {
@@ -57,32 +57,40 @@ class FormLabelGroup extends React.Component {
       srLabel,
       stacked,
       validFeedback,
-      width
+      width,
     } = this.props;
 
-    const containerClassNames = classnames({
-      'is-invalid': feedback,
-      'is-valid': validFeedback
-    }, rowClassName);
+    const containerClassNames = classnames(
+      {
+        'is-invalid': feedback,
+        'is-valid': validFeedback,
+      },
+      rowClassName
+    );
     const labelClassNames = classnames({
       'text-sm-right pr-0': !stacked,
       'text-danger': feedback,
       'text-success': validFeedback,
-      'sr-only sr-only-focusable': srLabel
+      'sr-only sr-only-focusable': srLabel,
     });
-    const hiddenClassNames = classnames({
-      'is-invalid': feedback,
-      'is-valid': validFeedback
-    }, 'form-control');
-    const labelWidth = stacked ? 12 : (labelSizeTranslations[labelSize || 'md']);
-    const inputWidth = (stacked || !label) ? 12 : (12 - labelWidth);
-    const valueWidth = stacked ? width : ({
-      xs: width.xs,
-      sm: width.sm ? Math.min(inputWidth, width.sm) : inputWidth,
-      md: width.md ? Math.min(inputWidth, width.md) : undefined,
-      lg: width.lg ? Math.min(inputWidth, width.lg) : undefined,
-      xl: width.xl ? Math.min(inputWidth, width.xl) : undefined
-    });
+    const hiddenClassNames = classnames(
+      {
+        'is-invalid': feedback,
+        'is-valid': validFeedback,
+      },
+      'form-control'
+    );
+    const labelWidth = stacked ? 12 : labelSizeTranslations[labelSize || 'md'];
+    const inputWidth = stacked || !label ? 12 : 12 - labelWidth;
+    const valueWidth = stacked
+      ? width
+      : {
+          xs: width.xs,
+          sm: width.sm ? Math.min(inputWidth, width.sm) : inputWidth,
+          md: width.md ? Math.min(inputWidth, width.md) : undefined,
+          lg: width.lg ? Math.min(inputWidth, width.lg) : undefined,
+          xl: width.xl ? Math.min(inputWidth, width.xl) : undefined,
+        };
 
     return (
       <FormGroup row className={containerClassNames}>
@@ -97,7 +105,11 @@ class FormLabelGroup extends React.Component {
           {(feedback || validFeedback) && <div className={hiddenClassNames} hidden />}
           {hint && <FormText color="muted">{hint}</FormText>}
           {feedback && <FormFeedback className="d-flex">{feedback}</FormFeedback>}
-          {validFeedback && <FormFeedback className="d-flex" valid>{validFeedback}</FormFeedback>}
+          {validFeedback && (
+            <FormFeedback className="d-flex" valid>
+              {validFeedback}
+            </FormFeedback>
+          )}
         </Col>
       </FormGroup>
     );

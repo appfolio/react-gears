@@ -16,11 +16,20 @@ const currency = new Intl.NumberFormat('en-US', {
 
 function filterItems(filter, item) {
   const f = filter.toLowerCase();
-  return item.first.toLowerCase().includes(f) ||
-         item.last.toLowerCase().includes(f) ||
-         // eslint-disable-next-line eqeqeq
-         item.fee == filter;
+  return (
+    item.first.toLowerCase().includes(f) ||
+    item.last.toLowerCase().includes(f) ||
+    // eslint-disable-next-line eqeqeq
+    item.fee == filter
+  );
 }
+
+const WithEverythingExpand = (item) => (
+  <>
+    <Label className="text-muted">Base late fee for October 2019:</Label>{' '}
+    {currency.format(item.fee)}
+  </>
+);
 
 export const WithEverything = () => (
   <SortableList
@@ -31,27 +40,25 @@ export const WithEverything = () => (
     scrollPositionKey={text('scrollPositionKey', 'sortableList-example')}
     items={data.slice(0, 20)}
     striped={boolean('striped', false)}
-    onExpand={item => (
-      <>
-        <Label className="text-muted">Base late fee for October 2019:</Label> {currency.format(item.fee)}
-      </>
-      )}
+    onExpand={WithEverythingExpand}
     onFilter={filterItems}
     onSelect={action('onSelect')}
     select={select('select', ['', 'checkbox', 'radio', 'switch'], 'checkbox')}
     sort={{ property: ['last', 'first'] }}
     sortByLabel={text('sortByLabel', SortableList.defaultProps.sortByLabel)}
     sortOptions={[
-        { label: 'First Name', value: ['first', 'last'] },
-        { label: 'Last Name', value: ['last', 'first'] },
-        { label: 'Late Fee', value: 'fee' },
-      ]}
-    selectable={item => item.id % 2}
+      { label: 'First Name', value: ['first', 'last'] },
+      { label: 'Last Name', value: ['last', 'first'] },
+      { label: 'Late Fee', value: 'fee' },
+    ]}
+    selectable={(item) => item.id % 2}
   >
-    {item => (
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto pb-2">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p className="mb-0">{item.address}</p>
         </div>
         <div className="pr-3 pb-2">
@@ -63,42 +70,43 @@ export const WithEverything = () => (
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
+
+const WithExpandableRowExpand = (item) => (
+  <>
+    <Label className="text-muted">Base late fee for October 2019:</Label>{' '}
+    {currency.format(item.fee)}
+  </>
+);
+
 export const WithExpandableRow = () => (
-  <SortableList
-    items={data.slice(0, 10)}
-    onExpand={item => (
-      <>
-        <Label className="text-muted">Base late fee for October 2019:</Label> {currency.format(item.fee)}
-      </>
-      )}
-  >
-    {item => (
+  <SortableList items={data.slice(0, 10)} onExpand={WithExpandableRowExpand}>
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p className="mb-0">{item.address}</p>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
 export const WithSelection = () => (
-  <SortableList
-    items={data.slice(0, 10)}
-    select="checkbox"
-    onSelect={action('onSelect')}
-  >
-    {item => (
+  <SortableList items={data.slice(0, 10)} select="checkbox" onSelect={action('onSelect')}>
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p className="mb-0">{item.address}</p>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
 export const WithSort = () => (
@@ -106,31 +114,31 @@ export const WithSort = () => (
     items={data.slice(0, 10)}
     sort={{ property: 'last', ascending: true }}
     sortOptions={[
-        { label: 'First Name', value: 'first' },
-        { label: 'Last Name', value: 'last' },
-        { label: 'Address', value: 'address' },
-      ]}
+      { label: 'First Name', value: 'first' },
+      { label: 'Last Name', value: 'last' },
+      { label: 'Address', value: 'address' },
+    ]}
   >
-    {item => (
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p className="mb-0">{item.address}</p>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
 export const WithFiltering = () => (
-  <SortableList
-    height="60vh"
-    items={data}
-    onFilter={filterItems}
-  >
-    {item => (
+  <SortableList height="60vh" items={data} onFilter={filterItems}>
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto pb-2">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p>{item.address}</p>
         </div>
         <div className="pr-3 pb-2">
@@ -142,7 +150,7 @@ export const WithFiltering = () => (
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
 export const WithCustomHeader = () => (
@@ -154,10 +162,12 @@ export const WithCustomHeader = () => (
     onSelect={action('onSelect')}
     header={<h4 className="m-0 text-danger">Hey it's me, your custom header</h4>}
   >
-    {item => (
+    {(item) => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
         <div className="mr-auto pb-2">
-          <h4 className="m-0">{item.first} {item.last}</h4>
+          <h4 className="m-0">
+            {item.first} {item.last}
+          </h4>
           <p>{item.address}</p>
         </div>
         <div className="pr-3 pb-2">
@@ -169,40 +179,43 @@ export const WithCustomHeader = () => (
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>
       </div>
-      )}
+    )}
   </SortableList>
 );
+
+const AreasExpand = () => (
+  <Alert color="info" className="m-0 ">
+    Expandable area
+  </Alert>
+);
+
 export const Areas = () => (
   <SortableList
     height={text('height', '70vh')}
     items={data.slice(0, 20)}
-    onExpand={() => (
-      <>
-        <Alert color="info" className="m-0 ">Expandable area</Alert>
-      </>
-      )}
+    onExpand={AreasExpand}
     onSelect={action('onSelect')}
     select={select('select', ['checkbox', 'radio', 'switch'], 'checkbox')}
   >
-    {() => (
-      <Alert className="m-0">
-        Item area
-      </Alert>
-      )}
+    {() => <Alert className="m-0">Item area</Alert>}
   </SortableList>
 );
+
+const WithOptionalExpandExpander = (item) =>
+  item.id % 2 === 0 ? (
+    <Alert color="info" className="m-0 ">
+      Expandable area
+    </Alert>
+  ) : undefined;
+
 export const WithOptionalExpand = () => (
   <SortableList
     items={data.slice(0, 10)}
-    onExpand={item => (item.id % 2 === 0) ? (
-      <>
-        <Alert color="info" className="m-0 ">Expandable area</Alert>
-      </>
-      ) : undefined}
+    onExpand={WithOptionalExpandExpander}
     onSelect={action('onSelect')}
     select={select('select', ['checkbox', 'radio', 'switch'], 'checkbox')}
   >
-    {item => (item.id % 2 === 0) ? 'Expand Me' : 'I can\'t be expanded...'}
+    {(item) => (item.id % 2 === 0 ? 'Expand Me' : "I can't be expanded...")}
   </SortableList>
 );
 export const WithControlledSelection = () => {
@@ -215,17 +228,22 @@ export const WithControlledSelection = () => {
         selected={selection}
         select="checkbox"
       >
-        {item => <h3 className="m-0">{item.first} {item.last}</h3>}
+        {(item) => (
+          <h3 className="m-0">
+            {item.first} {item.last}
+          </h3>
+        )}
       </SortableList>
 
       <h3>Current selection: </h3>
       <pre>
-        {JSON.stringify(selection.map(item => `${item.first} ${item.last}`), null, '  ')}
+        {JSON.stringify(
+          selection.map((item) => `${item.first} ${item.last}`),
+          null,
+          '  '
+        )}
       </pre>
-      <Button onClick={() => setSelection(data.slice(2, 4))}>
-        Replace the Selection
-      </Button>
+      <Button onClick={() => setSelection(data.slice(2, 4))}>Replace the Selection</Button>
     </>
   );
 };
-

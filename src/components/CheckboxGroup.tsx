@@ -33,25 +33,24 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
 
   return (
     <FormGroup>
-      {
-        options.map((option) => {
-          const id = `option-${option.label}-${groupId}`;
-          return (
-            <FormGroup check key={option.value} className="py-1 d-flex align-items-center">
-              <Input
-                type="checkbox"
-                checked={selected.includes(option.value)}
-                onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
-                className="my-0"
-                id={id}
-              />
-              <Label check className="my-0" for={id}>
-                {' '}{option.label}
-              </Label>
-            </FormGroup>
+      {options.map((option) => {
+        const id = `option-${option.label}-${groupId}`;
+        return (
+          <FormGroup check key={option.value} className="py-1 d-flex align-items-center">
+            <Input
+              type="checkbox"
+              checked={selected.includes(option.value)}
+              onChange={(ev) => handleCheckboxChange(ev.target.checked, option.value)}
+              className="my-0"
+              id={id}
+            />
+            <Label check className="my-0" for={id}>
+              {' '}
+              {option.label}
+            </Label>
+          </FormGroup>
         );
-})
-      }
+      })}
     </FormGroup>
   );
 };

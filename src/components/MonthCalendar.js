@@ -30,7 +30,7 @@ Label.propTypes = {
   selected: PropTypes.bool,
   label: PropTypes.node,
   onClick: PropTypes.func,
-  visible: PropTypes.bool
+  visible: PropTypes.bool,
 };
 
 export default class MonthCalendar extends React.Component {
@@ -47,18 +47,19 @@ export default class MonthCalendar extends React.Component {
     dateVisible: () => true,
     monthFormat: 'MMM',
     yearFormat: 'YYYY',
-    onSelect: () => {}
+    onSelect: () => {},
   };
 
-  getMonths = date => range(0, 12).map(month => new Date(date.getFullYear(), month, 1));
+  getMonths = (date) => range(0, 12).map((month) => new Date(date.getFullYear(), month, 1));
+
   getYears = (date) => {
     const now = new Date();
     const currentYear = date.getFullYear();
     const month = date.getMonth();
-    const end = currentYear + mod((now.getFullYear() - currentYear), 12) + 1;
+    const end = currentYear + mod(now.getFullYear() - currentYear, 12) + 1;
     const start = end - 12;
-    return range(start, end).map(year => new Date(year, month, 1));
-  }
+    return range(start, end).map((year) => new Date(year, month, 1));
+  };
 
   render() {
     const { date, dateVisible, monthFormat, onSelect, yearFormat } = this.props;
@@ -98,11 +99,12 @@ export default class MonthCalendar extends React.Component {
             </Col>
           </Row>
         </div>
-        <style jsx>{`
-          .rg-MonthCalendar {
-            min-width: 16em;
-          }
-        `}
+        <style jsx>
+          {`
+            .rg-MonthCalendar {
+              min-width: 16em;
+            }
+          `}
         </style>
       </>
     );

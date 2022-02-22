@@ -11,15 +11,16 @@ export default function withDragHandler(WrappedComponent, useDefault = true) {
             <Icon name="grip-vertical" size="lg" />
           </span>
         </div>
-        <style jsx>{`
-          .rg-DragHandler {
-            cursor: grab;
-            opacity: 0.4;
-          }
-          .rg-DragHandler:hover {
-            opacity: 0.8;
-          }
-        `}
+        <style jsx>
+          {`
+            .rg-DragHandler {
+              cursor: grab;
+              opacity: 0.4;
+            }
+            .rg-DragHandler:hover {
+              opacity: 0.8;
+            }
+          `}
         </style>
       </>
     ));

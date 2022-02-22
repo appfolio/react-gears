@@ -1,13 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow, mount } from 'enzyme';
-import {
-  render,
-  fireEvent,
-  cleanup,
-  getByText,
-  findByText,
-} from '@testing-library/react';
+import { render, fireEvent, cleanup, getByText, findByText } from '@testing-library/react';
 import sinon from 'sinon';
 
 import ReactSelect from 'react-select-plus';
@@ -17,7 +11,7 @@ const OPTIONS = [
   { label: 'Eeny', value: 1 },
   { label: 'Meeny', value: 2 },
   { label: 'Miny', value: 3 },
-  { label: 'Moe', value: 4 }
+  { label: 'Moe', value: 4 },
 ];
 
 async function selectOption(container, optionText) {
@@ -86,9 +80,9 @@ describe('<Select />', () => {
       callback(null, {
         options: [
           { value: 'oogah', label: 'Oogah' },
-          { value: 'chaka', label: 'Chaka' }
+          { value: 'chaka', label: 'Chaka' },
         ],
-        complete: true
+        complete: true,
       });
     };
 
@@ -102,9 +96,9 @@ describe('<Select />', () => {
       callback(null, {
         options: [
           { value: 'oogah', label: 'Oogah' },
-          { value: 'chaka', label: 'Chaka' }
+          { value: 'chaka', label: 'Chaka' },
         ],
-        complete: true
+        complete: true,
       });
     };
 

@@ -32,11 +32,8 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
           {tooltip}
         </Tooltip>
       )}
-      <div
-        tabIndex={disabled && tooltip ? 0 : -1}
-        id={buttonId}
-        className={className}
-      >
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+      <div tabIndex={disabled && tooltip ? 0 : -1} id={buttonId} className={className}>
         <Button
           aria-describedby={tooltipId}
           disabled={disabled}

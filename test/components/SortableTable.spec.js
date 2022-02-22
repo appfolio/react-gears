@@ -12,7 +12,9 @@ describe('<SortableTable />', () => {
   });
 
   it('should accept all normal Table props', () => {
-    const wrapper = mount(<SortableTable size="lg" bordered striped dark hover responsive columns={[]} />);
+    const wrapper = mount(
+      <SortableTable size="lg" bordered striped dark hover responsive columns={[]} />
+    );
     const table = wrapper.find('table');
 
     assert(wrapper.render().hasClass('table-responsive'), 'responsive missing');
@@ -27,7 +29,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
     const headers = wrapper.find('th');
@@ -36,22 +38,20 @@ describe('<SortableTable />', () => {
   });
 
   it('should support custom rendered rows', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
 
-    function renderRow(rowData) {
-      return (
-        <tr id={`row-${rowData}`}>
-          <td>{`Custom ${rowData}`}</td>
-        </tr>
-      );
-    }
+    const renderRow = (rowData) => (
+      <tr id={`row-${rowData}`}>
+        <td>{`Custom ${rowData}`}</td>
+      </tr>
+    );
     const wrapper = mount(<SortableTable columns={columns} rows={rows} renderRow={renderRow} />);
     assert(wrapper.find('#row-Bravo').text().includes('Custom Bravo'));
   });
 
   it('should render all rows', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(<SortableTable columns={columns} rows={rows} />);
     const cells = wrapper.find('td');
@@ -63,7 +63,7 @@ describe('<SortableTable />', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
     const columns = classNames.map((name) => {
       return {
-        header: <span className={name}>{name}</span>
+        header: <span className={name}>{name}</span>,
       };
     });
     const wrapper = mount(<SortableTable columns={columns} />);
@@ -76,7 +76,7 @@ describe('<SortableTable />', () => {
     const columns = classNames.map((name) => {
       return {
         header: name,
-        cell: row => <span className={name}>{row}</span>
+        cell: (row) => <span className={name}>{row}</span>,
       };
     });
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
@@ -94,7 +94,7 @@ describe('<SortableTable />', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
     const columns = classNames.map((name) => {
       return {
-        header: name
+        header: name,
       };
     });
     const wrapper = mount(<SortableTable columns={columns} />);
@@ -108,7 +108,7 @@ describe('<SortableTable />', () => {
     const columns = classNames.map((name) => {
       return {
         header: name,
-        footer: <span className={name}>{name}</span>
+        footer: <span className={name}>{name}</span>,
       };
     });
     const wrapper = mount(<SortableTable columns={columns} />);
@@ -132,7 +132,7 @@ describe('<SortableTable />', () => {
           </tr>,
           <tr>
             <td className="total">Total Costs</td>
-          </tr>
+          </tr>,
         ]}
       />
     );
@@ -142,7 +142,7 @@ describe('<SortableTable />', () => {
 
     const footers = wrapper.find('tfoot td');
     assert.equal(footers.length, 2);
-    footers.forEach(td => assert(td.hasClass('total')));
+    footers.forEach((td) => assert(td.hasClass('total')));
   });
 
   it('should render custom header', () => {
@@ -171,7 +171,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha', onSort: () => {} },
       { header: 'Bravo', onSort: () => {} },
       { header: 'Charlie', onSort: () => {} },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
     const sortIcons = wrapper.find('Icon');
@@ -183,7 +183,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha', onSort: () => {}, active: true, ascending: true },
       { header: 'Bravo', onSort: () => {}, active: false, ascending: true },
       { header: 'Charlie', onSort: () => {}, active: false, ascending: false },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
 
@@ -202,7 +202,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha', onSort: () => {}, active: true, ascending: true },
       { header: 'Bravo', onSort: () => {}, active: false, ascending: true },
       { header: 'Charlie', onSort: () => {}, active: true, ascending: false },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
 
@@ -221,7 +221,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
 
@@ -234,7 +234,7 @@ describe('<SortableTable />', () => {
       { header: 'Alpha', width: '20%' },
       { header: 'Bravo', width: '30%' },
       { header: 'Charlie', width: '15%' },
-      { header: 'Delta', width: '35%' }
+      { header: 'Delta', width: '35%' },
     ];
     const wrapper = mount(<SortableTable columns={columns} />);
 
@@ -246,14 +246,10 @@ describe('<SortableTable />', () => {
   });
 
   it('should render row className when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(
-      <SortableTable
-        columns={columns}
-        rows={rows}
-        rowClassName={row => row}
-      />
+      <SortableTable columns={columns} rows={rows} rowClassName={(row) => row} />
     );
     const trs = wrapper.find('tbody tr');
     assert.equal(trs.length, rows.length);
@@ -263,13 +259,13 @@ describe('<SortableTable />', () => {
   });
 
   it('should render expandable row when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = shallow(
       <SortableTable
         columns={columns}
         rows={rows}
-        rowExpanded={row => row === 'Charlie' && <span className="expando">Hey</span>}
+        rowExpanded={(row) => row === 'Charlie' && <span className="expando">Hey</span>}
       />
     );
     const trs = wrapper.find('tbody tr');
@@ -283,18 +279,12 @@ describe('<SortableTable />', () => {
   });
 
   it('should call rowOnClick with row and event when row clicked', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const row1 = 'Alpha';
     const rows = [row1];
     const onClick = sinon.stub();
 
-    const wrapper = mount(
-      <SortableTable
-        columns={columns}
-        rows={rows}
-        rowOnClick={onClick}
-      />
-    );
+    const wrapper = mount(<SortableTable columns={columns} rows={rows} rowOnClick={onClick} />);
 
     const clickEvent = { eventData: '123' };
     wrapper.find('tbody tr').first().simulate('click', clickEvent);
@@ -329,7 +319,7 @@ describe('<SortableTable />', () => {
   it('should render correct column classnames when present', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
     ];
     const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
 
@@ -343,7 +333,7 @@ describe('<SortableTable />', () => {
   describe('Expandable column', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
     ];
 
     it('should not render expandable column helper when onExpand not present', () => {
@@ -352,13 +342,17 @@ describe('<SortableTable />', () => {
     });
 
     it('should render expandable column helper when onExpand present', () => {
-      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={() => {}} />);
+      const wrapper = mount(
+        <SortableTable columns={columns} rows={[1, 2, 3]} onExpand={() => {}} />
+      );
       assert.equal(wrapper.find('td Button').length, 3, 'expand buttons missing');
     });
 
     it('should call onExpand when clicked', () => {
       const onExpand = sinon.stub();
-      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} onExpand={onExpand} />);
+      const wrapper = mount(
+        <SortableTable columns={columns} rows={[1, 2, 3]} onExpand={onExpand} />
+      );
       wrapper.find('td Button').first().simulate('click');
       assert(onExpand.calledWith(1));
       wrapper.find('td Button').last().simulate('click');
@@ -369,7 +363,7 @@ describe('<SortableTable />', () => {
   describe('Selectable column', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
     ];
 
     it('should not render selectable column helper when rowSelected not present', () => {
@@ -378,7 +372,9 @@ describe('<SortableTable />', () => {
     });
 
     it('should render selectable column helper when rowSelected present', () => {
-      const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} rowSelected={() => false} />);
+      const wrapper = mount(
+        <SortableTable columns={columns} rows={[1, 2, 3]} rowSelected={() => false} />
+      );
       assert.equal(wrapper.find('input').length, 4, 'select checkbox missing');
     });
 
@@ -392,9 +388,15 @@ describe('<SortableTable />', () => {
           rowSelected={() => false}
         />
       );
-      wrapper.find('td input').first().simulate('change', { target: { checked: true } });
+      wrapper
+        .find('td input')
+        .first()
+        .simulate('change', { target: { checked: true } });
       assert(onSelect.calledWith(1, true));
-      wrapper.find('td input').last().simulate('change', { target: { checked: false } });
+      wrapper
+        .find('td input')
+        .last()
+        .simulate('change', { target: { checked: false } });
       assert(onSelect.calledWith(3, false));
     });
 
@@ -434,9 +436,15 @@ describe('<SortableTable />', () => {
           rowSelected={() => false}
         />
       );
-      wrapper.find('th input').first().simulate('change', { target: { checked: true } });
+      wrapper
+        .find('th input')
+        .first()
+        .simulate('change', { target: { checked: true } });
       assert(onSelectAll.calledWith(true));
-      wrapper.find('th input').first().simulate('change', { target: { checked: false } });
+      wrapper
+        .find('th input')
+        .first()
+        .simulate('change', { target: { checked: false } });
       assert(onSelectAll.calledWith(false));
     });
 

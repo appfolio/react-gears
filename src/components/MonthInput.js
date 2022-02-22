@@ -61,10 +61,7 @@ export default class MonthInput extends React.Component {
     id: PropTypes.string,
     monthFormat: PropTypes.string,
     yearFormat: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     disabled: PropTypes.bool,
     footer: PropTypes.node,
     header: PropTypes.node,
@@ -74,12 +71,9 @@ export default class MonthInput extends React.Component {
     parse: PropTypes.func,
     positionFixed: PropTypes.bool,
     showOnFocus: PropTypes.bool,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ])
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     // TODO allow custom header/footer, header & day format?
-  }
+  };
 
   static defaultProps = {
     className: '',
@@ -92,8 +86,8 @@ export default class MonthInput extends React.Component {
     onBlur: () => {},
     onChange: () => {},
     parse: (value, dateFormat) => parse(value, dateFormat),
-    showOnFocus: true
-  }
+    showOnFocus: true,
+  };
 
   constructor(props) {
     super(props);
@@ -105,17 +99,17 @@ export default class MonthInput extends React.Component {
 
     this.state = {
       open: false,
-      value
+      value,
     };
   }
 
   onChange = (event) => {
     const value = event.target.value;
     this.setState({
-      value
+      value,
     });
     this.parseInput(value);
-  }
+  };
 
   onSelect = (newDate) => {
     this.setDate(newDate);
@@ -124,9 +118,10 @@ export default class MonthInput extends React.Component {
 
   onKeyDown = (event) => {
     // Ignore arrows if closed, disabled, or modifiers are down:
-    const allowArrows = this.state.open &&
-                        this.props.keyboard &&
-                        !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
+    const allowArrows =
+      this.state.open &&
+      this.props.keyboard &&
+      !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
 
     switch (event.keyCode) {
       case 9: // TAB
@@ -154,7 +149,7 @@ export default class MonthInput extends React.Component {
 
   setDate = (date) => {
     this.setState({
-      value: format(date, this.props.dateFormat)
+      value: format(date, this.props.dateFormat),
     });
     this.props.onChange(date, true);
   };
@@ -169,7 +164,12 @@ export default class MonthInput extends React.Component {
     return this.state.value;
   };
 
-  getCurrentDate = () => parseValue(this.props.value !== undefined ? this.props.value : this.state.value, this.props.dateFormat, this.props.parse);
+  getCurrentDate = () =>
+    parseValue(
+      this.props.value !== undefined ? this.props.value : this.state.value,
+      this.props.dateFormat,
+      this.props.parse
+    );
 
   parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
@@ -182,15 +182,22 @@ export default class MonthInput extends React.Component {
   };
 
   close = () => this.setState({ open: false });
+
   nextMonth = () => this.setDate(addMonths(this.getCurrentDate(), 1));
+
   nextYear = () => this.setDate(addYears(this.getCurrentDate(), 1));
+
   prevMonth = () => this.setDate(addMonths(this.getCurrentDate(), -1));
+
   prevYear = () => this.setDate(addYears(this.getCurrentDate(), -1));
+
   show = () => this.setState({ open: true });
+
   today = () => {
     this.setDate(new Date());
     this.close();
-  }
+  };
+
   toggle = () => (this.state.open ? this.close() : this.show());
 
   setInputValue = () => {
@@ -199,15 +206,17 @@ export default class MonthInput extends React.Component {
     }
     const currentValue = this.getCurrentValue();
     const inputValue = this.inputEl.value;
-    const currentValueAsDate = currentValue && this.props.parse(currentValue, this.props.dateFormat);
+    const currentValueAsDate =
+      currentValue && this.props.parse(currentValue, this.props.dateFormat);
     const inputValueAsDate = this.props.parse(inputValue || '', this.props.dateFormat);
-    const isSame = ((currentValueAsDate && inputValueAsDate) &&
-                    isSameDay(currentValueAsDate, inputValueAsDate)) || (inputValue === currentValue);
+    const isSame =
+      (currentValueAsDate && inputValueAsDate && isSameDay(currentValueAsDate, inputValueAsDate)) ||
+      inputValue === currentValue;
 
     if (!isSame) {
       this.inputEl.value = currentValue;
     }
-  }
+  };
 
   onBlur = (e) => {
     this.props.onBlur(e);
@@ -216,7 +225,7 @@ export default class MonthInput extends React.Component {
     if (parsedDate) {
       this.inputEl.value = format(parsedDate, this.props.dateFormat);
     }
-  }
+  };
 
   componentDidMount() {
     this.setInputValue();
@@ -227,7 +236,18 @@ export default class MonthInput extends React.Component {
   }
 
   render() {
-    const { className, dateVisible, disabled, footer, header, id, monthFormat, yearFormat, positionFixed, showOnFocus } = this.props;
+    const {
+      className,
+      dateVisible,
+      disabled,
+      footer,
+      header,
+      id,
+      monthFormat,
+      yearFormat,
+      positionFixed,
+      showOnFocus,
+    } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
     const dropdownProps = open ? { positionFixed } : {};
@@ -242,7 +262,9 @@ export default class MonthInput extends React.Component {
               <input
                 className="form-control"
                 id={id}
-                ref={(el) => { this.inputEl = el; }}
+                ref={(el) => {
+                  this.inputEl = el;
+                }}
                 type="text"
                 onBlur={this.onBlur}
                 onChange={this.onChange}
@@ -280,15 +302,17 @@ export default class MonthInput extends React.Component {
                     <Icon name="angle-double-left" fixedWidth />
                     <span className="sr-only">Previous Year</span>
                   </Button>
-                  <Button className="p-2 js-prev-month" color="link" onClick={() => this.prevMonth()}>
+                  <Button
+                    className="p-2 js-prev-month"
+                    color="link"
+                    onClick={() => this.prevMonth()}
+                  >
                     <Icon name="angle-left" fixedWidth />
                     <span className="sr-only">Previous Month</span>
                   </Button>
                 </ButtonGroup>
 
-                <span className="m-auto">
-                  {format(date, 'MMMM YYYY')}
-                </span>
+                <span className="m-auto">{format(date, 'MMMM YYYY')}</span>
 
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
@@ -315,12 +339,15 @@ export default class MonthInput extends React.Component {
             {footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button onClick={this.today} className="mr-2">Today</Button>
+                  <Button onClick={this.today} className="mr-2">
+                    Today
+                  </Button>
                 </div>
               </footer>
             )}
           </DropdownMenu>
         </Dropdown>
-      </div>);
+      </div>
+    );
   }
 }

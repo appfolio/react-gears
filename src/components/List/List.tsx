@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import { ListGroupProps } from 'reactstrap';
-import { Col, CustomInput, ListGroup, ListGroupItem, Row, ScrollContainer } from '../../index';
+import Col from '../Col';
+import ListGroup from '../ListGroup';
+import ListGroupItem from '../ListGroupItem';
+import CustomInput from '../CustomInput';
+import Row from '../Row';
+import ScrollContainer from '../ScrollContainer';
 import FilterHeader, { FilterHeaderProps } from './FilterHeader';
 import SortHeader, { SortHeaderProps } from './SortHeader';
 import ListItem, { ListItemProps } from './ListItem';
 import useMap from '../../hooks/useMap';
 
 interface Sort {
-  property?: string | string [];
+  property?: string | string[];
   ascending?: boolean;
 }
 
@@ -30,20 +35,20 @@ export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
   onExpand?: ListItemProps<T>['onExpand'];
   onFilter?: FilterHeaderProps['onChange'];
   itemClassName?: string;
-  items?: T[],
-  select?: 'checkbox' | 'switch' | 'radio' | '',
-  selected?: T[],
-  onSelect?: (items: T[]) => void,
-  onSort?: ({ property, ascending }: Sort) => void,
-  selectedKeyMapper?: (item: T) => any,
-  sort?: Sort,
-  sortByLabel?: SortHeaderProps['sortByLabel'],
-  sortOptions?: SortHeaderProps['sortOptions'],
-  selectable?: (item: T) => boolean,
+  items?: T[];
+  select?: 'checkbox' | 'switch' | 'radio' | '';
+  selected?: T[];
+  onSelect?: (items: T[]) => void;
+  onSort?: ({ property, ascending }: Sort) => void;
+  selectedKeyMapper?: (item: T) => any;
+  sort?: Sort;
+  sortByLabel?: SortHeaderProps['sortByLabel'];
+  sortOptions?: SortHeaderProps['sortOptions'];
+  selectable?: (item: T) => boolean;
 }
 
 const defaultProps = {
-  children: () => <></>,
+  children: () => null,
   filterPlaceholder: 'Search',
   items: [],
   onSelect: () => {},
@@ -52,10 +57,10 @@ const defaultProps = {
   selectedKeyMapper: (x: any) => x,
   sort: {},
   sortByLabel: 'Sort by',
-  selectable: () => true
+  selectable: () => true,
 };
 
-function List<T extends Item>({
+const List = <T extends Item>({
   children: render = defaultProps.children,
   filter,
   filterPlaceholder = defaultProps.filterPlaceholder,
@@ -77,35 +82,41 @@ function List<T extends Item>({
   sortOptions,
   selectable = defaultProps.selectable,
   ...props
-}: ListProps<T>) {
+}: ListProps<T>) => {
   const {
     map: selection,
     has: hasItem,
     add: addItem,
     remove: removeItem,
     clear: clearSelection,
-    replace: replaceSelection
+    replace: replaceSelection,
   } = useMap(selected, selectedKeyMapper);
   const [selectAllId] = useState(() => uniqueId('selectall-'));
   const selectAllRef = useRef<HTMLInputElement>(null);
 
-  useDeepCompareEffect(() => onSelect(Array.from(selection.values())), [Array.from(selection.values()), onSelect]);
+  useDeepCompareEffect(
+    () => onSelect(Array.from(selection.values())),
+    [Array.from(selection.values()), onSelect]
+  );
   useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);
 
   useDeepCompareEffect(() => {
     const includes = (xs: T[], x: T) => xs.map(selectedKeyMapper).includes(selectedKeyMapper(x));
-    selection.forEach((item) => { if (!includes(items, item)) removeItem(item); });
+    selection.forEach((item) => {
+      if (!includes(items, item)) removeItem(item);
+    });
   }, [items, Array.from(selection.values()), selectedKeyMapper]);
 
   useDeepCompareEffect(() => {
     if (selectAllRef.current) {
-      selectAllRef.current.indeterminate = items.length > 0 && selection.size > 0 && selection.size !== items.length;
+      selectAllRef.current.indeterminate =
+        items.length > 0 && selection.size > 0 && selection.size !== items.length;
     }
   }, [items, Array.from(selection.values())]);
 
   const allSelectableSelected = useMemo(
-    () => items.filter(item => selectable(item)).every(item => selection.has(item)),
-    [selection, items]
+    () => items.filter((item) => selectable(item)).every((item) => selection.has(item)),
+    [selection, selectable, items]
   );
 
   const handleSelection = (item: T, checked?: boolean) => {
@@ -119,11 +130,9 @@ function List<T extends Item>({
   };
 
   const handleSelectAll = () => {
-    const selectableItems = items.filter(item => selectable(item));
-    const unselectableItems = items.filter(item => !selectable(item));
-    const unselectableSelectedItems = unselectableItems.filter(
-      item => selected.includes(item)
-    );
+    const selectableItems = items.filter((item) => selectable(item));
+    const unselectableItems = items.filter((item) => !selectable(item));
+    const unselectableSelectedItems = unselectableItems.filter((item) => selected.includes(item));
 
     if (allSelectableSelected) {
       // deselecting all items except those are selected and unselectable
@@ -154,7 +163,7 @@ function List<T extends Item>({
     <ListGroup flush={flush} tag="div" {...props}>
       {showHeader && (
         <ListGroupItem tag="header" className="d-flex align-items-center bg-secondary js-header">
-          {select && (select !== 'radio') && (
+          {select && select !== 'radio' && (
             <div className="h-100 d-flex align-items-center mr-3">
               <CustomInput
                 id={selectAllId}
@@ -169,30 +178,31 @@ function List<T extends Item>({
             </div>
           )}
           <div className="w-100">
-            {(!sortOptions && !onFilter) ?
-              (header) : (
-                <Row className="no-gutters">
-                  <Col xs="12" sm="6" md="4">
-                    {header}
-                    {!header && onFilter && (
-                      <FilterHeader
-                        placeholder={filterPlaceholder}
-                        onChange={onFilter}
-                        value={filter}
-                      />
-                    )}
-                  </Col>
-                  {sortOptions && (
-                    <SortHeader
-                      ascending={ascending}
-                      sortByLabel={sortByLabel}
-                      sortOptions={sortOptions}
-                      sortProperty={sortProperty}
-                      onChangeAscending={setAscending}
-                      onChangeProperty={setSortProperty}
+            {!sortOptions && !onFilter ? (
+              header
+            ) : (
+              <Row className="no-gutters">
+                <Col xs="12" sm="6" md="4">
+                  {header}
+                  {!header && onFilter && (
+                    <FilterHeader
+                      placeholder={filterPlaceholder}
+                      onChange={onFilter}
+                      value={filter}
                     />
                   )}
-                </Row>
+                </Col>
+                {sortOptions && (
+                  <SortHeader
+                    ascending={ascending}
+                    sortByLabel={sortByLabel}
+                    sortOptions={sortOptions}
+                    sortProperty={sortProperty}
+                    onChangeAscending={setAscending}
+                    onChangeProperty={setSortProperty}
+                  />
+                )}
+              </Row>
             )}
           </div>
         </ListGroupItem>
@@ -220,7 +230,7 @@ function List<T extends Item>({
       </ScrollContainer>
     </ListGroup>
   );
-}
+};
 
 List.propTypes = {
   ...ListGroup.propTypes,
@@ -241,10 +251,11 @@ List.propTypes = {
   selectedKeyMapper: PropTypes.func,
   sort: PropTypes.shape({
     property: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-    ascending: PropTypes.bool
+    ascending: PropTypes.bool,
   }),
   sortByLabel: PropTypes.string,
   sortOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  selectable: PropTypes.func,
 };
 
 List.defaultProps = defaultProps;

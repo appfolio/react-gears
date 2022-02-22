@@ -8,5 +8,5 @@ interface MonthCalendarProps {
   onSelect?: (date: Date) => void;
 }
 
-declare class MonthCalendar extends React.Component<MonthCalendarProps, {}> { }
+declare class MonthCalendar extends React.Component<MonthCalendarProps, {}> {}
 export default MonthCalendar;

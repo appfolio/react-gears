@@ -17,7 +17,7 @@ export default class ImageCarousel extends React.Component {
     defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
     slide: PropTypes.bool,
-    ...Modal.propTypes
+    ...Modal.propTypes,
   };
 
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class ImageCarousel extends React.Component {
     fade: false,
     items: [],
     slide: false,
-    toggle: () => {}
+    toggle: () => {},
   };
 
   constructor(props) {
@@ -44,7 +44,7 @@ export default class ImageCarousel extends React.Component {
     if (e.key === 'Escape') {
       this.props.toggle();
     }
-  }
+  };
 
   componentDidMount() {
     document.addEventListener('keyup', this.handleEscape);
@@ -52,7 +52,7 @@ export default class ImageCarousel extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { index, isOpen } = this.props;
-    if (index !== prevProps.index || (isOpen && (isOpen !== prevProps.isOpen))) {
+    if (index !== prevProps.index || (isOpen && isOpen !== prevProps.isOpen)) {
       this.goToIndex(index);
     }
   }
@@ -62,7 +62,18 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { defaultActiveIndex, autoPlay, controls, index, items, indicators, interval, slide, toggle, ...props } = this.props;
+    const {
+      defaultActiveIndex,
+      autoPlay,
+      controls,
+      index,
+      items,
+      indicators,
+      interval,
+      slide,
+      toggle,
+      ...props
+    } = this.props;
 
     return (
       <Modal
@@ -72,7 +83,12 @@ export default class ImageCarousel extends React.Component {
               name="times"
               size="2x"
               className="text-white"
-              style={{ position: 'fixed', top: '2rem', right: '2rem', zIndex: 15000 }}
+              style={{
+                position: 'fixed',
+                top: '2rem',
+                right: '2rem',
+                zIndex: 15000,
+              }}
               onClick={toggle}
             />
             <UncontrolledCarousel

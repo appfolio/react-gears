@@ -19,21 +19,17 @@ const Header = ({ active, ascending, children, className, onSort, ...props }: He
     {...props}
   >
     {children}
-    {onSort &&
-      <Icon
-        name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'}
-        fixedWidth
-      />
-    }
-    <style jsx>{`
-      th {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-    `}
+    {onSort && <Icon name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'} fixedWidth />}
+    <style jsx>
+      {`
+        th {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+      `}
     </style>
   </th>
 );
@@ -42,7 +38,7 @@ Header.displayName = 'Header';
 
 Header.defaultProps = {
   active: false,
-  ascending: true
+  ascending: true,
 };
 
 export default Header;

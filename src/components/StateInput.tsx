@@ -6,24 +6,24 @@ import US from './address/USStates';
 import CA from './address/CAProvinces';
 
 const STATES_LOOKUP: {
-  [key: string]: { label: string, value: string }[] | undefined
-  'US': { label: string, value: string }[],
-  'CA': { label: string, value: string }[],
+  [key: string]: { label: string; value: string }[] | undefined;
+  US: { label: string; value: string }[];
+  CA: { label: string; value: string }[];
 } = {
   CA,
-  US
+  US,
 };
 
 type StateInputProps = {
-  className?: string,
-  countries?: string[],
-  disabled?: boolean,
-  id?: string,
-  name?: string,
-  onChange?: (value: string | null) => any,
-  placeholder?: string,
-  value?: string,
-}
+  className?: string;
+  countries?: string[];
+  disabled?: boolean;
+  id?: string;
+  name?: string;
+  onChange?: (value: string | null) => any;
+  placeholder?: string;
+  value?: string;
+};
 
 const defaultProps = {
   countries: ['US'],
@@ -45,7 +45,7 @@ const StateInput: React.FunctionComponent<StateInputProps> = ({
   const STATES = countries.reduce((result, country) => {
     const states = STATES_LOOKUP[country] || [];
     return [...result, ...states];
-  }, [] as { label: string, value: string }[]);
+  }, [] as { label: string; value: string }[]);
 
   return (
     <Input
@@ -55,11 +55,14 @@ const StateInput: React.FunctionComponent<StateInputProps> = ({
       disabled={disabled}
       id={id}
       name={name}
-      onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+      onChange={(e) => onChange(e.target.value === '' ? null : e.target.value)}
     >
       <option value="">{placeholder}</option>
-      {STATES.map(state =>
-        <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
+      {STATES.map((state) => (
+        <option title={state.label} value={state.value} key={state.value}>
+          {state.value}
+        </option>
+      ))}
     </Input>
   );
 };

@@ -10,14 +10,12 @@ import {
   Input,
   FormLabelGroup,
   RadioInput,
-  StaticInput
+  StaticInput,
 } from '../../src';
 
 describe('<FormRow />', () => {
   describe('by default', () => {
-    const component = shallow(
-      <FormRow label="First Name" id="someID" size="sm" />
-    );
+    const component = shallow(<FormRow label="First Name" id="someID" size="sm" />);
 
     it('should create a FormLabelGroup', () => {
       const formLabelGroup = component.find(FormLabelGroup);
@@ -70,27 +68,28 @@ describe('<FormRow />', () => {
   });
 
   describe('with custom type', () => {
-    const Custom = () => <div>Hi</div>;
-    const component = shallow(<FormRow label="First Name" type={Custom} />);
+    const customComponent = () => <div>Hi</div>;
+    const component = shallow(<FormRow label="First Name" type={customComponent} />);
 
     it('should render custom input', () => {
-      const custom = component.find(Custom);
+      const custom = component.find(customComponent);
       assert.equal(custom.length, 1);
       assert.equal(custom.first().prop('type'), null);
     });
 
     describe('that does not grok validity', () => {
-      const Custom2 = ({ ...props }) => (
+      const customComponent2 = ({ ...props }) => (
         <div>
           {props.valid !== undefined && 'valid!'}
           {props.invalid !== undefined && 'invalid!'}
         </div>
       );
-      Custom2.propTypes = {};
+
+      customComponent2.propTypes = {};
 
       it('should omit valid/invalid props', () => {
         const component2 = render(
-          <FormRow label="First Name" type={Custom2} feedback="Na brah" />
+          <FormRow label="First Name" type={customComponent2} feedback="Na brah" />
         );
         assert.equal(component2.toString().indexOf('valid!'), -1);
         assert.equal(component2.toString().indexOf('invalid!'), -1);
@@ -108,9 +107,7 @@ describe('<FormRow />', () => {
   });
 
   describe('with custom width', () => {
-    const component = shallow(
-      <FormRow label="First Name" width={{ xs: 6, sm: 7 }} />
-    );
+    const component = shallow(<FormRow label="First Name" width={{ xs: 6, sm: 7 }} />);
 
     it('should set the FormLabelGroup width', () => {
       const formLabelGroup = component.find(FormLabelGroup);
@@ -129,11 +126,11 @@ describe('<FormRow />', () => {
 
   describe('with children', () => {
     const component = shallow(
-      <FormRow label='First Name' type='select'>
-        <FormChoice value='a'>A</FormChoice>
-        {false && <FormChoice value='b'>B</FormChoice>}
-        {undefined && <FormChoice value='c'>C</FormChoice>}
-        {true && <FormChoice value='d'>D</FormChoice>}
+      <FormRow label="First Name" type="select">
+        <FormChoice value="a">A</FormChoice>
+        {false && <FormChoice value="b">B</FormChoice>}
+        {undefined && <FormChoice value="c">C</FormChoice>}
+        {true && <FormChoice value="d">D</FormChoice>}
       </FormRow>
     );
 

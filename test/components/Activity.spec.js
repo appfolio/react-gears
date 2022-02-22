@@ -8,7 +8,7 @@ describe('<Activity />', () => {
   const props = {
     date: new Date(),
     action: 'Created',
-    by: 'services'
+    by: 'services',
   };
 
   it('should render correctly', () => {
@@ -38,7 +38,8 @@ describe('<Activity />', () => {
     const component = shallow(
       <Activity {...props}>
         <div id="inner">Please contact HR for details.</div>
-      </Activity>);
+      </Activity>
+    );
     assert(component);
     const inner = component.find('#inner');
     assert(inner.exists());

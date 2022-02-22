@@ -14,21 +14,21 @@ export const LiveExample = () => {
   return (
     <div>
       <p>
-        I can be placed in context to provide some contextual <strong id="PopoverExample">help</strong>!
+        I can be placed in context to provide some contextual{' '}
+        <strong id="PopoverExample">help</strong>!
       </p>
       <Popover
         isOpen={open}
         target="PopoverExample"
         trigger={select('trigger', ['click', 'hover', 'focus'], 'click')}
-        toggle={(e) => { setOpen(!open); action('toggle')(e); }}
-        placement={select('placement', [
-        'top', 'bottom', 'left', 'right'
-      ], 'bottom')}
+        toggle={(e) => {
+          setOpen(!open);
+          action('toggle')(e);
+        }}
+        placement={select('placement', ['top', 'bottom', 'left', 'right'], 'bottom')}
       >
         <PopoverBody>
-          <h5>
-            {text('PopoverTitle', 'Hello World')}
-          </h5>
+          <h5>{text('PopoverTitle', 'Hello World')}</h5>
           {text('PopoverBody', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
         </PopoverBody>
       </Popover>
@@ -43,7 +43,10 @@ export const Uncontrolled = () => (
     </Button>
     <UncontrolledPopover placement="bottom" target="UncontrolledPopover">
       <PopoverHeader>Popover Title</PopoverHeader>
-      <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+      <PopoverBody>
+        Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia
+        quam venenatis vestibulum.
+      </PopoverBody>
     </UncontrolledPopover>
   </div>
 );

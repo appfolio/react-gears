@@ -14,7 +14,11 @@ describe('<FormChoice />', () => {
     });
 
     it('should use id when set', () => {
-      const wrapper = shallow(<FormChoice type="radio" id="yowza">A</FormChoice>);
+      const wrapper = shallow(
+        <FormChoice type="radio" id="yowza">
+          A
+        </FormChoice>
+      );
       assert(wrapper.find('Input[id="yowza"]').exists());
       assert(wrapper.find('Label[for="yowza"]').exists());
     });
@@ -22,7 +26,9 @@ describe('<FormChoice />', () => {
 
   describe('type=select', () => {
     const component = shallow(
-      <FormChoice type="select" value="foobar">Choice 1</FormChoice>
+      <FormChoice type="select" value="foobar">
+        Choice 1
+      </FormChoice>
     );
 
     it('should render an <option>', () => {
@@ -47,9 +53,7 @@ describe('<FormChoice />', () => {
 
   describe('type=checkbox', () => {
     it('should render with correct type and label', () => {
-      const component = shallow(
-        <FormChoice type="checkbox">my type</FormChoice>
-      );
+      const component = shallow(<FormChoice type="checkbox">my type</FormChoice>);
 
       assert.equal(component.find(Input).prop('type'), 'checkbox');
       assert.equal(component.find(Label).props().children, 'my type');
@@ -58,7 +62,9 @@ describe('<FormChoice />', () => {
 
     it('should not have a FormGroup when not inline', () => {
       const component = shallow(
-        <FormChoice type="checkbox" inline>my type</FormChoice>
+        <FormChoice type="checkbox" inline>
+          my type
+        </FormChoice>
       );
 
       assert.equal(component.find(Input).prop('type'), 'checkbox');
@@ -67,16 +73,16 @@ describe('<FormChoice />', () => {
 
     it('should pass on containerClassName as className', () => {
       const component = shallow(
-        <FormChoice type="checkbox" containerClassName="myClass" inline>my type</FormChoice>
+        <FormChoice type="checkbox" containerClassName="myClass" inline>
+          my type
+        </FormChoice>
       );
 
       assert(/\bmyClass\b/.test(component.find('div').prop('className')));
     });
 
     describe('with computed value', () => {
-      const computedComponent = shallow(
-        <FormChoice type="checkbox">Choice 1</FormChoice>
-      );
+      const computedComponent = shallow(<FormChoice type="checkbox">Choice 1</FormChoice>);
 
       const inputElement = computedComponent.find(Input);
 
@@ -91,7 +97,9 @@ describe('<FormChoice />', () => {
 
     describe('with explicit value', () => {
       const component = shallow(
-        <FormChoice type="checkbox" value='A'>Choice 1</FormChoice>
+        <FormChoice type="checkbox" value="A">
+          Choice 1
+        </FormChoice>
       );
 
       const inputElement = component.find(Input);
@@ -108,9 +116,7 @@ describe('<FormChoice />', () => {
 
   describe('type=radio', () => {
     it('should render with correct type and label', () => {
-      const component = shallow(
-        <FormChoice type="radio">my type</FormChoice>
-      );
+      const component = shallow(<FormChoice type="radio">my type</FormChoice>);
 
       assert.equal(component.find(Input).prop('type'), 'radio');
       assert.equal(component.find(Label).props().children, 'my type');
@@ -119,7 +125,9 @@ describe('<FormChoice />', () => {
 
     it('should not have a FormGroup when not inline', () => {
       const component = shallow(
-        <FormChoice type="radio" inline>my type</FormChoice>
+        <FormChoice type="radio" inline>
+          my type
+        </FormChoice>
       );
 
       assert.equal(component.find(Input).prop('type'), 'radio');
@@ -127,9 +135,7 @@ describe('<FormChoice />', () => {
     });
 
     describe('with computed value', () => {
-      const computedComponent = shallow(
-        <FormChoice type="radio">Choice 1</FormChoice>
-      );
+      const computedComponent = shallow(<FormChoice type="radio">Choice 1</FormChoice>);
 
       const inputElement = computedComponent.find(Input);
 
@@ -144,7 +150,9 @@ describe('<FormChoice />', () => {
 
     describe('with explicit value', () => {
       const component = shallow(
-        <FormChoice type="radio" value='A'>Choice 1</FormChoice>
+        <FormChoice type="radio" value="A">
+          Choice 1
+        </FormChoice>
       );
 
       const inputElement = component.find(Input);

@@ -3,8 +3,8 @@ import { useSessionStorage, useScroll } from 'react-use';
 import { v4 as uuidv4 } from 'uuid';
 
 type Position = {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 };
 
 function useSavedScroll(container: RefObject<HTMLElement>, key: string | undefined) {
@@ -19,9 +19,8 @@ function useSavedScroll(container: RefObject<HTMLElement>, key: string | undefin
     if (container.current && position && key) {
       container.current.scrollTo(position.x, position.y);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [container, key]);
 }
 
 export default useSavedScroll;
-

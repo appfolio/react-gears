@@ -24,20 +24,20 @@ const Placeholder = ({
 }: PlaceholderProps) => {
   const containerClasses = classnames(className, {
     [`placeholder-${type}`]: type,
-    [`text-${color}`]: color
+    [`text-${color}`]: color,
   });
   const classes = classnames('placeholder', 'rounded-pill', {
-    [`placeholder-${size}`]: size
+    [`placeholder-${size}`]: size,
   });
 
   const widths = useMemo<number[]>(() => {
-    const lineWidth = minWidth + (Math.random() * (width - minWidth));
+    const lineWidth = minWidth + Math.random() * (width - minWidth);
     const maxWords = Math.ceil(Math.random() * words);
 
     const numbers = range(maxWords).map(() => Math.max(Math.random(), 0.2));
     const sum = numbers.reduce((total, n) => total + n, 0);
 
-    return numbers.map(n => (n / sum) * lineWidth);
+    return numbers.map((n) => (n / sum) * lineWidth);
   }, [minWidth, width, words]);
 
   return (

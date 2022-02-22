@@ -14,7 +14,16 @@ export const Default = () => {
 
   return (
     <div>
-      <p style={{ fontSize: `${number('fontSize', 1, { range: true, min: 1, max: 5, step: 0.25 })}rem` }}>
+      <p
+        style={{
+          fontSize: `${number('fontSize', 1, {
+            range: true,
+            min: 1,
+            max: 5,
+            step: 0.25,
+          })}rem`,
+        }}
+      >
         The <Spinner type={type} /> will scale with the font size of its container,
       </p>
 

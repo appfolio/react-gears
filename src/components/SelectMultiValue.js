@@ -12,12 +12,12 @@ export default class SelectMultiValue extends React.Component {
     instancePrefix: PropTypes.any,
     disabled: PropTypes.bool,
     onRemove: PropTypes.func,
-    value: PropTypes.object
+    value: PropTypes.object,
   };
 
   static defaultProps = {
-    className: ''
-  }
+    className: '',
+  };
 
   render() {
     const {
@@ -48,7 +48,16 @@ export default class SelectMultiValue extends React.Component {
         style={{ textTransform: 'none', whiteSpace: 'normal' }}
         {...props}
       >
-        {children} <Icon className="ml-1" style={{ opacity: 0.5 }} role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
+        {children}{' '}
+        <Icon
+          className="ml-1"
+          style={{ opacity: 0.5 }}
+          role="button"
+          name="times"
+          onClick={() => {
+            if (!disabled) onRemove(value);
+          }}
+        />
       </Badge>
     );
   }

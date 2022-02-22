@@ -30,19 +30,19 @@ export const Open = () => (
 
 export const Header = () => (
   <ExpandableSection
-    title={(
+    title={
       <>
         <h4 className="m-0">Here's a Header with</h4>
         <Button
           color="link"
           className="ml-auto"
           href="https://www.google.com"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           Extra controls
         </Button>
       </>
-    )}
+    }
     open={boolean('open', true)}
     onToggle={action('onToggle')}
   >

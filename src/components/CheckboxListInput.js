@@ -6,7 +6,7 @@ class CheckboxListInput extends React.Component {
     children: PropTypes.node,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.array
+    value: PropTypes.array,
   };
 
   onChange = (e) => {
@@ -23,25 +23,24 @@ class CheckboxListInput extends React.Component {
 
       this.props.onChange(currentSelection);
     }
-  }
+  };
 
   render() {
-    const {
-      value,
-      children,
-      className,
-      onChange,
-      ...props
-    } = this.props;
+    const { value, children, className, onChange, ...props } = this.props;
 
     return (
       <div className={className}>
-        {React.Children.map(children, choice => React.isValidElement(choice) && React.cloneElement(choice, {
-          type: 'checkbox',
-          selected: value,
-          onChange: this.onChange,
-          ...props
-        }))}
+        {React.Children.map(
+          children,
+          (choice) =>
+            React.isValidElement(choice) &&
+            React.cloneElement(choice, {
+              type: 'checkbox',
+              selected: value,
+              onChange: this.onChange,
+              ...props,
+            })
+        )}
       </div>
     );
   }

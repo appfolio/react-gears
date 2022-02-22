@@ -61,10 +61,7 @@ describe('<Alert />', () => {
 
       assert.equal(component.find(Inner).prop('isOpen'), true);
 
-      component
-        .find(Inner)
-        .find('button')
-        .simulate('click');
+      component.find(Inner).find('button').simulate('click');
       assert.equal(component.find(Inner).prop('isOpen'), false);
     });
 

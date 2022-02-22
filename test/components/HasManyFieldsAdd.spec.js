@@ -7,12 +7,7 @@ import { Button, HasManyFieldsAdd, Icon } from '../../src';
 
 describe('<HasManyFieldsAdd />', () => {
   const component = shallow(
-    <HasManyFieldsAdd
-      outline
-      color="danger"
-      className="foobar"
-      random="prop"
-    >
+    <HasManyFieldsAdd outline color="danger" className="foobar" random="prop">
       Custom Label!
     </HasManyFieldsAdd>
   );
@@ -21,8 +16,7 @@ describe('<HasManyFieldsAdd />', () => {
     assert(component.prop('className').indexOf('foobar') >= 0);
   });
 
-  it('should forward props', () =>
-    assert.equal(component.prop('random'), 'prop'));
+  it('should forward props', () => assert.equal(component.prop('random'), 'prop'));
 
   it('should be a button', () => assert.equal(component.type(), Button));
 
@@ -36,13 +30,7 @@ describe('<HasManyFieldsAdd />', () => {
 
   it('should be a disabled button when disabled', () => {
     const disabledComponent = shallow(
-      <HasManyFieldsAdd
-        outline={false}
-        color="danger"
-        className="foo"
-        random="prop"
-        disabled
-      >
+      <HasManyFieldsAdd outline={false} color="danger" className="foo" random="prop" disabled>
         Custom Label!
       </HasManyFieldsAdd>
     );

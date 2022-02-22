@@ -6,7 +6,9 @@ import { AddressInput, InternationalAddressInput, Label } from '../src';
 import states from '../src/components/address/USStates.ts';
 
 // Wrapping as uncontrolled so that story is easier to use:
-const UncontrolledInternationalAddressInput = uncontrollable(InternationalAddressInput, { value: 'onChange' });
+const UncontrolledInternationalAddressInput = uncontrollable(InternationalAddressInput, {
+  value: 'onChange',
+});
 UncontrolledInternationalAddressInput.displayName = 'InternationalAddressInput';
 
 export default {
@@ -23,7 +25,7 @@ export const LiveExample = () => (
         city: 'Smallsville',
         state: 'AL',
         postal: '12345-1234',
-        countryCode: 'US'
+        countryCode: 'US',
       }}
       compact={boolean('compact', false)}
       onBlur={action('address onBlur')}
@@ -49,7 +51,7 @@ export const WithId = () => (
         city: 'Smallsville',
         state: 'AL',
         postal: '12345-1234',
-        countryCode: 'US'
+        countryCode: 'US',
       }}
       id="myid"
     />
@@ -63,7 +65,11 @@ export const Controlled = () => (
         address1: text('address1', '123 No Way'),
         address2: text('address2', 'Suite 16'),
         city: text('city', 'Smallsville'),
-        state: select('state', states.map(s => s.value), 'AL'),
+        state: select(
+          'state',
+          states.map((s) => s.value),
+          'AL'
+        ),
         postal: text('postal', '12345-1234'),
         countryCode: text('countryCode', 'US'),
       }}

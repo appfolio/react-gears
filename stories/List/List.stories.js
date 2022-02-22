@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text, number } from '@storybook/addon-knobs';
 import { List, Label } from '../../src';
@@ -17,9 +18,12 @@ const currency = new Intl.NumberFormat('en-US', {
 const ItemRow = React.forwardRef(({ item }, ref) => (
   <div ref={ref} className="d-flex justify-content-between flex-column flex-sm-row">
     <div className="mr-auto pb-2">
-      <h4 className="m-0">{item.first} {item.last}</h4>
+      <h4 className="m-0">
+        {item.first} {item.last}
+      </h4>
       <p>{item.address}</p>
-      <Label className="text-muted">Base late fee for October 2019:</Label> {currency.format(item.fee)}
+      <Label className="text-muted">Base late fee for October 2019:</Label>{' '}
+      {currency.format(item.fee)}
     </div>
     <div className="pr-3 pb-2">
       {currency.format(item.fee)}
@@ -32,6 +36,15 @@ const ItemRow = React.forwardRef(({ item }, ref) => (
   </div>
 ));
 
+ItemRow.propTypes = {
+  item: PropTypes.shape({
+    first: PropTypes.string,
+    last: PropTypes.string,
+    address: PropTypes.string,
+    fee: PropTypes.number,
+  }),
+};
+
 export const JustItems = () => (
   <List
     height={text('height', '70vh')}
@@ -39,7 +52,7 @@ export const JustItems = () => (
     striped={boolean('striped', false)}
     flush={boolean('flush')}
   >
-    {item => <ItemRow item={item} />}
+    {(item) => <ItemRow item={item} />}
   </List>
 );
 
@@ -57,7 +70,9 @@ export const ScrollToItem = () => {
       striped={boolean('striped', false)}
       flush={boolean('flush')}
     >
-      {item => <ItemRow ref={item.id === number('scrollToId', 10) ? itemRef : undefined} item={item} />}
+      {(item) => (
+        <ItemRow ref={item.id === number('scrollToId', 10) ? itemRef : undefined} item={item} />
+      )}
     </List>
   );
 };
@@ -70,9 +85,11 @@ export const SaveScrollPositionBetweenPageLoads = () => (
     striped={boolean('striped', false)}
     flush={boolean('flush')}
   >
-    {item => <ItemRow item={item} />}
+    {(item) => <ItemRow item={item} />}
   </List>
 );
+
+const Hello = () => <h1>Hello!</h1>;
 
 export const WithEverything = () => {
   const [filter, setFilter] = useState('');
@@ -82,7 +99,7 @@ export const WithEverything = () => {
       filter={filter}
       height={text('height', '50vh')}
       items={data}
-      onExpand={() => <h1>Hello!</h1>}
+      onExpand={Hello}
       onFilter={(val) => {
         action('onFilter')(val);
         setFilter(val);
@@ -102,7 +119,7 @@ export const WithEverything = () => {
       striped={boolean('striped', false)}
       flush={boolean('flush')}
     >
-      {item => <ItemRow item={item} />}
+      {(item) => <ItemRow item={item} />}
     </List>
   );
 };
@@ -121,7 +138,7 @@ export const WithFiltering = () => {
         setFilter(val);
       }}
     >
-      {item => <ItemRow item={item} />}
+      {(item) => <ItemRow item={item} />}
     </List>
   );
 };
@@ -129,27 +146,24 @@ export const WithFiltering = () => {
 export const WithSort = () => {
   const [sort, setSort] = useState({ property: 'last', ascending: true });
   return (
-    (
-      <List
-        height={text('height', '50vh')}
-        items={data}
-        onExpand={() => <h1>Hello!</h1>}
-        onSort={(sortVal) => {
-          action('onSort')(sortVal);
-          setSort(sortVal);
-        }}
-        sort={sort}
-        sortOptions={[
-          { label: 'First Name', value: 'first' },
-          { label: 'Last Name', value: 'last' },
-          { label: 'Address', value: 'address' },
-        ]}
-        striped={boolean('striped', false)}
-        flush={boolean('flush')}
-      >
-        {item => <ItemRow item={item} />}
-      </List>
-    )
+    <List
+      height={text('height', '50vh')}
+      items={data}
+      onExpand={Hello}
+      onSort={(sortVal) => {
+        action('onSort')(sortVal);
+        setSort(sortVal);
+      }}
+      sort={sort}
+      sortOptions={[
+        { label: 'First Name', value: 'first' },
+        { label: 'Last Name', value: 'last' },
+        { label: 'Address', value: 'address' },
+      ]}
+      striped={boolean('striped', false)}
+      flush={boolean('flush')}
+    >
+      {(item) => <ItemRow item={item} />}
+    </List>
   );
 };
-

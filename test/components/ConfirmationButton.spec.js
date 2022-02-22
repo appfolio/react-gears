@@ -22,7 +22,9 @@ describe('<ConfirmationButton />', () => {
   it('should call onClick after two clicks', () => {
     const onClick = sinon.spy();
     const wrapper = mount(
-      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
+      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>
+        DESTROY ALL MONSTERS
+      </ConfirmationButton>
     );
     assert.equal(wrapper.text(), 'DESTROY ALL MONSTERS');
     wrapper.simulate('click');
@@ -36,7 +38,9 @@ describe('<ConfirmationButton />', () => {
   it('should call cancel after click outside', () => {
     const onClick = sinon.spy();
     const wrapper = mount(
-      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
+      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>
+        DESTROY ALL MONSTERS
+      </ConfirmationButton>
     );
 
     const button = wrapper.find(ConfirmationButton);

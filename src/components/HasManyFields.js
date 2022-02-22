@@ -14,26 +14,26 @@ const DragHandler = withDragHandler();
 const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
   <div className="d-flex js-reorderable-item" key={key}>
     <DragHandler />
-    <div className="w-100">
-      {renderHasManyFieldsRow(null, sortIndex, value)}
-    </div>
+    <div className="w-100">{renderHasManyFieldsRow(null, sortIndex, value)}</div>
   </div>
 ));
 
-const SortableContainer = ReorderableContainer(({ value, renderAddRow, renderHasManyFieldsRow }) => (
-  <div>
-    {value.map((item, index) => (
-      <SortableItem
-        key={`${item.key ? item.key : index}`}
-        index={index}
-        sortIndex={index}
-        value={item}
-        renderHasManyFieldsRow={renderHasManyFieldsRow}
-      />
-    ))}
-    {renderAddRow()}
-  </div>
-));
+const SortableContainer = ReorderableContainer(
+  ({ value, renderAddRow, renderHasManyFieldsRow }) => (
+    <div>
+      {value.map((item, index) => (
+        <SortableItem
+          key={`${item.key ? item.key : index}`}
+          index={index}
+          sortIndex={index}
+          value={item}
+          renderHasManyFieldsRow={renderHasManyFieldsRow}
+        />
+      ))}
+      {renderAddRow()}
+    </div>
+  )
+);
 
 class HasManyFields extends React.Component {
   static propTypes = {
@@ -47,8 +47,7 @@ class HasManyFields extends React.Component {
     onRemove: PropTypes.func,
     onUpdate: PropTypes.func,
     onChange: PropTypes.func,
-    template: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
-      .isRequired,
+    template: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
     value: PropTypes.array,
     minimumRows: PropTypes.number,
     maximumRows: PropTypes.number,
@@ -74,7 +73,7 @@ class HasManyFields extends React.Component {
 
     if (this.isUncontrolled) {
       this.state = {
-        value: props.defaultValue
+        value: props.defaultValue,
       };
     }
 
@@ -90,35 +89,29 @@ class HasManyFields extends React.Component {
     this.isUncontrolled && this.setState({ value }); // eslint-disable-line no-unused-expressions
   }
 
-  updateItem = i => (update) => {
+  updateItem = (i) => (update) => {
     this.props.onUpdate(i, update);
-    this.value = [
-      ...this.value.slice(0, i),
-      update,
-      ...this.value.slice(i + 1)
-    ];
+    this.value = [...this.value.slice(0, i), update, ...this.value.slice(i + 1)];
   };
 
   addItem = () => {
     this.props.onAdd();
     const blank =
-      typeof this.props.blank === 'function'
-        ? this.props.blank(this.value)
-        : this.props.blank;
+      typeof this.props.blank === 'function' ? this.props.blank(this.value) : this.props.blank;
     this.value = this.value.concat(blank);
     setTimeout(() => this.focusRow(this.rowRefs.length - 1));
   };
 
-  deleteItem = i => () => {
+  deleteItem = (i) => () => {
     this.props.onRemove(i);
     this.value = [...this.value.slice(0, i), ...this.value.slice(i + 1)];
     setTimeout(() => this.focusRow(this.value.length > i ? i : i - 1));
   };
 
-  setRowReference = index => (rowTemplate) => {
+  setRowReference = (index) => (rowTemplate) => {
     this.rowRefs[index] = rowTemplate;
 
-    if (this.rowRefs.every(row => row === null)) {
+    if (this.rowRefs.every((row) => row === null)) {
       this.rowRefs = [];
     }
   };
@@ -201,15 +194,16 @@ class HasManyFields extends React.Component {
             renderHasManyFieldsRow={this.renderHasManyFieldsRow}
             renderAddRow={this.renderAddRow}
           />
-          <style jsx>{`
-            div {
-              -webkit-touch-callout: none;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
-          `}
+          <style jsx>
+            {`
+              div {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+            `}
           </style>
         </div>
       );

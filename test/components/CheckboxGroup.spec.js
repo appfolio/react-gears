@@ -44,27 +44,37 @@ describe('<CheckboxGroup />', () => {
     const coolerOptions = [
       { label: 'Boba', value: { id: 1, type: 'topping', price: '0.50' } },
       { label: 'Aiyu Jelly', value: { id: 2, type: 'topping', price: '0.50' } },
-      { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
+      {
+        label: 'Konjac Pearls',
+        value: { id: 3, type: 'topping', price: '0.50' },
+      },
     ];
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <CheckboxGroup options={coolerOptions} selected={[{ id: 1, type: 'topping', price: '0.50' }]} onChange={mockOnChange} />
+      <CheckboxGroup
+        options={coolerOptions}
+        selected={[{ id: 1, type: 'topping', price: '0.50' }]}
+        onChange={mockOnChange}
+      />
     );
 
     const option = checkboxes.getByLabelText('Aiyu Jelly');
     fireEvent.click(option);
 
-    sinon.assert.calledWith(
-      mockOnChange,
-      [{ id: 1, type: 'topping', price: '0.50' }, { id: 2, type: 'topping', price: '0.50' }]
-    );
+    sinon.assert.calledWith(mockOnChange, [
+      { id: 1, type: 'topping', price: '0.50' },
+      { id: 2, type: 'topping', price: '0.50' },
+    ]);
   });
 
   it('should work with duplicate groups', () => {
     const coolerOptions = [
       { label: 'Boba', value: { id: 1, type: 'topping', price: '0.50' } },
       { label: 'Aiyu Jelly', value: { id: 2, type: 'topping', price: '0.50' } },
-      { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
+      {
+        label: 'Konjac Pearls',
+        value: { id: 3, type: 'topping', price: '0.50' },
+      },
     ];
     const mockOnChange1 = sinon.spy();
     const mockOnChange2 = sinon.spy();
@@ -72,7 +82,11 @@ describe('<CheckboxGroup />', () => {
       <div>
         <div>
           Peach Green Tea
-          <CheckboxGroup options={coolerOptions} selected={[{ id: 1, type: 'topping', price: '0.50' }]} onChange={mockOnChange1} />
+          <CheckboxGroup
+            options={coolerOptions}
+            selected={[{ id: 1, type: 'topping', price: '0.50' }]}
+            onChange={mockOnChange1}
+          />
         </div>
         <div>
           Jade Lemon
@@ -86,16 +100,13 @@ describe('<CheckboxGroup />', () => {
 
     fireEvent.click(opts[0]);
 
-    sinon.assert.calledWith(
-      mockOnChange1,
-      [{ id: 1, type: 'topping', price: '0.50' }, { id: 2, type: 'topping', price: '0.50' }]
-    );
+    sinon.assert.calledWith(mockOnChange1, [
+      { id: 1, type: 'topping', price: '0.50' },
+      { id: 2, type: 'topping', price: '0.50' },
+    ]);
 
     fireEvent.click(opts[1]);
 
-    sinon.assert.calledWith(
-      mockOnChange2,
-      [{ id: 2, type: 'topping', price: '0.50' }]
-    );
+    sinon.assert.calledWith(mockOnChange2, [{ id: 2, type: 'topping', price: '0.50' }]);
   });
 });

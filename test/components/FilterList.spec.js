@@ -22,7 +22,9 @@ describe('<FilterList />', () => {
   });
 
   it('adds className prop to className', () => {
-    const wrapper = mount(<FilterList filters={[{ label: 'hello', value: 'world' }]} className='cc' />);
+    const wrapper = mount(
+      <FilterList filters={[{ label: 'hello', value: 'world' }]} className="cc" />
+    );
     assert(wrapper.hasClass('cc'));
   });
 
@@ -32,19 +34,25 @@ describe('<FilterList />', () => {
   });
 
   it('passes maxWidth to LabelBadge', () => {
-    const wrapper = mount(<FilterList maxWidth={12} filters={[{ label: 'hello', value: 'world' }]} />);
+    const wrapper = mount(
+      <FilterList maxWidth={12} filters={[{ label: 'hello', value: 'world' }]} />
+    );
     assert.equal(wrapper.children().find(LabelBadge).prop('maxWidth'), 12);
   });
 
   it('passes onRemove callback to LabelBadge', () => {
     const onRemove = sinon.stub();
-    const wrapper = mount(<FilterList filters={[{ label: 'hello', value: 'world' }]} onRemove={onRemove} />);
+    const wrapper = mount(
+      <FilterList filters={[{ label: 'hello', value: 'world' }]} onRemove={onRemove} />
+    );
     wrapper.find('.close').simulate('click');
     sinon.assert.calledWith(onRemove);
   });
 
   it('passes removable to LabelBadge', () => {
-    const wrapper = mount(<FilterList filters={[{ label: 'hello', value: 'world', removable: false }]} />);
+    const wrapper = mount(
+      <FilterList filters={[{ label: 'hello', value: 'world', removable: false }]} />
+    );
     assert.equal(wrapper.children().find(LabelBadge).prop('removable'), false);
   });
 

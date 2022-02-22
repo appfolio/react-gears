@@ -19,11 +19,8 @@ describe('<Calendar />', () => {
   });
 
   it('should be accessible', async () => {
-    await assertAccessible(
-      <Calendar />
-    );
+    await assertAccessible(<Calendar />);
   });
-
 
   it('should default to current month and today', () => {
     const component = mount(<Calendar />);
@@ -57,7 +54,7 @@ describe('<Calendar />', () => {
 
   it('should hide dates which are not visible based on dateVisible', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = date => isSameDay(date, specifiedDate);
+    const dateVisible = (date) => isSameDay(date, specifiedDate);
     const component = mount(<Calendar date={specifiedDate} dateVisible={dateVisible} />);
     component.find('Day').forEach((dayComponent) => {
       if (isSameDay(dayComponent.props().day.date, specifiedDate)) {
@@ -70,17 +67,17 @@ describe('<Calendar />', () => {
 
   it('should be accessible with hidden dates', async () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = date => isSameDay(date, specifiedDate);
-    await assertAccessible(
-      <Calendar date={specifiedDate} dateVisible={dateVisible} />
-    );
+    const dateVisible = (date) => isSameDay(date, specifiedDate);
+    await assertAccessible(<Calendar date={specifiedDate} dateVisible={dateVisible} />);
   });
 
   it('should not call onSelect if clicking on a invisible date', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateVisible = date => isSameDay(date, specifiedDate);
+    const dateVisible = (date) => isSameDay(date, specifiedDate);
     const callback = sinon.spy();
-    const component = mount(<Calendar date={specifiedDate} dateVisible={dateVisible} onSelect={callback} />);
+    const component = mount(
+      <Calendar date={specifiedDate} dateVisible={dateVisible} onSelect={callback} />
+    );
     const firstDate = component.find('Day').first();
     assert.equal(firstDate.props().day.visible, false);
     firstDate.simulate('click');
@@ -89,9 +86,11 @@ describe('<Calendar />', () => {
 
   it('should not call onSelect if clicking on a disabled date', () => {
     const specifiedDate = new Date(2017, 7, 14);
-    const dateEnabled = date => isSameDay(date, specifiedDate);
+    const dateEnabled = (date) => isSameDay(date, specifiedDate);
     const callback = sinon.spy();
-    const component = mount(<Calendar date={specifiedDate} dateEnabled={dateEnabled} onSelect={callback} />);
+    const component = mount(
+      <Calendar date={specifiedDate} dateEnabled={dateEnabled} onSelect={callback} />
+    );
     const firstDate = component.find('Day').first();
     firstDate.simulate('click');
     assert(callback.notCalled);
@@ -104,9 +103,7 @@ describe('<Calendar />', () => {
   });
 
   it('should be accessible with custom days', async () => {
-    await assertAccessible(
-      <Calendar renderDay={() => <td className="customDay">x</td>} />
-    );
+    await assertAccessible(<Calendar renderDay={() => <td className="customDay">x</td>} />);
   });
 
   describe('weeks', () => {

@@ -26,14 +26,16 @@ export default class PatternInput extends React.Component {
 
       this.props.onChange(event, { value, isValid });
     }
-  }
+  };
 
   render() {
     const { pattern, restrictInput, ...inputProps } = this.props;
     return (
       <Input
         {...inputProps}
-        ref={(self) => { this.input = self; }}
+        ref={(self) => {
+          this.input = self;
+        }}
         onChange={this.handleChange}
         pattern={pattern?.source}
       />
@@ -44,14 +46,13 @@ export default class PatternInput extends React.Component {
 PatternInput.defaultProps = {
   pattern: /.*/g,
   restrictInput: true,
-  value: ''
+  value: '',
 };
 
 PatternInput.propTypes = {
   onChange: PropTypes.func.isRequired,
-  pattern: (props, propName) => (
-    props[propName] instanceof RegExp ? null : new Error('Pattern must be a valid RegExp')
-  ),
+  pattern: (props, propName) =>
+    props[propName] instanceof RegExp ? null : new Error('Pattern must be a valid RegExp'),
   restrictInput: PropTypes.bool,
   value: PropTypes.string,
 };

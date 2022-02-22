@@ -20,7 +20,7 @@ const CollapsableText = ({
   collapsed: defaultCollapsed = true,
   lessLabel = 'Show Less',
   maxLength = 256,
-  moreLabel = 'Show More'
+  moreLabel = 'Show More',
 }: CollapsableTextProps) => {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
   const toggle = () => setCollapsed(!collapsed);
@@ -29,10 +29,12 @@ const CollapsableText = ({
 
   if (children.length < maxLength) {
     return children;
-  } else if (collapsed) {
+  }
+  if (collapsed) {
     return (
       <span>
-        {children.substring(0, maxLength).trim()}&hellip; <Toggle onClick={() => toggle()}>{moreLabel}</Toggle>
+        {children.substring(0, maxLength).trim()}&hellip;{' '}
+        <Toggle onClick={() => toggle()}>{moreLabel}</Toggle>
       </span>
     );
   }
@@ -49,7 +51,7 @@ CollapsableText.defaultProps = {
   collapsed: true,
   lessLabel: 'Show Less',
   maxLength: 256,
-  moreLabel: 'Show More'
+  moreLabel: 'Show More',
 };
 
 CollapsableText.displayName = 'CollapsableText';

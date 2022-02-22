@@ -1,11 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import sinon from 'sinon';
-import {
-  render,
-  fireEvent,
-  cleanup,
-} from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Combobox from '../../src/components/Combobox';
@@ -15,16 +11,14 @@ const OPTIONS = [
   { label: 'R2-D2', value: 1 },
   { label: 'BB8', value: 2 },
   { label: 'D-O', value: 3 },
-  { label: 'CP3O', value: 4 }
+  { label: 'CP3O', value: 4 },
 ];
 
 describe('<Combobox />', () => {
   afterEach(cleanup);
 
   it('should be accessible', async () => {
-    await assertAccessible(
-      <Combobox options={OPTIONS} />
-    );
+    await assertAccessible(<Combobox options={OPTIONS} />);
   });
 
   it('should render with empty options array', () => {
@@ -165,7 +159,15 @@ describe('<Combobox />', () => {
   });
 
   it('should support object values', () => {
-    const combobox = render(<Combobox options={[{ label: 'foo', value: { id: 1 } }, { label: 'bar', value: { id: 2 } }]} value={{ id: 2 }} />);
+    const combobox = render(
+      <Combobox
+        options={[
+          { label: 'foo', value: { id: 1 } },
+          { label: 'bar', value: { id: 2 } },
+        ]}
+        value={{ id: 2 }}
+      />
+    );
 
     const input = combobox.getByTestId('combobox-input');
     fireEvent.click(input);
@@ -192,7 +194,9 @@ describe('<Combobox />', () => {
 
   it('should deselect option on backspace', () => {
     let value;
-    const mockOnChange = (v) => { value = v; };
+    const mockOnChange = (v) => {
+      value = v;
+    };
     let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
     let input = combobox.getByTestId('combobox-input');
     fireEvent.focus(input);
@@ -292,7 +296,13 @@ describe('<Combobox />', () => {
   it('should support grouped options', () => {
     const groupedOptions = [
       { label: 'Droids', options: OPTIONS },
-      { label: 'Ships', options: [{ label: 'X-Wing', value: 'xwing' }, { label: 'Millenium Falcon', value: 'falcon' }] },
+      {
+        label: 'Ships',
+        options: [
+          { label: 'X-Wing', value: 'xwing' },
+          { label: 'Millenium Falcon', value: 'falcon' },
+        ],
+      },
     ];
 
     const combobox = render(<Combobox options={groupedOptions} />);
@@ -319,10 +329,12 @@ describe('<Combobox />', () => {
     it('should support creating options', () => {
       const mockOnChange = sinon.spy();
 
-      const onCreateObj = { onCreate: s => s };
+      const onCreateObj = { onCreate: (s) => s };
       const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
 
-      const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />);
+      const combobox = render(
+        <Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />
+      );
 
       const input = combobox.getByTestId('combobox-input');
       fireEvent.focus(input);
@@ -337,10 +349,17 @@ describe('<Combobox />', () => {
     it('should validate creatable options', () => {
       const mockOnChange = sinon.spy();
 
-      const onCreateObj = { onCreate: s => s };
+      const onCreateObj = { onCreate: (s) => s };
       const mockOnCreate = sinon.spy(onCreateObj, 'onCreate');
 
-      const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} isValidNewOption={s => s === 'foobar'} />);
+      const combobox = render(
+        <Combobox
+          options={OPTIONS}
+          onChange={mockOnChange}
+          onCreate={mockOnCreate}
+          isValidNewOption={(s) => s === 'foobar'}
+        />
+      );
 
       const input = combobox.getByTestId('combobox-input');
 
@@ -369,8 +388,12 @@ describe('<Combobox />', () => {
 
     it('should remove last selected option if input is empty and backspace is pressed', () => {
       let value;
-      const mockOnChange = (v) => { value = v; };
-      let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />);
+      const mockOnChange = (v) => {
+        value = v;
+      };
+      let combobox = render(
+        <Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />
+      );
       let input = combobox.getByTestId('combobox-input');
       fireEvent.focus(input);
 
@@ -396,8 +419,12 @@ describe('<Combobox />', () => {
 
     it('should remove option if option badge is clicked', () => {
       let value = [1, 2];
-      const mockOnChange = (v) => { value = v; };
-      const combobox = render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+      const mockOnChange = (v) => {
+        value = v;
+      };
+      const combobox = render(
+        <Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />
+      );
 
       const removeOptionButton = combobox.getByLabelText(`Remove option: ${OPTIONS[0].value}`);
       fireEvent.click(removeOptionButton);
@@ -407,8 +434,12 @@ describe('<Combobox />', () => {
 
     it('should be able to remove remove all options', () => {
       let value = [1, 2];
-      const mockOnChange = (v) => { value = v; };
-      const combobox = render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+      const mockOnChange = (v) => {
+        value = v;
+      };
+      const combobox = render(
+        <Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />
+      );
 
       const removeOptionButton = combobox.getByLabelText('Remove all selected options');
       fireEvent.click(removeOptionButton);

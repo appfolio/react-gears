@@ -5,10 +5,7 @@ import IMask from 'imask';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 
-type InputProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  'max' | 'min'
->;
+type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'max' | 'min'>;
 
 type Props = {
   allowDecimal?: boolean;
@@ -44,20 +41,14 @@ const CurrencyInput: FunctionComponent<Props> = ({
   onChange,
   ...props
 }: Props) => {
-  const inputClassNames = classnames(
-    'form-control',
-    inputProps && inputProps.className
-  );
-  const onAccept = (
-    val: string,
-    mask: IMask.InputMask<IMask.MaskedNumberOptions>
-  ) => {
+  const inputClassNames = classnames('form-control', inputProps && inputProps.className);
+  const onAccept = (val: string, mask: IMask.InputMask<IMask.MaskedNumberOptions>) => {
     const input = (mask.el as IMask.HTMLMaskElement).input;
     input.setAttribute('value', val);
     if (onChange) {
       const ev = new Event('change');
       input.dispatchEvent(ev);
-      onChange((ev as unknown) as React.ChangeEvent<HTMLInputElement>);
+      onChange(ev as unknown as React.ChangeEvent<HTMLInputElement>);
     }
   };
 

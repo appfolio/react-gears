@@ -7,18 +7,18 @@ type RadioInputProps = {
   onChange?: (event: any) => void;
 };
 
-const RadioInput: FunctionComponent<RadioInputProps> = ({
-  type,
-  children,
-  value,
-  ...props
-}) => (
+const RadioInput: FunctionComponent<RadioInputProps> = ({ type, children, value, ...props }) => (
   <div>
-    {React.Children.map(children, choice => React.isValidElement(choice) && React.cloneElement(choice as any, {
-      type: 'radio',
-      selected: value,
-      ...props,
-    }))}
+    {React.Children.map(
+      children,
+      (choice) =>
+        React.isValidElement(choice) &&
+        React.cloneElement(choice as any, {
+          type: 'radio',
+          selected: value,
+          ...props,
+        })
+    )}
   </div>
 );
 

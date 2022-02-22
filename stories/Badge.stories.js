@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <div>
         <Badge color={color}>{color}</Badge>
       </div>
@@ -19,11 +19,12 @@ export const Default = () => (
 
 export const Pills = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <div>
-        <Badge pill color={color}>{color}</Badge>
+        <Badge pill color={color}>
+          {color}
+        </Badge>
       </div>
     ))}
   </div>
 );
-

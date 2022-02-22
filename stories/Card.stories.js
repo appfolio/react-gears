@@ -14,25 +14,21 @@ export const LiveExample = () => {
 
   return (
     <div>
-      <Card
-        inverse={boolean('inverse', false)}
-        outline={outline}
-      >
+      <Card inverse={boolean('inverse', false)} outline={outline}>
         <CardHeader>
           <CardTitle>{text('title', 'Hello World!')}</CardTitle>
         </CardHeader>
         <CardBody>
-          {text('content', `Lorem ipsum dolor sit amet, consectetur adipiscing
+          {text(
+            'content',
+            `Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore
                             et dolore magna aliqua.  Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat.`)}
+                            aliquip ex ea commodo consequat.`
+          )}
         </CardBody>
-        {footer && (
-          <CardFooter>
-            {footer}
-          </CardFooter>
-        )}
+        {footer && <CardFooter>{footer}</CardFooter>}
       </Card>
     </div>
   );
@@ -40,16 +36,15 @@ export const LiveExample = () => {
 
 export const Colors = () => (
   <div>
-    {[null, ...colors].map(color => (
+    {[null, ...colors].map((color) => (
       <Card color={color} className="mb-4">
         <CardBody>
           <CardTitle>{color || 'default'}</CardTitle>
-          Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.
         </CardBody>
       </Card>
-      ))}
+    ))}
   </div>
 );
 
@@ -61,19 +56,17 @@ export const Outline = () => {
       <Card outline className={`mb-4 ${squareCorners ? 'rounded-0' : ''}`}>
         <CardBody>
           <CardTitle>Default</CardTitle>
-          Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.
         </CardBody>
       </Card>
 
-      {colors.map(color => (
+      {colors.map((color) => (
         <Card outline color={color} className={`mb-4 ${squareCorners ? 'rounded-0' : ''}`}>
           <CardBody>
             <CardTitle>{color}</CardTitle>
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
           </CardBody>
         </Card>
       ))}

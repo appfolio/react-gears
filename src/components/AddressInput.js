@@ -10,7 +10,9 @@ import Col from './Col';
 import Input from './Input';
 import Row from './Row';
 
-const readEvent = (e) => { return { [e.target.name]: e.target.value }; };
+const readEvent = (e) => {
+  return { [e.target.name]: e.target.value };
+};
 
 export const addressPropType = {
   address1: PropTypes.string,
@@ -71,23 +73,39 @@ class AddressInput extends React.Component {
 
   onChange = (update) => {
     this.props.onChange({ ...this.props.value, ...update });
-  }
+  };
 
   propsFor = (field) => {
     if (this.props.value[field] !== undefined) {
       return { value: this.props.value[field] };
     }
     return { defaultValue: this.props.defaultValue[field] };
-  }
+  };
 
-  bindAddress1 = (el) => { this.inputAddress1 = el; };
+  bindAddress1 = (el) => {
+    this.inputAddress1 = el;
+  };
 
+  /* eslint-disable-next-line react/no-unused-class-component-methods -- Fix this when we convert to functional component */
   focus() {
     this.inputAddress1.focus();
   }
 
   render() {
-    const { className, compact, countries, disabled, error, hints, id, labels, onBlur, showCountry, showLabels, inputName } = this.props;
+    const {
+      className,
+      compact,
+      countries,
+      disabled,
+      error,
+      hints,
+      id,
+      labels,
+      onBlur,
+      showCountry,
+      showLabels,
+      inputName,
+    } = this.props;
 
     const inputId = id || 'addressInput';
     const address1Id = `${inputId}_address1`;
@@ -188,7 +206,7 @@ class AddressInput extends React.Component {
                 {...this.propsFor(inputName.state)}
                 invalid={!!error.state}
                 onBlur={() => onBlur(inputName.state)}
-                onChange={state => this.onChange({ [inputName.state]: state })}
+                onChange={(state) => this.onChange({ [inputName.state]: state })}
                 disabled={disabled}
               />
             </FormLabelGroup>
@@ -218,7 +236,7 @@ class AddressInput extends React.Component {
             </FormLabelGroup>
           </Col>
         </Row>
-        {showCountry &&
+        {showCountry && (
           <FormLabelGroup
             feedback={error.countryCode}
             hint={hints.countryCode}
@@ -237,11 +255,11 @@ class AddressInput extends React.Component {
               {...this.propsFor(inputName.countryCode)}
               invalid={!!error.countryCode}
               onBlur={() => onBlur(inputName.countryCode)}
-              onChange={countryCode => this.onChange({ [inputName.countryCode]: countryCode })}
+              onChange={(countryCode) => this.onChange({ [inputName.countryCode]: countryCode })}
               disabled={disabled}
             />
           </FormLabelGroup>
-        }
+        )}
       </div>
     );
   }

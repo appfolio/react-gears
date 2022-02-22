@@ -13,9 +13,7 @@ export const Controlled = () => {
       <Button color="primary" onClick={() => setOpen(!open)}>
         Toggle Collapse
       </Button>
-      <Collapse isOpen={open}>
-        This content will fade in and out as the button is pressed
-      </Collapse>
+      <Collapse isOpen={open}>This content will fade in and out as the button is pressed</Collapse>
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const srOnlyStyle: React.CSSProperties = {
   margin: '-1px',
   overflow: 'hidden',
   clip: 'rect(0px, 0px, 0px, 0px)',
-  border: '0px'
+  border: '0px',
 };
 
 export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
@@ -21,10 +21,10 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   fixedWidth?: boolean;
   flip?: 'horizontal' | 'vertical';
   inverse?: boolean;
-  name: string,
-  pulse?: boolean,
+  name: string;
+  pulse?: boolean;
   rotate?: 90 | 180 | 270;
-  size?: 'xs' |'sm' | 'lg' | '2x' | '3x' | '4x' | '5x';
+  size?: 'xs' | 'sm' | 'lg' | '2x' | '3x' | '4x' | '5x';
   spin?: boolean;
   stack?: '1x' | '2x';
   tag?: keyof JSX.IntrinsicElements;
@@ -95,7 +95,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       rotate && classNames.push(`rotate-${rotate}`);
       stack && classNames.push(`stack-${stack}`);
 
-      const fa = classNames.map(iconName => `fa-${iconName}`);
+      const fa = classNames.map((iconName) => `fa-${iconName}`);
       fa.unshift('fa');
 
       classNames = fa;
@@ -105,11 +105,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
     className && classNames.push(className);
 
     return (
-      <Tag
-        {...props}
-        aria-hidden
-        className={classNames.join(' ')}
-      >
+      <Tag {...props} aria-hidden className={classNames.join(' ')}>
         {ariaLabel && <span style={srOnlyStyle}>ariaLabel</span>}
       </Tag>
     );

@@ -6,7 +6,7 @@ import { EditableNote, FormLabelGroup, Input } from '../../src';
 
 describe('<EditableNote />', () => {
   const note = {
-    text: 'Hello World!'
+    text: 'Hello World!',
   };
   let component;
   let props;

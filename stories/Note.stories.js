@@ -6,7 +6,7 @@ import { EditableNote, Note } from '../src';
 const noteToEdit = {
   date: new Date(),
   from: 'Gary Thomas',
-  text: 'Hello World'
+  text: 'Hello World',
 };
 
 export default {
@@ -50,7 +50,7 @@ export const WithChildren = () => {
     edited: boolean('edited', false),
     editing: boolean('editing', false),
     from: text('from', 'Aaron Panchal'),
-    text: text('text', 'Everybody wants to rule the world.')
+    text: text('text', 'Everybody wants to rule the world.'),
   };
 
   return (
@@ -98,8 +98,10 @@ export const EditableNoteWithChildren = () => {
       onSave={action('onSave')}
       saving={saving}
     >
-      <span>Add an attachment:  </span>
-      <button disabled={saving}>Choose file...</button>
+      <span>Add an attachment: </span>
+      <button type="button" disabled={saving}>
+        Choose file...
+      </button>
       <hr />
     </EditableNote>
   );

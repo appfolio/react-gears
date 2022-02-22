@@ -10,7 +10,12 @@ export interface ContainerProps extends HTMLAttributes<HTMLElement> {
 /**
  * Accessible generic container component that responds to click events
  * */
-const ClickableContainer: FunctionComponent<ContainerProps> = ({ className, onClick, tag: Tag = 'div', ...props }) => {
+const ClickableContainer: FunctionComponent<ContainerProps> = ({
+  className,
+  onClick,
+  tag: Tag = 'div',
+  ...props
+}) => {
   const onKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -28,11 +33,12 @@ const ClickableContainer: FunctionComponent<ContainerProps> = ({ className, onCl
         {...props}
         className={classnames('rg-ClickableContainer', className)}
       />
-      <style jsx>{`
-        .rg-ClickableContainer:focus {
-          outline: thin dotted;
-        }
-      `}
+      <style jsx>
+        {`
+          .rg-ClickableContainer:focus {
+            outline: thin dotted;
+          }
+        `}
       </style>
     </>
   );

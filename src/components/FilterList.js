@@ -7,12 +7,12 @@ export default class FilterList extends React.Component {
     className: PropTypes.string,
     filters: PropTypes.array.isRequired,
     maxWidth: PropTypes.number,
-    onRemove: PropTypes.func
-  }
+    onRemove: PropTypes.func,
+  };
 
   static defaultProps = {
-    maxWidth: 14
-  }
+    maxWidth: 14,
+  };
 
   render() {
     const { className, filters, maxWidth, onRemove } = this.props;
@@ -28,8 +28,8 @@ export default class FilterList extends React.Component {
             onRemove={() => onRemove(filter)}
             removable={filter.removable}
             value={filter.value}
-          />)
-        )}
+          />
+        ))}
       </div>
     );
   }

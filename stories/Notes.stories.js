@@ -8,7 +8,7 @@ const moreNotes = [
     id: 1,
     date: new Date(),
     from: 'Aaron Panchal',
-    text: 'Hello World as well!'
+    text: 'Hello World as well!',
   },
   {
     id: 2,
@@ -33,9 +33,9 @@ export const WithNotesProp = () => {
       editing: boolean('editing', false),
       saving: boolean('saving', false),
       from: 'Gary Thomas',
-      text: 'Hello World'
+      text: 'Hello World',
     },
-    ...moreNotes
+    ...moreNotes,
   ];
 
   return (
@@ -60,14 +60,14 @@ export const WithChildren = () => {
       editing: boolean('editing', false),
       saving: boolean('saving', false),
       from: 'Gary Thomas',
-      text: 'Hello World'
+      text: 'Hello World',
     },
-    ...moreNotes
+    ...moreNotes,
   ];
 
   return (
     <Notes>
-      {notes.map(note => (
+      {notes.map((note) => (
         <Note
           note={note}
           onCancel={action('onCancel')}

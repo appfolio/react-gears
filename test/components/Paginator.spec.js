@@ -99,28 +99,40 @@ describe('<Paginator />', () => {
       const wrapper = mount(<Paginator currentPage={1} totalItems={256} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(5, pages.length);
-      assert.deepEqual([1, 2, 3, 4, 5], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [1, 2, 3, 4, 5],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly for middle pages', () => {
       const wrapper = mount(<Paginator currentPage={7} totalItems={256} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(5, pages.length);
-      assert.deepEqual([5, 6, 7, 8, 9], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [5, 6, 7, 8, 9],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly for the last page when there is an exact number of results', () => {
       const wrapper = mount(<Paginator currentPage={11} totalItems={220} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(5, pages.length);
-      assert.deepEqual([7, 8, 9, 10, 11], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [7, 8, 9, 10, 11],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly for the last page when there is an inexact number of results', () => {
       const wrapper = mount(<Paginator currentPage={13} totalItems={256} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(5, pages.length);
-      assert.deepEqual([9, 10, 11, 12, 13], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [9, 10, 11, 12, 13],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly if there are 0 page', () => {
@@ -139,21 +151,30 @@ describe('<Paginator />', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={39} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(2, pages.length);
-      assert.deepEqual([1, 2], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [1, 2],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly if there are 3 page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={59} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(3, pages.length);
-      assert.deepEqual([1, 2, 3], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [1, 2, 3],
+        pages.map((p) => p.prop('page'))
+      );
     });
 
     it('displays correctly if there are 4 page', () => {
       const wrapper = mount(<Paginator currentPage={3} totalItems={79} onClick={sinon.stub()} />);
       const pages = wrapper.find('Page');
       assert.equal(4, pages.length);
-      assert.deepEqual([1, 2, 3, 4], pages.map(p => p.prop('page')));
+      assert.deepEqual(
+        [1, 2, 3, 4],
+        pages.map((p) => p.prop('page'))
+      );
     });
   });
 
@@ -232,7 +253,10 @@ describe('<Paginator />', () => {
     });
 
     it('reports the click correctly when clicking on page links', () => {
-      wrapper.findWhere(node => node.key() === '9').find('button').simulate('click');
+      wrapper
+        .findWhere((node) => node.key() === '9')
+        .find('button')
+        .simulate('click');
       sinon.assert.calledWith(onClick, 9);
     });
   });

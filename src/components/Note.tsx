@@ -6,25 +6,25 @@ import CardText from './CardText';
 import NoteHeader from './NoteHeader';
 import DeletedNote from './DeletedNote';
 import EditableNote, { EditableNoteDefaultProps } from './EditableNote';
-import NoteType from './TypeHelpers/NoteType';
+import type NoteType from './TypeHelpers/NoteType';
 
 type NoteProps = {
-  children?: React.ReactNode,
-  className?: string,
-  dateFormat?: string,
-  showTimezone?: boolean,
-  note: NoteType,
-  onCancel?: (note: NoteType) => void,
-  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
-  onDelete?: (note: Omit<NoteType, 'text'>) => void,
-  onEdit?: (note: Omit<NoteType, 'text'>) => void,
-  onSave?: (note: NoteType) => void,
-  onUndelete?: (note: NoteType) => void,
-  rows?: number,
-  saving?: boolean,
-  saveLabel?: React.ReactNode,
-  savingLabel?: React.ReactNode
-}
+  children?: React.ReactNode;
+  className?: string;
+  dateFormat?: string;
+  showTimezone?: boolean;
+  note: NoteType;
+  onCancel?: (note: NoteType) => void;
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void;
+  onDelete?: (note: Omit<NoteType, 'text'>) => void;
+  onEdit?: (note: Omit<NoteType, 'text'>) => void;
+  onSave?: (note: NoteType) => void;
+  onUndelete?: (note: NoteType) => void;
+  rows?: number;
+  saving?: boolean;
+  saveLabel?: React.ReactNode;
+  savingLabel?: React.ReactNode;
+};
 
 const defaultProps = {
   className: 'mb-3',
@@ -51,18 +51,14 @@ const Note: React.FunctionComponent<NoteProps> = ({
   onDelete,
   onEdit,
   onSave,
-  onUndelete
+  onUndelete,
 }) => {
   const { deleted, editing, text } = note;
 
   if (deleted) {
-    return (
-      <DeletedNote
-        className={className}
-        note={note}
-        onUndelete={onUndelete}
-      />);
-  } else if (editing && onCancel && onChange && onSave) {
+    return <DeletedNote className={className} note={note} onUndelete={onUndelete} />;
+  }
+  if (editing && onCancel && onChange && onSave) {
     return (
       <EditableNote
         className={className}
@@ -76,11 +72,18 @@ const Note: React.FunctionComponent<NoteProps> = ({
         saving={saving}
         saveLabel={saveLabel}
         savingLabel={savingLabel}
-      />);
+      />
+    );
   }
   return (
     <Card className={className}>
-      <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} onDelete={onDelete} onEdit={onEdit} />
+      <NoteHeader
+        note={note}
+        dateFormat={dateFormat}
+        showTimezone={showTimezone}
+        onDelete={onDelete}
+        onEdit={onEdit}
+      />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
         {children}

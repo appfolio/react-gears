@@ -23,7 +23,5 @@ export const LiveExample = () => {
     action('onChange')(values);
   };
 
-  return (
-    <CheckboxGroup options={options} onChange={handleChange} selected={selected} />
-  );
+  return <CheckboxGroup options={options} onChange={handleChange} selected={selected} />;
 };

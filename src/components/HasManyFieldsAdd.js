@@ -11,9 +11,7 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
   return (
     <Button color="success" block outline {...props} className={classes}>
       <Icon name="plus-circle" className="mr-2" />
-      <span>
-        {children}
-      </span>
+      <span>{children}</span>
     </Button>
   );
 };
@@ -21,7 +19,7 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
 HasManyFieldsAdd.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 HasManyFieldsAdd.displayName = 'HasManyFieldsAdd';

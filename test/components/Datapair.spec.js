@@ -29,7 +29,11 @@ describe('<Datapair />', () => {
   });
 
   it('should support children', () => {
-    const fancyComponent = shallow(<Datapair label="stuff"><span>Special</span></Datapair>);
+    const fancyComponent = shallow(
+      <Datapair label="stuff">
+        <span>Special</span>
+      </Datapair>
+    );
     const formLabelGroup = fancyComponent.find(FormLabelGroup);
     assert.equal(formLabelGroup.children().html(), '<span>Special</span>');
   });

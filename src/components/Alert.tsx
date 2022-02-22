@@ -4,16 +4,16 @@ import Icon from './Icon';
 
 const noop = () => undefined;
 
-const ICON_MAP: {[key: string]: string} = {
+const ICON_MAP: { [key: string]: string } = {
   warning: 'exclamation-circle',
   success: 'check',
   info: 'info-circle',
-  danger: 'ban'
+  danger: 'ban',
 };
 
 type Props = {
-  icon?: boolean,
-  onToggle?: (open: boolean) => void
+  icon?: boolean;
+  onToggle?: (open: boolean) => void;
 } & AlertProps;
 
 /**
@@ -49,18 +49,18 @@ const Alert: FunctionComponent<Props> = ({
       {...props}
     >
       <div className="d-flex align-items-start">
+        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" /> : null}
         {icon ? (
-          <Icon name={ICON_MAP[color]} size="lg" className="mr-3 mt-1" />
-        ) : null}
-        {icon ? (
-          <div className="w-100" style={{ overflow: 'hidden' }}>{children}</div>
+          <div className="w-100" style={{ overflow: 'hidden' }}>
+            {children}
+          </div>
         ) : (
           <div className="w-100">{children}</div>
         )}
       </div>
     </AlertComponent>
   );
-}
+};
 
 Alert.displayName = 'Alert';
 

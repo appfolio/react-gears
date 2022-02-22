@@ -50,10 +50,17 @@ export const Grid = () => (
     </Row>
     <h3 className="my-5">
       More information about the layout grid can be read here:&nbsp;
-      <a href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works" rel="noopener noreferrer" target="_blank">Layout</a>
+      <a
+        href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Layout
+      </a>
     </h3>
     <hr />
-    <style>{`
+    <style>
+      {`
       /* Just to make example clearer, not needed */
       .row > div {
         background-color: #F0F0F0;
@@ -63,11 +70,13 @@ export const Grid = () => (
       }
     `}
     </style>
-  </Container>);
+  </Container>
+);
 
 export const Offsets = () => (
   <Container className="text-xs-center">
-    <style>{`
+    <style>
+      {`
       /* Just to make example clearer, not needed */
       .row > div {
         background-color: #F0F0F0;
@@ -94,7 +103,8 @@ export const Offsets = () => (
 
 export const Responsive = () => (
   <Container className="text-xs-center">
-    <style>{`
+    <style>
+      {`
       /* Just to make example clearer, not needed */
       .row > div {
         background-color: #F0F0F0;
@@ -138,24 +148,43 @@ export const Responsive = () => (
 );
 
 export const Spacing = () => {
-  const margin = `m${select('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('margin amount', [0, 1, 2, 3, 4, 5], 3)}`;
-  const padding = `p${select('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select('padding amount', [0, 1, 2, 3, 4, 5], 3)}`;
+  const margin = `m${select('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select(
+    'margin amount',
+    [0, 1, 2, 3, 4, 5],
+    3
+  )}`;
+  const padding = `p${select('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select(
+    'padding amount',
+    [0, 1, 2, 3, 4, 5],
+    3
+  )}`;
   return (
     <div>
       <p>
-        Adjust 'knobs' in right sidebar →→→<br />
+        Adjust 'knobs' in right sidebar →→→
+        <br />
         Sides default to all sides when left blank.
       </p>
       <div className="bg-warning text-warning" style={{ border: '1px solid transparent' }}>
-        <div className={`bg-info text-info ${margin} ${padding}`} style={{ border: '1px dashed grey' }}>
-          <div style={{ backgroundColor: 'white', color: 'black', fontFamily: 'monospace' }}>
+        <div
+          className={`bg-info text-info ${margin} ${padding}`}
+          style={{ border: '1px dashed grey' }}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              color: 'black',
+              fontFamily: 'monospace',
+            }}
+          >
             {`className="${margin} ${padding}"`}
           </div>
         </div>
       </div>
       <br />
       <h4>
-        <span className="text-warning">Margin</span> <span className="text-info">Padding</span> <span style={{ border: '1px dashed grey' }}>Element</span>
+        <span className="text-warning">Margin</span> <span className="text-info">Padding</span>{' '}
+        <span style={{ border: '1px dashed grey' }}>Element</span>
       </h4>
     </div>
   );

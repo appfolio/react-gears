@@ -7,7 +7,7 @@ const steps = [
   'Put your left foot in',
   'Put your right foot out',
   'Do the Hokey-Pokey',
-  'Turn yourself about'
+  'Turn yourself about',
 ];
 
 export default {

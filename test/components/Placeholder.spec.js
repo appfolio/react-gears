@@ -25,7 +25,16 @@ describe('<Placeholder />', () => {
   });
 
   it('should render with the specified color', () => {
-    const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
+    const colors = [
+      'primary',
+      'secondary',
+      'success',
+      'danger',
+      'warning',
+      'info',
+      'light',
+      'dark',
+    ];
     colors.forEach((color) => {
       const component = mount(<Placeholder color={color} words={5} />);
       assert(component.find('div').hasClass(`text-${color}`));

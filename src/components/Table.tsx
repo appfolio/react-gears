@@ -14,22 +14,17 @@ export interface TableProps extends ReactStrapTableProps {
 
 const Table: FunctionComponent<TableProps> = ({
   children,
+  responsive = true,
+  size = 'sm',
+  striped = true,
+  hover = true,
   ...props
-}) =>  {
-  return (
-    <TableComponent {...props}>
-      {children}
-    </TableComponent>
-  );
-};
+}) => (
+  <TableComponent hover={hover} responsive={responsive} size={size} striped={striped} {...props}>
+    {children}
+  </TableComponent>
+);
 
 Table.displayName = 'Table';
-
-Table.defaultProps = {
-  hover: true,
-  responsive: true,
-  size: 'sm',
-  striped: true
-};
 
 export default Table;

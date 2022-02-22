@@ -4,13 +4,7 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import {
-  Button,
-  ConfirmationButton,
-  Col,
-  HasManyFieldsRow,
-  Tooltip
-} from '../../src';
+import { Button, ConfirmationButton, Col, HasManyFieldsRow, Tooltip } from '../../src';
 
 describe('<HasManyFieldsRow />', () => {
   let onDelete;
@@ -21,9 +15,7 @@ describe('<HasManyFieldsRow />', () => {
   describe('when enabled', () => {
     beforeEach(() => {
       onDelete = sinon.spy();
-      component = mount(
-        <HasManyFieldsRow onDelete={onDelete}>Stuff</HasManyFieldsRow>
-      );
+      component = mount(<HasManyFieldsRow onDelete={onDelete}>Stuff</HasManyFieldsRow>);
 
       deleteButton = component.find(ConfirmationButton);
       tooltip = component.find(Tooltip);
@@ -42,14 +34,7 @@ describe('<HasManyFieldsRow />', () => {
     });
 
     it('should put content in first column', () =>
-      assert.equal(
-        component
-          .find(Col)
-          .first()
-          .render()
-          .text(),
-        'Stuff'
-      ));
+      assert.equal(component.find(Col).first().render().text(), 'Stuff'));
 
     it('should not have a disabled tooltip', () => {
       assert.equal(tooltip.length, 0);
@@ -85,11 +70,7 @@ describe('<HasManyFieldsRow />', () => {
 
   it('should have a disabled tooltip when disabled and disabledReason', () => {
     component = shallow(
-      <HasManyFieldsRow
-        onDelete={onDelete}
-        disabled
-        disabledReason="NONE SHALL PASS"
-      >
+      <HasManyFieldsRow onDelete={onDelete} disabled disabledReason="NONE SHALL PASS">
         Stuff
       </HasManyFieldsRow>
     );
@@ -99,9 +80,7 @@ describe('<HasManyFieldsRow />', () => {
   });
 
   it('should hide the delete button when deletable is false', () => {
-    component = shallow(
-      <HasManyFieldsRow deletable={false}>Stuff</HasManyFieldsRow>
-    );
+    component = shallow(<HasManyFieldsRow deletable={false}>Stuff</HasManyFieldsRow>);
     assert.equal(component.find(ConfirmationButton).length, 0);
     assert.equal(component.find(Button).length, 0);
     assert.equal(component.find('.js-delete-col').length, 0);
@@ -112,11 +91,7 @@ describe('<HasManyFieldsRow />', () => {
 
     beforeEach(() => {
       component = shallow(
-        <HasManyFieldsRow
-          onDelete={onDelete}
-          disabled
-          disabledReason="NONE SHALL PASS"
-        >
+        <HasManyFieldsRow onDelete={onDelete} disabled disabledReason="NONE SHALL PASS">
           Stuff
         </HasManyFieldsRow>
       );
@@ -149,9 +124,7 @@ describe('<HasManyFieldsRow />', () => {
   });
 
   it('should pass down props to delete button', () => {
-    component = shallow(
-      <HasManyFieldsRow deleteProps={{ tabIndex: -1 }}>Stuff</HasManyFieldsRow>
-    );
+    component = shallow(<HasManyFieldsRow deleteProps={{ tabIndex: -1 }}>Stuff</HasManyFieldsRow>);
     assert.strictEqual(component.find(ConfirmationButton).length, 1);
     assert.strictEqual(component.find(ConfirmationButton).props().tabIndex, -1);
   });

@@ -9,7 +9,7 @@ const items = [
   { value: 'Alpha', label: 'Bravo' },
   { value: 'Charlie Brown', label: 'Delta' },
   { value: 'Echo' },
-  { label: 'Hotel' }
+  { label: 'Hotel' },
 ];
 
 export default {
@@ -34,7 +34,7 @@ export const WithChildren = () => (
 export const SummaryBoxItemExample = () => (
   <SummaryBoxItem
     value={text('value', 'Live from New York')}
-    label={text('label', 'It\'s Saturday Night')}
+    label={text('label', "It's Saturday Night")}
     reverse={boolean('reverse', SummaryBoxItem.defaultProps.reverse)}
   />
 );

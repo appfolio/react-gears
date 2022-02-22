@@ -263,10 +263,8 @@ export {
   UncontrolledDropdown,
   UncontrolledPopover,
   UncontrolledTooltip,
-
   Select,
   SelectMultiValue,
-
   // Gears
   Activity,
   ActivityLog,
@@ -332,5 +330,5 @@ export {
   UncontrolledTable,
   Waiting,
   TooltipButton,
-  TruncatedText
+  TruncatedText,
 };

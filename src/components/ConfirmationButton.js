@@ -7,17 +7,17 @@ class ConfirmationButton extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     confirmation: PropTypes.string,
-    onClick: PropTypes.func
-  }
+    onClick: PropTypes.func,
+  };
 
   static defaultProps = {
-    onClick: () => {}
-  }
+    onClick: () => {},
+  };
 
   constructor() {
     super();
     this.state = {
-      confirm: false
+      confirm: false,
     };
   }
 
@@ -26,9 +26,12 @@ class ConfirmationButton extends React.Component {
       this.props.onClick(e);
     }
 
-    this.setState({ confirm: !this.state.confirm });
-  }
+    this.setState((prevState) => {
+      return { confirm: !prevState.confirm };
+    });
+  };
 
+  /* eslint-disable-next-line react/no-unused-class-component-methods -- Fix this when we convert to functional component */
   enableOnClickOutside() {
     return this.state.confirm;
   }
@@ -38,17 +41,21 @@ class ConfirmationButton extends React.Component {
   }
 
   render() {
-    const { children, confirmation, onClick,
-      // eslint-disable-next-line react/prop-types
-      eventTypes, outsideClickIgnoreClass, preventDefault, stopPropagation, disableOnClickOutside, enableOnClickOutside,
-      ...props } = this.props;
+    const {
+      children,
+      confirmation,
+      onClick,
+      eventTypes,
+      outsideClickIgnoreClass,
+      preventDefault,
+      stopPropagation,
+      disableOnClickOutside,
+      enableOnClickOutside,
+      ...props
+    } = this.props;
 
     return (
-      <Button
-        onBlur={() => this.handleClickOutside()}
-        onClick={this.onClick}
-        {...props}
-      >
+      <Button onBlur={() => this.handleClickOutside()} onClick={this.onClick} {...props}>
         {this.state.confirm ? confirmation : children}
       </Button>
     );

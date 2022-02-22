@@ -1,19 +1,19 @@
 import React from 'react';
 
 import Note from './Note';
-import NoteType from './TypeHelpers/NoteType';
+import type NoteType from './TypeHelpers/NoteType';
 
 type NotesProps = {
-  children?: React.ReactNode,
-  className?: string,
-  onCancel?: (note: NoteType) => void,
-  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
-  onDelete?: (note: Omit<NoteType, 'text'>) => void,
-  onEdit?: (note: Omit<NoteType, 'text'>) => void,
-  onSave?: (note: NoteType) => void,
-  onUndelete?: (note: NoteType) => void,
-  notes: (NoteType & { id: string, saving?: boolean, })[],
-}
+  children?: React.ReactNode;
+  className?: string;
+  onCancel?: (note: NoteType) => void;
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void;
+  onDelete?: (note: Omit<NoteType, 'text'>) => void;
+  onEdit?: (note: Omit<NoteType, 'text'>) => void;
+  onSave?: (note: NoteType) => void;
+  onUndelete?: (note: NoteType) => void;
+  notes: (NoteType & { id: string; saving?: boolean })[];
+};
 
 const defaultProps = {
   className: '',
@@ -29,24 +29,23 @@ const Notes: React.FunctionComponent<NotesProps> = ({
   onDelete,
   onEdit,
   onSave,
-  onUndelete
+  onUndelete,
 }) => (
   <div className={className}>
     {children ||
-        notes.map(note => (
-          <Note
-            key={note.id ? `js-note-${note.id}` : undefined}
-            note={note}
-            onCancel={onCancel}
-            onChange={onChange}
-            onDelete={onDelete}
-            onEdit={onEdit}
-            onSave={onSave}
-            onUndelete={onUndelete}
-            saving={note.editing && note.saving}
-          />
-        ))
-      }
+      notes.map((note) => (
+        <Note
+          key={note.id ? `js-note-${note.id}` : undefined}
+          note={note}
+          onCancel={onCancel}
+          onChange={onChange}
+          onDelete={onDelete}
+          onEdit={onEdit}
+          onSave={onSave}
+          onUndelete={onUndelete}
+          saving={note.editing && note.saving}
+        />
+      ))}
   </div>
 );
 

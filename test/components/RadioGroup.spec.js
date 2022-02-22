@@ -18,9 +18,7 @@ describe('<RadioGroup />', () => {
 
   it('should select only one option', () => {
     const mockOnChange = sinon.spy();
-    const checkboxes = render(
-      <RadioGroup options={options} onChange={mockOnChange} />
-    );
+    const checkboxes = render(<RadioGroup options={options} onChange={mockOnChange} />);
 
     let option = checkboxes.getByLabelText('Apple');
     fireEvent.click(option);
@@ -37,27 +35,38 @@ describe('<RadioGroup />', () => {
     const coolerOptions = [
       { label: 'Boba', value: { id: 1, type: 'topping', price: '0.50' } },
       { label: 'Aiyu Jelly', value: { id: 2, type: 'topping', price: '0.50' } },
-      { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
+      {
+        label: 'Konjac Pearls',
+        value: { id: 3, type: 'topping', price: '0.50' },
+      },
     ];
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange} />
+      <RadioGroup
+        options={coolerOptions}
+        selected={{ id: 1, type: 'topping', price: '0.50' }}
+        onChange={mockOnChange}
+      />
     );
 
     const option = checkboxes.getByLabelText('Aiyu Jelly');
     fireEvent.click(option);
 
-    sinon.assert.calledWith(
-      mockOnChange,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange, {
+      id: 2,
+      type: 'topping',
+      price: '0.50',
+    });
   });
 
   it('should work with duplicate groups', () => {
     const coolerOptions = [
       { label: 'Boba', value: { id: 1, type: 'topping', price: '0.50' } },
       { label: 'Aiyu Jelly', value: { id: 2, type: 'topping', price: '0.50' } },
-      { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
+      {
+        label: 'Konjac Pearls',
+        value: { id: 3, type: 'topping', price: '0.50' },
+      },
     ];
     const mockOnChange1 = sinon.spy();
     const mockOnChange2 = sinon.spy();
@@ -65,11 +74,19 @@ describe('<RadioGroup />', () => {
       <div>
         <div>
           Peach Green Tea
-          <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange1} />
+          <RadioGroup
+            options={coolerOptions}
+            selected={{ id: 1, type: 'topping', price: '0.50' }}
+            onChange={mockOnChange1}
+          />
         </div>
         <div>
           Jade Lemon
-          <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange2} />
+          <RadioGroup
+            options={coolerOptions}
+            selected={{ id: 1, type: 'topping', price: '0.50' }}
+            onChange={mockOnChange2}
+          />
         </div>
       </div>
     );
@@ -79,16 +96,18 @@ describe('<RadioGroup />', () => {
 
     fireEvent.click(opts[0]);
 
-    sinon.assert.calledWith(
-      mockOnChange1,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange1, {
+      id: 2,
+      type: 'topping',
+      price: '0.50',
+    });
 
     fireEvent.click(opts[1]);
 
-    sinon.assert.calledWith(
-      mockOnChange2,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange2, {
+      id: 2,
+      type: 'topping',
+      price: '0.50',
+    });
   });
 });

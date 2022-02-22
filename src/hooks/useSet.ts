@@ -17,13 +17,5 @@ export default function useSet(defaultValue: any) {
   };
   const clear = () => set.clear();
 
-  return [
-    set,
-    has,
-    add,
-    remove,
-    toggle,
-    clear,
-    (values: any) => setSet(new Set(values))
-  ];
+  return [set, has, add, remove, toggle, clear, (values: any) => setSet(new Set(values))];
 }

@@ -10,7 +10,7 @@ const mockSetPosition = jest.fn();
 
 jest.mock('react-use', () => {
   return {
-    ...(jest.requireActual('react-use')),
+    ...jest.requireActual('react-use'),
     useSessionStorage: jest.fn(() => [mockedPosition, mockSetPosition]),
   };
 });
@@ -45,7 +45,9 @@ describe('useSavedScroll', () => {
   });
 
   it('should initialize to saved scroll position', () => {
-    const { result: { current: container } } = renderHook(() => useRef(div));
+    const {
+      result: { current: container },
+    } = renderHook(() => useRef(div));
     const scrollToSpy = sinon.spy(container.current, 'scrollTo');
     renderHook(() => useSavedScroll(container, 'positionKey'));
 
@@ -53,7 +55,9 @@ describe('useSavedScroll', () => {
   });
 
   it('should update saved position when scroll position changes', () => {
-    const { result: { current: container } } = renderHook(() => useRef(div));
+    const {
+      result: { current: container },
+    } = renderHook(() => useRef(div));
     renderHook(() => useSavedScroll(container, 'positionKey'));
 
     act(() => {
@@ -63,6 +67,9 @@ describe('useSavedScroll', () => {
       requestAnimationFrame.step();
     });
 
-    assert.deepStrictEqual(mockSetPosition.mock.calls[1][0], { x: 100, y: 120 });
+    assert.deepStrictEqual(mockSetPosition.mock.calls[1][0], {
+      x: 100,
+      y: 120,
+    });
   });
 });

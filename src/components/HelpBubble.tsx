@@ -6,10 +6,7 @@ import PopoverBody from './PopoverBody';
 import PopoverHeader from './PopoverHeader';
 
 interface HelpBubbleProps
-  extends Omit<
-    React.ComponentProps<typeof Popover>,
-    'isOpen' | 'toggle' | 'target'
-  > {
+  extends Omit<React.ComponentProps<typeof Popover>, 'isOpen' | 'toggle' | 'target'> {
   title?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
@@ -25,7 +22,7 @@ const style = {
   cursor: 'pointer',
 };
 
-function HelpBubble(props: HelpBubbleProps) {
+const HelpBubble = (props: HelpBubbleProps) => {
   const idRef = useRef<string | undefined>();
   if (!idRef.current) idRef.current = getID();
   const id = idRef.current;
@@ -52,6 +49,6 @@ function HelpBubble(props: HelpBubbleProps) {
       </Popover>
     </span>
   );
-}
+};
 
 export default HelpBubble;

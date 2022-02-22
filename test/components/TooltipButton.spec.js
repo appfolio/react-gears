@@ -63,12 +63,9 @@ describe('<TooltipButton />', () => {
       const div2 = document.createElement('div');
       document.body.appendChild(div2);
       const callMe = sinon.spy();
-      const wrapper = mount(
-        <TooltipButton onClick={callMe}>
-          Hello World
-        </TooltipButton>,
-        { attachTo: div2 }
-      );
+      const wrapper = mount(<TooltipButton onClick={callMe}>Hello World</TooltipButton>, {
+        attachTo: div2,
+      });
       const TooltipComponent = wrapper.find(Tooltip);
       const ButtonComponent = wrapper.find(Button);
 

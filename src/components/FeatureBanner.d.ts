@@ -6,5 +6,5 @@ interface FeatureBannerProps {
   subtitle: React.ReactNode;
   title: string;
 }
-declare class FeatureBanner extends React.Component<FeatureBannerProps, {}> { }
+declare class FeatureBanner extends React.Component<FeatureBannerProps, {}> {}
 export default FeatureBanner;

@@ -71,7 +71,10 @@ describe('<Modal />', () => {
       const originalActiveElement = document.activeElement;
       component = mount(
         <Modal isOpen={false} autoFocus={false} toggle={noop}>
-          <Button id="button" autoFocus>This button</Button> should have focus
+          <Button id="button" autoFocus>
+            This button
+          </Button>{' '}
+          should have focus
         </Modal>
       );
 

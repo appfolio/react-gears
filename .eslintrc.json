@@ -1,14 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "appfolio-react"
-  ],
-  "plugins": [
-    "no-only-tests",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "extends": ["@appfolio/eslint-config-appfolio-react", "prettier"],
+  "plugins": ["no-only-tests", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "react/static-property-placement": "off",
+    "react/destructuring-assignment": "off",
+
     "@typescript-eslint/no-unused-vars": "warn",
     "function-paren-newline": 0,
     "import/newline-after-import": 1,
@@ -18,22 +16,14 @@
     "no-nested-ternary": 0,
     "no-unused-vars": "off",
     "react/default-props-match-prop-types": [2, { "allowRequiredDefaults": true }],
+    "react/function-component-definition": [
+      "error",
+      { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
+    ],
     "react/no-array-index-key": 1, // TODO Remove this when warnings are addressed
     "react/no-find-dom-node": 1, // TODO Remove this when warnings are addressed
     "react/prefer-stateless-function": 0,
     "react/prop-types": 1,
-    "react/sort-comp": [1, {
-      "order": [
-        "propTypes",
-        "defaultProps",
-        "static-methods",
-        "state",
-        "constructor",
-        "everything-else",
-        "lifecycle",
-        "render"
-      ]
-    }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "require-jsdoc": 0
@@ -42,5 +32,13 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

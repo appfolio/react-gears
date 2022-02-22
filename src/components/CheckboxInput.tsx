@@ -16,13 +16,18 @@ interface CheckboxBooleanInputSpecificProps {
   value?: boolean;
 }
 type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
-type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<InputProps, CheckboxBooleanInputSpecificProps>;
+type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
+  InputProps,
+  CheckboxBooleanInputSpecificProps
+>;
 
 type CheckboxInputProps = CheckboxListInputProps | CheckboxBooleanInputProps;
 
 const CheckboxInput: FunctionComponent<CheckboxInputProps> = (props: CheckboxInputProps) =>
-  props.children ?
-    <CheckboxListInput {...props as CheckboxListInputProps} /> :
-    <CheckboxBooleanInput {...props as CheckboxBooleanInputProps} />;
+  props.children ? (
+    <CheckboxListInput {...(props as CheckboxListInputProps)} />
+  ) : (
+    <CheckboxBooleanInput {...(props as CheckboxBooleanInputProps)} />
+  );
 
 export default CheckboxInput;

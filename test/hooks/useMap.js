@@ -11,13 +11,19 @@ describe('useMap', () => {
   it('should store a map', () => {
     const { result } = renderHook(() => useMap(initial));
 
-    assert.deepStrictEqual(result.current.map, new Map(initial.map(val => [val, val])));
+    assert.deepStrictEqual(result.current.map, new Map(initial.map((val) => [val, val])));
   });
 
   it('should store a map of objects using keyMapper', () => {
-    const { result } = renderHook(() => useMap(initialAsObjects, item => item.id));
+    const { result } = renderHook(() => useMap(initialAsObjects, (item) => item.id));
 
-    assert.deepStrictEqual(result.current.map, new Map([['Alpha', initialAsObjects[0]], ['Bravo', initialAsObjects[1]]]));
+    assert.deepStrictEqual(
+      result.current.map,
+      new Map([
+        ['Alpha', initialAsObjects[0]],
+        ['Bravo', initialAsObjects[1]],
+      ])
+    );
   });
 
   describe('add', () => {
@@ -28,7 +34,14 @@ describe('useMap', () => {
         result.current.add('Charlie');
       });
 
-      assert.deepStrictEqual(result.current.map, new Map([['Alpha', 'Alpha'], ['Bravo', 'Bravo'], ['Charlie', 'Charlie']]));
+      assert.deepStrictEqual(
+        result.current.map,
+        new Map([
+          ['Alpha', 'Alpha'],
+          ['Bravo', 'Bravo'],
+          ['Charlie', 'Charlie'],
+        ])
+      );
     });
   });
 
@@ -40,15 +53,11 @@ describe('useMap', () => {
     });
 
     it('should check for existence of an object using keyMapper', () => {
-      const { result } = renderHook(() => useMap(
-        initialAsObjects,
-        item => item.id
-      ));
+      const { result } = renderHook(() => useMap(initialAsObjects, (item) => item.id));
       // Clone item to ensure referential equality isn't required
       assert(result.current.has({ ...initialAsObjects[0] }));
     });
   });
-
 
   describe('remove', () => {
     it('should remove an item', () => {
@@ -62,10 +71,7 @@ describe('useMap', () => {
     });
 
     it('should remove an object using keyMapper', () => {
-      const { result } = renderHook(() => useMap(
-        initialAsObjects,
-        item => item.id
-      ));
+      const { result } = renderHook(() => useMap(initialAsObjects, (item) => item.id));
 
       act(() => {
         // Clone item to ensure referential equality isn't required
@@ -85,7 +91,13 @@ describe('useMap', () => {
         result.current.toggle('Charlie');
       });
 
-      assert.deepStrictEqual(result.current.map, new Map([['Bravo', 'Bravo'], ['Charlie', 'Charlie']]));
+      assert.deepStrictEqual(
+        result.current.map,
+        new Map([
+          ['Bravo', 'Bravo'],
+          ['Charlie', 'Charlie'],
+        ])
+      );
     });
   });
 
@@ -110,7 +122,7 @@ describe('useMap', () => {
         result.current.replace(replacedValues);
       });
 
-      assert.deepStrictEqual(result.current.map, new Map(replacedValues.map(val => [val, val])));
+      assert.deepStrictEqual(result.current.map, new Map(replacedValues.map((val) => [val, val])));
     });
   });
 });

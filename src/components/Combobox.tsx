@@ -15,16 +15,16 @@ import InputGroupAddon from './InputGroupAddon';
 
 type Direction = 'up' | 'down';
 
-type OptionGroup<T> = {
-  label: string;
-  options: Option<T>[];
-}
-
 type Option<T> = {
   label: string;
   value: T;
   disabled?: boolean;
-}
+};
+
+type OptionGroup<T> = {
+  label: string;
+  options: Option<T>[];
+};
 
 interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   options: Option<T>[] | OptionGroup<T>[];
@@ -43,13 +43,23 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
 const defaultProps = {
   noResultsLabel: 'No results found',
   onChange: () => {},
-  filterOptions: (o: Option<any>[], v: any) => o.filter(option => v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true),
+  filterOptions: (o: Option<any>[], v: any) =>
+    o.filter((option) => (v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true)),
   isValidNewOption: () => true,
   renderOption: (option: Option<any>) => option.label,
 };
 
-function Combobox<T>({
-  className, direction, disabled, dropdownProps, inputClassName, options: optionsProp, placeholder, value, menuMaxHeight, multi,
+const Combobox = <T extends unknown>({
+  className,
+  direction,
+  disabled,
+  dropdownProps,
+  inputClassName,
+  options: optionsProp,
+  placeholder,
+  value,
+  menuMaxHeight,
+  multi,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
   onCreate,
@@ -57,7 +67,7 @@ function Combobox<T>({
   filterOptions = defaultProps.filterOptions,
   renderOption = defaultProps.renderOption,
   ...props
-}: ComboboxProps<T>) {
+}: ComboboxProps<T>) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [visibleOptions, setVisibleOptions] = useState<Option<T>[]>([]);
@@ -72,13 +82,23 @@ function Combobox<T>({
     if (optionsProp === [] || !optionsProp) return [];
 
     if (grouped) {
-      return (optionsProp as OptionGroup<T>[]).reduce((o: Option<T>[], current: OptionGroup<T>) => [...o, ...current.options], []);
+      return (optionsProp as OptionGroup<T>[]).reduce(
+        (o: Option<T>[], current: OptionGroup<T>) => [...o, ...current.options],
+        []
+      );
     }
     return optionsProp as Option<T>[];
   }, [optionsProp, grouped]);
-  const selected = useMemo<Option<T> | Option<T>[]>(() => multi ? (value || []).map((v: T) => options.find(option => equal(option.value, v))) : options.find(option => equal(option.value, value)), [value, options, multi]);
+  const selected = useMemo<Option<T> | Option<T>[]>(
+    () =>
+      multi
+        ? (value || []).map((v: T) => options.find((option) => equal(option.value, v)))
+        : options.find((option) => equal(option.value, value)),
+    [value, options, multi]
+  );
   const noMatches = visibleOptions.length === 0;
-  const cursorAtStart = () => inputElement?.current?.selectionStart === 0 && inputElement?.current?.selectionEnd === 0;
+  const cursorAtStart = () =>
+    inputElement?.current?.selectionStart === 0 && inputElement?.current?.selectionEnd === 0;
 
   useEffect(() => {
     if (visibleOptions.length > 0) {
@@ -104,10 +124,15 @@ function Combobox<T>({
     let selectableOptions = [...options];
 
     if (multi && value) {
-      selectableOptions = options.filter(o => value.indexOf(o.value) === -1);
+      selectableOptions = options.filter((o) => value.indexOf(o.value) === -1);
     }
 
-    setVisibleOptions(filterOptions(selectableOptions, !multi && selected && inputValue === (selected as Option<T>).label ? '' : inputValue));
+    setVisibleOptions(
+      filterOptions(
+        selectableOptions,
+        !multi && selected && inputValue === (selected as Option<T>).label ? '' : inputValue
+      )
+    );
   }, [inputValue, setVisibleOptions, filterOptions, options, multi, value, selected]);
 
   const scrollFocusedOptionIntoView = () => {
@@ -182,7 +207,7 @@ function Combobox<T>({
     if (optionValue) selectOption(optionValue);
   };
 
-  const handleOptionsKeyboardNav = (e : React.KeyboardEvent<HTMLElement>) => {
+  const handleOptionsKeyboardNav = (e: React.KeyboardEvent<HTMLElement>) => {
     const input = inputElement?.current;
     const allSelected = input?.selectionStart === 0 && input.selectionEnd === input.value.length;
     const isDisplayingSelected = !multi && selected && inputValue === (selected as Option<T>).label;
@@ -202,7 +227,11 @@ function Combobox<T>({
       setFocusedOptionIndex(focusedOptionIndex + 1);
     } else if (key === 'ArrowUp' && focusedOptionIndex > 0) {
       setFocusedOptionIndex(focusedOptionIndex - 1);
-    } else if (selected && key === 'Backspace' && (cursorAtStart() || (allSelected && isDisplayingSelected))) {
+    } else if (
+      selected &&
+      key === 'Backspace' &&
+      (cursorAtStart() || (allSelected && isDisplayingSelected))
+    ) {
       if (multi) {
         const newValue = [...value];
         newValue.pop();
@@ -210,47 +239,55 @@ function Combobox<T>({
         return;
       }
       onChange(undefined);
-    } else if (!multi && selected && key === 'Backspace' && ((input?.selectionStart === 1 && input?.selectionEnd === 1) || (allSelected && !isDisplayingSelected))) {
+    } else if (
+      !multi &&
+      selected &&
+      key === 'Backspace' &&
+      ((input?.selectionStart === 1 && input?.selectionEnd === 1) ||
+        (allSelected && !isDisplayingSelected))
+    ) {
       showSelectedPreview();
     }
   };
 
-  const renderOptions = (opts: Option<T>[]) => opts.map((option) => {
-    const visibleIndex = visibleOptions.indexOf(option);
-    const key = JSON.stringify(option.value);
-    return (
-      <DropdownItem
-        disabled={option.disabled}
-        className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
-        key={key}
-        id={`option-${key}`}
-        active={focusedOptionIndex === visibleIndex}
-        onMouseEnter={(ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-          setFocusedOptionIndex(visibleIndex);
-        }}
-        onMouseDown={(ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-          selectOption(option.value);
-        }}
-        ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
-        role="option"
-        aria-selected={isOptionSelected(option)}
-      >
-        {renderOption(option)}
-      </DropdownItem>
-    );
-  });
+  const renderOptions = (opts: Option<T>[]) =>
+    opts.map((option) => {
+      const visibleIndex = visibleOptions.indexOf(option);
+      const key = JSON.stringify(option.value);
+      return (
+        <DropdownItem
+          disabled={option.disabled}
+          className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
+          key={key}
+          id={`option-${key}`}
+          active={focusedOptionIndex === visibleIndex}
+          onMouseEnter={(ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            setFocusedOptionIndex(visibleIndex);
+          }}
+          onMouseDown={(ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            selectOption(option.value);
+          }}
+          ref={visibleIndex === focusedOptionIndex ? focusedOption : null}
+          role="option"
+          aria-selected={isOptionSelected(option)}
+        >
+          {renderOption(option)}
+        </DropdownItem>
+      );
+    });
 
-  const renderGroupedOptions = (groups: OptionGroup<T>[]) => groups.map((group, i) => (
-    <>
-      <DropdownItem header>{group.label}</DropdownItem>
-      {renderOptions(group.options)}
-      {(i !== groups.length - 1) && <DropdownItem divider />}
-    </>
-  ));
+  const renderGroupedOptions = (groups: OptionGroup<T>[]) =>
+    groups.map((group, i) => (
+      <>
+        <DropdownItem header>{group.label}</DropdownItem>
+        {renderOptions(group.options)}
+        {i !== groups.length - 1 && <DropdownItem divider />}
+      </>
+    ));
 
   const renderNoOptions = () => {
     if (onCreate) {
@@ -270,35 +307,40 @@ function Combobox<T>({
       );
     }
 
-    return (
-      <DropdownItem disabled>
-        {noResultsLabel}
-      </DropdownItem>
-    );
+    return <DropdownItem disabled>{noResultsLabel}</DropdownItem>;
   };
 
   return (
     <>
-      {
-        multi && (selected as Option<T>[]).length > 0 &&
+      {multi && (selected as Option<T>[]).length > 0 && (
         <div className="d-flex flex-wrap mb-2">
-          {
-            (selected as Option<T>[]).map((o: Option<T>) => {
-              const key = JSON.stringify(o.value);
-              return (
-                <Button key={key} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${key}`}>
-                  <Badge style={{ textTransform: 'none' }} className="p-2">
-                    {o.label}{' '} <Icon name="close" />
-                  </Badge>
-                </Button>
+          {(selected as Option<T>[]).map((o: Option<T>) => {
+            const key = JSON.stringify(o.value);
+            return (
+              <Button
+                key={key}
+                color=""
+                className="btn-sm p-0 mr-1"
+                onClick={() => removeOption(o)}
+                aria-label={`Remove option: ${key}`}
+              >
+                <Badge style={{ textTransform: 'none' }} className="p-2">
+                  {o.label} <Icon name="close" />
+                </Badge>
+              </Button>
             );
-              })
-          }
-          <Button key="clear-all" color="" className="btn-sm p-0 mr-1 text-secondary" onClick={() => onChange([])} aria-label="Remove all selected options">
+          })}
+          <Button
+            key="clear-all"
+            color=""
+            className="btn-sm p-0 mr-1 text-secondary"
+            onClick={() => onChange([])}
+            aria-label="Remove all selected options"
+          >
             <Icon name="close" />
           </Button>
         </div>
-      }
+      )}
       <Dropdown
         data-testid="combobox-dropdown"
         direction={direction}
@@ -390,7 +432,10 @@ function Combobox<T>({
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"
-          aria-activedescendant={visibleOptions[focusedOptionIndex] && `option-${JSON.stringify(visibleOptions[focusedOptionIndex].value)}`}
+          aria-activedescendant={
+            visibleOptions[focusedOptionIndex] &&
+            `option-${JSON.stringify(visibleOptions[focusedOptionIndex].value)}`
+          }
           aria-multiselectable={multi}
         >
           {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
@@ -399,7 +444,7 @@ function Combobox<T>({
       </Dropdown>
     </>
   );
-}
+};
 
 Combobox.displayName = 'Combobox';
 Combobox.defaultProps = defaultProps;

@@ -20,8 +20,8 @@ class FormChoice extends React.Component {
     containerClassName: PropTypes.string,
     id: PropTypes.string,
     type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
-    value: PropTypes.any
-  }
+    value: PropTypes.any,
+  };
 
   constructor(props) {
     super(props);
@@ -29,16 +29,8 @@ class FormChoice extends React.Component {
   }
 
   render() {
-    const {
-      id,
-      inline,
-      disabled,
-      children,
-      containerClassName,
-      type,
-      value,
-      ...attributes
-    } = this.props;
+    const { id, inline, disabled, children, containerClassName, type, value, ...attributes } =
+      this.props;
 
     if (type === 'select') {
       return (
@@ -77,10 +69,7 @@ class FormChoice extends React.Component {
       return item;
     }
     return (
-      <FormGroup
-        check
-        disabled={disabled}
-      >
+      <FormGroup check disabled={disabled}>
         {item}
       </FormGroup>
     );

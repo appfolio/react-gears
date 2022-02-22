@@ -1,27 +1,34 @@
 import React from 'react';
-import cardTypeInfo, { CardBrand, CreditCardTypeInfo } from 'credit-card-type';
+import cardTypeInfo, { CardBrand } from 'credit-card-type';
+import { InputProps } from 'reactstrap/lib/Input';
 import Icon from './Icon';
 import Input from './Input';
-import { InputProps } from 'reactstrap/lib/Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupText from './InputGroupText';
 
+// runtime representation of card types for input validation
+type CardType = 'visa' | 'master-card' | 'american-express' | 'discover' | 'diners-club' | 'jcb';
+
+type IconName =
+  | 'cc-amex'
+  | 'cc-diners-club'
+  | 'cc-mastercard'
+  | 'cc-discover'
+  | 'cc-jcb'
+  | 'cc-visa'
+  | 'credit-card';
+
 const ICONS: {
-  [key: string]: IconName | undefined
+  [key: string]: IconName | undefined;
 } = {
   'american-express': 'cc-amex',
   'diners-club': 'cc-diners-club',
   'master-card': 'cc-mastercard',
   discover: 'cc-discover',
   jcb: 'cc-jcb',
-  visa: 'cc-visa'
+  visa: 'cc-visa',
 };
-
-// runtime representation of card types for input validation
-type CardType = 'visa' | 'master-card' | 'american-express' | 'discover' | 'diners-club' | 'jcb';
-
-type IconName = 'cc-amex' | 'cc-diners-club' | 'cc-mastercard' | 'cc-discover' | 'cc-jcb' | 'cc-visa' | 'credit-card';
 
 function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
@@ -64,10 +71,7 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
 
     const typeInfo = cardTypeInfo(value);
     // Return type if only one CC pattern matches and if allowed types includes type
-    if (
-      typeInfo.length === 1 &&
-      isAllowedCardType(typeInfo[0].type, types)
-    ) {
+    if (typeInfo.length === 1 && isAllowedCardType(typeInfo[0].type, types)) {
       return typeInfo[0].type;
     }
 
@@ -82,7 +86,6 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
     }
   };
 
-
   /* eslint-disable  no-unused-vars */
   const { type, value, ...inputProps } = props;
 
@@ -90,18 +93,10 @@ const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
 
   return (
     <InputGroup className={className}>
-      <Input
-        value={value || ''}
-        onChange={onChangeHandler}
-        {...inputProps}
-      />
+      <Input value={value || ''} onChange={onChangeHandler} {...inputProps} />
       <InputGroupAddon addonType="append">
         <InputGroupText className="p-0 px-2">
-          <Icon
-            name={typeToIconName(ccType)}
-            fixedWidth
-            size="lg"
-          />
+          <Icon name={typeToIconName(ccType)} fixedWidth size="lg" />
         </InputGroupText>
       </InputGroupAddon>
     </InputGroup>

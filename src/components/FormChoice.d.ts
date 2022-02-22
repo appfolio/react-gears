@@ -10,5 +10,5 @@ interface FormChoiceProps extends Omit<React.InputHTMLAttributes<HTMLOptionEleme
   selected?: boolean;
 }
 
-declare class FormChoice extends React.Component<FormChoiceProps, {}> { }
+declare class FormChoice extends React.Component<FormChoiceProps, {}> {}
 export default FormChoice;

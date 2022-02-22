@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Activity from '../src/components/Activity';
 import ActivityLog from '../src/components/ActivityLog';
 import AddressInput from '../src/components/AddressInput';
@@ -36,36 +37,26 @@ import InfoBox from '../src/components/InfoBox';
 import LabelBadge from '../src/components/LabelBadge';
 import MonthInput from '../src/components/MonthInput';
 import MonthCalendar from '../src/components/MonthCalendar';
-import SortableTable, { SortableColumn } from '../src/components/SortableTable';
+import SortableTable from '../src/components/SortableTable';
+import type { SortableColumn } from '../src/components/SortableTable';
 import Spinner from '../src/components/Spinner';
 import Steps from '../src/components/Steps';
 import SummaryBox from '../src/components/SummaryBox';
 import SummaryBoxItem from '../src/components/SummaryBoxItem';
 import Table from '../src/components/Table';
 import Waiting from '../src/components/Waiting';
-import * as React from 'react';
 
-const ActivityExample = () => {
-  <Activity
-    date={new Date()}
-    action="Created"
-    by="Services"
-    href="http://google.com"
-  >
+export const ActivityExample = () => {
+  <Activity date={new Date()} action="Created" by="Services" href="http://google.com">
     Hi
   </Activity>;
 };
 
-const ActivityLogExample = () => {
+export const ActivityLogExample = () => {
   <ActivityLog flush={false}>
     <Activity date={new Date()} action="Created" by="Services" />
     <Activity date={new Date()} action="Edited" />
-    <Activity
-      date={new Date()}
-      action="Edited"
-      by="Gary"
-      href="http://www.google.com"
-    >
+    <Activity date={new Date()} action="Edited" by="Gary" href="http://www.google.com">
       He messed this up
     </Activity>
     <Activity date={new Date()} />
@@ -73,7 +64,7 @@ const ActivityLogExample = () => {
   </ActivityLog>;
 };
 
-const AddressInputExample = () => {
+export const AddressInputExample = () => {
   <AddressInput
     defaultValue={{
       address1: '123 No Way',
@@ -81,7 +72,7 @@ const AddressInputExample = () => {
       city: 'Smallsville',
       state: 'AL',
       postal: '12345-1234',
-      countryCode: 'US'
+      countryCode: 'US',
     }}
     onBlur={() => {}}
     onChange={() => {}}
@@ -93,34 +84,33 @@ const AddressInputExample = () => {
   />;
 };
 
-const AlertExample = () => {
+export const AlertExample = () => {
   <div>
     <Alert icon>You can also add an icon!</Alert>
     <Alert icon color="success">
-      You can specify an alert color. This one has <code>color="success"</code>
+      You can specify an alert color. This one has <code>color=&quot;success&quot;</code>
     </Alert>
     <Alert icon color="danger">
-      Humblebrag prism twee, gochujang seitan whatever asymmetrical ramps enamel
-      pin austin salvia swag helvetica. Chartreuse food truck tofu raclette, 3
-      wolf moon poke chia paleo skateboard. Pickled tote bag echo park raclette.
-      Irony fashion axe sartorial, cornhole jean shorts vaporware flannel salvia
-      glossier beard 3 wolf moon. Literally semiotics hammock irony cred,
-      bicycle rights lomo selvage tousled vegan 8-bit. Four loko cardigan
-      live-edge truffaut pour-over, helvetica chia brooklyn swag pug scenester
-      kogi pitchfork leggings yuccie. Ethical put a bird on it portland vape
-      YOLO.
+      Humblebrag prism twee, gochujang seitan whatever asymmetrical ramps enamel pin austin salvia
+      swag helvetica. Chartreuse food truck tofu raclette, 3 wolf moon poke chia paleo skateboard.
+      Pickled tote bag echo park raclette. Irony fashion axe sartorial, cornhole jean shorts
+      vaporware flannel salvia glossier beard 3 wolf moon. Literally semiotics hammock irony cred,
+      bicycle rights lomo selvage tousled vegan 8-bit. Four loko cardigan live-edge truffaut
+      pour-over, helvetica chia brooklyn swag pug scenester kogi pitchfork leggings yuccie. Ethical
+      put a bird on it portland vape YOLO.
     </Alert>
     <Alert icon color="info">
-      <strong>Heads up!</strong> This alert needs your attention, but it's not
-      super important.
+      <strong>Heads up!</strong> This alert needs your attention, but it&apos;s not super important.
     </Alert>
   </div>;
 };
 
-const BlockPanelExample = () => {
+export const BadgeExample = () => <Badge color="#ffffff" />;
+
+export const BlockPanelExample = () => {
   <BlockPanel
-    title={'Hello'}
-    onEdit={() => alert('Edit clicked!')}
+    title="Hello"
+    onEdit={() => 'Edit clicked!'}
     expandable={false}
     hideOnToggle={false}
     open={false}
@@ -129,43 +119,40 @@ const BlockPanelExample = () => {
   </BlockPanel>;
 };
 
-const ButtonExample = () => {
+export const BreadcrumbExample = () => <Breadcrumb listClassName="foo" />;
+
+export const ButtonExample = () => {
   <Button color="fds">Click Me</Button>;
 };
 
-const CalendarExample = () => {
-  <Calendar date={new Date(2017, 7, 14)} dateVisible={date => true} />;
+export const CalendarExample = () => {
+  <Calendar date={new Date(2017, 7, 14)} dateVisible={() => true} />;
 };
 
-const CalloutExample = () => {
-  <Callout
-    color={'primary'}
-    background={'light'}
-    placement={'top'}
-    title={'todo'}
-  >
+export const CalloutExample = () => {
+  <Callout color="primary" background="light" placement="top" title="todo">
     <h3>Hello World</h3>
     Hello
   </Callout>;
 };
 
-const CheckboxBooleanInputExample = () => {
-  <CheckboxBooleanInput checkboxLabel={'Cool Label'} value={true} disabled />;
+export const CheckboxBooleanInputExample = () => {
+  <CheckboxBooleanInput checkboxLabel="Cool Label" value disabled />;
 };
 
-const CreditCardNumberExample = () => {
+export const CreditCardNumberExample = () => {
   <CreditCardNumber types={['visa', 'master-card']} />;
 };
 
-const CloseExample = () => {
-  <Close title={'My Close'} />;
+export const CloseExample = () => {
+  <Close title="My Close" />;
 };
 
-const CurrencyInputExample = () => {
+export const CurrencyInputExample = () => {
   <CurrencyInput allowDecimal={false} />;
 };
 
-const CustomInputExample = () => {
+export const CustomInputExample = () => {
   <CustomInput
     type="checkbox"
     id="exampleCustomCheckbox3"
@@ -174,7 +161,7 @@ const CustomInputExample = () => {
   />;
 };
 
-const CountryInputExample = () => {
+export const CountryInputExample = () => {
   <CountryInput
     defaultValue="US"
     id="yo"
@@ -184,7 +171,7 @@ const CountryInputExample = () => {
   />;
 };
 
-const DatapairExample = () => {
+export const DatapairExample = () => {
   <Card className="mt-1">
     <CardBody>
       <Datapair label="Label">
@@ -199,11 +186,11 @@ const DatapairExample = () => {
   </Card>;
 };
 
-const DateInputExample = () => {
+export const DateInputExample = () => {
   <DateInput
     id="calendar"
     dateFormat="someFOrmat"
-    showOnFocus={true}
+    showOnFocus
     disabled={false}
     onBlur={() => {}}
     onChange={() => {}}
@@ -211,109 +198,81 @@ const DateInputExample = () => {
   />;
 };
 
-const DeletedNoteExample = () => {
+export const DeletedNoteExample = () => {
   const note = { text: 'Hello World', date: new Date(2018, 5, 3) };
-  <DeletedNote
-    onUndelete={n => {
-      null;
-    }}
-    note={note}
-  />;
+  <DeletedNote onUndelete={() => {}} note={note} />;
 };
 
-const DropdownItemExample = () => {
-  <DropdownItem key={'hi'} active={true} />;
+export const DropdownItemExample = () => {
+  <DropdownItem key="hi" active />;
 };
 
-const EditableNoteExample = () => {
+export const EditableNoteExample = () => {
   const note = { text: 'Sup' };
-  function blankFunc() {
-    return undefined;
-  }
-  <EditableNote
-    note={note}
-    onCancel={blankFunc}
-    onChange={blankFunc}
-    onSave={blankFunc}
-  />;
+  const blankFunc = () => {};
+  <EditableNote note={note} onCancel={blankFunc} onChange={blankFunc} onSave={blankFunc} />;
 };
 
-const ExpandableSectionExample = () => {
+export const ExpandableSectionExample = () => {
   <ExpandableSection title="Click to expand me">
     <h2>BOO!</h2>
   </ExpandableSection>;
 };
 
-const FeatureBannerExample = () => {
-  <FeatureBanner alertText={'New'} title={'Hi'} subtitle={'Some title'}>
+export const FeatureBannerExample = () => {
+  <FeatureBanner alertText="New" title="Hi" subtitle="Some title">
     <div>
-      <Button
-        className="font-weight-bold text-uppercase bg-muted text-primary"
-        outline
-      >
+      <Button className="font-weight-bold text-uppercase bg-muted text-primary" outline>
         Test
       </Button>
     </div>
   </FeatureBanner>;
 };
 
-const FileInputExample = () => {
-  <FileInput
-    name="aFileInput"
-    onChange={() => {
-      undefined;
-    }}
-  />;
+export const FileInputExample = () => {
+  <FileInput name="aFileInput" onChange={() => {}} />;
 };
 
-const FilterListExample = () => {
+export const FilterListExample = () => {
   const filters = [
     {
       label: 'User',
       value: 'Hello World',
-      removable: false
+      removable: false,
     },
     {
       label: 'Property',
-      value: '1234 State Street'
+      value: '1234 State Street',
     },
     {
       label: 'People',
-      value: 'Lalalala'
-    }
+      value: 'Lalalala',
+    },
   ];
 
   <div>
-    <FilterList
-      filters={filters}
-      maxWidth={14}
-      onRemove={filter => {
-        console.log('filter');
-      }}
-    />
+    <FilterList filters={filters} maxWidth={14} onRemove={(filter) => `filter is ${filter}`} />
   </div>;
 };
 
-const FormChoiceExample = () => {
+export const FormChoiceExample = () => {
   <FormChoice type="select" value="foobar">
     Test
   </FormChoice>;
 };
 
-const FormRowExample = () => {
-  return (
-    <FormRow
-      label={'First name'}
-      feedback={'Feedback'}
-      color={'danger'}
-      hint={'some hint'}
-      required={false}
-      inline={false}
-      stacked={false}
-      validFeedback="hay"
-    />
-  );
-};
+export const FormRowExample = () => (
+  <FormRow
+    label="First name"
+    feedback="Feedback"
+    color="danger"
+    hint="some hint"
+    required={false}
+    inline={false}
+    stacked={false}
+    validFeedback="hay"
+  />
+);
 
 const hasManyItems = [
   {
@@ -321,10 +280,10 @@ const hasManyItems = [
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
-    countryCode: 'US'
-  }
+    countryCode: 'US',
+  },
 ];
-const HasManyFieldsExample = () => {
+export const HasManyFieldsExample = () => {
   <HasManyFields
     defaultValue={hasManyItems}
     template={AddressInput}
@@ -340,37 +299,30 @@ const HasManyFieldsExample = () => {
   />;
 };
 
-const HasManyFieldsAddExample = () => {
-  <HasManyFieldsAdd outline={true} className="foobar">
+export const HasManyFieldsAddExample = () => {
+  <HasManyFieldsAdd outline className="foobar">
     Custom Label!
   </HasManyFieldsAdd>;
 };
 
-const HasManyFieldsRowExample = () => {
+export const HasManyFieldsRowExample = () => {
+  <HasManyFieldsRow onDelete={() => {}} disabled>
+    Stuff
+  </HasManyFieldsRow>;
+};
+
+export const HasManyFieldsRowDisabledExample = () => {
   <HasManyFieldsRow
-    onDelete={() => {
-      undefined;
-    }}
+    onDelete={() => {}}
     disabled
+    disabledReason="test"
+    disabledReasonPlacement="top"
   >
     Stuff
   </HasManyFieldsRow>;
 };
 
-const HasManyFieldsRowDisabledExample = () => {
-  <HasManyFieldsRow
-    onDelete={() => {
-      undefined;
-    }}
-    disabled
-    disabledReason={'test'}
-    disabledReasonPlacement={'top'}
-  >
-    Stuff
-  </HasManyFieldsRow>;
-};
-
-const HelpBubbleExample = () => {
+export const HelpBubbleExample = () => {
   <p>
     I can be placed in context to provide some contextual help!
     <HelpBubble title="Test" className="ml-1">
@@ -379,43 +331,37 @@ const HelpBubbleExample = () => {
   </p>;
 };
 
-const IconExample = () => {
+export const IconExample = () => {
   <Icon name="calendar" size="lg" />;
 };
 
-const InfoBoxExample = () => {
+export const InfoBoxExample = () => {
   <InfoBox color="success" title="Some title" icon="check" vertical={false}>
     yo
   </InfoBox>;
 };
 
-const LabelBadgeExample = () => {
-  <LabelBadge
-    label="one"
-    value="two"
-    removable={true}
-    maxWidth={200}
-    onRemove={() => {}}
-  />;
+export const LabelBadgeExample = () => {
+  <LabelBadge label="one" value="two" removable maxWidth={200} onRemove={() => {}} />;
 };
 
-const MonthInputExample = () => {
+export const MonthInputExample = () => {
   <MonthInput
     dateFormat="MMM YYYY"
     monthFormat="MMM"
     yearFormat="YYY"
-    showOnFocus={true}
+    showOnFocus
     disabled={false}
     onBlur={() => {}}
     onChange={() => {}}
   />;
 };
 
-const MonthCalendarExample = () => {
-  <MonthCalendar date={new Date(2017, 4, 20)} dateVisible={d => true} />;
+export const MonthCalendarExample = () => {
+  <MonthCalendar date={new Date(2017, 4, 20)} dateVisible={() => true} />;
 };
 
-const SortableTableExample = () => {
+export const SortableTableExample = () => {
   type Row = { name: string };
   const columns: SortableColumn<Row>[] = [
     {
@@ -425,24 +371,24 @@ const SortableTableExample = () => {
       active: true,
       ascending: false,
       cell: (row: Row) => row.name,
-      onSort: (ascending: boolean) => {},
-      width: '50%'
+      onSort: (ascending: boolean) => `Ascending: ${ascending}`,
+      width: '50%',
     },
     {
       key: 'enabled',
       header: 'Enabled',
       align: 'center',
       active: false,
-      cell: (row: Row) => 'Yes',
+      cell: (row: Row) => `Yes: ${row.name}`,
       width: '10%',
       footer: 'All systems are go',
-      ascending: false
-    }
+      ascending: false,
+    },
   ];
   const rows: Row[] = [
     {
-      name: 'Smith'
-    }
+      name: 'Smith',
+    },
   ];
 
   class NameTable extends SortableTable<Row> {}
@@ -450,30 +396,30 @@ const SortableTableExample = () => {
   <NameTable dark bordered striped columns={columns} rows={rows} />;
 };
 
-const SpinnerExample = () => {
+export const SpinnerExample = () => {
   <Spinner />;
 };
 
-const StepExample = () => {
+export const StepExample = () => {
   <Steps steps={['first', 'second', 'third']} step={2} collapse={false} />;
 };
 
-const SummaryBoxExample = () => {
+export const SummaryBoxExample = () => {
   const items = [
     { value: 'Alpha', label: 'Team' },
     { value: 'Bravo', label: 'Johnny' },
-    { value: 'Charlie', label: 'Brown' }
+    { value: 'Charlie', label: 'Brown' },
   ];
   <SummaryBox id="fred" items={items}>
     <span>Hi</span>
   </SummaryBox>;
 };
 
-const SummaryBoxItemExample = () => {
+export const SummaryBoxItemExample = () => {
   <SummaryBoxItem id="mertz" />;
 };
 
-const TableExample = () => {
+export const TableExample = () => {
   <Table size="sm" borderless striped dark hover>
     <tr>
       <td>One Cell</td>
@@ -481,7 +427,7 @@ const TableExample = () => {
   </Table>;
 };
 
-const TableItem = () => {
+export const TableItem = () => {
   <Table bordered>
     <tr>
       <td>hi</td>
@@ -489,6 +435,6 @@ const TableItem = () => {
   </Table>;
 };
 
-const WaitingItem = () => {
+export const WaitingItem = () => {
   <Waiting isOpen backdrop className="something" />;
 };

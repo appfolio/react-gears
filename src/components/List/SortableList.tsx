@@ -9,22 +9,32 @@ export interface SortableListProps<T> extends Omit<ListProps<T>, 'onFilter'> {
 }
 
 const defaultProps = {
-  ...List.defaultProps
+  ...List.defaultProps,
 };
 
-function SortableList<T>({ filterBy, onFilter, items = defaultProps.items, scrollPositionKey, sort = defaultProps.sort, sortOptions, ...props }: SortableListProps<T>) {
+const SortableList = <T extends unknown>({
+  filterBy,
+  onFilter,
+  items = defaultProps.items,
+  scrollPositionKey,
+  sort = defaultProps.sort,
+  sortOptions,
+  ...props
+}: SortableListProps<T>) => {
   const [filter, setFilter] = useState(filterBy);
   const [sortProperty, setSortProperty] = useState(sort.property);
-  const [ascending, setAscending] = useState<boolean | undefined>(sort.ascending === undefined ? true : sort.ascending);
+  const [ascending, setAscending] = useState<boolean | undefined>(
+    sort.ascending === undefined ? true : sort.ascending
+  );
   const [sorted, setSorted] = useState(items);
 
   useEffect(() => {
     const properties = typeof sortProperty === 'string' ? [sortProperty] : sortProperty;
-    const direction = properties?.map(() => ascending ? 'asc' : 'desc');
+    const direction = properties?.map(() => (ascending ? 'asc' : 'desc'));
 
     setSorted(
       orderBy(
-        (filter && onFilter) ? items.filter((item: T) => onFilter(filter, item)) : items,
+        filter && onFilter ? items.filter((item: T) => onFilter(filter, item)) : items,
         properties,
         direction
       )
@@ -49,7 +59,7 @@ function SortableList<T>({ filterBy, onFilter, items = defaultProps.items, scrol
       {...props}
     />
   );
-}
+};
 
 SortableList.propTypes = {
   ...List.propTypes,

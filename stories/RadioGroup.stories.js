@@ -23,7 +23,5 @@ export const LiveExample = () => {
     action('onChange')(value);
   };
 
-  return (
-    <RadioGroup radio options={options} onChange={handleChange} selected={selected} />
-  );
+  return <RadioGroup radio options={options} onChange={handleChange} selected={selected} />;
 };

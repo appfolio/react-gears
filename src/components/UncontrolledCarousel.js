@@ -39,55 +39,51 @@ class UncontrolledCarousel extends Component {
   }
 
   next() {
-    if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === this.props.items.length - 1
-        ? 0
-        : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
+    if (this.animating) {
+      return;
+    }
+    this.setState((prevState) => {
+      const nextIndex =
+        prevState.activeIndex === this.props.items.length - 1 ? 0 : prevState.activeIndex + 1;
+      return {
+        activeIndex: nextIndex,
+      };
+    });
   }
 
   previous() {
-    if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === 0
-        ? this.props.items.length - 1
-        : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
+    if (this.animating) {
+      return;
+    }
+    this.setState((prevState) => {
+      const nextIndex =
+        prevState.activeIndex === 0 ? this.props.items.length - 1 : prevState.activeIndex - 1;
+      return { activeIndex: nextIndex };
+    });
   }
 
   goToIndex(newIndex) {
-    if (this.animating) return;
+    if (this.animating) {
+      return;
+    }
     this.setState({ activeIndex: newIndex });
   }
 
   render() {
-    const {
-      defaultActiveIndex,
-      autoPlay,
-      indicators,
-      controls,
-      items,
-      goToIndex,
-      ...props
-    } = this.props;
+    const { defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props } =
+      this.props;
     const { activeIndex } = this.state;
 
     const slides = items.map((item) => {
       const key = item.key || item.src;
       return (
-        <CarouselItem
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-          key={key}
-        >
-          {item.children ? item.children : (
+        <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={key}>
+          {item.children ? (
+            item.children
+          ) : (
             <img className="d-block w-100" src={item.src} alt={item.altText} />
           )}
-          <CarouselCaption
-            captionText={item.caption}
-            captionHeader={item.header || item.caption}
-          />
+          <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />
         </CarouselItem>
       );
     });

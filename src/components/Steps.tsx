@@ -12,19 +12,26 @@ interface StepProps {
   vertical?: boolean;
 }
 
-const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], vertical = false }: StepProps) => {
+const Steps = ({
+  collapse,
+  complete = false,
+  onStepClick,
+  step = 0,
+  steps = [],
+  vertical = false,
+}: StepProps) => {
   const className = classNames({
     complete,
     'rg-steps': true,
     vertical,
-    'm-0': true
+    'm-0': true,
   });
   const activeStep = steps[step];
   const activeStepClasses = classNames({
     'text-body': !complete,
     'text-success': complete,
     'd-sm-none': collapse !== true,
-    'text-center': true
+    'text-center': true,
   });
 
   return (
@@ -40,7 +47,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             active: stepActive,
             'text-success': complete,
             'text-primary': !complete && (stepComplete || stepActive),
-            'text-muted': !(stepComplete || stepActive || complete)
+            'text-muted': !(stepComplete || stepActive || complete),
           });
 
           const bubbleClasses = classNames({
@@ -49,14 +56,14 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             'bg-white': !stepActive,
             'bg-primary': stepActive,
             'text-primary': stepActive || stepComplete,
-            'text-muted': !stepComplete && !stepActive
+            'text-muted': !stepComplete && !stepActive,
           });
 
           const iconClasses = classNames({
             'text-primary': stepComplete,
             'text-white': stepActive,
             'text-body': !(complete || stepComplete || stepActive),
-            'text-success': complete
+            'text-success': complete,
           });
 
           const textClasses = classNames('js-step-label', {
@@ -68,9 +75,16 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             'text-body': stepActive,
           });
 
-          const buttonClasses = classNames('bg-transparent', 'border-0', 'd-flex', 'align-items-center', 'p-0', {
-            'flex-column': !vertical
-          });
+          const buttonClasses = classNames(
+            'bg-transparent',
+            'border-0',
+            'd-flex',
+            'align-items-center',
+            'p-0',
+            {
+              'flex-column': !vertical,
+            }
+          );
 
           const stepContent = (
             <>
@@ -84,10 +98,7 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           );
 
           const wrappedStepContent = onStepClick ? (
-            <Button
-              onClick={() => onStepClick(index)}
-              className={buttonClasses}
-            >
+            <Button onClick={() => onStepClick(index)} className={buttonClasses}>
               {stepContent}
             </Button>
           ) : (
@@ -101,10 +112,11 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
           );
         })}
       </ol>
-      {collapse !== false && !vertical ?
+      {collapse !== false && !vertical ? (
         <div className={activeStepClasses}>
           <span className="mb-2 js-step-label">{activeStep}</span>
-        </div> : null}
+        </div>
+      ) : null}
       <style jsx>
         {`
           .rg-steps:not(.vertical) {
@@ -134,16 +146,36 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             background-image: linear-gradient(to right, transparent 50%, #818a91 50%, #818a91 100%);
           }
           .rg-steps:not(.vertical) .step:first-child.complete {
-            background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 100%);
+            background-image: linear-gradient(
+              to right,
+              transparent 50%,
+              currentColor 50%,
+              currentColor 100%
+            );
           }
           .rg-steps:not(.vertical) .step:last-child {
-            background-image: linear-gradient(to right, #818a91 50%, transparent 50%, transparent 100%);
+            background-image: linear-gradient(
+              to right,
+              #818a91 50%,
+              transparent 50%,
+              transparent 100%
+            );
           }
           .rg-steps:not(.vertical) .step:last-child.active {
-            background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
+            background-image: linear-gradient(
+              to right,
+              currentColor 50%,
+              transparent 50%,
+              transparent 100%
+            );
           }
           .rg-steps:not(.vertical) .step:last-child.complete {
-            background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
+            background-image: linear-gradient(
+              to right,
+              currentColor 50%,
+              transparent 50%,
+              transparent 100%
+            );
           }
           .rg-steps:not(.vertical) .step .bubble {
             align-items: center;
@@ -158,7 +190,12 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             width: 2.5rem;
           }
           .rg-steps:not(.vertical) .step.active {
-            background-image: linear-gradient(to right, currentColor 50%, #818a91 50%, #818a91 100%);
+            background-image: linear-gradient(
+              to right,
+              currentColor 50%,
+              #818a91 50%,
+              #818a91 100%
+            );
           }
           .rg-steps:not(.vertical) .step.active .bubble {
             border: 1px solid currentColor;
@@ -176,10 +213,20 @@ const Steps = ({ collapse, complete = false, onStepClick, step = 0, steps = [], 
             border: 1px solid currentColor;
           }
           .rg-steps:not(.vertical).complete .step:first-child {
-            background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 100%);
+            background-image: linear-gradient(
+              to right,
+              transparent 50%,
+              currentColor 50%,
+              currentColor 100%
+            );
           }
           .rg-steps:not(.vertical).complete .step:last-child {
-            background-image: linear-gradient(to right, currentColor 50%, transparent 50%, transparent 100%);
+            background-image: linear-gradient(
+              to right,
+              currentColor 50%,
+              transparent 50%,
+              transparent 100%
+            );
           }
 
           .rg-steps.vertical {

@@ -17,7 +17,7 @@ class CheckboxBooleanInput extends React.Component {
     checkboxLabel: PropTypes.node,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.bool
+    value: PropTypes.bool,
   };
 
   constructor(props) {
@@ -37,7 +37,7 @@ class CheckboxBooleanInput extends React.Component {
           {...inputProps}
           type="checkbox"
           checked={value}
-          onChange={e => onChange && onChange(e.target.checked)}
+          onChange={(e) => onChange && onChange(e.target.checked)}
           className="my-0"
         />
         {checkboxLabel && (

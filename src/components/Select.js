@@ -8,7 +8,19 @@ import Option from './SelectOption.js';
 import SelectArrow from './SelectArrow';
 import SelectMultiValue from './SelectMultiValue.js';
 
-const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valueProp, valueComponent, onChange, ...props }) => {
+const SelectClearRenderer = () => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />;
+
+const Select = ({
+  arrowRenderer,
+  className,
+  inputProps,
+  multi,
+  name,
+  value: valueProp,
+  valueComponent,
+  onChange,
+  ...props
+}) => {
   const [value, setValue] = useState(valueProp || props.defaultValue);
 
   useEffect(() => setValue(valueProp), [valueProp]);
@@ -26,13 +38,16 @@ const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valu
   } else if (props.creatable) {
     SelectElement = ReactSelect.Creatable;
   }
-  const classNames = classnames(className, { 'select-async': props.loadOptions });
+  const classNames = classnames(className, {
+    'select-async': props.loadOptions,
+  });
   const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
 
   return (
     <SelectElement
+      /* eslint-disable-next-line react/no-unstable-nested-components -- Fix this when we migrate from `react-select-plus` to `react-select` */
       arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
-      clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
+      clearRenderer={SelectClearRenderer}
       optionComponent={Option}
       inputProps={{ name, ...inputProps }}
       multi={multi}
@@ -52,11 +67,11 @@ Select.propTypes = {
   loadOptions: PropTypes.func,
   onChange: PropTypes.func,
   value: PropTypes.any,
-  ...ReactSelect.propTypes
+  ...ReactSelect.propTypes,
 };
 
 Select.defaultProps = {
-  onChange: noop
+  onChange: noop,
 };
 
 Select.displayName = 'Select';
