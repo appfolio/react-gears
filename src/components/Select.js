@@ -32,7 +32,7 @@ const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valu
   return (
     <SelectElement
       arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
-      clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '1rem' }} />}
+      clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '.5rem' }} />}
       optionComponent={Option}
       inputProps={{ name, ...inputProps }}
       multi={multi}
