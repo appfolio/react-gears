@@ -55,7 +55,7 @@ const HasManyFieldsRow = ({
       color="danger"
       onClick={e => e.preventDefault()}
       outline
-      className="p-2 disabled"
+      className="p-2 disabled align-self-stretch"
     >
       <Icon name="times-circle-o" size="lg" />
     </Button>
@@ -66,7 +66,7 @@ const HasManyFieldsRow = ({
       aria-label="Delete"
       outline
       onClick={onDelete}
-      className="p-2"
+      className="p-2 align-self-stretch"
       {...deleteProps}
     >
       <Icon name="times-circle-o" size="lg" />
