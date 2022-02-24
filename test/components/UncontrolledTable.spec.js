@@ -111,7 +111,7 @@ describe('<UncontrolledTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta', sortable: false }
+      { header: 'Delta', sortable: false },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} />);
     const sortIcons = wrapper.find('Icon');
@@ -218,19 +218,19 @@ describe('<UncontrolledTable />', () => {
 
   it('should update expanded rows when new expanded prop provided', () => {
     const columns = [{ header: 'Name', cell: row => row.name }];
-    const rows = [{ name: 'Mantleray', key: '1' }];
+    const rows = [
+      { name: 'Mantleray', key: '1' },
+      { name: 'Other', key: '2' },
+    ];
     const rowExpanded = () => <span className="expando">Hey</span>;
     const expanded = [];
     const props = { columns, rows, expandable: true, expanded, rowExpanded };
     const wrapper = mount(<UncontrolledTable {...props} />);
 
-    let expandedRow = wrapper.find('.expando');
-    assert.equal(expandedRow.length, 0);
+    assert.equal(wrapper.find('.expando').length, 0);
 
-    const newProps = { expanded: [rows[0]] };
-    wrapper.setProps(newProps);
-    expandedRow = wrapper.find('.expando');
-    assert.equal(expandedRow.length, 1);
+    wrapper.setProps({ expanded: rows[1] });
+    assert.equal(wrapper.find('.expando').length, 1);
   });
 
   it('should call onExpand when row is expanded', () => {
@@ -247,16 +247,42 @@ describe('<UncontrolledTable />', () => {
     sinon.assert.calledOnce(onExpand);
   });
 
-  it('should supply onClick row handler when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
-    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
-    const onClick = sinon.stub();
+  it('should clear the expanded state when the expandable prop changes', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+    ];
     const wrapper = mount(
       <UncontrolledTable
         columns={columns}
         rows={rows}
-        rowOnClick={onClick}
+        expandable
+        expanded={rows}
+        rowExpanded={() => <span className="expanded-row">EXPANDED</span>}
       />
+    );
+
+    let expandedSpans = wrapper.find('tbody span.expanded-row');
+    assert.strictEqual(expandedSpans.length, 2);
+
+    wrapper.setProps({ expandable: false });
+
+    expandedSpans = wrapper.find('tbody span.expanded-row');
+    assert.strictEqual(expandedSpans.length, 0);
+
+    wrapper.setProps({ expandable: true });
+
+    expandedSpans = wrapper.find('tbody span.expanded-row');
+    assert.strictEqual(expandedSpans.length, 0);
+  });
+
+  it('should supply onClick row handler when specified', () => {
+    const columns = [{ header: 'Name', cell: (row) => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
+    const onClick = sinon.stub();
+    const wrapper = mount(
+      <UncontrolledTable columns={columns} rows={rows} rowOnClick={onClick} />
     );
     wrapper.find('tbody tr').first().simulate('click');
     sinon.assert.calledWith(onClick, 'Alpha');
@@ -314,8 +340,12 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should call onSelect when selectable row picked', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
-    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+      { name: 'Charlie', key: '3' },
+    ];
     const onSelect = sinon.stub();
     const wrapper = mount(
       <UncontrolledTable
@@ -326,10 +356,97 @@ describe('<UncontrolledTable />', () => {
       />
     );
     wrapper
-      .find({ type: 'checkbox' })
-      .first()
+      .find('tbody input')
+      .at(0)
       .simulate('change', { target: { checked: true } });
-    sinon.assert.calledWith(onSelect, rows);
+    sinon.assert.calledWith(onSelect, rows[0]);
+
+    wrapper
+      .find('tbody input')
+      .at(1)
+      .simulate('change', { target: { checked: true } });
+    sinon.assert.calledWith(onSelect, rows[1]);
+
+    wrapper
+      .find('tbody input')
+      .at(0)
+      .simulate('change', { target: { checked: false } });
+    sinon.assert.calledWith(onSelect, rows[0]);
+  });
+
+  it('should call onSelectAll when the select all checkbox is clicked', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+      { name: 'Charlie', key: '3' },
+    ];
+    const onSelectAll = sinon.stub();
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selectable
+        onSelectAll={onSelectAll}
+      />
+    );
+
+    const selectAllCheckbox = wrapper.find('thead input');
+    selectAllCheckbox.simulate('change', { target: { checked: true } });
+    sinon.assert.calledWith(onSelectAll, true);
+
+    selectAllCheckbox.simulate('change', { target: { checked: false } });
+    sinon.assert.calledWith(onSelectAll, false);
+  });
+
+  it('should not call onSelectAll when no rows are defined', () => {
+    const onSelectAll = sinon.stub();
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={[]}
+        selectable
+        paginated
+        onSelectAll={onSelectAll}
+      />
+    );
+
+    wrapper
+      .find('thead input')
+      .simulate('change', { target: { checked: true } });
+    sinon.assert.notCalled(onSelectAll);
+  });
+
+  it('should clear all selections when selectable prop changes', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+    ];
+    const wrapper = mount(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selectable
+        selected={rows}
+      />
+    );
+
+    let checkboxes = wrapper.find('tbody input');
+    assert.strictEqual(checkboxes.length, 2);
+    assert.strictEqual(checkboxes.at(0).prop('checked'), true);
+    assert.strictEqual(checkboxes.at(1).prop('checked'), true);
+
+    wrapper.setProps({ selectable: false });
+
+    checkboxes = wrapper.find('tbody input');
+    assert.strictEqual(checkboxes.length, 0);
+
+    wrapper.setProps({ selectable: true });
+
+    checkboxes = wrapper.find('tbody input');
+    assert.strictEqual(checkboxes.length, 2);
+    assert.strictEqual(checkboxes.at(0).prop('checked'), false);
+    assert.strictEqual(checkboxes.at(1).prop('checked'), false);
   });
 
   it('should call onPageChange on page change', () => {
@@ -391,9 +508,44 @@ describe('<UncontrolledTable />', () => {
     assert.strictEqual(paginator.prop('currentPage'), 2);
   });
 
+  it('should revert to page 0 when rows change', () => {
+    const columns = [{ header: 'Name', cell: (row) => row }];
+    const rows = [
+      'Alpha',
+      'Bravo',
+      'Charlie',
+      'Delta',
+      'Echo',
+      'Foxtrot',
+      'Golf',
+      'Hotel',
+    ];
+    const wrapper = shallow(
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        page={1}
+        paginated
+        pageSize={4}
+      />
+    );
+
+    let paginator = wrapper.find(Paginator);
+    assert.strictEqual(paginator.prop('currentPage'), 2);
+
+    wrapper.setProps({ rows: ['Foo', 'Bar', 'Baz'] });
+
+    paginator = wrapper.find(Paginator);
+    assert.strictEqual(paginator.prop('currentPage'), 1);
+  });
+
   it('should show correct rows on sort change', () => {
-    const columns = [{ header: 'Name', key: 'name', cell: row => row }];
-    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }];
+    const columns = [{ header: 'Name', key: 'name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: 1 },
+      { name: 'Bravo', key: 2 },
+      { name: 'Charlie', key: 3 },
+    ];
     const wrapper = shallow(
       <UncontrolledTable
         columns={columns}
@@ -404,15 +556,27 @@ describe('<UncontrolledTable />', () => {
       />
     );
 
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie', key: 3 },
+      { name: 'Bravo', key: 2 },
+      { name: 'Alpha', key: 1 },
+    ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order
     wrapper.update();
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Alpha', key: 1 },
+      { name: 'Bravo', key: 2 },
+      { name: 'Charlie', key: 3 },
+    ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order
     wrapper.update();
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie', key: 3 },
+      { name: 'Bravo', key: 2 },
+      { name: 'Alpha', key: 1 },
+    ]);
   });
 
   it('should show correct rows on sort change', () => {
@@ -460,26 +624,26 @@ describe('<UncontrolledTable />', () => {
 
   it('should update selected when new selected props are provided', () => {
     const columns = [
-      { header: 'Name', cell: row => row },
+      { header: 'Name', cell: (row) => row.name },
       { header: 'Nope', cell: () => 'Nope', hidden: true },
     ];
-    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
 
     const wrapper = mount(
       <UncontrolledTable
         columns={columns}
         rows={rows}
-        selected={['Alpha']}
+        selectable
+        selected={[rows[0]]}
       />
     );
 
-    assert.deepEqual(wrapper.props().selected, ['Alpha']);
-    assert.deepEqual(wrapper.state().selected, ['Alpha']);
+    assert.deepEqual(wrapper.props().selected, [{ name: 'Alpha' }]);
+    assert.strictEqual(wrapper.find('tbody input').at(0).props().checked, true);
 
-    wrapper.setProps({ selected: ['Bravo'] });
-
-    assert.deepEqual(wrapper.props().selected, ['Bravo']);
-    assert.deepEqual(wrapper.state().selected, ['Bravo']);
+    wrapper.setProps({ selected: [rows[1]] });
+    assert.deepEqual(wrapper.props().selected, [{ name: 'Bravo' }]);
+    assert.strictEqual(wrapper.find('tbody input').at(1).props().checked, true);
   });
 
   it('should select the selected prop rows, if provided', () => {
@@ -491,73 +655,116 @@ describe('<UncontrolledTable />', () => {
     const selected = [{ name: 'Alpha' }];
 
     const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} selected={selected} />
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        selectable
+        selected={selected}
+      />
     );
-    const instance = wrapper.instance();
 
-    assert(instance.selected({ name: 'Alpha' }) === true);
-    assert(instance.selected({ name: 'Bravo' }) === false);
-    assert(instance.selected({ name: 'Alpha', age: 16 }) === false);
+    const inputs = wrapper.find('tbody input');
+    assert.strictEqual(inputs.at(0).props().checked, true);
+    assert.strictEqual(inputs.at(1).props().checked, false);
   });
 
-  it('should toggle selection correctly', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+  it('should expand the rows specified in the expanded prop, when that prop is provided', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
-    const selected = [{ name: 'Alpha' }];
+    const expanded = [{ name: 'Alpha' }];
 
     const wrapper = mount(
       <UncontrolledTable
         columns={columns}
         rows={rows}
-        selected={selected}
+        expandable
+        expanded={expanded}
+        rowExpanded={(row) => row.name}
       />
     );
-    const instance = wrapper.instance();
+    const expandedRows = wrapper.find('tr.tr-expanded');
 
-    assert(wrapper.state().selected.length === 1);
-    instance.toggleSelection({ name: 'Alpha' });
-    assert(wrapper.state().selected.length === 0);
-
-    instance.toggleSelection({ name: 'Alpha' });
-    assert(wrapper.state().selected.length === 1);
+    assert.strictEqual(expandedRows.length, 1);
+    assert.strictEqual(expandedRows.at(0).text(), 'Alpha');
   });
 
-  it('should expand the rows specified in the expanded prop, when that prop is provided', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
-    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
-    const expanded = [{ name: 'Alpha' }];
+  it('should correctly expand a row', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+    ];
+    const expanded = [{ name: 'Alpha', key: '1' }];
+    const onExpandSpy = sinon.spy();
 
     const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        expandable
+        expanded={expanded}
+        rowExpanded={(row) => row.name}
+        onExpand={onExpandSpy}
+      />
     );
-    const instance = wrapper.instance();
 
-    assert(instance.expanded({ name: 'Alpha' }) === true);
-    assert(instance.expanded({ name: 'Bravo' }) === false);
-    assert(instance.expanded({ name: 'Alpha', age: 16 }) === false);
+    assert.strictEqual(wrapper.find('tr.tr-expanded').length, 1);
+
+    wrapper.find('td button').at(1).simulate('click');
+
+    sinon.assert.calledOnceWithExactly(onExpandSpy, {
+      name: 'Bravo',
+      key: '2',
+    });
+
+    assert.strictEqual(wrapper.find('tr.tr-expanded').length, 2);
   });
 
-  it('should toggle expanded correctly', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
-    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
-    const expanded = [{ name: 'Alpha' }];
+  it('should correctly collapse a row', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', key: '1' },
+      { name: 'Bravo', key: '2' },
+    ];
+    const expanded = [{ name: 'Alpha', key: '1' }];
+    const onExpandSpy = sinon.spy();
 
     const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
+      <UncontrolledTable
+        columns={columns}
+        rows={rows}
+        expandable
+        expanded={expanded}
+        rowExpanded={(row) => row.name}
+        onExpand={onExpandSpy}
+      />
     );
-    const instance = wrapper.instance();
-    assert(instance.expanded({ name: 'Alpha' }) === true);
-    instance.toggleExpanded({ name: 'Alpha' });
-    assert(wrapper.state().expanded.length === 0);
 
-    instance.toggleExpanded({ name: 'Alpha' });
-    assert(instance.expanded({ name: 'Alpha' }) === true);
+    assert.strictEqual(wrapper.find('tr.tr-expanded').length, 1);
+
+    wrapper.find('td button').at(0).simulate('click');
+
+    sinon.assert.calledOnceWithExactly(onExpandSpy, {
+      name: 'Alpha',
+      key: '1',
+    });
+
+    assert.strictEqual(wrapper.find('tr.tr-expanded').length, 0);
   });
 
   describe('onVisibleRowsChange', () => {
+    const rows = [
+      { name: 'Alpha', key: 'a' },
+      { name: 'Bravo', key: 'b' },
+      { name: 'Charlie', key: 'c' },
+      { name: 'Delta', key: 'd' },
+      { name: 'Echo', key: 'e' },
+      { name: 'Foxtrot', key: 'f' },
+      { name: 'Golf', key: 'g' },
+      { name: 'Hotel', key: 'h' },
+    ];
     it('calls onVisibleRowsChange when the page changes', () => {
-      const columns = [{ header: 'Name', cell: row => row }];
-      const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+      const columns = [{ header: 'Name', cell: (row) => row.name }];
       const onVisibleRowsChange = sinon.stub();
       const wrapper = mount(
         <UncontrolledTable
@@ -570,12 +777,17 @@ describe('<UncontrolledTable />', () => {
       );
 
       wrapper.find('.page-link').last().simulate('click');
-      sinon.assert.calledWith(onVisibleRowsChange, ['Echo', 'Foxtrot', 'Golf', 'Hotel']);
+
+      sinon.assert.calledWith(onVisibleRowsChange, [
+        { name: 'Echo', key: 'e' },
+        { name: 'Foxtrot', key: 'f' },
+        { name: 'Golf', key: 'g' },
+        { name: 'Hotel', key: 'h' },
+      ]);
     });
 
     it('calls onVisibleRowsChange when pagination is enabled', () => {
-      const columns = [{ header: 'Name', cell: row => row }];
-      const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+      const columns = [{ header: 'Name', cell: (row) => row.name }];
       const onVisibleRowsChange = sinon.stub();
       const wrapper = mount(
         <UncontrolledTable
@@ -589,130 +801,29 @@ describe('<UncontrolledTable />', () => {
       sinon.assert.calledOnce(onVisibleRowsChange);
 
       wrapper.setProps({ paginated: true });
-      sinon.assert.calledWith(onVisibleRowsChange, ['Alpha', 'Bravo', 'Charlie', 'Delta']);
+      sinon.assert.calledWith(onVisibleRowsChange, [
+        { name: 'Alpha', key: 'a' },
+        { name: 'Bravo', key: 'b' },
+        { name: 'Charlie', key: 'c' },
+        { name: 'Delta', key: 'd' },
+      ]);
     });
 
     it('does not call onVisibleRowsChange when a row is expanded', () => {
-      const columns = [{ header: 'Name', cell: row => row.name }];
-      const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
+      const columns = [{ header: 'Name', cell: (row) => row.name }];
       const onVisibleRowsChange = sinon.stub();
 
       const wrapper = mount(
-        <UncontrolledTable columns={columns} rows={rows} onVisibleRowsChange={onVisibleRowsChange} />
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          expandable
+          onVisibleRowsChange={onVisibleRowsChange}
+        />
       );
-      const instance = wrapper.instance();
-      instance.toggleExpanded({ name: 'Alpha' });
-      assert(instance.expanded({ name: 'Alpha' }) === true);
-
+      const expandButtons = wrapper.find('td button');
+      expandButtons.at(1).simulate('click');
       sinon.assert.calledOnce(onVisibleRowsChange);
-    });
-  });
-
-  describe('isEqualUsingKeys()', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(
-        <UncontrolledTable columns={[]} rows={[]} expanded={[]} page={0} />
-      );
-    });
-
-    it('should use object comparison if no keys present in arrays', () => {
-      let oldArray = [1, 2, 3];
-      const newArray = [3, 4, 5];
-
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
-      oldArray = newArray;
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
-    });
-
-    it('should use object comparison if keys arent present in every object in the arrays, order agnostic', () => {
-      let oldArray = [{ key: 1 }, { key: 2 }, { name: 'Bob Barker' }];
-      const newArray = [{ key: 2 }, { key: 1 }, { name: 'Bob Barker' }];
-
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
-
-      oldArray = newArray;
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
-    });
-
-    it('should use key comparison if keys present in every object in the arrays, order agnostic', () => {
-      let oldArray = [{ key: 1 }, { key: 2 }];
-      const newArray = [{ key: 2 }, { key: 1 }];
-
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), true);
-
-      oldArray = [{ key: 1 }, { key: 3 }];
-      assert.strictEqual(wrapper.instance().isEqualUsingKeys(oldArray, newArray), false);
-    });
-  });
-
-
-  describe('UNSAFE_componentWillReceiveProps()', () => {
-    let wrapper;
-    beforeEach(() => {
-      const columns = [{ header: 'Name', cell: row => row.name }];
-      const rows = [{ name: 'Alpha', key: '1' }, { name: 'Bravo', key: '2' }];
-      const expanded = [{ name: 'Alpha', key: '1' }];
-      const selected = [{ name: 'Bravo', key: '2' }];
-
-      wrapper = mount(
-        <UncontrolledTable columns={columns} rows={rows} expanded={expanded} page={1} selected={selected} />
-      );
-    });
-
-    it('should not reset state for expanded, page, and selected if a rows key attributes have not changed', () => {
-      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
-      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
-      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
-
-      const expectedStateExpanded = wrapper.state().expanded;
-      const expectedStateSelected = wrapper.state().selected;
-      const expectedStatePage = wrapper.state().page;
-
-      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.rows[0].name = 'Charlie';
-      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
-
-      assert.deepEqual(wrapper.state().expanded.map(r => r.key), expectedStateExpanded.map(r => r.key), 'the expanded state should not have changed');
-      assert.deepEqual(wrapper.state().selected.map(r => r.key), expectedStateSelected.map(r => r.key), 'the selected state should not have changed');
-      assert.strictEqual(wrapper.state().page, expectedStatePage, 'the page state should not have been changed');
-    });
-
-    it('should reset state for expanded, page, and selected if a rows key attributes have changed', () => {
-      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
-      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
-      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
-
-      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.rows[0].key = '3';
-      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
-
-      assert.strictEqual(wrapper.state().expanded.length, 0, 'the expanded state should be reset to empty');
-      assert.strictEqual(wrapper.state().selected.length, 0, 'the selected state should be reset to empty');
-      assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
-    });
-
-    it('should reset state for selected if a change is detected in the selected key attributes have changed', () => {
-      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
-
-      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.selected[0].key = '3';
-      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
-
-      assert.strictEqual(wrapper.state().selected.length, 1, 'the selected state should have one entry');
-      assert.strictEqual(wrapper.state().selected[0].key, '3', 'the selected state should be set to the new array');
-    });
-
-    it('should reset state for expanded if a change is detected in the expanded key attributes have changed', () => {
-      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
-
-      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.expanded[0].key = '3';
-      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
-
-      assert.strictEqual(wrapper.state().expanded.length, 1, 'the expanded state should have one entry');
-      assert.strictEqual(wrapper.state().expanded[0].key, '3', 'the expanded state should be set to the new array');
     });
   });
 });
