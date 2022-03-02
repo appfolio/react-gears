@@ -5,16 +5,86 @@ import { boolean, number, select } from '@storybook/addon-knobs';
 import { Button, Table, SortableTable, UncontrolledTable } from '../src';
 
 const DATA = [
-  { key: '111', expanded: false, first: 'Rufus Xavier Sarsparilla', last: 'Jones', email: 'rufus.xavier.sarsparilla@example.com', dob: new Date(1968, 6, 15) },
-  { key: '222', expanded: false, first: 'Albert Andreas Armadillo', last: 'Thomas', email: 'albert.andreas.armadillo@example.com', dob: new Date(1972, 7, 17) },
-  { key: '333', expanded: false, first: 'Arron', last: 'Douglas', email: 'arron.douglas@example.com', dob: new Date(1982, 4, 1) },
-  { key: '444', expanded: false, first: 'Reginald', last: 'Rhodes', email: 'reginald.rhodes@example.com', dob: new Date(1968, 8, 14) },
-  { key: '555', expanded: false, first: 'Jimmy', last: 'Mendoza', email: 'jimmy.mendoza@example.com', dob: new Date(1964, 1, 1) },
-  { key: '666', expanded: false, first: 'Georgia', last: 'Montgomery', email: 'georgia.montgomery@example.com', dob: new Date(1960, 6, 4) },
-  { key: '777', expanded: true, first: 'Serenity', last: 'Thomas', email: 'serenity.thomas@example.com', dob: new Date(1973, 0, 11) },
-  { key: '888', expanded: false, first: 'Tonya', last: 'Elliott', email: 'tonya.elliott@example.com', dob: new Date(1954, 7, 17) },
-  { key: '999', expanded: false, first: 'Maxine', last: 'Turner', email: 'maxine.turner@example.com', dob: new Date(1961, 8, 19) },
-  { key: '000', expanded: false, first: 'Max', last: 'Headroom', email: 'max.headroom@example.com', dob: new Date(1984, 6, 1) }
+  {
+    key: '111',
+    expanded: false,
+    first: 'Rufus Xavier Sarsparilla',
+    last: 'Jones',
+    email: 'rufus.xavier.sarsparilla@example.com',
+    dob: new Date(1968, 6, 15),
+  },
+  {
+    key: '222',
+    expanded: false,
+    first: 'Albert Andreas Armadillo',
+    last: 'Thomas',
+    email: 'albert.andreas.armadillo@example.com',
+    dob: new Date(1972, 7, 17),
+  },
+  {
+    key: '333',
+    expanded: false,
+    first: 'Arron',
+    last: 'Douglas',
+    email: 'arron.douglas@example.com',
+    dob: new Date(1982, 4, 1),
+  },
+  {
+    key: '444',
+    expanded: false,
+    first: 'Reginald',
+    last: 'Rhodes',
+    email: 'reginald.rhodes@example.com',
+    dob: new Date(1968, 8, 14),
+  },
+  {
+    key: '555',
+    expanded: false,
+    first: 'Jimmy',
+    last: 'Mendoza',
+    email: 'jimmy.mendoza@example.com',
+    dob: new Date(1964, 1, 1),
+  },
+  {
+    key: '666',
+    expanded: false,
+    first: 'Georgia',
+    last: 'Montgomery',
+    email: 'georgia.montgomery@example.com',
+    dob: new Date(1960, 6, 4),
+  },
+  {
+    key: '777',
+    expanded: true,
+    first: 'Serenity',
+    last: 'Thomas',
+    email: 'serenity.thomas@example.com',
+    dob: new Date(1973, 0, 11),
+  },
+  {
+    key: '888',
+    expanded: false,
+    first: 'Tonya',
+    last: 'Elliott',
+    email: 'tonya.elliott@example.com',
+    dob: new Date(1954, 7, 17),
+  },
+  {
+    key: '999',
+    expanded: false,
+    first: 'Maxine',
+    last: 'Turner',
+    email: 'maxine.turner@example.com',
+    dob: new Date(1961, 8, 19),
+  },
+  {
+    key: '000',
+    expanded: false,
+    first: 'Max',
+    last: 'Headroom',
+    email: 'max.headroom@example.com',
+    dob: new Date(1984, 6, 1),
+  },
 ];
 
 export default {
@@ -40,14 +110,16 @@ export const LiveExample = () => (
     </thead>
 
     <tbody>
-      {DATA.map(row => (
+      {DATA.map((row) => (
         <tr key={row.name}>
           <td>{row.first}</td>
           <td>{row.last}</td>
           <td>{fecha.format(row.dob, 'MM/DD/YYYY')}</td>
-          <td><a href={`mailto:${row.email}`}>{row.email}</a></td>
+          <td>
+            <a href={`mailto:${row.email}`}>{row.email}</a>
+          </td>
         </tr>
-       ))}
+      ))}
     </tbody>
   </Table>
 );
@@ -58,7 +130,8 @@ export const SortableTableExample = () => {
   return (
     <div>
       <p className="text-warning">
-        <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'UncontrolledTable' story.
+        <b>Note:</b> This is an uncontrolled example, will not sort on click.
+        See 'UncontrolledTable' story.
       </p>
       <SortableTable
         bordered={boolean('bordered', false)}
@@ -73,40 +146,40 @@ export const SortableTableExample = () => {
             ascending,
             header: 'First',
             key: 'first',
-            cell: row => row.first,
+            cell: (row) => row.first,
             onSort: action('onSort', 'First'),
-            width: '20%'
+            width: '20%',
           },
           {
             active: column === 'last',
             ascending,
             header: 'Last',
             key: 'last',
-            cell: row => row.last,
+            cell: (row) => row.last,
             onSort: action('onSort', 'Last'),
-            width: '30%'
+            width: '30%',
           },
           {
             active: column === 'dob',
             ascending,
             header: 'DOB',
             key: 'dob',
-            cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+            cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
             onSort: action('onSort', 'DOB'),
-            width: '15%'
+            width: '15%',
           },
           {
             active: column === 'email',
             ascending,
             header: <span>Email</span>,
             key: 'email',
-            cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
+            cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
             onSort: action('onSort', 'Email'),
-            width: '35%'
-          }
+            width: '35%',
+          },
         ]}
         rows={DATA}
-        rowSelected={row => row.key === '777'}
+        rowSelected={(row) => row.key === '777'}
         onExpand={action('onExpand')}
         onSelect={action('onSelect')}
         onSelectAll={action('onSelectAll')}
@@ -122,38 +195,46 @@ export const UncontrolledTableExample = () => (
         {
           header: 'First',
           key: 'first',
-          cell: row => row.first,
-          width: '20%'
+          cell: (row) => row.first,
+          width: '20%',
         },
         {
           header: 'Last',
           key: 'last',
-          cell: row => row.last,
-          width: '30%'
+          cell: (row) => row.last,
+          width: '30%',
         },
         {
           header: 'DOB',
           key: 'dob',
-          cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-          width: '15%'
+          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          width: '15%',
         },
         {
           header: 'Email',
           key: 'email',
-          cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-          width: '35%'
-        }
+          cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+          width: '35%',
+        },
       ]}
       rows={DATA}
-      rowExpanded={row => <div>{row.first} {row.last}</div>}
+      rowExpanded={(row) => (
+        <div>
+          {row.first} {row.last}
+        </div>
+      )}
       sort={{ column: 'last', ascending: true }}
-      expandable={boolean('expandable', false)}
+      expandable={boolean('expandable', true)}
+      expanded={[DATA[2], DATA[3]]}
+      onExpand={action('onExpand')}
       responsive={boolean('responsive', true)}
-      selectable={boolean('selectable', false)}
+      selected={[DATA[0], DATA[3]]}
+      selectable={boolean('selectable', true)}
       truncate={boolean('truncate', false)}
       paginated={boolean('paginated', false)}
       pageSize={number('pageSize', 10)}
       onSelect={action('onSelect')}
+      onSelectAll={action('onSelectAll')}
       onSort={action('onSort')}
       onPageChange={action('onPageChange')}
       onVisibleRowsChange={action('onVisibleRowsChange')}
@@ -167,35 +248,39 @@ export const CustomHeader = () => (
       {
         header: 'First',
         key: 'first',
-        cell: row => row.first,
-        width: '20%'
+        cell: (row) => row.first,
+        width: '20%',
       },
       {
         header: 'Last',
         key: 'last',
-        cell: row => row.last,
-        width: '30%'
+        cell: (row) => row.last,
+        width: '30%',
       },
       {
         header: 'DOB',
         key: 'dob',
-        cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-        width: '15%'
+        cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+        width: '15%',
       },
       {
         header: 'Email',
         key: 'email',
-        cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-        width: '35%'
-      }
+        cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+        width: '35%',
+      },
     ]}
     rows={DATA}
-    rowExpanded={row => <div>{row.first} {row.last}</div>}
+    rowExpanded={(row) => (
+      <div>
+        {row.first} {row.last}
+      </div>
+    )}
     sort={{ column: 'last', ascending: true }}
     header={[
       <tr>
         <th colSpan={3}>Basic Info</th> <th colSpan={1}>Contact Info</th>
-      </tr>
+      </tr>,
     ]}
   />
 );
@@ -207,42 +292,72 @@ export const CustomFooter = () => (
         {
           header: 'Date',
           key: 'date',
-          cell: row => fecha.format(row.date, 'MM/DD/YYYY'),
-          width: '25%'
+          cell: (row) => fecha.format(row.date, 'MM/DD/YYYY'),
+          width: '25%',
         },
         {
           header: 'Description',
           key: 'name',
-          cell: row => row.name,
-          width: '50%'
+          cell: (row) => row.name,
+          width: '50%',
         },
         {
           header: 'Cost',
           key: 'cost',
-          cell: row => row.cost,
+          cell: (row) => row.cost,
           width: '25%',
-          align: 'right'
-        }
+          align: 'right',
+        },
       ]}
       rows={[
-        { key: '111', expanded: false, date: new Date(2016, 6, 15), name: 'Utility bill', cost: '$123.45' },
-        { key: '222', expanded: false, date: new Date(2016, 7, 17), name: 'Roof repair', cost: '$4000.00' },
-        { key: '333', expanded: false, date: new Date(2017, 4, 1), name: 'Plumbing', cost: '$350' },
-        { key: '444', expanded: false, date: new Date(2018, 8, 14), name: 'Painting', cost: '$1500' },
-        ]}
+        {
+          key: '111',
+          expanded: false,
+          date: new Date(2016, 6, 15),
+          name: 'Utility bill',
+          cost: '$123.45',
+        },
+        {
+          key: '222',
+          expanded: false,
+          date: new Date(2016, 7, 17),
+          name: 'Roof repair',
+          cost: '$4000.00',
+        },
+        {
+          key: '333',
+          expanded: false,
+          date: new Date(2017, 4, 1),
+          name: 'Plumbing',
+          cost: '$350',
+        },
+        {
+          key: '444',
+          expanded: false,
+          date: new Date(2018, 8, 14),
+          name: 'Painting',
+          cost: '$1500',
+        },
+      ]}
       footer={[
         <tr>
-          <td colSpan={2} className="text-right">Total Costs</td>
+          <td colSpan={2} className="text-right">
+            Total Costs
+          </td>
           <td className="text-right">$5973.45</td>
         </tr>,
         <tr>
-          <td colSpan={2} className="text-right">Total Income</td>
+          <td colSpan={2} className="text-right">
+            Total Income
+          </td>
           <td className="text-right">$26,200.00</td>
         </tr>,
         <tr>
-          <td colSpan={2} className="text-right">Total Gain</td>
+          <td colSpan={2} className="text-right">
+            Total Gain
+          </td>
           <td className="text-right">$20,226.55</td>
-        </tr>
+        </tr>,
       ]}
     />
   </div>
@@ -255,30 +370,34 @@ export const CustomExpandColumn = () => (
         {
           header: 'First',
           key: 'first',
-          cell: row => row.first,
-          width: '20%'
+          cell: (row) => row.first,
+          width: '20%',
         },
         {
           header: 'Last',
           key: 'last',
-          cell: row => row.last,
-          width: '30%'
+          cell: (row) => row.last,
+          width: '30%',
         },
         {
           header: 'DOB',
           key: 'dob',
-          cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
-          width: '15%'
+          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          width: '15%',
         },
         {
           header: 'Email',
           key: 'email',
-          cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-          width: '35%'
-        }
+          cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+          width: '35%',
+        },
       ]}
       rows={DATA}
-      rowExpanded={row => <div>{row.first} {row.last}</div>}
+      rowExpanded={(row) => (
+        <div>
+          {row.first} {row.last}
+        </div>
+      )}
       sort={{ column: 'last', ascending: true }}
       expandable
       expandableColumn={{
@@ -293,33 +412,34 @@ export const CustomExpandColumn = () => (
 export const AlignColumn = () => (
   <div>
     <p className="text-warning">
-      <b>Note:</b> This is an uncontrolled example, will not sort on click.  See 'UncontrolledTable' story.
+      <b>Note:</b> This is an uncontrolled example, will not sort on click. See
+      'UncontrolledTable' story.
     </p>
     <SortableTable
       columns={[
         {
           header: 'Default Align',
           key: 'name',
-          cell: row => row.first,
+          cell: (row) => row.first,
         },
         {
           align: 'left',
           header: 'Left Align',
           key: 'last',
-          cell: row => row.last,
+          cell: (row) => row.last,
         },
         {
           align: 'center',
           header: 'Center Align',
           key: 'dob',
-          cell: row => fecha.format(row.dob, 'MM/DD/YYYY'),
+          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
         },
         {
           align: 'right',
           header: 'Right Align',
           key: 'email',
-          cell: row => <a href={`mailto:${row.email}`}>{row.email}</a>,
-        }
+          cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+        },
       ]}
       rows={DATA}
     />

@@ -9,7 +9,8 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn", "always"],
+    "arrow-parens": "warn",
     "function-paren-newline": 0,
     "import/newline-after-import": 1,
     "max-len": 0,

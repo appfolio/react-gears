@@ -150,7 +150,7 @@ import ScrollContainer from './components/ScrollContainer';
 import Select from './components/Select';
 // @ts-ignore: implicitly has an 'any' type
 import SelectMultiValue from './components/SelectMultiValue';
-import SortableTable from './components/SortableTable';
+import SortableTable from './components/SortableTable/SortableTable';
 import Spinner from './components/Spinner';
 import StateInput from './components/StateInput';
 import StaticInput from './components/StaticInput';
@@ -263,10 +263,8 @@ export {
   UncontrolledDropdown,
   UncontrolledPopover,
   UncontrolledTooltip,
-
   Select,
   SelectMultiValue,
-
   // Gears
   Activity,
   ActivityLog,
@@ -332,5 +330,5 @@ export {
   UncontrolledTable,
   Waiting,
   TooltipButton,
-  TruncatedText
+  TruncatedText,
 };

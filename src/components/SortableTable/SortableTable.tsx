@@ -1,16 +1,59 @@
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
+import type { Key, MouseEvent, ReactNode } from 'react';
 import React from 'react';
-import type { ReactNode, MouseEvent } from 'react';
-import Button from './Button';
-import Icon from './Icon';
-import Label from './Label';
-import type { HeaderProps } from './SortableTable/Header';
-import Header from './SortableTable/Header';
-import type { TableProps } from './Table';
-import Table from './Table';
+import Button from '../Button';
+import Icon from '../Icon';
+import Label from '../Label';
+import type { HeaderProps } from './Header';
+import Header from './Header';
+import type { TableProps } from '../Table';
+import Table from '../Table';
 
-function generateColumnClassName(column, truncate = false) {
+type HorizontalAlignment = 'left' | 'center' | 'right';
+
+export interface SortableColumn<T>
+  extends Omit<HeaderProps, 'children' | 'onSort'> {
+  align?: HorizontalAlignment;
+  cell: (row: T, expanded?: boolean) => ReactNode;
+  footer?: ReactNode;
+  header?: ReactNode;
+  hidden?: boolean;
+  key: Key;
+  onSort?: (ascending: boolean) => void;
+  sortable?: boolean;
+  width?: string;
+}
+
+export type SortableTableRow<T> = T & { key: Key | undefined };
+type RowClassNameFunction<T> = (row: T) => ReactNode | undefined;
+type RowExpandedFunction<T> = (row: T) => ReactNode | false;
+type RowOnClickFunction<T> = (row: T, evt: MouseEvent) => void;
+type RowSelectedFunction<T> = (row: T) => boolean;
+
+export interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
+  allSelected?: boolean;
+  columns: SortableColumn<T>[];
+  expandableColumn?: Partial<SortableColumn<T>>;
+  footer?: ReactNode;
+  key?: string;
+  onExpand?: (row: T) => void;
+  onSelect?: (row: T, selected?: boolean) => void;
+  onSelectAll?: (selected: boolean) => void;
+  /* eslint-disable-next-line no-use-before-define */
+  renderRow?: typeof defaultRenderRow;
+  rowClassName?: RowClassNameFunction<T>;
+  rowExpanded?: RowExpandedFunction<T>;
+  rowOnClick?: RowOnClickFunction<T>;
+  rows?: SortableTableRow<T>[];
+  rowSelected?: RowSelectedFunction<T>;
+  truncate?: boolean;
+}
+
+function generateColumnClassName<T>(
+  column: SortableColumn<T>,
+  truncate = false
+) {
   return classnames(
     truncate && 'text-truncate',
     column.align && `text-${column.align}`,
@@ -18,39 +61,40 @@ function generateColumnClassName(column, truncate = false) {
   );
 }
 
-/* function defaultRenderRow(
-  row,
-  columns,
-  rowClassName,
-  rowExpanded,
-  rowOnClick,
-  truncate,
-  rowSelected
-) {
-  const expanded = rowExpanded(row);
+function defaultRenderRow<T>(
+  row: SortableTableRow<T>,
+  columns: SortableColumn<T>[],
+  rowClassName?: RowClassNameFunction<T>,
+  rowExpanded?: RowExpandedFunction<T>,
+  rowOnClick?: RowOnClickFunction<T>,
+  truncate?: boolean,
+  rowSelected?: RowSelectedFunction<T>
+): ReactNode {
+  const expanded = rowExpanded && rowExpanded(row);
+  //console.log('rendering row', row, expanded);
   return [
     <tr
       key={row.key}
       className={classnames(
         { 'table-primary': rowSelected && rowSelected(row) },
-        rowClassName(row)
+        rowClassName ? rowClassName(row) : ''
       )}
       onClick={(e) => rowOnClick && rowOnClick(row, e)}
-      role={rowOnClick ? 'button' : null}
+      role={rowOnClick ? 'button' : undefined}
     >
       {columns.map((column) => (
         <td
           key={column.key}
           className={generateColumnClassName(column, truncate)}
         >
-          {column.cell(row, expanded)}
+          {column.cell(row, expanded !== false)}
         </td>
       ))}
     </tr>,
-    expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
+    expanded && <tr key={row.key ? `${row.key}-hidden` : undefined} hidden />,
     expanded && (
       <tr
-        key={row.key ? `${row.key}-expanded` : null}
+        key={row.key ? `${row.key}-expanded` : undefined}
         className={classnames(
           { 'table-primary': rowSelected && rowSelected(row) },
           'tr-expanded'
@@ -63,65 +107,31 @@ function generateColumnClassName(column, truncate = false) {
     ),
   ];
 }
-*/
 
-type HorizontalAlignment = 'left' | 'center' | 'right';
-
-export interface SortableColumn<T>
-  extends Omit<HeaderProps, 'children' | 'onSort'> {
-  align?: HorizontalAlignment;
-  cell: (row: T, expanded?: boolean) => ReactNode;
-  footer?: ReactNode;
-  header?: ReactNode;
-  key: string;
-  onSort?: (ascending: boolean) => void;
-  width?: string;
-}
-
-interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
-  className?: string;
-  allSelected?: boolean;
-  columns: SortableColumn<T>[];
-  expandableColumn?: Partial<SortableColumn<T>>;
-  footer?: React.ReactNode;
-  onExpand?: (row: T) => void;
-  onSelect: (row: T, selected: boolean) => void;
-  onSelectAll?: (selected: boolean) => void;
-  rowSelected?: (row: T) => boolean;
-  rows: T[];
-  rowClassName?: (row: T) => ReactNode | undefined;
-  rowExpanded?: (row: T) => ReactNode | boolean;
-  rowOnClick?: (row: T, evt: MouseEvent) => void;
-  truncate?: boolean;
-}
-
-const defaultProps = {};
-
-function SortableTable<T>(props: SortableTableProps<T>) {
-  const {
-    columns,
-    header,
-    footer,
-    rowClassName,
-    rowOnClick,
-    rows,
-    style,
-    truncate,
-    allSelected,
-    onSelect,
-    onSelectAll,
-    rowSelected,
-    expandableColumn,
-    onExpand,
-    rowExpanded,
-    renderRow,
-    ...remainingProps
-  } = props;
-  const selectable = rowSelected;
-  const expandable = onExpand;
+function SortableTable<T>({
+  allSelected,
+  columns,
+  expandableColumn = {},
+  header,
+  footer,
+  onExpand,
+  onSelect,
+  onSelectAll,
+  renderRow = defaultRenderRow,
+  rowClassName = () => undefined,
+  rowExpanded = () => false,
+  rowOnClick,
+  rows = [],
+  rowSelected,
+  truncate = false,
+  style,
+  ...remainingProps
+}: SortableTableProps<T>) {
   const showColgroup =
-    selectable || expandable || columns.some((column) => column.width);
+    rowSelected || onExpand || columns.some((column) => column.width);
+
   const showFooter = columns.some((column) => column.footer);
+
   const tableStyle = {
     tableLayout: truncate ? 'fixed' : 'auto',
     ...style,
@@ -129,7 +139,7 @@ function SortableTable<T>(props: SortableTableProps<T>) {
 
   const cols = [...columns];
 
-  if (selectable) {
+  if (rowSelected) {
     const selectAllId = uniqueId('select-all-');
     cols.unshift({
       align: 'center',
@@ -162,7 +172,7 @@ function SortableTable<T>(props: SortableTableProps<T>) {
               className="mx-1"
               checked={rowSelected(row)}
               onClick={(e) => e.stopPropagation()}
-              onChange={(e) => onSelect(row, e.target.checked)}
+              onChange={(e) => onSelect && onSelect(row, e.target.checked)}
             />
           </>
         );
@@ -171,7 +181,7 @@ function SortableTable<T>(props: SortableTableProps<T>) {
     });
   }
 
-  if (expandable) {
+  if (onExpand) {
     cols.push({
       align: 'center',
       key: 'expand',
@@ -189,7 +199,6 @@ function SortableTable<T>(props: SortableTableProps<T>) {
       ...expandableColumn,
     });
   }
-
   return (
     <Table style={tableStyle} {...remainingProps}>
       {showColgroup && (
@@ -202,19 +211,19 @@ function SortableTable<T>(props: SortableTableProps<T>) {
       <thead>
         {header}
         <tr>
-          {cols.map((column, index) => (
-            <Header
-              active={column.active}
-              ascending={column.ascending}
-              className={generateColumnClassName(column, truncate)}
-              key={index}
-              onSort={() =>
-                column.onSort ? column.onSort(!column.ascending) : null
-              }
-            >
-              {column.header}
-            </Header>
-          ))}
+          {cols.map((column) => {
+            const headerProps: HeaderProps = {
+              active: column.active,
+              ascending: column.ascending,
+              className: generateColumnClassName(column, truncate),
+              key: column.key,
+            };
+            if (column.onSort) {
+              headerProps.onSort = () =>
+                column.onSort && column.onSort(!column.ascending);
+            }
+            return <Header {...headerProps}>{column.header}</Header>;
+          })}
         </tr>
       </thead>
       <tbody>

@@ -239,19 +239,30 @@ describe('<UncontrolledTable />', () => {
     assert(ths.last().text().indexOf('whatever you want, homie') > -1);
   });
 
-  it('should update expanded rows when new expanded prop provided', () => {
+  it.only('should update expanded rows when new expanded prop provided', () => {
     const columns = [{ header: 'Name', cell: (row) => row.name }];
-    const rows = [{ name: 'Mantleray', key: '1' }];
-    const rowExpanded = () => <span className="expando">Hey</span>;
-    const expanded = [];
-    const props = { columns, rows, expandable: true, expanded, rowExpanded };
+    const rows = [
+      { name: 'Mantleray', key: '1' },
+      { name: 'Other', key: '2' },
+    ];
+    const rowExpanded = (row) => <span className="expando">{row.name}</span>;
+
+    const props = {
+      columns,
+      rows,
+      expandable: true,
+      rowExpanded,
+      expanded: [],
+    };
     const wrapper = mount(<UncontrolledTable {...props} />);
 
     let expandedRow = wrapper.find('.expando');
     assert.equal(expandedRow.length, 0);
 
-    const newProps = { expanded: [rows[0]] };
-    wrapper.setProps(newProps);
+    //const newProps = { expanded: [rows[0]] };
+    console.log('SETTING PROP');
+    debugger;
+    wrapper.setProps({ expanded: rows[1] });
     expandedRow = wrapper.find('.expando');
     assert.equal(expandedRow.length, 1);
   });
