@@ -14,6 +14,15 @@ export default {
   component: AddressInput,
 };
 
+const defaultLabels = {
+  address1: 'Address',
+  address2: 'Address 2',
+  city: 'City',
+  state: 'State',
+  postal: 'Zip',
+  countryCode: 'Country',
+};
+
 export const LiveExample = () => (
   <div>
     <AddressInput
@@ -33,8 +42,8 @@ export const LiveExample = () => (
       error={object('error', {})}
       showCountry={boolean('showCountry', true)}
       showLabels={boolean('showLabels', false)}
-      labels={object('labels', AddressInput.defaultProps.labels)}
-      hints={object('hints', AddressInput.defaultProps.hints)}
+      labels={object('labels', defaultLabels)}
+      hints={object('hints', {})}
     />
   </div>
 );
