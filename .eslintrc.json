@@ -1,15 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "appfolio-react"
-  ],
-  "plugins": [
-    "no-only-tests",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "extends": ["appfolio-react"],
+  "plugins": ["no-only-tests", "react-hooks", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
+    "arrow-parens": "off",
     "function-paren-newline": 0,
     "import/newline-after-import": 1,
     "max-len": 0,
@@ -21,7 +16,7 @@
     "react/no-array-index-key": 1, // TODO Remove this when warnings are addressed
     "react/no-find-dom-node": 1, // TODO Remove this when warnings are addressed
     "react/prefer-stateless-function": 0,
-    "react/prop-types": 1,
+    "react/prop-types": "off",
     "react/sort-comp": [1, {
       "order": [
         "propTypes",

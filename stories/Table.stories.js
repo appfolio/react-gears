@@ -147,13 +147,17 @@ export const UncontrolledTableExample = () => (
       rows={DATA}
       rowExpanded={row => <div>{row.first} {row.last}</div>}
       sort={{ column: 'last', ascending: true }}
-      expandable={boolean('expandable', false)}
+      expandable={boolean('expandable', true)}
+      expanded={[DATA[2], DATA[3]]}
+      onExpand={action('onExpand')}
       responsive={boolean('responsive', true)}
-      selectable={boolean('selectable', false)}
+      selected={[DATA[0], DATA[3]]}
+      selectable={boolean('selectable', true)}
       truncate={boolean('truncate', false)}
       paginated={boolean('paginated', false)}
       pageSize={number('pageSize', 10)}
       onSelect={action('onSelect')}
+      onSelectAll={action('onSelectAll')}
       onSort={action('onSort')}
       onPageChange={action('onPageChange')}
       onVisibleRowsChange={action('onVisibleRowsChange')}
