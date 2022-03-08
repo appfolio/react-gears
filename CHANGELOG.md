@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.14.1](https://www.github.com/appfolio/react-gears/compare/v6.14.0...v6.14.1) (2022-03-08)
+
+
+### Miscellaneous
+
+* convert SortableTable and UncontrolledTable to ts/func ([5a54baa](https://www.github.com/appfolio/react-gears/commit/5a54baafe91722b3e6295161fba70b8dc24df10c))
+
 ## [6.14.0](https://www.github.com/appfolio/react-gears/compare/v6.13.0...v6.14.0) (2022-02-18)
 
 
