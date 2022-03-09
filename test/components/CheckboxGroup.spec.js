@@ -5,15 +5,19 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 
 import CheckboxGroup from '../../src/components/CheckboxGroup';
 
-const options = [
-  { label: 'Watermelon', value: 'watermelon' },
-  { label: 'Apple', value: 'apple' },
-  { label: 'Lemon', value: 'lemon' },
-  { label: 'Orange', value: 'orange' },
-  { label: 'Grape', value: 'grape' },
-];
-
 describe('<CheckboxGroup />', () => {
+  let options;
+
+  beforeEach(() => {
+    options = [
+      { label: 'Watermelon', value: 'watermelon' },
+      { label: 'Apple', value: 'apple' },
+      { label: 'Lemon', value: 'lemon' },
+      { label: 'Orange', value: 'orange' },
+      { label: 'Grape', value: 'grape' },
+    ];
+  });
+
   afterEach(cleanup);
 
   it('should select option', () => {
@@ -26,6 +30,16 @@ describe('<CheckboxGroup />', () => {
     fireEvent.click(option);
 
     sinon.assert.calledWith(mockOnChange, ['apple', 'orange']);
+  });
+
+  it('should select option', () => {
+    options = [{ label: 'Watermelon', value: 'watermelon', disabled: true }];
+    const checkboxes = render(
+      <CheckboxGroup options={options} selected={[]} onChange={jest.fn()} />
+    );
+
+    const option = checkboxes.getByLabelText('Watermelon');
+    expect(option.disabled).toEqual(true);
   });
 
   it('should deselect option', () => {

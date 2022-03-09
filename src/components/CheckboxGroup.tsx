@@ -8,6 +8,7 @@ type Value = any;
 interface Option {
   label: string;
   value: Value;
+  disabled?: boolean;
 }
 
 export interface CheckboxGroupProps {
@@ -43,6 +44,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
                 checked={selected.includes(option.value)}
                 onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
                 className="my-0"
+                disabled={option.disabled}
                 id={id}
               />
               <Label check className="my-0" for={id}>
