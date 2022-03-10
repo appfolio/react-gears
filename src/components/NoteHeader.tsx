@@ -38,7 +38,7 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
     'align-items-center',
     'justify-content-between',
     'py-2',
-    'pr-2',
+    'pe-2',
     'bg-info'
   );
 
@@ -48,12 +48,12 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
     anyDataExisting ?
       <CardHeader className={headerClassNames}>
         <div className="d-inline-flex align-items-center">
-          {edited && <Badge color="primary" className="text-uppercase mr-2 js-note-header__edited">Edited</Badge>}
+          {edited && <Badge color="primary" className="text-uppercase me-2 js-note-header__edited">Edited</Badge>}
           <div className="d-flex flex-column">
             {title && <CardTitle>{title}</CardTitle>}
             {
               date &&
-              <span className="m-0 my-1 mr-auto">
+              <span className="m-0 my-1 me-auto">
                 <span className="d-none d-sm-inline">
                   {edited ? 'Last edited' : 'Posted'}
                   {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on <span className="js-note-header__date">{format(date, dateFormat)}{showTimezone && ` ${timezone(date)}`}</span>
@@ -66,7 +66,7 @@ const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
           </div>
         </div>
         <div className="d-inline-flex">
-          {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit mr-3 p-0">Edit</Button> : null}
+          {onEdit ? <Button color="link" onClick={() => onEdit(note)} className="js-note-header__edit me-3 p-0">Edit</Button> : null}
           {onDelete ? <Button color="link" onClick={() => onDelete(note)} className="js-note-header__delete p-0">Delete</Button> : null}
         </div>
       </CardHeader>

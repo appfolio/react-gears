@@ -77,7 +77,7 @@ const HasManyFieldsRow = ({
     <Row className={classNames} {...props}>
       <Col>{children}</Col>
       {deletable && (
-        <Col xs="auto" className="js-delete-col pl-3 d-flex">
+        <Col xs="auto" className="js-delete-col ps-3 d-flex">
           {button}
           {tooltip}
         </Col>
