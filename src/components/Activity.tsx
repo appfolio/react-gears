@@ -26,7 +26,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
   ...props
 }) => (
   <ListGroupItem {...props}>
-    <Row className="w-100 no-gutters align-items-center">
+    <Row className="w-100 gx-0 align-items-center">
       <Col className="mr-2" style={{ maxWidth: '11em' }}>
         <span className="d-none d-inline js-date">{fecha.format(date, dateFormat)}</span>
       </Col>
