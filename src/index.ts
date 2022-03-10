@@ -26,7 +26,6 @@ import CarouselItem from './components/CarouselItem';
 import Col from './components/Col';
 import Collapse from './components/Collapse';
 import Container from './components/Container';
-import CustomInput from './components/CustomInput';
 import Dropdown from './components/Dropdown';
 import DropdownItem from './components/DropdownItem';
 import DropdownMenu from './components/DropdownMenu';
@@ -198,7 +197,6 @@ export {
   Col,
   Collapse,
   Container,
-  CustomInput,
   DeletedNote,
   Dropdown,
   DropdownItem,
@@ -215,7 +213,6 @@ export {
   Highlight,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupButtonDropdown,
   InputGroupText,
   InternationalAddressInput,
