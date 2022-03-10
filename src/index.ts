@@ -38,7 +38,6 @@ import FormLabelGroup from './components/FormLabelGroup';
 import FormText from './components/FormText';
 import Input from './components/Input';
 import InputGroup from './components/InputGroup';
-import InputGroupAddon from './components/InputGroupAddon';
 import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
 import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
