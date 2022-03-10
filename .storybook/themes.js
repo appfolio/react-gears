@@ -1,6 +1,6 @@
 export default {
   APM: [
-    { name: 'APM/Coastline', url: 'https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css' },
+    { name: 'APM/Coastline', url: 'https://public.cdn.appfolio.com/bootstrap-coastline/4.8.0/bootstrap-coastline.css' },
     { name: 'APM/Coastline Dark', url: 'https://apm-prod-frontend-assets.s3.amazonaws.com/styles/bootstrap-coastline-dark.min.css' },
     { name: 'APM/Admin', url: 'https://appfolio.github.io/bootstrap-admin/bootstrap-admin.css' },
   ],
