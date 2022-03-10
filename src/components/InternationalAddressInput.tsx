@@ -75,7 +75,7 @@ const InternationalAddressInput = ({
   return (
     <div className={className} id={id}>
       {fields.map(row => (
-        <Row className="no-gutters">
+        <Row className="gx-0">
           {row.map((field, index) => {
             const label = i18nLabels[field];
             return (

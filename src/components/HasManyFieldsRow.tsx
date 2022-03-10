@@ -39,7 +39,7 @@ const HasManyFieldsRow = ({
 }: HasManyFieldsRowProps) => {
   const [id] = useState(getID());
 
-  const classNames = classnames('mb-4', className);
+  const classNames = classnames('mb-4 gx-0', className);
   // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
 
   const tooltip =
@@ -74,7 +74,7 @@ const HasManyFieldsRow = ({
   );
 
   return (
-    <Row className={classNames} noGutters {...props}>
+    <Row className={classNames} {...props}>
       <Col>{children}</Col>
       {deletable && (
         <Col xs="auto" className="js-delete-col pl-3 d-flex">
