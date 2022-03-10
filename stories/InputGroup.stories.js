@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, InputGroup, InputGroupAddon, Input, InputGroupText } from '../src';
+import { Button, InputGroup, Input, InputGroupText } from '../src';
 
 export default {
   title: 'InputGroup',
@@ -9,36 +9,34 @@ export default {
 export const WithProps = () => (
   <div>
     <InputGroup>
-      <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+      <InputGroupText>@</InputGroupText>
       <Input placeholder="username" />
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">
-        <InputGroupText>
-          <input type="checkbox" aria-label="Checkbox for following text input" />
-        </InputGroupText>
-      </InputGroupAddon>
+      <InputGroupText>
+        <input type="checkbox" aria-label="Checkbox for following text input" />
+      </InputGroupText>
       <Input placeholder="Check it out" />
     </InputGroup>
     <br />
     <InputGroup>
       <Input placeholder="username" />
-      <InputGroupAddon addonType="append">@example.com</InputGroupAddon>
+      <InputGroupText>@example.com</InputGroupText>
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <InputGroupText>$</InputGroupText>
+      <InputGroupText>$</InputGroupText>
       <Input placeholder="Dolla dolla billz!" />
-      <InputGroupAddon addonType="append">$</InputGroupAddon>
-      <InputGroupAddon addonType="append">$</InputGroupAddon>
+      <InputGroupText>$</InputGroupText>
+      <InputGroupText>$</InputGroupText>
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <InputGroupText>$</InputGroupText>
       <Input placeholder="Amount" type="number" step="1" />
-      <InputGroupAddon addonType="append">.00</InputGroupAddon>
+      <InputGroupText>.00</InputGroupText>
     </InputGroup>
   </div>
 );
@@ -46,19 +44,19 @@ export const WithProps = () => (
 export const Addons = () => (
   <div>
     <InputGroup>
-      <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
+      <InputGroupText>To the Left!</InputGroupText>
       <Input />
     </InputGroup>
     <br />
     <InputGroup>
       <Input />
-      <InputGroupAddon addonType="append">To the Right!</InputGroupAddon>
+      <InputGroupText>To the Right!</InputGroupText>
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
+      <InputGroupText>To the Left!</InputGroupText>
       <Input placeholder="and..." />
-      <InputGroupAddon addonType="append">To the Right!</InputGroupAddon>
+      <InputGroupText>To the Right!</InputGroupText>
     </InputGroup>
   </div>
 );
@@ -66,17 +64,17 @@ export const Addons = () => (
 export const AddonSizing = () => (
   <div>
     <InputGroup size="lg">
-      <InputGroupAddon addonType="prepend">@lg</InputGroupAddon>
+      <InputGroupText>@lg</InputGroupText>
       <Input />
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">@normal</InputGroupAddon>
+      <InputGroupText>@normal</InputGroupText>
       <Input />
     </InputGroup>
     <br />
     <InputGroup size="sm">
-      <InputGroupAddon addonType="prepend">@sm</InputGroupAddon>
+      <InputGroupText>@sm</InputGroupText>
       <Input />
     </InputGroup>
   </div>
@@ -85,27 +83,19 @@ export const AddonSizing = () => (
 export const ButtonShorthand = () => (
   <div>
     <InputGroup>
-      <InputGroupAddon addonType="prepend">
-        <Button color="danger">To the Left!</Button>
-      </InputGroupAddon>
+      <Button color="danger">To the Left!</Button>
       <Input />
     </InputGroup>
     <br />
     <InputGroup>
       <Input />
-      <InputGroupAddon addonType="append">
-        <Button color="secondary">To the Right!</Button>
-      </InputGroupAddon>
+      <Button color="secondary">To the Right!</Button>
     </InputGroup>
     <br />
     <InputGroup>
-      <InputGroupAddon addonType="prepend">
-        <Button addonType="prepend" color="success">To the Left!</Button>
-      </InputGroupAddon>
+      <Button addonType="prepend" color="success">To the Left!</Button>
       <Input placeholder="and..." />
-      <InputGroupAddon addonType="append">
-        <Button addonType="append" color="success">To the Right!</Button>
-      </InputGroupAddon>
+      <Button addonType="append" color="success">To the Right!</Button>
     </InputGroup>
   </div>
 );

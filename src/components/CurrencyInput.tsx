@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IMaskInput, IMaskInputProps } from 'react-imask';
 import IMask from 'imask';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
+import InputGroupText from './InputGroupText';
 
 type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -91,7 +91,7 @@ const CurrencyInput: FunctionComponent<Props> = ({
 
   return (
     <InputGroup size={size} className={className}>
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <InputGroupText>$</InputGroupText>
       <IMaskInput {...maskedProps} />
     </InputGroup>
   );
