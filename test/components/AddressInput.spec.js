@@ -407,14 +407,6 @@ describe('AddressInput', () => {
     assert.strictEqual(compact.find('.col-md-4 #addressInput_postal').hostNodes().length, 0);
   });
 
-  it('should support focus', () => {
-    const wrapper = mount(<AddressInput />);
-    const component = wrapper.instance();
-    sinon.spy(component.inputAddress1, 'focus');
-    component.focus();
-    sinon.assert.calledOnce(component.inputAddress1.focus);
-  });
-
   describe('ids', () => {
     it('should not show id by default', () => {
       const component = mount(<AddressInput />);

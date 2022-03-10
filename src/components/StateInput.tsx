@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { InputProps } from 'reactstrap';
 import classnames from 'classnames';
 import Input from './Input';
 import US from './address/USStates';
@@ -14,15 +15,15 @@ const STATES_LOOKUP: {
   US
 };
 
-type StateInputProps = {
-  className?: string,
-  countries?: string[],
-  disabled?: boolean,
-  id?: string,
-  name?: string,
-  onChange?: (value: string | null) => any,
-  placeholder?: string,
-  value?: string,
+interface StateInputProps extends Omit<InputProps, 'type' | 'onChange'> {
+  className?: string;
+  countries?: string[];
+  disabled?: boolean;
+  id?: string;
+  name?: string;
+  onChange?: (value: string | null) => any;
+  placeholder?: string;
+  value?: string;
 }
 
 const defaultProps = {
