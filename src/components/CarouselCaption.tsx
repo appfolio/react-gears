@@ -1,3 +1,3 @@
-import CarouselCaption from 'reactstrap/lib/CarouselCaption';
+import { CarouselCaption } from 'reactstrap';
 
 export default CarouselCaption;

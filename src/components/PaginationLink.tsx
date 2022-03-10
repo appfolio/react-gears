@@ -1,3 +1,3 @@
-import PaginationLink from 'reactstrap/lib/PaginationLink';
+import { PaginationLink } from 'reactstrap';
 
 export default PaginationLink;

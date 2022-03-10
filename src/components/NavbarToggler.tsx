@@ -1,3 +1,3 @@
-import NavbarToggler from 'reactstrap/lib/NavbarToggler';
+import { NavbarToggler } from 'reactstrap';
 
 export default NavbarToggler;

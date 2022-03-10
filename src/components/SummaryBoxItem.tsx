@@ -1,4 +1,4 @@
-import { CardProps } from 'reactstrap/lib/Card';
+import { CardProps } from 'reactstrap';
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import Card from './Card';
@@ -23,7 +23,7 @@ const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
   reverse = defaultProps.reverse,
   value = defaultProps.value,
   ...props
-}) => {
+}: SummaryBoxItemProps) => {
   const bodyClassNames = classnames('text-center d-flex justify-content-end', {
     'flex-column-reverse': reverse,
     'flex-column': !reverse

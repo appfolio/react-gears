@@ -1,3 +1,3 @@
-import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
+import { BreadcrumbItem } from 'reactstrap';
 
 export default BreadcrumbItem;

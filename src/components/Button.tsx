@@ -1,5 +1,5 @@
-import Button from 'reactstrap/lib/Button';
+import { Button } from 'reactstrap';
 
-export type { ButtonProps } from 'reactstrap/lib/Button';
+export type { ButtonProps } from 'reactstrap';
 
 export default Button;

@@ -1,3 +1,3 @@
-import CardLink from 'reactstrap/lib/CardLink';
+import { CardLink } from 'reactstrap';
 
 export default CardLink;

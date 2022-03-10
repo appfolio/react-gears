@@ -1,3 +1,3 @@
-import NavLink from 'reactstrap/lib/NavLink';
+import { NavLink } from 'reactstrap';
 
 export default NavLink;

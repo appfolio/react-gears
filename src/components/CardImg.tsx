@@ -1,3 +1,3 @@
-import CardImg from 'reactstrap/lib/CardImg';
+import { CardImg } from 'reactstrap';
 
 export default CardImg;
