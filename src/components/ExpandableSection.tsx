@@ -34,7 +34,7 @@ const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
         <ClickableContainer aria-expanded={open} className="d-flex align-items-center w-100" onClick={toggle}>
           <Icon
             name={`chevron-${open ? 'up' : 'down'}`}
-            className="text-muted mr-1"
+            className="text-muted me-1"
             fixedWidth
             style={{ transition: 'transform 200ms ease-in-out' }}
           />

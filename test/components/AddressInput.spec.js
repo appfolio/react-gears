@@ -53,7 +53,7 @@ describe('AddressInput', () => {
     });
 
     it('should have city', () => {
-      assert.strictEqual(component.find('.col-sm-6.pr-sm-3 #addressInput_city').hostNodes().length, 1);
+      assert.strictEqual(component.find('.col-sm-6.pe-sm-3 #addressInput_city').hostNodes().length, 1);
 
       const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'City');

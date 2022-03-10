@@ -164,7 +164,7 @@ export const CustomOptions = () => {
   ];
   const renderOption = option => (
     <div>
-      <Icon name={option.type === 'address' ? 'home' : 'user'} className="mr-2 py-4" />
+      <Icon name={option.type === 'address' ? 'home' : 'user'} className="me-2 py-4" />
       { option.label }
     </div>
   );

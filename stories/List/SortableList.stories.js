@@ -50,15 +50,15 @@ export const WithEverything = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto pb-2">
+        <div className="me-auto pb-2">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p className="mb-0">{item.address}</p>
         </div>
-        <div className="pr-3 pb-2">
+        <div className="pe-3 pb-2">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Late Fee Amount</Label>
         </div>
-        <div className="pr-3">
+        <div className="pe-3">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>
@@ -77,7 +77,7 @@ export const WithExpandableRow = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto">
+        <div className="me-auto">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p className="mb-0">{item.address}</p>
         </div>
@@ -93,7 +93,7 @@ export const WithSelection = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto">
+        <div className="me-auto">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p className="mb-0">{item.address}</p>
         </div>
@@ -113,7 +113,7 @@ export const WithSort = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto">
+        <div className="me-auto">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p className="mb-0">{item.address}</p>
         </div>
@@ -129,15 +129,15 @@ export const WithFiltering = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto pb-2">
+        <div className="me-auto pb-2">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p>{item.address}</p>
         </div>
-        <div className="pr-3 pb-2">
+        <div className="pe-3 pb-2">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Late Fee Amount</Label>
         </div>
-        <div className="pr-3">
+        <div className="pe-3">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>
@@ -156,15 +156,15 @@ export const WithCustomHeader = () => (
   >
     {item => (
       <div className="d-flex justify-content-between flex-column flex-sm-row">
-        <div className="mr-auto pb-2">
+        <div className="me-auto pb-2">
           <h4 className="m-0">{item.first} {item.last}</h4>
           <p>{item.address}</p>
         </div>
-        <div className="pr-3 pb-2">
+        <div className="pe-3 pb-2">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Late Fee Amount</Label>
         </div>
-        <div className="pr-3">
+        <div className="pe-3">
           {currency.format(item.fee)}
           <Label className="text-muted d-block">Balance Subject to Late Fees</Label>
         </div>

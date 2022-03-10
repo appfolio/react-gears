@@ -210,7 +210,7 @@ const AddressInput = ({
           md={compact ? undefined : 2}
           sm={compact ? undefined : 3}
           xs={4}
-          className="pr-3"
+          className="pe-3"
         >
           <FormLabelGroup
             rowClassName={classnames({ 'mb-0': !showCountry })}

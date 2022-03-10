@@ -86,7 +86,7 @@ const InternationalAddressInput = ({
                   inputId={`${inputId}_${field}`}
                   label={label}
                   srLabel={!showLabels}
-                  rowClassName={index > 0 ? 'pl-sm-2' : undefined}
+                  rowClassName={index > 0 ? 'ps-sm-2' : undefined}
                   stacked
                 >
                   {field === 'address1' && inputFor('address1')}
