@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.14.2](https://www.github.com/appfolio/react-gears/compare/v6.14.1...v6.14.2) (2022-03-10)
+
+
+### Miscellaneous
+
+* convert AddressInput to functional/TS component ([582d7e8](https://www.github.com/appfolio/react-gears/commit/582d7e891d4b486e902720d087bd4198d1e1c55e))
+
 ### [6.14.1](https://www.github.com/appfolio/react-gears/compare/v6.14.0...v6.14.1) (2022-03-08)
 
 
