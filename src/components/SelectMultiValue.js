@@ -36,7 +36,7 @@ export default class SelectMultiValue extends React.Component {
       'border',
       'd-inline-flex',
       'align-items-center',
-      'text-left',
+      'text-start',
       className
     );
 
