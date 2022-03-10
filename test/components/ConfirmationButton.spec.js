@@ -1,51 +1,71 @@
 import React from 'react';
-import assert from 'assert';
-import { mount } from 'enzyme';
-import sinon from 'sinon';
+import { render, fireEvent } from '@testing-library/react';
 
 import { ConfirmationButton } from '../../src';
 
+const messages = {
+  default: 'default message',
+  confirmation: 'confirmation message',
+};
+
 describe('<ConfirmationButton />', () => {
-  let map;
+  it('can render the component', () => {
+    const { queryByText } = render(
+      <ConfirmationButton confirmation={messages.confirmation}>
+        {messages.default}
+      </ConfirmationButton>
+    );
 
-  beforeEach(() => {
-    map = {};
-    sinon.stub(document, 'addEventListener').callsFake((event, cb) => {
-      map[event] = cb;
-    });
-  });
-
-  afterEach(() => {
-    document.addEventListener.restore();
+    expect(queryByText(messages.default)).not.toBeNull();
   });
 
   it('should call onClick after two clicks', () => {
-    const onClick = sinon.spy();
-    const wrapper = mount(
-      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
+    const onClickSpy = jest.fn();
+    const { queryByText } = render(
+      <ConfirmationButton
+        confirmation={messages.confirmation}
+        onClick={onClickSpy}
+      >
+        {messages.default}
+      </ConfirmationButton>
     );
-    assert.equal(wrapper.text(), 'DESTROY ALL MONSTERS');
-    wrapper.simulate('click');
-    sinon.assert.notCalled(onClick);
-    assert.equal(wrapper.text(), 'R U SURE');
-    wrapper.simulate('click');
-    sinon.assert.calledOnce(onClick);
-    assert.equal(wrapper.text(), 'DESTROY ALL MONSTERS');
+
+    const button = queryByText(messages.default);
+    expect(button).not.toBeNull();
+
+    fireEvent.click(button);
+    expect(onClickSpy).not.toHaveBeenCalled();
+    expect(queryByText(messages.confirmation)).not.toBeNull();
+    expect(queryByText(messages.default)).toBeNull();
+
+    fireEvent.click(button);
+    expect(onClickSpy).toHaveBeenCalled();
+    expect(queryByText(messages.confirmation)).toBeNull();
+    expect(queryByText(messages.default)).not.toBeNull();
   });
 
   it('should call cancel after click outside', () => {
-    const onClick = sinon.spy();
-    const wrapper = mount(
-      <ConfirmationButton confirmation="R U SURE" onClick={onClick}>DESTROY ALL MONSTERS</ConfirmationButton>
+    const onClickSpy = jest.fn();
+    const { queryByText } = render(
+      <ConfirmationButton
+        confirmation={messages.confirmation}
+        onClick={onClickSpy}
+      >
+        {messages.default}
+      </ConfirmationButton>
     );
 
-    const button = wrapper.find(ConfirmationButton);
-    button.simulate('click');
-    sinon.assert.notCalled(onClick);
-    assert.equal(button.text(), 'R U SURE');
+    const button = queryByText(messages.default);
+    expect(button).not.toBeNull();
 
-    map.mousedown({ target: document });
-    assert.equal(button.text(), 'DESTROY ALL MONSTERS');
-    sinon.assert.notCalled(onClick);
+    fireEvent.click(button);
+    expect(onClickSpy).not.toHaveBeenCalled();
+    expect(queryByText(messages.confirmation)).not.toBeNull();
+    expect(queryByText(messages.default)).toBeNull();
+
+    fireEvent.blur(button);
+    expect(onClickSpy).not.toHaveBeenCalled();
+    expect(queryByText(messages.confirmation)).toBeNull();
+    expect(queryByText(messages.default)).not.toBeNull();
   });
 });

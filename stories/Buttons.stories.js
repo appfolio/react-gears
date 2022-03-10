@@ -9,7 +9,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  TooltipButton
+  TooltipButton,
+  ConfirmationButton,
 } from '../src';
 import { buttonColors } from './colors';
 
@@ -149,4 +150,10 @@ export const ButtonGroupExample = () => (
       </ButtonGroup>
     </div>
   </div>
+);
+
+export const ConfirmationButtonExample = () => (
+  <ConfirmationButton confirmation="You sure?" onClick={action('onClick')}>
+    Do the thing!
+  </ConfirmationButton>
 );
