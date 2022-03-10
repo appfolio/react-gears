@@ -11,10 +11,10 @@ export default {
     { name: 'IM/GP', url: 'https://s3-us-east-2.amazonaws.com/af-im-ui/branches/master/gp/style.css' },
   ],
   Bootstrap: [
-    { name: 'Default', url: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' },
-    { name: 'Material', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css' },
-    { name: 'Metro', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css' },
-    { name: 'Dark', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css' },
-    { name: 'Sketch', url: 'https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css' }
+    { name: 'Default', url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' },
+    { name: 'Material', url: 'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/materia/bootstrap.min.css' },
+    { name: 'Cosmo', url: 'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/cosmo/bootstrap.min.css' },
+    { name: 'Dark', url: 'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/darkly/bootstrap.min.css' },
+    { name: 'Sketch', url: 'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/sketchy/bootstrap.min.css' }
   ]
 };

@@ -109,22 +109,13 @@
   window.onerror = function onerror(message, source, line, column, err) {
     if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
     // eslint-disable-next-line no-var, vars-on-top
-    var xhr = new window.XMLHttpRequest();
-    xhr.open('POST', '/runtime-error');
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(
-      JSON.stringify({
-        /* eslint-disable object-shorthand */
-        message: message,
-        source: source,
-        line: line,
-        column: column,
-        error: err && { message: err.message, name: err.name, stack: err.stack },
-        origin: 'preview',
-        /* eslint-enable object-shorthand */
-      })
-    );
-  };</script><link id="theme" rel="stylesheet" href="https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/all.min.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/v4-shims.min.css"><link href="https://use.typekit.net/uao7jmm.css" rel="stylesheet"><style>#story-root {
+    var error = { message: err.message, name: err.name, stack: err.stack };
+    window.fetch('/runtime-error', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, source, line, column, error, origin: 'preview' }),
+    });
+  };</script><link id="theme" rel="stylesheet" href="https://gthomas-appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/all.min.css"><link rel="stylesheet" href="https://apm-prod-frontend-assets.s3.amazonaws.com/icons/font-awesome/5.14.0/css/v4-shims.min.css"><link href="https://use.typekit.net/uao7jmm.css" rel="stylesheet"><style>#story-root {
     margin-bottom: 3rem;
   }</style><style>#root[hidden],
       #docs-root[hidden] {
