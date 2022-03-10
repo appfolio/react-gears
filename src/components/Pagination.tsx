@@ -1,3 +1,3 @@
-import Pagination from 'reactstrap/lib/Pagination';
+import { Pagination } from 'reactstrap';
 
 export default Pagination;

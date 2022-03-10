@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import TableComponent, { TableProps as ReactStrapTableProps } from 'reactstrap/lib/Table';
+import { Table as TableComponent, TableProps as ReactStrapTableProps } from 'reactstrap';
 
 export interface TableProps extends ReactStrapTableProps {
   size?: string;
@@ -15,13 +15,11 @@ export interface TableProps extends ReactStrapTableProps {
 const Table: FunctionComponent<TableProps> = ({
   children,
   ...props
-}) =>  {
-  return (
-    <TableComponent {...props}>
-      {children}
-    </TableComponent>
-  );
-};
+}) => (
+  <TableComponent {...props}>
+    {children}
+  </TableComponent>
+);
 
 Table.displayName = 'Table';
 

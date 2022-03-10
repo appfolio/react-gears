@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { InputProps } from 'reactstrap/lib/Input';
+import { InputProps } from 'reactstrap';
 
 import Input from './Input';
 
@@ -7,7 +7,7 @@ export interface StaticInputProps extends InputProps {
   children?: React.ReactNode;
 }
 
-const StaticInput: FunctionComponent<InputProps> = ({
+const StaticInput: FunctionComponent<StaticInputProps> = ({
   children,
   ...props
 }) => (

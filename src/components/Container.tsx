@@ -1,3 +1,3 @@
-import Container from 'reactstrap/lib/Container';
+import { Container } from 'reactstrap';
 
 export default Container;

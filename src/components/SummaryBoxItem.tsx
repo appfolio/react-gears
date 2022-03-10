@@ -1,4 +1,4 @@
-import { CardProps } from 'reactstrap/lib/Card';
+import { CardProps } from 'reactstrap';
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import Card from './Card';

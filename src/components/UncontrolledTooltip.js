@@ -1,4 +1,4 @@
-import UncontrolledTooltip from 'reactstrap/lib/UncontrolledTooltip';
+import { UncontrolledTooltip } from 'reactstrap';
 
 UncontrolledTooltip.defaultProps = {
   ...UncontrolledTooltip.defaultProps,

@@ -1,3 +1,3 @@
-import ModalFooter from 'reactstrap/lib/ModalFooter';
+import { ModalFooter } from 'reactstrap';
 
 export default ModalFooter;
