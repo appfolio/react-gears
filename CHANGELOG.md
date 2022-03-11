@@ -1,5 +1,68 @@
 # Change Log
 
+## [7.0.0](https://www.github.com/appfolio/react-gears/compare/v6.15.1...v7.0.0) (2022-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* update .close -> .btn-close
+* update border-right/left -> border-start/end
+* update text-right/left -> text-start/end
+* update mr/l -> ms/e and pr/l -> ps/e
+* update gutters to use .g-*, .gx-*, and .gy-*
+* remove InputGroupAddon
+* remove CustomInput in favor of Input
+* update to reactstrap 9 and popper 2
+* use bootstrap5 themes for storybook
+
+### Features
+
+* Add Accordion ([6494642](https://www.github.com/appfolio/react-gears/commit/6494642da95fedef66abd3c2c115dc525300e7c8))
+* add form-group class into FormGroup ([3ebc96c](https://www.github.com/appfolio/react-gears/commit/3ebc96c2ed83ce31d10c87a6f2a1db77a547de7d))
+* Add Offcanvas ([c2a31f3](https://www.github.com/appfolio/react-gears/commit/c2a31f39b575d14c805a6d79d4881119ed87bf43))
+* migrate List to bootstrap 5 ([dfceb09](https://www.github.com/appfolio/react-gears/commit/dfceb09eba51a952886f3a48c000eb6471221446))
+* Remove custom flex/margins in CheckboxGroup and RadioGroup. ([b5b9ff5](https://www.github.com/appfolio/react-gears/commit/b5b9ff50fcfb618160eee1a563a86fff947a32ff))
+* remove CustomInput in favor of Input ([81f5423](https://www.github.com/appfolio/react-gears/commit/81f542398cb27807740b1b2cff5695040186754e))
+* remove InputGroupAddon ([71bb53d](https://www.github.com/appfolio/react-gears/commit/71bb53d7f37f816a793a03c02ceef69526d05c5f))
+* Replace .font-weight-* with .fw-* ([3541dff](https://www.github.com/appfolio/react-gears/commit/3541dffc7347c2e48364b37cd5386e2f6339c875))
+* Replace .sr-only with .visually-hidden ([6677ab6](https://www.github.com/appfolio/react-gears/commit/6677ab6d458346f4eca197d6a8ab847b7ad4ca56))
+* update .close -> .btn-close ([3795410](https://www.github.com/appfolio/react-gears/commit/3795410cd87af1efdfa41b66275d5beb32077599))
+* update angle-left/right -> angle-start/end ([0e7663e](https://www.github.com/appfolio/react-gears/commit/0e7663e18e11352983753e94d688fdb07810b3fb))
+* update border-right/left -> border-start/end ([162cf3e](https://www.github.com/appfolio/react-gears/commit/162cf3e6ac7e05b158d4dae14856170ffaa6fe4e))
+* update gutters to use .g-*, .gx-*, and .gy-* ([675ed1e](https://www.github.com/appfolio/react-gears/commit/675ed1ee987af775a3a4f6224fa2d65320e52925))
+* update jumbotron for backwards compatibility ([6dd0499](https://www.github.com/appfolio/react-gears/commit/6dd0499b930362cf578bc6800237274047c273ec))
+* update mr/l -> ms/e and pr/l -> ps/e ([1506cbc](https://www.github.com/appfolio/react-gears/commit/1506cbc57a6abea2c325c83165afb773636445e4))
+* update rounded-left/right -> rounded-start/end ([7a05aab](https://www.github.com/appfolio/react-gears/commit/7a05aab221bba3a744565527b5cb0aa54e93cef8))
+* update text-right/left -> text-start/end ([95852e4](https://www.github.com/appfolio/react-gears/commit/95852e43b6a328344857233c04dc72d5a98fa410))
+* update to reactstrap 9 and popper 2 ([0ffefea](https://www.github.com/appfolio/react-gears/commit/0ffefea1749b82ffbe9c6c01e594ae7477431168))
+
+
+### Bug Fixes
+
+* add align-stretch to the close button in HasManyFields ([914fd85](https://www.github.com/appfolio/react-gears/commit/914fd8539c6145bf0280a89d663db8fb1000a4f4))
+* close icon font size should be .5rem ([f9a0198](https://www.github.com/appfolio/react-gears/commit/f9a0198cd53ef378dfeb4c70cc97b96552feb012))
+* FormLabelGroup padding/margins ([a622264](https://www.github.com/appfolio/react-gears/commit/a6222647dbfdb724a72251037a0d4f4e1b94e0c0))
+* js-datapair has mb-1 style built in ([eef35d2](https://www.github.com/appfolio/react-gears/commit/eef35d295ef863b8504c1417bb8f24a40ff03d74))
+* popper types ([6fe6c97](https://www.github.com/appfolio/react-gears/commit/6fe6c97fbc94411daddd5c016354331f9de4eb29))
+* type definition for getAlignment ([ec2c1b6](https://www.github.com/appfolio/react-gears/commit/ec2c1b68a6311b73cb5fad1a5f3dc007d7b1d70a))
+* type imports from reactstrap ([6db8fe3](https://www.github.com/appfolio/react-gears/commit/6db8fe31d9ceb66d599f8f390934d2e459f3b441))
+
+
+### build
+
+* use bootstrap5 themes for storybook ([2b05e59](https://www.github.com/appfolio/react-gears/commit/2b05e5951189376ff3ad84e19d8bc93600559559))
+
+
+### Miscellaneous
+
+* Add fullscreen and xl options to Modal story ([4ab36ad](https://www.github.com/appfolio/react-gears/commit/4ab36ad77a9fda4154ce6567bbb0beca71d74a00))
+* Add story for floating labels ([b4466a5](https://www.github.com/appfolio/react-gears/commit/b4466a53706e36ed3da0b4857de36d7bada5d319))
+* **DateInput:** update positionFixed logic ([f8c19b6](https://www.github.com/appfolio/react-gears/commit/f8c19b6e79a9b64fa03e33eb71fc5663020ba039))
+* remove Portal component ([e0a3367](https://www.github.com/appfolio/react-gears/commit/e0a3367514fca5a06226ee5ac49f66464c93424c))
+* **storybook:** add story for InputGroup with multiple inputs ([91c494e](https://www.github.com/appfolio/react-gears/commit/91c494e49f64053a77210f0f27d5dcd7f0fe8673))
+* Update tests for BS5 changes ([5007219](https://www.github.com/appfolio/react-gears/commit/500721997d4f7a3955723d3319f953759cd90df3))
+* use es imports from reactstrap vs lib imports ([2b681bb](https://www.github.com/appfolio/react-gears/commit/2b681bb407b359fb24264225014afa84b2284353))
+
 ### [6.15.1](https://www.github.com/appfolio/react-gears/compare/v6.15.0...v6.15.1) (2022-03-10)
 
 
