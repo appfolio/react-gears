@@ -101,53 +101,22 @@ export const ButtonShorthand = () => (
 );
 
 export const MultipleInputs = () => (
-  <>
-    <InputGroup>
-      <InputGroupText>
-        <Input
-          addon
-          type="checkbox"
-        />
-      </InputGroupText>
-      <Input
-        type="select"
-        defaultValue="dues"
-      >
-        <option value="dues">
-          Dues Owed
-        </option>
-        <option value="total">
-          Total owed
-        </option>
-      </Input>
-      <Input
-        type="select"
-        defaultValue=">"
-      >
-        <option value="=">
-          Equal to
-        </option>
-        <option value="<>">
-          Exclude
-        </option>
-        <option value=">">
-          Greater than
-        </option>
-        <option value=">=">
-          Greater than or equal to
-        </option>
-        <option value="<">
-          Less than
-        </option>
-        <option value="<=">
-          Less than or equal to
-        </option>
-      </Input>
-      <Input
-        placeholder="0"
-        type="number"
-        inputMode="numeric"
-      />
-    </InputGroup>
-  </>
+  <InputGroup>
+    <InputGroupText>
+      <Input addon type="checkbox" />
+    </InputGroupText>
+    <Input type="select" defaultValue="dues">
+      <option value="dues">Dues Owed</option>
+      <option value="total">Total owed</option>
+    </Input>
+    <Input type="select" defaultValue=">">
+      <option value="=">Equal to</option>
+      <option value="<>">Exclude</option>
+      <option value=">">Greater than</option>
+      <option value=">=">Greater than or equal to</option>
+      <option value="<">Less than</option>
+      <option value="<=">Less than or equal to</option>
+    </Input>
+    <Input placeholder="0" type="number" inputMode="numeric" />
+  </InputGroup>
 );

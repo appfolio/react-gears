@@ -1,14 +1,30 @@
+import classnames from 'classnames';
+import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import ReactSelect from 'react-select-plus';
-import classnames from 'classnames';
-import noop from 'lodash.noop';
 import Close from './Close';
-import Option from './SelectOption.js';
 import SelectArrow from './SelectArrow';
 import SelectMultiValue from './SelectMultiValue.js';
+import Option from './SelectOption.js';
 
-const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valueProp, valueComponent, onChange, ...props }) => {
+const getSelectArrow = ({ isOpen, arrowRenderer }) => (
+  <SelectArrow isOpen={isOpen} render={arrowRenderer} />
+);
+
+const getCloseButton = () => <Close tabIndex={-1} style={{ fontSize: '.5rem' }} />;
+
+const Select = ({
+  arrowRenderer,
+  className,
+  inputProps,
+  multi,
+  name,
+  value: valueProp,
+  valueComponent,
+  onChange,
+  ...props
+}) => {
   const [value, setValue] = useState(valueProp || props.defaultValue);
 
   useEffect(() => setValue(valueProp), [valueProp]);
@@ -31,8 +47,8 @@ const Select = ({ arrowRenderer, className, inputProps, multi, name, value: valu
 
   return (
     <SelectElement
-      arrowRenderer={({ isOpen }) => <SelectArrow isOpen={isOpen} render={arrowRenderer} />}
-      clearRenderer={() => <Close tabIndex={-1} style={{ fontSize: '.5rem' }} />}
+      arrowRenderer={({ isOpen }) => getSelectArrow(isOpen, arrowRenderer)}
+      clearRenderer={getCloseButton}
       optionComponent={Option}
       inputProps={{ name, ...inputProps }}
       multi={multi}
@@ -52,11 +68,11 @@ Select.propTypes = {
   loadOptions: PropTypes.func,
   onChange: PropTypes.func,
   value: PropTypes.any,
-  ...ReactSelect.propTypes
+  ...ReactSelect.propTypes,
 };
 
 Select.defaultProps = {
-  onChange: noop
+  onChange: noop,
 };
 
 Select.displayName = 'Select';

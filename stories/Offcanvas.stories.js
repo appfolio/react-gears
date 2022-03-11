@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
+import React, { useState } from 'react';
 import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button } from '../src';
 
 export default {
@@ -29,9 +29,7 @@ export const Example = () => {
         isOpen={open}
         toggle={toggle}
       >
-        <OffcanvasHeader toggle={toggle}>
-          Offcanvas
-        </OffcanvasHeader>
+        <OffcanvasHeader toggle={toggle}>Offcanvas</OffcanvasHeader>
         <OffcanvasBody>
           <strong>This is the Offcanvas body.</strong>
         </OffcanvasBody>

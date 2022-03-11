@@ -2,22 +2,23 @@ import React from 'react';
 import Col from './Col';
 import CountryInput from './CountryInput';
 import FormLabelGroup from './FormLabelGroup';
-import getAddressFormat, { AddressPropType } from './address/AddressFormats';
 import Input from './Input';
 import Row from './Row';
+import type { AddressPropType } from './address/AddressFormats';
+import getAddressFormat from './address/AddressFormats';
 
 type InternationalAddressInputProps = {
-  className?: string,
-  disabled?: boolean,
-  error?: AddressPropType,
-  hints?: AddressPropType,
-  id?: string,
-  labels?: AddressPropType,
-  onBlur?: Function,
-  onChange?: Function,
-  showLabels?: boolean,
-  value?: AddressPropType & { countryCode: string },
-}
+  className?: string;
+  disabled?: boolean;
+  error?: AddressPropType;
+  hints?: AddressPropType;
+  id?: string;
+  labels?: AddressPropType;
+  onBlur?: Function;
+  onChange?: Function;
+  showLabels?: boolean;
+  value?: AddressPropType & { countryCode: string };
+};
 
 const defaultProps = {
   disabled: false,
@@ -28,7 +29,7 @@ const defaultProps = {
   onChange: () => {},
   showLabels: false,
   value: {
-    countryCode: 'US'
+    countryCode: 'US',
   } as AddressPropType & { countryCode: string },
 };
 
@@ -42,7 +43,7 @@ const InternationalAddressInput = ({
   onBlur = defaultProps.onBlur,
   onChange = defaultProps.onChange,
   showLabels = defaultProps.showLabels,
-  value = defaultProps.value
+  value = defaultProps.value,
 }: InternationalAddressInputProps) => {
   const countryCode = value.countryCode;
   const addressFormat = getAddressFormat(countryCode);
@@ -65,7 +66,7 @@ const InternationalAddressInput = ({
       invalid={!!error[type]}
       name={type}
       onBlur={() => onBlur(type)}
-      onChange={e => onAddressChange({ [type]: e.target.value })}
+      onChange={(e) => onAddressChange({ [type]: e.target.value })}
       placeholder={i18nLabels[type]}
       type="text"
       value={value[type] || ''}
@@ -74,7 +75,7 @@ const InternationalAddressInput = ({
 
   return (
     <div className={className} id={id}>
-      {fields.map(row => (
+      {fields.map((row) => (
         <Row className="gx-0">
           {row.map((field, index) => {
             const label = i18nLabels[field];
@@ -101,10 +102,12 @@ const InternationalAddressInput = ({
                       invalid={!!error.countryCode}
                       name="countryCode"
                       onBlur={() => onBlur('countryCode')}
-                      onChange={country => onAddressChange({
-                        countryCode: (country !== null) ? country : undefined,
-                        state: undefined
-                      })}
+                      onChange={(country) =>
+                        onAddressChange({
+                          countryCode: country !== null ? country : undefined,
+                          state: undefined,
+                        })
+                      }
                       placeholder={i18nLabels.countryCode}
                       value={value.countryCode}
                     />
@@ -117,13 +120,18 @@ const InternationalAddressInput = ({
                       invalid={!!error.state}
                       name="state"
                       onBlur={() => onBlur('state')}
-                      onChange={e => onAddressChange({ state: e.target.value })}
+                      onChange={(e) => onAddressChange({ state: e.target.value })}
                       placeholder={i18nLabels.state}
                       type="select"
                       value={value.state}
                     >
                       <option value="">{i18nLabels.state}</option>
-                      {!!states && states.map(({ name, code }) => <option key={code} value={code}>{name}</option>)}
+                      {!!states &&
+                        states.map(({ name, code }) => (
+                          <option key={code} value={code}>
+                            {name}
+                          </option>
+                        ))}
                     </Input>
                   )}
                 </FormLabelGroup>

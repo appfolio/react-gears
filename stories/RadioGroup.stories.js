@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import React, { useState } from 'react';
 import { RadioGroup } from '../src';
 
 const options = [
@@ -23,7 +23,5 @@ export const LiveExample = () => {
     action('onChange')(value);
   };
 
-  return (
-    <RadioGroup radio options={options} onChange={handleChange} selected={selected} />
-  );
+  return <RadioGroup radio options={options} onChange={handleChange} selected={selected} />;
 };

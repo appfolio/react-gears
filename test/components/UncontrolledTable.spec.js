@@ -1,7 +1,7 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
 import { Paginator, SortableTable, UncontrolledTable } from '../../src';
 
@@ -12,7 +12,9 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should accept all normal Table props', () => {
-    const wrapper = mount(<UncontrolledTable size="lg" bordered striped dark hover responsive columns={[]} />);
+    const wrapper = mount(
+      <UncontrolledTable size="lg" bordered striped dark hover responsive columns={[]} />
+    );
     const table = wrapper.find('table');
 
     assert(wrapper.find('.table-responsive').exists(), 'responsive missing');
@@ -27,7 +29,7 @@ describe('<UncontrolledTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} />);
     const headers = wrapper.find('th');
@@ -36,7 +38,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should render all rows', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} />);
     const cells = wrapper.find('td');
@@ -48,7 +50,7 @@ describe('<UncontrolledTable />', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
     const columns = classNames.map((name) => {
       return {
-        header: <span className={name}>{name}</span>
+        header: <span className={name}>{name}</span>,
       };
     });
     const wrapper = mount(<UncontrolledTable columns={columns} />);
@@ -61,7 +63,7 @@ describe('<UncontrolledTable />', () => {
     const columns = classNames.map((name) => {
       return {
         header: name,
-        cell: row => <span className={name}>{row}</span>
+        cell: (row) => <span className={name}>{row}</span>,
       };
     });
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
@@ -79,7 +81,7 @@ describe('<UncontrolledTable />', () => {
     const classNames = ['alpha', 'bravo', 'charlie', 'delta'];
     const columns = classNames.map((name) => {
       return {
-        header: name
+        header: name,
       };
     });
     const wrapper = mount(<UncontrolledTable columns={columns} />);
@@ -93,7 +95,7 @@ describe('<UncontrolledTable />', () => {
     const columns = classNames.map((name) => {
       return {
         header: name,
-        footer: <span className={name}>{name}</span>
+        footer: <span className={name}>{name}</span>,
       };
     });
     const wrapper = mount(<UncontrolledTable columns={columns} />);
@@ -111,7 +113,7 @@ describe('<UncontrolledTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta', sortable: false }
+      { header: 'Delta', sortable: false },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} />);
     const sortIcons = wrapper.find('Icon');
@@ -123,9 +125,11 @@ describe('<UncontrolledTable />', () => {
       { key: 'alpha', header: 'Alpha' },
       { key: 'bravo', header: 'Bravo' },
       { key: 'charlie', header: 'Charlie' },
-      { key: 'delta', header: 'Delta', sortable: false }
+      { key: 'delta', header: 'Delta', sortable: false },
     ];
-    const wrapper = mount(<UncontrolledTable columns={columns} sort={{ column: 'alpha', ascending: true }} />);
+    const wrapper = mount(
+      <UncontrolledTable columns={columns} sort={{ column: 'alpha', ascending: true }} />
+    );
 
     const activeColumnIcon = wrapper.find('Icon[name="caret-up"]');
     assert.equal(activeColumnIcon.length, 1);
@@ -142,7 +146,7 @@ describe('<UncontrolledTable />', () => {
       { header: 'Alpha' },
       { header: 'Bravo' },
       { header: 'Charlie' },
-      { header: 'Delta' }
+      { header: 'Delta' },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} />);
 
@@ -155,7 +159,7 @@ describe('<UncontrolledTable />', () => {
       { header: 'Alpha', width: '20%' },
       { header: 'Bravo', width: '30%' },
       { header: 'Charlie', width: '15%' },
-      { header: 'Delta', width: '35%' }
+      { header: 'Delta', width: '35%' },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} />);
 
@@ -167,14 +171,10 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should render row className when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        rowClassName={row => row}
-      />
+      <UncontrolledTable columns={columns} rows={rows} rowClassName={(row) => row} />
     );
     const trs = wrapper.find('tbody tr');
     assert.equal(trs.length, rows.length);
@@ -184,7 +184,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should render expandable column when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(
       <UncontrolledTable
@@ -200,7 +200,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should merge expandableColumn with the expand column definition so you can alter it', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const wrapper = mount(
       <UncontrolledTable
@@ -217,7 +217,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should update expanded rows when new expanded prop provided', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Mantleray', key: '1' }];
     const rowExpanded = () => <span className="expando">Hey</span>;
     const expanded = [];
@@ -234,7 +234,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should call onExpand when row is expanded', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Mantleray', key: '1' }];
     const rowExpanded = () => <span className="expando">Hey</span>;
     const onExpand = sinon.stub();
@@ -248,16 +248,10 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should supply onClick row handler when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
     const onClick = sinon.stub();
-    const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        rowOnClick={onClick}
-      />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} rowOnClick={onClick} />);
     wrapper.find('tbody tr').first().simulate('click');
     sinon.assert.calledWith(onClick, 'Alpha');
   });
@@ -287,7 +281,7 @@ describe('<UncontrolledTable />', () => {
   it('should render correct column classnames when present', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' }
+      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} rows={[1, 2, 3]} />);
 
@@ -299,31 +293,20 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should render select column when specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta'];
-    const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        selectable
-      />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selectable />);
 
     const ths = wrapper.find('th');
     assert.equal(ths.length, columns.length + 1); // For selectable column
   });
 
   it('should call onSelect when selectable row picked', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
     const onSelect = sinon.stub();
     const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        selectable
-        onSelect={onSelect}
-      />
+      <UncontrolledTable columns={columns} rows={rows} selectable onSelect={onSelect} />
     );
     wrapper
       .find({ type: 'checkbox' })
@@ -333,7 +316,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should call onPageChange on page change', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
     const onPageChange = sinon.stub();
     const wrapper = mount(
@@ -351,15 +334,10 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should show correct rows when paginated specified', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
     const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        paginated
-        pageSize={4}
-      />
+      <UncontrolledTable columns={columns} rows={rows} paginated pageSize={4} />
     );
     const trs = wrapper.find('tbody tr');
     // TODO assert rows
@@ -367,15 +345,10 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should show correct rows on page change', () => {
-    const columns = [{ header: 'Name', cell: row => row }];
+    const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
     const wrapper = shallow(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        paginated
-        pageSize={4}
-      />
+      <UncontrolledTable columns={columns} rows={rows} paginated pageSize={4} />
     );
     let table = wrapper.find(SortableTable);
     let paginator = wrapper.find(Paginator);
@@ -392,7 +365,7 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should show correct rows on sort change', () => {
-    const columns = [{ header: 'Name', key: 'name', cell: row => row }];
+    const columns = [{ header: 'Name', key: 'name', cell: (row) => row }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }];
     const wrapper = shallow(
       <UncontrolledTable
@@ -404,20 +377,39 @@ describe('<UncontrolledTable />', () => {
       />
     );
 
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie' },
+      { name: 'Bravo' },
+      { name: 'Alpha' },
+    ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order
     wrapper.update();
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Alpha' },
+      { name: 'Bravo' },
+      { name: 'Charlie' },
+    ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order
     wrapper.update();
-    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [{ name: 'Charlie' }, { name: 'Bravo' }, { name: 'Alpha' }]);
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie' },
+      { name: 'Bravo' },
+      { name: 'Alpha' },
+    ]);
   });
 
   it('should show correct rows on sort change', () => {
-    const columns = [{ header: 'Name', key: 'name', cell: row => row }, { header: 'Age', key: 'age', cell: row => row }];
-    const rows = [{ name: 'Alpha', age: 1 }, { name: 'Bravo', age: 5 }, { name: 'Charlie', age: 3 }];
+    const columns = [
+      { header: 'Name', key: 'name', cell: (row) => row },
+      { header: 'Age', key: 'age', cell: (row) => row },
+    ];
+    const rows = [
+      { name: 'Alpha', age: 1 },
+      { name: 'Bravo', age: 5 },
+      { name: 'Charlie', age: 3 },
+    ];
     const onSort = sinon.stub();
 
     const wrapper = shallow(
@@ -444,34 +436,23 @@ describe('<UncontrolledTable />', () => {
 
   it('should hide columns when hidden', () => {
     const columns = [
-      { header: 'Name', cell: row => row },
+      { header: 'Name', cell: (row) => row },
       { header: 'Nope', cell: () => 'Nope', hidden: true },
     ];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
-    const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-      />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} />);
     assert.equal(wrapper.find('th').length, 1);
     assert.equal(wrapper.find('td').length, rows.length);
   });
 
   it('should update selected when new selected props are provided', () => {
     const columns = [
-      { header: 'Name', cell: row => row },
+      { header: 'Name', cell: (row) => row },
       { header: 'Nope', cell: () => 'Nope', hidden: true },
     ];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
 
-    const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        selected={['Alpha']}
-      />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selected={['Alpha']} />);
 
     assert.deepEqual(wrapper.props().selected, ['Alpha']);
     assert.deepEqual(wrapper.state().selected, ['Alpha']);
@@ -483,16 +464,11 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should select the selected prop rows, if provided', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
-    const rows = [
-      { name: 'Alpha' },
-      { name: 'Bravo' },
-    ];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
     const selected = [{ name: 'Alpha' }];
 
-    const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} selected={selected} />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selected={selected} />);
     const instance = wrapper.instance();
 
     assert(instance.selected({ name: 'Alpha' }) === true);
@@ -501,17 +477,11 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should toggle selection correctly', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
     const selected = [{ name: 'Alpha' }];
 
-    const wrapper = mount(
-      <UncontrolledTable
-        columns={columns}
-        rows={rows}
-        selected={selected}
-      />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selected={selected} />);
     const instance = wrapper.instance();
 
     assert(wrapper.state().selected.length === 1);
@@ -523,13 +493,11 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should expand the rows specified in the expanded prop, when that prop is provided', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
     const expanded = [{ name: 'Alpha' }];
 
-    const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} expanded={expanded} />);
     const instance = wrapper.instance();
 
     assert(instance.expanded({ name: 'Alpha' }) === true);
@@ -538,13 +506,11 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should toggle expanded correctly', () => {
-    const columns = [{ header: 'Name', cell: row => row.name }];
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
     const expanded = [{ name: 'Alpha' }];
 
-    const wrapper = mount(
-      <UncontrolledTable columns={columns} rows={rows} expanded={expanded} />
-    );
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} expanded={expanded} />);
     const instance = wrapper.instance();
     assert(instance.expanded({ name: 'Alpha' }) === true);
     instance.toggleExpanded({ name: 'Alpha' });
@@ -556,7 +522,7 @@ describe('<UncontrolledTable />', () => {
 
   describe('onVisibleRowsChange', () => {
     it('calls onVisibleRowsChange when the page changes', () => {
-      const columns = [{ header: 'Name', cell: row => row }];
+      const columns = [{ header: 'Name', cell: (row) => row }];
       const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
       const onVisibleRowsChange = sinon.stub();
       const wrapper = mount(
@@ -574,7 +540,7 @@ describe('<UncontrolledTable />', () => {
     });
 
     it('calls onVisibleRowsChange when pagination is enabled', () => {
-      const columns = [{ header: 'Name', cell: row => row }];
+      const columns = [{ header: 'Name', cell: (row) => row }];
       const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
       const onVisibleRowsChange = sinon.stub();
       const wrapper = mount(
@@ -593,12 +559,16 @@ describe('<UncontrolledTable />', () => {
     });
 
     it('does not call onVisibleRowsChange when a row is expanded', () => {
-      const columns = [{ header: 'Name', cell: row => row.name }];
+      const columns = [{ header: 'Name', cell: (row) => row.name }];
       const rows = [{ name: 'Alpha' }, { name: 'Bravo' }];
       const onVisibleRowsChange = sinon.stub();
 
       const wrapper = mount(
-        <UncontrolledTable columns={columns} rows={rows} onVisibleRowsChange={onVisibleRowsChange} />
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          onVisibleRowsChange={onVisibleRowsChange}
+        />
       );
       const instance = wrapper.instance();
       instance.toggleExpanded({ name: 'Alpha' });
@@ -612,9 +582,7 @@ describe('<UncontrolledTable />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(
-        <UncontrolledTable columns={[]} rows={[]} expanded={[]} page={0} />
-      );
+      wrapper = mount(<UncontrolledTable columns={[]} rows={[]} expanded={[]} page={0} />);
     });
 
     it('should use object comparison if no keys present in arrays', () => {
@@ -647,17 +615,25 @@ describe('<UncontrolledTable />', () => {
     });
   });
 
-
   describe('UNSAFE_componentWillReceiveProps()', () => {
     let wrapper;
     beforeEach(() => {
-      const columns = [{ header: 'Name', cell: row => row.name }];
-      const rows = [{ name: 'Alpha', key: '1' }, { name: 'Bravo', key: '2' }];
+      const columns = [{ header: 'Name', cell: (row) => row.name }];
+      const rows = [
+        { name: 'Alpha', key: '1' },
+        { name: 'Bravo', key: '2' },
+      ];
       const expanded = [{ name: 'Alpha', key: '1' }];
       const selected = [{ name: 'Bravo', key: '2' }];
 
       wrapper = mount(
-        <UncontrolledTable columns={columns} rows={rows} expanded={expanded} page={1} selected={selected} />
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          expanded={expanded}
+          page={1}
+          selected={selected}
+        />
       );
     });
 
@@ -674,9 +650,21 @@ describe('<UncontrolledTable />', () => {
       newProps.rows[0].name = 'Charlie';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
-      assert.deepEqual(wrapper.state().expanded.map(r => r.key), expectedStateExpanded.map(r => r.key), 'the expanded state should not have changed');
-      assert.deepEqual(wrapper.state().selected.map(r => r.key), expectedStateSelected.map(r => r.key), 'the selected state should not have changed');
-      assert.strictEqual(wrapper.state().page, expectedStatePage, 'the page state should not have been changed');
+      assert.deepEqual(
+        wrapper.state().expanded.map((r) => r.key),
+        expectedStateExpanded.map((r) => r.key),
+        'the expanded state should not have changed'
+      );
+      assert.deepEqual(
+        wrapper.state().selected.map((r) => r.key),
+        expectedStateSelected.map((r) => r.key),
+        'the selected state should not have changed'
+      );
+      assert.strictEqual(
+        wrapper.state().page,
+        expectedStatePage,
+        'the page state should not have been changed'
+      );
     });
 
     it('should reset state for expanded, page, and selected if a rows key attributes have changed', () => {
@@ -688,8 +676,16 @@ describe('<UncontrolledTable />', () => {
       newProps.rows[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
-      assert.strictEqual(wrapper.state().expanded.length, 0, 'the expanded state should be reset to empty');
-      assert.strictEqual(wrapper.state().selected.length, 0, 'the selected state should be reset to empty');
+      assert.strictEqual(
+        wrapper.state().expanded.length,
+        0,
+        'the expanded state should be reset to empty'
+      );
+      assert.strictEqual(
+        wrapper.state().selected.length,
+        0,
+        'the selected state should be reset to empty'
+      );
       assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
     });
 
@@ -700,8 +696,16 @@ describe('<UncontrolledTable />', () => {
       newProps.selected[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
-      assert.strictEqual(wrapper.state().selected.length, 1, 'the selected state should have one entry');
-      assert.strictEqual(wrapper.state().selected[0].key, '3', 'the selected state should be set to the new array');
+      assert.strictEqual(
+        wrapper.state().selected.length,
+        1,
+        'the selected state should have one entry'
+      );
+      assert.strictEqual(
+        wrapper.state().selected[0].key,
+        '3',
+        'the selected state should be set to the new array'
+      );
     });
 
     it('should reset state for expanded if a change is detected in the expanded key attributes have changed', () => {
@@ -711,8 +715,16 @@ describe('<UncontrolledTable />', () => {
       newProps.expanded[0].key = '3';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
-      assert.strictEqual(wrapper.state().expanded.length, 1, 'the expanded state should have one entry');
-      assert.strictEqual(wrapper.state().expanded[0].key, '3', 'the expanded state should be set to the new array');
+      assert.strictEqual(
+        wrapper.state().expanded.length,
+        1,
+        'the expanded state should have one entry'
+      );
+      assert.strictEqual(
+        wrapper.state().expanded[0].key,
+        '3',
+        'the expanded state should be set to the new array'
+      );
     });
   });
 });

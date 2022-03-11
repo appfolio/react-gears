@@ -1,29 +1,35 @@
-import React from 'react';
-import sinon from 'sinon';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
-import { assertAccessible } from '../a11yHelpers';
 import { BoundForm } from '../../src';
+import { assertAccessible } from '../a11yHelpers';
 
 describe('<BoundForm />', () => {
   const data = {
     firstName: 'Glenn',
     address: {
       address1: '123 awesome',
-      city: 'A city'
-    }
+      city: 'A city',
+    },
   };
 
   const errors = {
-    firstName: "Can't be Glenn"
+    firstName: "Can't be Glenn",
   };
 
   const submitFunc = sinon.stub();
   const changeFunc = sinon.stub();
 
   const component = shallow(
-    <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff" />
+    <BoundForm
+      object={data}
+      errors={errors}
+      onSubmit={submitFunc}
+      onChange={changeFunc}
+      other="stuff"
+    />
   );
 
   it('should provide a context', () => {
@@ -43,7 +49,7 @@ describe('<BoundForm />', () => {
   it('should emit onChange when changed', () => {
     const firstNameOnChange = component.instance().handleChange('firstName');
     firstNameOnChange('Desmond');
-    assert(changeFunc.calledWith(Object.assign({}, data, { firstName: 'Desmond' })));
+    assert(changeFunc.calledWith({ ...data, firstName: 'Desmond' }));
   });
 
   it('should support updating nested data', () => {
@@ -84,7 +90,13 @@ describe('<BoundForm />', () => {
 
   it('should be accessible', async () => {
     await assertAccessible(
-      <BoundForm object={data} errors={errors} onSubmit={submitFunc} onChange={changeFunc} other="stuff" />
+      <BoundForm
+        object={data}
+        errors={errors}
+        onSubmit={submitFunc}
+        onChange={changeFunc}
+        other="stuff"
+      />
     );
   });
 });

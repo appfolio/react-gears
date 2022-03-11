@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
+import React, { useState } from 'react';
 import { PatternInput } from '../src';
 
 export default {
@@ -15,7 +15,7 @@ export const LiveExample = () => {
       pattern={new RegExp(pattern)}
       restrictInput={boolean('restrictInput', true)}
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 };

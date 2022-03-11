@@ -1,13 +1,13 @@
+import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import PropTypes from 'prop-types';
 import React from 'react';
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
+import mod from '../util/mod.js';
+import range from '../util/range';
+import Col from './Col';
 import Nav from './Nav';
 import NavItem from './NavItem';
 import NavLink from './NavLink';
-import Col from './Col';
 import Row from './Row';
-import mod from '../util/mod.js';
-import range from '../util/range';
 
 const { format } = Fecha;
 
@@ -30,7 +30,7 @@ Label.propTypes = {
   selected: PropTypes.bool,
   label: PropTypes.node,
   onClick: PropTypes.func,
-  visible: PropTypes.bool
+  visible: PropTypes.bool,
 };
 
 export default class MonthCalendar extends React.Component {
@@ -47,18 +47,19 @@ export default class MonthCalendar extends React.Component {
     dateVisible: () => true,
     monthFormat: 'MMM',
     yearFormat: 'YYYY',
-    onSelect: () => {}
+    onSelect: () => {},
   };
 
-  getMonths = date => range(0, 12).map(month => new Date(date.getFullYear(), month, 1));
+  getMonths = (date) => range(0, 12).map((month) => new Date(date.getFullYear(), month, 1));
+
   getYears = (date) => {
     const now = new Date();
     const currentYear = date.getFullYear();
     const month = date.getMonth();
-    const end = currentYear + mod((now.getFullYear() - currentYear), 12) + 1;
+    const end = currentYear + mod(now.getFullYear() - currentYear, 12) + 1;
     const start = end - 12;
-    return range(start, end).map(year => new Date(year, month, 1));
-  }
+    return range(start, end).map((year) => new Date(year, month, 1));
+  };
 
   render() {
     const { date, dateVisible, monthFormat, onSelect, yearFormat } = this.props;
@@ -69,12 +70,12 @@ export default class MonthCalendar extends React.Component {
           <Row className="gx-0">
             <Col>
               <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
-                {this.getMonths(date).map((monthYear, i) => (
+                {this.getMonths(date).map((monthYear) => (
                   <Label
                     selected={date.getMonth() === monthYear.getMonth()}
                     label={format(monthYear, monthFormat)}
                     date={monthYear}
-                    key={i}
+                    key={monthYear.toString()}
                     onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
                     visible={dateVisible(monthYear)}
                   />
@@ -84,12 +85,12 @@ export default class MonthCalendar extends React.Component {
 
             <Col className="border-start">
               <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
-                {this.getYears(date).map((monthYear, i) => (
+                {this.getYears(date).map((monthYear) => (
                   <Label
                     selected={date.getFullYear() === monthYear.getFullYear()}
                     label={format(monthYear, yearFormat)}
                     date={monthYear}
-                    key={i}
+                    key={monthYear.toString()}
                     onClick={() => dateVisible(monthYear) && onSelect(monthYear)}
                     visible={dateVisible(monthYear)}
                   />
@@ -98,11 +99,12 @@ export default class MonthCalendar extends React.Component {
             </Col>
           </Row>
         </div>
-        <style jsx>{`
-          .rg-MonthCalendar {
-            min-width: 16em;
-          }
-        `}
+        <style jsx>
+          {`
+            .rg-MonthCalendar {
+              min-width: 16em;
+            }
+          `}
         </style>
       </>
     );

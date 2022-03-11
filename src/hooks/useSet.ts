@@ -12,18 +12,13 @@ export default function useSet(defaultValue: any) {
     setSet(new Set(set));
   };
   const toggle = (value: any) => {
-    if (has(value)) remove(value);
-    else add(value);
+    if (has(value)) {
+      remove(value);
+    } else {
+      add(value);
+    }
   };
   const clear = () => set.clear();
 
-  return [
-    set,
-    has,
-    add,
-    remove,
-    toggle,
-    clear,
-    (values: any) => setSet(new Set(values))
-  ];
+  return [set, has, add, remove, toggle, clear, (values: any) => setSet(new Set(values))];
 }

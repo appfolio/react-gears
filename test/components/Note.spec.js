@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 import { CardText, Note } from '../../src';
 
@@ -14,7 +14,7 @@ describe('<Note />', () => {
       date: new Date('November 5, 1605 00:00:00'),
       from: 'Jim Nabors',
       text: 'Hello World!',
-      edited: true
+      edited: true,
     };
     props = {
       note,

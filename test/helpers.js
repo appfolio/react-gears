@@ -1,6 +1,6 @@
 import 'regenerator-runtime';
-import Adapter from 'enzyme-adapter-react-16/build/index';
 import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16/build/index';
 
 configure({ adapter: new Adapter() });
 

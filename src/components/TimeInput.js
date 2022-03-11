@@ -1,8 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import addMinutes from 'date-fns/add_minutes';
 import addSeconds from 'date-fns/add_seconds';
-import fecha from 'fecha';
 import getHours from 'date-fns/get_hours';
 import getMinutes from 'date-fns/get_minutes';
 import isBefore from 'date-fns/is_before';
@@ -10,12 +7,12 @@ import setHours from 'date-fns/set_hours';
 import setMinutes from 'date-fns/set_minutes';
 import startOfToday from 'date-fns/start_of_today';
 import startOfTomorrow from 'date-fns/start_of_tomorrow';
-
+import fecha from 'fecha';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
-
 import memoizeOne from 'memoize-one';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import Icon from './Icon';
 import Select from './Select';
 
@@ -50,7 +47,7 @@ function onInterval(time, interval) {
  * @param isTwoDigit whether the time to parse is a two digit (eg. 10:00) or
  * one digit (eg. 1:00) hour
  * @returns regex used to parse a string
-*/
+ */
 function buildhmmARegex(isTwoDigit) {
   const oneDigitHourAndColon = '\\d:?';
   const twoDigitHourAndColon = '\\d\\d:?';
@@ -63,7 +60,7 @@ function buildhmmARegex(isTwoDigit) {
 
 /** Helper for userInputProgress(). Returns whether a time is two digits in h:mm
  * format, ie. if a time is one of 12am, 10am, 11am, 12am, 10pm, 11pm
-*/
+ */
 function isTwoDigitHour(time) {
   return [0, 10, 11, 12, 22, 23].includes(getHours(time));
 }
@@ -78,6 +75,8 @@ function userInputProgress(input, time) {
   const [, hasTypedTens, hasTypedMin] = re.exec(input);
   return [!!hasTypedTens, !!hasTypedMin];
 }
+
+const ClockIcon = () => <Icon name="clock-o" />;
 
 export default class TimeInput extends React.Component {
   static propTypes = {
@@ -94,8 +93,8 @@ export default class TimeInput extends React.Component {
     noResultsText: PropTypes.string,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
-    value: PropTypes.string
-  }
+    value: PropTypes.string,
+  };
 
   static defaultProps = {
     allowOtherTimes: false,
@@ -103,14 +102,14 @@ export default class TimeInput extends React.Component {
     step: 30,
     placeholder: 'Enter a time',
     timeFormat: 'h:mm A',
-    noResultsText: 'Must be in the format HH:MM AM/PM'
-  }
+    noResultsText: 'Must be in the format HH:MM AM/PM',
+  };
 
   constructor(props) {
     super(props);
     const { defaultValue } = this.props;
     this.state = {
-      selectedOption: defaultValue && this.valueStrToOption(defaultValue)
+      selectedOption: defaultValue && this.valueStrToOption(defaultValue),
     };
   }
 
@@ -120,6 +119,7 @@ export default class TimeInput extends React.Component {
     return this.times().find(({ value }) => value === valueStr);
   }
 
+  /* eslint-disable-next-line react/no-unused-class-component-methods -- Address this when converting to functional component */
   focus() {
     // TODO JavaScript does not allow opening selects programmatically.
     this.inputEl.focus();
@@ -150,7 +150,7 @@ export default class TimeInput extends React.Component {
       times.push({
         label: format(time, timeFormat),
         value: format(time, this.valueFormat),
-        time
+        time,
       });
       time = addMinutes(time, step);
     } while (isBefore(time, max));
@@ -167,7 +167,7 @@ export default class TimeInput extends React.Component {
     } else {
       this.props.onChange('', INVALID_DATE);
     }
-  }
+  };
 
   /** Determines whether to display the current option given a particular user
    * input.
@@ -176,26 +176,30 @@ export default class TimeInput extends React.Component {
    * - leading zeroes "09:30 AM"
    * - missing whitespace "9:30AM"
    * - typing am/pm upper or lower case "9:30 am"
-  */
+   */
   filterOption = ({ label, time }, input) => {
     const { step } = this.props;
 
-    const removeWhitespace = str => str.replace(/\s/gi, '');
-    const removeLeadingZeros = str => str.replace(/^0*/, '');
+    const removeWhitespace = (str) => str.replace(/\s/gi, '');
+    const removeLeadingZeros = (str) => str.replace(/^0*/, '');
 
     const inputCandidate = flow(removeWhitespace, removeLeadingZeros, toLower)(input);
 
     const [hasTypedTens, hasTypedMin] = userInputProgress(inputCandidate, time);
 
     // only show times on step if we havent started to type minutes
-    if (!hasTypedTens && !onInterval(time, step)) return false;
+    if (!hasTypedTens && !onInterval(time, step)) {
+      return false;
+    }
 
     // only show times on step or on 10 min intervals if we havent finished typing minutes
-    if (!hasTypedMin && !onInterval(time, step) && !onInterval(time, 10)) return false;
+    if (!hasTypedMin && !onInterval(time, step) && !onInterval(time, 10)) {
+      return false;
+    }
 
     const labelCandidate = flow(
       // Remove colon from option if input doesnt have one
-      str => inputCandidate.includes(':') ? str : str.replace(/:/gi, ''),
+      (str) => (inputCandidate.includes(':') ? str : str.replace(/:/gi, '')),
       removeWhitespace,
       removeLeadingZeros,
       toLower
@@ -205,12 +209,11 @@ export default class TimeInput extends React.Component {
   };
 
   selectedOption() {
-    return this.props.value ?
-      this.valueStrToOption(this.props.value) :
-      this.state.selectedOption;
+    return this.props.value ? this.valueStrToOption(this.props.value) : this.state.selectedOption;
   }
 
   render() {
+    /* eslint-disable @typescript-eslint/no-unused-vars -- will go away when this is a functional component */
     const {
       allowOtherTimes,
       disabled,
@@ -222,13 +225,14 @@ export default class TimeInput extends React.Component {
       timeFormat,
       ...props
     } = this.props;
+    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     const times = this.times();
 
     return (
       <Select
         {...props}
-        arrowRenderer={() => <Icon name="clock-o" />}
+        arrowRenderer={ClockIcon}
         disabled={disabled}
         filterOption={this.filterOption}
         noResultsText={this.props.noResultsText}

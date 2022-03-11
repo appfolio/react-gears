@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
 import classnames from 'classnames';
+import React, { useRef, useState } from 'react';
 import Resize from 'react-resize-detector';
 import useSavedScroll from '../hooks/useSavedScroll';
 
 export type Theme = {
-  overflowTop: string,
-  overflowBottom: string,
-  overflowLeft: string,
-  overflowRight: string
-}
+  overflowTop: string;
+  overflowBottom: string;
+  overflowLeft: string;
+  overflowRight: string;
+};
 
 export interface ScrollContainerProps extends React.HTMLProps<HTMLDivElement> {
   height?: string | number;
@@ -20,7 +20,7 @@ const defaultTheme = {
   overflowTop: 'overflow-top',
   overflowBottom: 'overflow-bottom',
   overflowLeft: 'overflow-left',
-  overflowRight: 'overflow-right'
+  overflowRight: 'overflow-right',
 };
 
 const ScrollContainer = ({
@@ -35,26 +35,20 @@ const ScrollContainer = ({
     overflowTop: false,
     overflowBottom: false,
     overflowLeft: false,
-    overflowRight: false
+    overflowRight: false,
   });
   const container = useRef<HTMLDivElement>(null);
   useSavedScroll(container, scrollPositionKey);
 
   function detectOverflow() {
     if (container.current) {
-      const {
-        clientHeight,
-        clientWidth,
-        scrollHeight,
-        scrollLeft,
-        scrollTop,
-        scrollWidth
-      } = container.current;
+      const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } =
+        container.current;
       setOverflow({
         overflowTop: scrollTop > 0,
         overflowBottom: scrollHeight - scrollTop > clientHeight,
         overflowLeft: scrollLeft > 0,
-        overflowRight: scrollWidth - scrollLeft > clientWidth
+        overflowRight: scrollWidth - scrollLeft > clientWidth,
       });
     }
   }
@@ -64,31 +58,28 @@ const ScrollContainer = ({
     [theme.overflowTop]: overflowTop,
     [theme.overflowBottom]: overflowBottom,
     [theme.overflowLeft]: overflowLeft,
-    [theme.overflowRight]: overflowRight
+    [theme.overflowRight]: overflowRight,
   });
 
   return (
-    <div
-      className={classNames}
-      {...props}
-    >
+    <div className={classNames} {...props}>
       <div
         ref={container}
         style={{
           maxHeight: height,
-          overflow: 'auto'
+          overflow: 'auto',
         }}
         onScroll={() => detectOverflow()}
       >
         {children}
       </div>
       <Resize handleWidth handleHeight onResize={() => detectOverflow()} />
-      <div className='container-shadow' />
+      <div className="container-shadow" />
       <style jsx>
         {`
           .scroll-container .container-shadow {
             box-shadow: none;
-            content: "";
+            content: '';
             display: block;
             top: 0px;
             left: 0px;
@@ -105,43 +96,56 @@ const ScrollContainer = ({
             box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-left.overflow-right .container-shadow {
-            box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset,
+              -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-bottom .container-shadow {
             box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-bottom.overflow-right .container-shadow {
-            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-bottom.overflow-left .container-shadow {
-            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-bottom.overflow-left.overflow-right .container-shadow {
-            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top .container-shadow {
             box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-right .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-left .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-left.overflow-right .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-bottom .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-bottom.overflow-right .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
           .scroll-container.overflow-top.overflow-bottom.overflow-left .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
-          .scroll-container.overflow-top.overflow-bottom.overflow-left.overflow-right .container-shadow {
-            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset, 8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, 0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset;
+          .scroll-container.overflow-top.overflow-bottom.overflow-left.overflow-right
+            .container-shadow {
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.25) inset,
+              8px 0 8px -8px rgba(0, 0, 0, 0.25) inset, -8px 0 8px -8px rgba(0, 0, 0, 0.25) inset,
+              0 -8px 8px -8px rgba(0, 0, 0, 0.25) inset;
           }
         `}
       </style>
@@ -152,4 +156,3 @@ const ScrollContainer = ({
 ScrollContainer.displayName = 'ScrollContainer';
 
 export default ScrollContainer;
-

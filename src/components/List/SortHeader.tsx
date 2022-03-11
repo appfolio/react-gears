@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
-import { Button, Col, Input, Icon, Label } from '../../index';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import Button from '../Button';
+import Col from '../Col';
+import Icon from '../Icon';
+import Input from '../Input';
+import Label from '../Label';
 
 interface SortOption {
   label: string;
@@ -9,19 +13,32 @@ interface SortOption {
 }
 
 export interface SortHeaderProps {
-  ascending?: boolean,
-  onChangeAscending: (asc: boolean) => void,
-  onChangeProperty: (sortBy: SortOption['value']) => void,
-  sortByLabel: string,
-  sortOptions: SortOption[],
-  sortProperty?: SortOption['value'],
+  ascending?: boolean;
+  onChangeAscending: (asc: boolean) => void;
+  onChangeProperty: (sortBy: SortOption['value']) => void;
+  sortByLabel: string;
+  sortOptions: SortOption[];
+  sortProperty?: SortOption['value'];
 }
 
-const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChangeAscending, onChangeProperty }: SortHeaderProps) => {
+const SortHeader = ({
+  ascending,
+  sortByLabel,
+  sortOptions,
+  sortProperty,
+  onChangeAscending,
+  onChangeProperty,
+}: SortHeaderProps) => {
   const [sortId] = useState(() => uniqueId('sort-'));
   return (
-    <Col xs="12" sm="auto" className="ms-sm-auto me-n1 pt-2 pt-sm-0 d-flex align-items-center js-sort-header">
-      <Label className="m-0 pe-2 text-nowrap col-form-label" for={sortId}>{sortByLabel}</Label>
+    <Col
+      xs="12"
+      sm="auto"
+      className="ms-sm-auto me-n1 pt-2 pt-sm-0 d-flex align-items-center js-sort-header"
+    >
+      <Label className="m-0 pe-2 text-nowrap col-form-label" for={sortId}>
+        {sortByLabel}
+      </Label>
       <Input
         id={sortId}
         type="select"
@@ -33,10 +50,7 @@ const SortHeader = ({ ascending, sortByLabel, sortOptions, sortProperty, onChang
       >
         {sortProperty === undefined && <option value="">--</option>}
         {sortOptions.map(({ label, value }) => (
-          <option
-            key={value.toString()}
-            value={Array.isArray(value) ? value.join(',') : value}
-          >
+          <option key={value.toString()} value={Array.isArray(value) ? value.join(',') : value}>
             {label}
           </option>
         ))}

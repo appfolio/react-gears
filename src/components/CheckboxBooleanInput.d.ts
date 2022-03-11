@@ -7,7 +7,10 @@ interface CheckboxBooleanInputSpecificProps {
   value?: boolean;
 }
 type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
-type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<InputProps, CheckboxBooleanInputSpecificProps>;
+type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
+  InputProps,
+  CheckboxBooleanInputSpecificProps
+>;
 
-declare class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps, {}> { }
+declare class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps, {}> {}
 export default CheckboxBooleanInput;

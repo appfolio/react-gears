@@ -10,7 +10,7 @@ export default [
     expandedColor: 'primary',
     dob: '1966-06-26T07:00:00.000Z',
     email: 'minea.wuori@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 1,
@@ -23,7 +23,7 @@ export default [
     expandedColor: 'secondary',
     dob: '1988-02-22T08:00:00.000Z',
     email: 'antoine.brown@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export default [
     expandedColor: 'success',
     dob: '1996-03-02T08:00:00.000Z',
     email: 'abigail.thompson@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ export default [
     expandedColor: 'info',
     dob: '1988-04-22T07:00:00.000Z',
     email: 'naomi.ortiz@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ export default [
     expandedColor: 'warning',
     dob: '1944-09-21T07:00:00.000Z',
     email: 'freja.christiansen@example.com',
-    nat: 'DK'
+    nat: 'DK',
   },
   {
     id: 5,
@@ -75,7 +75,7 @@ export default [
     expandedColor: 'danger',
     dob: '1954-03-01T08:00:00.000Z',
     email: 'jeremy.morrison@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 6,
@@ -87,7 +87,7 @@ export default [
     expanded: false,
     dob: '1984-04-01T07:00:00.000Z',
     email: 'erwin.guillot@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 7,
@@ -99,7 +99,7 @@ export default [
     expanded: false,
     dob: '1975-04-17T07:00:00.000Z',
     email: 'stella.rey@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 8,
@@ -111,7 +111,7 @@ export default [
     expanded: false,
     dob: '1945-06-24T07:00:00.000Z',
     email: 'emily.jones@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 9,
@@ -123,7 +123,7 @@ export default [
     expanded: false,
     dob: '1965-07-25T07:00:00.000Z',
     email: 'charles.wilson@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 10,
@@ -135,7 +135,7 @@ export default [
     expanded: false,
     dob: '1988-01-25T08:00:00.000Z',
     email: 'oliver.wang@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 11,
@@ -147,7 +147,7 @@ export default [
     expanded: false,
     dob: '1961-07-04T07:00:00.000Z',
     email: 'gotthold.wilkens@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 12,
@@ -159,7 +159,7 @@ export default [
     expanded: false,
     dob: '1963-04-03T07:00:00.000Z',
     email: 'stanley.cruz@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 13,
@@ -171,7 +171,7 @@ export default [
     expanded: false,
     dob: '1990-01-20T08:00:00.000Z',
     email: 'maiwenn.hubert@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 14,
@@ -183,7 +183,7 @@ export default [
     expanded: false,
     dob: '1959-11-20T08:00:00.000Z',
     email: 'emmerich.abele@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 15,
@@ -195,7 +195,7 @@ export default [
     expanded: false,
     dob: '1984-11-18T08:00:00.000Z',
     email: 'harper.lavigne@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 16,
@@ -207,7 +207,7 @@ export default [
     expanded: false,
     dob: '1966-07-13T07:00:00.000Z',
     email: 'celia.gerard@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 17,
@@ -219,7 +219,7 @@ export default [
     expanded: false,
     dob: '1964-10-10T07:00:00.000Z',
     email: 'julia.ginnish@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 18,
@@ -231,7 +231,7 @@ export default [
     expanded: false,
     dob: '1992-06-08T07:00:00.000Z',
     email: 'jack.singh@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 19,
@@ -243,7 +243,7 @@ export default [
     expanded: false,
     dob: '1973-09-21T07:00:00.000Z',
     email: 'jerome.day@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 20,
@@ -255,7 +255,7 @@ export default [
     expanded: false,
     dob: '1976-12-20T08:00:00.000Z',
     email: 'said.haverhoek@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 21,
@@ -267,7 +267,7 @@ export default [
     expanded: false,
     dob: '1962-02-04T08:00:00.000Z',
     email: 'abraham.hirschfeld@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 22,
@@ -279,7 +279,7 @@ export default [
     expanded: false,
     dob: '1960-09-28T07:00:00.000Z',
     email: 'charlene.walters@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 23,
@@ -291,7 +291,7 @@ export default [
     expanded: false,
     dob: '1973-09-03T07:00:00.000Z',
     email: 'emile.rey@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 24,
@@ -303,7 +303,7 @@ export default [
     expanded: false,
     dob: '1964-07-09T07:00:00.000Z',
     email: 'friedemann.hummer@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 25,
@@ -315,7 +315,7 @@ export default [
     expanded: false,
     dob: '1950-02-22T08:00:00.000Z',
     email: 'ana.dominguez@example.com',
-    nat: 'ES'
+    nat: 'ES',
   },
   {
     id: 26,
@@ -327,7 +327,7 @@ export default [
     expanded: false,
     dob: '1997-12-06T08:00:00.000Z',
     email: 'donna.rose@example.com',
-    nat: 'GB'
+    nat: 'GB',
   },
   {
     id: 27,
@@ -339,7 +339,7 @@ export default [
     expanded: false,
     dob: '1997-10-15T07:00:00.000Z',
     email: 'yolanda.diez@example.com',
-    nat: 'ES'
+    nat: 'ES',
   },
   {
     id: 28,
@@ -351,7 +351,7 @@ export default [
     expanded: false,
     dob: '1988-10-09T07:00:00.000Z',
     email: 'robbe.peetoom@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 29,
@@ -363,7 +363,7 @@ export default [
     expanded: false,
     dob: '1961-09-12T07:00:00.000Z',
     email: 'boris.leroy@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 30,
@@ -375,7 +375,7 @@ export default [
     expanded: false,
     dob: '1996-06-17T07:00:00.000Z',
     email: 'edwin.ramirez@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 31,
@@ -387,7 +387,7 @@ export default [
     expanded: false,
     dob: '1975-10-21T07:00:00.000Z',
     email: 'giulia.deschamps@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 32,
@@ -399,7 +399,7 @@ export default [
     expanded: false,
     dob: '1977-10-21T07:00:00.000Z',
     email: 'oskari.eskola@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 33,
@@ -411,7 +411,7 @@ export default [
     expanded: false,
     dob: '1986-03-28T07:00:00.000Z',
     email: 'estacio.santos@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 34,
@@ -423,7 +423,7 @@ export default [
     expanded: false,
     dob: '1964-12-30T08:00:00.000Z',
     email: 'sophia.park@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 35,
@@ -435,7 +435,7 @@ export default [
     expanded: false,
     dob: '1983-05-26T07:00:00.000Z',
     email: 'eugen.burkhard@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 36,
@@ -447,7 +447,7 @@ export default [
     expanded: false,
     dob: '1957-08-15T07:00:00.000Z',
     email: 'suzanne.martinez@example.com',
-    nat: 'GB'
+    nat: 'GB',
   },
   {
     id: 37,
@@ -459,7 +459,7 @@ export default [
     expanded: false,
     dob: '1977-01-23T08:00:00.000Z',
     email: 'asta.grau@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 38,
@@ -471,7 +471,7 @@ export default [
     expanded: false,
     dob: '1954-03-31T07:00:00.000Z',
     email: 'nathan.smith@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 39,
@@ -483,7 +483,7 @@ export default [
     expanded: false,
     dob: '1988-03-21T07:00:00.000Z',
     email: 'lawrence.medina@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 40,
@@ -495,7 +495,7 @@ export default [
     expanded: false,
     dob: '1960-04-14T07:00:00.000Z',
     email: 'rodney.garza@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 41,
@@ -507,7 +507,7 @@ export default [
     expanded: false,
     dob: '1980-04-23T07:00:00.000Z',
     email: 'alfred.petersen@example.com',
-    nat: 'DK'
+    nat: 'DK',
   },
   {
     id: 42,
@@ -519,7 +519,7 @@ export default [
     expanded: false,
     dob: '1978-08-08T07:00:00.000Z',
     email: 'jennifer.clark@example.com',
-    nat: 'GB'
+    nat: 'GB',
   },
   {
     id: 43,
@@ -531,7 +531,7 @@ export default [
     expanded: false,
     dob: '1979-12-31T08:00:00.000Z',
     email: 'livio.martinez@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 44,
@@ -543,7 +543,7 @@ export default [
     expanded: false,
     dob: '1986-03-20T07:00:00.000Z',
     email: 'milja.wallo@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 45,
@@ -555,7 +555,7 @@ export default [
     expanded: false,
     dob: '1948-02-03T08:00:00.000Z',
     email: 'aleksi.keto@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 46,
@@ -567,7 +567,7 @@ export default [
     expanded: false,
     dob: '1950-12-07T08:00:00.000Z',
     email: 'eelis.koskinen@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 47,
@@ -579,7 +579,7 @@ export default [
     expanded: false,
     dob: '1987-11-18T08:00:00.000Z',
     email: 'chris.green@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 48,
@@ -591,7 +591,7 @@ export default [
     expanded: false,
     dob: '1990-09-17T07:00:00.000Z',
     email: 'joffrey.aarsen@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 49,
@@ -603,7 +603,7 @@ export default [
     expanded: false,
     dob: '1998-02-06T08:00:00.000Z',
     email: 'siiri.keranen@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 50,
@@ -615,7 +615,7 @@ export default [
     expanded: false,
     dob: '1956-04-17T07:00:00.000Z',
     email: 'samuel.durand@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 51,
@@ -627,7 +627,7 @@ export default [
     expanded: false,
     dob: '1951-02-06T08:00:00.000Z',
     email: 'beau.hughes@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 52,
@@ -639,7 +639,7 @@ export default [
     expanded: false,
     dob: '1957-10-18T07:00:00.000Z',
     email: 'xenio.silva@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 53,
@@ -651,7 +651,7 @@ export default [
     expanded: false,
     dob: '1987-04-06T07:00:00.000Z',
     email: 'saana.joki@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 54,
@@ -663,7 +663,7 @@ export default [
     expanded: false,
     dob: '1947-08-05T07:00:00.000Z',
     email: 'kerttu.tervo@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 55,
@@ -675,7 +675,7 @@ export default [
     expanded: false,
     dob: '1981-03-27T07:00:00.000Z',
     email: 'lucas.baker@example.com',
-    nat: 'GB'
+    nat: 'GB',
   },
   {
     id: 56,
@@ -687,7 +687,7 @@ export default [
     expanded: false,
     dob: '1959-08-16T07:00:00.000Z',
     email: 'isabelle.otoole@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 57,
@@ -699,7 +699,7 @@ export default [
     expanded: false,
     dob: '1989-12-13T08:00:00.000Z',
     email: 'miranda.girard@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 58,
@@ -711,7 +711,7 @@ export default [
     expanded: false,
     dob: '1991-08-08T07:00:00.000Z',
     email: 'lucas.guillot@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 59,
@@ -723,7 +723,7 @@ export default [
     expanded: false,
     dob: '1944-11-01T07:00:00.000Z',
     email: 'harper.gauthier@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 60,
@@ -735,7 +735,7 @@ export default [
     expanded: false,
     dob: '1988-08-09T07:00:00.000Z',
     email: 'freja.olsen@example.com',
-    nat: 'DK'
+    nat: 'DK',
   },
   {
     id: 61,
@@ -747,7 +747,7 @@ export default [
     expanded: false,
     dob: '1979-10-28T07:00:00.000Z',
     email: 'evelyn.sanders@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 62,
@@ -759,7 +759,7 @@ export default [
     expanded: false,
     dob: '1946-01-14T08:00:00.000Z',
     email: 'sana.moelker@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 63,
@@ -771,7 +771,7 @@ export default [
     expanded: false,
     dob: '1963-07-02T07:00:00.000Z',
     email: 'jade.scott@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 64,
@@ -783,7 +783,7 @@ export default [
     expanded: false,
     dob: '1959-06-09T07:00:00.000Z',
     email: 'oscar.rice@example.com',
-    nat: 'GB'
+    nat: 'GB',
   },
   {
     id: 65,
@@ -795,7 +795,7 @@ export default [
     expanded: false,
     dob: '1985-04-10T07:00:00.000Z',
     email: 'cosme.alves@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 66,
@@ -807,7 +807,7 @@ export default [
     expanded: false,
     dob: '1982-11-11T08:00:00.000Z',
     email: 'gata.lima@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 67,
@@ -819,7 +819,7 @@ export default [
     expanded: false,
     dob: '1983-05-27T07:00:00.000Z',
     email: 'frederick.james@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 68,
@@ -831,7 +831,7 @@ export default [
     expanded: false,
     dob: '1956-05-02T07:00:00.000Z',
     email: 'clara.moller@example.com',
-    nat: 'DK'
+    nat: 'DK',
   },
   {
     id: 69,
@@ -843,7 +843,7 @@ export default [
     expanded: false,
     dob: '1968-12-21T08:00:00.000Z',
     email: 'hanae.masson@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 70,
@@ -855,7 +855,7 @@ export default [
     expanded: false,
     dob: '1945-11-21T08:00:00.000Z',
     email: 'irene.jung@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 71,
@@ -867,7 +867,7 @@ export default [
     expanded: false,
     dob: '1965-07-23T07:00:00.000Z',
     email: 'mia.robinson@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 72,
@@ -879,7 +879,7 @@ export default [
     expanded: false,
     dob: '1960-01-17T08:00:00.000Z',
     email: 'juliane.duck@example.com',
-    nat: 'DE'
+    nat: 'DE',
   },
   {
     id: 73,
@@ -891,7 +891,7 @@ export default [
     expanded: false,
     dob: '1963-06-26T07:00:00.000Z',
     email: 'connor.lucas@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 74,
@@ -903,7 +903,7 @@ export default [
     expanded: false,
     dob: '1978-09-15T07:00:00.000Z',
     email: 'lidia.gallego@example.com',
-    nat: 'ES'
+    nat: 'ES',
   },
   {
     id: 75,
@@ -915,7 +915,7 @@ export default [
     expanded: false,
     dob: '1947-09-08T07:00:00.000Z',
     email: 'celina.dias@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 76,
@@ -927,7 +927,7 @@ export default [
     expanded: false,
     dob: '1966-08-13T07:00:00.000Z',
     email: 'oona.niemi@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 77,
@@ -939,7 +939,7 @@ export default [
     expanded: false,
     dob: '1955-03-07T08:00:00.000Z',
     email: 'brittany.fletcher@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 78,
@@ -951,7 +951,7 @@ export default [
     expanded: false,
     dob: '1958-07-22T07:00:00.000Z',
     email: 'lea.johansen@example.com',
-    nat: 'DK'
+    nat: 'DK',
   },
   {
     id: 79,
@@ -963,7 +963,7 @@ export default [
     expanded: false,
     dob: '1986-10-28T07:00:00.000Z',
     email: 'isabella.feddema@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 80,
@@ -975,7 +975,7 @@ export default [
     expanded: false,
     dob: '1987-04-26T07:00:00.000Z',
     email: 'norbert.faure@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 81,
@@ -987,7 +987,7 @@ export default [
     expanded: false,
     dob: '1949-04-21T07:00:00.000Z',
     email: 'herbert.rhodes@example.com',
-    nat: 'IE'
+    nat: 'IE',
   },
   {
     id: 82,
@@ -999,7 +999,7 @@ export default [
     expanded: false,
     dob: '1977-02-03T08:00:00.000Z',
     email: 'misty.vasquez@example.com',
-    nat: 'AU'
+    nat: 'AU',
   },
   {
     id: 83,
@@ -1011,7 +1011,7 @@ export default [
     expanded: false,
     dob: '1964-06-29T07:00:00.000Z',
     email: 'mariska.postmus@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 84,
@@ -1023,7 +1023,7 @@ export default [
     expanded: false,
     dob: '1969-08-03T07:00:00.000Z',
     email: 'vilho.perala@example.com',
-    nat: 'FI'
+    nat: 'FI',
   },
   {
     id: 85,
@@ -1035,7 +1035,7 @@ export default [
     expanded: false,
     dob: '1993-12-28T08:00:00.000Z',
     email: 'piero.pierre@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 86,
@@ -1047,7 +1047,7 @@ export default [
     expanded: false,
     dob: '1968-11-25T08:00:00.000Z',
     email: 'mae.fernandez@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 87,
@@ -1059,7 +1059,7 @@ export default [
     expanded: false,
     dob: '1986-04-08T07:00:00.000Z',
     email: 'teresa.fuentes@example.com',
-    nat: 'ES'
+    nat: 'ES',
   },
   {
     id: 88,
@@ -1071,7 +1071,7 @@ export default [
     expanded: false,
     dob: '1946-06-07T07:00:00.000Z',
     email: 'ticiana.goncalves@example.com',
-    nat: 'BR'
+    nat: 'BR',
   },
   {
     id: 89,
@@ -1083,7 +1083,7 @@ export default [
     expanded: false,
     dob: '1975-08-11T07:00:00.000Z',
     email: 'aubree.bouchard@example.com',
-    nat: 'CA'
+    nat: 'CA',
   },
   {
     id: 90,
@@ -1095,7 +1095,7 @@ export default [
     expanded: false,
     dob: '1992-09-20T07:00:00.000Z',
     email: 'peter.fabre@example.com',
-    nat: 'CH'
+    nat: 'CH',
   },
   {
     id: 91,
@@ -1107,7 +1107,7 @@ export default [
     expanded: false,
     dob: '1994-02-13T08:00:00.000Z',
     email: 'olive.harris@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 92,
@@ -1119,7 +1119,7 @@ export default [
     expanded: false,
     dob: '1984-02-21T08:00:00.000Z',
     email: 'marcus.kumar@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 93,
@@ -1131,7 +1131,7 @@ export default [
     expanded: false,
     dob: '1961-12-22T08:00:00.000Z',
     email: 'hadrien.lemaire@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 94,
@@ -1143,7 +1143,7 @@ export default [
     expanded: false,
     dob: '1962-10-17T07:00:00.000Z',
     email: 'flynn.wilson@example.com',
-    nat: 'NZ'
+    nat: 'NZ',
   },
   {
     id: 95,
@@ -1155,7 +1155,7 @@ export default [
     expanded: false,
     dob: '1945-09-15T07:00:00.000Z',
     email: 'bodine.nijkamp@example.com',
-    nat: 'NL'
+    nat: 'NL',
   },
   {
     id: 96,
@@ -1167,7 +1167,7 @@ export default [
     expanded: false,
     dob: '1982-06-22T07:00:00.000Z',
     email: 'tyrone.henry@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 97,
@@ -1179,7 +1179,7 @@ export default [
     expanded: false,
     dob: '1968-12-26T08:00:00.000Z',
     email: 'romain.renard@example.com',
-    nat: 'FR'
+    nat: 'FR',
   },
   {
     id: 98,
@@ -1191,7 +1191,7 @@ export default [
     expanded: false,
     dob: '1973-09-19T07:00:00.000Z',
     email: 'george.morris@example.com',
-    nat: 'US'
+    nat: 'US',
   },
   {
     id: 99,
@@ -1203,6 +1203,6 @@ export default [
     expanded: false,
     dob: '1962-04-20T07:00:00.000Z',
     email: 'mae.harper@example.com',
-    nat: 'AU'
-  }
+    nat: 'AU',
+  },
 ];

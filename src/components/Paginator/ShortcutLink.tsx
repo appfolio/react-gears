@@ -1,15 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
 
 type ShortcutLinkProps = {
-  children?: React.ReactNode,
-  disabled?: boolean,
-  onClick: (page: number) => void,
-  page: number,
-  name?: string,
-}
+  children?: React.ReactNode;
+  disabled?: boolean;
+  onClick: (page: number) => void;
+  page: number;
+  name?: string;
+};
 
 /**
  * A clickable link to the first/previous/next/last page in the pagination bar

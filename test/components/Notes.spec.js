@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 import { Note, Notes } from '../../src';
 
@@ -10,7 +10,7 @@ describe('<Notes />', () => {
     { id: '1', date: new Date(), text: 'Alpha' },
     { id: '2', date: new Date(), text: 'Bravo' },
     { id: '3', date: new Date(), text: 'Charlie' },
-    { id: '4', date: new Date(), text: 'Delta' }
+    { id: '4', date: new Date(), text: 'Delta' },
   ];
   let props;
 
@@ -35,7 +35,7 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(Note);
         assert.equal(4, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
+        for (let i = 0; i < noteCards.length; ++i) {
           assert.equal(notes[i], noteCards.at(i).props().note);
           assert.equal(props.onEdit, noteCards.at(i).props().onEdit);
           assert.equal(props.onDelete, noteCards.at(i).props().onDelete);
@@ -59,7 +59,7 @@ describe('<Notes />', () => {
         const noteCards = wrapper.find(DummyNoteControl);
         assert.equal(3, noteCards.length);
 
-        for (let i = 0; i < noteCards.length; ++i) { // eslint-disable-line no-plusplus
+        for (let i = 0; i < noteCards.length; ++i) {
           assert.equal(`${i + 1}`, noteCards.at(i).props().note.text);
         }
       });

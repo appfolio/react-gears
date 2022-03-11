@@ -1,8 +1,8 @@
-import React from 'react';
-import assert from 'assert';
-import sinon from 'sinon';
-import { mount, shallow } from 'enzyme';
 import { render } from '@testing-library/react';
+import assert from 'assert';
+import { mount, shallow } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
 import { List, ListItem } from '../../src';
 
@@ -10,15 +10,13 @@ describe('<List />', () => {
   const items = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'];
 
   it('should render correctly', () => {
-    const component = shallow(<List items={items}>{item => item}</List>);
+    const component = shallow(<List items={items}>{(item) => item}</List>);
     assert(component);
   });
 
   it('should render correct items and default to unsorted', () => {
     const component = mount(
-      <List items={items}>
-        {item => <div id={item.toLowerCase()}>{item}</div>}
-      </List>
+      <List items={items}>{(item) => <div id={item.toLowerCase()}>{item}</div>}</List>
     );
     const listItems = component.find(ListItem);
     assert.equal(listItems.length, items.length);
@@ -29,9 +27,13 @@ describe('<List />', () => {
   });
 
   it('should add className to each item', () => {
-    const component = mount(<List items={items} itemClassName="yowza">{item => item}</List>);
+    const component = mount(
+      <List items={items} itemClassName="yowza">
+        {(item) => item}
+      </List>
+    );
     const listItems = component.find(ListItem);
-    listItems.forEach(item => assert(item.hasClass('yowza')));
+    listItems.forEach((item) => assert(item.hasClass('yowza')));
   });
 
   describe('expansion', () => {
@@ -39,10 +41,11 @@ describe('<List />', () => {
       const component = mount(
         <List
           items={items}
-          onExpand={item => (item === 'Alpha') ? <div className="expanded">{item}</div> : null}
+          onExpand={(item) => (item === 'Alpha' ? <div className="expanded">{item}</div> : null)}
         >
-          {item => item}
-        </List>);
+          {(item) => item}
+        </List>
+      );
       const listItems = component.find('.expanded');
       assert.equal(listItems.length, 1);
       assert.equal(listItems.first().text(), 'Alpha');
@@ -52,10 +55,13 @@ describe('<List />', () => {
       const component = mount(
         <List
           items={items}
-          onExpand={item => (item === 'Alpha' || item === 'Charlie') ? undefined : <div>{item}</div>}
+          onExpand={(item) =>
+            item === 'Alpha' || item === 'Charlie' ? undefined : <div>{item}</div>
+          }
         >
-          {item => item}
-        </List>);
+          {(item) => item}
+        </List>
+      );
       const buttons = component.find('Button');
 
       assert.equal(buttons.length, 5);
@@ -90,7 +96,7 @@ describe('<List />', () => {
   it('should pass height to scroll container', () => {
     const component = mount(
       <List items={items} height="69vw">
-        {item => item}
+        {(item) => item}
       </List>
     );
     const container = component.find('ScrollContainer');
@@ -100,7 +106,7 @@ describe('<List />', () => {
   it('should pass scrollPositionKey to scroll container', () => {
     const component = mount(
       <List items={items} scrollPositionKey="example-scroll-position-key">
-        {item => item}
+        {(item) => item}
       </List>
     );
     const container = component.find('ScrollContainer');
@@ -111,7 +117,7 @@ describe('<List />', () => {
     it('should select and deselect all', () => {
       const component = render(
         <List items={items} select="checkbox">
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
 
@@ -119,7 +125,10 @@ describe('<List />', () => {
 
       component.getByTestId('select-all').click();
 
-      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, items.length + 1);
+      assert.deepStrictEqual(
+        component.container.querySelectorAll('input:checked').length,
+        items.length + 1
+      );
 
       component.getByTestId('select-all').click();
 
@@ -127,10 +136,12 @@ describe('<List />', () => {
     });
 
     it('should select and deselect item', () => {
-      const objs = items.map((i) => { return { value: i, key: i }; });
+      const objs = items.map((i) => {
+        return { value: i, key: i };
+      });
       const component = render(
         <List items={objs} select="checkbox">
-          {item => <div id={item.key}>{item.value}</div>}
+          {(item) => <div id={item.key}>{item.value}</div>}
         </List>
       );
 
@@ -146,9 +157,7 @@ describe('<List />', () => {
 
     it('should not render selection controls by default', () => {
       const component = mount(
-        <List items={items}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
-        </List>
+        <List items={items}>{(item) => <div id={item.toLowerCase()}>{item}</div>}</List>
       );
       const inputs = component.find('input');
       assert.equal(inputs.length, 0);
@@ -157,7 +166,7 @@ describe('<List />', () => {
     it('should render the correct selection type', () => {
       const component = mount(
         <List items={items} select="checkbox">
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       let checkboxes = component.find('input[type="checkbox"]');
@@ -176,7 +185,7 @@ describe('<List />', () => {
       const onSelect = sinon.stub();
       const component = mount(
         <List items={items} select="checkbox" onSelect={onSelect}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const checkboxes = component.find('input[type="checkbox"]');
@@ -189,8 +198,8 @@ describe('<List />', () => {
 
     it('should disable the selection icon if not selectable', () => {
       const component = mount(
-        <List items={items} select='checkbox' selectable={item => item !== 'Alpha'}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+        <List items={items} select="checkbox" selectable={(item) => item !== 'Alpha'}>
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const checkboxes = component.find('input[type="checkbox"]');
@@ -206,7 +215,7 @@ describe('<List />', () => {
       const onSelect = sinon.stub();
       const component = mount(
         <List items={items} select="checkbox" onSelect={onSelect}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const checkboxes = component.find('input[type="checkbox"]');
@@ -217,8 +226,13 @@ describe('<List />', () => {
     it('should call onSelect with all selectable items', () => {
       const onSelect = sinon.stub();
       const component = mount(
-        <List items={items} select='checkbox' onSelect={onSelect} selectable={item => item !== 'Alpha'}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+        <List
+          items={items}
+          select="checkbox"
+          onSelect={onSelect}
+          selectable={(item) => item !== 'Alpha'}
+        >
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const checkboxes = component.find('input[type="checkbox"]');
@@ -233,8 +247,14 @@ describe('<List />', () => {
     it('should only select and deselect selectable items', () => {
       const onSelect = sinon.stub();
       const component = mount(
-        <List items={items} select="checkbox" selected={['Alpha']} onSelect={onSelect} selectable={item => item !== 'Alpha'}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+        <List
+          items={items}
+          select="checkbox"
+          selected={['Alpha']}
+          onSelect={onSelect}
+          selectable={(item) => item !== 'Alpha'}
+        >
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const checkboxes = component.find('input[type="checkbox"]');
@@ -250,7 +270,7 @@ describe('<List />', () => {
       const onSelect = sinon.stub();
       const component = mount(
         <List items={items} select="radio" onSelect={onSelect}>
-          {item => <div id={item.toLowerCase()}>{item}</div>}
+          {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
       const radios = component.find('input[type="radio"]');
@@ -264,13 +284,11 @@ describe('<List />', () => {
     it('should pre-select items specified in selected', () => {
       const component = mount(
         <List items={items} select="checkbox" selected={[items[1], items[3]]}>
-          {item => item}
+          {(item) => item}
         </List>
       );
 
-      const checkboxes = component
-        .find('input[type="checkbox"]')
-        .find({ checked: true });
+      const checkboxes = component.find('input[type="checkbox"]').find({ checked: true });
       assert.equal(checkboxes.length, 2);
     });
   });
@@ -296,10 +314,10 @@ describe('<List />', () => {
         />
       );
 
-      wrapper.find('.js-sort-header').find('select').simulate(
-        'change',
-        { target: { value: 'first' } }
-      );
+      wrapper
+        .find('.js-sort-header')
+        .find('select')
+        .simulate('change', { target: { value: 'first' } });
 
       sinon.assert.calledWithExactly(onSort, { property: 'first', ascending: true });
     });
@@ -333,28 +351,19 @@ describe('<List />', () => {
 
     it('calls onFilter when filter input changes', () => {
       const onFilter = sinon.stub();
-      const wrapper = mount(
-        <List
-          items={items}
-          onFilter={onFilter}
-          filter="gary"
-        />
-      );
+      const wrapper = mount(<List items={items} onFilter={onFilter} filter="gary" />);
 
       const input = wrapper.find('Input.js-filter');
       assert.equal(input.prop('value'), 'gary');
 
-      input.simulate(
-        'change',
-        { target: { value: '123' } }
-      );
+      input.simulate('change', { target: { value: '123' } });
 
       sinon.assert.calledWithExactly(onFilter, '123');
     });
   });
 
   it('provides full width to header when there is no sort or filtering', () => {
-    const header = <div className='custom-header'>Test</div>;
+    const header = <div className="custom-header">Test</div>;
     const wrapper = mount(<List items={items} header={header} />);
 
     assert.strictEqual(wrapper.find('.custom-header').parent().hasClass('w-100'), true);

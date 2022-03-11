@@ -9,7 +9,7 @@ import Label from './Label';
 let count = 0;
 
 function getID() {
-  return `form-choice-${count++}`; // eslint-disable-line no-plusplus
+  return `form-choice-${count++}`;
 }
 
 class FormChoice extends React.Component {
@@ -20,8 +20,8 @@ class FormChoice extends React.Component {
     containerClassName: PropTypes.string,
     id: PropTypes.string,
     type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
-    value: PropTypes.any
-  }
+    value: PropTypes.any,
+  };
 
   constructor(props) {
     super(props);
@@ -29,16 +29,9 @@ class FormChoice extends React.Component {
   }
 
   render() {
-    const {
-      id,
-      inline,
-      disabled,
-      children,
-      containerClassName,
-      type,
-      value,
-      ...attributes
-    } = this.props;
+    /* eslint-disable-next-line  @typescript-eslint/no-unused-vars -- Let's figure out a better way to omit props for this scenario */
+    const { id, inline, disabled, children, containerClassName, type, value, ...attributes } =
+      this.props;
 
     if (type === 'select') {
       return (
@@ -77,10 +70,7 @@ class FormChoice extends React.Component {
       return item;
     }
     return (
-      <FormGroup
-        check
-        disabled={disabled}
-      >
+      <FormGroup check disabled={disabled}>
         {item}
       </FormGroup>
     );

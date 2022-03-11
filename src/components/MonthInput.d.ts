@@ -17,5 +17,5 @@ interface MonthInputProps {
   showOnFocus?: boolean;
   value?: string | Date;
 }
-declare class MonthInput extends React.Component<MonthInputProps, {}> { }
+declare class MonthInput extends React.Component<MonthInputProps, {}> {}
 export default MonthInput;

@@ -1,14 +1,14 @@
-import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
 import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
 import addWeeks from 'date-fns/add_weeks';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isToday from 'date-fns/is_today';
-import startOfToday from 'date-fns/start_of_today';
 import frLocale from 'date-fns/locale/fr';
+import startOfToday from 'date-fns/start_of_today';
+import { mount } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
 import { DateInput, Button, Icon } from '../../src';
@@ -276,8 +276,15 @@ describe('<DateInput />', () => {
   describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
-    const dateVisible = date => isSameDay(date, defaultDate);
-    const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
+    const dateVisible = (date) => isSameDay(date, defaultDate);
+    const component = mount(
+      <DateInput
+        defaultValue={defaultDate}
+        onChange={callback}
+        dateVisible={dateVisible}
+        showOnFocus
+      />
+    );
 
     it('should pass dateVisible func to Calendar component', () => {
       const calendar = component.find('Calendar');
@@ -300,7 +307,14 @@ describe('<DateInput />', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateEnabled = () => false;
-    const component = mount(<DateInput defaultValue={defaultDate} onChange={callback} dateEnabled={dateEnabled} showOnFocus />);
+    const component = mount(
+      <DateInput
+        defaultValue={defaultDate}
+        onChange={callback}
+        dateEnabled={dateEnabled}
+        showOnFocus
+      />
+    );
 
     it('should pass dateEnabled func to Calendar component', () => {
       const calendar = component.find('Calendar');
@@ -321,7 +335,7 @@ describe('<DateInput />', () => {
 
   describe('header', () => {
     it('should render custom header prop', () => {
-      const Custom = () => (<div className='custom-header'>Custom Header</div>);
+      const Custom = () => <div className="custom-header">Custom Header</div>;
       const component = mount(<DateInput header={<Custom />} />);
       assert.strictEqual(component.find('div.custom-header').length, 1);
       assert.strictEqual(component.find('header.py-2').length, 0);
@@ -420,7 +434,7 @@ describe('<DateInput />', () => {
 
   describe('footer', () => {
     it('should render custom footer prop', () => {
-      const Custom = () => (<div className='custom-footer'>Custom Footer</div>);
+      const Custom = () => <div className="custom-footer">Custom Footer</div>;
       const component = mount(<DateInput footer={<Custom />} />);
       assert.equal(component.find('div.custom-footer').length, 1);
       assert.equal(component.find('footer.pb-2').length, 0);
@@ -430,8 +444,12 @@ describe('<DateInput />', () => {
       const onChange = sinon.spy();
       const renderFooter = (today, clear) => (
         <div className="custom-footer">
-          <Button onClick={today} className="me-2 today-button">Today</Button>
-          <Button onClick={clear} className="me-2 clear-button">Clear</Button>
+          <Button onClick={today} className="me-2 today-button">
+            Today
+          </Button>
+          <Button onClick={clear} className="me-2 clear-button">
+            Clear
+          </Button>
         </div>
       );
       let component;

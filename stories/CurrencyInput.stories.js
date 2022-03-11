@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
+import React from 'react';
 import { CurrencyInput } from '../src';
 
 export default {
@@ -19,8 +19,5 @@ export const Example = () => (
 );
 
 export const RightAligned = () => (
-  <CurrencyInput
-    inputProps={{ className: 'text-end' }}
-    onChange={action('onChange')}
-  />
+  <CurrencyInput inputProps={{ className: 'text-end' }} onChange={action('onChange')} />
 );

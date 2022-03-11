@@ -1,11 +1,11 @@
-import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
 import addMonths from 'date-fns/add_months';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
 import isSameMonth from 'date-fns/is_same_month';
 import isToday from 'date-fns/is_today';
+import { mount } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
 import { MonthInput } from '../../src';
@@ -252,8 +252,15 @@ describe('<MonthInput />', () => {
   describe('date picker with controlled visible dates', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
-    const dateVisible = date => isSameDay(date, defaultDate);
-    const component = mount(<MonthInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
+    const dateVisible = (date) => isSameDay(date, defaultDate);
+    const component = mount(
+      <MonthInput
+        defaultValue={defaultDate}
+        onChange={callback}
+        dateVisible={dateVisible}
+        showOnFocus
+      />
+    );
     const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
 
@@ -275,14 +282,14 @@ describe('<MonthInput />', () => {
   });
 
   it('should render custom header prop', () => {
-    const Custom = () => (<div className='custom-header'>Custom Header</div>);
+    const Custom = () => <div className="custom-header">Custom Header</div>;
     const component = mount(<MonthInput header={<Custom />} />);
     assert.equal(component.find('div.custom-header').length, 1);
     assert.equal(component.find('header.py-2').length, 0);
   });
 
   it('should render custom footer prop', () => {
-    const Custom = () => (<div className='custom-footer'>Custom Footer</div>);
+    const Custom = () => <div className="custom-footer">Custom Footer</div>;
     const component = mount(<MonthInput footer={<Custom />} />);
     assert.equal(component.find('div.custom-footer').length, 1);
     assert.equal(component.find('footer.pb-2').length, 0);

@@ -1,20 +1,21 @@
-import { CardProps } from 'reactstrap';
-import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
+import type { FunctionComponent } from 'react';
+import React from 'react';
+import type { CardProps } from 'reactstrap';
 import Card from './Card';
 import CardBody from './CardBody';
 
 interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
-  className?: string,
-  label?: string,
-  value?: React.ReactNode,
-  reverse?: boolean
+  className?: string;
+  label?: string;
+  value?: React.ReactNode;
+  reverse?: boolean;
 }
 
 const defaultProps = {
   label: '--',
   reverse: true,
-  value: '--'
+  value: '--',
 };
 
 const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
@@ -26,19 +27,15 @@ const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
 }) => {
   const bodyClassNames = classnames('text-center d-flex justify-content-end', {
     'flex-column-reverse': reverse,
-    'flex-column': !reverse
+    'flex-column': !reverse,
   });
   const valueClassNames = classnames('h3', {
     'mb-1 mt-0': reverse,
-    'mb-0 mt-1': !reverse
+    'mb-0 mt-1': !reverse,
   });
 
   return (
-    <Card
-      outline
-      className={classnames('rounded-0 shadow-none', className)}
-      {...props}
-    >
+    <Card outline className={classnames('rounded-0 shadow-none', className)} {...props}>
       <CardBody className={bodyClassNames}>
         <span className="text-muted">{label}</span>
         <div className={valueClassNames}>{value}</div>

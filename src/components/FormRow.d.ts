@@ -1,10 +1,4 @@
-import {
-  ReactNode,
-  ComponentType,
-  PropsWithChildren,
-  ComponentProps,
-  ReactElement,
-} from 'react';
+import { ReactNode, ComponentType, PropsWithChildren, ComponentProps, ReactElement } from 'react';
 import { InputType } from 'reactstrap/types/lib/Input';
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
@@ -22,9 +16,7 @@ type StringToComponentMap = {
 
 type NestedComponent = ComponentType | keyof StringToComponentMap | InputType;
 
-type Lookup<
-  TComponent extends NestedComponent
-> = TComponent extends keyof StringToComponentMap
+type Lookup<TComponent extends NestedComponent> = TComponent extends keyof StringToComponentMap
   ? StringToComponentMap[TComponent]
   : TComponent extends InputType
   ? StringToComponentMap['input']

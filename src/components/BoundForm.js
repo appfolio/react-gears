@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import noop from 'lodash.noop';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import Form from './Form';
 
@@ -9,54 +9,55 @@ class BoundForm extends React.Component {
     errors: PropTypes.object,
     object: PropTypes.object.isRequired,
     onSubmit: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
     errors: {},
     onSubmit: noop,
-    onChange: noop
+    onChange: noop,
   };
 
   static childContextTypes = {
     value: PropTypes.object,
     errors: PropTypes.object,
-    onChange: PropTypes.func
-  }
+    onChange: PropTypes.func,
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      formData: props.object
+      formData: props.object,
     };
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(e, this.state.formData);
-  }
+  };
 
-  handleChange = name => (data) => {
+  handleChange = (name) => (data) => {
     const value = data.target instanceof Element ? data.target.value : data;
-    this.setState({ formData: { ...this.state.formData, [name]: value } });
+    this.setState((prevState) => {
+      return { formData: { ...prevState.formData, [name]: value } };
+    });
     this.props.onChange(this.state.formData);
-  }
+  };
 
   getChildContext() {
     return {
       value: this.state.formData,
       errors: this.props.errors,
-      onChange: this.handleChange
+      onChange: this.handleChange,
     };
   }
 
   render() {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars -- This will take care of itself when converted to function component */
     const { errors, object, onChange, onSubmit, ...props } = this.props;
 
-    return (
-      <Form onSubmit={this.onSubmit} {...props} />
-    );
+    return <Form onSubmit={this.onSubmit} {...props} />;
   }
 }
 

@@ -1,9 +1,8 @@
-import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import { assertAccessible } from '../a11yHelpers';
-
+import React from 'react';
 import { Icon, Status } from '../../src';
+import { assertAccessible } from '../a11yHelpers';
 
 describe('<Status />', () => {
   it('should be accessible', async () => {
@@ -11,13 +10,13 @@ describe('<Status />', () => {
   });
 
   it('should take a type option', () => {
-    const icon = shallow(<Status type='info' />).find(Icon);
+    const icon = shallow(<Status type="info" />).find(Icon);
     assert.strictEqual(icon.prop('name'), 'info-circle');
     assert.strictEqual(icon.prop('className'), 'text-info');
   });
 
   it('should accept none as an option', () => {
-    const icon = shallow(<Status type='none' />).find(Icon);
+    const icon = shallow(<Status type="none" />).find(Icon);
     assert.strictEqual(icon.prop('name'), 'circle');
     assert.strictEqual(icon.prop('className'), 'text-muted');
   });
@@ -29,12 +28,12 @@ describe('<Status />', () => {
   });
 
   it('should take a type option and classnames', () => {
-    const icon = shallow(<Status type='muted' className='mx-5' />).find(Icon);
+    const icon = shallow(<Status type="muted" className="mx-5" />).find(Icon);
     assert.strictEqual(icon.prop('className'), 'text-muted mx-5');
   });
 
   it('should take custom icon props', () => {
-    const icon = shallow(<Status type='success' size='lg' />).find(Icon);
+    const icon = shallow(<Status type="success" size="lg" />).find(Icon);
     assert.strictEqual(icon.prop('size'), 'lg');
   });
 });

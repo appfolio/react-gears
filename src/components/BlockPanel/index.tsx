@@ -1,5 +1,6 @@
-import React, { useEffect, useState, FunctionComponent, ReactNode } from 'react';
 import classnames from 'classnames';
+import type { FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import Card from '../Card';
 import CardBody from '../CardBody';
@@ -11,32 +12,41 @@ import Icon from '../Icon';
 import createIsOpenHook from './createIsOpenHook';
 
 interface BlockPanelTitleProps {
-  className?: string,
-  expandable?: boolean,
-  onClick: () => void,
+  className?: string;
+  expandable?: boolean;
+  onClick: () => void;
 }
 
-const BlockPanelTitle: FunctionComponent<BlockPanelTitleProps> = (
-  { className, expandable, onClick, ...props }: BlockPanelTitleProps
-) => expandable ?
-  <ClickableContainer onClick={onClick} className={classnames('flex-grow-1', className)} {...props} /> :
-  <div {...props} />;
-
+const BlockPanelTitle: FunctionComponent<BlockPanelTitleProps> = ({
+  className,
+  expandable,
+  onClick,
+  ...props
+}: BlockPanelTitleProps) =>
+  expandable ? (
+    <ClickableContainer
+      onClick={onClick}
+      className={classnames('flex-grow-1', className)}
+      {...props}
+    />
+  ) : (
+    <div {...props} />
+  );
 
 export interface BlockPanelProps {
-  children?: ReactNode,
-  color?: string,
-  controls?: ReactNode,
-  className?: string,
-  expandable?: boolean,
-  headerClassName?: string,
-  hideOnToggle?: boolean,
-  onEdit?: (event: React.MouseEvent<any, MouseEvent>) => void,
-  onToggle?: (willOpen?: boolean) => void,
-  open?: boolean,
-  title: ReactNode,
-  stickyId?: string,
-  bodyClassName?: string
+  children?: ReactNode;
+  color?: string;
+  controls?: ReactNode;
+  className?: string;
+  expandable?: boolean;
+  headerClassName?: string;
+  hideOnToggle?: boolean;
+  onEdit?: (event: React.MouseEvent<any, MouseEvent>) => void;
+  onToggle?: (willOpen?: boolean) => void;
+  open?: boolean;
+  title: ReactNode;
+  stickyId?: string;
+  bodyClassName?: string;
 }
 
 const defaultProps = {
@@ -44,7 +54,7 @@ const defaultProps = {
   open: true,
   expandable: false,
   hideOnToggle: false,
-  onToggle: () => { },
+  onToggle: () => {},
 };
 /**
  * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
@@ -79,8 +89,14 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { if (!stickyId) updateState(open); }, [open]);
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    if (!stickyId) {
+      updateState(open);
+    }
+  }, [open]);
+  /* eslint-enable react-hooks/exhaustive-deps */
+
   const toggle = () => updateState(!isOpen);
   const onClosed = () => setCollapsed(true);
 
@@ -92,13 +108,13 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
     'justify-content-between',
     {
       [`bg-${color}`]: color,
-      'text-white': color === 'primary' || color === 'dark'
+      'text-white': color === 'primary' || color === 'dark',
     },
     headerClassName
   );
 
   const iconClassName = classnames('me-1', {
-    'text-muted': color !== 'primary' && color !== 'dark'
+    'text-muted': color !== 'primary' && color !== 'dark',
   });
 
   return (
@@ -127,7 +143,9 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
           {onEdit && (
             <Button
               color="link"
-              className={`${(color === 'primary' || color === 'dark') ? 'text-white' : ''} p-0 ms-2 me-1`}
+              className={`${
+                color === 'primary' || color === 'dark' ? 'text-white' : ''
+              } p-0 ms-2 me-1`}
               onClick={onEdit}
             >
               Edit
@@ -136,10 +154,7 @@ const BlockPanel: FunctionComponent<BlockPanelProps> = ({
         </div>
       </CardHeader>
       {children && (
-        <Collapse
-          isOpen={children ? (!expandable || isOpen) : false}
-          onExited={() => onClosed()}
-        >
+        <Collapse isOpen={children ? !expandable || isOpen : false} onExited={() => onClosed()}>
           {(!expandable || hideOnToggle || !collapsed) && (
             <CardBody className={bodyClassName}>{children}</CardBody>
           )}

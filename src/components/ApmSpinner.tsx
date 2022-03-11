@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 import range from '../util/range';
 
 // const since these don't behave well as live props, some animation issues:
@@ -6,23 +7,18 @@ const DURATION = '1s';
 const SEGMENTS = 12;
 
 type Props = {
-  className: string,
-  color: string,
-  size: string
+  className: string;
+  color: string;
+  size: string;
 };
 
 const ApmSpinner: FunctionComponent<Props> = ({ color, size, ...props }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="-200 -200 200 200"
-    version="1.1"
-    {...props}
-  >
+  <svg width={size} height={size} viewBox="-200 -200 200 200" version="1.1" {...props}>
     <defs>
       <path id="shape" d="M20,10 A10,10 0 1 0 20,-10 L-20,-10 A10,10 0 1 0 -20,10" fill={color} />
     </defs>
-    <style>{`
+    <style>
+      {`
       .gears-spinner {
         animation: gears-spinner-spin ${DURATION} infinite steps(${SEGMENTS});
       }
@@ -53,7 +49,7 @@ const ApmSpinner: FunctionComponent<Props> = ({ color, size, ...props }) => (
 
 ApmSpinner.defaultProps = {
   color: 'currentColor',
-  size: '1em'
+  size: '1em',
 };
 
 ApmSpinner.displayName = 'ApmSpinner';

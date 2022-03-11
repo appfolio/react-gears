@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
 import { NoteHeader } from '../../src';
@@ -18,7 +18,9 @@ describe('<NoteHeader />', () => {
 
   describe('rendering', () => {
     describe('with core information', () => {
-      const component = mount(<NoteHeader note={note} dateFormat={dateFormat} showTimezone={false} />);
+      const component = mount(
+        <NoteHeader note={note} dateFormat={dateFormat} showTimezone={false} />
+      );
 
       it('should render a single CardHeader', () => {
         const cardHeader = component.find('CardHeader');

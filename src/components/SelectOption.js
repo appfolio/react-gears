@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import DropdownItem from './DropdownItem';
 
 /**
@@ -25,12 +25,12 @@ export default class SelectOption extends React.Component {
     if (!this.props.isFocused) {
       this.props.onFocus(this.props.option, event);
     }
-  }
+  };
 
   blockEvent = (event) => {
     event.preventDefault();
     event.stopPropagation();
-  }
+  };
 
   handleDisabledOptionClick = (event) => {
     event.preventDefault();
@@ -44,33 +44,41 @@ export default class SelectOption extends React.Component {
     } else {
       window.location.href = anchor.href;
     }
-  }
+  };
 
   handleMouseDown = (event) => {
     event.preventDefault();
     event.stopPropagation();
     this.props.onSelect(this.props.option, event);
-  }
+  };
 
-  handleMouseEnter = event => this.onFocus(event);
-  handleMouseMove = event => this.onFocus(event);
+  handleMouseEnter = (event) => this.onFocus(event);
+
+  handleMouseMove = (event) => this.onFocus(event);
 
   handleTouchEnd = (event) => {
     // Check if the view is being dragged, In this case
     // we don't want to fire the click event (because the user only wants to scroll)
-    if (this.dragging) return;
+    if (this.dragging) {
+      return;
+    }
 
     this.handleMouseDown(event);
-  }
+  };
 
-  handleTouchMove = () => { this.dragging = true; };
-  handleTouchStart = () => { this.dragging = false; };
+  handleTouchMove = () => {
+    this.dragging = true;
+  };
+
+  handleTouchStart = () => {
+    this.dragging = false;
+  };
 
   render() {
     const { option, instancePrefix, optionIndex, isDisabled, isFocused, isSelected } = this.props;
     const className = classNames(this.props.className, option.className, 'text-truncate', {
       'bg-light': isSelected && !isFocused,
-      'bg-primary text-white': isFocused
+      'bg-primary text-white': isFocused,
     });
 
     return option.disabled || isDisabled ? (

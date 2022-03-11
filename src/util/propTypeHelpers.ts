@@ -1,5 +1,5 @@
 type MixinPropTypes<ComponentType, PropsType> = ComponentType & {
-  defaultProps: Partial<PropsType>
+  defaultProps: Partial<PropsType>;
 };
 
 export default MixinPropTypes;

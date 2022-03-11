@@ -2,10 +2,11 @@ import React from 'react';
 import { Spinner } from 'reactstrap';
 import ApmSpinner from './ApmSpinner';
 
-const SpinnerWrapper = ({ type, ...props }) => (type === 'spin') ? <ApmSpinner {...props} /> : <Spinner type={type} {...props} />;
+const SpinnerWrapper = ({ type, ...props }) =>
+  type === 'spin' ? <ApmSpinner {...props} /> : <Spinner type={type} {...props} />;
 
 SpinnerWrapper.propTypes = {
-  ...Spinner.propTypes
+  ...Spinner.propTypes,
 };
 
 SpinnerWrapper.defaultProps = {

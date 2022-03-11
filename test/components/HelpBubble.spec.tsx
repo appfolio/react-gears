@@ -1,16 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import {
-  HelpBubble,
-  Icon,
-  Popover,
-  PopoverBody,
-  PopoverTitle,
-} from '../../src';
+import { HelpBubble, Icon, Popover, PopoverBody, PopoverTitle } from '../../src';
 import { assertAccessible, assertAccessibleContainer } from '../a11yHelpers';
 
 describe('<HelpBubble />', () => {
@@ -26,18 +20,13 @@ describe('<HelpBubble />', () => {
   });
 
   it('should have a question mark', () => {
-    const icon = mount(<HelpBubble title="hello" />, { attachTo: div }).find(
-      Icon
-    );
+    const icon = mount(<HelpBubble title="hello" />, { attachTo: div }).find(Icon);
     assert.equal(icon.prop('name'), 'question-circle');
   });
 
   it('should link popover and icon trigger', () => {
     const component = mount(<HelpBubble title="hi" />, { attachTo: div });
-    assert.equal(
-      component.find(Popover).prop('target'),
-      component.find(Icon).prop('id')
-    );
+    assert.equal(component.find(Popover).prop('target'), component.find(Icon).prop('id'));
   });
 
   it('should start closed', () => {
@@ -54,10 +43,9 @@ describe('<HelpBubble />', () => {
   });
 
   it('should forward props to Popover', () => {
-    const component = mount(
-      <HelpBubble title="hi" placement="bottom" other="stuff" />,
-      { attachTo: div }
-    );
+    const component = mount(<HelpBubble title="hi" placement="bottom" other="stuff" />, {
+      attachTo: div,
+    });
     const popover = component.find(Popover);
     assert.equal(popover.prop('placement'), 'bottom');
     assert.equal(popover.prop('other'), 'stuff');
@@ -90,9 +78,7 @@ describe('<HelpBubble />', () => {
 
   describe('accessibility', () => {
     it('has no accessibility issues when closed', async () => {
-      await assertAccessible(
-        <HelpBubble title="My Title">Help bubble content</HelpBubble>
-      );
+      await assertAccessible(<HelpBubble title="My Title">Help bubble content</HelpBubble>);
     });
 
     it('has no accessibility issues when open', async () => {

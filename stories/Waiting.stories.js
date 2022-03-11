@@ -1,10 +1,10 @@
-import React from 'react';
 import { boolean, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { Icon, Waiting } from '../src';
 
 export default {
   title: 'Waiting',
-  component: Waiting
+  component: Waiting,
 };
 
 export const Default = () => (
@@ -20,10 +20,7 @@ export const CustomTitle = () => (
 );
 
 export const Children = () => (
-  <Waiting
-    isOpen={boolean('isOpen', true)}
-    backdrop={boolean('backdrop', true)}
-  >
+  <Waiting isOpen={boolean('isOpen', true)} backdrop={boolean('backdrop', true)}>
     <Icon name="clock-o" size="4x" />
   </Waiting>
 );

@@ -1,13 +1,13 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 import { FeatureBanner } from '../../src';
 
 describe('<FeatureBanner />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<FeatureBanner title='test' subtitle='is fun' />);
+    wrapper = mount(<FeatureBanner title="test" subtitle="is fun" />);
   });
 
   it('should have the correct props', () => {
@@ -21,7 +21,7 @@ describe('<FeatureBanner />', () => {
   });
 
   it('renders passed in alertText', () => {
-    wrapper = mount(<FeatureBanner title='test' subtitle='is fun' alertText='whatever' />);
+    wrapper = mount(<FeatureBanner title="test" subtitle="is fun" alertText="whatever" />);
     assert.equal(wrapper.find('h2').at(0).text(), 'whatever');
     assert.equal(wrapper.find('h2').at(1).text(), 'whatever');
   });
@@ -34,4 +34,3 @@ describe('<FeatureBanner />', () => {
     assert.equal(wrapper.find('p').text(), 'is fun');
   });
 });
-

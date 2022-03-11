@@ -1,5 +1,6 @@
-import React, { HTMLProps, ReactNode } from 'react';
 import classnames from 'classnames';
+import type { ReactNode } from 'react';
+import React from 'react';
 import Icon from './Icon';
 
 interface InfoBoxProps extends Omit<React.HTMLProps<HTMLDivElement>, 'className'> {
@@ -20,21 +21,14 @@ const InfoBox = ({
   vertical = false,
   ...props
 }: InfoBoxProps) => {
-  const classNames = classnames(
-    'rg-InfoBox',
-    'bg-white',
-    'shadow',
-    'p-3',
-    className,
-    {
-      [`border-${color}`]: color,
-      'border-top': vertical,
-      'border-start': !vertical,
-    }
-  );
+  const classNames = classnames('rg-InfoBox', 'bg-white', 'shadow', 'p-3', className, {
+    [`border-${color}`]: color,
+    'border-top': vertical,
+    'border-start': !vertical,
+  });
   const headerClasses = classnames('fw-normal d-flex justify-content-between m-0', {
     [`text-${color}`]: color,
-    'mb-3': !!children
+    'mb-3': !!children,
   });
 
   return (

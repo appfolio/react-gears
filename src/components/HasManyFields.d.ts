@@ -18,5 +18,5 @@ interface HasManyFieldsPropTypes {
   reorderable?: boolean;
   value?: HasManyValue[];
 }
-declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> { }
+declare class HasManyFields extends React.Component<HasManyFieldsPropTypes, {}> {}
 export default HasManyFields;

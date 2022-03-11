@@ -1,5 +1,5 @@
-import React from 'react';
 import { number, text } from '@storybook/addon-knobs';
+import React from 'react';
 import ScrollContainer from '../src/components/ScrollContainer';
 
 export default {
@@ -10,7 +10,10 @@ export default {
 export const Default = () => (
   <div>
     <ScrollContainer height={number('height')}>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png" alt="Map" />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+        alt="Map"
+      />
     </ScrollContainer>
   </div>
 );
@@ -18,15 +21,24 @@ export const Default = () => (
 export const MaxHeight = () => (
   <div>
     <ScrollContainer height={number('height', 300)}>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png" alt="Map" />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+        alt="Map"
+      />
     </ScrollContainer>
   </div>
 );
 
 export const SaveScrollPosition = () => (
   <div>
-    <ScrollContainer height={number('height', 500)} scrollPositionKey={text('scrollPositionKey', 'story-example')}>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg" alt="Map" />
+    <ScrollContainer
+      height={number('height', 500)}
+      scrollPositionKey={text('scrollPositionKey', 'story-example')}
+    >
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg"
+        alt="Map"
+      />
     </ScrollContainer>
   </div>
 );
@@ -38,9 +50,12 @@ export const CustomTheme = () => (
       overflowTop: 'border-dark border-top',
       overflowBottom: 'border-dark border-bottom',
       overflowLeft: 'border-dark border-start',
-      overflowRight: 'border-dark border-end'
+      overflowRight: 'border-dark border-end',
     }}
   >
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png" alt="Map" />
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+      alt="Map"
+    />
   </ScrollContainer>
 );

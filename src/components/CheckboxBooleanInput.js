@@ -1,6 +1,6 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
 import FormGroup from './FormGroup';
 import Input from './Input';
 import Label from './Label';
@@ -8,7 +8,7 @@ import Label from './Label';
 let count = 0;
 
 function getID() {
-  return `checkbox-boolean-input-${count++}`; // eslint-disable-line no-plusplus
+  return `checkbox-boolean-input-${count++}`;
 }
 
 class CheckboxBooleanInput extends React.Component {
@@ -17,7 +17,7 @@ class CheckboxBooleanInput extends React.Component {
     checkboxLabel: PropTypes.node,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.bool
+    value: PropTypes.bool,
   };
 
   constructor(props) {
@@ -37,7 +37,7 @@ class CheckboxBooleanInput extends React.Component {
           {...inputProps}
           type="checkbox"
           checked={value}
-          onChange={e => onChange && onChange(e.target.checked)}
+          onChange={(e) => onChange && onChange(e.target.checked)}
         />
         {checkboxLabel && (
           <Label check for={this.id}>

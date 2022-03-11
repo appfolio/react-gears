@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { MaskedInput } from '../src';
 
 export default {

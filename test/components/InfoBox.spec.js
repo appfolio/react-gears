@@ -1,20 +1,15 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 import { InfoBox } from '../../src';
 
 describe('<InfoBox />', () => {
   it('renders passed in props', () => {
     const wrapper = mount(
-      <InfoBox
-        id="alpha"
-        title="Bravo"
-        color="success"
-        icon="check"
-        className="slick"
-      >
+      <InfoBox id="alpha" title="Bravo" color="success" icon="check" className="slick">
         Charlie
-      </InfoBox>);
+      </InfoBox>
+    );
 
     const wrapperRendered = wrapper.render();
 
@@ -27,14 +22,13 @@ describe('<InfoBox />', () => {
   });
 
   it('does not render header if title not specified', () => {
-    const wrapper = mount(<InfoBox icon='check'>Delta</InfoBox>);
+    const wrapper = mount(<InfoBox icon="check">Delta</InfoBox>);
     assert.equal(wrapper.find('h1').length, 0);
     assert.equal(wrapper.find('Icon').exists(), false);
   });
 
   it('does not render icon if not specified', () => {
-    const wrapper = mount(<InfoBox title='Foxtrot'>Delta</InfoBox>);
+    const wrapper = mount(<InfoBox title="Foxtrot">Delta</InfoBox>);
     assert.equal(wrapper.find('Icon').exists(), false);
   });
 });
-

@@ -1,7 +1,7 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
 import { LabelBadge } from '../../src';
 
@@ -41,7 +41,7 @@ describe('<LabelBadge />', () => {
   });
 
   it('passes classNames to outer span', () => {
-    const wrapper = mount(<LabelBadge className='cc' value="Yep" />);
+    const wrapper = mount(<LabelBadge className="cc" value="Yep" />);
     assert(wrapper.hasClass('cc'));
   });
 

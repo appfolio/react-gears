@@ -1,8 +1,8 @@
-import React from 'react';
 import assert from 'assert';
-import { mount } from 'enzyme';
-import sinon from 'sinon';
 import isSameDay from 'date-fns/is_same_day';
+import { mount } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
 import { TimeInput, Select } from '../../src';
 
@@ -76,7 +76,7 @@ describe('<TimeInput />', () => {
   it('should show placeholder as first option', () => {
     const component = mount(<TimeInput placeholder="What's the Time?" />);
     const select = component.find(Select);
-    assert.equal(select.prop('placeholder'), 'What\'s the Time?');
+    assert.equal(select.prop('placeholder'), "What's the Time?");
   });
 
   it('should show correct options for step interval', () => {
@@ -147,7 +147,7 @@ describe('<TimeInput />', () => {
     });
 
     it('should allow entering a time inside of min and max when specified', () => {
-      const component = mount(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
+      const component = mount(<TimeInput allowOtherTimes min="09:00" max="17:00" />);
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '12:34 PM' } });
@@ -156,7 +156,7 @@ describe('<TimeInput />', () => {
     });
 
     it('should not allow entering a time outside of min and max', () => {
-      const component = mount(<TimeInput allowOtherTimes min='09:00' max='17:00' />);
+      const component = mount(<TimeInput allowOtherTimes min="09:00" max="17:00" />);
       const input = component.find('input');
 
       input.simulate('change', { target: { value: '1:19 am' } });

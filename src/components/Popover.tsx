@@ -1,7 +1,12 @@
+import type { FC } from 'react';
 import React from 'react';
-import { Popover } from 'reactstrap';
+import { Popover as PopoverInternal } from 'reactstrap';
 import type { PopoverProps } from 'reactstrap';
 
-export default function ({ fade = false, trigger = 'legacy', ...props }: PopoverProps) {
-  return <Popover fade={fade} trigger={trigger} {...props} />;
-}
+const Popover: FC<PopoverProps> = ({ fade = false, trigger = 'legacy', ...props }) => (
+  <PopoverInternal fade={fade} trigger={trigger} {...props} />
+);
+
+Popover.displayName = 'Popover';
+
+export default Popover;

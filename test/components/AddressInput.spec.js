@@ -1,12 +1,12 @@
-import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
-import { assertAccessible } from '../a11yHelpers';
 import { AddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
 import CA from '../../src/components/address/CAProvinces';
 import US from '../../src/components/address/USStates';
+import { assertAccessible } from '../a11yHelpers';
 
 describe('AddressInput', () => {
   describe('uncontrolled', () => {
@@ -17,19 +17,12 @@ describe('AddressInput', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
-    const component = mount(
-      <AddressInput
-        defaultValue={defaultValue}
-        onChange={callback}
-      />
-    );
+    const component = mount(<AddressInput defaultValue={defaultValue} onChange={callback} />);
 
     it('should be accessible', async () => {
-      await assertAccessible(
-        <AddressInput defaultValue={defaultValue} onChange={callback} />
-      );
+      await assertAccessible(<AddressInput defaultValue={defaultValue} onChange={callback} />);
     });
 
     it('should have address1', () => {
@@ -53,7 +46,10 @@ describe('AddressInput', () => {
     });
 
     it('should have city', () => {
-      assert.strictEqual(component.find('.col-sm-6.pe-sm-3 #addressInput_city').hostNodes().length, 1);
+      assert.strictEqual(
+        component.find('.col-sm-6.pe-sm-3 #addressInput_city').hostNodes().length,
+        1
+      );
 
       const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'City');
@@ -101,12 +97,12 @@ describe('AddressInput', () => {
 
     it('should not set any color on FormGroups without errors', () => {
       const groups = component.find(FormGroup);
-      groups.forEach(group => assert.equal(group.prop('feedback'), undefined));
+      groups.forEach((group) => assert.equal(group.prop('feedback'), undefined));
     });
 
     it('should not set the state of non-Select inputs without errors', () => {
       const groups = component.find(Input);
-      groups.forEach(group => assert.equal(group.prop('state'), undefined));
+      groups.forEach((group) => assert.equal(group.prop('state'), undefined));
     });
 
     it('should not have any feedback without errors', () => {
@@ -123,14 +119,9 @@ describe('AddressInput', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
-    const component = mount(
-      <AddressInput
-        value={addressData}
-        onChange={callback}
-      />
-    );
+    const component = mount(<AddressInput value={addressData} onChange={callback} />);
 
     it('should update address1', () => {
       const input = component.find('[name="address1"]').hostNodes();
@@ -138,7 +129,7 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), undefined);
 
       input.simulate('change', { target: { name: 'address1', value: 'Batcave' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { address1: 'Batcave' })));
+      assert(callback.calledWith({ ...addressData, address1: 'Batcave' }));
     });
 
     it('should update address2', () => {
@@ -147,7 +138,7 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), undefined);
 
       input.simulate('change', { target: { name: 'address2', value: 'Secret Lair' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { address2: 'Secret Lair' })));
+      assert(callback.calledWith({ ...addressData, address2: 'Secret Lair' }));
     });
 
     it('should update city', () => {
@@ -156,7 +147,7 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), undefined);
 
       input.simulate('change', { target: { name: 'city', value: 'Metropulos' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { city: 'Metropulos' })));
+      assert(callback.calledWith({ ...addressData, city: 'Metropulos' }));
     });
 
     it('should update state', () => {
@@ -165,10 +156,10 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), null);
 
       input.simulate('change', { target: { value: 'NY' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { state: 'NY' })));
+      assert(callback.calledWith({ ...addressData, state: 'NY' }));
 
       input.simulate('change', { target: { value: null } });
-      assert(callback.calledWith(Object.assign({}, addressData, { state: null })));
+      assert(callback.calledWith({ ...addressData, state: null }));
     });
 
     it('should update zip', () => {
@@ -177,7 +168,7 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), undefined);
 
       input.simulate('change', { target: { name: 'postal', value: '12345' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { postal: '12345' })));
+      assert(callback.calledWith({ ...addressData, postal: '12345' }));
     });
 
     it('should update country', () => {
@@ -186,17 +177,17 @@ describe('AddressInput', () => {
       assert.equal(input.prop('defaultValue'), null);
 
       input.simulate('change', { target: { value: 'US' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: 'US' })));
+      assert(callback.calledWith({ ...addressData, countryCode: 'US' }));
 
       input.simulate('change', { target: { value: null } });
-      assert(callback.calledWith(Object.assign({}, addressData, { countryCode: null })));
+      assert(callback.calledWith({ ...addressData, countryCode: null }));
     });
 
     it('should clear values', () => {
       const input = component.find('[name="address1"]').hostNodes();
 
       input.simulate('change', { target: { name: 'address1', value: '' } });
-      assert(callback.calledWith(Object.assign({}, addressData, { address1: '' })));
+      assert(callback.calledWith({ ...addressData, address1: '' }));
     });
   });
 
@@ -207,7 +198,7 @@ describe('AddressInput', () => {
       city: 'city error',
       state: 'state error',
       postal: 'postal error',
-      countryCode: 'countryCode error'
+      countryCode: 'countryCode error',
     };
 
     const defaultValue = {
@@ -216,33 +207,23 @@ describe('AddressInput', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
 
-    const component = shallow(
-      <AddressInput
-        defaultValue={defaultValue}
-        error={errors}
-      />
-    );
+    const component = shallow(<AddressInput defaultValue={defaultValue} error={errors} />);
 
     it('should be accessible', async () => {
-      await assertAccessible(
-        <AddressInput
-          defaultValue={defaultValue}
-          error={errors}
-        />
-      );
+      await assertAccessible(<AddressInput defaultValue={defaultValue} error={errors} />);
     });
 
     it('should set color of each FormGroup', () => {
       const groups = component.find(FormGroup);
-      groups.forEach(group => assert.equal(group.prop('color'), 'danger'));
+      groups.forEach((group) => assert.equal(group.prop('color'), 'danger'));
     });
 
     it('should set the state of non-Select inputs', () => {
       const inputs = component.find(Input);
-      inputs.forEach(input => assert.equal(input.prop('invalid'), true));
+      inputs.forEach((input) => assert.equal(input.prop('invalid'), true));
     });
 
     it('should show the corresponding error for each input', () => {
@@ -264,7 +245,7 @@ describe('AddressInput', () => {
       city: 'city hint',
       state: 'state hint',
       postal: 'postal hint',
-      countryCode: 'countryCode hint'
+      countryCode: 'countryCode hint',
     };
 
     const defaultValue = {
@@ -273,23 +254,13 @@ describe('AddressInput', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
 
-    const component = shallow(
-      <AddressInput
-        defaultValue={defaultValue}
-        hints={hints}
-      />
-    );
+    const component = shallow(<AddressInput defaultValue={defaultValue} hints={hints} />);
 
     it('should be accessible', async () => {
-      await assertAccessible(
-        <AddressInput
-          defaultValue={defaultValue}
-          hints={hints}
-        />
-      );
+      await assertAccessible(<AddressInput defaultValue={defaultValue} hints={hints} />);
     });
 
     it('should show the corresponding hint for each input', () => {
@@ -311,33 +282,24 @@ describe('AddressInput', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
 
     function disabledTestCase(disabledProp, expected) {
       const component = shallow(
-        <AddressInput
-          defaultValue={defaultValue}
-          disabled={disabledProp}
-        />
+        <AddressInput defaultValue={defaultValue} disabled={disabledProp} />
       );
 
       const inputs = component.find(Input);
       const selects = component.find(Select);
 
-      inputs.forEach(input => assert.equal(input.prop('disabled'), expected));
-      selects.forEach(select => assert.equal(select.prop('disabled'), expected));
+      inputs.forEach((input) => assert.equal(input.prop('disabled'), expected));
+      selects.forEach((select) => assert.equal(select.prop('disabled'), expected));
     }
 
     it('should be accessible', async () => {
-      await assertAccessible(
-        <AddressInput
-          defaultValue={defaultValue}
-          disabled
-        />
-      );
+      await assertAccessible(<AddressInput defaultValue={defaultValue} disabled />);
     });
-
 
     it('should disable all the fields when true', () => {
       disabledTestCase(true, true);
@@ -354,9 +316,7 @@ describe('AddressInput', () => {
 
   describe('labels', () => {
     it('should be accessible', async () => {
-      await assertAccessible(
-        <AddressInput showLabels />
-      );
+      await assertAccessible(<AddressInput showLabels />);
     });
 
     it('should not show labels by default', () => {
@@ -376,12 +336,12 @@ describe('AddressInput', () => {
         city: 'Charlie',
         state: 'Delta',
         postal: 'Echo',
-        countryCode: 'Foxtrot'
+        countryCode: 'Foxtrot',
       };
       const component = mount(<AddressInput showLabels labels={labels} />);
       const formLabels = component.find(Label);
       assert.equal(formLabels.length, 6);
-      formLabels.forEach(label => assert(Object.values(labels).includes(label.text())));
+      formLabels.forEach((label) => assert(Object.values(labels).includes(label.text())));
     });
 
     it('should only show screen reader labels when disabled', () => {
@@ -416,7 +376,11 @@ describe('AddressInput', () => {
       assert.equal(component.find('#yo_city').hostNodes().length, 0, 'city id visible');
       assert.equal(component.find('#yo_state').hostNodes().length, 0, 'state id visible');
       assert.equal(component.find('#yo_postal').hostNodes().length, 0, 'postal id visible');
-      assert.equal(component.find('#yo_countryCode').hostNodes().length, 0, 'countryCode id visible');
+      assert.equal(
+        component.find('#yo_countryCode').hostNodes().length,
+        0,
+        'countryCode id visible'
+      );
     });
 
     it('should show id by when specified', () => {
@@ -427,13 +391,15 @@ describe('AddressInput', () => {
       assert.equal(component.find('#yo_city').hostNodes().length, 1, 'city id missing');
       assert.equal(component.find('#yo_state').hostNodes().length, 1, 'state id missing');
       assert.equal(component.find('#yo_postal').hostNodes().length, 1, 'postal id missing');
-      assert.equal(component.find('#yo_countryCode').hostNodes().length, 1, 'countryCode id missing');
+      assert.equal(
+        component.find('#yo_countryCode').hostNodes().length,
+        1,
+        'countryCode id missing'
+      );
     });
 
     it('should be accessible when specifying an id', async () => {
-      await assertAccessible(
-        <AddressInput id="yo" />
-      );
+      await assertAccessible(<AddressInput id="yo" />);
     });
   });
 
@@ -459,11 +425,7 @@ describe('AddressInput', () => {
   });
 
   it('should support a className', () => {
-    const component = mount(
-      <AddressInput
-        className="address-component"
-      />
-    );
+    const component = mount(<AddressInput className="address-component" />);
     assert.equal(component.find('.address-component').hostNodes().length, 1);
   });
 
@@ -487,7 +449,7 @@ describe('AddressInput', () => {
       city: 'custom_name_city',
       state: 'custom_name_state',
       postal: 'custom_name_postal',
-      countryCode: 'custom_name_countryCode'
+      countryCode: 'custom_name_countryCode',
     };
 
     it('should pass custom names to the respective inputs', () => {
@@ -519,20 +481,35 @@ describe('AddressInput', () => {
         custom_name_city: 'Sesame City',
         custom_name_state: 'CA',
         custom_name_postal: '92108',
-        custom_name_countryCode: 'US'
+        custom_name_countryCode: 'US',
       };
 
-      const component = mount(<AddressInput
-        inputName={inputName}
-        value={value}
-      />);
+      const component = mount(<AddressInput inputName={inputName} value={value} />);
 
-      assert.strictEqual(component.find('input[name="custom_name_address1"]').first().prop('value'), value.custom_name_address1);
-      assert.strictEqual(component.find('input[name="custom_name_address2"]').first().prop('value'), value.custom_name_address2);
-      assert.strictEqual(component.find('input[name="custom_name_city"]').first().prop('value'), value.custom_name_city);
-      assert.strictEqual(component.find('select[name="custom_name_state"]').first().prop('value'), value.custom_name_state);
-      assert.strictEqual(component.find('input[name="custom_name_postal"]').first().prop('value'), value.custom_name_postal);
-      assert.strictEqual(component.find('select[name="custom_name_countryCode"]').first().prop('value'), value.custom_name_countryCode);
+      assert.strictEqual(
+        component.find('input[name="custom_name_address1"]').first().prop('value'),
+        value.custom_name_address1
+      );
+      assert.strictEqual(
+        component.find('input[name="custom_name_address2"]').first().prop('value'),
+        value.custom_name_address2
+      );
+      assert.strictEqual(
+        component.find('input[name="custom_name_city"]').first().prop('value'),
+        value.custom_name_city
+      );
+      assert.strictEqual(
+        component.find('select[name="custom_name_state"]').first().prop('value'),
+        value.custom_name_state
+      );
+      assert.strictEqual(
+        component.find('input[name="custom_name_postal"]').first().prop('value'),
+        value.custom_name_postal
+      );
+      assert.strictEqual(
+        component.find('select[name="custom_name_countryCode"]').first().prop('value'),
+        value.custom_name_countryCode
+      );
     });
 
     it('should use custom input names for onChange', () => {

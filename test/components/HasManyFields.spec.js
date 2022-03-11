@@ -4,12 +4,7 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon, { spy } from 'sinon';
 
-import {
-  HasManyFields,
-  HasManyFieldsAdd,
-  HasManyFieldsRow,
-  Input
-} from '../../src';
+import { HasManyFields, HasManyFieldsAdd, HasManyFieldsRow, Input } from '../../src';
 
 const items = ['monkey', 'cat', 'mouse'];
 const errors = [{ name: "can't be blank" }, {}, { foo: "can't be bar" }];
@@ -28,13 +23,13 @@ describe('<HasManyFields />', () => {
       props = {
         defaultValue: items,
         template: Input,
-        blank: values => values.length.toString(),
+        blank: (values) => values.length.toString(),
         errors,
         onAdd,
         onRemove,
         onUpdate,
         onChange,
-        label: 'Add an Animal'
+        label: 'Add an Animal',
       };
       component = shallow(<HasManyFields {...props} />);
       addItem = component.find(HasManyFieldsAdd);
@@ -45,8 +40,7 @@ describe('<HasManyFields />', () => {
     });
 
     it('should have an add row button', () =>
-      assert.equal(addItem.prop('children'), 'Add an Animal')
-    );
+      assert.equal(addItem.prop('children'), 'Add an Animal'));
 
     it('should have correct number of rows', () => {
       assert.equal(component.find(HasManyFieldsRow).length, items.length);
@@ -105,7 +99,7 @@ describe('<HasManyFields />', () => {
       });
 
       it('should not have the ref props', () => {
-        props.template = templateProps => (<Input {...templateProps} />);
+        props.template = (templateProps) => <Input {...templateProps} />;
         component = mount(<HasManyFields {...props} />);
         assert.equal(component.instance().rowRefs.length, 0);
       });
@@ -133,9 +127,7 @@ describe('<HasManyFields />', () => {
 
     const addItem = component.find(HasManyFieldsAdd);
 
-    it('should not have any state', () =>
-      assert.equal(component.state(), null)
-    );
+    it('should not have any state', () => assert.equal(component.state(), null));
 
     it('should have correct number of rows', () => {
       assert.equal(component.find(HasManyFieldsRow).length, items.length);
@@ -163,7 +155,10 @@ describe('<HasManyFields />', () => {
     it('should add a row when add button is clicked', () => {
       const expectedItems = ['monkey', 'cat', 'mouse', 'foo'];
       addItem.simulate('click');
-      assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
+      assert.deepEqual(
+        component.find(Input).map((input) => input.prop('value')),
+        items
+      );
       sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
       sinon.assert.calledOnce(onAdd);
@@ -172,7 +167,10 @@ describe('<HasManyFields />', () => {
     it('should remove an item', () => {
       const expectedItems = ['monkey', 'mouse'];
       component.find(HasManyFieldsRow).at(1).simulate('delete');
-      assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
+      assert.deepEqual(
+        component.find(Input).map((input) => input.prop('value')),
+        items
+      );
       sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
       sinon.assert.calledWith(onRemove, 1);
@@ -181,7 +179,10 @@ describe('<HasManyFields />', () => {
     it('should update an item', () => {
       const expectedItems = ['monkey', 'cat', 'la souris est sous la table'];
       component.find(Input).at(2).simulate('change', expectedItems[2]);
-      assert.deepEqual(component.find(Input).map(input => input.prop('value')), items);
+      assert.deepEqual(
+        component.find(Input).map((input) => input.prop('value')),
+        items
+      );
       sinon.assert.calledWith(onChange, expectedItems);
       assert.equal(items.length, 3);
       sinon.assert.calledWith(onUpdate, 2, expectedItems[2]);
@@ -216,7 +217,10 @@ describe('<HasManyFields />', () => {
         minimumRows={3}
       />
     );
-    assert.deepStrictEqual(component.find(HasManyFieldsRow).at(0).props().deleteProps, expectedProps);
+    assert.deepStrictEqual(
+      component.find(HasManyFieldsRow).at(0).props().deleteProps,
+      expectedProps
+    );
   });
 
   it('should hide the add button if it has the maximum number of rows', () => {

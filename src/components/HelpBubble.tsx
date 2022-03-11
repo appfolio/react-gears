@@ -1,4 +1,5 @@
-import React, { SyntheticEvent, useRef, useState } from 'react';
+import type { SyntheticEvent } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from './Button';
 import Icon from './Icon';
 import Popover from './Popover';
@@ -6,10 +7,7 @@ import PopoverBody from './PopoverBody';
 import PopoverHeader from './PopoverHeader';
 
 interface HelpBubbleProps
-  extends Omit<
-    React.ComponentProps<typeof Popover>,
-    'isOpen' | 'toggle' | 'target'
-  > {
+  extends Omit<React.ComponentProps<typeof Popover>, 'isOpen' | 'toggle' | 'target'> {
   title?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
@@ -18,7 +16,7 @@ interface HelpBubbleProps
 let count = 0;
 
 function getID() {
-  return `help-bubble-${count++}`; // eslint-disable-line no-plusplus
+  return `help-bubble-${count++}`;
 }
 
 const style = {
@@ -27,7 +25,9 @@ const style = {
 
 function HelpBubble(props: HelpBubbleProps) {
   const idRef = useRef<string | undefined>();
-  if (!idRef.current) idRef.current = getID();
+  if (!idRef.current) {
+    idRef.current = getID();
+  }
   const id = idRef.current;
 
   const [isOpen, setIsOpen] = useState(false);

@@ -13,7 +13,7 @@ export default class FeatureBanner extends React.Component {
 
   static defaultProps = {
     alertText: 'new',
-    color: 'info'
+    color: 'info',
   };
 
   render() {
@@ -22,21 +22,20 @@ export default class FeatureBanner extends React.Component {
 
     return (
       <Alert color={color} className="align-items-center d-flex p-0" fade={false}>
-        {alertText ?
-          <h2 className={`${alertStyle} text-center m-0 px-3 d-none d-sm-block`}>
-            {alertText}
-          </h2> : null}
+        {alertText ? (
+          <h2 className={`${alertStyle} text-center m-0 px-3 d-none d-sm-block`}>{alertText}</h2>
+        ) : null}
         <div className="body d-flex flex-wrap p-3 w-100">
           <div className="info me-auto">
             <div className="d-inline-block m-0">
-              {alertText ? <h2 className={`${alertStyle} d-inline d-sm-none me-2`}>{alertText}</h2> : null}
+              {alertText ? (
+                <h2 className={`${alertStyle} d-inline d-sm-none me-2`}>{alertText}</h2>
+              ) : null}
               <h3 className="d-inline">{title}</h3>
             </div>
             <p className="m-0">{subtitle}</p>
           </div>
-          <div className="d-inline-block my-auto">
-            {children}
-          </div>
+          <div className="d-inline-block my-auto">{children}</div>
         </div>
         <style jsx>
           {`

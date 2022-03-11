@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { number, boolean } from '@storybook/addon-knobs';
+import React from 'react';
 import { Nav, NavItem, NavLink } from '../src';
 
 export default {
@@ -12,11 +12,7 @@ export const Tabs = () => {
   const activeTab = number('activeTab', 1);
   return (
     <div>
-      <Nav
-        tabs
-        fill={boolean('fill', undefined)}
-        justified={boolean('justified', undefined)}
-      >
+      <Nav tabs fill={boolean('fill', undefined)} justified={boolean('justified', undefined)}>
         <NavItem>
           <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
             Receivables

@@ -1,7 +1,7 @@
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import assert from 'assert';
 import React from 'react';
 import sinon from 'sinon';
-import assert from 'assert';
-import { render, cleanup, fireEvent } from '@testing-library/react';
 
 import RadioGroup from '../../src/components/RadioGroup';
 
@@ -18,9 +18,7 @@ describe('<RadioGroup />', () => {
 
   it('should select only one option', () => {
     const mockOnChange = sinon.spy();
-    const checkboxes = render(
-      <RadioGroup options={options} onChange={mockOnChange} />
-    );
+    const checkboxes = render(<RadioGroup options={options} onChange={mockOnChange} />);
 
     let option = checkboxes.getByLabelText('Apple');
     fireEvent.click(option);
@@ -41,16 +39,17 @@ describe('<RadioGroup />', () => {
     ];
     const mockOnChange = sinon.spy();
     const checkboxes = render(
-      <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange} />
+      <RadioGroup
+        options={coolerOptions}
+        selected={{ id: 1, type: 'topping', price: '0.50' }}
+        onChange={mockOnChange}
+      />
     );
 
     const option = checkboxes.getByLabelText('Aiyu Jelly');
     fireEvent.click(option);
 
-    sinon.assert.calledWith(
-      mockOnChange,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange, { id: 2, type: 'topping', price: '0.50' });
   });
 
   it('should work with duplicate groups', () => {
@@ -65,11 +64,19 @@ describe('<RadioGroup />', () => {
       <div>
         <div>
           Peach Green Tea
-          <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange1} />
+          <RadioGroup
+            options={coolerOptions}
+            selected={{ id: 1, type: 'topping', price: '0.50' }}
+            onChange={mockOnChange1}
+          />
         </div>
         <div>
           Jade Lemon
-          <RadioGroup options={coolerOptions} selected={{ id: 1, type: 'topping', price: '0.50' }} onChange={mockOnChange2} />
+          <RadioGroup
+            options={coolerOptions}
+            selected={{ id: 1, type: 'topping', price: '0.50' }}
+            onChange={mockOnChange2}
+          />
         </div>
       </div>
     );
@@ -79,16 +86,10 @@ describe('<RadioGroup />', () => {
 
     fireEvent.click(opts[0]);
 
-    sinon.assert.calledWith(
-      mockOnChange1,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange1, { id: 2, type: 'topping', price: '0.50' });
 
     fireEvent.click(opts[1]);
 
-    sinon.assert.calledWith(
-      mockOnChange2,
-      { id: 2, type: 'topping', price: '0.50' }
-    );
+    sinon.assert.calledWith(mockOnChange2, { id: 2, type: 'topping', price: '0.50' });
   });
 });

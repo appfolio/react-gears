@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import React, { useState } from 'react';
 import { CheckboxGroup } from '../src';
 
 const options = [
@@ -29,9 +29,7 @@ export const LiveExample = () => {
     action('onChange')(values);
   };
 
-  return (
-    <CheckboxGroup options={options} onChange={handleChange} selected={selected} />
-  );
+  return <CheckboxGroup options={options} onChange={handleChange} selected={selected} />;
 };
 
 export const SomeDisabled = () => {

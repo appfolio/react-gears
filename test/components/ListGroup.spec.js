@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import { ListGroup, ListGroupItem } from '../../src';
 
@@ -11,7 +11,8 @@ describe('<ListGroup />', () => {
         <ListGroupItem>Alpha</ListGroupItem>
         <ListGroupItem>Bravo</ListGroupItem>
         <ListGroupItem>Charlie</ListGroupItem>
-      </ListGroup>);
+      </ListGroup>
+    );
     assert(wrapper.find(ListGroupItem).length, 3);
   });
 
@@ -21,10 +22,10 @@ describe('<ListGroup />', () => {
   });
 
   it('passes classNames to ListGroup', () => {
-    let wrapper = shallow(<ListGroup className='boogie' />);
+    let wrapper = shallow(<ListGroup className="boogie" />);
     assert(wrapper.hasClass('boogie'));
 
-    wrapper = shallow(<ListGroup striped className='boogie' />);
+    wrapper = shallow(<ListGroup striped className="boogie" />);
     assert(wrapper.hasClass('boogie'));
     assert(wrapper.hasClass('list-group-striped'));
   });

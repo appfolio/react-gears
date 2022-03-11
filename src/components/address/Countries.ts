@@ -4,7 +4,7 @@ import { formats } from './AddressFormats';
 const countries = toPairs(formats).map(([value, { name: label }]) => {
   return {
     label,
-    value
+    value,
   };
 });
 

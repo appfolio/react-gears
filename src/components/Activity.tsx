@@ -1,6 +1,7 @@
-import React, { FunctionComponent, ReactNode } from 'react';
 import fecha from 'fecha';
-import { ListGroupItemProps } from 'reactstrap';
+import type { FunctionComponent, ReactNode } from 'react';
+import React from 'react';
+import type { ListGroupItemProps } from 'reactstrap';
 import Col from './Col';
 import ListGroupItem from './ListGroupItem';
 import Row from './Row';
@@ -31,7 +32,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
         <span className="d-inline js-date">{fecha.format(date, dateFormat)}</span>
       </Col>
       {/* Force the next column to break to new line at the xs breakpoint; specifying `xs` in the first column
-        * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
+       * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}
       <div className="w-100 d-xs-block d-sm-none" />
       <Col className="js-action">
         {(action || date) && (

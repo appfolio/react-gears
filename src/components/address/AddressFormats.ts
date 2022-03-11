@@ -5,9 +5,9 @@ const defaultFormat = {
     city: 'City',
     countryCode: 'Country',
     postal: 'Postal code',
-    state: 'Region'
+    state: 'Region',
   },
-  fields: [['address1'], ['address2'], ['city'], ['countryCode', 'postal']]
+  fields: [['address1'], ['address2'], ['city'], ['countryCode', 'postal']],
 };
 
 export const formats: { [key: string]: any } = {
@@ -15,7 +15,7 @@ export const formats: { [key: string]: any } = {
     name: 'United States',
     labels: {
       postal: 'ZIP',
-      state: 'State'
+      state: 'State',
     },
     states: [
       { name: 'Alaska', code: 'AK' },
@@ -78,4725 +78,4595 @@ export const formats: { [key: string]: any } = {
       { name: 'Marshall Islands', code: 'MH' },
       { name: 'Northern Mariana Islands', code: 'MP' },
       { name: 'Puerto Rico', code: 'PR' },
-      { name: 'Virgin Islands', code: 'VI' }
+      { name: 'Virgin Islands', code: 'VI' },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   CA: {
     name: 'Canada',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Alberta',
-        code: 'AB'
+        code: 'AB',
       },
       {
         name: 'British Columbia',
-        code: 'BC'
+        code: 'BC',
       },
       {
         name: 'Manitoba',
-        code: 'MB'
+        code: 'MB',
       },
       {
         name: 'New Brunswick',
-        code: 'NB'
+        code: 'NB',
       },
       {
         name: 'Newfoundland and Labrador',
-        code: 'NL'
+        code: 'NL',
       },
       {
         name: 'Northwest Territories',
-        code: 'NT'
+        code: 'NT',
       },
       {
         name: 'Nova Scotia',
-        code: 'NS'
+        code: 'NS',
       },
       {
         name: 'Nunavut',
-        code: 'NU'
+        code: 'NU',
       },
       {
         name: 'Ontario',
-        code: 'ON'
+        code: 'ON',
       },
       {
         name: 'Prince Edward Island',
-        code: 'PE'
+        code: 'PE',
       },
       {
         name: 'Quebec',
-        code: 'QC'
+        code: 'QC',
       },
       {
         name: 'Saskatchewan',
-        code: 'SK'
+        code: 'SK',
       },
       {
         name: 'Yukon',
-        code: 'YT'
-      }
+        code: 'YT',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   AF: {
-    name: 'Afghanistan'
+    name: 'Afghanistan',
   },
   AX: {
-    name: 'Åland Islands'
+    name: 'Åland Islands',
   },
   AL: {
-    name: 'Albania'
+    name: 'Albania',
   },
   DZ: {
     name: 'Algeria',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   AD: {
-    name: 'Andorra'
+    name: 'Andorra',
   },
   AO: {
     name: 'Angola',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   AI: {
     name: 'Anguilla',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   AG: {
     name: 'Antigua & Barbuda',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   AR: {
     name: 'Argentina',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Buenos Aires Province',
-        code: 'B'
+        code: 'B',
       },
       {
         name: 'Catamarca',
-        code: 'K'
+        code: 'K',
       },
       {
         name: 'Chaco',
-        code: 'H'
+        code: 'H',
       },
       {
         name: 'Chubut',
-        code: 'U'
+        code: 'U',
       },
       {
         name: 'Buenos Aires',
-        code: 'C'
+        code: 'C',
       },
       {
         name: 'Córdoba',
-        code: 'X'
+        code: 'X',
       },
       {
         name: 'Corrientes',
-        code: 'W'
+        code: 'W',
       },
       {
         name: 'Entre Ríos',
-        code: 'E'
+        code: 'E',
       },
       {
         name: 'Formosa',
-        code: 'P'
+        code: 'P',
       },
       {
         name: 'Jujuy',
-        code: 'Y'
+        code: 'Y',
       },
       {
         name: 'La Pampa',
-        code: 'L'
+        code: 'L',
       },
       {
         name: 'La Rioja',
-        code: 'F'
+        code: 'F',
       },
       {
         name: 'Mendoza',
-        code: 'M'
+        code: 'M',
       },
       {
         name: 'Misiones',
-        code: 'N'
+        code: 'N',
       },
       {
         name: 'Neuquén',
-        code: 'Q'
+        code: 'Q',
       },
       {
         name: 'Río Negro',
-        code: 'R'
+        code: 'R',
       },
       {
         name: 'Salta',
-        code: 'A'
+        code: 'A',
       },
       {
         name: 'San Juan',
-        code: 'J'
+        code: 'J',
       },
       {
         name: 'San Luis',
-        code: 'D'
+        code: 'D',
       },
       {
         name: 'Santa Cruz',
-        code: 'Z'
+        code: 'Z',
       },
       {
         name: 'Santa Fe',
-        code: 'S'
+        code: 'S',
       },
       {
         name: 'Santiago del Estero',
-        code: 'G'
+        code: 'G',
       },
       {
         name: 'Tierra del Fuego',
-        code: 'V'
+        code: 'V',
       },
       {
         name: 'Tucumán',
-        code: 'T'
-      }
+        code: 'T',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   AM: {
-    name: 'Armenia'
+    name: 'Armenia',
   },
   AQ: {
-    name: 'Antarctica'
+    name: 'Antarctica',
   },
   AS: {
-    name: 'American Samoa'
+    name: 'American Samoa',
   },
   AW: {
     name: 'Aruba',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   AU: {
     name: 'Australia',
     labels: {
       postal: 'Postcode',
-      state: 'State/Territory'
+      state: 'State/Territory',
     },
     states: [
       {
         name: 'Australian Capital Territory',
-        code: 'ACT'
+        code: 'ACT',
       },
       {
         name: 'New South Wales',
-        code: 'NSW'
+        code: 'NSW',
       },
       {
         name: 'Northern Territory',
-        code: 'NT'
+        code: 'NT',
       },
       {
         name: 'Queensland',
-        code: 'QLD'
+        code: 'QLD',
       },
       {
         name: 'South Australia',
-        code: 'SA'
+        code: 'SA',
       },
       {
         name: 'Tasmania',
-        code: 'TAS'
+        code: 'TAS',
       },
       {
         name: 'Victoria',
-        code: 'VIC'
+        code: 'VIC',
       },
       {
         name: 'Western Australia',
-        code: 'WA'
-      }
+        code: 'WA',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   AT: {
-    name: 'Austria'
+    name: 'Austria',
   },
   AZ: {
-    name: 'Azerbaijan'
+    name: 'Azerbaijan',
   },
   BS: {
     name: 'Bahamas',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   BH: {
-    name: 'Bahrain'
+    name: 'Bahrain',
   },
   BD: {
-    name: 'Bangladesh'
+    name: 'Bangladesh',
   },
   BB: {
-    name: 'Barbados'
+    name: 'Barbados',
   },
   BY: {
     name: 'Belarus',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   BE: {
-    name: 'Belgium'
+    name: 'Belgium',
   },
   BZ: {
     name: 'Belize',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   BJ: {
     name: 'Benin',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   BM: {
-    name: 'Bermuda'
+    name: 'Bermuda',
   },
   BT: {
-    name: 'Bhutan'
+    name: 'Bhutan',
   },
   BO: {
     name: 'Bolivia',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   BA: {
-    name: 'Bosnia & Herzegovina'
+    name: 'Bosnia & Herzegovina',
   },
   BW: {
-    name: 'Botswana'
+    name: 'Botswana',
   },
   BV: {
-    name: 'Bouvet Island'
+    name: 'Bouvet Island',
   },
   BR: {
     name: 'Brazil',
     labels: {
       postal: 'Postal code',
-      state: 'State'
+      state: 'State',
     },
     states: [
       {
         name: 'Acre',
-        code: 'AC'
+        code: 'AC',
       },
       {
         name: 'Alagoas',
-        code: 'AL'
+        code: 'AL',
       },
       {
         name: 'Amapá',
-        code: 'AP'
+        code: 'AP',
       },
       {
         name: 'Amazonas',
-        code: 'AM'
+        code: 'AM',
       },
       {
         name: 'Bahia',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Ceará',
-        code: 'CE'
+        code: 'CE',
       },
       {
         name: 'Federal District',
-        code: 'DF'
+        code: 'DF',
       },
       {
         name: 'Espírito Santo',
-        code: 'ES'
+        code: 'ES',
       },
       {
         name: 'Goiás',
-        code: 'GO'
+        code: 'GO',
       },
       {
         name: 'Maranhão',
-        code: 'MA'
+        code: 'MA',
       },
       {
         name: 'Mato Grosso',
-        code: 'MT'
+        code: 'MT',
       },
       {
         name: 'Mato Grosso do Sul',
-        code: 'MS'
+        code: 'MS',
       },
       {
         name: 'Minas Gerais',
-        code: 'MG'
+        code: 'MG',
       },
       {
         name: 'Pará',
-        code: 'PA'
+        code: 'PA',
       },
       {
         name: 'Paraíba',
-        code: 'PB'
+        code: 'PB',
       },
       {
         name: 'Paraná',
-        code: 'PR'
+        code: 'PR',
       },
       {
         name: 'Pernambuco',
-        code: 'PE'
+        code: 'PE',
       },
       {
         name: 'Piauí',
-        code: 'PI'
+        code: 'PI',
       },
       {
         name: 'Rio Grande do Norte',
-        code: 'RN'
+        code: 'RN',
       },
       {
         name: 'Rio Grande do Sul',
-        code: 'RS'
+        code: 'RS',
       },
       {
         name: 'Rio de Janeiro',
-        code: 'RJ'
+        code: 'RJ',
       },
       {
         name: 'Rondônia',
-        code: 'RO'
+        code: 'RO',
       },
       {
         name: 'Roraima',
-        code: 'RR'
+        code: 'RR',
       },
       {
         name: 'Santa Catarina',
-        code: 'SC'
+        code: 'SC',
       },
       {
         name: 'São Paulo',
-        code: 'SP'
+        code: 'SP',
       },
       {
         name: 'Sergipe',
-        code: 'SE'
+        code: 'SE',
       },
       {
         name: 'Tocantins',
-        code: 'TO'
-      }
+        code: 'TO',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   IO: {
-    name: 'British Indian Ocean Territory'
+    name: 'British Indian Ocean Territory',
   },
   VG: {
-    name: 'British Virgin Islands'
+    name: 'British Virgin Islands',
   },
   BN: {
-    name: 'Brunei'
+    name: 'Brunei',
   },
   BG: {
-    name: 'Bulgaria'
+    name: 'Bulgaria',
   },
   BF: {
     name: 'Burkina Faso',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   BI: {
-    name: 'Burundi'
+    name: 'Burundi',
   },
   KH: {
-    name: 'Cambodia'
+    name: 'Cambodia',
   },
   CM: {
-    name: 'Cameroon'
+    name: 'Cameroon',
   },
   CV: {
-    name: 'Cape Verde'
+    name: 'Cape Verde',
   },
   BQ: {
-    name: 'Caribbean Netherlands'
+    name: 'Caribbean Netherlands',
   },
   KY: {
-    name: 'Cayman Islands'
+    name: 'Cayman Islands',
   },
   CF: {
-    name: 'Central African Republic'
+    name: 'Central African Republic',
   },
   TD: {
     name: 'Chad',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   CL: {
     name: 'Chile',
     labels: {
       postal: 'Postal code',
-      state: 'State'
-    }
+      state: 'State',
+    },
   },
   CN: {
     name: 'China',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Anhui',
-        code: 'AH'
+        code: 'AH',
       },
       {
         name: 'Beijing',
-        code: 'BJ'
+        code: 'BJ',
       },
       {
         name: 'Chongqing',
-        code: 'CQ'
+        code: 'CQ',
       },
       {
         name: 'Fujian',
-        code: 'FJ'
+        code: 'FJ',
       },
       {
         name: 'Gansu',
-        code: 'GS'
+        code: 'GS',
       },
       {
         name: 'Guangdong',
-        code: 'GD'
+        code: 'GD',
       },
       {
         name: 'Guangxi',
-        code: 'GX'
+        code: 'GX',
       },
       {
         name: 'Guizhou',
-        code: 'GZ'
+        code: 'GZ',
       },
       {
         name: 'Hainan',
-        code: 'HI'
+        code: 'HI',
       },
       {
         name: 'Hebei',
-        code: 'HE'
+        code: 'HE',
       },
       {
         name: 'Heilongjiang',
-        code: 'HL'
+        code: 'HL',
       },
       {
         name: 'Henan',
-        code: 'HA'
+        code: 'HA',
       },
       {
         name: 'Hubei',
-        code: 'HB'
+        code: 'HB',
       },
       {
         name: 'Hunan',
-        code: 'HN'
+        code: 'HN',
       },
       {
         name: 'Inner Mongolia',
-        code: 'NM'
+        code: 'NM',
       },
       {
         name: 'Jiangsu',
-        code: 'JS'
+        code: 'JS',
       },
       {
         name: 'Jiangxi',
-        code: 'JX'
+        code: 'JX',
       },
       {
         name: 'Jilin',
-        code: 'JL'
+        code: 'JL',
       },
       {
         name: 'Liaoning',
-        code: 'LN'
+        code: 'LN',
       },
       {
         name: 'Ningxia',
-        code: 'NX'
+        code: 'NX',
       },
       {
         name: 'Qinghai',
-        code: 'QH'
+        code: 'QH',
       },
       {
         name: 'Shaanxi',
-        code: 'SN'
+        code: 'SN',
       },
       {
         name: 'Shandong',
-        code: 'SD'
+        code: 'SD',
       },
       {
         name: 'Shanghai',
-        code: 'SH'
+        code: 'SH',
       },
       {
         name: 'Shanxi',
-        code: 'SX'
+        code: 'SX',
       },
       {
         name: 'Sichuan',
-        code: 'SC'
+        code: 'SC',
       },
       {
         name: 'Tianjin',
-        code: 'TJ'
+        code: 'TJ',
       },
       {
         name: 'Xinjiang',
-        code: 'XJ'
+        code: 'XJ',
       },
       {
         name: 'Tibet',
-        code: 'YZ'
+        code: 'YZ',
       },
       {
         name: 'Yunnan',
-        code: 'YN'
+        code: 'YN',
       },
       {
         name: 'Zhejiang',
-        code: 'ZJ'
-      }
+        code: 'ZJ',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   CX: {
-    name: 'Christmas Island'
+    name: 'Christmas Island',
   },
   CC: {
-    name: 'Cocos (Keeling) Islands'
+    name: 'Cocos (Keeling) Islands',
   },
   CO: {
     name: 'Colombia',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Capital District',
-        code: 'DC'
+        code: 'DC',
       },
       {
         name: 'Amazonas',
-        code: 'AMA'
+        code: 'AMA',
       },
       {
         name: 'Antioquia',
-        code: 'ANT'
+        code: 'ANT',
       },
       {
         name: 'Arauca',
-        code: 'ARA'
+        code: 'ARA',
       },
       {
         name: 'Atlántico',
-        code: 'ATL'
+        code: 'ATL',
       },
       {
         name: 'Bolívar',
-        code: 'BOL'
+        code: 'BOL',
       },
       {
         name: 'Boyacá',
-        code: 'BOY'
+        code: 'BOY',
       },
       {
         name: 'Caldas',
-        code: 'CAL'
+        code: 'CAL',
       },
       {
         name: 'Caquetá',
-        code: 'CAQ'
+        code: 'CAQ',
       },
       {
         name: 'Casanare',
-        code: 'CAS'
+        code: 'CAS',
       },
       {
         name: 'Cauca',
-        code: 'CAU'
+        code: 'CAU',
       },
       {
         name: 'Cesar',
-        code: 'CES'
+        code: 'CES',
       },
       {
         name: 'Chocó',
-        code: 'CHO'
+        code: 'CHO',
       },
       {
         name: 'Córdoba',
-        code: 'COR'
+        code: 'COR',
       },
       {
         name: 'Cundinamarca',
-        code: 'CUN'
+        code: 'CUN',
       },
       {
         name: 'Guainía',
-        code: 'GUA'
+        code: 'GUA',
       },
       {
         name: 'Guaviare',
-        code: 'GUV'
+        code: 'GUV',
       },
       {
         name: 'Huila',
-        code: 'HUI'
+        code: 'HUI',
       },
       {
         name: 'La Guajira',
-        code: 'LAG'
+        code: 'LAG',
       },
       {
         name: 'Magdalena',
-        code: 'MAG'
+        code: 'MAG',
       },
       {
         name: 'Meta',
-        code: 'MET'
+        code: 'MET',
       },
       {
         name: 'Nariño',
-        code: 'NAR'
+        code: 'NAR',
       },
       {
         name: 'Norte de Santander',
-        code: 'NSA'
+        code: 'NSA',
       },
       {
         name: 'Putumayo',
-        code: 'PUT'
+        code: 'PUT',
       },
       {
         name: 'Quindío',
-        code: 'QUI'
+        code: 'QUI',
       },
       {
         name: 'Risaralda',
-        code: 'RIS'
+        code: 'RIS',
       },
       {
         name: 'San Andrés & Providencia',
-        code: 'SAP'
+        code: 'SAP',
       },
       {
         name: 'Santander',
-        code: 'SAN'
+        code: 'SAN',
       },
       {
         name: 'Sucre',
-        code: 'SUC'
+        code: 'SUC',
       },
       {
         name: 'Tolima',
-        code: 'TOL'
+        code: 'TOL',
       },
       {
         name: 'Valle del Cauca',
-        code: 'VAC'
+        code: 'VAC',
       },
       {
         name: 'Vaupés',
-        code: 'VAU'
+        code: 'VAU',
       },
       {
         name: 'Vichada',
-        code: 'VID'
-      }
+        code: 'VID',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   KM: {
-    name: 'Comoros'
+    name: 'Comoros',
   },
   CG: {
-    name: 'Congo - Brazzaville'
+    name: 'Congo - Brazzaville',
   },
   CD: {
-    name: 'Congo - Kinshasa'
+    name: 'Congo - Kinshasa',
   },
   CK: {
-    name: 'Cook Islands'
+    name: 'Cook Islands',
   },
   CR: {
-    name: 'Costa Rica'
+    name: 'Costa Rica',
   },
   HR: {
-    name: 'Croatia'
+    name: 'Croatia',
   },
   CU: {
-    name: 'Cuba'
+    name: 'Cuba',
   },
   CW: {
     name: 'Curaçao',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   CY: {
-    name: 'Cyprus'
+    name: 'Cyprus',
   },
   CZ: {
-    name: 'Czechia'
+    name: 'Czechia',
   },
   CI: {
-    name: 'Côte d’Ivoire'
+    name: 'Côte d’Ivoire',
   },
   DK: {
-    name: 'Denmark'
+    name: 'Denmark',
   },
   DJ: {
-    name: 'Djibouti'
+    name: 'Djibouti',
   },
   DM: {
-    name: 'Dominica'
+    name: 'Dominica',
   },
   DO: {
-    name: 'Dominican Republic'
+    name: 'Dominican Republic',
   },
   EC: {
-    name: 'Ecuador'
+    name: 'Ecuador',
   },
   EG: {
     name: 'Egypt',
     labels: {
       postal: 'Postal code',
-      state: 'Governorate'
+      state: 'Governorate',
     },
     states: [
       {
         name: '6th of October',
-        code: 'SU'
+        code: 'SU',
       },
       {
         name: 'Al Sharqia',
-        code: 'SHR'
+        code: 'SHR',
       },
       {
         name: 'Alexandria',
-        code: 'ALX'
+        code: 'ALX',
       },
       {
         name: 'Aswan',
-        code: 'ASN'
+        code: 'ASN',
       },
       {
         name: 'Asyut',
-        code: 'AST'
+        code: 'AST',
       },
       {
         name: 'Beheira',
-        code: 'BH'
+        code: 'BH',
       },
       {
         name: 'Beni Suef',
-        code: 'BNS'
+        code: 'BNS',
       },
       {
         name: 'Cairo',
-        code: 'C'
+        code: 'C',
       },
       {
         name: 'Dakahlia',
-        code: 'DK'
+        code: 'DK',
       },
       {
         name: 'Damietta',
-        code: 'DT'
+        code: 'DT',
       },
       {
         name: 'Faiyum',
-        code: 'FYM'
+        code: 'FYM',
       },
       {
         name: 'Gharbia',
-        code: 'GH'
+        code: 'GH',
       },
       {
         name: 'Giza',
-        code: 'GZ'
+        code: 'GZ',
       },
       {
         name: 'Helwan',
-        code: 'HU'
+        code: 'HU',
       },
       {
         name: 'Ismailia',
-        code: 'IS'
+        code: 'IS',
       },
       {
         name: 'Kafr el-Sheikh',
-        code: 'KFS'
+        code: 'KFS',
       },
       {
         name: 'Luxor',
-        code: 'LX'
+        code: 'LX',
       },
       {
         name: 'Matrouh',
-        code: 'MT'
+        code: 'MT',
       },
       {
         name: 'Minya',
-        code: 'MN'
+        code: 'MN',
       },
       {
         name: 'Monufia',
-        code: 'MNF'
+        code: 'MNF',
       },
       {
         name: 'New Valley',
-        code: 'WAD'
+        code: 'WAD',
       },
       {
         name: 'North Sinai',
-        code: 'SIN'
+        code: 'SIN',
       },
       {
         name: 'Port Said',
-        code: 'PTS'
+        code: 'PTS',
       },
       {
         name: 'Qalyubia',
-        code: 'KB'
+        code: 'KB',
       },
       {
         name: 'Qena',
-        code: 'KN'
+        code: 'KN',
       },
       {
         name: 'Red Sea',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Sohag',
-        code: 'SHG'
+        code: 'SHG',
       },
       {
         name: 'South Sinai',
-        code: 'JS'
+        code: 'JS',
       },
       {
         name: 'Suez',
-        code: 'SUZ'
-      }
+        code: 'SUZ',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   SV: {
-    name: 'El Salvador'
+    name: 'El Salvador',
   },
   GQ: {
-    name: 'Equatorial Guinea'
+    name: 'Equatorial Guinea',
   },
   ER: {
-    name: 'Eritrea'
+    name: 'Eritrea',
   },
   EE: {
-    name: 'Estonia'
+    name: 'Estonia',
   },
   ET: {
-    name: 'Ethiopia'
+    name: 'Ethiopia',
   },
   FK: {
-    name: 'Falkland Islands'
+    name: 'Falkland Islands',
   },
   FO: {
-    name: 'Faroe Islands'
+    name: 'Faroe Islands',
   },
   FJ: {
     name: 'Fiji',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   FI: {
-    name: 'Finland'
+    name: 'Finland',
   },
   FR: {
     name: 'France',
-    fields: [['address1'], ['address2'], ['postal', 'city', 'countryCode']]
+    fields: [['address1'], ['address2'], ['postal', 'city', 'countryCode']],
   },
   GF: {
-    name: 'French Guiana'
+    name: 'French Guiana',
   },
   PF: {
-    name: 'French Polynesia'
+    name: 'French Polynesia',
   },
   TF: {
-    name: 'French Southern Territories'
+    name: 'French Southern Territories',
   },
   GA: {
-    name: 'Gabon'
+    name: 'Gabon',
   },
   GM: {
-    name: 'Gambia'
+    name: 'Gambia',
   },
   GE: {
-    name: 'Georgia'
+    name: 'Georgia',
   },
   DE: {
     name: 'Germany',
-    fields: [['address1'], ['address2'], ['postal', 'city', 'countryCode']]
+    fields: [['address1'], ['address2'], ['postal', 'city', 'countryCode']],
   },
   GH: {
     name: 'Ghana',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   GI: {
-    name: 'Gibraltar'
+    name: 'Gibraltar',
   },
   GR: {
-    name: 'Greece'
+    name: 'Greece',
   },
   GL: {
-    name: 'Greenland'
+    name: 'Greenland',
   },
   GD: {
-    name: 'Grenada'
+    name: 'Grenada',
   },
   GP: {
-    name: 'Guadeloupe'
+    name: 'Guadeloupe',
   },
   GU: {
-    name: 'Guam'
+    name: 'Guam',
   },
   GT: {
     name: 'Guatemala',
     states: [
       {
         name: 'Alta Verapaz',
-        code: 'AVE'
+        code: 'AVE',
       },
       {
         name: 'Baja Verapaz',
-        code: 'BVE'
+        code: 'BVE',
       },
       {
         name: 'Chimaltenango',
-        code: 'CMT'
+        code: 'CMT',
       },
       {
         name: 'Chiquimula',
-        code: 'CQM'
+        code: 'CQM',
       },
       {
         name: 'El Progreso',
-        code: 'EPR'
+        code: 'EPR',
       },
       {
         name: 'Escuintla',
-        code: 'ESC'
+        code: 'ESC',
       },
       {
         name: 'Guatemala',
-        code: 'GUA'
+        code: 'GUA',
       },
       {
         name: 'Huehuetenango',
-        code: 'HUE'
+        code: 'HUE',
       },
       {
         name: 'Izabal',
-        code: 'IZA'
+        code: 'IZA',
       },
       {
         name: 'Jalapa',
-        code: 'JAL'
+        code: 'JAL',
       },
       {
         name: 'Jutiapa',
-        code: 'JUT'
+        code: 'JUT',
       },
       {
         name: 'Petén',
-        code: 'PET'
+        code: 'PET',
       },
       {
         name: 'Quetzaltenango',
-        code: 'QUE'
+        code: 'QUE',
       },
       {
         name: 'Quiché',
-        code: 'QUI'
+        code: 'QUI',
       },
       {
         name: 'Retalhuleu',
-        code: 'RET'
+        code: 'RET',
       },
       {
         name: 'Sacatepéquez',
-        code: 'SAC'
+        code: 'SAC',
       },
       {
         name: 'San Marcos',
-        code: 'SMA'
+        code: 'SMA',
       },
       {
         name: 'Santa Rosa',
-        code: 'SRO'
+        code: 'SRO',
       },
       {
         name: 'Sololá',
-        code: 'SOL'
+        code: 'SOL',
       },
       {
         name: 'Suchitepéquez',
-        code: 'SUC'
+        code: 'SUC',
       },
       {
         name: 'Totonicapán',
-        code: 'TOT'
+        code: 'TOT',
       },
       {
         name: 'Zacapa',
-        code: 'ZAC'
-      }
+        code: 'ZAC',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   GG: {
-    name: 'Guernsey'
+    name: 'Guernsey',
   },
   GN: {
-    name: 'Guinea'
+    name: 'Guinea',
   },
   GW: {
-    name: 'Guinea-Bissau'
+    name: 'Guinea-Bissau',
   },
   GY: {
-    name: 'Guyana'
+    name: 'Guyana',
   },
   HT: {
-    name: 'Haiti'
+    name: 'Haiti',
   },
   HM: {
-    name: 'Heard & McDonald Islands'
+    name: 'Heard & McDonald Islands',
   },
   HN: {
-    name: 'Honduras'
+    name: 'Honduras',
   },
   HK: {
     name: 'Hong Kong SAR China',
     states: [
       {
         name: 'Hong Kong Island',
-        code: 'HK'
+        code: 'HK',
       },
       {
         name: 'Kowloon',
-        code: 'KL'
+        code: 'KL',
       },
       {
         name: 'New Territories',
-        code: 'NT'
-      }
+        code: 'NT',
+      },
     ],
-    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']],
   },
   HU: {
-    name: 'Hungary'
+    name: 'Hungary',
   },
   IS: {
-    name: 'Iceland'
+    name: 'Iceland',
   },
   IN: {
     name: 'India',
     labels: {
       postal: 'PIN code',
-      state: 'State'
+      state: 'State',
     },
     states: [
       {
         name: 'Andaman and Nicobar Islands',
-        code: 'AN'
+        code: 'AN',
       },
       {
         name: 'Andhra Pradesh',
-        code: 'AP'
+        code: 'AP',
       },
       {
         name: 'Arunachal Pradesh',
-        code: 'AR'
+        code: 'AR',
       },
       {
         name: 'Assam',
-        code: 'AS'
+        code: 'AS',
       },
       {
         name: 'Bihar',
-        code: 'BR'
+        code: 'BR',
       },
       {
         name: 'Chandigarh',
-        code: 'CH'
+        code: 'CH',
       },
       {
         name: 'Chhattisgarh',
-        code: 'CG'
+        code: 'CG',
       },
       {
         name: 'Dadra and Nagar Haveli',
-        code: 'DN'
+        code: 'DN',
       },
       {
         name: 'Daman and Diu',
-        code: 'DD'
+        code: 'DD',
       },
       {
         name: 'Delhi',
-        code: 'DL'
+        code: 'DL',
       },
       {
         name: 'Goa',
-        code: 'GA'
+        code: 'GA',
       },
       {
         name: 'Gujarat',
-        code: 'GJ'
+        code: 'GJ',
       },
       {
         name: 'Haryana',
-        code: 'HR'
+        code: 'HR',
       },
       {
         name: 'Himachal Pradesh',
-        code: 'HP'
+        code: 'HP',
       },
       {
         name: 'Jammu and Kashmir',
-        code: 'JK'
+        code: 'JK',
       },
       {
         name: 'Jharkhand',
-        code: 'JH'
+        code: 'JH',
       },
       {
         name: 'Karnataka',
-        code: 'KA'
+        code: 'KA',
       },
       {
         name: 'Kerala',
-        code: 'KL'
+        code: 'KL',
       },
       {
         name: 'Lakshadweep',
-        code: 'LD'
+        code: 'LD',
       },
       {
         name: 'Madhya Pradesh',
-        code: 'MP'
+        code: 'MP',
       },
       {
         name: 'Maharashtra',
-        code: 'MH'
+        code: 'MH',
       },
       {
         name: 'Manipur',
-        code: 'MN'
+        code: 'MN',
       },
       {
         name: 'Meghalaya',
-        code: 'ML'
+        code: 'ML',
       },
       {
         name: 'Mizoram',
-        code: 'MZ'
+        code: 'MZ',
       },
       {
         name: 'Nagaland',
-        code: 'NL'
+        code: 'NL',
       },
       {
         name: 'Odisha',
-        code: 'OR'
+        code: 'OR',
       },
       {
         name: 'Puducherry',
-        code: 'PY'
+        code: 'PY',
       },
       {
         name: 'Punjab',
-        code: 'PB'
+        code: 'PB',
       },
       {
         name: 'Rajasthan',
-        code: 'RJ'
+        code: 'RJ',
       },
       {
         name: 'Sikkim',
-        code: 'SK'
+        code: 'SK',
       },
       {
         name: 'Tamil Nadu',
-        code: 'TN'
+        code: 'TN',
       },
       {
         name: 'Telangana',
-        code: 'TS'
+        code: 'TS',
       },
       {
         name: 'Tripura',
-        code: 'TR'
+        code: 'TR',
       },
       {
         name: 'Uttar Pradesh',
-        code: 'UP'
+        code: 'UP',
       },
       {
         name: 'Uttarakhand',
-        code: 'UK'
+        code: 'UK',
       },
       {
         name: 'West Bengal',
-        code: 'WB'
-      }
+        code: 'WB',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   ID: {
     name: 'Indonesia',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Aceh',
-        code: 'AC'
+        code: 'AC',
       },
       {
         name: 'Bali',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Bangka–Belitung Islands',
-        code: 'BB'
+        code: 'BB',
       },
       {
         name: 'Banten',
-        code: 'BT'
+        code: 'BT',
       },
       {
         name: 'Bengkulu',
-        code: 'BE'
+        code: 'BE',
       },
       {
         name: 'Gorontalo',
-        code: 'GO'
+        code: 'GO',
       },
       {
         name: 'Jakarta',
-        code: 'JK'
+        code: 'JK',
       },
       {
         name: 'Jambi',
-        code: 'JA'
+        code: 'JA',
       },
       {
         name: 'West Java',
-        code: 'JB'
+        code: 'JB',
       },
       {
         name: 'Central Java',
-        code: 'JT'
+        code: 'JT',
       },
       {
         name: 'East Java',
-        code: 'JI'
+        code: 'JI',
       },
       {
         name: 'West Kalimantan',
-        code: 'KB'
+        code: 'KB',
       },
       {
         name: 'South Kalimantan',
-        code: 'KS'
+        code: 'KS',
       },
       {
         name: 'Central Kalimantan',
-        code: 'KT'
+        code: 'KT',
       },
       {
         name: 'East Kalimantan',
-        code: 'KI'
+        code: 'KI',
       },
       {
         name: 'North Kalimantan',
-        code: 'KU'
+        code: 'KU',
       },
       {
         name: 'Riau Islands',
-        code: 'KR'
+        code: 'KR',
       },
       {
         name: 'Lampung',
-        code: 'LA'
+        code: 'LA',
       },
       {
         name: 'Maluku',
-        code: 'MA'
+        code: 'MA',
       },
       {
         name: 'North Maluku',
-        code: 'MU'
+        code: 'MU',
       },
       {
         name: 'West Nusa Tenggara',
-        code: 'NB'
+        code: 'NB',
       },
       {
         name: 'East Nusa Tenggara',
-        code: 'NT'
+        code: 'NT',
       },
       {
         name: 'Papua',
-        code: 'PA'
+        code: 'PA',
       },
       {
         name: 'West Papua',
-        code: 'PB'
+        code: 'PB',
       },
       {
         name: 'Riau',
-        code: 'RI'
+        code: 'RI',
       },
       {
         name: 'West Sulawesi',
-        code: 'SR'
+        code: 'SR',
       },
       {
         name: 'South Sulawesi',
-        code: 'SN'
+        code: 'SN',
       },
       {
         name: 'Central Sulawesi',
-        code: 'ST'
+        code: 'ST',
       },
       {
         name: 'Southeast Sulawesi',
-        code: 'SG'
+        code: 'SG',
       },
       {
         name: 'North Sulawesi',
-        code: 'SA'
+        code: 'SA',
       },
       {
         name: 'West Sumatra',
-        code: 'SB'
+        code: 'SB',
       },
       {
         name: 'South Sumatra',
-        code: 'SS'
+        code: 'SS',
       },
       {
         name: 'North Sumatra',
-        code: 'SU'
+        code: 'SU',
       },
       {
         name: 'Yogyakarta',
-        code: 'YO'
-      }
+        code: 'YO',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   IR: {
-    name: 'Iran'
+    name: 'Iran',
   },
   IQ: {
-    name: 'Iraq'
+    name: 'Iraq',
   },
   IE: {
     name: 'Ireland',
     labels: {
       postal: 'Postal code',
-      state: 'County'
+      state: 'County',
     },
     states: [
       {
         name: 'Carlow',
-        code: 'CW'
+        code: 'CW',
       },
       {
         name: 'Cavan',
-        code: 'CN'
+        code: 'CN',
       },
       {
         name: 'Clare',
-        code: 'CE'
+        code: 'CE',
       },
       {
         name: 'Cork',
-        code: 'CO'
+        code: 'CO',
       },
       {
         name: 'Donegal',
-        code: 'DL'
+        code: 'DL',
       },
       {
         name: 'Dublin',
-        code: 'D'
+        code: 'D',
       },
       {
         name: 'Galway',
-        code: 'G'
+        code: 'G',
       },
       {
         name: 'Kerry',
-        code: 'KY'
+        code: 'KY',
       },
       {
         name: 'Kildare',
-        code: 'KE'
+        code: 'KE',
       },
       {
         name: 'Kilkenny',
-        code: 'KK'
+        code: 'KK',
       },
       {
         name: 'Laois',
-        code: 'LS'
+        code: 'LS',
       },
       {
         name: 'Leitrim',
-        code: 'LM'
+        code: 'LM',
       },
       {
         name: 'Limerick',
-        code: 'LK'
+        code: 'LK',
       },
       {
         name: 'Longford',
-        code: 'LD'
+        code: 'LD',
       },
       {
         name: 'Louth',
-        code: 'LH'
+        code: 'LH',
       },
       {
         name: 'Mayo',
-        code: 'MO'
+        code: 'MO',
       },
       {
         name: 'Meath',
-        code: 'MH'
+        code: 'MH',
       },
       {
         name: 'Monaghan',
-        code: 'MN'
+        code: 'MN',
       },
       {
         name: 'Offaly',
-        code: 'OY'
+        code: 'OY',
       },
       {
         name: 'Roscommon',
-        code: 'RN'
+        code: 'RN',
       },
       {
         name: 'Sligo',
-        code: 'SO'
+        code: 'SO',
       },
       {
         name: 'Tipperary',
-        code: 'TA'
+        code: 'TA',
       },
       {
         name: 'Waterford',
-        code: 'WD'
+        code: 'WD',
       },
       {
         name: 'Westmeath',
-        code: 'WH'
+        code: 'WH',
       },
       {
         name: 'Wexford',
-        code: 'WX'
+        code: 'WX',
       },
       {
         name: 'Wicklow',
-        code: 'WW'
-      }
+        code: 'WW',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   IM: {
-    name: 'Isle of Man'
+    name: 'Isle of Man',
   },
   IL: {
-    name: 'Israel'
+    name: 'Israel',
   },
   IT: {
     name: 'Italy',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Agrigento',
-        code: 'AG'
+        code: 'AG',
       },
       {
         name: 'Alessandria',
-        code: 'AL'
+        code: 'AL',
       },
       {
         name: 'Ancona',
-        code: 'AN'
+        code: 'AN',
       },
       {
         name: 'Aosta',
-        code: 'AO'
+        code: 'AO',
       },
       {
         name: 'Arezzo',
-        code: 'AR'
+        code: 'AR',
       },
       {
         name: 'Ascoli Piceno',
-        code: 'AP'
+        code: 'AP',
       },
       {
         name: 'Asti',
-        code: 'AT'
+        code: 'AT',
       },
       {
         name: 'Avellino',
-        code: 'AV'
+        code: 'AV',
       },
       {
         name: 'Bari',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Barletta-Andria-Trani',
-        code: 'BT'
+        code: 'BT',
       },
       {
         name: 'Belluno',
-        code: 'BL'
+        code: 'BL',
       },
       {
         name: 'Benevento',
-        code: 'BN'
+        code: 'BN',
       },
       {
         name: 'Bergamo',
-        code: 'BG'
+        code: 'BG',
       },
       {
         name: 'Biella',
-        code: 'BI'
+        code: 'BI',
       },
       {
         name: 'Bologna',
-        code: 'BO'
+        code: 'BO',
       },
       {
         name: 'South Tyrol',
-        code: 'BZ'
+        code: 'BZ',
       },
       {
         name: 'Brescia',
-        code: 'BS'
+        code: 'BS',
       },
       {
         name: 'Brindisi',
-        code: 'BR'
+        code: 'BR',
       },
       {
         name: 'Cagliari',
-        code: 'CA'
+        code: 'CA',
       },
       {
         name: 'Caltanissetta',
-        code: 'CL'
+        code: 'CL',
       },
       {
         name: 'Campobasso',
-        code: 'CB'
+        code: 'CB',
       },
       {
         name: 'Carbonia-Iglesias',
-        code: 'CI'
+        code: 'CI',
       },
       {
         name: 'Caserta',
-        code: 'CE'
+        code: 'CE',
       },
       {
         name: 'Catania',
-        code: 'CT'
+        code: 'CT',
       },
       {
         name: 'Catanzaro',
-        code: 'CZ'
+        code: 'CZ',
       },
       {
         name: 'Chieti',
-        code: 'CH'
+        code: 'CH',
       },
       {
         name: 'Como',
-        code: 'CO'
+        code: 'CO',
       },
       {
         name: 'Cosenza',
-        code: 'CS'
+        code: 'CS',
       },
       {
         name: 'Cremona',
-        code: 'CR'
+        code: 'CR',
       },
       {
         name: 'Crotone',
-        code: 'KR'
+        code: 'KR',
       },
       {
         name: 'Cuneo',
-        code: 'CN'
+        code: 'CN',
       },
       {
         name: 'Enna',
-        code: 'EN'
+        code: 'EN',
       },
       {
         name: 'Fermo',
-        code: 'FM'
+        code: 'FM',
       },
       {
         name: 'Ferrara',
-        code: 'FE'
+        code: 'FE',
       },
       {
         name: 'Florence',
-        code: 'FI'
+        code: 'FI',
       },
       {
         name: 'Foggia',
-        code: 'FG'
+        code: 'FG',
       },
       {
         name: 'Forlì-Cesena',
-        code: 'FC'
+        code: 'FC',
       },
       {
         name: 'Frosinone',
-        code: 'FR'
+        code: 'FR',
       },
       {
         name: 'Genoa',
-        code: 'GE'
+        code: 'GE',
       },
       {
         name: 'Gorizia',
-        code: 'GO'
+        code: 'GO',
       },
       {
         name: 'Grosseto',
-        code: 'GR'
+        code: 'GR',
       },
       {
         name: 'Imperia',
-        code: 'IM'
+        code: 'IM',
       },
       {
         name: 'Isernia',
-        code: 'IS'
+        code: 'IS',
       },
       {
         name: 'L’Aquila',
-        code: 'AQ'
+        code: 'AQ',
       },
       {
         name: 'La Spezia',
-        code: 'SP'
+        code: 'SP',
       },
       {
         name: 'Latina',
-        code: 'LT'
+        code: 'LT',
       },
       {
         name: 'Lecce',
-        code: 'LE'
+        code: 'LE',
       },
       {
         name: 'Lecco',
-        code: 'LC'
+        code: 'LC',
       },
       {
         name: 'Livorno',
-        code: 'LI'
+        code: 'LI',
       },
       {
         name: 'Lodi',
-        code: 'LO'
+        code: 'LO',
       },
       {
         name: 'Lucca',
-        code: 'LU'
+        code: 'LU',
       },
       {
         name: 'Macerata',
-        code: 'MC'
+        code: 'MC',
       },
       {
         name: 'Mantua',
-        code: 'MN'
+        code: 'MN',
       },
       {
         name: 'Massa and Carrara',
-        code: 'MS'
+        code: 'MS',
       },
       {
         name: 'Matera',
-        code: 'MT'
+        code: 'MT',
       },
       {
         name: 'Medio Campidano',
-        code: 'VS'
+        code: 'VS',
       },
       {
         name: 'Messina',
-        code: 'ME'
+        code: 'ME',
       },
       {
         name: 'Milan',
-        code: 'MI'
+        code: 'MI',
       },
       {
         name: 'Modena',
-        code: 'MO'
+        code: 'MO',
       },
       {
         name: 'Monza and Brianza',
-        code: 'MB'
+        code: 'MB',
       },
       {
         name: 'Naples',
-        code: 'NA'
+        code: 'NA',
       },
       {
         name: 'Novara',
-        code: 'NO'
+        code: 'NO',
       },
       {
         name: 'Nuoro',
-        code: 'NU'
+        code: 'NU',
       },
       {
         name: 'Ogliastra',
-        code: 'OG'
+        code: 'OG',
       },
       {
         name: 'Olbia-Tempio',
-        code: 'OT'
+        code: 'OT',
       },
       {
         name: 'Oristano',
-        code: 'OR'
+        code: 'OR',
       },
       {
         name: 'Padua',
-        code: 'PD'
+        code: 'PD',
       },
       {
         name: 'Palermo',
-        code: 'PA'
+        code: 'PA',
       },
       {
         name: 'Parma',
-        code: 'PR'
+        code: 'PR',
       },
       {
         name: 'Pavia',
-        code: 'PV'
+        code: 'PV',
       },
       {
         name: 'Perugia',
-        code: 'PG'
+        code: 'PG',
       },
       {
         name: 'Pesaro and Urbino',
-        code: 'PU'
+        code: 'PU',
       },
       {
         name: 'Pescara',
-        code: 'PE'
+        code: 'PE',
       },
       {
         name: 'Piacenza',
-        code: 'PC'
+        code: 'PC',
       },
       {
         name: 'Pisa',
-        code: 'PI'
+        code: 'PI',
       },
       {
         name: 'Pistoia',
-        code: 'PT'
+        code: 'PT',
       },
       {
         name: 'Pordenone',
-        code: 'PN'
+        code: 'PN',
       },
       {
         name: 'Potenza',
-        code: 'PZ'
+        code: 'PZ',
       },
       {
         name: 'Prato',
-        code: 'PO'
+        code: 'PO',
       },
       {
         name: 'Ragusa',
-        code: 'RG'
+        code: 'RG',
       },
       {
         name: 'Ravenna',
-        code: 'RA'
+        code: 'RA',
       },
       {
         name: 'Reggio Calabria',
-        code: 'RC'
+        code: 'RC',
       },
       {
         name: 'Reggio Emilia',
-        code: 'RE'
+        code: 'RE',
       },
       {
         name: 'Rieti',
-        code: 'RI'
+        code: 'RI',
       },
       {
         name: 'Rimini',
-        code: 'RN'
+        code: 'RN',
       },
       {
         name: 'Rome',
-        code: 'RM'
+        code: 'RM',
       },
       {
         name: 'Rovigo',
-        code: 'RO'
+        code: 'RO',
       },
       {
         name: 'Salerno',
-        code: 'SA'
+        code: 'SA',
       },
       {
         name: 'Sassari',
-        code: 'SS'
+        code: 'SS',
       },
       {
         name: 'Savona',
-        code: 'SV'
+        code: 'SV',
       },
       {
         name: 'Siena',
-        code: 'SI'
+        code: 'SI',
       },
       {
         name: 'Syracuse',
-        code: 'SR'
+        code: 'SR',
       },
       {
         name: 'Sondrio',
-        code: 'SO'
+        code: 'SO',
       },
       {
         name: 'Taranto',
-        code: 'TA'
+        code: 'TA',
       },
       {
         name: 'Teramo',
-        code: 'TE'
+        code: 'TE',
       },
       {
         name: 'Terni',
-        code: 'TR'
+        code: 'TR',
       },
       {
         name: 'Turin',
-        code: 'TO'
+        code: 'TO',
       },
       {
         name: 'Trapani',
-        code: 'TP'
+        code: 'TP',
       },
       {
         name: 'Trentino',
-        code: 'TN'
+        code: 'TN',
       },
       {
         name: 'Treviso',
-        code: 'TV'
+        code: 'TV',
       },
       {
         name: 'Trieste',
-        code: 'TS'
+        code: 'TS',
       },
       {
         name: 'Udine',
-        code: 'UD'
+        code: 'UD',
       },
       {
         name: 'Varese',
-        code: 'VA'
+        code: 'VA',
       },
       {
         name: 'Venice',
-        code: 'VE'
+        code: 'VE',
       },
       {
         name: 'Verbano-Cusio-Ossola',
-        code: 'VB'
+        code: 'VB',
       },
       {
         name: 'Vercelli',
-        code: 'VC'
+        code: 'VC',
       },
       {
         name: 'Verona',
-        code: 'VR'
+        code: 'VR',
       },
       {
         name: 'Vibo Valentia',
-        code: 'VV'
+        code: 'VV',
       },
       {
         name: 'Vicenza',
-        code: 'VI'
+        code: 'VI',
       },
       {
         name: 'Viterbo',
-        code: 'VT'
-      }
+        code: 'VT',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   JM: {
     name: 'Jamaica',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   JP: {
     name: 'Japan',
     labels: {
       postal: 'Postal code',
-      state: 'Prefecture'
+      state: 'Prefecture',
     },
     states: [
       {
         name: 'Hokkaidō',
-        code: 'JP-01'
+        code: 'JP-01',
       },
       {
         name: 'Aomori',
-        code: 'JP-02'
+        code: 'JP-02',
       },
       {
         name: 'Iwate',
-        code: 'JP-03'
+        code: 'JP-03',
       },
       {
         name: 'Miyagi',
-        code: 'JP-04'
+        code: 'JP-04',
       },
       {
         name: 'Akita',
-        code: 'JP-05'
+        code: 'JP-05',
       },
       {
         name: 'Yamagata',
-        code: 'JP-06'
+        code: 'JP-06',
       },
       {
         name: 'Fukushima',
-        code: 'JP-07'
+        code: 'JP-07',
       },
       {
         name: 'Ibaraki',
-        code: 'JP-08'
+        code: 'JP-08',
       },
       {
         name: 'Tochigi',
-        code: 'JP-09'
+        code: 'JP-09',
       },
       {
         name: 'Gunma',
-        code: 'JP-10'
+        code: 'JP-10',
       },
       {
         name: 'Saitama',
-        code: 'JP-11'
+        code: 'JP-11',
       },
       {
         name: 'Chiba',
-        code: 'JP-12'
+        code: 'JP-12',
       },
       {
         name: 'Tokyo',
-        code: 'JP-13'
+        code: 'JP-13',
       },
       {
         name: 'Kanagawa',
-        code: 'JP-14'
+        code: 'JP-14',
       },
       {
         name: 'Niigata',
-        code: 'JP-15'
+        code: 'JP-15',
       },
       {
         name: 'Toyama',
-        code: 'JP-16'
+        code: 'JP-16',
       },
       {
         name: 'Ishikawa',
-        code: 'JP-17'
+        code: 'JP-17',
       },
       {
         name: 'Fukui',
-        code: 'JP-18'
+        code: 'JP-18',
       },
       {
         name: 'Yamanashi',
-        code: 'JP-19'
+        code: 'JP-19',
       },
       {
         name: 'Nagano',
-        code: 'JP-20'
+        code: 'JP-20',
       },
       {
         name: 'Gifu',
-        code: 'JP-21'
+        code: 'JP-21',
       },
       {
         name: 'Shizuoka',
-        code: 'JP-22'
+        code: 'JP-22',
       },
       {
         name: 'Aichi',
-        code: 'JP-23'
+        code: 'JP-23',
       },
       {
         name: 'Mie',
-        code: 'JP-24'
+        code: 'JP-24',
       },
       {
         name: 'Shiga',
-        code: 'JP-25'
+        code: 'JP-25',
       },
       {
         name: 'Kyōto',
-        code: 'JP-26'
+        code: 'JP-26',
       },
       {
         name: 'Ōsaka',
-        code: 'JP-27'
+        code: 'JP-27',
       },
       {
         name: 'Hyōgo',
-        code: 'JP-28'
+        code: 'JP-28',
       },
       {
         name: 'Nara',
-        code: 'JP-29'
+        code: 'JP-29',
       },
       {
         name: 'Wakayama',
-        code: 'JP-30'
+        code: 'JP-30',
       },
       {
         name: 'Tottori',
-        code: 'JP-31'
+        code: 'JP-31',
       },
       {
         name: 'Shimane',
-        code: 'JP-32'
+        code: 'JP-32',
       },
       {
         name: 'Okayama',
-        code: 'JP-33'
+        code: 'JP-33',
       },
       {
         name: 'Hiroshima',
-        code: 'JP-34'
+        code: 'JP-34',
       },
       {
         name: 'Yamaguchi',
-        code: 'JP-35'
+        code: 'JP-35',
       },
       {
         name: 'Tokushima',
-        code: 'JP-36'
+        code: 'JP-36',
       },
       {
         name: 'Kagawa',
-        code: 'JP-37'
+        code: 'JP-37',
       },
       {
         name: 'Ehime',
-        code: 'JP-38'
+        code: 'JP-38',
       },
       {
         name: 'Kōchi',
-        code: 'JP-39'
+        code: 'JP-39',
       },
       {
         name: 'Fukuoka',
-        code: 'JP-40'
+        code: 'JP-40',
       },
       {
         name: 'Saga',
-        code: 'JP-41'
+        code: 'JP-41',
       },
       {
         name: 'Nagasaki',
-        code: 'JP-42'
+        code: 'JP-42',
       },
       {
         name: 'Kumamoto',
-        code: 'JP-43'
+        code: 'JP-43',
       },
       {
         name: 'Ōita',
-        code: 'JP-44'
+        code: 'JP-44',
       },
       {
         name: 'Miyazaki',
-        code: 'JP-45'
+        code: 'JP-45',
       },
       {
         name: 'Kagoshima',
-        code: 'JP-46'
+        code: 'JP-46',
       },
       {
         name: 'Okinawa',
-        code: 'JP-47'
-      }
+        code: 'JP-47',
+      },
     ],
-    fields: [
-      ['postal'],
-      ['countryCode'],
-      ['state', 'city'],
-      ['address1'],
-      ['address2']
-    ]
+    fields: [['postal'], ['countryCode'], ['state', 'city'], ['address1'], ['address2']],
   },
   JE: {
-    name: 'Jersey'
+    name: 'Jersey',
   },
   JO: {
-    name: 'Jordan'
+    name: 'Jordan',
   },
   KZ: {
-    name: 'Kazakhstan'
+    name: 'Kazakhstan',
   },
   KE: {
-    name: 'Kenya'
+    name: 'Kenya',
   },
   KI: {
-    name: 'Kiribati'
+    name: 'Kiribati',
   },
   XK: {
-    name: 'Kosovo'
+    name: 'Kosovo',
   },
   KW: {
-    name: 'Kuwait'
+    name: 'Kuwait',
   },
   KG: {
-    name: 'Kyrgyzstan'
+    name: 'Kyrgyzstan',
   },
   LA: {
     name: 'Laos',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   LV: {
-    name: 'Latvia'
+    name: 'Latvia',
   },
   LB: {
-    name: 'Lebanon'
+    name: 'Lebanon',
   },
   LS: {
-    name: 'Lesotho'
+    name: 'Lesotho',
   },
   LR: {
-    name: 'Liberia'
+    name: 'Liberia',
   },
   LY: {
-    name: 'Libya'
+    name: 'Libya',
   },
   LI: {
-    name: 'Liechtenstein'
+    name: 'Liechtenstein',
   },
   LT: {
-    name: 'Lithuania'
+    name: 'Lithuania',
   },
   LU: {
-    name: 'Luxembourg'
+    name: 'Luxembourg',
   },
   MO: {
-    name: 'Macau SAR China'
+    name: 'Macau SAR China',
   },
   MK: {
-    name: 'Macedonia'
+    name: 'Macedonia',
   },
   MG: {
-    name: 'Madagascar'
+    name: 'Madagascar',
   },
   MW: {
     name: 'Malawi',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   MY: {
     name: 'Malaysia',
     labels: {
       postal: 'Postcode',
-      state: 'State/territory'
+      state: 'State/territory',
     },
     states: [
       {
         name: 'Johor',
-        code: 'JHR'
+        code: 'JHR',
       },
       {
         name: 'Kedah',
-        code: 'KDH'
+        code: 'KDH',
       },
       {
         name: 'Kelantan',
-        code: 'KTN'
+        code: 'KTN',
       },
       {
         name: 'Kuala Lumpur',
-        code: 'KUL'
+        code: 'KUL',
       },
       {
         name: 'Labuan',
-        code: 'LBN'
+        code: 'LBN',
       },
       {
         name: 'Malacca',
-        code: 'MLK'
+        code: 'MLK',
       },
       {
         name: 'Negeri Sembilan',
-        code: 'NSN'
+        code: 'NSN',
       },
       {
         name: 'Pahang',
-        code: 'PHG'
+        code: 'PHG',
       },
       {
         name: 'Perak',
-        code: 'PRK'
+        code: 'PRK',
       },
       {
         name: 'Perlis',
-        code: 'PLS'
+        code: 'PLS',
       },
       {
         name: 'Penang',
-        code: 'PNG'
+        code: 'PNG',
       },
       {
         name: 'Putrajaya',
-        code: 'PJY'
+        code: 'PJY',
       },
       {
         name: 'Sabah',
-        code: 'SBH'
+        code: 'SBH',
       },
       {
         name: 'Sarawak',
-        code: 'SWK'
+        code: 'SWK',
       },
       {
         name: 'Selangor',
-        code: 'SGR'
+        code: 'SGR',
       },
       {
         name: 'Terengganu',
-        code: 'TRG'
-      }
+        code: 'TRG',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   MV: {
-    name: 'Maldives'
+    name: 'Maldives',
   },
   ML: {
     name: 'Mali',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   MT: {
-    name: 'Malta'
+    name: 'Malta',
   },
   MH: {
-    name: 'Marshall Islands'
+    name: 'Marshall Islands',
   },
   MQ: {
-    name: 'Martinique'
+    name: 'Martinique',
   },
   MR: {
-    name: 'Mauritania'
+    name: 'Mauritania',
   },
   MU: {
-    name: 'Mauritius'
+    name: 'Mauritius',
   },
   YT: {
-    name: 'Mayotte'
+    name: 'Mayotte',
   },
   MX: {
     name: 'Mexico',
     labels: {
       postal: 'Postal code',
-      state: 'State'
+      state: 'State',
     },
     states: [
       {
         name: 'Aguascalientes',
-        code: 'AGS'
+        code: 'AGS',
       },
       {
         name: 'Baja California',
-        code: 'BC'
+        code: 'BC',
       },
       {
         name: 'Baja California Sur',
-        code: 'BCS'
+        code: 'BCS',
       },
       {
         name: 'Campeche',
-        code: 'CAMP'
+        code: 'CAMP',
       },
       {
         name: 'Chiapas',
-        code: 'CHIS'
+        code: 'CHIS',
       },
       {
         name: 'Chihuahua',
-        code: 'CHIH'
+        code: 'CHIH',
       },
       {
         name: 'Ciudad de Mexico',
-        code: 'DF'
+        code: 'DF',
       },
       {
         name: 'Coahuila',
-        code: 'COAH'
+        code: 'COAH',
       },
       {
         name: 'Colima',
-        code: 'COL'
+        code: 'COL',
       },
       {
         name: 'Durango',
-        code: 'DGO'
+        code: 'DGO',
       },
       {
         name: 'Guanajuato',
-        code: 'GTO'
+        code: 'GTO',
       },
       {
         name: 'Guerrero',
-        code: 'GRO'
+        code: 'GRO',
       },
       {
         name: 'Hidalgo',
-        code: 'HGO'
+        code: 'HGO',
       },
       {
         name: 'Jalisco',
-        code: 'JAL'
+        code: 'JAL',
       },
       {
         name: 'Mexico State',
-        code: 'MEX'
+        code: 'MEX',
       },
       {
         name: 'Michoacán',
-        code: 'MICH'
+        code: 'MICH',
       },
       {
         name: 'Morelos',
-        code: 'MOR'
+        code: 'MOR',
       },
       {
         name: 'Nayarit',
-        code: 'NAY'
+        code: 'NAY',
       },
       {
         name: 'Nuevo León',
-        code: 'NL'
+        code: 'NL',
       },
       {
         name: 'Oaxaca',
-        code: 'OAX'
+        code: 'OAX',
       },
       {
         name: 'Puebla',
-        code: 'PUE'
+        code: 'PUE',
       },
       {
         name: 'Querétaro',
-        code: 'QRO'
+        code: 'QRO',
       },
       {
         name: 'Quintana Roo',
-        code: 'Q ROO'
+        code: 'Q ROO',
       },
       {
         name: 'San Luis Potosí',
-        code: 'SLP'
+        code: 'SLP',
       },
       {
         name: 'Sinaloa',
-        code: 'SIN'
+        code: 'SIN',
       },
       {
         name: 'Sonora',
-        code: 'SON'
+        code: 'SON',
       },
       {
         name: 'Tabasco',
-        code: 'TAB'
+        code: 'TAB',
       },
       {
         name: 'Tamaulipas',
-        code: 'TAMPS'
+        code: 'TAMPS',
       },
       {
         name: 'Tlaxcala',
-        code: 'TLAX'
+        code: 'TLAX',
       },
       {
         name: 'Veracruz',
-        code: 'VER'
+        code: 'VER',
       },
       {
         name: 'Yucatán',
-        code: 'YUC'
+        code: 'YUC',
       },
       {
         name: 'Zacatecas',
-        code: 'ZAC'
-      }
+        code: 'ZAC',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   FM: {
-    name: 'Micronesia'
+    name: 'Micronesia',
   },
   MD: {
     name: 'Moldova',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   MC: {
-    name: 'Monaco'
+    name: 'Monaco',
   },
   MN: {
     name: 'Mongolia',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   ME: {
-    name: 'Montenegro'
+    name: 'Montenegro',
   },
   MS: {
-    name: 'Montserrat'
+    name: 'Montserrat',
   },
   MA: {
-    name: 'Morocco'
+    name: 'Morocco',
   },
   MZ: {
-    name: 'Mozambique'
+    name: 'Mozambique',
   },
   MM: {
-    name: 'Myanmar (Burma)'
+    name: 'Myanmar (Burma)',
   },
   NA: {
-    name: 'Namibia'
+    name: 'Namibia',
   },
   NR: {
-    name: 'Nauru'
+    name: 'Nauru',
   },
   NP: {
-    name: 'Nepal'
+    name: 'Nepal',
   },
   NL: {
-    name: 'Netherlands'
+    name: 'Netherlands',
   },
   AN: {
-    name: 'Netherlands Antilles'
+    name: 'Netherlands Antilles',
   },
   NC: {
-    name: 'New Caledonia'
+    name: 'New Caledonia',
   },
   NZ: {
     name: 'New Zealand',
     states: [
       {
         name: 'Auckland',
-        code: 'AUK'
+        code: 'AUK',
       },
       {
         name: 'Bay of Plenty',
-        code: 'BOP'
+        code: 'BOP',
       },
       {
         name: 'Canterbury',
-        code: 'CAN'
+        code: 'CAN',
       },
       {
         name: 'Gisborne',
-        code: 'GIS'
+        code: 'GIS',
       },
       {
         name: 'Hawke’s Bay',
-        code: 'HKB'
+        code: 'HKB',
       },
       {
         name: 'Manawatu-Wanganui',
-        code: 'MWT'
+        code: 'MWT',
       },
       {
         name: 'Marlborough',
-        code: 'MBH'
+        code: 'MBH',
       },
       {
         name: 'Nelson',
-        code: 'NSN'
+        code: 'NSN',
       },
       {
         name: 'Northland',
-        code: 'NTL'
+        code: 'NTL',
       },
       {
         name: 'Otago',
-        code: 'OTA'
+        code: 'OTA',
       },
       {
         name: 'Southland',
-        code: 'STL'
+        code: 'STL',
       },
       {
         name: 'Taranaki',
-        code: 'TKI'
+        code: 'TKI',
       },
       {
         name: 'Tasman',
-        code: 'TAS'
+        code: 'TAS',
       },
       {
         name: 'Waikato',
-        code: 'WKO'
+        code: 'WKO',
       },
       {
         name: 'Wellington',
-        code: 'WGN'
+        code: 'WGN',
       },
       {
         name: 'West Coast',
-        code: 'WTC'
-      }
+        code: 'WTC',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   NI: {
-    name: 'Nicaragua'
+    name: 'Nicaragua',
   },
   NE: {
-    name: 'Niger'
+    name: 'Niger',
   },
   NG: {
     name: 'Nigeria',
     labels: {
       postal: 'Postal code',
-      state: 'State'
+      state: 'State',
     },
     states: [
       {
         name: 'Abia',
-        code: 'AB'
+        code: 'AB',
       },
       {
         name: 'Federal Capital Territory',
-        code: 'FC'
+        code: 'FC',
       },
       {
         name: 'Adamawa',
-        code: 'AD'
+        code: 'AD',
       },
       {
         name: 'Akwa Ibom',
-        code: 'AK'
+        code: 'AK',
       },
       {
         name: 'Anambra',
-        code: 'AN'
+        code: 'AN',
       },
       {
         name: 'Bauchi',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Bayelsa',
-        code: 'BY'
+        code: 'BY',
       },
       {
         name: 'Benue',
-        code: 'BE'
+        code: 'BE',
       },
       {
         name: 'Borno',
-        code: 'BO'
+        code: 'BO',
       },
       {
         name: 'Cross River',
-        code: 'CR'
+        code: 'CR',
       },
       {
         name: 'Delta',
-        code: 'DE'
+        code: 'DE',
       },
       {
         name: 'Ebonyi',
-        code: 'EB'
+        code: 'EB',
       },
       {
         name: 'Edo',
-        code: 'ED'
+        code: 'ED',
       },
       {
         name: 'Ekiti',
-        code: 'EK'
+        code: 'EK',
       },
       {
         name: 'Enugu',
-        code: 'EN'
+        code: 'EN',
       },
       {
         name: 'Gombe',
-        code: 'GO'
+        code: 'GO',
       },
       {
         name: 'Imo',
-        code: 'IM'
+        code: 'IM',
       },
       {
         name: 'Jigawa',
-        code: 'JI'
+        code: 'JI',
       },
       {
         name: 'Kaduna',
-        code: 'KD'
+        code: 'KD',
       },
       {
         name: 'Kano',
-        code: 'KN'
+        code: 'KN',
       },
       {
         name: 'Katsina',
-        code: 'KT'
+        code: 'KT',
       },
       {
         name: 'Kebbi',
-        code: 'KE'
+        code: 'KE',
       },
       {
         name: 'Kogi',
-        code: 'KO'
+        code: 'KO',
       },
       {
         name: 'Kwara',
-        code: 'KW'
+        code: 'KW',
       },
       {
         name: 'Lagos',
-        code: 'LA'
+        code: 'LA',
       },
       {
         name: 'Nasarawa',
-        code: 'NA'
+        code: 'NA',
       },
       {
         name: 'Niger',
-        code: 'NI'
+        code: 'NI',
       },
       {
         name: 'Ogun',
-        code: 'OG'
+        code: 'OG',
       },
       {
         name: 'Ondo',
-        code: 'ON'
+        code: 'ON',
       },
       {
         name: 'Osun',
-        code: 'OS'
+        code: 'OS',
       },
       {
         name: 'Oyo',
-        code: 'OY'
+        code: 'OY',
       },
       {
         name: 'Plateau',
-        code: 'PL'
+        code: 'PL',
       },
       {
         name: 'Rivers',
-        code: 'RI'
+        code: 'RI',
       },
       {
         name: 'Sokoto',
-        code: 'SO'
+        code: 'SO',
       },
       {
         name: 'Taraba',
-        code: 'TA'
+        code: 'TA',
       },
       {
         name: 'Yobe',
-        code: 'YO'
+        code: 'YO',
       },
       {
         name: 'Zamfara',
-        code: 'ZA'
-      }
+        code: 'ZA',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   NU: {
-    name: 'Niue'
+    name: 'Niue',
   },
   NF: {
-    name: 'Norfolk Island'
+    name: 'Norfolk Island',
   },
   KP: {
-    name: 'North Korea'
+    name: 'North Korea',
   },
   MP: {
-    name: 'Northern Mariana Islands'
+    name: 'Northern Mariana Islands',
   },
   NO: {
-    name: 'Norway'
+    name: 'Norway',
   },
   OM: {
-    name: 'Oman'
+    name: 'Oman',
   },
   PK: {
-    name: 'Pakistan'
+    name: 'Pakistan',
   },
   PW: {
-    name: 'Palau'
+    name: 'Palau',
   },
   PS: {
-    name: 'Palestinian Territories'
+    name: 'Palestinian Territories',
   },
   PA: {
     name: 'Panama',
     states: [
       {
         name: 'Bocas del Toro',
-        code: 'PA-1'
+        code: 'PA-1',
       },
       {
         name: 'Chiriquí',
-        code: 'PA-4'
+        code: 'PA-4',
       },
       {
         name: 'Coclé',
-        code: 'PA-2'
+        code: 'PA-2',
       },
       {
         name: 'Colón',
-        code: 'PA-3'
+        code: 'PA-3',
       },
       {
         name: 'Darién',
-        code: 'PA-5'
+        code: 'PA-5',
       },
       {
         name: 'Emberá',
-        code: 'PA-EM'
+        code: 'PA-EM',
       },
       {
         name: 'Herrera',
-        code: 'PA-6'
+        code: 'PA-6',
       },
       {
         name: 'Guna Yala',
-        code: 'PA-KY'
+        code: 'PA-KY',
       },
       {
         name: 'Los Santos',
-        code: 'PA-7'
+        code: 'PA-7',
       },
       {
         name: 'Ngöbe-Buglé',
-        code: 'PA-NB'
+        code: 'PA-NB',
       },
       {
         name: 'Panamá',
-        code: 'PA-8'
+        code: 'PA-8',
       },
       {
         name: 'West Panamá',
-        code: 'PA-10'
+        code: 'PA-10',
       },
       {
         name: 'Veraguas',
-        code: 'PA-9'
-      }
+        code: 'PA-9',
+      },
     ],
-    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']],
   },
   PG: {
-    name: 'Papua New Guinea'
+    name: 'Papua New Guinea',
   },
   PY: {
     name: 'Paraguay',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   PE: {
     name: 'Peru',
     states: [
       {
         name: 'Amazonas',
-        code: 'PE-AMA'
+        code: 'PE-AMA',
       },
       {
         name: 'Ancash',
-        code: 'PE-ANC'
+        code: 'PE-ANC',
       },
       {
         name: 'Apurímac',
-        code: 'PE-APU'
+        code: 'PE-APU',
       },
       {
         name: 'Arequipa',
-        code: 'PE-ARE'
+        code: 'PE-ARE',
       },
       {
         name: 'Ayacucho',
-        code: 'PE-AYA'
+        code: 'PE-AYA',
       },
       {
         name: 'Cajamarca',
-        code: 'PE-CAJ'
+        code: 'PE-CAJ',
       },
       {
         name: 'El Callao',
-        code: 'PE-CAL'
+        code: 'PE-CAL',
       },
       {
         name: 'Cusco',
-        code: 'PE-CUS'
+        code: 'PE-CUS',
       },
       {
         name: 'Huancavelica',
-        code: 'PE-HUV'
+        code: 'PE-HUV',
       },
       {
         name: 'Huánuco',
-        code: 'PE-HUC'
+        code: 'PE-HUC',
       },
       {
         name: 'Ica',
-        code: 'PE-ICA'
+        code: 'PE-ICA',
       },
       {
         name: 'Junín',
-        code: 'PE-JUN'
+        code: 'PE-JUN',
       },
       {
         name: 'La Libertad',
-        code: 'PE-LAL'
+        code: 'PE-LAL',
       },
       {
         name: 'Lambayeque',
-        code: 'PE-LAM'
+        code: 'PE-LAM',
       },
       {
         name: 'Lima Region',
-        code: 'PE-LIM'
+        code: 'PE-LIM',
       },
       {
         name: 'Lima',
-        code: 'PE-LMA'
+        code: 'PE-LMA',
       },
       {
         name: 'Loreto',
-        code: 'PE-LOR'
+        code: 'PE-LOR',
       },
       {
         name: 'Madre de Dios',
-        code: 'PE-MDD'
+        code: 'PE-MDD',
       },
       {
         name: 'Moquegua',
-        code: 'PE-MOQ'
+        code: 'PE-MOQ',
       },
       {
         name: 'Pasco',
-        code: 'PE-PAS'
+        code: 'PE-PAS',
       },
       {
         name: 'Piura',
-        code: 'PE-PIU'
+        code: 'PE-PIU',
       },
       {
         name: 'Puno',
-        code: 'PE-PUN'
+        code: 'PE-PUN',
       },
       {
         name: 'San Martín',
-        code: 'PE-SAM'
+        code: 'PE-SAM',
       },
       {
         name: 'Tacna',
-        code: 'PE-TAC'
+        code: 'PE-TAC',
       },
       {
         name: 'Tumbes',
-        code: 'PE-TUM'
+        code: 'PE-TUM',
       },
       {
         name: 'Ucayali',
-        code: 'PE-UCA'
-      }
+        code: 'PE-UCA',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   PH: {
-    name: 'Philippines'
+    name: 'Philippines',
   },
   PN: {
-    name: 'Pitcairn Islands'
+    name: 'Pitcairn Islands',
   },
   PL: {
-    name: 'Poland'
+    name: 'Poland',
   },
   PT: {
     name: 'Portugal',
     states: [
       {
         name: 'Azores',
-        code: 'PT-20'
+        code: 'PT-20',
       },
       {
         name: 'Aveiro',
-        code: 'PT-01'
+        code: 'PT-01',
       },
       {
         name: 'Beja',
-        code: 'PT-02'
+        code: 'PT-02',
       },
       {
         name: 'Braga',
-        code: 'PT-03'
+        code: 'PT-03',
       },
       {
         name: 'Bragança',
-        code: 'PT-04'
+        code: 'PT-04',
       },
       {
         name: 'Castelo Branco',
-        code: 'PT-05'
+        code: 'PT-05',
       },
       {
         name: 'Coimbra',
-        code: 'PT-06'
+        code: 'PT-06',
       },
       {
         name: 'Évora',
-        code: 'PT-07'
+        code: 'PT-07',
       },
       {
         name: 'Faro',
-        code: 'PT-08'
+        code: 'PT-08',
       },
       {
         name: 'Guarda',
-        code: 'PT-09'
+        code: 'PT-09',
       },
       {
         name: 'Leiria',
-        code: 'PT-10'
+        code: 'PT-10',
       },
       {
         name: 'Lisbon',
-        code: 'PT-11'
+        code: 'PT-11',
       },
       {
         name: 'Madeira',
-        code: 'PT-30'
+        code: 'PT-30',
       },
       {
         name: 'Portalegre',
-        code: 'PT-12'
+        code: 'PT-12',
       },
       {
         name: 'Porto',
-        code: 'PT-13'
+        code: 'PT-13',
       },
       {
         name: 'Santarém',
-        code: 'PT-14'
+        code: 'PT-14',
       },
       {
         name: 'Setúbal',
-        code: 'PT-15'
+        code: 'PT-15',
       },
       {
         name: 'Viana do Castelo',
-        code: 'PT-16'
+        code: 'PT-16',
       },
       {
         name: 'Vila Real',
-        code: 'PT-17'
+        code: 'PT-17',
       },
       {
         name: 'Viseu',
-        code: 'PT-18'
-      }
+        code: 'PT-18',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   PR: {
-    name: 'Puerto Rico'
+    name: 'Puerto Rico',
   },
   QA: {
     name: 'Qatar',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   RE: {
-    name: 'Réunion'
+    name: 'Réunion',
   },
   RO: {
     name: 'Romania',
     labels: {
       postal: 'Postal code',
-      state: 'County'
+      state: 'County',
     },
     states: [
       {
         name: 'Alba',
-        code: 'AB'
+        code: 'AB',
       },
       {
         name: 'Arad',
-        code: 'AR'
+        code: 'AR',
       },
       {
         name: 'Argeș',
-        code: 'AG'
+        code: 'AG',
       },
       {
         name: 'Bacău',
-        code: 'BC'
+        code: 'BC',
       },
       {
         name: 'Bihor',
-        code: 'BH'
+        code: 'BH',
       },
       {
         name: 'Bistriţa-Năsăud',
-        code: 'BN'
+        code: 'BN',
       },
       {
         name: 'Botoşani',
-        code: 'BT'
+        code: 'BT',
       },
       {
         name: 'Brăila',
-        code: 'BR'
+        code: 'BR',
       },
       {
         name: 'Braşov',
-        code: 'BV'
+        code: 'BV',
       },
       {
         name: 'Bucharest',
-        code: 'B'
+        code: 'B',
       },
       {
         name: 'Buzău',
-        code: 'BZ'
+        code: 'BZ',
       },
       {
         name: 'Caraș-Severin',
-        code: 'CS'
+        code: 'CS',
       },
       {
         name: 'Cluj',
-        code: 'CJ'
+        code: 'CJ',
       },
       {
         name: 'Constanța',
-        code: 'CT'
+        code: 'CT',
       },
       {
         name: 'Covasna',
-        code: 'CV'
+        code: 'CV',
       },
       {
         name: 'Călărași',
-        code: 'CL'
+        code: 'CL',
       },
       {
         name: 'Dolj',
-        code: 'DJ'
+        code: 'DJ',
       },
       {
         name: 'Dâmbovița',
-        code: 'DB'
+        code: 'DB',
       },
       {
         name: 'Galați',
-        code: 'GL'
+        code: 'GL',
       },
       {
         name: 'Giurgiu',
-        code: 'GR'
+        code: 'GR',
       },
       {
         name: 'Gorj',
-        code: 'GJ'
+        code: 'GJ',
       },
       {
         name: 'Harghita',
-        code: 'HR'
+        code: 'HR',
       },
       {
         name: 'Hunedoara',
-        code: 'HD'
+        code: 'HD',
       },
       {
         name: 'Ialomița',
-        code: 'IL'
+        code: 'IL',
       },
       {
         name: 'Iași',
-        code: 'IS'
+        code: 'IS',
       },
       {
         name: 'Ilfov',
-        code: 'IF'
+        code: 'IF',
       },
       {
         name: 'Maramureş',
-        code: 'MM'
+        code: 'MM',
       },
       {
         name: 'Mehedinți',
-        code: 'MH'
+        code: 'MH',
       },
       {
         name: 'Mureş',
-        code: 'MS'
+        code: 'MS',
       },
       {
         name: 'Neamţ',
-        code: 'NT'
+        code: 'NT',
       },
       {
         name: 'Olt',
-        code: 'OT'
+        code: 'OT',
       },
       {
         name: 'Prahova',
-        code: 'PH'
+        code: 'PH',
       },
       {
         name: 'Sălaj',
-        code: 'SJ'
+        code: 'SJ',
       },
       {
         name: 'Satu Mare',
-        code: 'SM'
+        code: 'SM',
       },
       {
         name: 'Sibiu',
-        code: 'SB'
+        code: 'SB',
       },
       {
         name: 'Suceava',
-        code: 'SV'
+        code: 'SV',
       },
       {
         name: 'Teleorman',
-        code: 'TR'
+        code: 'TR',
       },
       {
         name: 'Timiș',
-        code: 'TM'
+        code: 'TM',
       },
       {
         name: 'Tulcea',
-        code: 'TL'
+        code: 'TL',
       },
       {
         name: 'Vâlcea',
-        code: 'VL'
+        code: 'VL',
       },
       {
         name: 'Vaslui',
-        code: 'VS'
+        code: 'VS',
       },
       {
         name: 'Vrancea',
-        code: 'VN'
-      }
+        code: 'VN',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   RU: {
     name: 'Russia',
     states: [
       {
         name: 'Altai Krai',
-        code: 'ALT'
+        code: 'ALT',
       },
       {
         name: 'Altai',
-        code: 'AL'
+        code: 'AL',
       },
       {
         name: 'Amur',
-        code: 'AMU'
+        code: 'AMU',
       },
       {
         name: 'Arkhangelsk',
-        code: 'ARK'
+        code: 'ARK',
       },
       {
         name: 'Astrakhan',
-        code: 'AST'
+        code: 'AST',
       },
       {
         name: 'Belgorod',
-        code: 'BEL'
+        code: 'BEL',
       },
       {
         name: 'Bryansk',
-        code: 'BRY'
+        code: 'BRY',
       },
       {
         name: 'Chechen',
-        code: 'CE'
+        code: 'CE',
       },
       {
         name: 'Chelyabinsk',
-        code: 'CHE'
+        code: 'CHE',
       },
       {
         name: 'Chukotka Okrug',
-        code: 'CHU'
+        code: 'CHU',
       },
       {
         name: 'Chuvash',
-        code: 'CU'
+        code: 'CU',
       },
       {
         name: 'Irkutsk',
-        code: 'IRK'
+        code: 'IRK',
       },
       {
         name: 'Ivanovo',
-        code: 'IVA'
+        code: 'IVA',
       },
       {
         name: 'Jewish',
-        code: 'YEV'
+        code: 'YEV',
       },
       {
         name: 'Kabardino-Balkar',
-        code: 'KB'
+        code: 'KB',
       },
       {
         name: 'Kaliningrad',
-        code: 'KGD'
+        code: 'KGD',
       },
       {
         name: 'Kaluga',
-        code: 'KLU'
+        code: 'KLU',
       },
       {
         name: 'Kamchatka Krai',
-        code: 'KAM'
+        code: 'KAM',
       },
       {
         name: 'Karachay-Cherkess',
-        code: 'KC'
+        code: 'KC',
       },
       {
         name: 'Kemerovo',
-        code: 'KEM'
+        code: 'KEM',
       },
       {
         name: 'Khabarovsk Krai',
-        code: 'KHA'
+        code: 'KHA',
       },
       {
         name: 'Khanty-Mansi',
-        code: 'KHM'
+        code: 'KHM',
       },
       {
         name: 'Kirov',
-        code: 'KIR'
+        code: 'KIR',
       },
       {
         name: 'Komi',
-        code: 'KO'
+        code: 'KO',
       },
       {
         name: 'Kostroma',
-        code: 'KOS'
+        code: 'KOS',
       },
       {
         name: 'Krasnodar Krai',
-        code: 'KDA'
+        code: 'KDA',
       },
       {
         name: 'Krasnoyarsk Krai',
-        code: 'KYA'
+        code: 'KYA',
       },
       {
         name: 'Kurgan',
-        code: 'KGN'
+        code: 'KGN',
       },
       {
         name: 'Kursk',
-        code: 'KRS'
+        code: 'KRS',
       },
       {
         name: 'Leningrad',
-        code: 'LEN'
+        code: 'LEN',
       },
       {
         name: 'Lipetsk',
-        code: 'LIP'
+        code: 'LIP',
       },
       {
         name: 'Magadan',
-        code: 'MAG'
+        code: 'MAG',
       },
       {
         name: 'Mari El',
-        code: 'ME'
+        code: 'ME',
       },
       {
         name: 'Moscow',
-        code: 'MOW'
+        code: 'MOW',
       },
       {
         name: 'Moscow Province',
-        code: 'MOS'
+        code: 'MOS',
       },
       {
         name: 'Murmansk',
-        code: 'MUR'
+        code: 'MUR',
       },
       {
         name: 'Nizhny Novgorod',
-        code: 'NIZ'
+        code: 'NIZ',
       },
       {
         name: 'Novgorod',
-        code: 'NGR'
+        code: 'NGR',
       },
       {
         name: 'Novosibirsk',
-        code: 'NVS'
+        code: 'NVS',
       },
       {
         name: 'Omsk',
-        code: 'OMS'
+        code: 'OMS',
       },
       {
         name: 'Orenburg',
-        code: 'ORE'
+        code: 'ORE',
       },
       {
         name: 'Oryol',
-        code: 'ORL'
+        code: 'ORL',
       },
       {
         name: 'Penza',
-        code: 'PNZ'
+        code: 'PNZ',
       },
       {
         name: 'Perm Krai',
-        code: 'PER'
+        code: 'PER',
       },
       {
         name: 'Primorsky Krai',
-        code: 'PRI'
+        code: 'PRI',
       },
       {
         name: 'Pskov',
-        code: 'PSK'
+        code: 'PSK',
       },
       {
         name: 'Adygea',
-        code: 'AD'
+        code: 'AD',
       },
       {
         name: 'Bashkortostan',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Buryat',
-        code: 'BU'
+        code: 'BU',
       },
       {
         name: 'Dagestan',
-        code: 'DA'
+        code: 'DA',
       },
       {
         name: 'Ingushetia',
-        code: 'IN'
+        code: 'IN',
       },
       {
         name: 'Kalmykia',
-        code: 'KL'
+        code: 'KL',
       },
       {
         name: 'Karelia',
-        code: 'KR'
+        code: 'KR',
       },
       {
         name: 'Khakassia',
-        code: 'KK'
+        code: 'KK',
       },
       {
         name: 'Mordovia',
-        code: 'MO'
+        code: 'MO',
       },
       {
         name: 'North Ossetia-Alania',
-        code: 'SE'
+        code: 'SE',
       },
       {
         name: 'Tatarstan',
-        code: 'TA'
+        code: 'TA',
       },
       {
         name: 'Rostov',
-        code: 'ROS'
+        code: 'ROS',
       },
       {
         name: 'Ryazan',
-        code: 'RYA'
+        code: 'RYA',
       },
       {
         name: 'Saint Petersburg',
-        code: 'SPE'
+        code: 'SPE',
       },
       {
         name: 'Sakha',
-        code: 'SA'
+        code: 'SA',
       },
       {
         name: 'Sakhalin',
-        code: 'SAK'
+        code: 'SAK',
       },
       {
         name: 'Samara',
-        code: 'SAM'
+        code: 'SAM',
       },
       {
         name: 'Saratov',
-        code: 'SAR'
+        code: 'SAR',
       },
       {
         name: 'Smolensk',
-        code: 'SMO'
+        code: 'SMO',
       },
       {
         name: 'Stavropol Krai',
-        code: 'STA'
+        code: 'STA',
       },
       {
         name: 'Sverdlovsk',
-        code: 'SVE'
+        code: 'SVE',
       },
       {
         name: 'Tambov',
-        code: 'TAM'
+        code: 'TAM',
       },
       {
         name: 'Tomsk',
-        code: 'TOM'
+        code: 'TOM',
       },
       {
         name: 'Tula',
-        code: 'TUL'
+        code: 'TUL',
       },
       {
         name: 'Tver',
-        code: 'TVE'
+        code: 'TVE',
       },
       {
         name: 'Tyumen',
-        code: 'TYU'
+        code: 'TYU',
       },
       {
         name: 'Tuva',
-        code: 'TY'
+        code: 'TY',
       },
       {
         name: 'Udmurt',
-        code: 'UD'
+        code: 'UD',
       },
       {
         name: 'Ulyanovsk',
-        code: 'ULY'
+        code: 'ULY',
       },
       {
         name: 'Vladimir',
-        code: 'VLA'
+        code: 'VLA',
       },
       {
         name: 'Volgograd',
-        code: 'VGG'
+        code: 'VGG',
       },
       {
         name: 'Vologda',
-        code: 'VLG'
+        code: 'VLG',
       },
       {
         name: 'Voronezh',
-        code: 'VOR'
+        code: 'VOR',
       },
       {
         name: 'Yamalo-Nenets Okrug',
-        code: 'YAN'
+        code: 'YAN',
       },
       {
         name: 'Yaroslavl',
-        code: 'YAR'
+        code: 'YAR',
       },
       {
         name: 'Zabaykalsky Krai',
-        code: 'ZAB'
-      }
+        code: 'ZAB',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   RW: {
-    name: 'Rwanda'
+    name: 'Rwanda',
   },
   WS: {
-    name: 'Samoa'
+    name: 'Samoa',
   },
   SM: {
-    name: 'San Marino'
+    name: 'San Marino',
   },
   ST: {
-    name: 'São Tomé & Príncipe'
+    name: 'São Tomé & Príncipe',
   },
   SA: {
-    name: 'Saudi Arabia'
+    name: 'Saudi Arabia',
   },
   SN: {
-    name: 'Senegal'
+    name: 'Senegal',
   },
   RS: {
-    name: 'Serbia'
+    name: 'Serbia',
   },
   SC: {
-    name: 'Seychelles'
+    name: 'Seychelles',
   },
   SL: {
-    name: 'Sierra Leone'
+    name: 'Sierra Leone',
   },
   SG: {
-    name: 'Singapore'
+    name: 'Singapore',
   },
   SX: {
-    name: 'Sint Maarten'
+    name: 'Sint Maarten',
   },
   SK: {
-    name: 'Slovakia'
+    name: 'Slovakia',
   },
   SI: {
-    name: 'Slovenia'
+    name: 'Slovenia',
   },
   SB: {
-    name: 'Solomon Islands'
+    name: 'Solomon Islands',
   },
   SO: {
-    name: 'Somalia'
+    name: 'Somalia',
   },
   ZA: {
     name: 'South Africa',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Eastern Cape',
-        code: 'EC'
+        code: 'EC',
       },
       {
         name: 'Free',
-        code: 'FS'
+        code: 'FS',
       },
       {
         name: 'Gauteng',
-        code: 'GT'
+        code: 'GT',
       },
       {
         name: 'KwaZulu-Natal',
-        code: 'NL'
+        code: 'NL',
       },
       {
         name: 'Limpopo',
-        code: 'LP'
+        code: 'LP',
       },
       {
         name: 'Mpumalanga',
-        code: 'MP'
+        code: 'MP',
       },
       {
         name: 'North West',
-        code: 'NW'
+        code: 'NW',
       },
       {
         name: 'Northern Cape',
-        code: 'NC'
+        code: 'NC',
       },
       {
         name: 'Western Cape',
-        code: 'WC'
-      }
+        code: 'WC',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   GS: {
-    name: 'South Georgia & South Sandwich Islands'
+    name: 'South Georgia & South Sandwich Islands',
   },
   KR: {
     name: 'South Korea',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Busan',
-        code: 'KR-26'
+        code: 'KR-26',
       },
       {
         name: 'North Chungcheong',
-        code: 'KR-43'
+        code: 'KR-43',
       },
       {
         name: 'South Chungcheong',
-        code: 'KR-44'
+        code: 'KR-44',
       },
       {
         name: 'Daegu',
-        code: 'KR-27'
+        code: 'KR-27',
       },
       {
         name: 'Daejeon',
-        code: 'KR-30'
+        code: 'KR-30',
       },
       {
         name: 'Gangwon',
-        code: 'KR-42'
+        code: 'KR-42',
       },
       {
         name: 'Gwangju City',
-        code: 'KR-29'
+        code: 'KR-29',
       },
       {
         name: 'North Gyeongsang',
-        code: 'KR-47'
+        code: 'KR-47',
       },
       {
         name: 'Gyeonggi',
-        code: 'KR-41'
+        code: 'KR-41',
       },
       {
         name: 'South Gyeongsang',
-        code: 'KR-48'
+        code: 'KR-48',
       },
       {
         name: 'Incheon',
-        code: 'KR-28'
+        code: 'KR-28',
       },
       {
         name: 'Jeju',
-        code: 'KR-49'
+        code: 'KR-49',
       },
       {
         name: 'North Jeolla',
-        code: 'KR-45'
+        code: 'KR-45',
       },
       {
         name: 'South Jeolla',
-        code: 'KR-46'
+        code: 'KR-46',
       },
       {
         name: 'Sejong',
-        code: 'KR-50'
+        code: 'KR-50',
       },
       {
         name: 'Seoul',
-        code: 'KR-11'
+        code: 'KR-11',
       },
       {
         name: 'Ulsan',
-        code: 'KR-31'
-      }
+        code: 'KR-31',
+      },
     ],
-    fields: [
-      ['postal'],
-      ['countryCode'],
-      ['state', 'city'],
-      ['address1'],
-      ['address2']
-    ]
+    fields: [['postal'], ['countryCode'], ['state', 'city'], ['address1'], ['address2']],
   },
   SS: {
     name: 'South Sudan',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   ES: {
     name: 'Spain',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'A Coruña',
-        code: 'C'
+        code: 'C',
       },
       {
         name: 'Álava',
-        code: 'VI'
+        code: 'VI',
       },
       {
         name: 'Albacete',
-        code: 'AB'
+        code: 'AB',
       },
       {
         name: 'Alicante',
-        code: 'A'
+        code: 'A',
       },
       {
         name: 'Almería',
-        code: 'AL'
+        code: 'AL',
       },
       {
         name: 'Asturias Province',
-        code: 'O'
+        code: 'O',
       },
       {
         name: 'Ávila',
-        code: 'AV'
+        code: 'AV',
       },
       {
         name: 'Badajoz',
-        code: 'BA'
+        code: 'BA',
       },
       {
         name: 'Balears Province',
-        code: 'PM'
+        code: 'PM',
       },
       {
         name: 'Barcelona',
-        code: 'B'
+        code: 'B',
       },
       {
         name: 'Burgos',
-        code: 'BU'
+        code: 'BU',
       },
       {
         name: 'Cáceres',
-        code: 'CC'
+        code: 'CC',
       },
       {
         name: 'Cádiz',
-        code: 'CA'
+        code: 'CA',
       },
       {
         name: 'Cantabria Province',
-        code: 'S'
+        code: 'S',
       },
       {
         name: 'Castellón',
-        code: 'CS'
+        code: 'CS',
       },
       {
         name: 'Ceuta',
-        code: 'CE'
+        code: 'CE',
       },
       {
         name: 'Ciudad Real',
-        code: 'CR'
+        code: 'CR',
       },
       {
         name: 'Córdoba',
-        code: 'CO'
+        code: 'CO',
       },
       {
         name: 'Cuenca',
-        code: 'CU'
+        code: 'CU',
       },
       {
         name: 'Girona',
-        code: 'GI'
+        code: 'GI',
       },
       {
         name: 'Granada',
-        code: 'GR'
+        code: 'GR',
       },
       {
         name: 'Guadalajara',
-        code: 'GU'
+        code: 'GU',
       },
       {
         name: 'Gipuzkoa',
-        code: 'SS'
+        code: 'SS',
       },
       {
         name: 'Huelva',
-        code: 'H'
+        code: 'H',
       },
       {
         name: 'Huesca',
-        code: 'HU'
+        code: 'HU',
       },
       {
         name: 'Jaén',
-        code: 'J'
+        code: 'J',
       },
       {
         name: 'La Rioja Province',
-        code: 'LO'
+        code: 'LO',
       },
       {
         name: 'Las Palmas',
-        code: 'GC'
+        code: 'GC',
       },
       {
         name: 'León',
-        code: 'LE'
+        code: 'LE',
       },
       {
         name: 'Lleida',
-        code: 'L'
+        code: 'L',
       },
       {
         name: 'Lugo',
-        code: 'LU'
+        code: 'LU',
       },
       {
         name: 'Madrid Province',
-        code: 'M'
+        code: 'M',
       },
       {
         name: 'Málaga',
-        code: 'MA'
+        code: 'MA',
       },
       {
         name: 'Melilla',
-        code: 'ML'
+        code: 'ML',
       },
       {
         name: 'Murcia',
-        code: 'MU'
+        code: 'MU',
       },
       {
         name: 'Navarra',
-        code: 'NA'
+        code: 'NA',
       },
       {
         name: 'Ourense',
-        code: 'OR'
+        code: 'OR',
       },
       {
         name: 'Palencia',
-        code: 'P'
+        code: 'P',
       },
       {
         name: 'Pontevedra',
-        code: 'PO'
+        code: 'PO',
       },
       {
         name: 'Salamanca',
-        code: 'SA'
+        code: 'SA',
       },
       {
         name: 'Santa Cruz de Tenerife',
-        code: 'TF'
+        code: 'TF',
       },
       {
         name: 'Segovia',
-        code: 'SG'
+        code: 'SG',
       },
       {
         name: 'Seville',
-        code: 'SE'
+        code: 'SE',
       },
       {
         name: 'Soria',
-        code: 'SO'
+        code: 'SO',
       },
       {
         name: 'Tarragona',
-        code: 'T'
+        code: 'T',
       },
       {
         name: 'Teruel',
-        code: 'TE'
+        code: 'TE',
       },
       {
         name: 'Toledo',
-        code: 'TO'
+        code: 'TO',
       },
       {
         name: 'Valencia',
-        code: 'V'
+        code: 'V',
       },
       {
         name: 'Valladolid',
-        code: 'VA'
+        code: 'VA',
       },
       {
         name: 'Biscay',
-        code: 'BI'
+        code: 'BI',
       },
       {
         name: 'Zamora',
-        code: 'ZA'
+        code: 'ZA',
       },
       {
         name: 'Zaragoza',
-        code: 'Z'
-      }
+        code: 'Z',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   LK: {
-    name: 'Sri Lanka'
+    name: 'Sri Lanka',
   },
   BL: {
-    name: 'St. Barthélemy'
+    name: 'St. Barthélemy',
   },
   SH: {
-    name: 'St. Helena'
+    name: 'St. Helena',
   },
   KN: {
-    name: 'St. Kitts & Nevis'
+    name: 'St. Kitts & Nevis',
   },
   LC: {
-    name: 'St. Lucia'
+    name: 'St. Lucia',
   },
   MF: {
-    name: 'St. Martin'
+    name: 'St. Martin',
   },
   PM: {
-    name: 'St. Pierre & Miquelon'
+    name: 'St. Pierre & Miquelon',
   },
   VC: {
-    name: 'St. Vincent & Grenadines'
+    name: 'St. Vincent & Grenadines',
   },
   SD: {
-    name: 'Sudan'
+    name: 'Sudan',
   },
   SR: {
-    name: 'Suriname'
+    name: 'Suriname',
   },
   SJ: {
-    name: 'Svalbard & Jan Mayen'
+    name: 'Svalbard & Jan Mayen',
   },
   SZ: {
-    name: 'Swaziland'
+    name: 'Swaziland',
   },
   SE: {
-    name: 'Sweden'
+    name: 'Sweden',
   },
   CH: {
-    name: 'Switzerland'
+    name: 'Switzerland',
   },
   SY: {
-    name: 'Syria'
+    name: 'Syria',
   },
   TW: {
-    name: 'Taiwan'
+    name: 'Taiwan',
   },
   TJ: {
-    name: 'Tajikistan'
+    name: 'Tajikistan',
   },
   TZ: {
-    name: 'Tanzania'
+    name: 'Tanzania',
   },
   TH: {
     name: 'Thailand',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
+      state: 'Province',
     },
     states: [
       {
         name: 'Amnat Charoen',
-        code: 'TH-37'
+        code: 'TH-37',
       },
       {
         name: 'Ang Thong',
-        code: 'TH-15'
+        code: 'TH-15',
       },
       {
         name: 'Bangkok',
-        code: 'TH-10'
+        code: 'TH-10',
       },
       {
         name: 'Bueng Kan',
-        code: 'TH-38'
+        code: 'TH-38',
       },
       {
         name: 'Buri Ram',
-        code: 'TH-31'
+        code: 'TH-31',
       },
       {
         name: 'Chachoengsao',
-        code: 'TH-24'
+        code: 'TH-24',
       },
       {
         name: 'Chai Nat',
-        code: 'TH-18'
+        code: 'TH-18',
       },
       {
         name: 'Chaiyaphum',
-        code: 'TH-36'
+        code: 'TH-36',
       },
       {
         name: 'Chanthaburi',
-        code: 'TH-22'
+        code: 'TH-22',
       },
       {
         name: 'Chiang Mai',
-        code: 'TH-50'
+        code: 'TH-50',
       },
       {
         name: 'Chiang Rai',
-        code: 'TH-57'
+        code: 'TH-57',
       },
       {
         name: 'Chon Buri',
-        code: 'TH-20'
+        code: 'TH-20',
       },
       {
         name: 'Chumphon',
-        code: 'TH-86'
+        code: 'TH-86',
       },
       {
         name: 'Kalasin',
-        code: 'TH-46'
+        code: 'TH-46',
       },
       {
         name: 'Kamphaeng Phet',
-        code: 'TH-62'
+        code: 'TH-62',
       },
       {
         name: 'Kanchanaburi',
-        code: 'TH-71'
+        code: 'TH-71',
       },
       {
         name: 'Khon Kaen',
-        code: 'TH-40'
+        code: 'TH-40',
       },
       {
         name: 'Krabi',
-        code: 'TH-81'
+        code: 'TH-81',
       },
       {
         name: 'Lampang',
-        code: 'TH-52'
+        code: 'TH-52',
       },
       {
         name: 'Lamphun',
-        code: 'TH-51'
+        code: 'TH-51',
       },
       {
         name: 'Loei',
-        code: 'TH-42'
+        code: 'TH-42',
       },
       {
         name: 'Lopburi',
-        code: 'TH-16'
+        code: 'TH-16',
       },
       {
         name: 'Mae Hong Son',
-        code: 'TH-58'
+        code: 'TH-58',
       },
       {
         name: 'Maha Sarakham',
-        code: 'TH-44'
+        code: 'TH-44',
       },
       {
         name: 'Mukdahan',
-        code: 'TH-49'
+        code: 'TH-49',
       },
       {
         name: 'Nakhon Nayok',
-        code: 'TH-26'
+        code: 'TH-26',
       },
       {
         name: 'Nakhon Pathom',
-        code: 'TH-73'
+        code: 'TH-73',
       },
       {
         name: 'Nakhon Phanom',
-        code: 'TH-48'
+        code: 'TH-48',
       },
       {
         name: 'Nakhon Ratchasima',
-        code: 'TH-30'
+        code: 'TH-30',
       },
       {
         name: 'Nakhon Sawan',
-        code: 'TH-60'
+        code: 'TH-60',
       },
       {
         name: 'Nakhon Si Thammarat',
-        code: 'TH-80'
+        code: 'TH-80',
       },
       {
         name: 'Nan',
-        code: 'TH-55'
+        code: 'TH-55',
       },
       {
         name: 'Narathiwat',
-        code: 'TH-96'
+        code: 'TH-96',
       },
       {
         name: 'Nong Bua Lam Phu',
-        code: 'TH-39'
+        code: 'TH-39',
       },
       {
         name: 'Nong Khai',
-        code: 'TH-43'
+        code: 'TH-43',
       },
       {
         name: 'Nonthaburi',
-        code: 'TH-12'
+        code: 'TH-12',
       },
       {
         name: 'Pathum Thani',
-        code: 'TH-13'
+        code: 'TH-13',
       },
       {
         name: 'Pattani',
-        code: 'TH-94'
+        code: 'TH-94',
       },
       {
         name: 'Pattaya',
-        code: 'TH-S'
+        code: 'TH-S',
       },
       {
         name: 'Phang Nga',
-        code: 'TH-82'
+        code: 'TH-82',
       },
       {
         name: 'Phatthalung',
-        code: 'TH-93'
+        code: 'TH-93',
       },
       {
         name: 'Phayao',
-        code: 'TH-56'
+        code: 'TH-56',
       },
       {
         name: 'Phetchabun',
-        code: 'TH-67'
+        code: 'TH-67',
       },
       {
         name: 'Phetchaburi',
-        code: 'TH-76'
+        code: 'TH-76',
       },
       {
         name: 'Phichit',
-        code: 'TH-66'
+        code: 'TH-66',
       },
       {
         name: 'Phitsanulok',
-        code: 'TH-65'
+        code: 'TH-65',
       },
       {
         name: 'Phra Nakhon Si Ayutthaya',
-        code: 'TH-14'
+        code: 'TH-14',
       },
       {
         name: 'Phrae',
-        code: 'TH-54'
+        code: 'TH-54',
       },
       {
         name: 'Phuket',
-        code: 'TH-83'
+        code: 'TH-83',
       },
       {
         name: 'Prachin Buri',
-        code: 'TH-25'
+        code: 'TH-25',
       },
       {
         name: 'Prachuap Khiri Khan',
-        code: 'TH-77'
+        code: 'TH-77',
       },
       {
         name: 'Ranong',
-        code: 'TH-85'
+        code: 'TH-85',
       },
       {
         name: 'Ratchaburi',
-        code: 'TH-70'
+        code: 'TH-70',
       },
       {
         name: 'Rayong',
-        code: 'TH-21'
+        code: 'TH-21',
       },
       {
         name: 'Roi Et',
-        code: 'TH-45'
+        code: 'TH-45',
       },
       {
         name: 'Sa Kaeo',
-        code: 'TH-27'
+        code: 'TH-27',
       },
       {
         name: 'Sakon Nakhon',
-        code: 'TH-47'
+        code: 'TH-47',
       },
       {
         name: 'Samut Prakan',
-        code: 'TH-11'
+        code: 'TH-11',
       },
       {
         name: 'Samut Sakhon',
-        code: 'TH-74'
+        code: 'TH-74',
       },
       {
         name: 'Samut Songkhram',
-        code: 'TH-75'
+        code: 'TH-75',
       },
       {
         name: 'Saraburi',
-        code: 'TH-19'
+        code: 'TH-19',
       },
       {
         name: 'Satun',
-        code: 'TH-91'
+        code: 'TH-91',
       },
       {
         name: 'Sing Buri',
-        code: 'TH-17'
+        code: 'TH-17',
       },
       {
         name: 'Si Sa Ket',
-        code: 'TH-33'
+        code: 'TH-33',
       },
       {
         name: 'Songkhla',
-        code: 'TH-90'
+        code: 'TH-90',
       },
       {
         name: 'Sukhothai',
-        code: 'TH-64'
+        code: 'TH-64',
       },
       {
         name: 'Suphanburi',
-        code: 'TH-72'
+        code: 'TH-72',
       },
       {
         name: 'Surat Thani',
-        code: 'TH-84'
+        code: 'TH-84',
       },
       {
         name: 'Surin',
-        code: 'TH-32'
+        code: 'TH-32',
       },
       {
         name: 'Tak',
-        code: 'TH-63'
+        code: 'TH-63',
       },
       {
         name: 'Trang',
-        code: 'TH-92'
+        code: 'TH-92',
       },
       {
         name: 'Trat',
-        code: 'TH-23'
+        code: 'TH-23',
       },
       {
         name: 'Ubon Ratchathani',
-        code: 'TH-34'
+        code: 'TH-34',
       },
       {
         name: 'Udon Thani',
-        code: 'TH-41'
+        code: 'TH-41',
       },
       {
         name: 'Uthai Thani',
-        code: 'TH-61'
+        code: 'TH-61',
       },
       {
         name: 'Uttaradit',
-        code: 'TH-53'
+        code: 'TH-53',
       },
       {
         name: 'Yala',
-        code: 'TH-95'
+        code: 'TH-95',
       },
       {
         name: 'Yasothon',
-        code: 'TH-35'
-      }
+        code: 'TH-35',
+      },
     ],
-    fields: [
-      ['address1'],
-      ['address2'],
-      ['city'],
-      ['countryCode', 'state', 'postal']
-    ]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state', 'postal']],
   },
   TL: {
-    name: 'Timor-Leste'
+    name: 'Timor-Leste',
   },
   TG: {
     name: 'Togo',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   TK: {
-    name: 'Tokelau'
+    name: 'Tokelau',
   },
   TO: {
-    name: 'Tonga'
+    name: 'Tonga',
   },
   TT: {
     name: 'Trinidad & Tobago',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   TN: {
-    name: 'Tunisia'
+    name: 'Tunisia',
   },
   TR: {
-    name: 'Turkey'
+    name: 'Turkey',
   },
   TM: {
-    name: 'Turkmenistan'
+    name: 'Turkmenistan',
   },
   TC: {
-    name: 'Turks & Caicos Islands'
+    name: 'Turks & Caicos Islands',
   },
   TV: {
     name: 'Tuvalu',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   UM: {
     name: 'U.S. Outlying Islands',
     labels: {
       postal: 'Postal code',
-      state: 'State'
-    }
+      state: 'State',
+    },
   },
   UG: {
     name: 'Uganda',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   UA: {
-    name: 'Ukraine'
+    name: 'Ukraine',
   },
   AE: {
     name: 'United Arab Emirates',
     labels: {
       postal: 'Postal code',
-      state: 'Emirate'
+      state: 'Emirate',
     },
     states: [
       {
         name: 'Abu Dhabi',
-        code: 'AZ'
+        code: 'AZ',
       },
       {
         name: 'Ajman',
-        code: 'AJ'
+        code: 'AJ',
       },
       {
         name: 'Dubai',
-        code: 'DU'
+        code: 'DU',
       },
       {
         name: 'Fujairah',
-        code: 'FU'
+        code: 'FU',
       },
       {
         name: 'Ras al-Khaimah',
-        code: 'RK'
+        code: 'RK',
       },
       {
         name: 'Sharjah',
-        code: 'SH'
+        code: 'SH',
       },
       {
         name: 'Umm al-Quwain',
-        code: 'UQ'
-      }
+        code: 'UQ',
+      },
     ],
-    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode', 'state']],
   },
   GB: {
     name: 'United Kingdom',
     labels: {
       postal: 'Postcode',
-      state: 'Region'
-    }
+      state: 'Region',
+    },
   },
   UY: {
-    name: 'Uruguay'
+    name: 'Uruguay',
   },
   UZ: {
     name: 'Uzbekistan',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   VU: {
     name: 'Vanuatu',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   VA: {
-    name: 'Vatican City'
+    name: 'Vatican City',
   },
   VE: {
-    name: 'Venezuela'
+    name: 'Venezuela',
   },
   VN: {
-    name: 'Vietnam'
+    name: 'Vietnam',
   },
   VI: {
-    name: 'U.S. Virgin Islands'
+    name: 'U.S. Virgin Islands',
   },
   WF: {
-    name: 'Wallis & Futuna'
+    name: 'Wallis & Futuna',
   },
   EH: {
-    name: 'Western Sahara'
+    name: 'Western Sahara',
   },
   YE: {
     name: 'Yemen',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
   },
   ZM: {
     name: 'Zambia',
     labels: {
       postal: 'Postal code',
-      state: 'Province'
-    }
+      state: 'Province',
+    },
   },
   ZW: {
     name: 'Zimbabwe',
-    fields: [['address1'], ['address2'], ['city'], ['countryCode']]
-  }
+    fields: [['address1'], ['address2'], ['city'], ['countryCode']],
+  },
 };
 
 export type AddressPropType = {
-  address1?: string,
-  address2?: string,
-  city?: string,
-  state?: string,
-  postal?: string,
-  countryCode?: string,
-}
+  address1?: string;
+  address2?: string;
+  city?: string;
+  state?: string;
+  postal?: string;
+  countryCode?: string;
+};
 
 type StatesType = {
-  name: string,
-  code: string,
-}[]
+  name: string;
+  code: string;
+}[];
 
 type AddressFormatsType = {
-  [k: string]: any,
-  fields: Array<Array<keyof AddressPropType>>,
-  states?: StatesType,
-}
+  [k: string]: any;
+  fields: Array<Array<keyof AddressPropType>>;
+  states?: StatesType;
+};
 
-export default function getAddressFormat(countryCode: string) : AddressFormatsType {
-  const labels = countryCode ? {
-    ...defaultFormat.labels,
-    ...formats[countryCode].labels,
-  } : defaultFormat.labels;
+export default function getAddressFormat(countryCode: string): AddressFormatsType {
+  const labels = countryCode
+    ? {
+        ...defaultFormat.labels,
+        ...formats[countryCode].labels,
+      }
+    : defaultFormat.labels;
   return {
     ...defaultFormat,
     ...formats[countryCode],
-    labels
+    labels,
   };
 }
