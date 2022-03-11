@@ -1,5 +1,12 @@
 # Change Log
 
+### [6.15.1](https://www.github.com/appfolio/react-gears/compare/v6.15.0...v6.15.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* react-gears v6 will point to coastline v4 ([68c0731](https://www.github.com/appfolio/react-gears/commit/68c0731db505d84c4a029eaed633c19b69f89e35))
+
 ## [6.15.0](https://www.github.com/appfolio/react-gears/compare/v6.14.1...v6.15.0) (2022-03-10)
 
 
