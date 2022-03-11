@@ -21,6 +21,7 @@ export const WithProps = () => (
       onBlur={action('onBlur')}
       onChange={action('onChange')}
       onClose={action('onClose')}
+      positionFixed={boolean('positionFixed', false)}
     />
   </div>
 );

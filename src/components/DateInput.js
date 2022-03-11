@@ -269,7 +269,7 @@ export default class DateInput extends React.Component {
       dateFormat, defaultValue, keyboard, locale, onBlur, onChange, parse, positionFixed, value, state, ...props } = this.props; // eslint-disable-line no-shadow
     const { open } = this.state;
     const date = this.getCurrentDate();
-    const dropdownProps = open ? { strategy: positionFixed ? 'fixed' : undefined } : {};
+    const dropdownProps = open && positionFixed ? { strategy: 'fixed' } : {};
 
     // <DropdownToggle tag="div" disabled> is to wrap the input in a container for positioning dropdown/up, without breaking showOnFocus
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
