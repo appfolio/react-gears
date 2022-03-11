@@ -1,36 +1,55 @@
 import React from 'react';
-import assert from 'assert';
-import { shallow } from 'enzyme';
-
+import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Tooltip } from '../../src';
 
 describe('<Tooltip />', () => {
   describe('by default', () => {
-    const component = shallow(<Tooltip placement="right" target="foo">Hello World</Tooltip>);
-
-    it('should be closed', () => {
-      assert.equal(component.prop('isOpen'), false);
-      assert.equal(component.state('isOpen'), false);
+    let target;
+    beforeEach(() => {
+      target = document.createElement('div');
+      target.id = 'foo';
+      document.body.appendChild(target);
     });
 
-    it('should forward props', () => {
-      assert.equal(component.prop('placement'), 'right');
+    afterEach(() => {
+      document.body.removeChild(target);
     });
 
-    it('should toggle state', () => {
-      component.prop('toggle')();
-      component.update();
-      assert.equal(component.prop('isOpen'), true);
-      assert.equal(component.state('isOpen'), true);
+    it('should be closed by default', () => {
+      const { queryByRole } = render(
+        <Tooltip placement="right" target="foo">
+          Hello World
+        </Tooltip>
+      );
+
+      expect(queryByRole('tooltip')).toBeNull();
     });
-  });
 
-  describe('with initial props', () => {
-    const component = shallow(<Tooltip isOpen target="foo">Hello World</Tooltip>);
+    it('can be open initially', () => {
+      const { queryByRole } = render(
+        <Tooltip placement="right" target="foo" isOpen>
+          Hello World
+        </Tooltip>
+      );
 
-    it('should seed state', () => {
-      assert.equal(component.prop('isOpen'), true);
-      assert.equal(component.state('isOpen'), true);
+      expect(queryByRole('tooltip')).not.toBeNull();
+    });
+
+    it('should toggle state', async () => {
+      const { queryByRole } = render(
+        <Tooltip placement="right" target="foo">
+          Hello World
+        </Tooltip>
+      );
+
+      expect(queryByRole('tooltip')).toBeNull();
+
+      userEvent.hover(target);
+      await waitFor(() => expect(queryByRole('tooltip')).not.toBeNull());
+
+      userEvent.unhover(target);
+      await waitFor(() => expect(queryByRole('tooltip')).toBeNull());
     });
   });
 });
