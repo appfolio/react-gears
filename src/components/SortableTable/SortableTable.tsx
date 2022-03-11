@@ -50,7 +50,7 @@ export interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
   truncate?: boolean;
 }
 
-function getAlignment(align) {
+function getAlignment(align: HorizontalAlignment) {
   switch (align) {
     case 'left':
       console.warn('SortableTable: align="left" is deprecated. Please use align="start" instead.');
