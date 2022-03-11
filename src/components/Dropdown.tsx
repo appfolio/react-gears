@@ -1,3 +1,3 @@
-import Dropdown from 'reactstrap/lib/Dropdown';
+import { Dropdown } from 'reactstrap';
 
 export default Dropdown;

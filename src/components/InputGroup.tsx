@@ -1,3 +1,3 @@
-import InputGroup from 'reactstrap/lib/InputGroup';
+import { InputGroup } from 'reactstrap';
 
 export default InputGroup;

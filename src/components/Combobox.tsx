@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { findDOMNode } from 'react-dom';
+import type { ModifierArguments } from '@popperjs/core';
 import equal from 'fast-deep-equal';
 import { DropdownProps, InputProps } from 'reactstrap';
 import Badge from './Badge';
@@ -11,7 +12,6 @@ import DropdownToggle from './DropdownToggle';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
 
 type Direction = 'up' | 'down';
 
@@ -221,7 +221,7 @@ function Combobox<T>({
     return (
       <DropdownItem
         disabled={option.disabled}
-        className={`${isOptionVisible(option) ? '' : 'sr-only'}`}
+        className={`${isOptionVisible(option) ? '' : 'visually-hidden'}`}
         key={key}
         id={`option-${key}`}
         active={focusedOptionIndex === visibleIndex}
@@ -286,7 +286,7 @@ function Combobox<T>({
             (selected as Option<T>[]).map((o: Option<T>) => {
               const key = JSON.stringify(o.value);
               return (
-                <Button key={key} color="" className="btn-sm p-0 mr-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${key}`}>
+                <Button key={key} color="" className="btn-sm p-0 me-1" onClick={() => removeOption(o)} aria-label={`Remove option: ${key}`}>
                   <Badge style={{ textTransform: 'none' }} className="p-2">
                     {o.label}{' '} <Icon name="close" />
                   </Badge>
@@ -294,7 +294,7 @@ function Combobox<T>({
             );
               })
           }
-          <Button key="clear-all" color="" className="btn-sm p-0 mr-1 text-secondary" onClick={() => onChange([])} aria-label="Remove all selected options">
+          <Button key="clear-all" color="" className="btn-sm p-0 me-1 text-secondary" onClick={() => onChange([])} aria-label="Remove all selected options">
             <Icon name="close" />
           </Button>
         </div>
@@ -351,42 +351,40 @@ function Combobox<T>({
               aria-label="Filter options"
               {...props}
             />
-            <InputGroupAddon addonType="append">
-              <Button
-                className="px-2"
-                data-testid="combobox-caret"
-                disabled={disabled}
-                active={open}
-                onMouseDown={(ev) => {
-                  ev.stopPropagation();
-                  setOpen(!open);
-                }}
-                type="button"
-                aria-label="Toggle options menu"
-              >
-                <Icon name={open ? 'caret-up' : 'caret-down'} fixedWidth />
-              </Button>
-            </InputGroupAddon>
+            <Button
+              className="px-2"
+              data-testid="combobox-caret"
+              disabled={disabled}
+              active={open}
+              onMouseDown={(ev) => {
+                ev.stopPropagation();
+                setOpen(!open);
+              }}
+              type="button"
+              aria-label="Toggle options menu"
+            >
+              <Icon name={open ? 'caret-up' : 'caret-down'} fixedWidth />
+            </Button>
           </InputGroup>
         </DropdownToggle>
         <DropdownMenu
           data-testid="combobox-menu"
           className="p-0 w-100"
-          modifiers={{
-            setMaxHeight: {
+          modifiers={[
+            {
+              name: 'setMaxHeight',
               enabled: true,
-              fn: (data) => {
-                return {
-                  ...data,
-                  styles: {
-                    ...data.styles,
-                    overflowY: 'auto',
-                    maxHeight: menuMaxHeight || '12rem',
-                  },
+              fn: ({ state }: ModifierArguments<any>) => {
+                state.styles.popper = {
+                  ...state.styles.popper,
+                  overflowY: 'auto',
+                  maxHeight: menuMaxHeight || '12rem',
                 };
               },
+              phase: 'beforeWrite',
+              requires: ['computeStyles'],
             },
-          }}
+          ]}
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"

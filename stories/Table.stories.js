@@ -24,7 +24,7 @@ export default {
 
 export const LiveExample = () => (
   <Table
-    bordered={boolean('bordered', true)}
+    bordered={boolean('bordered', false)}
     responsive={boolean('responsive', true)}
     striped={boolean('striped', true)}
     hover={boolean('hover', true)}
@@ -236,16 +236,16 @@ export const CustomFooter = () => (
         ]}
       footer={[
         <tr>
-          <td colSpan={2} className="text-right">Total Costs</td>
-          <td className="text-right">$5973.45</td>
+          <td colSpan={2} className="text-end">Total Costs</td>
+          <td className="text-end">$5973.45</td>
         </tr>,
         <tr>
-          <td colSpan={2} className="text-right">Total Income</td>
-          <td className="text-right">$26,200.00</td>
+          <td colSpan={2} className="text-end">Total Income</td>
+          <td className="text-end">$26,200.00</td>
         </tr>,
         <tr>
-          <td colSpan={2} className="text-right">Total Gain</td>
-          <td className="text-right">$20,226.55</td>
+          <td colSpan={2} className="text-end">Total Gain</td>
+          <td className="text-end">$20,226.55</td>
         </tr>
       ]}
     />

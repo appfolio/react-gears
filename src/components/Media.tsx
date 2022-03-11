@@ -1,3 +1,3 @@
-import Media from 'reactstrap/lib/Media';
+import { Media } from 'reactstrap';
 
 export default Media;

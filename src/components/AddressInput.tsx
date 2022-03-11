@@ -177,11 +177,11 @@ const AddressInput = ({
           disabled={disabled}
         />
       </FormLabelGroup>
-      <Row className="no-gutters">
+      <Row className="g-0">
         <Col
           sm={compact ? undefined : 6}
           xs={12}
-          className={compact ? undefined : 'pr-sm-3'}
+          className={compact ? undefined : 'pe-sm-3'}
         >
           <FormLabelGroup
             rowClassName={classnames({ 'mb-sm-0': !showCountry && !compact })}
@@ -210,7 +210,7 @@ const AddressInput = ({
           md={compact ? undefined : 2}
           sm={compact ? undefined : 3}
           xs={4}
-          className="pr-3"
+          className="pe-3"
         >
           <FormLabelGroup
             rowClassName={classnames({ 'mb-0': !showCountry })}

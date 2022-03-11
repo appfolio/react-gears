@@ -1,3 +1,3 @@
-import FormFeedback from 'reactstrap/lib/FormFeedback';
+import { FormFeedback } from 'reactstrap';
 
 export default FormFeedback;

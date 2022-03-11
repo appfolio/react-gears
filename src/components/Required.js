@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Required = () => (
-  <span className="text-danger pl-1" style={{ position: 'absolute' }}>*</span>
+  <span className="text-danger ps-1">*</span>
 );
 
 export default Required;

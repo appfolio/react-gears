@@ -14,7 +14,6 @@ import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
 import Icon from './Icon';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
 
 const { parse } = Fecha;
 
@@ -251,19 +250,17 @@ export default class MonthInput extends React.Component {
                 onKeyDown={this.onKeyDown}
                 disabled={disabled}
               />
-              <InputGroupAddon addonType="append">
-                <Button
-                  onClick={this.toggle}
-                  className="px-2"
-                  disabled={disabled}
-                  active={open}
-                  type="button"
-                  tabIndex={-1}
-                >
-                  <Icon name="calendar-o" fixedWidth />
-                  <span className="sr-only">Open Calendar</span>
-                </Button>
-              </InputGroupAddon>
+              <Button
+                onClick={this.toggle}
+                className="px-2"
+                disabled={disabled}
+                active={open}
+                type="button"
+                tabIndex={-1}
+              >
+                <Icon name="calendar-o" fixedWidth />
+                <span className="visually-hidden">Open Calendar</span>
+              </Button>
             </InputGroup>
           </DropdownToggle>
 
@@ -278,11 +275,11 @@ export default class MonthInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="p-2 js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
-                    <span className="sr-only">Previous Year</span>
+                    <span className="visually-hidden">Previous Year</span>
                   </Button>
                   <Button className="p-2 js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
-                    <span className="sr-only">Previous Month</span>
+                    <span className="visually-hidden">Previous Month</span>
                   </Button>
                 </ButtonGroup>
 
@@ -293,11 +290,11 @@ export default class MonthInput extends React.Component {
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
-                    <span className="sr-only">Next Month</span>
+                    <span className="visually-hidden">Next Month</span>
                   </Button>
                   <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
-                    <span className="sr-only">Next Year</span>
+                    <span className="visually-hidden">Next Year</span>
                   </Button>
                 </ButtonGroup>
               </header>
@@ -315,7 +312,7 @@ export default class MonthInput extends React.Component {
             {footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button onClick={this.today} className="mr-2">Today</Button>
+                  <Button onClick={this.today} className="me-2">Today</Button>
                 </div>
               </footer>
             )}

@@ -1,3 +1,3 @@
-import CarouselIndicators from 'reactstrap/lib/CarouselIndicators';
+import { CarouselIndicators } from 'reactstrap';
 
 export default CarouselIndicators;

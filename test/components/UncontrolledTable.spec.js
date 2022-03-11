@@ -297,17 +297,17 @@ describe('<UncontrolledTable />', () => {
     ];
     const wrapper = mount(<UncontrolledTable columns={columns} rows={[1, 2, 3]} />);
 
-    assert.equal(wrapper.find('thead th.text-left').length, 1, 'thead th.text-left incorrect');
+    assert.equal(wrapper.find('thead th.text-start').length, 1, 'thead th.text-start incorrect');
     assert.equal(wrapper.find('thead th.text-center').length, 1, 'thead th.text-center incorrect');
-    assert.equal(wrapper.find('thead th.text-right').length, 1, 'thead th.text-right incorrect');
+    assert.equal(wrapper.find('thead th.text-end').length, 1, 'thead th.text-end incorrect');
 
-    assert.equal(wrapper.find('tbody td.text-left').length, 3, 'tbody td.text-left incorrect');
+    assert.equal(wrapper.find('tbody td.text-start').length, 3, 'tbody td.text-start incorrect');
     assert.equal(wrapper.find('tbody td.text-center').length, 3, 'tbody td.text-center incorrect');
-    assert.equal(wrapper.find('tbody td.text-right').length, 3, 'tbody td.text-right incorrect');
+    assert.equal(wrapper.find('tbody td.text-end').length, 3, 'tbody td.text-end incorrect');
 
-    assert.equal(wrapper.find('tfoot td.text-left').length, 1, 'tfoot td.text-left incorrect');
+    assert.equal(wrapper.find('tfoot td.text-start').length, 1, 'tfoot td.text-start incorrect');
     assert.equal(wrapper.find('tfoot td.text-center').length, 1, 'tfoot td.text-center incorrect');
-    assert.equal(wrapper.find('tfoot td.text-right').length, 1, 'tfoot td.text-right incorrect');
+    assert.equal(wrapper.find('tfoot td.text-end').length, 1, 'tfoot td.text-end incorrect');
   });
 
   it('should render correct column classnames when present', () => {

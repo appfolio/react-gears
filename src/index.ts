@@ -1,3 +1,13 @@
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader
+} from 'reactstrap';
 import Badge from './components/Badge';
 import Breadcrumb from './components/Breadcrumb';
 import BreadcrumbItem from './components/BreadcrumbItem';
@@ -26,7 +36,6 @@ import CarouselItem from './components/CarouselItem';
 import Col from './components/Col';
 import Collapse from './components/Collapse';
 import Container from './components/Container';
-import CustomInput from './components/CustomInput';
 import Dropdown from './components/Dropdown';
 import DropdownItem from './components/DropdownItem';
 import DropdownMenu from './components/DropdownMenu';
@@ -39,7 +48,6 @@ import FormLabelGroup from './components/FormLabelGroup';
 import FormText from './components/FormText';
 import Input from './components/Input';
 import InputGroup from './components/InputGroup';
-import InputGroupAddon from './components/InputGroupAddon';
 import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
 import InputGroupText from './components/InputGroupText';
 import Jumbotron from './components/Jumbotron';
@@ -67,7 +75,6 @@ import PopoverHeader from './components/PopoverHeader';
 import PopoverTitle from './components/PopoverTitle';
 import PopperContent from './components/PopperContent';
 import PopperTargetHelper from './components/PopperTargetHelper';
-import Portal from './components/Portal';
 import Row from './components/Row';
 import TabContent from './components/TabContent';
 import TabPane from './components/TabPane';
@@ -170,6 +177,11 @@ import TruncatedText from './components/TruncatedText';
 
 export {
   // reactstrap
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  UncontrolledAccordion,
   Badge,
   Breadcrumb,
   BreadcrumbItem,
@@ -198,7 +210,6 @@ export {
   Col,
   Collapse,
   Container,
-  CustomInput,
   DeletedNote,
   Dropdown,
   DropdownItem,
@@ -215,7 +226,6 @@ export {
   Highlight,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupButtonDropdown,
   InputGroupText,
   InternationalAddressInput,
@@ -237,6 +247,9 @@ export {
   NavbarToggler,
   NavItem,
   NavLink,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
   Pagination,
   PaginationItem,
   PaginationLink,
@@ -248,7 +261,6 @@ export {
   PopoverTitle,
   PopperContent,
   PopperTargetHelper,
-  Portal,
   Row,
   TabContent,
   Table,

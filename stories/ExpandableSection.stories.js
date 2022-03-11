@@ -35,7 +35,7 @@ export const Header = () => (
         <h4 className="m-0">Here's a Header with</h4>
         <Button
           color="link"
-          className="ml-auto"
+          className="ms-auto"
           href="https://www.google.com"
           onClick={e => e.stopPropagation()}
         >

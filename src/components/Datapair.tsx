@@ -16,7 +16,6 @@ interface DatapairProps extends FormLabelGroupProps {
  */
 const Datapair: FunctionComponent<DatapairProps> = ({ children, className, label, value, ...attributes }) => {
   const classNames = classnames(
-    'mb-1',
     'js-datapair',
     className
   );

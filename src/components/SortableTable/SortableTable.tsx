@@ -10,7 +10,7 @@ import Header from './Header';
 import type { TableProps } from '../Table';
 import Table from '../Table';
 
-type HorizontalAlignment = 'left' | 'center' | 'right';
+type HorizontalAlignment = 'left' | 'center' | 'right' | 'start' | 'end';
 
 export interface SortableColumn<T>
   extends Omit<HeaderProps, 'children' | 'onSort'> {
@@ -50,13 +50,25 @@ export interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
   truncate?: boolean;
 }
 
+function getAlignment(align: HorizontalAlignment) {
+  switch (align) {
+    case 'left':
+      console.warn('SortableTable: align="left" is deprecated. Please use align="start" instead.');
+      return 'start';
+    case 'right':
+      console.warn('SortableTable: align="right" is deprecated. Please use align="end" instead.');
+      return 'end';
+    default: return align;
+  }
+}
+
 function generateColumnClassName<T>(
   column: SortableColumn<T>,
   truncate = false
 ) {
   return classnames(
     truncate && 'text-truncate',
-    column.align && `text-${column.align}`,
+    column.align && `text-${getAlignment(column.align)}`,
     column.className
   );
 }

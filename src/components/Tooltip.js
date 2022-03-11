@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import InnerTooltip from 'reactstrap/lib/Tooltip';
+import { Tooltip as InnerTooltip } from 'reactstrap';
 
 export default class Tooltip extends React.Component {
   static propTypes = {

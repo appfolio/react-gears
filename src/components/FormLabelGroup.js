@@ -65,10 +65,10 @@ class FormLabelGroup extends React.Component {
       'is-valid': validFeedback
     }, rowClassName);
     const labelClassNames = classnames({
-      'text-sm-right pr-0': !stacked,
+      'text-sm-end pe-0': !stacked,
       'text-danger': feedback,
       'text-success': validFeedback,
-      'sr-only sr-only-focusable': srLabel
+      'visually-hidden visually-hidden-focusable': srLabel
     });
     const hiddenClassNames = classnames({
       'is-invalid': feedback,

@@ -53,7 +53,7 @@ describe('AddressInput', () => {
     });
 
     it('should have city', () => {
-      assert.strictEqual(component.find('.col-sm-6.pr-sm-3 #addressInput_city').hostNodes().length, 1);
+      assert.strictEqual(component.find('.col-sm-6.pe-sm-3 #addressInput_city').hostNodes().length, 1);
 
       const input = component.find('[name="city"]').hostNodes();
       assert.equal(input.prop('placeholder'), 'City');
@@ -386,7 +386,7 @@ describe('AddressInput', () => {
 
     it('should only show screen reader labels when disabled', () => {
       const component = mount(<AddressInput showLabels={false} />);
-      assert.equal(component.find('label.sr-only').length, 6);
+      assert.equal(component.find('label.visually-hidden').length, 6);
     });
   });
 

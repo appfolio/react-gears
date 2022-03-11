@@ -45,7 +45,7 @@ describe('<MonthInput />', () => {
   it('should not tab to the calendar button', () => {
     const component = mount(<MonthInput />);
 
-    const toggle = component.find('InputGroupAddon');
+    const toggle = component.find('InputGroup');
     const calendarButton = toggle.find('Button');
     assert.equal(calendarButton.props().tabIndex, -1);
   });
@@ -54,7 +54,7 @@ describe('<MonthInput />', () => {
     const component = mount(<MonthInput />);
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroupAddon').find('Button');
+    const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
 
     assert.equal(component.find('Dropdown').props().isOpen, true);
@@ -87,7 +87,7 @@ describe('<MonthInput />', () => {
 
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroupAddon').find('Button');
+    const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
@@ -254,7 +254,7 @@ describe('<MonthInput />', () => {
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = date => isSameDay(date, defaultDate);
     const component = mount(<MonthInput defaultValue={defaultDate} onChange={callback} dateVisible={dateVisible} showOnFocus />);
-    const toggle = component.find('InputGroupAddon');
+    const toggle = component.find('InputGroup').find('Button');
     toggle.simulate('click');
 
     it('should pass dateVisible func to Calendar component', () => {
@@ -303,13 +303,13 @@ describe('<MonthInput />', () => {
       const prevMonthLabel = component.find('.js-prev-month').children().find('span');
 
       assert.strictEqual('Next Year', nextYearLabel.text());
-      assert.strictEqual('sr-only', nextYearLabel.prop('className'));
+      assert.strictEqual('visually-hidden', nextYearLabel.prop('className'));
       assert.strictEqual('Previous Year', prevYearLabel.text());
-      assert.strictEqual('sr-only', prevYearLabel.prop('className'));
+      assert.strictEqual('visually-hidden', prevYearLabel.prop('className'));
       assert.strictEqual('Next Month', nextMonthLabel.text());
-      assert.strictEqual('sr-only', nextMonthLabel.prop('className'));
+      assert.strictEqual('visually-hidden', nextMonthLabel.prop('className'));
       assert.strictEqual('Previous Month', prevMonthLabel.text());
-      assert.strictEqual('sr-only', prevMonthLabel.prop('className'));
+      assert.strictEqual('visually-hidden', prevMonthLabel.prop('className'));
     });
   });
 });

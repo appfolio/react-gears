@@ -5,7 +5,7 @@ import {
   ComponentProps,
   ReactElement,
 } from 'react';
-import { InputType } from 'reactstrap/lib/Input';
+import { InputType } from 'reactstrap/types/lib/Input';
 import CheckboxInput from './CheckboxInput';
 import RadioInput from './RadioInput';
 import Input from './Input';

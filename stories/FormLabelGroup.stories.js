@@ -1,6 +1,6 @@
 import React from 'react';
 import { boolean, object, text, select } from '@storybook/addon-knobs';
-import { Alert, FormLabelGroup } from '../src';
+import { Alert, FormLabelGroup, FormGroup, Input, Label } from '../src';
 
 export default {
   title: 'FormLabelGroup',
@@ -26,3 +26,28 @@ export const LiveExample = () => (
     </FormLabelGroup>
   </div>
 );
+
+export const RadioExample = () => (
+  <FormLabelGroup
+    label="Transaction Method"
+    stacked
+  >
+    <FormGroup check>
+      <Input
+        type="radio"
+        id="onlineTransfer"
+        name="transactionMethod"
+      />
+      <Label check>I will be transferring money between banks online</Label>
+    </FormGroup>
+    <FormGroup check>
+      <Input
+        type="radio"
+        id="bcrd"
+        name="transactionMethod"
+      />
+      <Label check>I will be transferring money between banks with a check</Label>
+    </FormGroup>
+  </FormLabelGroup>
+);
+

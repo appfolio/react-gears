@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Placement } from 'popper.js';
+import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
 import Button from './Button';
 import ConfirmationButton, { ConfirmationButtonProps } from './ConfirmationButton';
@@ -39,7 +39,7 @@ const HasManyFieldsRow = ({
 }: HasManyFieldsRowProps) => {
   const [id] = useState(getID());
 
-  const classNames = classnames('mb-4', className);
+  const classNames = classnames('mb-4 gx-0', className);
   // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:
 
   const tooltip =
@@ -55,7 +55,7 @@ const HasManyFieldsRow = ({
       color="danger"
       onClick={e => e.preventDefault()}
       outline
-      className="p-2 disabled"
+      className="p-2 disabled align-self-stretch"
     >
       <Icon name="times-circle-o" size="lg" />
     </Button>
@@ -66,7 +66,7 @@ const HasManyFieldsRow = ({
       aria-label="Delete"
       outline
       onClick={onDelete}
-      className="p-2"
+      className="p-2 align-self-stretch"
       {...deleteProps}
     >
       <Icon name="times-circle-o" size="lg" />
@@ -74,10 +74,10 @@ const HasManyFieldsRow = ({
   );
 
   return (
-    <Row className={classNames} noGutters {...props}>
+    <Row className={classNames} {...props}>
       <Col>{children}</Col>
       {deletable && (
-        <Col xs="auto" className="js-delete-col pl-3 d-flex">
+        <Col xs="auto" className="js-delete-col ps-3 d-flex">
           {button}
           {tooltip}
         </Col>

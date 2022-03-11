@@ -1,3 +1,3 @@
-import PopoverBody from 'reactstrap/lib/PopoverBody';
+import { PopoverBody } from 'reactstrap';
 
 export default PopoverBody;
