@@ -1,5 +1,18 @@
 # Change Log
 
+### [7.0.1](https://www.github.com/appfolio/react-gears/compare/v7.0.0...v7.0.1) (2022-03-14)
+
+
+### Bug Fixes
+
+* coastline url for bootstrap5 ([09f1a2c](https://www.github.com/appfolio/react-gears/commit/09f1a2c46d532e4f48351d9bda65038ae015fbef))
+* revert Table back to class component ([df9f103](https://www.github.com/appfolio/react-gears/commit/df9f1036bf80dafb23b26f01ee5f730fd8d5d495))
+
+
+### Miscellaneous
+
+* convert Tooltip to function/TS ([3b44e61](https://www.github.com/appfolio/react-gears/commit/3b44e61806be4c28407743369ebb2b0aa68a9bac))
+
 ## [7.0.0](https://www.github.com/appfolio/react-gears/compare/v6.15.1...v7.0.0) (2022-03-11)
 
 
