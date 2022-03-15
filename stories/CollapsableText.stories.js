@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, number, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { CollapsableText, Icon } from '../src';
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -27,11 +27,7 @@ export const LiveExample = () => (
 
 export const ShorterThanMaxLength = () => (
   <div>
-    <CollapsableText
-      maxLength={number('maxLength', 2048)}
-    >
-      {loremIpsum}
-    </CollapsableText>
+    <CollapsableText maxLength={number('maxLength', 2048)}>{loremIpsum}</CollapsableText>
   </div>
 );
 

@@ -1,4 +1,5 @@
-import React, { MouseEvent, ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
+import React from 'react';
 import Icon from '../Icon';
 
 export interface HeaderProps {
@@ -19,21 +20,17 @@ const Header = ({ active, ascending, children, className, onSort, ...props }: He
     {...props}
   >
     {children}
-    {onSort &&
-      <Icon
-        name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'}
-        fixedWidth
-      />
-    }
-    <style jsx>{`
-      th {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-    `}
+    {onSort && <Icon name={active ? `caret-${ascending ? 'up' : 'down'}` : 'sort'} fixedWidth />}
+    <style jsx>
+      {`
+        th {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+      `}
     </style>
   </th>
 );
@@ -42,7 +39,7 @@ Header.displayName = 'Header';
 
 Header.defaultProps = {
   active: false,
-  ascending: true
+  ascending: true,
 };
 
 export default Header;

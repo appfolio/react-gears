@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import { Input, StaticInput } from '../../src';
 
@@ -18,7 +18,7 @@ describe('<StaticInput />', () => {
   it('should not render children', () => {
     const componentWithChildren = shallow(
       <StaticInput value="foobar" invalid>
-        <div className='foo' />
+        <div className="foo" />
       </StaticInput>
     );
     const foo = componentWithChildren.find('.foo');

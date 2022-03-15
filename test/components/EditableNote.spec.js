@@ -1,12 +1,12 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
 import { mount } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 import { EditableNote, FormLabelGroup, Input } from '../../src';
 
 describe('<EditableNote />', () => {
   const note = {
-    text: 'Hello World!'
+    text: 'Hello World!',
   };
   let component;
   let props;

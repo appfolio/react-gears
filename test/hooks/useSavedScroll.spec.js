@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import sinon from 'sinon';
+import { renderHook, act } from '@testing-library/react-hooks';
 import assert from 'assert';
 import { replaceRaf } from 'raf-stub';
-import { renderHook, act } from '@testing-library/react-hooks';
+import { useRef } from 'react';
+import sinon from 'sinon';
 import useSavedScroll from '../../src/hooks/useSavedScroll';
 
 const mockedPosition = { x: 10, y: 12 };
@@ -10,7 +10,7 @@ const mockSetPosition = jest.fn();
 
 jest.mock('react-use', () => {
   return {
-    ...(jest.requireActual('react-use')),
+    ...jest.requireActual('react-use'),
     useSessionStorage: jest.fn(() => [mockedPosition, mockSetPosition]),
   };
 });
@@ -45,7 +45,9 @@ describe('useSavedScroll', () => {
   });
 
   it('should initialize to saved scroll position', () => {
-    const { result: { current: container } } = renderHook(() => useRef(div));
+    const {
+      result: { current: container },
+    } = renderHook(() => useRef(div));
     const scrollToSpy = sinon.spy(container.current, 'scrollTo');
     renderHook(() => useSavedScroll(container, 'positionKey'));
 
@@ -53,7 +55,9 @@ describe('useSavedScroll', () => {
   });
 
   it('should update saved position when scroll position changes', () => {
-    const { result: { current: container } } = renderHook(() => useRef(div));
+    const {
+      result: { current: container },
+    } = renderHook(() => useRef(div));
     renderHook(() => useSavedScroll(container, 'positionKey'));
 
     act(() => {

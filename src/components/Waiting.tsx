@@ -1,5 +1,6 @@
-import React, { ReactNode, FunctionComponent } from 'react';
-import { ModalProps } from 'reactstrap';
+import type { ReactNode, FunctionComponent } from 'react';
+import React from 'react';
+import type { ModalProps } from 'reactstrap';
 import Modal from './Modal';
 import Spinner from './Spinner';
 
@@ -29,17 +30,11 @@ const Waiting: FunctionComponent<WaitingProps> = ({
     toggle={noop}
     style={{
       margin: '40vh auto',
-      width: '9rem'
+      width: '9rem',
     }}
   >
-    {title ?
-      <header className="px-4 pt-4">
-        {title}
-      </header>
-      : null}
-    <div className="p-4">
-      {children || <Spinner style={{ fontSize: '30px' }} />}
-    </div>
+    {title ? <header className="px-4 pt-4">{title}</header> : null}
+    <div className="p-4">{children || <Spinner style={{ fontSize: '30px' }} />}</div>
   </Modal>
 );
 

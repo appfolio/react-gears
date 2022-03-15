@@ -1,22 +1,23 @@
-import { CardGroupProps } from 'reactstrap';
-import React, { FunctionComponent, ReactNode } from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
+import React from 'react';
+import type { CardGroupProps } from 'reactstrap';
 import CardGroup from './CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
 
 interface SummaryItem {
-  key?: string | number,
-  value: ReactNode,
-  label: string
+  key?: string | number;
+  value: ReactNode;
+  label: string;
 }
 
 interface SummaryBoxProps extends CardGroupProps {
-  children?: ReactNode,
-  items?: SummaryItem[],
-  reverse?: boolean
+  children?: ReactNode;
+  items?: SummaryItem[];
+  reverse?: boolean;
 }
 
 const defaultProps = {
-  reverse: true
+  reverse: true,
 };
 
 const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
@@ -26,9 +27,16 @@ const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
   ...props
 }) => (
   <CardGroup {...props}>
-    {items ?
-        items.map((item, i) => <SummaryBoxItem key={item.key || i} value={item.value} label={item.label} reverse={reverse} />) :
-        children}
+    {items
+      ? items.map((item, i) => (
+          <SummaryBoxItem
+            key={item.key || i}
+            value={item.value}
+            label={item.label}
+            reverse={reverse}
+          />
+        ))
+      : children}
   </CardGroup>
 );
 

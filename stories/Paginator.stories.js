@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { number, select, text } from '@storybook/addon-knobs';
+import React from 'react';
 
 import { Paginator } from '../src';
 

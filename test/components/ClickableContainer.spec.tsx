@@ -34,9 +34,7 @@ describe('<ClickableContainer />', () => {
 
   it('should render any tag', () => {
     const onClick = sinon.spy();
-    const component = mount(
-      <ClickableContainer tag="header" onClick={onClick} />
-    );
+    const component = mount(<ClickableContainer tag="header" onClick={onClick} />);
     const header = component.find('header');
     assert.equal(header.length, 1);
   });

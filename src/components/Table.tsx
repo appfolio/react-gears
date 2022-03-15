@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react';
-import { Table as TableComponent, TableProps as ReactStrapTableProps } from 'reactstrap';
+import type { FunctionComponent } from 'react';
+import React from 'react';
+import type { TableProps as ReactStrapTableProps } from 'reactstrap';
+import { Table as TableComponent } from 'reactstrap';
 
 export interface TableProps extends ReactStrapTableProps {
   size?: string;
@@ -12,13 +14,8 @@ export interface TableProps extends ReactStrapTableProps {
   children: React.ReactNode;
 }
 
-const Table: FunctionComponent<TableProps> = ({
-  children,
-  ...props
-}) => (
-  <TableComponent {...props}>
-    {children}
-  </TableComponent>
+const Table: FunctionComponent<TableProps> = ({ children, ...props }) => (
+  <TableComponent {...props}>{children}</TableComponent>
 );
 
 Table.displayName = 'Table';
@@ -27,7 +24,7 @@ Table.defaultProps = {
   hover: true,
   responsive: true,
   size: 'sm',
-  striped: true
+  striped: true,
 };
 
 export default Table;

@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import type { Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import { Placement } from '@popperjs/core';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 import uniqid from 'uniqid';
-import Button, { ButtonProps } from './Button';
+import type { ButtonProps } from './Button';
+import Button from './Button';
 import Tooltip from './Tooltip';
 
 interface TooltipButtonProps extends ButtonProps {
@@ -14,7 +16,6 @@ interface TooltipButtonProps extends ButtonProps {
 const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
   tooltip,
   disabled = false,
-  text,
   tooltipPlacement = 'top',
   children,
   gearsBtnContainerClass,
@@ -32,11 +33,8 @@ const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
           {tooltip}
         </Tooltip>
       )}
-      <div
-        tabIndex={disabled && tooltip ? 0 : -1}
-        id={buttonId}
-        className={className}
-      >
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+      <div tabIndex={disabled && tooltip ? 0 : -1} id={buttonId} className={className}>
         <Button
           aria-describedby={tooltipId}
           disabled={disabled}

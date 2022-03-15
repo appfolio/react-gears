@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import assert from 'assert';
+import { shallow } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 import { FileInput, Input } from '../../src';
 
 describe('<FileInput />', () => {
@@ -10,9 +10,7 @@ describe('<FileInput />', () => {
 
   beforeEach(() => sandbox.restore());
 
-  const component = shallow(
-    <FileInput name="aFileInput" onChange={onChangeStub} />
-  );
+  const component = shallow(<FileInput name="aFileInput" onChange={onChangeStub} />);
 
   it('should be an Input', () => {
     assert.equal(component.type(), Input);
@@ -28,7 +26,7 @@ describe('<FileInput />', () => {
 
   it('calls supplied onChange function when file selected', () => {
     component.simulate('change', {
-      target: { files: [{ name: 'your.mom' }] }
+      target: { files: [{ name: 'your.mom' }] },
     });
 
     const expectedValue = [{ name: 'your.mom' }];
@@ -38,18 +36,11 @@ describe('<FileInput />', () => {
   it('calls supplied onChange function when multiple files selected', () => {
     component.simulate('change', {
       target: {
-        files: [
-          { name: 'your.mom' },
-          { name: 'karans.mom' },
-          { name: 'justins.mom' },
-        ] }
+        files: [{ name: 'your.mom' }, { name: 'karans.mom' }, { name: 'justins.mom' }],
+      },
     });
 
-    const expectedValue = [
-      { name: 'your.mom' },
-      { name: 'karans.mom' },
-      { name: 'justins.mom' }
-    ];
+    const expectedValue = [{ name: 'your.mom' }, { name: 'karans.mom' }, { name: 'justins.mom' }];
 
     assert(onChangeStub.calledWith(expectedValue));
   });

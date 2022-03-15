@@ -1,5 +1,5 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import React from 'react';
 
 import { ConfirmationButton } from '../../src';
 
@@ -22,10 +22,7 @@ describe('<ConfirmationButton />', () => {
   it('should call onClick after two clicks', () => {
     const onClickSpy = jest.fn();
     const { queryByText } = render(
-      <ConfirmationButton
-        confirmation={messages.confirmation}
-        onClick={onClickSpy}
-      >
+      <ConfirmationButton confirmation={messages.confirmation} onClick={onClickSpy}>
         {messages.default}
       </ConfirmationButton>
     );
@@ -47,10 +44,7 @@ describe('<ConfirmationButton />', () => {
   it('should call cancel after click outside', () => {
     const onClickSpy = jest.fn();
     const { queryByText } = render(
-      <ConfirmationButton
-        confirmation={messages.confirmation}
-        onClick={onClickSpy}
-      >
+      <ConfirmationButton confirmation={messages.confirmation} onClick={onClickSpy}>
         {messages.default}
       </ConfirmationButton>
     );

@@ -5,16 +5,16 @@ const noop = () => {};
 
 export default (Component) => {
   const BoundWrapper = (props, { value = {}, errors = {}, onChange }) => {
-    const {
-      onChange: onChangeProp,
-      ...rowProps
-    } = props;
+    const { onChange: onChangeProp, ...rowProps } = props;
 
     return (
       <Component
         value={typeof value[props.name] === 'undefined' ? '' : value[props.name]}
         feedback={errors[props.name] || ''}
-        onChange={(e) => { onChangeProp(e); onChange(props.name)(e); }}
+        onChange={(e) => {
+          onChangeProp(e);
+          onChange(props.name)(e);
+        }}
         {...rowProps}
       />
     );
@@ -23,16 +23,16 @@ export default (Component) => {
   BoundWrapper.contextTypes = {
     value: PropTypes.object,
     errors: PropTypes.object,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   BoundWrapper.propTypes = {
     name: PropTypes.string.isRequired,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   BoundWrapper.defaultProps = {
-    onChange: noop
+    onChange: noop,
   };
 
   return BoundWrapper;

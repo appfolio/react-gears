@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, select } from '@storybook/addon-knobs';
+import React from 'react';
 import {
   Button,
   ButtonGroup,
@@ -50,38 +50,82 @@ export const Colors = () => (
 export const Disabled = () => (
   <ButtonToolbar>
     <Button disabled>Default</Button>
-    <Button disabled color="primary">Primary</Button>
-    <Button disabled color="secondary">Secondary</Button>
-    <Button disabled color="success">Success</Button>
-    <Button disabled color="info">Info</Button>
-    <Button disabled color="warning">Warning</Button>
-    <Button disabled color="danger">Danger</Button>
-    <Button disabled color="dark">Dark</Button>
-    <Button disabled color="light">Light</Button>
-    <Button disabled color="link">Link</Button>
+    <Button disabled color="primary">
+      Primary
+    </Button>
+    <Button disabled color="secondary">
+      Secondary
+    </Button>
+    <Button disabled color="success">
+      Success
+    </Button>
+    <Button disabled color="info">
+      Info
+    </Button>
+    <Button disabled color="warning">
+      Warning
+    </Button>
+    <Button disabled color="danger">
+      Danger
+    </Button>
+    <Button disabled color="dark">
+      Dark
+    </Button>
+    <Button disabled color="light">
+      Light
+    </Button>
+    <Button disabled color="link">
+      Link
+    </Button>
   </ButtonToolbar>
 );
 
 export const Outline = () => (
   <ButtonToolbar>
     <Button outline>Default</Button>
-    <Button outline color="primary">Primary</Button>
-    <Button outline color="secondary">Secondary</Button>
-    <Button outline color="success">Success</Button>
-    <Button outline color="info">Info</Button>
-    <Button outline color="warning">Warning</Button>
-    <Button outline color="danger">Danger</Button>
-    <Button outline color="dark">Dark</Button>
-    <Button outline color="light">Light</Button>
-    <Button outline color="link">Link</Button>
+    <Button outline color="primary">
+      Primary
+    </Button>
+    <Button outline color="secondary">
+      Secondary
+    </Button>
+    <Button outline color="success">
+      Success
+    </Button>
+    <Button outline color="info">
+      Info
+    </Button>
+    <Button outline color="warning">
+      Warning
+    </Button>
+    <Button outline color="danger">
+      Danger
+    </Button>
+    <Button outline color="dark">
+      Dark
+    </Button>
+    <Button outline color="light">
+      Light
+    </Button>
+    <Button outline color="link">
+      Link
+    </Button>
   </ButtonToolbar>
 );
 
 export const Sizes = () => (
   <div>
-    <Button color="primary" size="lg">Large button</Button>&nbsp;
-    <Button color="primary" size="md">Medium button</Button>&nbsp;
-    <Button color="primary" size="sm">Small button</Button>
+    <Button color="primary" size="lg">
+      Large button
+    </Button>
+    &nbsp;
+    <Button color="primary" size="md">
+      Medium button
+    </Button>
+    &nbsp;
+    <Button color="primary" size="sm">
+      Small button
+    </Button>
   </div>
 );
 
@@ -100,7 +144,9 @@ export const TooltipButtonExample = () => (
 export const ButtonGroupExample = () => (
   <div>
     <div className="mb-1">
-      <Button size="lg" block>Block level button</Button>
+      <Button size="lg" block>
+        Block level button
+      </Button>
     </div>
     <div className="mb-1">
       <ButtonGroup>
@@ -127,9 +173,7 @@ export const ButtonGroupExample = () => (
         <ButtonGroup>
           <Button>8</Button>
           <ButtonDropdown toggle={() => {}}>
-            <DropdownToggle caret>
-              Dropdown
-            </DropdownToggle>
+            <DropdownToggle caret>Dropdown</DropdownToggle>
             <DropdownMenu>
               <DropdownItem header>Header</DropdownItem>
               <DropdownItem disabled>Action</DropdownItem>

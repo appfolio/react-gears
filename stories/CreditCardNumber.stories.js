@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { array } from '@storybook/addon-knobs';
+import React from 'react';
 import uncontrollable from 'uncontrollable';
 import { CreditCardNumber } from '../src';
 
@@ -24,7 +24,7 @@ export const LiveExample = () => (
       'american-express',
       'discover',
       'diners-club',
-      'jcb'
+      'jcb',
     ])}
   />
 );

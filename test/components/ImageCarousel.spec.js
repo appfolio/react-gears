@@ -3,12 +3,7 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import {
-  Icon,
-  ImageCarousel,
-  Modal,
-  UncontrolledCarousel
-} from '../../src';
+import { Icon, ImageCarousel, Modal, UncontrolledCarousel } from '../../src';
 
 describe('<ImageCarousel />', () => {
   let component;
@@ -50,7 +45,11 @@ describe('<ImageCarousel />', () => {
     const external = shallow(component.prop('external'));
     const carousel = external.find(UncontrolledCarousel);
 
-    assert.deepStrictEqual(carousel.prop('items'), [{ src: 'empire' }, { src: 'phantom' }, { src: 'force' }]);
+    assert.deepStrictEqual(carousel.prop('items'), [
+      { src: 'empire' },
+      { src: 'phantom' },
+      { src: 'force' },
+    ]);
     assert.strictEqual(carousel.prop('indicators'), true);
     assert.strictEqual(carousel.prop('controls'), true);
     assert.strictEqual(carousel.prop('autoPlay'), false);

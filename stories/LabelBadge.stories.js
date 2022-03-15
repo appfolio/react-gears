@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { LabelBadge } from '../src';
 
 export default {

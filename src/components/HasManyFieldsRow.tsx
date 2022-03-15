@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Placement } from '@popperjs/core';
+import type { Placement } from '@popperjs/core';
 import classnames from 'classnames';
+import React, { useState } from 'react';
 import Button from './Button';
-import ConfirmationButton, { ConfirmationButtonProps } from './ConfirmationButton';
 import Col from './Col';
+import type { ConfirmationButtonProps } from './ConfirmationButton';
+import ConfirmationButton from './ConfirmationButton';
 import Icon from './Icon';
 import Row from './Row';
 import Tooltip from './Tooltip';
@@ -53,7 +54,7 @@ const HasManyFieldsRow = ({
     <Button
       id={id}
       color="danger"
-      onClick={e => e.preventDefault()}
+      onClick={(e) => e.preventDefault()}
       outline
       className="p-2 disabled align-self-stretch"
     >
@@ -90,7 +91,7 @@ HasManyFieldsRow.defaultProps = {
   disabledReasonPlacement: 'top',
   disabled: false,
   onDelete: noop,
-  deletable: true
+  deletable: true,
 };
 
 HasManyFieldsRow.displayName = 'HasManyFieldsRow';

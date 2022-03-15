@@ -1,15 +1,8 @@
-import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import React from 'react';
 
-import {
-  Col,
-  FormFeedback,
-  FormGroup,
-  FormLabelGroup,
-  FormText,
-  Label,
-} from '../../src';
+import { Col, FormFeedback, FormGroup, FormLabelGroup, FormText, Label } from '../../src';
 
 describe('<FormLabelGroup />', () => {
   describe('by default', () => {
@@ -66,7 +59,11 @@ describe('<FormLabelGroup />', () => {
     });
 
     it('should include an asterisk after the label text when required', () => {
-      const component = shallow(<FormLabelGroup {...props} required>Hello World</FormLabelGroup>);
+      const component = shallow(
+        <FormLabelGroup {...props} required>
+          Hello World
+        </FormLabelGroup>
+      );
 
       const label = component.find(Label);
       assert.equal(label.length, 1);
@@ -77,7 +74,11 @@ describe('<FormLabelGroup />', () => {
     });
 
     it('should have an outer column for the row where the children are rendered', () => {
-      const component = shallow(<FormLabelGroup {...props} required>Hello World</FormLabelGroup>);
+      const component = shallow(
+        <FormLabelGroup {...props} required>
+          Hello World
+        </FormLabelGroup>
+      );
       const col = component.find(Col).at(0);
       assert.equal(col.prop('sm'), 9);
     });
@@ -129,7 +130,9 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('with a node label', () => {
-    const component = shallow(<FormLabelGroup label={<span>Greetings</span>}>Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup label={<span>Greetings</span>}>Hello World</FormLabelGroup>
+    );
 
     it('should have a node label', () => {
       const label = component.find(Label);
@@ -148,7 +151,11 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('stacked', () => {
-    const component = shallow(<FormLabelGroup label="First Name" stacked>Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup label="First Name" stacked>
+        Hello World
+      </FormLabelGroup>
+    );
 
     it('should have a width 12 outer column for the row where the children are rendered', () => {
       const col = component.find(Col);
@@ -164,7 +171,9 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('with width', () => {
-    const component = shallow(<FormLabelGroup width={{ xs: 10, sm: 9 }}>Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup width={{ xs: 10, sm: 9 }}>Hello World</FormLabelGroup>
+    );
 
     it('should adjust the width of the inner column wrapping the children', () => {
       const col = component.find(Col);
@@ -174,7 +183,9 @@ describe('<FormLabelGroup />', () => {
   });
 
   describe('with a hint', () => {
-    const component = shallow(<FormLabelGroup hint="Psst! Check this out...">Hello World</FormLabelGroup>);
+    const component = shallow(
+      <FormLabelGroup hint="Psst! Check this out...">Hello World</FormLabelGroup>
+    );
 
     it('should render FormText with the hint', () => {
       const hint = component.find(FormText);
@@ -186,10 +197,7 @@ describe('<FormLabelGroup />', () => {
 
   describe('with feedback', () => {
     const component = shallow(
-      <FormLabelGroup
-        label="Label"
-        feedback="You're doing amazing sweetie!"
-      >
+      <FormLabelGroup label="Label" feedback="You're doing amazing sweetie!">
         Hello World
       </FormLabelGroup>
     );
@@ -205,10 +213,7 @@ describe('<FormLabelGroup />', () => {
 
   describe('with valid feedback', () => {
     const component = shallow(
-      <FormLabelGroup
-        label="Label"
-        validFeedback="YOU ARE CORRECT"
-      >
+      <FormLabelGroup label="Label" validFeedback="YOU ARE CORRECT">
         Hello World
       </FormLabelGroup>
     );

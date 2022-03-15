@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, number, select } from '@storybook/addon-knobs';
+import React from 'react';
 import { Progress } from '../src';
 
 export default {

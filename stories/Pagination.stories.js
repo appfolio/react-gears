@@ -1,5 +1,5 @@
-import React from 'react';
 import { select } from '@storybook/addon-knobs';
+import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from '../src';
 
 export default {

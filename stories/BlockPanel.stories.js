@@ -1,6 +1,6 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import React from 'react';
 import {
   BlockPanel,
   Button,
@@ -34,7 +34,7 @@ export const LiveExample = () => (
       'warning',
       'danger',
       'light',
-      'dark'
+      'dark',
     ])}
     expandable={boolean('expandable', true)}
     hideOnToggle={boolean('hideOnToggle', false)}
@@ -90,7 +90,7 @@ export const ComponentsForTitleAndControls = () => (
         <Button>
           <Icon name="th-list" />
         </Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     ]}
   >
     Hello
@@ -100,14 +100,17 @@ export const ComponentsForTitleAndControls = () => (
 export const DropdownForControls = () => (
   <BlockPanel
     expandable
-    title={
-      <span className="text-uppercase">
-        {text('title', 'Invoices')}
-      </span>
-    }
+    title={<span className="text-uppercase">{text('title', 'Invoices')}</span>}
     controls={[
       <UncontrolledDropdown>
-        <DropdownToggle id="toggle" outline={false} color="link" className="py-0 px-2" role="button" title="More options">
+        <DropdownToggle
+          id="toggle"
+          outline={false}
+          color="link"
+          className="py-0 px-2"
+          role="button"
+          title="More options"
+        >
           <Icon name="ellipsis-h" size="lg" />
         </DropdownToggle>
         <DropdownMenu right>
@@ -116,22 +119,22 @@ export const DropdownForControls = () => (
           <DropdownItem>Min</DropdownItem>
           <DropdownItem>Delta</DropdownItem>
         </DropdownMenu>
-      </UncontrolledDropdown>
+      </UncontrolledDropdown>,
     ]}
   >
-    The symbolic resource $all, located at the service root, identifies the collection of all entities in a service, i.e. the union of all entity sets plus all singletons.
-    This symbolic resource is of type Collection(Edm.EntityType) and allows the $search system query option plus all other query options applicable to collections of entities.
-    The $all resource can be appended with a path segment containing the qualified name of an entity type in order to restrict the collections to entities of that type. Query options such as $select, $filter, $expand and $orderby can be applied to this restricted set according to the specified type.
-    Example 37: all entities in a service that somehow match red
+    The symbolic resource $all, located at the service root, identifies the collection of all
+    entities in a service, i.e. the union of all entity sets plus all singletons. This symbolic
+    resource is of type Collection(Edm.EntityType) and allows the $search system query option plus
+    all other query options applicable to collections of entities. The $all resource can be appended
+    with a path segment containing the qualified name of an entity type in order to restrict the
+    collections to entities of that type. Query options such as $select, $filter, $expand and
+    $orderby can be applied to this restricted set according to the specified type. Example 37: all
+    entities in a service that somehow match red
   </BlockPanel>
 );
 
 export const StickyBlockPanel = () => (
-  <BlockPanel
-    expandable
-    stickyId="rememberMe"
-    title={text('title', 'I remember open/close')}
-  >
+  <BlockPanel expandable stickyId="rememberMe" title={text('title', 'I remember open/close')}>
     I feel sticky, oh so sticky, I feel sticky, and witty, and wise.
   </BlockPanel>
 );

@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import { Carousel, UncontrolledCarousel } from '../../src';
 
 const items = [
@@ -35,9 +35,7 @@ describe('UncontrolledCarousel', () => {
   });
 
   it('should have ride set to undefined when autoPlay is false', () => {
-    const carousel = shallow(
-      <UncontrolledCarousel items={items} autoPlay={false} />
-    );
+    const carousel = shallow(<UncontrolledCarousel items={items} autoPlay={false} />);
     expect(carousel.prop('ride')).toBe(undefined);
   });
 
@@ -138,9 +136,7 @@ describe('UncontrolledCarousel', () => {
   });
 
   it('should render carousel items with provided key', () => {
-    const carousel = shallow(
-      <UncontrolledCarousel items={items} indicators={false} />
-    );
+    const carousel = shallow(<UncontrolledCarousel items={items} indicators={false} />);
     const carouselItem1 = carousel.childAt(0);
     const carouselItem2 = carousel.childAt(1);
     const carouselItem3 = carousel.childAt(2);
@@ -155,9 +151,7 @@ describe('UncontrolledCarousel', () => {
       { caption: 'caption 2', key: '2', children: <span id="bravo">Bravo</span> },
       { caption: 'caption 3', key: '3', children: <span id="charlie">Charlie</span> },
     ];
-    const carousel = shallow(
-      <UncontrolledCarousel items={newItems} indicators={false} />
-    );
+    const carousel = shallow(<UncontrolledCarousel items={newItems} indicators={false} />);
 
     expect(carousel.find('#alpha')).toBeDefined();
     expect(carousel.find('#bravo')).toBeDefined();

@@ -1,8 +1,8 @@
-import React from 'react';
-import { mount } from 'enzyme';
 import assert from 'assert';
-import withDragHandler from '../../../src/components/Reorderable/DragHandler';
+import { mount } from 'enzyme';
+import React from 'react';
 import Icon from '../../../src/components/Icon';
+import withDragHandler from '../../../src/components/Reorderable/DragHandler';
 
 describe('#withDragHandler', () => {
   describe('using default handler UI', () => {
@@ -17,7 +17,7 @@ describe('#withDragHandler', () => {
 
   describe('not using default handler UI', () => {
     it('renders the passed in component', () => {
-      const wrappedHandler = () => <span className='js-handler'>::</span>;
+      const wrappedHandler = () => <span className="js-handler">::</span>;
       const Handler = withDragHandler(wrappedHandler, false);
       const wrapper = mount(<Handler />);
 

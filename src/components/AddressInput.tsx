@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
-import type { ChangeEvent } from 'react';
+import classnames from 'classnames';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
-import classnames from 'classnames';
-import CountryInput from './CountryInput';
-import StateInput from './StateInput';
-import FormLabelGroup from './FormLabelGroup';
+import React, { useCallback } from 'react';
+import type { ChangeEvent } from 'react';
 import Col from './Col';
+import CountryInput from './CountryInput';
+import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
 import Row from './Row';
+import StateInput from './StateInput';
 
 interface Address {
   address1: string;
@@ -50,21 +50,6 @@ const getValue = (field: string, source: StringMap): string | null => {
     return null;
   }
   return fieldValue;
-};
-
-const getValueProps = (value: StringMap, defaultValue: StringMap) => (
-  field: string
-): { value?: string; defaultValue?: string } => {
-  const gotValue = getValue(field, value);
-  if (gotValue !== null) {
-    return { value: gotValue };
-  }
-
-  const gotDefaultValue = getValue(field, defaultValue);
-  if (gotDefaultValue !== null) {
-    return { defaultValue: gotDefaultValue };
-  }
-  return {};
 };
 
 const defaultProps = {
@@ -120,10 +105,21 @@ const AddressInput = ({
     [onChange, value]
   );
 
-  const getValues = useCallback(getValueProps(value, defaultValue), [
-    value,
-    defaultValue,
-  ]);
+  const getValues = useCallback(
+    (field: string): { value?: string; defaultValue?: string } => {
+      const gotValue = getValue(field, value);
+      if (gotValue !== null) {
+        return { value: gotValue };
+      }
+
+      const gotDefaultValue = getValue(field, defaultValue);
+      if (gotDefaultValue !== null) {
+        return { defaultValue: gotDefaultValue };
+      }
+      return {};
+    },
+    [value, defaultValue]
+  );
 
   const inputId = id || 'addressInput';
   const address1Id = `${inputId}_address1`;
@@ -178,11 +174,7 @@ const AddressInput = ({
         />
       </FormLabelGroup>
       <Row className="g-0">
-        <Col
-          sm={compact ? undefined : 6}
-          xs={12}
-          className={compact ? undefined : 'pe-sm-3'}
-        >
+        <Col sm={compact ? undefined : 6} xs={12} className={compact ? undefined : 'pe-sm-3'}>
           <FormLabelGroup
             rowClassName={classnames({ 'mb-sm-0': !showCountry && !compact })}
             feedback={error.city}
@@ -206,12 +198,7 @@ const AddressInput = ({
             />
           </FormLabelGroup>
         </Col>
-        <Col
-          md={compact ? undefined : 2}
-          sm={compact ? undefined : 3}
-          xs={4}
-          className="pe-3"
-        >
+        <Col md={compact ? undefined : 2} sm={compact ? undefined : 3} xs={4} className="pe-3">
           <FormLabelGroup
             rowClassName={classnames({ 'mb-0': !showCountry })}
             feedback={error.state}

@@ -59,5 +59,5 @@ export default [
   { label: 'Marshall Islands', value: 'MH' },
   { label: 'Northern Mariana Islands', value: 'MP' },
   { label: 'Puerto Rico', value: 'PR' },
-  { label: 'Virgin Islands', value: 'VI' }
+  { label: 'Virgin Islands', value: 'VI' },
 ];

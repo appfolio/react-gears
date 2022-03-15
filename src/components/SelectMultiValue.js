@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Badge from './Badge';
 import Icon from './Icon';
 
@@ -12,14 +12,15 @@ export default class SelectMultiValue extends React.Component {
     instancePrefix: PropTypes.any,
     disabled: PropTypes.bool,
     onRemove: PropTypes.func,
-    value: PropTypes.object
+    value: PropTypes.object,
   };
 
   static defaultProps = {
-    className: ''
-  }
+    className: '',
+  };
 
   render() {
+    /* eslint-disable  @typescript-eslint/no-unused-vars -- Let's figure out a better way to omit props for this scenario */
     const {
       id,
       children,
@@ -30,6 +31,7 @@ export default class SelectMultiValue extends React.Component {
       onRemove,
       ...props
     } = this.props;
+    /* eslint-enable  @typescript-eslint/no-unused-vars */
     const classNames = classnames(
       'ms-1',
       'fw-normal',
@@ -48,7 +50,18 @@ export default class SelectMultiValue extends React.Component {
         style={{ textTransform: 'none', whiteSpace: 'normal' }}
         {...props}
       >
-        {children} <Icon className="ms-1" style={{ opacity: 0.5 }} role="button" name="times" onClick={() => { if (!disabled) onRemove(value); }} />
+        {children}{' '}
+        <Icon
+          className="ms-1"
+          style={{ opacity: 0.5 }}
+          role="button"
+          name="times"
+          onClick={() => {
+            if (!disabled) {
+              onRemove(value);
+            }
+          }}
+        />
       </Badge>
     );
   }

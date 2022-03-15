@@ -1,9 +1,9 @@
-import React from 'react';
-import assert from 'assert';
 import { render, screen } from '@testing-library/react';
+import assert from 'assert';
+import React from 'react';
 
-import { assertAccessibleContainer } from '../a11yHelpers';
 import { ActivityLog, Activity } from '../../src';
+import { assertAccessibleContainer } from '../a11yHelpers';
 
 describe('<ActivityLog />', () => {
   it('should render each <Activity /> correctly', async () => {

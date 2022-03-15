@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import FormGroup from './FormGroup';
-import Label from './Label';
 import Input from './Input';
+import Label from './Label';
 
 type Value = any;
 interface Option {
@@ -34,25 +34,24 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
 
   return (
     <FormGroup>
-      {
-        options.map((option) => {
-          const id = `option-${option.label}-${groupId}`;
-          return (
-            <FormGroup check key={option.value}>
-              <Input
-                type="checkbox"
-                checked={selected.includes(option.value)}
-                onChange={ev => handleCheckboxChange(ev.target.checked, option.value)}
-                disabled={option.disabled}
-                id={id}
-              />
-              <Label check for={id}>
-                {' '}{option.label}
-              </Label>
-            </FormGroup>
+      {options.map((option) => {
+        const id = `option-${option.label}-${groupId}`;
+        return (
+          <FormGroup check key={option.value}>
+            <Input
+              type="checkbox"
+              checked={selected.includes(option.value)}
+              onChange={(ev) => handleCheckboxChange(ev.target.checked, option.value)}
+              disabled={option.disabled}
+              id={id}
+            />
+            <Label check for={id}>
+              {' '}
+              {option.label}
+            </Label>
+          </FormGroup>
         );
-})
-      }
+      })}
     </FormGroup>
   );
 };

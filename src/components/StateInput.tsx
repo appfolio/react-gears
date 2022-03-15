@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { InputProps } from 'reactstrap';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import type { InputProps } from 'reactstrap';
 import Input from './Input';
-import US from './address/USStates';
 import CA from './address/CAProvinces';
+import US from './address/USStates';
 
 const STATES_LOOKUP: {
-  [key: string]: { label: string, value: string }[] | undefined
-  'US': { label: string, value: string }[],
-  'CA': { label: string, value: string }[],
+  [key: string]: { label: string; value: string }[] | undefined;
+  US: { label: string; value: string }[];
+  CA: { label: string; value: string }[];
 } = {
   CA,
-  US
+  US,
 };
 
 interface StateInputProps extends Omit<InputProps, 'type' | 'onChange'> {
@@ -46,7 +46,7 @@ const StateInput: React.FunctionComponent<StateInputProps> = ({
   const STATES = countries.reduce((result, country) => {
     const states = STATES_LOOKUP[country] || [];
     return [...result, ...states];
-  }, [] as { label: string, value: string }[]);
+  }, [] as { label: string; value: string }[]);
 
   return (
     <Input
@@ -56,11 +56,14 @@ const StateInput: React.FunctionComponent<StateInputProps> = ({
       disabled={disabled}
       id={id}
       name={name}
-      onChange={e => onChange(e.target.value === '' ? null : e.target.value)}
+      onChange={(e) => onChange(e.target.value === '' ? null : e.target.value)}
     >
       <option value="">{placeholder}</option>
-      {STATES.map(state =>
-        <option title={state.label} value={state.value} key={state.value}>{state.value}</option>)}
+      {STATES.map((state) => (
+        <option title={state.label} value={state.value} key={state.value}>
+          {state.value}
+        </option>
+      ))}
     </Input>
   );
 };

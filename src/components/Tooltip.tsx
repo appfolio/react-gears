@@ -20,13 +20,7 @@ const Tooltip: FC<TooltipProps> = ({
   }, [open]);
 
   return (
-    <InnerTooltip
-      isOpen={open}
-      toggle={handleToggle}
-      fade={fade}
-      target={target}
-      {...props}
-    />
+    <InnerTooltip isOpen={open} toggle={handleToggle} fade={fade} target={target} {...props} />
   );
 };
 

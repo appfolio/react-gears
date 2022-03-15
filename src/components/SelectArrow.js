@@ -64,30 +64,20 @@ const SelectArrow = ({ isOpen, render }) => (
         }
         .Select.is-focused:not(.is-open) > .Select-control {
           border-color: #08c #0099e6 #0099e6;
-          -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1),
-            0 0 5px -1px fade(#08c, 50%);
-          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1),
-            0 0 5px -1px fade(#08c, 50%);
+          -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 5px -1px fade(#08c, 50%);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 5px -1px fade(#08c, 50%);
         }
-        .Select.has-value.is-clearable.Select--single
-          > .Select-control
-          .Select-value {
+        .Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
           padding-right: 2.875rem;
         }
-        .Select.has-value.Select--single
-          > .Select-control
-          .Select-value
-          .Select-value-label,
+        .Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
         .Select.has-value.is-pseudo-focused.Select--single
           > .Select-control
           .Select-value
           .Select-value-label {
           color: #333;
         }
-        .Select.has-value.Select--single
-          > .Select-control
-          .Select-value
-          a.Select-value-label,
+        .Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
         .Select.has-value.is-pseudo-focused.Select--single
           > .Select-control
           .Select-value
@@ -95,14 +85,8 @@ const SelectArrow = ({ isOpen, render }) => (
           cursor: pointer;
           text-decoration: none;
         }
-        .Select.has-value.Select--single
-          > .Select-control
-          .Select-value
-          a.Select-value-label:hover,
-        .Select.has-value.Select--single
-          > .Select-control
-          .Select-value
-          a.Select-value-label:focus,
+        .Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+        .Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
         .Select.has-value.is-pseudo-focused.Select--single
           > .Select-control
           .Select-value
@@ -115,10 +99,7 @@ const SelectArrow = ({ isOpen, render }) => (
           outline: none;
           text-decoration: underline;
         }
-        .Select.has-value.Select--single
-          > .Select-control
-          .Select-value
-          a.Select-value-label:focus,
+        .Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
         .Select.has-value.is-pseudo-focused.Select--single
           > .Select-control
           .Select-value

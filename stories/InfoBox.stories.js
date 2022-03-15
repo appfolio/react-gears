@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { InfoBox } from '../src';
 import { colors } from './colors';
 

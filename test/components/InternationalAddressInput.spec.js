@@ -1,9 +1,17 @@
-import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
-import { InternationalAddressInput, Select, FormFeedback, FormGroup, FormText, Input, Label } from '../../src';
+import {
+  InternationalAddressInput,
+  Select,
+  FormFeedback,
+  FormGroup,
+  FormText,
+  Input,
+  Label,
+} from '../../src';
 import CA from '../../src/components/address/CAProvinces';
 import US from '../../src/components/address/USStates';
 
@@ -16,14 +24,9 @@ describe('<InternationalAddressInput />', () => {
       city: 'Gotham',
       state: 'NJ',
       postal: '07001',
-      countryCode: 'US'
+      countryCode: 'US',
     };
-    const component = mount(
-      <InternationalAddressInput
-        value={addressData}
-        onChange={callback}
-      />
-    );
+    const component = mount(<InternationalAddressInput value={addressData} onChange={callback} />);
 
     it('should update address1', () => {
       const input = component.find('[name="address1"]').hostNodes();
@@ -81,7 +84,11 @@ describe('<InternationalAddressInput />', () => {
       sinon.assert.calledWith(callback, { ...addressData, state: undefined, countryCode: 'CA' });
 
       input.simulate('change', { target: { value: null } });
-      sinon.assert.calledWith(callback, { ...addressData, state: undefined, countryCode: undefined });
+      sinon.assert.calledWith(callback, {
+        ...addressData,
+        state: undefined,
+        countryCode: undefined,
+      });
     });
 
     it('should clear values', () => {
@@ -99,7 +106,7 @@ describe('<InternationalAddressInput />', () => {
       city: 'city error',
       state: 'state error',
       postal: 'postal error',
-      countryCode: 'countryCode error'
+      countryCode: 'countryCode error',
     };
 
     const component = shallow(
@@ -110,7 +117,7 @@ describe('<InternationalAddressInput />', () => {
           city: 'Gotham',
           state: 'NJ',
           postal: '07001',
-          countryCode: 'US'
+          countryCode: 'US',
         }}
         error={errors}
       />
@@ -118,12 +125,12 @@ describe('<InternationalAddressInput />', () => {
 
     it('should set color of each FormGroup', () => {
       const groups = component.find(FormGroup);
-      groups.forEach(group => assert.equal(group.prop('color'), 'danger'));
+      groups.forEach((group) => assert.equal(group.prop('color'), 'danger'));
     });
 
     it('should set the state of non-Select inputs', () => {
       const inputs = component.find(Input);
-      inputs.forEach(input => assert.equal(input.prop('invalid'), true));
+      inputs.forEach((input) => assert.equal(input.prop('invalid'), true));
     });
 
     it('should show the corresponding error for each input', () => {
@@ -145,7 +152,7 @@ describe('<InternationalAddressInput />', () => {
       city: 'city hint',
       state: 'state hint',
       postal: 'postal hint',
-      countryCode: 'countryCode hint'
+      countryCode: 'countryCode hint',
     };
 
     const component = shallow(
@@ -156,7 +163,7 @@ describe('<InternationalAddressInput />', () => {
           city: 'Gotham',
           state: 'NJ',
           postal: '07001',
-          countryCode: 'US'
+          countryCode: 'US',
         }}
         hints={hints}
       />
@@ -184,7 +191,7 @@ describe('<InternationalAddressInput />', () => {
             city: 'Gotham',
             state: 'NJ',
             postal: '07001',
-            countryCode: 'US'
+            countryCode: 'US',
           }}
           disabled={disabledProp}
         />
@@ -193,8 +200,8 @@ describe('<InternationalAddressInput />', () => {
       const inputs = component.find(Input);
       const selects = component.find(Select);
 
-      inputs.forEach(input => assert.equal(input.prop('disabled'), expected));
-      selects.forEach(select => assert.equal(select.prop('disabled'), expected));
+      inputs.forEach((input) => assert.equal(input.prop('disabled'), expected));
+      selects.forEach((select) => assert.equal(select.prop('disabled'), expected));
     }
 
     it('should disable all the fields when true', () => {
@@ -229,12 +236,12 @@ describe('<InternationalAddressInput />', () => {
         city: 'Charlie',
         state: 'Delta',
         postal: 'Echo',
-        countryCode: 'Foxtrot'
+        countryCode: 'Foxtrot',
       };
       const component = mount(<InternationalAddressInput showLabels labels={labels} />);
       const formLabels = component.find(Label);
       assert.equal(formLabels.length, 6);
-      formLabels.forEach(label => assert(Object.values(labels).includes(label.text())));
+      formLabels.forEach((label) => assert(Object.values(labels).includes(label.text())));
     });
 
     it('should not show custom labels when disabled', () => {
@@ -252,7 +259,11 @@ describe('<InternationalAddressInput />', () => {
       assert.equal(component.find('#yo_city').hostNodes().length, 0, 'city id visible');
       assert.equal(component.find('#yo_state').hostNodes().length, 0, 'state id visible');
       assert.equal(component.find('#yo_postal').hostNodes().length, 0, 'postal id visible');
-      assert.equal(component.find('#yo_countryCode').hostNodes().length, 0, 'countryCode id visible');
+      assert.equal(
+        component.find('#yo_countryCode').hostNodes().length,
+        0,
+        'countryCode id visible'
+      );
     });
 
     it('should show id by when specified', () => {
@@ -263,7 +274,11 @@ describe('<InternationalAddressInput />', () => {
       assert.equal(component.find('#yo_city').hostNodes().length, 1, 'city id missing');
       assert.equal(component.find('#yo_state').hostNodes().length, 1, 'state id missing');
       assert.equal(component.find('#yo_postal').hostNodes().length, 1, 'postal id missing');
-      assert.equal(component.find('#yo_countryCode').hostNodes().length, 1, 'countryCode id missing');
+      assert.equal(
+        component.find('#yo_countryCode').hostNodes().length,
+        1,
+        'countryCode id missing'
+      );
     });
   });
 
@@ -279,20 +294,20 @@ describe('<InternationalAddressInput />', () => {
   });
 
   it('should support a className', () => {
-    const component = mount(
-      <InternationalAddressInput
-        className="address-component"
-      />
-    );
+    const component = mount(<InternationalAddressInput className="address-component" />);
     assert.equal(component.find('.address-component').hostNodes().length, 1);
   });
 
   describe('states', () => {
     it('should support different countries', () => {
-      const defaultStates = mount(<InternationalAddressInput id="test" value={{ countryCode: 'US' }} />);
+      const defaultStates = mount(
+        <InternationalAddressInput id="test" value={{ countryCode: 'US' }} />
+      );
       assert.equal(defaultStates.find('#test_state option').length, US.length + 1);
 
-      const component = mount(<InternationalAddressInput id="test" value={{ countryCode: 'CA' }} />);
+      const component = mount(
+        <InternationalAddressInput id="test" value={{ countryCode: 'CA' }} />
+      );
       assert.equal(component.find('#test_state option').length, CA.length + 1);
     });
   });

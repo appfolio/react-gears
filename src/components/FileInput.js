@@ -7,24 +7,19 @@ class FileInput extends React.Component {
     if (this.props.onChange) {
       this.props.onChange(changeEvent.target.files);
     }
-  }
+  };
 
   render() {
-    const {
-      type,
-      onChange,
-      ...props
-    } = this.props;
+    /* eslint-disable-next-line  @typescript-eslint/no-unused-vars -- Let's figure out a better way to omit props for this scenario */
+    const { type, onChange, ...props } = this.props;
 
-    return (
-      <Input type="file" onChange={this.onChange} {...props} />
-    );
+    return <Input type="file" onChange={this.onChange} {...props} />;
   }
 }
 
 FileInput.propTypes = {
   onChange: PropTypes.func,
-  type: PropTypes.any
+  type: PropTypes.any,
 };
 
 export default FileInput;

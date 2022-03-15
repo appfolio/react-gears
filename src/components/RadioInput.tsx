@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 
 type RadioInputProps = {
   type?: any;
@@ -7,18 +8,19 @@ type RadioInputProps = {
   onChange?: (event: any) => void;
 };
 
-const RadioInput: FunctionComponent<RadioInputProps> = ({
-  type,
-  children,
-  value,
-  ...props
-}) => (
+/* eslint-disable-next-line  @typescript-eslint/no-unused-vars -- Let's figure out a better way to omit props for this scenario */
+const RadioInput: FunctionComponent<RadioInputProps> = ({ type, children, value, ...props }) => (
   <div>
-    {React.Children.map(children, choice => React.isValidElement(choice) && React.cloneElement(choice as any, {
-      type: 'radio',
-      selected: value,
-      ...props,
-    }))}
+    {React.Children.map(
+      children,
+      (choice) =>
+        React.isValidElement(choice) &&
+        React.cloneElement(choice as any, {
+          type: 'radio',
+          selected: value,
+          ...props,
+        })
+    )}
   </div>
 );
 

@@ -1,9 +1,9 @@
 /* eslint-disable react/default-props-match-prop-types */
 // Enable the above rule when the following is addressed https://github.com/yannickcr/eslint-plugin-react/issues/1674
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Icon from './Icon';
 import Modal from './Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
@@ -17,7 +17,7 @@ export default class ImageCarousel extends React.Component {
     defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
     slide: PropTypes.bool,
-    ...Modal.propTypes
+    ...Modal.propTypes,
   };
 
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class ImageCarousel extends React.Component {
     fade: false,
     items: [],
     slide: false,
-    toggle: () => {}
+    toggle: () => {},
   };
 
   constructor(props) {
@@ -44,7 +44,7 @@ export default class ImageCarousel extends React.Component {
     if (e.key === 'Escape') {
       this.props.toggle();
     }
-  }
+  };
 
   componentDidMount() {
     document.addEventListener('keyup', this.handleEscape);
@@ -52,7 +52,7 @@ export default class ImageCarousel extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { index, isOpen } = this.props;
-    if (index !== prevProps.index || (isOpen && (isOpen !== prevProps.isOpen))) {
+    if (index !== prevProps.index || (isOpen && isOpen !== prevProps.isOpen)) {
       this.goToIndex(index);
     }
   }
@@ -62,7 +62,20 @@ export default class ImageCarousel extends React.Component {
   }
 
   render() {
-    const { defaultActiveIndex, autoPlay, controls, index, items, indicators, interval, slide, toggle, ...props } = this.props;
+    /* eslint-disable  @typescript-eslint/no-unused-vars -- Let's figure out a better way to omit props for this scenario */
+    const {
+      defaultActiveIndex,
+      autoPlay,
+      controls,
+      index,
+      items,
+      indicators,
+      interval,
+      slide,
+      toggle,
+      ...props
+    } = this.props;
+    /* eslint-enable  @typescript-eslint/no-unused-vars */
 
     return (
       <Modal

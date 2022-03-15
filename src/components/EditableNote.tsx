@@ -6,22 +6,22 @@ import CardBody from './CardBody';
 import FormLabelGroup from './FormLabelGroup';
 import Input from './Input';
 import NoteHeader from './NoteHeader';
-import NoteType from './TypeHelpers/NoteType';
+import type NoteType from './TypeHelpers/NoteType';
 
 type EditableNoteProps = {
-  children?: React.ReactNode,
-  className?: string,
-  dateFormat?: string,
-  showTimezone?: boolean,
-  note: NoteType,
-  onCancel: (note: NoteType) => void,
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void,
-  onSave: (note: NoteType) => void,
-  rows?: number,
-  saving?: boolean,
-  saveLabel?: React.ReactNode,
-  savingLabel?: React.ReactNode,
-}
+  children?: React.ReactNode;
+  className?: string;
+  dateFormat?: string;
+  showTimezone?: boolean;
+  note: NoteType;
+  onCancel: (note: NoteType) => void;
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void;
+  onSave: (note: NoteType) => void;
+  rows?: number;
+  saving?: boolean;
+  saveLabel?: React.ReactNode;
+  savingLabel?: React.ReactNode;
+};
 
 export const EditableNoteDefaultProps = {
   className: 'bg-white mb-3',
@@ -59,15 +59,26 @@ const EditableNote: React.FunctionComponent<EditableNoteProps> = ({
             invalid={!!errors}
             type="textarea"
             value={text}
-            onChange={event => onChange(event, note)}
+            onChange={(event) => onChange(event, note)}
           />
         </FormLabelGroup>
         {children}
         <ButtonToolbar className="mt-3 mb-0">
-          <Button className="js-editable-note_save" color="primary" disabled={saving} onClick={() => onSave(note)}>
+          <Button
+            className="js-editable-note_save"
+            color="primary"
+            disabled={saving}
+            onClick={() => onSave(note)}
+          >
             {saving ? savingLabel : saveLabel}
           </Button>
-          <Button className="js-editable-note_cancel" disabled={saving} onClick={() => onCancel(note)}>Cancel</Button>
+          <Button
+            className="js-editable-note_cancel"
+            disabled={saving}
+            onClick={() => onCancel(note)}
+          >
+            Cancel
+          </Button>
         </ButtonToolbar>
       </CardBody>
     </Card>

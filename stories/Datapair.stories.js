@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { Badge, Button, Card, CardBody, Datapair } from '../src';
 
 export default {
@@ -21,7 +21,12 @@ export const WithProps = () => {
           hint={text('hint', '')}
           stacked={stacked}
         />
-        <Datapair label="Another Key" value="More content" labelSize={labelSize} stacked={stacked} />
+        <Datapair
+          label="Another Key"
+          value="More content"
+          labelSize={labelSize}
+          stacked={stacked}
+        />
       </CardBody>
     </Card>
   );
@@ -45,7 +50,11 @@ export const WithNodeInLabel = () => (
   <Card className="mt-1">
     <CardBody>
       <Datapair
-        label={<>Name <Badge>awesome</Badge></>}
+        label={
+          <>
+            Name <Badge>awesome</Badge>
+          </>
+        }
         value="Stuff"
       />
     </CardBody>

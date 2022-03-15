@@ -1,6 +1,6 @@
-import React from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { boolean, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { Button, ExpandableSection } from '../src';
 
 export default {
@@ -30,19 +30,19 @@ export const Open = () => (
 
 export const Header = () => (
   <ExpandableSection
-    title={(
+    title={
       <>
         <h4 className="m-0">Here's a Header with</h4>
         <Button
           color="link"
           className="ms-auto"
           href="https://www.google.com"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           Extra controls
         </Button>
       </>
-    )}
+    }
     open={boolean('open', true)}
     onToggle={action('onToggle')}
   >

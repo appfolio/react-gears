@@ -1,5 +1,5 @@
-import React from 'react';
 import { number, select } from '@storybook/addon-knobs';
+import React from 'react';
 import { Placeholder } from '../src';
 import { colors } from './colors';
 
@@ -44,39 +44,25 @@ export const Widths = () => (
 export const Sizes = () => (
   <div>
     xs:
-    <Placeholder
-      words={6}
-      size="xs"
-      type={select('type', ['', 'glow', 'wave'], 'glow')}
-    />
+    <Placeholder words={6} size="xs" type={select('type', ['', 'glow', 'wave'], 'glow')} />
     sm:
-    <Placeholder
-      words={5}
-      size="sm"
-      type={select('type', ['', 'glow', 'wave'], 'glow')}
-    />
+    <Placeholder words={5} size="sm" type={select('type', ['', 'glow', 'wave'], 'glow')} />
     default:
-    <Placeholder
-      words={7}
-      type={select('type', ['', 'glow', 'wave'], 'glow')}
-    />
+    <Placeholder words={7} type={select('type', ['', 'glow', 'wave'], 'glow')} />
     lg:
-    <Placeholder
-      words={4}
-      size="lg"
-      type={select('type', ['', 'glow', 'wave'], 'glow')}
-    />
+    <Placeholder words={4} size="lg" type={select('type', ['', 'glow', 'wave'], 'glow')} />
   </div>
 );
 
-export const Colors = () => colors.map(color => (
-  <>
-    {color}:
-    <Placeholder
-      color={color}
-      size={select('size', ['', 'xs', 'sm', 'lg'], undefined)}
-      type={select('type', ['', 'glow', 'wave'], 'glow')}
-      words={number('words', 4, undefined)}
-    />
-  </>
-));
+export const Colors = () =>
+  colors.map((color) => (
+    <>
+      {color}:
+      <Placeholder
+        color={color}
+        size={select('size', ['', 'xs', 'sm', 'lg'], undefined)}
+        type={select('type', ['', 'glow', 'wave'], 'glow')}
+        words={number('words', 4, undefined)}
+      />
+    </>
+  ));

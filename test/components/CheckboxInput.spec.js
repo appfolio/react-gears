@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import { CheckboxInput, CheckboxBooleanInput, CheckboxListInput, FormChoice } from '../../src';
 

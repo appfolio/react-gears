@@ -11,7 +11,7 @@ const typeTranslations = {
   checkbox: CheckboxInput,
   radio: RadioInput,
   static: StaticInput,
-  file: FileInput
+  file: FileInput,
 };
 
 function determineElement(type) {
@@ -19,24 +19,17 @@ function determineElement(type) {
 }
 
 function inputType(type) {
-  if (typeof type !== 'string') return null;
-  if (type === 'static') return null;
+  if (typeof type !== 'string') {
+    return null;
+  }
+  if (type === 'static') {
+    return null;
+  }
   return type;
 }
 
 function parseFeedback(feedback) {
-  return typeof feedback === 'object'
-    ? [null, { error: feedback }]
-    : [feedback, {}];
-}
-
-function sanitizeProps(component, props) {
-  if (!component.propTypes) return props;
-  const saneProps = {};
-  Object.entries(props).forEach(([k, v]) => {
-    if (component.propTypes[k]) saneProps[k] = v;
-  });
-  return saneProps;
+  return typeof feedback === 'object' ? [null, { error: feedback }] : [feedback, {}];
 }
 
 const FormRow = (props) => {
@@ -61,16 +54,12 @@ const FormRow = (props) => {
   const InputElement = determineElement(type);
   const inputElementType = inputType(type);
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
-  const shouldPassChildren = (
+  const shouldPassChildren =
     inputElementType === 'checkbox' ||
     inputElementType === 'radio' ||
-    inputElementType === 'select'
-  );
+    inputElementType === 'select';
 
-  const validityThings = sanitizeProps(InputElement, {
-    valid: !!validFeedback,
-    invalid: !!feedback
-  });
+  const validityThings = shouldPassChildren ? { valid: !!validFeedback, invalid: !!feedback } : {};
 
   return (
     <FormLabelGroup
@@ -95,9 +84,13 @@ const FormRow = (props) => {
         {...attributes}
         {...childFeedback}
       >
-        {shouldPassChildren ? React.Children.map(children, child =>
-          React.isValidElement(child) && React.cloneElement(child, { type: inputElementType })
-        ) : undefined}
+        {shouldPassChildren
+          ? React.Children.map(
+              children,
+              (child) =>
+                React.isValidElement(child) && React.cloneElement(child, { type: inputElementType })
+            )
+          : undefined}
       </InputElement>
     </FormLabelGroup>
   );
@@ -115,13 +108,9 @@ FormRow.propTypes = {
   rowClassName: PropTypes.string,
   size: PropTypes.string,
   stacked: PropTypes.bool,
-  type: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.func
-  ]),
+  type: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   validFeedback: PropTypes.node,
-  width: PropTypes.object
+  width: PropTypes.object,
 };
 
 FormRow.defaultProps = {
@@ -132,7 +121,7 @@ FormRow.defaultProps = {
   required: false,
   rowClassName: '',
   stacked: false,
-  type: 'text'
+  type: 'text',
 };
 
 export default FormRow;

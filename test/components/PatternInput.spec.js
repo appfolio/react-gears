@@ -1,7 +1,7 @@
-import React from 'react';
 import assert from 'assert';
-import sinon from 'sinon';
 import { mount } from 'enzyme';
+import React from 'react';
+import sinon from 'sinon';
 
 import { PatternInput } from '../../src';
 

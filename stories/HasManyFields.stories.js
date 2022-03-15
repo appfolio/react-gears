@@ -1,13 +1,7 @@
-import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
-import {
-  AddressInput,
-  HasManyFields,
-  HasManyFieldsAdd,
-  HasManyFieldsRow,
-  Input
-} from '../src';
+import { AddressInput, HasManyFields, HasManyFieldsAdd, HasManyFieldsRow, Input } from '../src';
 
 const items = [
   {
@@ -16,7 +10,7 @@ const items = [
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
-    countryCode: 'US'
+    countryCode: 'US',
   },
   {
     address1: '70 Castilian Dr.',
@@ -24,7 +18,7 @@ const items = [
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
-    countryCode: 'US'
+    countryCode: 'US',
   },
   {
     address1: '90 Castilian Dr.',
@@ -32,7 +26,7 @@ const items = [
     city: 'Goleta',
     state: 'CA',
     postal: '93117',
-    countryCode: 'US'
+    countryCode: 'US',
   },
 ];
 
@@ -51,7 +45,7 @@ export const LiveExample = () => (
       city: '',
       state: '',
       postal: '',
-      countryCode: 'US'
+      countryCode: 'US',
     }}
     label="Add an Address"
     disabled={boolean('disabled', false)}
@@ -70,18 +64,12 @@ export const RowWrapper = () => (
     onDelete={action('onDelete')}
     disabled={boolean('disabled', false)}
     disabledReason={text('disabledReason')}
-    disabledReasonPlacement={select(
-      'placement',
-      ['top', 'left', 'bottom', 'right'],
-      'top'
-    )}
+    disabledReasonPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
   >
     <Input defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow" />
   </HasManyFieldsRow>
 );
 
 export const AddItemButton = () => (
-  <HasManyFieldsAdd onClick={action('onClick')}>
-    Button Label Content
-  </HasManyFieldsAdd>
+  <HasManyFieldsAdd onClick={action('onClick')}>Button Label Content</HasManyFieldsAdd>
 );

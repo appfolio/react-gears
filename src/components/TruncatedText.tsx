@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { TooltipProps, UncontrolledTooltipProps } from 'reactstrap';
+import type { TooltipProps, UncontrolledTooltipProps } from 'reactstrap';
 import Tooltip from './Tooltip';
-
 
 interface TruncatedTextProps {
   text: string;
@@ -9,21 +8,28 @@ interface TruncatedTextProps {
   charLimit: number;
   tooltip: boolean;
   placement: UncontrolledTooltipProps['placement'];
-  tooltipProps: TooltipProps
+  tooltipProps: TooltipProps;
 }
 
 let count = 0;
 function getID() {
-  return `truncated-text-${count++}`; // eslint-disable-line no-plusplus
+  return `truncated-text-${count++}`;
 }
-const TruncatedText = ({ text, targetId, charLimit = 50, tooltip = true, placement = 'top', tooltipProps }: TruncatedTextProps) => {
+const TruncatedText = ({
+  text,
+  targetId,
+  charLimit = 50,
+  tooltip = true,
+  placement = 'top',
+  tooltipProps,
+}: TruncatedTextProps) => {
   const [id] = useState(targetId || getID());
   return (
     <>
       <span id={id}>
         {text && text.length > charLimit ? `${text.substring(0, charLimit).trim()}...` : text}
       </span>
-      {(text && text.length > charLimit && tooltip) && (
+      {text && text.length > charLimit && tooltip && (
         <Tooltip
           {...tooltipProps}
           placement={placement}
@@ -31,7 +37,8 @@ const TruncatedText = ({ text, targetId, charLimit = 50, tooltip = true, placeme
           className={`js-truncated-${id}`}
         >
           {text}
-        </Tooltip>)}
+        </Tooltip>
+      )}
     </>
   );
 };

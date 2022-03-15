@@ -1,6 +1,6 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 import sinon from 'sinon';
 
 import { StateInput } from '../../src';

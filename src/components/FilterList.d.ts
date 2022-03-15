@@ -13,5 +13,5 @@ interface FilterListProps {
   onRemove: (filter: FilterType) => void;
 }
 
-declare class FilterList extends React.Component<FilterListProps, {}> { }
+declare class FilterList extends React.Component<FilterListProps, {}> {}
 export default FilterList;

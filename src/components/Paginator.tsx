@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import range from 'lodash.range';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Icon from './Icon';
-import Page from './Paginator/Page';
 import Pagination from './Pagination';
+import Page from './Paginator/Page';
 import ShortcutLink from './Paginator/ShortcutLink';
 import State from './Paginator/State';
 import Summary from './Paginator/Summary';
@@ -11,10 +11,10 @@ import Summary from './Paginator/Summary';
 const DEFAULT_PER_PAGE = 20;
 
 type LinkProps = {
-  disabled?: boolean,
-  page: number,
-  onClick: (page: number) => void,
-}
+  disabled?: boolean;
+  page: number;
+  onClick: (page: number) => void;
+};
 
 const FirstPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="first" page={page} disabled={disabled} onClick={onClick}>
@@ -43,7 +43,7 @@ const LastPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onCl
 const linkPropTypes = {
   disabled: PropTypes.bool,
   page: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 FirstPageLink.propTypes = linkPropTypes;
@@ -52,13 +52,13 @@ NextPageLink.propTypes = linkPropTypes;
 LastPageLink.propTypes = linkPropTypes;
 
 type PaginatorProps = {
-  currentPage: number,
-  onClick: (page: number) => void,
-  perPage?: number,
-  size?: 'sm' | 'lg',
-  summary?: React.ReactNode,
-  totalItems: number,
-}
+  currentPage: number;
+  onClick: (page: number) => void;
+  perPage?: number;
+  size?: 'sm' | 'lg';
+  summary?: React.ReactNode;
+  totalItems: number;
+};
 
 /**
  * A component that generates a set of links that can be used for pagination.  Link selection is
@@ -70,33 +70,23 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
   size,
   summary,
   totalItems,
-  onClick
+  onClick,
 }) => {
-
   const paginationState = new State(currentPage, totalItems, perPage);
   const { from, to } = paginationState.currentItemRange();
 
   const rangeStart = paginationState.pageRange.from;
   const rangeEnd = paginationState.pageRange.to + 1;
-  const pages = range(rangeStart, rangeEnd).map(page => (
-    <Page
-      key={page}
-      page={page}
-      current={currentPage === page}
-      onClick={onClick}
-    />
+  const pages = range(rangeStart, rangeEnd).map((page) => (
+    <Page key={page} page={page} current={currentPage === page} onClick={onClick} />
   ));
 
   return (
     <div className="d-flex flex-column flex-sm-row-reverse justify-content-between align-items-center mb-3">
       <div>
-        {(paginationState.totalPages > 1) && (
+        {paginationState.totalPages > 1 && (
           <Pagination size={size} listClassName="m-0 p-0 mb-2 mb-sm-0 border-0 flex-row">
-            <FirstPageLink
-              page={1}
-              disabled={!paginationState.showPrevious()}
-              onClick={onClick}
-            />
+            <FirstPageLink page={1} disabled={!paginationState.showPrevious()} onClick={onClick} />
             <PrevPageLink
               page={currentPage - 1}
               disabled={!paginationState.showPrevious()}
@@ -116,7 +106,9 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
           </Pagination>
         )}
       </div>
-      {summary || <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0" />}
+      {summary || (
+        <Summary size={size} from={from} to={to} totalItems={totalItems} className="m-0" />
+      )}
     </div>
   );
 };

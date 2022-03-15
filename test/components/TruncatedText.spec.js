@@ -1,14 +1,12 @@
-import React from 'react';
 import assert from 'assert';
 import { mount } from 'enzyme';
+import React from 'react';
 
 import { TruncatedText } from '../../src';
 
 describe('<TruncatedText />', () => {
   it('renders text sucessfully', () => {
-    const wrapper = mount(
-      <TruncatedText targetId="target" text="cool text" />
-    );
+    const wrapper = mount(<TruncatedText targetId="target" text="cool text" />);
 
     const span = wrapper.find('span').first();
     assert.equal(span.exists(), true);
@@ -18,11 +16,14 @@ describe('<TruncatedText />', () => {
   it('truncates text correctly', () => {
     const div = document.createElement('div');
     document.body.appendChild(div);
-    const wrapper = mount(<TruncatedText
-      targetId="target"
-      text="cool text that is over 20 characters long"
-      charLimit={20}
-    />, { attachTo: div });
+    const wrapper = mount(
+      <TruncatedText
+        targetId="target"
+        text="cool text that is over 20 characters long"
+        charLimit={20}
+      />,
+      { attachTo: div }
+    );
 
     const span = wrapper.find('span').first();
     assert.equal(span.exists(), true);
@@ -32,11 +33,14 @@ describe('<TruncatedText />', () => {
   it('renders the tooltip with full text', () => {
     const div = document.createElement('div');
     document.body.appendChild(div);
-    const wrapper = mount(<TruncatedText
-      targetId="target"
-      text="cool text that is over 20 characters long"
-      charLimit={20}
-    />, { attachTo: div });
+    const wrapper = mount(
+      <TruncatedText
+        targetId="target"
+        text="cool text that is over 20 characters long"
+        charLimit={20}
+      />,
+      { attachTo: div }
+    );
 
     const tooltip = wrapper.find('Tooltip').first();
     assert.equal(tooltip.exists(), true);

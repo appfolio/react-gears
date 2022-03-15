@@ -30,11 +30,7 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({
   );
 
   return (
-    <Button
-      onBlur={() => setConfirmationVisible(false)}
-      onClick={handleClick}
-      {...props}
-    >
+    <Button onBlur={() => setConfirmationVisible(false)} onClick={handleClick} {...props}>
       {confirmationVisible ? confirmation : children}
     </Button>
   );

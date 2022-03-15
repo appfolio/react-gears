@@ -1,5 +1,5 @@
-import React from 'react';
 import { select, text } from '@storybook/addon-knobs';
+import React from 'react';
 import { Button, FeatureBanner, Icon } from '../src';
 import { colors } from './colors';
 

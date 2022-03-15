@@ -1,6 +1,6 @@
+import classnames from 'classnames';
 import React from 'react';
 import { FormGroup as RSFormGroup } from 'reactstrap';
-import classnames from 'classnames';
 
 const FormGroup = (props: any) => {
   let className = 'form-group';
@@ -9,9 +9,7 @@ const FormGroup = (props: any) => {
     className = classnames(props.className, 'form-group');
   }
 
-  return (
-    <RSFormGroup {...props} className={className} />
-  );
+  return <RSFormGroup {...props} className={className} />;
 };
 
 export default FormGroup;

@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 
-const Close: FunctionComponent<React.ComponentPropsWithoutRef<'button'>> = ({ className = '', ...props }) => (
-  <button type="button" className={`btn-close ${className}`} aria-label="Close" {...props} />
-);
+const Close: FunctionComponent<React.ComponentPropsWithoutRef<'button'>> = ({
+  className = '',
+  ...props
+}) => <button type="button" className={`btn-close ${className}`} aria-label="Close" {...props} />;
 
 Close.displayName = 'Close';
 

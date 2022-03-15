@@ -1,7 +1,7 @@
-import React from 'react';
 import classnames from 'classnames';
+import React from 'react';
 import Icon from './Icon';
-import { FontAwesomeAPMProps } from './icon/FontAwesomeAPM';
+import type { FontAwesomeAPMProps } from './icon/FontAwesomeAPM';
 
 interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {
   type?: 'info' | 'muted' | 'success' | 'danger' | 'warning' | 'none';
@@ -33,7 +33,12 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
       throw new Error(`Unsupported value for 'type' prop passed to Status component: "${type}"`);
   }
   return (
-    <Icon {...props} name={name} fixedWidth className={classnames(`text-${type === 'none' ? 'muted' : type}`, className)} />
+    <Icon
+      {...props}
+      name={name}
+      fixedWidth
+      className={classnames(`text-${type === 'none' ? 'muted' : type}`, className)}
+    />
   );
 };
 

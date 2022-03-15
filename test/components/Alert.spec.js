@@ -1,10 +1,10 @@
-import React from 'react';
 import assert from 'assert';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import { Alert as AlertComponent } from 'reactstrap';
-import { assertAccessible } from '../a11yHelpers';
 
 import { Icon, Alert } from '../../src';
+import { assertAccessible } from '../a11yHelpers';
 
 describe('<Alert />', () => {
   describe('default', () => {
@@ -61,10 +61,7 @@ describe('<Alert />', () => {
 
       assert.equal(component.find(AlertComponent).prop('isOpen'), true);
 
-      component
-        .find(AlertComponent)
-        .find('button')
-        .simulate('click');
+      component.find(AlertComponent).find('button').simulate('click');
       assert.equal(component.find(AlertComponent).prop('isOpen'), false);
     });
 
@@ -73,12 +70,20 @@ describe('<Alert />', () => {
       const inner = component.find(AlertComponent);
       inner.find('button').simulate('click');
 
-      assert.equal(component.find(AlertComponent).prop('isOpen'), false, 'inner prop should be false');
+      assert.equal(
+        component.find(AlertComponent).prop('isOpen'),
+        false,
+        'inner prop should be false'
+      );
 
       component.setProps({ color: 'danger' });
       component.update();
 
-      assert.strictEqual(component.find(AlertComponent).prop('isOpen'), true, 'AlertComponent isOpen prop should be true');
+      assert.strictEqual(
+        component.find(AlertComponent).prop('isOpen'),
+        true,
+        'AlertComponent isOpen prop should be true'
+      );
     });
 
     it('should call onToggle if provided', () => {

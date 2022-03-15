@@ -1,5 +1,5 @@
-import React from 'react';
 import { boolean, object, text, select } from '@storybook/addon-knobs';
+import React from 'react';
 import { Alert, FormLabelGroup, FormGroup, Input, Label } from '../src';
 
 export default {
@@ -28,26 +28,14 @@ export const LiveExample = () => (
 );
 
 export const RadioExample = () => (
-  <FormLabelGroup
-    label="Transaction Method"
-    stacked
-  >
+  <FormLabelGroup label="Transaction Method" stacked>
     <FormGroup check>
-      <Input
-        type="radio"
-        id="onlineTransfer"
-        name="transactionMethod"
-      />
+      <Input type="radio" id="onlineTransfer" name="transactionMethod" />
       <Label check>I will be transferring money between banks online</Label>
     </FormGroup>
     <FormGroup check>
-      <Input
-        type="radio"
-        id="bcrd"
-        name="transactionMethod"
-      />
+      <Input type="radio" id="bcrd" name="transactionMethod" />
       <Label check>I will be transferring money between banks with a check</Label>
     </FormGroup>
   </FormLabelGroup>
 );
-
