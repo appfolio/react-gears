@@ -9,9 +9,7 @@ const packageJson = require('./package.json');
  */
 const config = {
   devtool: 'source-map',
-  entry: [
-    path.resolve(__dirname, './src/index')
-  ],
+  entry: [path.resolve(__dirname, './src/index')],
   externals: [
     // Externalize all packages that are peerDependencies
     ...Object.keys(packageJson.peerDependencies),
@@ -21,16 +19,16 @@ const config = {
     ...Object.keys(packageJson.dependencies),
     // Externalize all the subimports from reactstrap and date-fns
     (context, request, callback) => {
-      if (['reactstrap', 'date-fns'].some(check => request.indexOf(check) !== -1)) {
+      if (['reactstrap', 'date-fns'].some((check) => request.indexOf(check) !== -1)) {
         // Keep it as commonjs require.
         return callback(null, `commonjs ${request}`);
       }
       // Inline it.
       return callback();
-    }
+    },
   ],
   optimization: {
-    minimize: true
+    minimize: true,
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -46,7 +44,7 @@ const config = {
         include: __dirname,
         query: {
           cacheDirectory: true,
-        }
+        },
       },
       {
         test: /\.s?css$/,
@@ -55,33 +53,33 @@ const config = {
           {
             loader: 'dts-css-modules-loader',
             options: {
-              namedExport: true
-            }
+              namedExport: true,
+            },
           },
           {
             loader: 'css-loader',
             options: {
               modules: true,
               localsConvention: 'camelCaseOnly',
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
-          { loader: 'postcss-loader' }
-        ]
-      }
-    ]
+          { loader: 'postcss-loader' },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
-  }
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+  },
 };
 
 /*
@@ -90,13 +88,19 @@ const config = {
 const sourceRoot = path.resolve(__dirname, './src');
 const indexJs = path.resolve(sourceRoot, 'index.ts');
 const files = {};
-glob.sync(`${sourceRoot}/**/*.{js,ts,tsx}`, { ignore: [`${sourceRoot}/**/*d.ts`] }).forEach((file) => {
-  if (file === indexJs) return;
-  const relativePath = path.relative(sourceRoot, file);
-  const parts = path.parse(relativePath);
-  const chunkName = path.join(parts.dir, parts.name);
-  files[chunkName] = file;
-});
+glob
+  .sync(`${sourceRoot}/**/*.{js,ts,tsx}`, {
+    ignore: [`${sourceRoot}/**/*d.ts`, `${sourceRoot}/**/*.{stories,spec}.{js,ts,jsx,tsx}`],
+  })
+  .forEach((file) => {
+    if (file === indexJs) {
+      return;
+    }
+    const relativePath = path.relative(sourceRoot, file);
+    const parts = path.parse(relativePath);
+    const chunkName = path.join(parts.dir, parts.name);
+    files[chunkName] = file;
+  });
 const debugInternalExternal = false;
 const fileConfigs = {
   context: sourceRoot,
@@ -117,13 +121,17 @@ const fileConfigs = {
         context === sourceRoot // inline the entry point
       ) {
         // Inline it.
-        if (debugInternalExternal) console.log('internal\n');
+        if (debugInternalExternal) {
+          console.log('internal\n');
+        }
         return callback();
       }
       // Keep it as commonjs require.
-      if (debugInternalExternal) console.log('external\n');
+      if (debugInternalExternal) {
+        console.log('external\n');
+      }
       return callback(null, `commonjs ${request}`);
-    }
+    },
   ],
   // The output has the same path as the input, just under the lib dir.
   output: {

@@ -1,0 +1,30 @@
+import React from 'react';
+import { Badge } from '../..';
+import { colors } from '../../dev_util/colors';
+
+export default {
+  title: 'Badge',
+  component: Badge,
+};
+
+export const Default = () => (
+  <div>
+    {colors.map((color) => (
+      <div>
+        <Badge color={color}>{color}</Badge>
+      </div>
+    ))}
+  </div>
+);
+
+export const Pills = () => (
+  <div>
+    {colors.map((color) => (
+      <div>
+        <Badge pill color={color}>
+          {color}
+        </Badge>
+      </div>
+    ))}
+  </div>
+);

@@ -9,11 +9,11 @@ import {
   NavItem,
   NavLink,
   Navbar,
-  UncontrolledDropdown
+  UncontrolledDropdown,
 } from '../src';
 import allThemes from './themes';
 
-const changeTheme = url => {
+const changeTheme = (url) => {
   const link = document.getElementById('theme');
   link.href = url;
 
@@ -35,7 +35,7 @@ export const decorators = [
     <div>
       <Navbar color="light">
         <Nav>
-          {Object.keys(allThemes).map(name => {
+          {Object.keys(allThemes).map((name) => {
             const links = allThemes[name];
             return (
               <NavItem>
@@ -70,5 +70,5 @@ export const decorators = [
         </Col>
       </Container>
     </div>
-  )
+  ),
 ];

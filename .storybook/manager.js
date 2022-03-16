@@ -7,5 +7,6 @@ addons.setConfig({
     base: 'dark',
     brandTitle: `react-gears ${pkg.version}`,
     brandUrl: 'https://github.com/appfolio/react-gears',
-  })
+  }),
+  sidebar: { showRoots: false },
 });

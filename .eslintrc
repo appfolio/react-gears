@@ -12,6 +12,16 @@
     "function-paren-newline": "off",
     "import/first": "error",
     "import/newline-after-import": "warn",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/**/*.{spec,stories}.{js,ts,jsx,tsx}",
+          "src/dev_util/**",
+          "webpack.*config.js"
+        ]
+      }
+    ],
     "import/order": ["warn", { "alphabetize": { "order": "asc" } }],
     "max-len": "off",
     "no-confusing-arrow": "off",
@@ -38,6 +48,10 @@
       "rules": {
         "no-undef": "off"
       }
+    },
+    {
+      "files": ["src/**/*.spec.{js,tsx}"],
+      "env": { "jest": true }
     }
   ],
   "reportUnusedDisableDirectives": true

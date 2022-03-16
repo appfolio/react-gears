@@ -22,12 +22,12 @@
   },
   "scripts": {
     "tslint": "tsc --noEmit",
-    "eslint": "eslint src test stories --ext .js,.ts,.jsx,.tsx",
+    "eslint": "eslint src --ext .js,.ts,.jsx,.tsx",
     "eslint:fix": "npm run eslint -- --fix",
     "lint": "npm run tslint && npm run eslint",
     "lint:ts": "npm run dist",
-    "format": "prettier --check src test stories",
-    "format:fix": "prettier --write src test stories",
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src",
     "start": "BABEL_ENV=storybook start-storybook -p 6006 -s ./public",
     "test": "NODE_ENV=test jest --coverage",
     "test:watch": "NODE_ENV=test jest --watch",
@@ -101,6 +101,7 @@
     "@babel/preset-react": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",
     "@babel/register": "^7.12.1",
+    "@jest/types": "^27.5.1",
     "@storybook/addon-a11y": "^6.3.11",
     "@storybook/addon-actions": "^6.3.11",
     "@storybook/addon-essentials": "^6.3.11",
@@ -116,7 +117,8 @@
     "@types/classnames": "^2.2.11",
     "@types/credit-card-type": "^5.0.1",
     "@types/enzyme": "^3.10.8",
-    "@types/jest": "^26.0.23",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^27.4.1",
     "@types/lodash.flow": "^3.5.6",
     "@types/lodash.isequal": "^4.5.5",
     "@types/lodash.noop": "^3.0.6",
@@ -154,7 +156,7 @@
     "fs-extra": "5.0.0",
     "glob": "^7.1.6",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.4.1",
+    "jest": "^27.5.1",
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
     "postcss": "^8.2.10",
@@ -168,19 +170,11 @@
     "sinon": "^9.2.1",
     "style-loader": "~0.18.1",
     "terser-webpack-plugin": "^1.4.5",
-    "ts-node": "^8.10.2",
+    "ts-node": "^10.7.0",
     "typescript": "^4.2.4",
     "uncontrollable": "^4.1.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
-  "browserslist": "last 2 versions",
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
-    },
-    "setupFiles": [
-      "<rootDir>test/helpers.js"
-    ]
-  }
+  "browserslist": "last 2 versions"
 }
