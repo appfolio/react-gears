@@ -8,7 +8,7 @@ import SelectArrow from './SelectArrow';
 import SelectMultiValue from './SelectMultiValue.js';
 import Option from './SelectOption.js';
 
-const getSelectArrow = ({ isOpen, arrowRenderer }) => (
+const getSelectArrow = (isOpen, arrowRenderer) => (
   <SelectArrow isOpen={isOpen} render={arrowRenderer} />
 );
 
