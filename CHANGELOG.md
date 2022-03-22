@@ -1,5 +1,20 @@
 # Change Log
 
+### [7.0.2](https://www.github.com/appfolio/react-gears/compare/v7.0.1...v7.0.2) (2022-03-21)
+
+
+### Bug Fixes
+
+* better stories for popover to eliminate styling confusion ([2f83ffe](https://www.github.com/appfolio/react-gears/commit/2f83ffe6f77bbdf6bd04ef8ea39d51f2a1849566))
+* no destructuring needed with Select component ([9a17f39](https://www.github.com/appfolio/react-gears/commit/9a17f39eabda1a3b3e6549ecfbfcb8aff78ed447))
+* update list icons to match prod ([37760c9](https://www.github.com/appfolio/react-gears/commit/37760c9edd3e3198700aca0eeb1589aa8056ac7c))
+
+
+### Miscellaneous
+
+* add ignore-revs file ([0391339](https://www.github.com/appfolio/react-gears/commit/0391339bc5d7185c1ffbc6188349454f29755256))
+* update eslint and format all files ([58c03e2](https://www.github.com/appfolio/react-gears/commit/58c03e25323a4a751115071024decbb472d10038))
+
 ### [7.0.1](https://www.github.com/appfolio/react-gears/compare/v7.0.0...v7.0.1) (2022-03-14)
 
 
