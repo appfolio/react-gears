@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible } from '../../dev_util/a11yHelpers';
+import { assertAccessible } from '../../../util/a11yHelpers';
 import BoundForm from './BoundForm';
 
 describe('<BoundForm />', () => {

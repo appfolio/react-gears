@@ -1,9 +1,9 @@
+import assert from 'assert';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import assert from 'assert';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible } from '../../dev_util/a11yHelpers';
+import { assertAccessible } from '../../../util/a11yHelpers';
 import Combobox from './Combobox';
 
 const OPTIONS = [

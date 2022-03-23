@@ -2,7 +2,7 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { Alert as AlertComponent } from 'reactstrap';
-import { assertAccessible } from '../../dev_util/a11yHelpers';
+import { assertAccessible } from '../../../util/a11yHelpers';
 import Icon from '../Icon/Icon';
 import Alert from './Alert';
 

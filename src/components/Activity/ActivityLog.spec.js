@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import assert from 'assert';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { assertAccessibleContainer } from '../../dev_util/a11yHelpers';
+import { assertAccessibleContainer } from '../../../util/a11yHelpers';
 import Activity from './Activity';
 import ActivityLog from './ActivityLog';
 

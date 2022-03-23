@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../dev_util/colors';
+import { colors } from '../../../util/colors';
 import Activity from './Activity';
 
 export default {

@@ -1,5 +1,5 @@
-import { renderHook, act } from '@testing-library/react-hooks';
 import assert from 'assert';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useMap from './useMap';
 
 describe('useMap', () => {

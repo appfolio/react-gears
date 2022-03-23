@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
 import assert from 'assert';
+import { render } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';

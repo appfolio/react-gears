@@ -5,10 +5,10 @@
 .nyc_output
 .Spotlight-V100
 .Trashes
-coverage
-node_modules
-dist
+coverage/
+node_modules/
+dist/
 *.log
 yarn.lock
-lib
-es
+lib/
+esm/

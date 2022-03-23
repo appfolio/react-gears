@@ -1,9 +1,0 @@
-{
-  "nyc": {
-    "exclude": [
-      "**/*.spec.js",
-      "dev_server.js",
-      "webpack.*config.js"
-    ]
-  }
-}

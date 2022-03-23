@@ -1,5 +1,5 @@
-import { render, fireEvent, cleanup, getByText, findByText } from '@testing-library/react';
 import assert from 'assert';
+import { render, fireEvent, cleanup, getByText, findByText } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import ReactSelect from 'react-select-plus';

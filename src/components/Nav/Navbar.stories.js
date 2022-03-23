@@ -1,6 +1,6 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { bgColors } from '../../dev_util/colors';
+import { bgColors } from '../../../util/colors';
 import Collapse from '../Collapse/Collapse';
 import DropdownItem from '../Dropdown/DropdownItem';
 import DropdownMenu from '../Dropdown/DropdownMenu';

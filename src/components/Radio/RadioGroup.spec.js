@@ -1,5 +1,5 @@
-import { render, cleanup, fireEvent } from '@testing-library/react';
 import assert from 'assert';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import React from 'react';
 import sinon from 'sinon';
 import RadioGroup from './RadioGroup';

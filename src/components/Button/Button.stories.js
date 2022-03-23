@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
-import { buttonColors } from '../../dev_util/colors';
+import { buttonColors } from '../../../util/colors';
 import DropdownItem from '../Dropdown/DropdownItem';
 import DropdownMenu from '../Dropdown/DropdownMenu';
 import DropdownToggle from '../Dropdown/DropdownToggle';

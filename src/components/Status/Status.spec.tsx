@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { assertAccessible } from '../../dev_util/a11yHelpers';
+import { assertAccessible } from '../../../util/a11yHelpers';
 import Icon from '../Icon/Icon';
 import Status from './Status';
 

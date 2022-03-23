@@ -15,11 +15,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "src/**/*.{spec,stories}.{js,ts,jsx,tsx}",
-          "src/dev_util/**",
-          "webpack.*config.js"
-        ]
+        "devDependencies": ["src/**/*.{spec,stories}.{js,ts,jsx,tsx}", "util/**", "./*.config.js"]
       }
     ],
     "import/order": ["warn", { "alphabetize": { "order": "asc" } }],
@@ -40,6 +36,11 @@
   "settings": {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
   "overrides": [

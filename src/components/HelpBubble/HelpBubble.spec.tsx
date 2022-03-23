@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible, assertAccessibleContainer } from '../../dev_util/a11yHelpers';
+import { assertAccessible, assertAccessibleContainer } from '../../../util/a11yHelpers';
 import Icon from '../Icon/Icon';
 import Popover from '../Popover/Popover';
 import PopoverBody from '../Popover/PopoverBody';

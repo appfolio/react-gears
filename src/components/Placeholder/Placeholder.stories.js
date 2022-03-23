@@ -1,6 +1,6 @@
 import { number, select } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../dev_util/colors';
+import { colors } from '../../../util/colors';
 import Placeholder from './Placeholder';
 
 export default {

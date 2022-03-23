@@ -1,5 +1,5 @@
-import { render, cleanup } from '@testing-library/react';
 import assert from 'assert';
+import { render, cleanup } from '@testing-library/react';
 import React from 'react';
 import Highlight from './Highlight';
 

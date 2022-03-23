@@ -1,6 +1,6 @@
 import { select, text } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../dev_util/colors';
+import { colors } from '../../../util/colors';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import FeatureBanner from './FeatureBanner';

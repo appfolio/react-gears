@@ -1,5 +1,5 @@
-import { renderHook, act } from '@testing-library/react-hooks';
 import assert from 'assert';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { replaceRaf } from 'raf-stub';
 import type { RafStub } from 'raf-stub';
 import { useRef } from 'react';
@@ -11,12 +11,7 @@ declare const requestAnimationFrame: RafStub;
 const mockedPosition = { x: 10, y: 12 };
 const mockSetPosition = jest.fn();
 
-jest.mock('react-use', () => {
-  return {
-    ...jest.requireActual('react-use'),
-    useSessionStorage: jest.fn(() => [mockedPosition, mockSetPosition]),
-  };
-});
+jest.mock('react-use/lib/useSessionStorage', () => () => [mockedPosition, mockSetPosition]);
 
 describe('useSavedScroll', () => {
   let div: HTMLDivElement;

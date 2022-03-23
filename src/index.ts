@@ -133,7 +133,7 @@ export { default as Notes } from './components/Note/Notes';
 export { default as Pagination } from './components/Pagination/Pagination';
 export { default as PaginationItem } from './components/Pagination/PaginationItem';
 export { default as PaginationLink } from './components/Pagination/PaginationLink';
-export { default as Paginatior } from './components/Pagination/Paginator';
+export { default as Paginator } from './components/Pagination/Paginator';
 export { default as Placeholder } from './components/Placeholder/Placeholder';
 export { default as Popover } from './components/Popover/Popover';
 export {

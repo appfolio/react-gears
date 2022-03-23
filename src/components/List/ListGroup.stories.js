@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../dev_util/colors';
+import { colors } from '../../../util/colors';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
 

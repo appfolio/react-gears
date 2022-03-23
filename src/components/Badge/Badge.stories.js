@@ -1,6 +1,6 @@
 import React from 'react';
-import { Badge } from '../..';
-import { colors } from '../../dev_util/colors';
+import { colors } from '../../../util/colors';
+import Badge from './Badge';
 
 export default {
   title: 'Badge',

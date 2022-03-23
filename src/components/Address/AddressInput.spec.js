@@ -2,7 +2,7 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible } from '../../dev_util/a11yHelpers';
+import { assertAccessible } from '../../../util/a11yHelpers';
 import FormFeedback from '../Form/FormFeedback';
 import FormGroup from '../Form/FormGroup';
 import FormText from '../Form/FormText';
