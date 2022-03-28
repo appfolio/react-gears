@@ -3,7 +3,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible } from '../../../util/a11yHelpers';
+import { assertAccessible } from '../../tooling/a11yHelpers';
 import Combobox from './Combobox';
 
 const OPTIONS = [

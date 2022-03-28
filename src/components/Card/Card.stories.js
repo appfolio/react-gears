@@ -1,6 +1,6 @@
 import { text, boolean } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../../util/colors';
+import { colors } from '../../tooling/colors';
 import Card from './Card';
 import CardBody from './CardBody';
 import CardFooter from './CardFooter';

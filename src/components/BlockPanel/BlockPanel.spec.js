@@ -2,7 +2,7 @@ import assert from 'assert';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { assertAccessible } from '../../../util/a11yHelpers';
+import { assertAccessible } from '../../tooling/a11yHelpers';
 import Button from '../Button/Button';
 import CardBody from '../Card/CardBody';
 import CardTitle from '../Card/CardTitle';

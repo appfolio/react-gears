@@ -16,7 +16,7 @@ import Paginator from '../../src/components/Pagination/Paginator';
 import Row from '../../src/components/Layout/Row';
 import Table from '../../src/components/Table/Table';
 import UncontrolledTooltip from '../../src/components/Tooltip/UncontrolledTooltip';
-import { buttonColors, bgColors, textColors } from '../../util/colors';
+import { buttonColors, bgColors, textColors } from '../../src/tooling/colors';
 
 const Tooltip = UncontrolledTooltip;
 

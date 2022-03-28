@@ -15,7 +15,11 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["src/**/*.{spec,stories}.{js,ts,jsx,tsx}", "util/**", "./*.config.js"]
+        "devDependencies": [
+          "src/**/*.{spec,stories}.{js,ts,jsx,tsx}",
+          "src/tooling/**/*",
+          "./*.config.js"
+        ]
       }
     ],
     "import/order": ["warn", { "alphabetize": { "order": "asc" } }],

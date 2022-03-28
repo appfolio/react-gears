@@ -1,6 +1,6 @@
 import { number, select } from '@storybook/addon-knobs';
 import React from 'react';
-import { textColors } from '../../../util/colors';
+import { textColors } from '../../tooling/colors';
 import Button from '../Button/Button';
 import Spinner from './Spinner';
 

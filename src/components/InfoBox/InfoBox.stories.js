@@ -1,6 +1,6 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
-import { colors } from '../../../util/colors';
+import { colors } from '../../tooling/colors';
 import InfoBox from './InfoBox';
 
 export default {

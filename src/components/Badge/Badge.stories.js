@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '../../../util/colors';
+import { colors } from '../../tooling/colors';
 import Badge from './Badge';
 
 export default {
