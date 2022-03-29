@@ -1,5 +1,17 @@
 # Change Log
 
+### [7.0.3](https://www.github.com/appfolio/react-gears/compare/v7.0.2...v7.0.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* fixes following code review ([cf22858](https://www.github.com/appfolio/react-gears/commit/cf22858606b60a982af504b0a92a9b7d6eeaf113))
+
+
+### Miscellaneous
+
+* move components to their own directory ([5db1101](https://www.github.com/appfolio/react-gears/commit/5db1101100f03e82d3c6af11a5f8dd0ef8d814be))
+
 ### [7.0.2](https://www.github.com/appfolio/react-gears/compare/v7.0.1...v7.0.2) (2022-03-21)
 
 
