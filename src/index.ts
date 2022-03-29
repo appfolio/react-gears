@@ -1,352 +1,178 @@
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-  UncontrolledAccordion,
-  Offcanvas,
-  OffcanvasBody,
-  OffcanvasHeader,
-} from 'reactstrap';
-import Activity from './components/Activity';
-import ActivityLog from './components/ActivityLog';
-import AddressInput from './components/AddressInput';
-import Alert from './components/Alert';
-import Badge from './components/Badge';
-import BlockPanel from './components/BlockPanel';
-
-// @ts-ignore: implicitly has an 'any' type
-import BoundForm from './components/BoundForm';
-
-// @ts-ignore: implicitly has an 'any' type
-import BoundFormRow from './components/BoundFormRow';
-import Breadcrumb from './components/Breadcrumb';
-import BreadcrumbItem from './components/BreadcrumbItem';
-import Button from './components/Button';
-import ButtonDropdown from './components/ButtonDropdown';
-import ButtonGroup from './components/ButtonGroup';
-import ButtonToolbar from './components/ButtonToolbar';
-import Calendar from './components/Calendar';
-import Callout from './components/Callout';
-import Card from './components/Card';
-import CardBody from './components/CardBody';
-import CardColumns from './components/CardColumns';
-import CardDeck from './components/CardDeck';
-import CardFooter from './components/CardFooter';
-import CardGroup from './components/CardGroup';
-import CardHeader from './components/CardHeader';
-import CardImg from './components/CardImg';
-import CardImgOverlay from './components/CardImgOverlay';
-import CardLink from './components/CardLink';
-import CardSubtitle from './components/CardSubtitle';
-import CardText from './components/CardText';
-import CardTitle from './components/CardTitle';
-import Carousel from './components/Carousel';
-import CarouselCaption from './components/CarouselCaption';
-import CarouselControl from './components/CarouselControl';
-import CarouselIndicators from './components/CarouselIndicators';
-import CarouselItem from './components/CarouselItem';
-import CheckboxBooleanInput from './components/CheckboxBooleanInput';
-import CheckboxGroup from './components/CheckboxGroup';
-import CheckboxInput from './components/CheckboxInput';
-import CheckboxListInput from './components/CheckboxListInput';
-import ClickableContainer from './components/ClickableContainer';
-import Close from './components/Close';
-import Col from './components/Col';
-import CollapsableText from './components/CollapsableText';
-import Collapse from './components/Collapse';
-import Combobox from './components/Combobox';
-import ConfirmationButton from './components/ConfirmationButton';
-import Container from './components/Container';
-import CountryInput from './components/CountryInput';
-import CreditCardNumber from './components/CreditCardNumber';
-import CurrencyInput from './components/CurrencyInput';
-import Datapair from './components/Datapair';
-import DateInput from './components/DateInput';
-import DeletedNote from './components/DeletedNote';
-import Dropdown from './components/Dropdown';
-import DropdownItem from './components/DropdownItem';
-import DropdownMenu from './components/DropdownMenu';
-import DropdownToggle from './components/DropdownToggle';
-import EditableNote from './components/EditableNote';
-import ExpandableSection from './components/ExpandableSection';
-import Fade from './components/Fade';
-import FeatureBanner from './components/FeatureBanner';
-import FileInput from './components/FileInput';
-import FilterList from './components/FilterList';
-import Form from './components/Form';
-import FormChoice from './components/FormChoice';
-import FormFeedback from './components/FormFeedback';
-import FormGroup from './components/FormGroup';
-import FormLabelGroup from './components/FormLabelGroup';
-import FormRow from './components/FormRow';
-import FormText from './components/FormText';
-import HasManyFields from './components/HasManyFields';
-import HasManyFieldsAdd from './components/HasManyFieldsAdd';
-import HasManyFieldsRow from './components/HasManyFieldsRow';
-import HelpBubble from './components/HelpBubble';
-import Highlight from './components/Highlight';
-import Icon from './components/Icon';
-
-// @ts-ignore: implicitly has an 'any' type
-import ImageCarousel from './components/ImageCarousel';
-import InfoBox from './components/InfoBox';
-import Input from './components/Input';
-import InputGroup from './components/InputGroup';
-import InputGroupButtonDropdown from './components/InputGroupButtonDropdown';
-import InputGroupText from './components/InputGroupText';
-import InternationalAddressInput from './components/InternationalAddressInput';
-import Jumbotron from './components/Jumbotron';
-import Label from './components/Label';
-import LabelBadge from './components/LabelBadge';
-import List from './components/List/List';
-import ListItem from './components/List/ListItem';
-import SortableList from './components/List/SortableList';
-import ListGroup from './components/ListGroup';
-import ListGroupItem from './components/ListGroupItem';
-import ListGroupItemHeading from './components/ListGroupItemHeading';
-import ListGroupItemText from './components/ListGroupItemText';
-import MaskedInput from './components/MaskedInput';
-import Media from './components/Media';
-import Modal from './components/Modal';
-import ModalBody from './components/ModalBody';
-import ModalFooter from './components/ModalFooter';
-import ModalHeader from './components/ModalHeader';
-import MonthCalendar from './components/MonthCalendar';
-import MonthInput from './components/MonthInput';
-import Nav from './components/Nav';
-import NavItem from './components/NavItem';
-import NavLink from './components/NavLink';
-import Navbar from './components/Navbar';
-import NavbarBrand from './components/NavbarBrand';
-import NavbarToggler from './components/NavbarToggler';
-import Note from './components/Note';
-import NoteHeader from './components/NoteHeader';
-import Notes from './components/Notes';
-import Pagination from './components/Pagination';
-import PaginationItem from './components/PaginationItem';
-import PaginationLink from './components/PaginationLink';
-import Paginator from './components/Paginator';
-
-// @ts-ignore: implicitly has an 'any' type
-import PatternInput from './components/PatternInput';
-import Placeholder from './components/Placeholder';
-import Popover from './components/Popover';
-import PopoverBody from './components/PopoverBody';
-import PopoverContent from './components/PopoverContent';
-import PopoverHeader from './components/PopoverHeader';
-import PopoverTitle from './components/PopoverTitle';
-import PopperContent from './components/PopperContent';
-import PopperTargetHelper from './components/PopperTargetHelper';
-import Progress from './components/Progress';
-import RadioGroup from './components/RadioGroup';
-import RadioInput from './components/RadioInput';
-import Row from './components/Row';
-import ScrollContainer from './components/ScrollContainer';
-
-// @ts-ignore: implicitly has an 'any' type
-import Select from './components/Select';
-
-// @ts-ignore: implicitly has an 'any' type
-import SelectMultiValue from './components/SelectMultiValue';
-import SortableTable from './components/SortableTable';
-import Spinner from './components/Spinner';
-import StateInput from './components/StateInput';
-import StaticInput from './components/StaticInput';
-import Status from './components/Status';
-import Steps from './components/Steps';
-import SummaryBox from './components/SummaryBox';
-import SummaryBoxItem from './components/SummaryBoxItem';
-import TabContent from './components/TabContent';
-import TabPane from './components/TabPane';
-import Table from './components/Table';
-
-// @ts-ignore: implicitly has an 'any' type
-import TimeInput from './components/TimeInput';
-import Toast from './components/Toast';
-import ToastBody from './components/ToastBody';
-import ToastHeader from './components/ToastHeader';
-import Tooltip from './components/Tooltip';
-import TooltipButton from './components/TooltipButton';
-import TruncatedText from './components/TruncatedText';
-import UncontrolledAlert from './components/UncontrolledAlert';
-import UncontrolledButtonDropdown from './components/UncontrolledButtonDropdown';
-import UncontrolledCarousel from './components/UncontrolledCarousel';
-import UncontrolledCollapse from './components/UncontrolledCollapse';
-import UncontrolledDropdown from './components/UncontrolledDropdown';
-import UncontrolledPopover from './components/UncontrolledPopover';
-
-// @ts-ignore: implicitly has an 'any' type
-import UncontrolledTable from './components/UncontrolledTable';
-import UncontrolledTooltip from './components/UncontrolledTooltip';
-import Waiting from './components/Waiting';
-
 export {
-  // reactstrap
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
-  UncontrolledAccordion,
-  Badge,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  ButtonDropdown,
-  ButtonGroup,
-  ButtonToolbar,
-  Card,
-  CardBody,
-  CardColumns,
-  CardDeck,
-  CardFooter,
-  CardGroup,
-  CardHeader,
-  CardImg,
-  CardImgOverlay,
-  CardLink,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Carousel,
-  CarouselCaption,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselItem,
-  Col,
-  Collapse,
-  Container,
-  DeletedNote,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  EditableNote,
-  Fade,
-  FileInput,
-  Form,
-  FormFeedback,
-  FormGroup,
-  FormLabelGroup,
-  FormText,
-  Highlight,
-  Input,
-  InputGroup,
-  InputGroupButtonDropdown,
-  InputGroupText,
-  InternationalAddressInput,
-  Jumbotron,
-  Label,
-  ListGroup,
-  ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
-  MaskedInput,
-  Media,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem,
-  NavLink,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Paginator,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTitle,
-  PopperContent,
-  PopperTargetHelper,
-  Row,
-  TabContent,
-  Table,
-  TabPane,
-  Toast,
-  ToastBody,
-  ToastHeader,
-  UncontrolledAlert,
-  UncontrolledButtonDropdown,
-  UncontrolledCarousel,
-  UncontrolledCollapse,
-  UncontrolledDropdown,
-  UncontrolledPopover,
-  UncontrolledTooltip,
-  Select,
-  SelectMultiValue,
-  // Gears
-  Activity,
-  ActivityLog,
-  AddressInput,
-  Alert,
-  BlockPanel,
-  BoundForm,
-  BoundFormRow,
-  Calendar,
-  Callout,
-  Close,
-  CheckboxGroup,
-  CheckboxInput,
-  CheckboxBooleanInput,
-  CheckboxListInput,
-  ClickableContainer,
-  CollapsableText,
-  Combobox,
-  ConfirmationButton,
-  CountryInput,
-  CreditCardNumber,
-  CurrencyInput,
-  Datapair,
-  DateInput,
-  ExpandableSection,
-  Badge as Flag,
-  FeatureBanner,
-  FilterList,
-  FormChoice,
-  FormRow,
-  HasManyFields,
-  HasManyFieldsAdd,
-  HasManyFieldsRow,
-  HelpBubble,
-  Icon,
-  ImageCarousel,
-  InfoBox,
-  LabelBadge,
-  List,
-  SortableList,
-  ListItem,
-  MonthCalendar,
-  MonthInput,
-  Note,
-  NoteHeader,
-  Notes,
-  PatternInput,
-  Placeholder,
-  Progress,
-  RadioGroup,
-  RadioInput,
-  ScrollContainer,
-  Spinner,
-  StateInput,
-  StaticInput,
-  SortableTable,
-  Status,
-  Steps,
-  SummaryBox,
-  SummaryBoxItem,
-  TimeInput,
-  Tooltip,
-  UncontrolledTable,
-  Waiting,
-  TooltipButton,
-  TruncatedText,
-};
+  UncontrolledAccordion,
+} from 'reactstrap';
+export { default as Activity } from './components/Activity/Activity';
+export { default as ActivityLog } from './components/Activity/ActivityLog';
+export { default as AddressInput } from './components/Address/AddressInput';
+export { default as CountryInput } from './components/Address/CountryInput';
+export { default as InternationalAddressInput } from './components/Address/InternationalAddressInput';
+export { default as StateInput } from './components/Address/StateInput';
+export { default as Alert } from './components/Alert/Alert';
+export { default as UncontrolledAlert } from './components/Alert/UncontrolledAlert';
+export { default as Badge, default as Flag } from './components/Badge/Badge';
+export { default as BlockPanel } from './components/BlockPanel/BlockPanel';
+export { default as Breadcrumb } from './components/Breadcrumb/Breadcrumb';
+export { default as BreadcrumbItem } from './components/Breadcrumb/BreadcrumbItem';
+export { default as Button } from './components/Button/Button';
+export { default as ButtonDropdown } from './components/Button/ButtonDropdown';
+export { default as ButtonGroup } from './components/Button/ButtonGroup';
+export { default as ButtonToolbar } from './components/Button/ButtonToolbar';
+export { default as ConfirmationButton } from './components/Button/ConfirmationButton';
+export { default as Close } from './components/Button/Close';
+export { default as UncontrolledButtonDropdown } from './components/Button/UncontrolledButtonDropdown';
+export { default as Calendar } from './components/Calendar/Calendar';
+export { default as MonthCalendar } from './components/Calendar/MonthCalendar';
+export { default as Callout } from './components/Callout/Callout';
+export { default as Card } from './components/Card/Card';
+export { default as CardBody } from './components/Card/CardBody';
+export { default as CardColumns } from './components/Card/CardColumns';
+export { default as CardDeck } from './components/Card/CardDeck';
+export { default as CardFooter } from './components/Card/CardFooter';
+export { default as CardGroup } from './components/Card/CardGroup';
+export { default as CardHeader } from './components/Card/CardHeader';
+export { default as CardImg } from './components/Card/CardImg';
+export { default as CardImgOverlay } from './components/Card/CardImgOverlay';
+export { default as CardLink } from './components/Card/CardLink';
+export { default as CardSubtitle } from './components/Card/CardSubtitle';
+export { default as CardText } from './components/Card/CardText';
+export { default as CardTitle } from './components/Card/CardTitle';
+export { default as Carousel } from './components/Carousel/Carousel';
+export { default as CarouselCaption } from './components/Carousel/CarouselCaption';
+export { default as CarouselControl } from './components/Carousel/CarouselControl';
+export { default as CarouselIndicators } from './components/Carousel/CarouselIndicators';
+export { default as CarouselItem } from './components/Carousel/CarouselItem';
+// @ts-ignore: implicitly has an 'any' type
+export { default as ImageCarousel } from './components/Carousel/ImageCarousel';
+export { default as UncontrolledCarousel } from './components/Carousel/UncontrolledCarousel';
+export { default as CheckboxBooleanInput } from './components/Checkbox/CheckboxBooleanInput';
+export { default as CheckboxGroup } from './components/Checkbox/CheckboxGroup';
+export { default as CheckboxInput } from './components/Checkbox/CheckboxInput';
+export { default as CheckboxListInput } from './components/Checkbox/CheckboxListInput';
+export { default as ClickableContainer } from './components/ClickableContainer/ClickableContainer';
+export { default as CollapsableText } from './components/CollapsableText/CollapsableText';
+export { default as Collapse } from './components/Collapse/Collapse';
+export { default as UncontrolledCollapse } from './components/Collapse/UncontrolledCollapse';
+export { default as Combobox } from './components/Combobox/Combobox';
+export { default as Datapair } from './components/Datapair/Datapair';
+export { default as Dropdown } from './components/Dropdown/Dropdown';
+export { default as DropdownItem } from './components/Dropdown/DropdownItem';
+export { default as DropdownMenu } from './components/Dropdown/DropdownMenu';
+export { default as DropdownToggle } from './components/Dropdown/DropdownToggle';
+export { default as UncontrolledDropdown } from './components/Dropdown/UncontrolledDropdown';
+export { default as ExpandableSection } from './components/ExpandableSection/ExpandableSection';
+export { default as Fade } from './components/Fade/Fade';
+export { default as FeatureBanner } from './components/FeatureBanner/FeatureBanner';
+export { default as FilterList } from './components/FilterList/FilterList';
+// @ts-ignore: implicitly has an 'any' type
+export { default as BoundForm } from './components/Form/BoundForm';
+// @ts-ignore: implicitly has an 'any' type
+export { default as BoundFormRow } from './components/Form/BoundFormRow';
+export { default as Form } from './components/Form/Form';
+export { default as FormChoice } from './components/Form/FormChoice';
+export { default as FormFeedback } from './components/Form/FormFeedback';
+export { default as FormGroup } from './components/Form/FormGroup';
+export { default as FormLabelGroup } from './components/Form/FormLabelGroup';
+export { default as FormRow } from './components/Form/FormRow';
+export { default as FormText } from './components/Form/FormText';
+export { default as HasManyFields } from './components/HasManyFields/HasManyFields';
+export { default as HasManyFieldsAdd } from './components/HasManyFields/HasManyFieldsAdd';
+export { default as HasManyFieldsRow } from './components/HasManyFields/HasManyFieldsRow';
+export { default as HelpBubble } from './components/HelpBubble/HelpBubble';
+export { default as Highlight } from './components/Highlight/Highlight';
+export { default as Icon } from './components/Icon/Icon';
+export { default as InfoBox } from './components/InfoBox/InfoBox';
+export { default as CreditCardNumber } from './components/Input/CreditCardNumber';
+export { default as CurrencyInput } from './components/Input/CurrencyInput';
+export { default as DateInput } from './components/Input/DateInput';
+export { default as FileInput } from './components/Input/FileInput';
+export { default as Input } from './components/Input/Input';
+export { default as MaskedInput } from './components/Input/MaskedInput';
+export { default as MonthInput } from './components/Input/MonthInput';
+// @ts-ignore: implicitly has an 'any' type
+export { default as PatternInput } from './components/Input/PatternInput';
+export { default as StaticInput } from './components/Input/StaticInput';
+// @ts-ignore: implicitly has an 'any' type
+export { default as TimeInput } from './components/Input/TimeInput';
+export { default as InputGroup } from './components/InputGroup/InputGroup';
+export { default as InputGroupButtonDropdown } from './components/InputGroup/InputGroupButtonDropdown';
+export { default as InputGroupText } from './components/InputGroup/InputGroupText';
+export { default as LabelBadge } from './components/LabelBadge/LabelBadge';
+export { default as Col } from './components/Layout/Col';
+export { default as Container } from './components/Layout/Container';
+export { default as Row } from './components/Layout/Row';
+export { default as List } from './components/List/List';
+export { default as ListGroup } from './components/List/ListGroup';
+export { default as ListGroupItem } from './components/List/ListGroupItem';
+export { default as ListGroupItemHeading } from './components/List/ListGroupItemHeading';
+export { default as ListGroupItemText } from './components/List/ListGroupItemText';
+export { default as ListItem } from './components/List/ListItem';
+export { default as SortableList } from './components/List/SortableList';
+export { default as Media } from './components/Media/Media';
+export { default as Modal } from './components/Modal/Modal';
+export { default as ModalBody } from './components/Modal/ModalBody';
+export { default as ModalFooter } from './components/Modal/ModalFooter';
+export { default as ModalHeader } from './components/Modal/ModalHeader';
+export { default as Nav } from './components/Nav/Nav';
+export { default as Navbar } from './components/Nav/Navbar';
+export { default as NavbarBrand } from './components/Nav/NavbarBrand';
+export { default as NavbarToggler } from './components/Nav/NavbarToggler';
+export { default as NavItem } from './components/Nav/NavItem';
+export { default as NavLink } from './components/Nav/NavLink';
+export { default as DeletedNote } from './components/Note/DeletedNote';
+export { default as EditableNote } from './components/Note/EditableNote';
+export { default as Note } from './components/Note/Note';
+export { default as NoteHeader } from './components/Note/NoteHeader';
+export { default as Notes } from './components/Note/Notes';
+export { default as Pagination } from './components/Pagination/Pagination';
+export { default as PaginationItem } from './components/Pagination/PaginationItem';
+export { default as PaginationLink } from './components/Pagination/PaginationLink';
+export { default as Paginator } from './components/Pagination/Paginator';
+export { default as Placeholder } from './components/Placeholder/Placeholder';
+export { default as Popover } from './components/Popover/Popover';
+export {
+  default as PopoverBody,
+  default as PopoverContent,
+} from './components/Popover/PopoverBody';
+export {
+  default as PopoverHeader,
+  default as PopoverTitle,
+} from './components/Popover/PopoverHeader';
+export { default as UncontrolledPopover } from './components/Popover/UncontrolledPopover';
+export { default as Progress } from './components/Progress/Progress';
+export { default as RadioGroup } from './components/Radio/RadioGroup';
+export { default as RadioInput } from './components/Radio/RadioInput';
+export { default as ScrollContainer } from './components/ScrollContainer/ScrollContainer';
+// @ts-ignore: implicitly has an 'any' type
+export { default as Select } from './components/Select/Select';
+// @ts-ignore: implicitly has an 'any' type
+export { default as SelectMultiValue } from './components/Select/SelectMultiValue';
+export { default as Spinner } from './components/Spinner/Spinner';
+export { default as Status } from './components/Status/Status';
+export { default as Steps } from './components/Steps/Steps';
+export { default as SummaryBox } from './components/SummaryBox/SummaryBox';
+export { default as SummaryBoxItem } from './components/SummaryBox/SummaryBoxItem';
+export { default as SortableTable } from './components/Table/SortableTable';
+export { default as Table } from './components/Table/Table';
+// @ts-ignore: implicitly has an 'any' type
+export { default as UncontrolledTable } from './components/Table/UncontrolledTable';
+export { default as Toast } from './components/Toast/Toast';
+export { default as ToastBody } from './components/Toast/ToastBody';
+export { default as ToastHeader } from './components/Toast/ToastHeader';
+export { default as Tooltip } from './components/Tooltip/Tooltip';
+export { default as TooltipButton } from './components/Tooltip/TooltipButton';
+export { default as UncontrolledTooltip } from './components/Tooltip/UncontrolledTooltip';
+export { default as TruncatedText } from './components/TruncatedText/TruncatedText';
+export { default as Waiting } from './components/Waiting/Waiting';
+export { default as PopperContent } from './components/Popper/PopperContent';
+export { default as PopperTargetHelper } from './components/Popper/PopperTargetHelper';
+export { default as Jumbotron } from './components/Jumbotron/Jumbotron';
+export { default as Label } from './components/Label/Label';
+export { default as TabContent } from './components/Tabs/TabContent';
+export { default as TabPane } from './components/Tabs/TabPane';

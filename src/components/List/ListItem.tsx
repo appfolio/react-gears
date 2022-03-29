@@ -2,12 +2,12 @@ import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import React, { useState } from 'react';
 import type { ListGroupItemProps } from 'reactstrap';
-import Button from '../Button';
-import Collapse from '../Collapse';
-import Icon from '../Icon';
-import Input from '../Input';
-import Label from '../Label';
-import ListGroupItem from '../ListGroupItem';
+import Button from '../Button/Button';
+import Collapse from '../Collapse/Collapse';
+import Icon from '../Icon/Icon';
+import Input from '../Input/Input';
+import Label from '../Label/Label';
+import ListGroupItem from './ListGroupItem';
 
 export interface ListItemProps<T> extends Omit<ListGroupItemProps, 'onSelect'> {
   children: (item: T, selected?: boolean) => React.ReactNode;

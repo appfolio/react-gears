@@ -1,6 +1,7 @@
 import type { RefObject } from 'react';
 import { useEffect, useLayoutEffect } from 'react';
-import { useSessionStorage, useScroll } from 'react-use';
+import useScroll from 'react-use/lib/useScroll';
+import useSessionStorage from 'react-use/lib/useSessionStorage';
 import { v4 as uuidv4 } from 'uuid';
 
 type Position = {

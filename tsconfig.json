@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "moduleResolution": "node",
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmitOnError": true,
     "noEmit": true,
     "strict": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "experimentalDecorators": true
+    "target": "ESNext"
   },
   "include": ["src"]
 }

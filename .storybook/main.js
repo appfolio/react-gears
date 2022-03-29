@@ -1,15 +1,13 @@
-const path = require('path');
-
 module.exports = {
-  stories: ['../stories/**/*.stories.js'],
+  stories: ['./stories/Welcome.stories.js', '../src/**/*.stories.js', './stories/More.stories.js'],
   addons: [
     {
       name: '@storybook/addon-essentials',
       options: {
         backgrounds: false,
         controls: false,
-        docs: false
-      }
+        docs: false,
+      },
     },
     '@storybook/addon-knobs',
     '@storybook/addon-actions',
@@ -17,16 +15,17 @@ module.exports = {
       name: '@storybook/addon-storysource',
       options: {
         rule: {
-          enforce: 'pre'
+          enforce: 'pre',
         },
-      }
+      },
     },
     '@storybook/addon-viewport',
     {
       name: '@storybook/addon-a11y',
       options: {
-        element: '#story-root'
-      }
-    }
-  ]
+        element: '#story-root',
+      },
+    },
+  ],
+  framework: '@storybook/react',
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
-import Icon from '../Icon';
+import Icon from '../Icon/Icon';
 
 export default function withDragHandler(WrappedComponent, useDefault = true) {
   if (useDefault) {
