@@ -1,7 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import React from 'react';
-import MonthCalendar from '../Calendar/MonthCalendar';
 import FormRow from '../Form/FormRow';
 import Icon from '../Icon/Icon';
 import MonthInput from './MonthInput';
@@ -102,16 +101,6 @@ export const CustomHeaderAndFooter = () => (
           <Icon name="flag-checkered" />
         </div>
       }
-    />
-  </div>
-);
-
-export const MonthCalendarExample = () => (
-  <div className="d-inline-flex">
-    <MonthCalendar
-      monthFormat={text('monthFormat', MonthCalendar.defaultProps.monthFormat)}
-      yearFormat={text('yearFormat', MonthCalendar.defaultProps.yearFormat)}
-      onSelect={action('onSelect')}
     />
   </div>
 );
