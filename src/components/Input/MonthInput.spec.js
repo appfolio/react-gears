@@ -155,25 +155,23 @@ describe('<MonthInput />', () => {
 
   describe('date picker', () => {
     const callback = sinon.spy();
-    const component = mount(<MonthInput onChange={callback} showOnFocus />);
+    const component = mount(
+      <MonthInput onChange={callback} showOnFocus defaultValue={new Date(2020, 2, 10)} />
+    );
 
     it('should set date after clicking a date', () => {
       callback.resetHistory();
-      const firstDate = component.find('Label').first();
       const firstDateLink = component.find('NavLink').first();
-      const expectedDate = firstDate.props().date;
       firstDateLink.simulate('click');
-      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
-      assert(callback.calledWith(expectedDate, true));
+      assert(isSameDay(component.instance().getCurrentDate(), new Date(2020, 0, 1)));
+      assert(callback.calledOnce);
     });
 
     it('should call onChange after clicking a date', () => {
       callback.resetHistory();
-      const lastDate = component.find('Label').first();
       const lastDateLink = component.find('NavLink').first();
-      const expectedDate = lastDate.props().date;
       lastDateLink.simulate('click');
-      assert(callback.calledWith(expectedDate, true));
+      assert(callback.calledOnce);
     });
 
     it('should set date after clicking prev year', () => {
@@ -271,7 +269,7 @@ describe('<MonthInput />', () => {
     it('should not allow to pick invisible date', () => {
       callback.resetHistory();
       const currentDate = component.instance().getCurrentDate();
-      const firstDate = component.find('Label').first();
+      const firstDate = component.find('NavLabel').first();
       assert.equal(isSameDay(currentDate, firstDate.props().date), false);
 
       firstDate.simulate('click');
