@@ -1,6 +1,6 @@
 import uniqueId from 'lodash.uniqueid';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
