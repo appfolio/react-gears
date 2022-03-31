@@ -8,7 +8,7 @@ import SortableList from './SortableList';
 import data from './util/data';
 
 export default {
-  title: 'List',
+  title: 'SortableList',
   component: SortableList,
 };
 
