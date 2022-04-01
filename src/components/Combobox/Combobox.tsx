@@ -426,21 +426,7 @@ function Combobox<T>({
         <DropdownMenu
           data-testid="combobox-menu"
           className="p-0 w-100"
-          modifiers={[
-            {
-              name: 'setMaxHeight',
-              enabled: true,
-              fn: ({ state }: ModifierArguments<any>) => {
-                state.styles.popper = {
-                  ...state.styles.popper,
-                  overflowY: 'auto',
-                  maxHeight: menuMaxHeight || '12rem',
-                };
-              },
-              phase: 'beforeWrite',
-              requires: ['computeStyles'],
-            },
-          ]}
+          style={{ maxHeight: menuMaxHeight || '12rem', overflowY: 'auto' }}
           {...dropdownProps}
           ref={dropdownMenu}
           role="listbox"
