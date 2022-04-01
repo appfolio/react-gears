@@ -1,4 +1,3 @@
-import type { ModifierArguments } from '@popperjs/core';
 import equal from 'fast-deep-equal';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { findDOMNode } from 'react-dom';
