@@ -1,5 +1,20 @@
 # Change Log
 
+### [7.0.4](https://www.github.com/appfolio/react-gears/compare/v7.0.3...v7.0.4) (2022-04-01)
+
+
+### Bug Fixes
+
+* allSelectableSelected should use hasItem vs map.has ([d14dd91](https://www.github.com/appfolio/react-gears/commit/d14dd91eb56d0effdcac7897163051b69ef36315))
+* jumpy combobox from popper ([e668ec0](https://www.github.com/appfolio/react-gears/commit/e668ec023b1c0b327f7c3aed7b9e7f51aecfcdcf))
+* lint issues ([097ff39](https://www.github.com/appfolio/react-gears/commit/097ff39c91d8d93c40423cc4df41214b60b2d53e))
+* **select:** have consistent clear (x) position ([0a4eca3](https://www.github.com/appfolio/react-gears/commit/0a4eca35eb2f9d6d304f41cfa1eb424e4fdbb77b))
+
+
+### Miscellaneous
+
+* convert FeatureBanner to TS/function ([a474e3a](https://www.github.com/appfolio/react-gears/commit/a474e3a23da4e22c7d0b9c82c0581a5964c47e29))
+
 ### [7.0.3](https://www.github.com/appfolio/react-gears/compare/v7.0.2...v7.0.3) (2022-03-29)
 
 
