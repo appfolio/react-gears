@@ -12,7 +12,9 @@ const getSelectArrow = (isOpen, arrowRenderer) => (
   <SelectArrow isOpen={isOpen} render={arrowRenderer} />
 );
 
-const getCloseButton = () => <Close tabIndex={-1} style={{ fontSize: '.5rem' }} />;
+const getCloseButton = () => (
+  <Close className="d-flex" tabIndex={-1} style={{ fontSize: '.5rem' }} />
+);
 
 const Select = ({
   arrowRenderer,
