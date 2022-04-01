@@ -1,6 +1,6 @@
 import uniqueId from 'lodash.uniqueid';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
@@ -119,11 +119,6 @@ function List<T extends Item>({
     }
   }, [items, Array.from(selection.values())]);
 
-  const allSelectableSelected = useMemo(
-    () => items.filter((item) => selectable(item)).every((item) => selection.has(item)),
-    [selection, items, selectable]
-  );
-
   const handleSelection = (item: T, checked?: boolean) => {
     if (select === 'checkbox' || select === 'switch') {
       if (hasItem(item) && !checked) {
@@ -141,6 +136,7 @@ function List<T extends Item>({
     const selectableItems = items.filter((item) => selectable(item));
     const unselectableItems = items.filter((item) => !selectable(item));
     const unselectableSelectedItems = unselectableItems.filter((item) => selected.includes(item));
+    const allSelectableSelected = selectableItems.every((item) => hasItem(item));
 
     if (allSelectableSelected) {
       // deselecting all items except those are selected and unselectable

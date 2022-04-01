@@ -4,7 +4,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
   },
-  setupFiles: ['<rootDir>src/tooling/helpers.ts'],
+  setupFilesAfterEnv: ['<rootDir>src/tooling/helpers.ts'],
   testEnvironment: 'jsdom',
   coveragePathIgnorePatterns: ['tooling'],
 };

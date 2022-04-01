@@ -115,24 +115,39 @@ describe('<List />', () => {
 
   describe('selection', () => {
     it('should select and deselect all', () => {
-      const component = render(
+      const { container, getByTestId } = render(
         <List items={items} select="checkbox">
           {(item) => <div id={item.toLowerCase()}>{item}</div>}
         </List>
       );
 
-      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, 0);
+      expect(container.querySelectorAll('input:checked').length).toBeFalsy();
 
-      component.getByTestId('select-all').click();
+      getByTestId('select-all').click();
+      expect(container.querySelectorAll('input:checked').length).toBe(items.length + 1);
 
-      assert.deepStrictEqual(
-        component.container.querySelectorAll('input:checked').length,
-        items.length + 1
+      getByTestId('select-all').click();
+      expect(container.querySelectorAll('input:checked').length).toBeFalsy();
+    });
+
+    it('should select and deselect all when using selectedKeyMapper', () => {
+      const complexItems = [
+        { key: '1', name: 'Darth' },
+        { key: '2', name: 'Luke' },
+      ];
+      const { container, getByTestId } = render(
+        <List items={complexItems} select="checkbox" selectedKeyMapper={(item) => item.key}>
+          {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+        </List>
       );
 
-      component.getByTestId('select-all').click();
+      expect(container.querySelectorAll('input:checked').length).toBeFalsy();
 
-      assert.deepStrictEqual(component.container.querySelectorAll('input:checked').length, 0);
+      getByTestId('select-all').click();
+      expect(container.querySelectorAll('input:checked').length).toBe(complexItems.length + 1);
+
+      getByTestId('select-all').click();
+      expect(container.querySelectorAll('input:checked').length).toBeFalsy();
     });
 
     it('should select and deselect item', () => {
