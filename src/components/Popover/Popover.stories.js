@@ -32,12 +32,13 @@ export const LiveExample = () => {
       >
         <PopoverHeader>Title of the Popover</PopoverHeader>
         <PopoverBody>
-          <h5>You can do many things</h5>
+          <b>You can do many things</b>
           <ul>
             <li>Add a popover body</li>
             <li>Add a popover header</li>
             <li>Control the popover state externally</li>
           </ul>
+          <b>...or put in any components you wish.</b>
         </PopoverBody>
       </Popover>
     </>
