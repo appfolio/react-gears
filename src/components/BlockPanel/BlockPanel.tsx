@@ -1,6 +1,5 @@
 import classnames from 'classnames';
-import type { FunctionComponent, ReactNode } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, type FC, type ReactNode } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
@@ -17,7 +16,8 @@ interface BlockPanelTitleProps {
   onClick: () => void;
 }
 
-const BlockPanelTitle: FunctionComponent<BlockPanelTitleProps> = ({
+// TODO: Move this to its own file
+const BlockPanelTitle: FC<BlockPanelTitleProps> = ({
   className,
   expandable,
   onClick,
@@ -59,7 +59,7 @@ const defaultProps = {
 /**
  * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
  */
-const BlockPanel: FunctionComponent<BlockPanelProps> = ({
+const BlockPanel: FC<BlockPanelProps> = ({
   children,
   className = defaultProps.className,
   color,

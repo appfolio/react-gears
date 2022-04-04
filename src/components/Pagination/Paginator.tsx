@@ -1,6 +1,6 @@
 import range from 'lodash.range';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { type FC } from 'react';
 import Icon from '../Icon/Icon';
 import Pagination from './Pagination';
 import Page from './components/Page';
@@ -16,25 +16,26 @@ type LinkProps = {
   onClick: (page: number) => void;
 };
 
-const FirstPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
+// TODO: Consolidate these and move them to their own file (as a single component)
+const FirstPageLink: FC<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="first" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-double-left" />
   </ShortcutLink>
 );
 
-const PrevPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
+const PrevPageLink: FC<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="previous" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-left" />
   </ShortcutLink>
 );
 
-const NextPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
+const NextPageLink: FC<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="next" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-right" />
   </ShortcutLink>
 );
 
-const LastPageLink: React.FunctionComponent<LinkProps> = ({ disabled, page, onClick }) => (
+const LastPageLink: FC<LinkProps> = ({ disabled, page, onClick }) => (
   <ShortcutLink name="last" page={page} disabled={disabled} onClick={onClick}>
     <Icon name="angle-double-right" />
   </ShortcutLink>
@@ -64,7 +65,7 @@ type PaginatorProps = {
  * A component that generates a set of links that can be used for pagination.  Link selection is
  * communicated via the `onClick` callback.
  */
-const Paginator: React.FunctionComponent<PaginatorProps> = ({
+const Paginator: FC<PaginatorProps> = ({
   currentPage,
   perPage = DEFAULT_PER_PAGE,
   size,

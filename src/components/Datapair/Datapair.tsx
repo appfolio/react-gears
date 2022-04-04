@@ -1,8 +1,6 @@
 import classnames from 'classnames';
-import type { FunctionComponent, ReactNode } from 'react';
-import React from 'react';
-import type { FormLabelGroupProps } from '../Form/FormLabelGroup';
-import FormLabelGroup from '../Form/FormLabelGroup';
+import React, { type FC, type ReactNode } from 'react';
+import FormLabelGroup, { type FormLabelGroupProps } from '../Form/FormLabelGroup';
 import Input from '../Input/Input';
 
 interface DatapairProps extends FormLabelGroupProps {
@@ -16,13 +14,7 @@ interface DatapairProps extends FormLabelGroupProps {
  * of two parts: the key (label) and a value. The key is an identifier for some form of data and
  * the value can be text or links.
  */
-const Datapair: FunctionComponent<DatapairProps> = ({
-  children,
-  className,
-  label,
-  value,
-  ...attributes
-}) => {
+const Datapair: FC<DatapairProps> = ({ children, className, label, value, ...attributes }) => {
   const classNames = classnames('js-datapair', className);
   return (
     <FormLabelGroup inline label={label} rowClassName={classNames} {...attributes}>

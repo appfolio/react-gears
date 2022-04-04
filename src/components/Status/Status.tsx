@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import type { FontAwesomeAPMProps } from '../Icon/FontAwesomeAPM';
+import { type FontAwesomeAPMProps } from '../Icon/FontAwesomeAPM';
 import Icon from '../Icon/Icon';
 
 interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {

@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import type { InputProps } from 'reactstrap';
+import React, { type FC } from 'react';
+import { type InputProps } from 'reactstrap';
 import Input from '../Input/Input';
 import CA from './util/CAProvinces';
 import US from './util/USStates';
@@ -31,7 +31,7 @@ const defaultProps = {
   onChange: () => {},
 };
 
-const StateInput: React.FunctionComponent<StateInputProps> = ({
+const StateInput: FC<StateInputProps> = ({
   className,
   countries = defaultProps.countries,
   disabled,

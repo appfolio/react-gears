@@ -1,10 +1,8 @@
-import type { Placement } from '@popperjs/core';
+import { type Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import type { FunctionComponent } from 'react';
-import React from 'react';
+import React, { type FC } from 'react';
 import uniqid from 'uniqid';
-import Button from '../Button/Button';
-import type { ButtonProps } from '../Button/Button';
+import Button, { type ButtonProps } from '../Button/Button';
 import Tooltip from './Tooltip';
 
 interface TooltipButtonProps extends ButtonProps {
@@ -13,7 +11,7 @@ interface TooltipButtonProps extends ButtonProps {
   gearsBtnContainerClass?: string;
 }
 
-const TooltipButton: FunctionComponent<TooltipButtonProps> = ({
+const TooltipButton: FC<TooltipButtonProps> = ({
   tooltip,
   disabled = false,
   tooltipPlacement = 'top',

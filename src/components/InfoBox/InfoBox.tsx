@@ -1,6 +1,5 @@
 import classnames from 'classnames';
-import type { ReactNode } from 'react';
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import Icon from '../Icon/Icon';
 
 interface InfoBoxProps extends Omit<React.HTMLProps<HTMLDivElement>, 'className'> {

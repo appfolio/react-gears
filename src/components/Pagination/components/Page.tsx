@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { type FC } from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
 
@@ -12,7 +12,7 @@ type PageProps = {
 /**
  * A clickable link to a page in the pagination bar
  */
-const Page: React.FunctionComponent<PageProps> = ({ current, page, ...props }) => {
+const Page: FC<PageProps> = ({ current, page, ...props }) => {
   const onClick = (event: React.MouseEvent) => {
     event.preventDefault();
     props.onClick(page);

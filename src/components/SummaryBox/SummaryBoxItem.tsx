@@ -1,7 +1,6 @@
 import classnames from 'classnames';
-import type { FunctionComponent } from 'react';
-import React from 'react';
-import type { CardProps } from 'reactstrap';
+import React, { type FC } from 'react';
+import { type CardProps } from 'reactstrap';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 
@@ -18,7 +17,7 @@ const defaultProps = {
   value: '--',
 };
 
-const SummaryBoxItem: FunctionComponent<SummaryBoxItemProps> = ({
+const SummaryBoxItem: FC<SummaryBoxItemProps> = ({
   className,
   label = defaultProps.label,
   reverse = defaultProps.reverse,

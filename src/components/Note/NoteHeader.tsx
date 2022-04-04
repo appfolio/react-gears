@@ -1,11 +1,11 @@
 import classnames from 'classnames';
 import fecha from 'fecha';
-import React from 'react';
+import React, { type FC } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import CardHeader from '../Card/CardHeader';
 import CardTitle from '../Card/CardTitle';
-import type NoteType from '../TypeHelpers/NoteType';
+import { type Note } from './Note.types';
 
 // TODO extract to date helper, i18n:
 const format = (date: Date | number, dateFormat: string) => fecha.format(date, dateFormat);
@@ -14,22 +14,19 @@ const timezone = (date: Date) =>
   date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2];
 
 type NoteHeaderProps = {
-  note: Omit<NoteType, 'text'>;
+  note: Omit<Note, 'text'>;
   dateFormat?: string;
   // TODO shortDateFormat ?
   showTimezone?: boolean;
-  onDelete?: (note: Omit<NoteType, 'text'>) => void;
-  onEdit?: (note: Omit<NoteType, 'text'>) => void;
+  onDelete?: (note: Omit<Note, 'text'>) => void;
+  onEdit?: (note: Omit<Note, 'text'>) => void;
 };
 
 const defaultProps = {
   dateFormat: 'ddd MMM DD YYYY HH:mm:ss',
 };
 
-const NoteHeader: React.FunctionComponent<NoteHeaderProps> = ({
-  dateFormat = defaultProps.dateFormat,
-  ...props
-}) => {
+const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
   const { note, onDelete, onEdit, showTimezone } = props;
   const { date, edited, from, title } = note;
 

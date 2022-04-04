@@ -1,7 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import type { FC } from 'react';
-import type { TooltipProps as InnerTooltipProps } from 'reactstrap';
-import { Tooltip as InnerTooltip } from 'reactstrap';
+import React, { useCallback, useState, type FC } from 'react';
+import { type TooltipProps as InnerTooltipProps, Tooltip as InnerTooltip } from 'reactstrap';
 
 export interface TooltipProps extends Omit<InnerTooltipProps, 'toggle'> {}
 

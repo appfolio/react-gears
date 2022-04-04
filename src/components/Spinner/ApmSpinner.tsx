@@ -1,5 +1,4 @@
-import type { FunctionComponent } from 'react';
-import React from 'react';
+import React, { type FC } from 'react';
 import range from '../../util/range';
 
 // const since these don't behave well as live props, some animation issues:
@@ -12,7 +11,7 @@ type Props = {
   size: string;
 };
 
-const ApmSpinner: FunctionComponent<Props> = ({ color, size, ...props }) => (
+const ApmSpinner: FC<Props> = ({ color, size, ...props }) => (
   <svg width={size} height={size} viewBox="-200 -200 200 200" version="1.1" {...props}>
     <defs>
       <path id="shape" d="M20,10 A10,10 0 1 0 20,-10 L-20,-10 A10,10 0 1 0 -20,10" fill={color} />

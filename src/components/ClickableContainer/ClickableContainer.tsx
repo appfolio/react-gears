@@ -1,6 +1,10 @@
 import classnames from 'classnames';
-import type { FunctionComponent, KeyboardEvent, SyntheticEvent, HTMLAttributes } from 'react';
-import React from 'react';
+import React, {
+  type FC,
+  type KeyboardEvent,
+  type SyntheticEvent,
+  type HTMLAttributes,
+} from 'react';
 
 export interface ContainerProps extends HTMLAttributes<HTMLElement> {
   className?: string;
@@ -11,7 +15,7 @@ export interface ContainerProps extends HTMLAttributes<HTMLElement> {
 /**
  * Accessible generic container component that responds to click events
  * */
-const ClickableContainer: FunctionComponent<ContainerProps> = ({
+const ClickableContainer: FC<ContainerProps> = ({
   className,
   onClick,
   tag: Tag = 'div',

@@ -9,7 +9,7 @@ import isToday from 'date-fns/is_today';
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
-import type { DayInfo } from '../Calendar.types';
+import { type DayInfo } from '../Calendar.types';
 
 export interface VisibilityInfo {
   currentDate: Date;

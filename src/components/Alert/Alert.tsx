@@ -1,7 +1,5 @@
-import type { FunctionComponent } from 'react';
-import React, { useState, useEffect } from 'react';
-import type { AlertProps } from 'reactstrap';
-import { Alert as AlertComponent } from 'reactstrap';
+import React, { useState, useEffect, type FC } from 'react';
+import { Alert as AlertComponent, type AlertProps } from 'reactstrap';
 import Icon from '../Icon/Icon';
 
 const noop = () => undefined;
@@ -22,7 +20,7 @@ type Props = {
  * Extension to Bootstrap [Alert](https://getbootstrap.com/docs/4.3/components/alert/)
  * adding icon support and onToggle callback when dismissed.
  */
-const Alert: FunctionComponent<Props> = ({
+const Alert: FC<Props> = ({
   color = 'warning',
   children,
   className,

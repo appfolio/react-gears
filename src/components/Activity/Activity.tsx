@@ -1,7 +1,6 @@
 import fecha from 'fecha';
-import type { FunctionComponent, ReactNode } from 'react';
-import React from 'react';
-import type { ListGroupItemProps } from 'reactstrap';
+import React, { type FC, type ReactNode } from 'react';
+import { type ListGroupItemProps } from 'reactstrap';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import ListGroupItem from '../List/ListGroupItem';
@@ -18,7 +17,7 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
  * Extension to Bootstrap [ListGroupItem](https://getbootstrap.com/docs/4.3/components/list-group-item/)
  * representing a timeline event.
  */
-const Activity: FunctionComponent<ActivityProps> = ({
+const Activity: FC<ActivityProps> = ({
   action,
   by,
   children,

@@ -1,5 +1,4 @@
-import type { RefObject } from 'react';
-import { useEffect, useLayoutEffect } from 'react';
+import { type RefObject, useEffect, useLayoutEffect } from 'react';
 import useScroll from 'react-use/lib/useScroll';
 import useSessionStorage from 'react-use/lib/useSessionStorage';
 import { v4 as uuidv4 } from 'uuid';

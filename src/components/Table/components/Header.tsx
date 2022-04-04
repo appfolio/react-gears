@@ -1,5 +1,4 @@
-import type { MouseEvent, ReactNode } from 'react';
-import React from 'react';
+import React, { type MouseEvent, type ReactNode } from 'react';
 import Icon from '../../Icon/Icon';
 
 export interface HeaderProps {

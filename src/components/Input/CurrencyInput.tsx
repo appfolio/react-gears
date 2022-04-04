@@ -1,9 +1,7 @@
 import classnames from 'classnames';
 import type IMask from 'imask';
-import type { FunctionComponent } from 'react';
-import React from 'react';
-import type { IMaskInputProps } from 'react-imask';
-import { IMaskInput } from 'react-imask';
+import React, { type FC } from 'react';
+import { IMaskInput, type IMaskInputProps } from 'react-imask';
 import InputGroup from '../InputGroup/InputGroup';
 import InputGroupText from '../InputGroup/InputGroupText';
 
@@ -30,7 +28,7 @@ const defaultProps = {
 };
 
 // TODO support I18n
-const CurrencyInput: FunctionComponent<Props> = ({
+const CurrencyInput: FC<Props> = ({
   allowDecimal = defaultProps.allowDecimal,
   allowNegative = defaultProps.allowNegative,
   className,
@@ -42,7 +40,7 @@ const CurrencyInput: FunctionComponent<Props> = ({
   value,
   onChange,
   ...props
-}: Props) => {
+}) => {
   const inputClassNames = classnames('form-control', inputProps && inputProps.className);
   const onAccept = (val: string, mask: IMask.InputMask<IMask.MaskedNumberOptions>) => {
     const input = (mask.el as IMask.HTMLMaskElement).input;

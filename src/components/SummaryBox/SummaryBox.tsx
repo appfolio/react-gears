@@ -1,6 +1,5 @@
-import type { FunctionComponent, ReactNode } from 'react';
-import React from 'react';
-import type { CardGroupProps } from 'reactstrap';
+import React, { type FC, type ReactNode } from 'react';
+import { type CardGroupProps } from 'reactstrap';
 import CardGroup from '../Card/CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
 
@@ -20,7 +19,7 @@ const defaultProps = {
   reverse: true,
 };
 
-const SummaryBox: FunctionComponent<SummaryBoxProps> = ({
+const SummaryBox: FC<SummaryBoxProps> = ({
   children,
   items,
   reverse = defaultProps.reverse,

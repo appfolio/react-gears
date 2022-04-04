@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { type FC } from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
 
@@ -14,12 +14,7 @@ type ShortcutLinkProps = {
 /**
  * A clickable link to the first/previous/next/last page in the pagination bar
  */
-const ShortcutLink: React.FunctionComponent<ShortcutLinkProps> = ({
-  page,
-  children,
-  disabled,
-  ...props
-}) => {
+const ShortcutLink: FC<ShortcutLinkProps> = ({ page, children, disabled, ...props }) => {
   const onClick = (event: React.MouseEvent) => {
     event.preventDefault();
     props.onClick(page);

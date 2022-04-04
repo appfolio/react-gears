@@ -1,4 +1,4 @@
-export default interface Note {
+export interface Note {
   title?: string;
   date?: Date;
   deleted?: boolean;

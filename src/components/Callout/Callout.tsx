@@ -1,5 +1,4 @@
-import type { HTMLProps } from 'react';
-import React from 'react';
+import React, { type HTMLProps } from 'react';
 
 interface CalloutProps extends HTMLProps<HTMLDivElement> {
   children?: React.ReactNode;

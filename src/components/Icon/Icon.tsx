@@ -1,7 +1,5 @@
-import type { FC } from 'react';
-import React from 'react';
-import type { FontAwesomeAPMProps } from './FontAwesomeAPM';
-import FontAwesomeAPM from './FontAwesomeAPM';
+import React, { type FC } from 'react';
+import FontAwesomeAPM, { type FontAwesomeAPMProps } from './FontAwesomeAPM';
 
 const Icon: FC<FontAwesomeAPMProps> = (props) => <FontAwesomeAPM {...props} />;
 

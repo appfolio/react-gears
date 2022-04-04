@@ -1,6 +1,6 @@
-import React from 'react';
-import type NoteType from '../TypeHelpers/NoteType';
+import React, { type FC } from 'react';
 import Note from './Note';
+import { type Note as NoteType } from './Note.types';
 
 type NotesProps = {
   children?: React.ReactNode;
@@ -19,7 +19,7 @@ const defaultProps = {
   notes: [],
 };
 
-const Notes: React.FunctionComponent<NotesProps> = ({
+const Notes: FC<NotesProps> = ({
   className = defaultProps.className,
   notes = defaultProps.notes,
   children,

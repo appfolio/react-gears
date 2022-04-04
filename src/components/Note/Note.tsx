@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 import CardText from '../Card/CardText';
-import type NoteType from '../TypeHelpers/NoteType';
 import DeletedNote from './DeletedNote';
 import EditableNote, { EditableNoteDefaultProps } from './EditableNote';
+import { type Note as NoteType } from './Note.types';
 import NoteHeader from './NoteHeader';
 
 type NoteProps = {
@@ -35,7 +35,7 @@ const defaultProps = {
   savingLabel: EditableNoteDefaultProps.savingLabel,
 };
 
-const Note: React.FunctionComponent<NoteProps> = ({
+const Note: FC<NoteProps> = ({
   children,
   className = defaultProps.className,
   dateFormat = defaultProps.dateFormat,

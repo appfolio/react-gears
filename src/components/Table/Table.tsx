@@ -1,7 +1,5 @@
-import type { FunctionComponent } from 'react';
-import React from 'react';
-import type { TableProps as ReactStrapTableProps } from 'reactstrap';
-import { Table as TableComponent } from 'reactstrap';
+import React, { type FC } from 'react';
+import { type TableProps as ReactStrapTableProps, Table as TableComponent } from 'reactstrap';
 
 export interface TableProps extends ReactStrapTableProps {
   size?: string;
@@ -14,7 +12,7 @@ export interface TableProps extends ReactStrapTableProps {
   children: React.ReactNode;
 }
 
-const Table: FunctionComponent<TableProps> = ({ children, ...props }) => (
+const Table: FC<TableProps> = ({ children, ...props }) => (
   <TableComponent {...props}>{children}</TableComponent>
 );
 
