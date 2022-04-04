@@ -1,5 +1,17 @@
 # Change Log
 
+### [7.0.5](https://www.github.com/appfolio/react-gears/compare/v7.0.4...v7.0.5) (2022-04-04)
+
+
+### Bug Fixes
+
+* conform popover to coastline look ([7835f2e](https://www.github.com/appfolio/react-gears/commit/7835f2eb1b770aa3c0f51bb0fdcb2c7fe17895e3))
+
+
+### Miscellaneous
+
+* update typescript; cleanup imports ([74882a4](https://www.github.com/appfolio/react-gears/commit/74882a4339c68580694835481a837f400c3877e2))
+
 ### [7.0.4](https://www.github.com/appfolio/react-gears/compare/v7.0.3...v7.0.4) (2022-04-01)
 
 
