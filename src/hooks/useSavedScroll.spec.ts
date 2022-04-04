@@ -1,7 +1,6 @@
 import assert from 'assert';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { replaceRaf } from 'raf-stub';
-import type { RafStub } from 'raf-stub';
+import { replaceRaf, type RafStub } from 'raf-stub';
 import { useRef } from 'react';
 import sinon from 'sinon';
 import useSavedScroll from './useSavedScroll';

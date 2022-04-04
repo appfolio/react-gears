@@ -4,8 +4,7 @@ import Input from '../Input/Input';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import CountryInput from './CountryInput';
-import type { AddressPropType } from './util/AddressFormats';
-import getAddressFormat from './util/AddressFormats';
+import getAddressFormat, { type AddressPropType } from './util/AddressFormats';
 
 type InternationalAddressInputProps = {
   className?: string;

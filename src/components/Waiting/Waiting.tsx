@@ -1,6 +1,5 @@
-import type { ReactNode, FunctionComponent } from 'react';
-import React from 'react';
-import type { ModalProps } from 'reactstrap';
+import React, { type ReactNode, type FC } from 'react';
+import { type ModalProps } from 'reactstrap';
 import Modal from '../Modal/Modal';
 import Spinner from '../Spinner/Spinner';
 
@@ -17,12 +16,7 @@ interface WaitingProps extends Omit<ModalProps, 'toggle'> {
 /**
  * A 'Waiting' indicator for unknown durations. See https://qa.qa.appfolio.com/gears/waiting
  */
-const Waiting: FunctionComponent<WaitingProps> = ({
-  children,
-  className,
-  title = 'Please Wait',
-  ...props
-}) => (
+const Waiting: FC<WaitingProps> = ({ children, className, title = 'Please Wait', ...props }) => (
   <Modal
     {...props}
     className={className}

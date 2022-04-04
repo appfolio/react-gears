@@ -1,7 +1,6 @@
-import type { CardBrand } from 'credit-card-type';
-import cardTypeInfo from 'credit-card-type';
-import React from 'react';
-import type { InputProps } from 'reactstrap';
+import cardTypeInfo, { type CardBrand } from 'credit-card-type';
+import React, { type FC } from 'react';
+import { type InputProps } from 'reactstrap';
 import Icon from '../Icon/Icon';
 import InputGroup from '../InputGroup/InputGroup';
 import InputGroupText from '../InputGroup/InputGroupText';
@@ -58,12 +57,12 @@ const defaultProps = {
   onChange: () => {},
 };
 
-const CreditCardNumber: React.FunctionComponent<CreditCardNumberProps> = ({
+const CreditCardNumber: FC<CreditCardNumberProps> = ({
   types = defaultProps.types,
   onChange = defaultProps.onChange,
   className = defaultProps.className,
   ...props
-}: CreditCardNumberProps) => {
+}) => {
   const getType = (value?: string): CardBrand | undefined => {
     if (!value) {
       return undefined;

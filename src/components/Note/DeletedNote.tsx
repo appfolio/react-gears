@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import Alert from '../Alert/Alert';
 import Button from '../Button/Button';
-import type Note from '../TypeHelpers/NoteType';
+import { type Note } from './Note.types';
 
 type DeletedNoteProps = {
   className?: string;
@@ -9,7 +9,7 @@ type DeletedNoteProps = {
   onUndelete?: (note: Note) => void;
 };
 
-const DeletedNote: React.FunctionComponent<DeletedNoteProps> = ({ ...props }) => {
+const DeletedNote: FC<DeletedNoteProps> = ({ ...props }) => {
   const { className, note, onUndelete } = props;
 
   return (

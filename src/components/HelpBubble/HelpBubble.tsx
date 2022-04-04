@@ -1,5 +1,4 @@
-import type { SyntheticEvent } from 'react';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, type SyntheticEvent } from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Popover from '../Popover/Popover';

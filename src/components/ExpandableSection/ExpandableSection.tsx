@@ -1,5 +1,4 @@
-import type { FunctionComponent } from 'react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, type FC } from 'react';
 import ClickableContainer from '../ClickableContainer/ClickableContainer';
 import Collapse from '../Collapse/Collapse';
 import Icon from '../Icon/Icon';
@@ -12,7 +11,7 @@ interface ExpandableSectionProps {
   title: React.ReactNode;
 }
 
-const ExpandableSection: FunctionComponent<ExpandableSectionProps> = ({
+const ExpandableSection: FC<ExpandableSectionProps> = ({
   children,
   className,
   onToggle = () => {},

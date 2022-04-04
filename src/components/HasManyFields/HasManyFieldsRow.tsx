@@ -1,9 +1,8 @@
-import type { Placement } from '@popperjs/core';
+import { type Placement } from '@popperjs/core';
 import classnames from 'classnames';
 import React, { useState } from 'react';
 import Button from '../Button/Button';
-import type { ConfirmationButtonProps } from '../Button/ConfirmationButton';
-import ConfirmationButton from '../Button/ConfirmationButton';
+import ConfirmationButton, { type ConfirmationButtonProps } from '../Button/ConfirmationButton';
 import Icon from '../Icon/Icon';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';

@@ -7,9 +7,9 @@
     "react/jsx-props-no-spreading": "off",
     "react/static-property-placement": "off",
     "react/destructuring-assignment": "off",
-    "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-unused-vars": "warn",
     "function-paren-newline": "off",
+    "import/no-duplicates": "error",
     "import/first": "error",
     "import/newline-after-import": "warn",
     "import/no-extraneous-dependencies": [
@@ -18,7 +18,7 @@
         "devDependencies": [
           "src/**/*.{spec,stories}.{js,ts,jsx,tsx}",
           "src/tooling/**/*",
-          "./*.config.js"
+          "./*.config.{js,ts}"
         ]
       }
     ],

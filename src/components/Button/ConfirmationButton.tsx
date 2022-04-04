@@ -1,8 +1,6 @@
 import noop from 'lodash.noop';
-import type { FC, MouseEventHandler } from 'react';
-import React, { useCallback, useState } from 'react';
-import type { ButtonProps } from './Button';
-import Button from './Button';
+import React, { useCallback, useState, type FC, type MouseEventHandler } from 'react';
+import Button, { type ButtonProps } from './Button';
 
 export interface ConfirmationButtonProps extends ButtonProps {
   confirmation?: string;

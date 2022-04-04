@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import type { InputProps } from 'reactstrap';
+import React, { type FC } from 'react';
+import { type InputProps } from 'reactstrap';
 import Input from '../Input/Input';
 import COUNTRIES from './util/Countries'; // TODO i18n country names based on locale
 
@@ -15,7 +15,7 @@ const defaultProps = {
   onChange: () => {},
 };
 
-const CountryInput: React.FunctionComponent<CountryInputProps> = ({
+const CountryInput: FC<CountryInputProps> = ({
   onChange = defaultProps.onChange,
   ...otherProps
 }) => {

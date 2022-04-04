@@ -1,5 +1,4 @@
-import type { FC, MouseEventHandler, ReactNode } from 'react';
-import React from 'react';
+import React, { type FC, type MouseEventHandler, type ReactNode } from 'react';
 import NavItem from '../../Nav/NavItem';
 import NavLink from '../../Nav/NavLink';
 

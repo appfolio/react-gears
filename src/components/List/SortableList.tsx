@@ -1,8 +1,7 @@
 import orderBy from 'lodash.orderby';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import type { ListProps } from './List';
-import List from './List';
+import List, { type ListProps } from './List';
 
 export interface SortableListProps<T> extends Omit<ListProps<T>, 'onFilter'> {
   filterBy: string; // initial filter value

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { type FC } from 'react';
 
 type SummaryProps = {
   className?: string;
@@ -12,13 +12,7 @@ type SummaryProps = {
 /**
  * A text summary of the current pagination state
  */
-const Summary: React.FunctionComponent<SummaryProps> = ({
-  className = '',
-  from,
-  size,
-  to,
-  totalItems,
-}) => {
+const Summary: FC<SummaryProps> = ({ className = '', from, size, to, totalItems }) => {
   const start = Math.min(totalItems, from);
   const end = Math.min(totalItems, to);
 

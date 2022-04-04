@@ -1,6 +1,5 @@
-import type { FunctionComponent, ReactNode } from 'react';
-import React from 'react';
-import type { InputProps } from 'reactstrap';
+import React, { type FC, type ReactNode } from 'react';
+import { type InputProps } from 'reactstrap';
 import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';
 
@@ -23,7 +22,7 @@ type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
 
 type CheckboxInputProps = CheckboxListInputProps | CheckboxBooleanInputProps;
 
-const CheckboxInput: FunctionComponent<CheckboxInputProps> = (props: CheckboxInputProps) =>
+const CheckboxInput: FC<CheckboxInputProps> = (props) =>
   props.children ? (
     <CheckboxListInput {...(props as CheckboxListInputProps)} />
   ) : (

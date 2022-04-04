@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 import FormLabelGroup from '../Form/FormLabelGroup';
 import Input from '../Input/Input';
-import type NoteType from '../TypeHelpers/NoteType';
+import { type Note } from './Note.types';
 import NoteHeader from './NoteHeader';
 
 type EditableNoteProps = {
@@ -13,10 +13,10 @@ type EditableNoteProps = {
   className?: string;
   dateFormat?: string;
   showTimezone?: boolean;
-  note: NoteType;
-  onCancel: (note: NoteType) => void;
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>, note: NoteType) => void;
-  onSave: (note: NoteType) => void;
+  note: Note;
+  onCancel: (note: Note) => void;
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>, note: Note) => void;
+  onSave: (note: Note) => void;
   rows?: number;
   saving?: boolean;
   saveLabel?: React.ReactNode;
@@ -33,7 +33,7 @@ export const EditableNoteDefaultProps = {
   savingLabel: 'Saving...',
 };
 
-const EditableNote: React.FunctionComponent<EditableNoteProps> = ({
+const EditableNote: FC<EditableNoteProps> = ({
   className = EditableNoteDefaultProps.className,
   dateFormat = EditableNoteDefaultProps.dateFormat,
   showTimezone = EditableNoteDefaultProps.showTimezone,

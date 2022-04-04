@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import React, { useState } from 'react';
-import type { ListGroupItemProps } from 'reactstrap';
+import { type ListGroupItemProps } from 'reactstrap';
 import Button from '../Button/Button';
 import Collapse from '../Collapse/Collapse';
 import Icon from '../Icon/Icon';
