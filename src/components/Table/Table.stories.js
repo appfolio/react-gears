@@ -1,5 +1,5 @@
 import { boolean, select } from '@storybook/addon-knobs';
-import fecha from 'fecha';
+import format from 'date-fns/format';
 import React from 'react';
 import Table from './Table';
 
@@ -113,7 +113,7 @@ export const Defalut = () => (
         <tr key={row.name}>
           <td>{row.first}</td>
           <td>{row.last}</td>
-          <td>{fecha.format(row.dob, 'MM/DD/YYYY')}</td>
+          <td>{format(row.dob, 'MM/d/yyyy')}</td>
           <td>
             <a href={`mailto:${row.email}`}>{row.email}</a>
           </td>

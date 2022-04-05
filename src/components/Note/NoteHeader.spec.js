@@ -13,7 +13,7 @@ describe('<NoteHeader />', () => {
     title: 'Whim Habors',
   };
 
-  const dateFormat = 'ddd, MMMM D, YYYY "at" h:mm A';
+  const dateFormat = "eee, MMMM d, yyyy 'at' h:mm a";
 
   describe('rendering', () => {
     describe('with core information', () => {
@@ -57,8 +57,8 @@ describe('<NoteHeader />', () => {
         assert(component.find('CardTitle').exists());
       });
 
-      it('has "ddd MMM DD YYYY HH:mm:ss" as default dateFormat prop', () => {
-        assert.strictEqual(component.prop('dateFormat'), 'ddd MMM DD YYYY HH:mm:ss');
+      it('has "eee MMM d yyyy h:mm:ss" as default dateFormat prop', () => {
+        assert.strictEqual(component.prop('dateFormat'), 'eee MMM d yyyy h:mm:ss');
       });
     });
 

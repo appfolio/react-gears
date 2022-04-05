@@ -16,7 +16,7 @@ export default {
 export const WithProps = () => (
   <div>
     <DateInput
-      dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
+      dateFormat={text('dateFormat', 'MM/d/yyyy')}
       showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
       direction={text('direction', 'down')}
       disabled={boolean('disabled', DateInput.defaultProps.disabled)}
@@ -34,7 +34,7 @@ export const WithId = () => (
     <Label for="calendar">Click this label to Focus Calendar Input:</Label>
     <DateInput
       id="calendar"
-      dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
+      dateFormat={text('dateFormat', 'MM/d/yyyy')}
       showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
       disabled={boolean('disabled', DateInput.defaultProps.disabled)}
       onBlur={action('onBlur')}
@@ -127,10 +127,7 @@ export const DateEnabled = () => (
 
 export const CalendarDefault = () => (
   <div className="d-inline-flex">
-    <Calendar
-      dateFormat={text('dateFormat', Calendar.defaultProps.dateFormat)}
-      onSelect={action('onSelect')}
-    />
+    <Calendar dateFormat={text('dateFormat', 'MM/d/yyyy')} onSelect={action('onSelect')} />
   </div>
 );
 

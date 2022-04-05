@@ -11,6 +11,6 @@ export default {
 export const CalendarExample = () => (
   <Calendar
     onSelect={action('onSelect')}
-    weekDayFormat={select('weekday format', ['dd', 'ddd', 'dddd'], 'dd')}
+    weekDayFormat={select('weekday format', ['eee', 'eeee', 'eeeee', 'eeeeee'], 'eeeeee')}
   />
 );

@@ -27,7 +27,7 @@ type NoteProps = {
 
 const defaultProps = {
   className: 'mb-3',
-  dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
+  dateFormat: "eee, MMMM d, yyyy 'at' h:mm a",
   showTimezone: true,
   rows: EditableNoteDefaultProps.rows,
   saving: EditableNoteDefaultProps.saving,

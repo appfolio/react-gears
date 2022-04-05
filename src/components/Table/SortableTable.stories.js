@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { select, boolean } from '@storybook/addon-knobs';
-import fecha from 'fecha';
+import format from 'date-fns/format';
 import React from 'react';
 import SortableTable from './SortableTable';
 
@@ -134,7 +134,7 @@ export const SortableTableExample = () => {
             ascending,
             header: 'DOB',
             key: 'dob',
-            cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+            cell: (row) => format(row.dob, 'MM/d/yyyy'),
             onSort: action('onSort', 'DOB'),
             width: '15%',
           },
@@ -181,7 +181,7 @@ export const AlignColumn = () => (
           align: 'center',
           header: 'Center Align',
           key: 'dob',
-          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          cell: (row) => format(row.dob, 'MM/d/yyyy'),
         },
         {
           align: 'right',

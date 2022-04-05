@@ -1,9 +1,9 @@
 import assert from 'assert';
-import addMonths from 'date-fns/add_months';
-import addYears from 'date-fns/add_years';
-import isSameDay from 'date-fns/is_same_day';
-import isSameMonth from 'date-fns/is_same_month';
-import isToday from 'date-fns/is_today';
+import addMonths from 'date-fns/addMonths';
+import addYears from 'date-fns/addYears';
+import isSameDay from 'date-fns/isSameDay';
+import isSameMonth from 'date-fns/isSameMonth';
+import isToday from 'date-fns/isToday';
 import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';

@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number } from '@storybook/addon-knobs';
-import fecha from 'fecha';
+import format from 'date-fns/format';
 import React from 'react';
 import Button from '../Button/Button';
 import UncontrolledTable from './UncontrolledTable';
@@ -120,7 +120,7 @@ export const UncontrolledTableExample = () => (
         {
           header: 'DOB',
           key: 'dob',
-          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          cell: (row) => format(row.dob, 'MM/d/yyyy'),
           width: '15%',
         },
         {
@@ -165,7 +165,7 @@ export const CustomHeader = () => (
       {
         header: 'DOB',
         key: 'dob',
-        cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+        cell: (row) => format(row.dob, 'MM/d/yyyy'),
         width: '15%',
       },
       {
@@ -193,7 +193,7 @@ export const CustomFooter = () => (
         {
           header: 'Date',
           key: 'date',
-          cell: (row) => fecha.format(row.date, 'MM/DD/YYYY'),
+          cell: (row) => format(row.date, 'MM/d/yyyy'),
           width: '25%',
         },
         {
@@ -277,7 +277,7 @@ export const CustomExpandColumn = () => (
         {
           header: 'DOB',
           key: 'dob',
-          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          cell: (row) => format(row.dob, 'MM/d/yyyy'),
           width: '15%',
         },
         {

@@ -1,13 +1,14 @@
-import addMinutes from 'date-fns/add_minutes';
-import addSeconds from 'date-fns/add_seconds';
-import getHours from 'date-fns/get_hours';
-import getMinutes from 'date-fns/get_minutes';
-import isBefore from 'date-fns/is_before';
-import setHours from 'date-fns/set_hours';
-import setMinutes from 'date-fns/set_minutes';
-import startOfToday from 'date-fns/start_of_today';
-import startOfTomorrow from 'date-fns/start_of_tomorrow';
-import fecha from 'fecha';
+import addMinutes from 'date-fns/addMinutes';
+import addSeconds from 'date-fns/addSeconds';
+import format from 'date-fns/format';
+import getHours from 'date-fns/getHours';
+import getMinutes from 'date-fns/getMinutes';
+import isBefore from 'date-fns/isBefore';
+import parse from 'date-fns/parse';
+import setHours from 'date-fns/setHours';
+import setMinutes from 'date-fns/setMinutes';
+import startOfToday from 'date-fns/startOfToday';
+import startOfTomorrow from 'date-fns/startOfTomorrow';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
 import memoizeOne from 'memoize-one';
@@ -15,9 +16,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon/Icon';
 import Select from '../Select/Select';
-
-const format = fecha.format;
-const parse = fecha.parse;
 
 const INVALID_DATE = new Date(undefined);
 
@@ -32,11 +30,11 @@ function normalizeTime(date) {
 }
 
 function getEndTime(end, timeFormat) {
-  return end ? addSeconds(normalizeTime(parse(end, timeFormat)), 1) : startOfTomorrow();
+  return end ? addSeconds(normalizeTime(parse(end, timeFormat, new Date())), 1) : startOfTomorrow();
 }
 
 function getStartTime(start, timeFormat) {
-  return start ? normalizeTime(parse(start, timeFormat)) : startOfToday();
+  return start ? normalizeTime(parse(start, timeFormat, new Date())) : startOfToday();
 }
 
 function onInterval(time, interval) {
@@ -101,7 +99,7 @@ export default class TimeInput extends React.Component {
     onChange: () => {},
     step: 30,
     placeholder: 'Enter a time',
-    timeFormat: 'h:mm A',
+    timeFormat: 'h:mm a',
     noResultsText: 'Must be in the format HH:MM AM/PM',
   };
 

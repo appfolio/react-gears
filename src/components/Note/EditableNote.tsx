@@ -25,7 +25,7 @@ type EditableNoteProps = {
 
 export const EditableNoteDefaultProps = {
   className: 'bg-white mb-3',
-  dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
+  dateFormat: "eee, MMMM d, yyyy 'at' h:mm a",
   showTimezone: true,
   rows: 4,
   saving: false,

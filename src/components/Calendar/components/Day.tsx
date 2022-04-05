@@ -1,13 +1,13 @@
 import classnames from 'classnames';
 import format from 'date-fns/format';
-import isToday from 'date-fns/is_today';
+import isToday from 'date-fns/isToday';
 import React, { type FC, type MouseEventHandler, type TdHTMLAttributes } from 'react';
 import { type DayInfo } from '../Calendar.types';
 
 export interface DayProps
   extends Omit<TdHTMLAttributes<HTMLTableCellElement>, 'className' | 'onClick' | 'role' | 'style'> {
   day: DayInfo;
-  dateFormat?: string;
+  dateFormat: string;
   locale?: { [key: string]: any };
   onClick: MouseEventHandler<HTMLTableCellElement>;
 }

@@ -1,5 +1,5 @@
 import assert from 'assert';
-import isSameDay from 'date-fns/is_same_day';
+import isSameDay from 'date-fns/isSameDay';
 import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
@@ -69,7 +69,7 @@ describe('<TimeInput />', () => {
   it('should format values with specified timeFormat', () => {
     const component = mount(<TimeInput timeFormat="hh:mm a" defaultValue="16:30" />);
     const options = component.find(Select).prop('options');
-    assert.equal(options[33].label, '04:30 pm');
+    assert.equal(options[33].label, '04:30 PM');
     assert.equal(options[33].value, '16:30');
   });
 

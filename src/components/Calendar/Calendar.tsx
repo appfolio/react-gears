@@ -1,5 +1,5 @@
 import format from 'date-fns/format';
-import enLocale from 'date-fns/locale/en';
+import enLocale from 'date-fns/locale/en-US';
 import noop from 'lodash.noop';
 import React, { useMemo, type FC } from 'react';
 import Table, { type TableProps } from '../Table/Table';
@@ -21,10 +21,10 @@ const defaultProps = {
   date: new Date(),
   dateVisible: () => true,
   dateEnabled: () => true,
-  dateFormat: 'D',
+  dateFormat: 'd',
   locale: enLocale,
   onSelect: noop,
-  weekDayFormat: 'dd',
+  weekDayFormat: 'eeeeee',
 };
 
 const Calendar: FC<CalendarProps> = ({

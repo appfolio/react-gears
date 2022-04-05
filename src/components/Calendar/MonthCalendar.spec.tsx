@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import isSameMonth from 'date-fns/is_same_month';
-import fecha from 'fecha';
+import format from 'date-fns/format';
+import isSameMonth from 'date-fns/isSameMonth';
 import React from 'react';
 import MonthCalendar from './MonthCalendar';
 
@@ -15,7 +15,7 @@ describe('<MonthCalendar />', () => {
     const now = new Date();
     const { getByText } = render(<MonthCalendar />);
 
-    const selectedMonth = getByText(fecha.format(now, 'MMM'));
+    const selectedMonth = getByText(format(now, 'MMM'));
     const selectedYear = getByText(now.getFullYear());
 
     expect(selectedMonth.classList.contains('active')).toBe(true);

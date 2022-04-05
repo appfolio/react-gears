@@ -1,4 +1,4 @@
-import fecha from 'fecha';
+import format from 'date-fns/format';
 import React, { type FC, type ReactNode } from 'react';
 import { type ListGroupItemProps } from 'reactstrap';
 import Col from '../Layout/Col';
@@ -22,13 +22,13 @@ const Activity: FC<ActivityProps> = ({
   by,
   children,
   date,
-  dateFormat = 'MM/DD/YYYY hh:mm A',
+  dateFormat = 'MM/d/yyyy hh:mm a',
   ...props
 }) => (
   <ListGroupItem {...props}>
     <Row className="w-100 gx-0 align-items-center">
       <Col className="me-2 px-0" style={{ maxWidth: '11em' }}>
-        <span className="d-inline js-date">{fecha.format(date, dateFormat)}</span>
+        <span className="d-inline js-date">{format(date, dateFormat)}</span>
       </Col>
       {/* Force the next column to break to new line at the xs breakpoint; specifying `xs` in the first column
        * does nothing since the max-width style seems to override the normal flexbox breakpoint behavior. */}

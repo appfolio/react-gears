@@ -1,4 +1,4 @@
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
+import format from 'date-fns/format';
 import noop from 'lodash.noop';
 import React, { type FC } from 'react';
 import Col from '../Layout/Col';
@@ -15,13 +15,11 @@ export interface MonthCalendarProps {
   onSelect?: (date: Date) => void;
 }
 
-const { format } = Fecha;
-
 const defaultProps = {
   date: new Date(),
   dateVisible: () => true,
   monthFormat: 'MMM',
-  yearFormat: 'YYYY',
+  yearFormat: 'yyyy',
   onSelect: noop,
 };
 

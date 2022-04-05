@@ -18,7 +18,7 @@ export const MonthCalendarExample = () => {
         action('onSelect')(e);
       }}
       monthFormat={select('Month Format', ['M', 'MM', 'MMM', 'MMMM'], 'MMM')}
-      yearFormat={select('Year Format', ['YY', 'YYYY'], 'YYYY')}
+      yearFormat={select('Year Format', ['yy', 'yyyy'], 'yyyy')}
     />
   );
 };

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import fecha from 'fecha';
+import formatDate from 'date-fns/format';
 import React, { type FC } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
@@ -8,7 +8,7 @@ import CardTitle from '../Card/CardTitle';
 import { type Note } from './Note.types';
 
 // TODO extract to date helper, i18n:
-const format = (date: Date | number, dateFormat: string) => fecha.format(date, dateFormat);
+const format = (date: Date | number, dateFormat: string) => formatDate(date, dateFormat);
 
 const timezone = (date: Date) =>
   date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2];
@@ -23,7 +23,7 @@ type NoteHeaderProps = {
 };
 
 const defaultProps = {
-  dateFormat: 'ddd MMM DD YYYY HH:mm:ss',
+  dateFormat: 'eee MMM d yyyy h:mm:ss',
 };
 
 const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
@@ -65,7 +65,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
               <span className="d-sm-none">
                 {from ? <span>{from} </span> : null}
                 <span className="js-note-header__shortDate">
-                  {format(date, 'M/D/YY h:mm A')} {timezone(date)}
+                  {format(date, 'M/d/yyyy h:mm a')} {timezone(date)}
                 </span>
               </span>
             </span>
