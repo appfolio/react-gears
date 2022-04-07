@@ -1,4 +1,8 @@
+import { Ditto, DittoProvider } from 'ditto-react';
 import React from 'react';
+import dittoData from '../../../ditto';
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
@@ -113,4 +117,36 @@ export const HeaderIcons = () => (
       <ToastBody>This is a toast with a custom icon — check it out!</ToastBody>
     </Toast>
   </div>
+);
+
+export const DittoExample = () => (
+  <DittoProvider source={dittoData} projectId="project_624f2713f64853017660f4a1">
+    <Toast>
+      <ToastBody className="d-flex justify-content-between align-items-center">
+        <Ditto textId="bodyDefault" variables={{ ActionType: 'Something Reversable' }} />
+        <div>
+          <Button color="link" size="sm"><Ditto textId="undoButton" /></Button>
+          <Button color="link" size="sm">
+            <Icon name="times" fixedWidth />
+          </Button>
+        </div>
+      </ToastBody>
+    </Toast>
+    <Toast>
+      <ToastBody className="d-flex justify-content-between align-items-center">
+        <Ditto textId="bodyUndoing" variables={{ ActionType: 'Something Reversable' }} />
+        <Button color="link" size="sm">
+          <Icon name="times" fixedWidth />
+        </Button>
+      </ToastBody>
+    </Toast>
+    <Toast>
+      <ToastBody className="d-flex justify-content-between align-items-center">
+        <Ditto textId="bodyUndone" />
+        <Button color="link" size="sm">
+          <Icon name="times" fixedWidth />
+        </Button>
+      </ToastBody>
+    </Toast>
+  </DittoProvider>
 );
