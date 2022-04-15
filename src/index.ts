@@ -69,6 +69,7 @@ export { default as UncontrolledDropdown } from './components/Dropdown/Uncontrol
 export { default as ExpandableSection } from './components/ExpandableSection/ExpandableSection';
 export { default as Fade } from './components/Fade/Fade';
 export { default as FeatureBanner } from './components/FeatureBanner/FeatureBanner';
+export { default as FeedbackButton } from './components/FeedbackButton/FeedbackButton';
 export { default as FilterList } from './components/FilterList/FilterList';
 // @ts-ignore: implicitly has an 'any' type
 export { default as BoundForm } from './components/Form/BoundForm';
