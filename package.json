@@ -50,6 +50,9 @@
     "react-dom": ">= 16.8"
   },
   "dependencies": {
+    "@dnd-kit/core": "^5.0.3",
+    "@dnd-kit/sortable": "^6.0.1",
+    "@dnd-kit/utilities": "^3.1.0",
     "@popperjs/core": "^2.10.1",
     "classnames": "^2.2.6",
     "credit-card-type": "^5.0.1",
