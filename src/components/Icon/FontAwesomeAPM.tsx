@@ -27,6 +27,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   size?: 'xs' | 'sm' | 'lg' | '2x' | '3x' | '4x' | '5x';
   spin?: boolean;
   stack?: '1x' | '2x';
+  tabIndex?: number;
   tag?: keyof JSX.IntrinsicElements;
   iconStyle?: 'regular' | 'solid' | 'thin' | 'light' | 'duotone';
 }
@@ -50,6 +51,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
  * @param {String} [stack] Stack an icon on top of another
  * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
  * @param {String} [iconStyle] Font Awesome classic family with multiple icon styles to choose from
+ * @param {Number} [tabIndex] Tab index as per HTML Spec
  * @module FontAwesome
  * @type {ReactClass}
  */
@@ -71,6 +73,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       tag: Tag = 'i',
       iconStyle,
       ariaLabel,
+      tabIndex,
       ...props
     } = this.props;
 
@@ -110,7 +113,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
     className && classNames.push(className);
 
     return (
-      <Tag {...props} aria-hidden className={classNames.join(' ')}>
+      <Tag {...props} aria-hidden className={classNames.join(' ')} tabIndex={tabIndex}>
         {ariaLabel && <span style={srOnlyStyle}>{ariaLabel}</span>}
       </Tag>
     );

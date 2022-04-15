@@ -85,6 +85,7 @@ export { default as FormText } from './components/Form/FormText';
 export { default as HasManyFields } from './components/HasManyFields/HasManyFields';
 export { default as HasManyFieldsAdd } from './components/HasManyFields/HasManyFieldsAdd';
 export { default as HasManyFieldsRow } from './components/HasManyFields/HasManyFieldsRow';
+export { default as HasManyFields2 } from './components/HasManyFields2/HasManyFields2';
 export { default as HelpBubble } from './components/HelpBubble/HelpBubble';
 export { default as Highlight } from './components/Highlight/Highlight';
 export { default as Icon } from './components/Icon/Icon';
