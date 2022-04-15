@@ -14,9 +14,10 @@ export interface RadioGroupProps {
   options: Option[];
   selected?: Value;
   onChange: (value?: Value) => void;
+  labelClassName?: string;
 }
 
-const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
+const RadioGroup = ({ options, selected, onChange, labelClassName }: RadioGroupProps) => {
   const [groupId] = useState(uuidv4());
 
   const handleRadioChange = (checked: boolean, value: Value) => {
@@ -37,7 +38,7 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
               onChange={(ev) => handleRadioChange(ev.target.checked, option.value)}
               id={id}
             />
-            <Label check for={id}>
+            <Label className={labelClassName} check for={id}>
               {' '}
               {option.label}
             </Label>
