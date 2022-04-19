@@ -18,9 +18,9 @@ export const LiveExample = () => (
     onAdd={action('hasManyFields onAdd')}
     maximumRows={number('maximumRows', 5)}
     minimumRows={number('minimumRows', 0)}
-    reorderable={boolean('reorderable', false)}
+    reorderable={boolean('reorderable', true)}
   >
-    <HasManyFields2Row rowId="row1">
+    <HasManyFields2Row rowId="row1" disabled={false}>
       <AddressInput
         value={{
           address1: '70 Castilian Dr.',
