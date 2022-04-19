@@ -1,22 +1,70 @@
 import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import React, { ReactElement, useState } from 'react';
-import Row from '../Layout/Row';
+import React, { useContext, useMemo, useState } from 'react';
+import Button from '../Button/Button';
+import ConfirmationButton from '../Button/ConfirmationButton';
+import Icon from '../Icon/Icon';
+import Tooltip from '../Tooltip/Tooltip';
 import DragHandle from './DragHandle';
 import HasManyFields2Add from './HasManyFields2Add';
+import HasManyFields2Context from './HasManyFields2Context';
 
 interface HasManyFields2RowProps {
+  disabled: boolean;
+  disabledReason: string | undefined;
+  disabledReasonPlacement: string | undefined;
   rowId: string;
 }
 
-export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({ children, rowId }) => {
+export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
+  children,
+  rowId,
+  disabled,
+  disabledReason,
+  disabledReasonPlacement,
+}) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: rowId });
+
+  const { reorderable } = useContext(HasManyFields2Context);
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
+
+  const tooltip =
+    disabled && disabledReason ? (
+      <Tooltip placement={disabledReasonPlacement} target={rowId}>
+        {disabledReason}
+      </Tooltip>
+    ) : null;
+
+  const onDelete = () => undefined;
+
+  const button = disabled ? (
+    <Button
+      id={rowId}
+      color="danger"
+      onClick={(e) => e.preventDefault()}
+      outline
+      className="p-2 disabled align-self-stretch"
+    >
+      <Icon name="times-circle-o" size="lg" />
+    </Button>
+  ) : (
+    <ConfirmationButton
+      color="danger"
+      confirmation="Delete"
+      aria-label="Delete"
+      outline
+      onClick={onDelete}
+      className="p-2 align-self-stretch"
+      //{...deleteProps}
+    >
+      <Icon name="times-circle-o" size="lg" />
+    </ConfirmationButton>
+  );
 
   return (
     <div
@@ -24,11 +72,13 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({ children, 
       style={style}
       {...attributes}
       {...listeners}
-      className="d-flex js-reorderable-item"
+      className="d-flex js-reorderable-item mb-4 gx-0"
       key={rowId}
     >
-      <DragHandle />
+      {reorderable ? <DragHandle /> : null}
       {children}
+      {button}
+      {tooltip}
     </div>
   );
 };
@@ -52,25 +102,26 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
   disabled,
   label,
   onAdd,
+  reorderable,
+  maximumRows,
+  minimumRows,
 }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const childItems: string[] = [];
-  const initialComponentLookupMap: Record<string, HasManyFields2Child> = {};
+  const componentLookupMap: Record<string, HasManyFields2Child> = {};
 
   React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) {
       return undefined;
     }
     childItems.push(child.props.rowId);
-    initialComponentLookupMap[child.props.rowId] = child;
+    componentLookupMap[child.props.rowId] = child;
     return undefined;
   });
 
   const [itemIds, setItemIds] = useState<string[]>(childItems);
-  const [componentLookupMap, setComponentLookupMap] =
-    useState<Record<string, HasManyFields2Child>>(initialComponentLookupMap);
-
+  
   const onDragStart = ({ active }: DragStartEvent) => {
     if (disabled) {
       return;
@@ -120,11 +171,15 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 
   const onDragCancel = () => setActiveId(null);
 
+  const reorderableCached = useMemo(() => {return {reorderable}}, [reorderable])
+
   return (
     <>
       <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
         <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
-          {itemIds.map((itemId) => componentLookupMap[itemId])}
+          <HasManyFields2Context.Provider value={reorderableCached}>
+            {itemIds.map((itemId) => componentLookupMap[itemId])}
+          </HasManyFields2Context.Provider>
         </SortableContext>
       </DndContext>
       <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={Boolean(onAdd)}>
