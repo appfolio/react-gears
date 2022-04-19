@@ -2,6 +2,8 @@ import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import React, { ReactElement, useState } from 'react';
+import Row from '../Layout/Row';
+import DragHandle from './DragHandle';
 import HasManyFields2Add from './HasManyFields2Add';
 
 interface HasManyFields2RowProps {
@@ -17,7 +19,15 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({ children, 
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} key={rowId}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="d-flex js-reorderable-item"
+      key={rowId}
+    >
+      <DragHandle />
       {children}
     </div>
   );
@@ -36,7 +46,13 @@ interface HasManyFields2Props {
   reorderable: boolean;
 }
 
-export const HasManyFields2: React.FC<HasManyFields2Props> = ({ children, onOrderChanged, disabled, label, onAdd }) => {
+export const HasManyFields2: React.FC<HasManyFields2Props> = ({
+  children,
+  onOrderChanged,
+  disabled,
+  label,
+  onAdd,
+}) => {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const childItems: string[] = [];
@@ -96,7 +112,7 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({ children, onOrde
     }
 
     swapItemIdPositions(activeId, over.id);
-    
+
     if (onOrderChanged) {
       onOrderChanged(itemIds);
     }
@@ -104,13 +120,16 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({ children, onOrde
 
   const onDragCancel = () => setActiveId(null);
 
-  return (<>
-    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
-      <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
-        {itemIds.map((itemId) => componentLookupMap[itemId])}
-      </SortableContext>
-    </DndContext>
-    <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={Boolean(onAdd)}>{label}</HasManyFields2Add>
+  return (
+    <>
+      <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
+        <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
+          {itemIds.map((itemId) => componentLookupMap[itemId])}
+        </SortableContext>
+      </DndContext>
+      <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={Boolean(onAdd)}>
+        {label}
+      </HasManyFields2Add>
     </>
   );
 };

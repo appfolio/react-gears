@@ -1,8 +1,7 @@
 import React from 'react';
 import Icon from '../Icon/Icon';
 
-export default function withDragHandler() {
-  return () => (
+const DragHandle = () => (
     <>
       <div className="rg-DragHandler me-3 align-self-stretch">
         <span className="d-flex flex-column align-items-center justify-content-center h-100 pe-1">
@@ -23,5 +22,6 @@ export default function withDragHandler() {
         `}
       </style>
     </>
-  );
-}
+  )
+
+  export default DragHandle;
