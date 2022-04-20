@@ -6,7 +6,7 @@ import Input from '../Input/Input';
 import COUNTRIES from './util/Countries'; // TODO i18n country names based on locale
 
 interface CountryInputProps extends Omit<InputProps, 'type' | 'onChange'> {
-  onChange?: (value: string | null) => void;
+  onChange?: (value: string) => void;
   placeholder?: string;
   value?: string;
 }
@@ -31,7 +31,7 @@ const CountryInput: FC<CountryInputProps> = ({
       disabled={disabled}
       id={id}
       name={name}
-      onChange={(e) => onChange(e.target.value === '' ? null : e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
     >
       <option value="">{placeholder}</option>
       {COUNTRIES.map((country) => (

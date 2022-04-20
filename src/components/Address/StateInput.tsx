@@ -21,7 +21,7 @@ interface StateInputProps extends Omit<InputProps, 'type' | 'onChange'> {
   disabled?: boolean;
   id?: string;
   name?: string;
-  onChange?: (value: string | null) => any;
+  onChange?: (value: string) => any;
   placeholder?: string;
   value?: string;
 }
@@ -56,7 +56,7 @@ const StateInput: FC<StateInputProps> = ({
       disabled={disabled}
       id={id}
       name={name}
-      onChange={(e) => onChange(e.target.value === '' ? null : e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
     >
       <option value="">{placeholder}</option>
       {STATES.map((state) => (
