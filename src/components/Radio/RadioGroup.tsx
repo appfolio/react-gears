@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
 
 type Value = any;
 interface Option {
-  label: string;
+  label: JSX.Element | string;
   value: Value;
 }
 
@@ -17,8 +16,6 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
-  const [groupId] = useState(uuidv4());
-
   const handleRadioChange = (checked: boolean, value: Value) => {
     if (checked) {
       onChange(value);
@@ -27,23 +24,18 @@ const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
 
   return (
     <FormGroup>
-      {options.map((option) => {
-        const id = `option-${option.label}-${groupId}`;
-        return (
-          <FormGroup check key={option.value}>
+      {options.map((option) => (
+        <FormGroup check key={option.value}>
+          <Label check>
             <Input
               type="radio"
               checked={selected === option.value}
               onChange={(ev) => handleRadioChange(ev.target.checked, option.value)}
-              id={id}
-            />
-            <Label check for={id}>
-              {' '}
-              {option.label}
-            </Label>
-          </FormGroup>
-        );
-      })}
+            />{' '}
+            {option.label}
+          </Label>
+        </FormGroup>
+      ))}
     </FormGroup>
   );
 };
