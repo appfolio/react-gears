@@ -1,5 +1,23 @@
 # Change Log
 
+## [7.1.0](https://www.github.com/appfolio/react-gears/compare/v7.0.4...v7.1.0) (2022-04-27)
+
+
+### Features
+
+* add dismissible to Alert props type ([55f0a01](https://www.github.com/appfolio/react-gears/commit/55f0a018a3f797fe067b2eaf4eb0da08ed680664))
+* allow radiogroup label to be jsx element ([ab8ee51](https://www.github.com/appfolio/react-gears/commit/ab8ee51db3f999fb560d55da0f12bc7e24e5fab5))
+
+
+### Bug Fixes
+
+* conform popover to coastline look ([7835f2e](https://www.github.com/appfolio/react-gears/commit/7835f2eb1b770aa3c0f51bb0fdcb2c7fe17895e3))
+
+
+### Miscellaneous
+
+* update typescript; cleanup imports ([74882a4](https://www.github.com/appfolio/react-gears/commit/74882a4339c68580694835481a837f400c3877e2))
+
 ### [7.0.4](https://www.github.com/appfolio/react-gears/compare/v7.0.3...v7.0.4) (2022-04-01)
 
 
