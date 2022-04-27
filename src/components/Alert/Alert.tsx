@@ -13,6 +13,7 @@ const ICON_MAP: { [key: string]: string } = {
 
 type Props = {
   icon?: boolean;
+  dismissible?: boolean;
   onToggle?: (open: boolean) => void;
 } & AlertProps;
 
