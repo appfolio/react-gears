@@ -72,7 +72,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       style={style}
       {...attributes}
       {...listeners}
-      className="d-flex js-reorderable-item mb-4 gx-0"
+      className="d-flex js-reorderable-item mb-4 gx-0 w-100"
       key={rowId}
     >
       {reorderable ? <DragHandle /> : null}
