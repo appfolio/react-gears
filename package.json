@@ -149,6 +149,8 @@
     "jest": "^27.5.1",
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
+    "mobx": "^6.5.0",
+    "mobx-react-lite": "^3.3.0",
     "prettier": "^2.5.1",
     "raf-stub": "^3.0.0",
     "react": "^16.14.0",
