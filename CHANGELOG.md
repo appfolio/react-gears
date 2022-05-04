@@ -1,5 +1,163 @@
 # Change Log
 
+## [8.0.0](https://github.com/appfolio/react-gears/compare/v7.1.1...v8.0.0) (2022-05-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* update .close -> .btn-close
+* update border-right/left -> border-start/end
+* update text-right/left -> text-start/end
+* update mr/l -> ms/e and pr/l -> ps/e
+* update gutters to use .g-*, .gx-*, and .gy-*
+* remove InputGroupAddon
+* remove CustomInput in favor of Input
+* update to reactstrap 9 and popper 2
+* use bootstrap5 themes for storybook
+
+### Features
+
+* Add Accordion ([6494642](https://github.com/appfolio/react-gears/commit/6494642da95fedef66abd3c2c115dc525300e7c8))
+* add component for truncating text ([b70d9ef](https://github.com/appfolio/react-gears/commit/b70d9ef7a7895a4b9f45d271b6b3062defe382d5))
+* add dismissible to Alert props type ([55f0a01](https://github.com/appfolio/react-gears/commit/55f0a018a3f797fe067b2eaf4eb0da08ed680664))
+* add form-group class into FormGroup ([3ebc96c](https://github.com/appfolio/react-gears/commit/3ebc96c2ed83ce31d10c87a6f2a1db77a547de7d))
+* add generic to FormRow props so that inner component's props are strongly typed ([23ad41d](https://github.com/appfolio/react-gears/commit/23ad41db2674ca36ffde9901b88d245184166a5b))
+* Add Offcanvas ([c2a31f3](https://github.com/appfolio/react-gears/commit/c2a31f39b575d14c805a6d79d4881119ed87bf43))
+* Add react-gears-list ([f74bf6b](https://github.com/appfolio/react-gears/commit/f74bf6ba8651a13a099b7051f5b4007a35c89b1a))
+* add visible rows notification to UncontrolledTable ([9371a66](https://github.com/appfolio/react-gears/commit/9371a66d9a853ed4f17117ad83dd84f5d2bd48d3))
+* allow radiogroup label to be jsx element ([ab8ee51](https://github.com/appfolio/react-gears/commit/ab8ee51db3f999fb560d55da0f12bc7e24e5fab5))
+* **checkboxgroup:** add disabled option ([8699b57](https://github.com/appfolio/react-gears/commit/8699b5722e4f233a824ecd3518674e2787c0db1e))
+* **combobox:** allow `type` prop to be passed to Input ([b2a1c71](https://github.com/appfolio/react-gears/commit/b2a1c71bedfbf35dceb067c95293c6dceccd3f27))
+* **List:** add a conditional prop that controls if a row is selectable ([500368d](https://github.com/appfolio/react-gears/commit/500368d2016f04472dc3032325adba576a42b083))
+* **List:** allow colored backgrounds ([6ce0976](https://github.com/appfolio/react-gears/commit/6ce0976d36ad84a3f095fdee8973df758cc0902b))
+* make steps clickable ([f53536b](https://github.com/appfolio/react-gears/commit/f53536b5895a0cbd5e3eb56304d1a9bc3c0b2db4))
+* migrate List to bootstrap 5 ([dfceb09](https://github.com/appfolio/react-gears/commit/dfceb09eba51a952886f3a48c000eb6471221446))
+* pass thru className of FormChoice elements in a CheckboxListInput ([d50ab4c](https://github.com/appfolio/react-gears/commit/d50ab4cd0a10295ecba6ebf5413e8cf9d4b39f17))
+* Remove custom flex/margins in CheckboxGroup and RadioGroup. ([b5b9ff5](https://github.com/appfolio/react-gears/commit/b5b9ff50fcfb618160eee1a563a86fff947a32ff))
+* remove CustomInput in favor of Input ([81f5423](https://github.com/appfolio/react-gears/commit/81f542398cb27807740b1b2cff5695040186754e))
+* remove InputGroupAddon ([71bb53d](https://github.com/appfolio/react-gears/commit/71bb53d7f37f816a793a03c02ceef69526d05c5f))
+* Replace .font-weight-* with .fw-* ([3541dff](https://github.com/appfolio/react-gears/commit/3541dffc7347c2e48364b37cd5386e2f6339c875))
+* Replace .sr-only with .visually-hidden ([6677ab6](https://github.com/appfolio/react-gears/commit/6677ab6d458346f4eca197d6a8ab847b7ad4ca56))
+* set fade to false for feature banner ([19508f7](https://github.com/appfolio/react-gears/commit/19508f780b5d38a2474845ca3b73a02cec71c303))
+* support innerRef for CurrencyInput ([14fd823](https://github.com/appfolio/react-gears/commit/14fd8233d6bb8a8ce56185bb4a5f5670a4340fc2))
+* update .close -> .btn-close ([3795410](https://github.com/appfolio/react-gears/commit/3795410cd87af1efdfa41b66275d5beb32077599))
+* update angle-left/right -> angle-start/end ([0e7663e](https://github.com/appfolio/react-gears/commit/0e7663e18e11352983753e94d688fdb07810b3fb))
+* update border-right/left -> border-start/end ([162cf3e](https://github.com/appfolio/react-gears/commit/162cf3e6ac7e05b158d4dae14856170ffaa6fe4e))
+* update gutters to use .g-*, .gx-*, and .gy-* ([675ed1e](https://github.com/appfolio/react-gears/commit/675ed1ee987af775a3a4f6224fa2d65320e52925))
+* update jumbotron for backwards compatibility ([6dd0499](https://github.com/appfolio/react-gears/commit/6dd0499b930362cf578bc6800237274047c273ec))
+* update mr/l -> ms/e and pr/l -> ps/e ([1506cbc](https://github.com/appfolio/react-gears/commit/1506cbc57a6abea2c325c83165afb773636445e4))
+* update rounded-left/right -> rounded-start/end ([7a05aab](https://github.com/appfolio/react-gears/commit/7a05aab221bba3a744565527b5cb0aa54e93cef8))
+* update text-right/left -> text-start/end ([95852e4](https://github.com/appfolio/react-gears/commit/95852e43b6a328344857233c04dc72d5a98fa410))
+* update to reactstrap 9 and popper 2 ([0ffefea](https://github.com/appfolio/react-gears/commit/0ffefea1749b82ffbe9c6c01e594ae7477431168))
+
+
+### Bug Fixes
+
+* add align-stretch to the close button in HasManyFields ([914fd85](https://github.com/appfolio/react-gears/commit/914fd8539c6145bf0280a89d663db8fb1000a4f4))
+* add allowed sze types for font awesome icons ([eb0b502](https://github.com/appfolio/react-gears/commit/eb0b5025092474c223b95fd5754e0342ee8a0d26))
+* add correct param type for AddressInput component's onChange prop ([d7d8db4](https://github.com/appfolio/react-gears/commit/d7d8db4b437ecfadf7b081bb2593b745f160588d))
+* allow conditional rendering of child elements ([64c199f](https://github.com/appfolio/react-gears/commit/64c199f6fbb4839703671b680d2050c256e2a27a))
+* allow containerClassName prop ([1aa2064](https://github.com/appfolio/react-gears/commit/1aa206411afff2aec87b535ce99c07067dd9a4f6))
+* allSelectableSelected should use hasItem vs map.has ([d14dd91](https://github.com/appfolio/react-gears/commit/d14dd91eb56d0effdcac7897163051b69ef36315))
+* better stories for popover to eliminate styling confusion ([2f83ffe](https://github.com/appfolio/react-gears/commit/2f83ffe6f77bbdf6bd04ef8ea39d51f2a1849566))
+* close icon font size should be .5rem ([f9a0198](https://github.com/appfolio/react-gears/commit/f9a0198cd53ef378dfeb4c70cc97b96552feb012))
+* coastline url for bootstrap5 ([09f1a2c](https://github.com/appfolio/react-gears/commit/09f1a2c46d532e4f48351d9bda65038ae015fbef))
+* **Combobox:** fix menu closing when vertical scrollbar is clicked ([112c498](https://github.com/appfolio/react-gears/commit/112c4981a6a153e30fc6e44e6bef4e2f95db2f47))
+* conform popover to coastline look ([7835f2e](https://github.com/appfolio/react-gears/commit/7835f2eb1b770aa3c0f51bb0fdcb2c7fe17895e3))
+* currencyinput should only toString if it exists ([d5e7ff1](https://github.com/appfolio/react-gears/commit/d5e7ff1ae357e8a006160dab0010b1dee79d0afc))
+* **CurrencyInput:** conditionally exclude `value` key from props before passing it to `IMaskInput` ([de4bfe5](https://github.com/appfolio/react-gears/commit/de4bfe5126b723b6b8ce19d2a3630e4a77c645f2))
+* **CurrencyInput:** set latest value attr on the input html element ([34a5fb1](https://github.com/appfolio/react-gears/commit/34a5fb189d1f0e4c1816b59a448d943416f2c8ca))
+* fixes following code review ([cf22858](https://github.com/appfolio/react-gears/commit/cf22858606b60a982af504b0a92a9b7d6eeaf113))
+* FormLabelGroup padding/margins ([a622264](https://github.com/appfolio/react-gears/commit/a6222647dbfdb724a72251037a0d4f4e1b94e0c0))
+* **FormRow:** add typing support for all Input component's type ([ab13a34](https://github.com/appfolio/react-gears/commit/ab13a34de2309cd2802de312fd42a53230bdfa33))
+* js-datapair has mb-1 style built in ([eef35d2](https://github.com/appfolio/react-gears/commit/eef35d295ef863b8504c1417bb8f24a40ff03d74))
+* jumpy combobox from popper ([e668ec0](https://github.com/appfolio/react-gears/commit/e668ec023b1c0b327f7c3aed7b9e7f51aecfcdcf))
+* let BlockPanel card-header class handle padding ([55d3598](https://github.com/appfolio/react-gears/commit/55d359848e02ce11a4c9277d75846a34eabb4115))
+* lint issues ([097ff39](https://github.com/appfolio/react-gears/commit/097ff39c91d8d93c40423cc4df41214b60b2d53e))
+* **List:** fix select behavior and add better tests ([b07cf48](https://github.com/appfolio/react-gears/commit/b07cf48bf4933347d854644c3d5d6cba982b450b))
+* listitem make selectable and onSelect optional ([9479a42](https://github.com/appfolio/react-gears/commit/9479a42c90ae0bb91d0eaea7896fafd5d7305295))
+* **List:** prevent Item type from being a weak type ([c66642f](https://github.com/appfolio/react-gears/commit/c66642f659ed7eede8c54047e00a3e462a9ae534))
+* make RadioInput's value prop optional ([be7dab2](https://github.com/appfolio/react-gears/commit/be7dab2fccf9868ede99df9ddb50e2c22a6d8301))
+* no destructuring needed with Select component ([9a17f39](https://github.com/appfolio/react-gears/commit/9a17f39eabda1a3b3e6549ecfbfcb8aff78ed447))
+* popper types ([6fe6c97](https://github.com/appfolio/react-gears/commit/6fe6c97fbc94411daddd5c016354331f9de4eb29))
+* react-gears v6 will point to coastline v4 ([68c0731](https://github.com/appfolio/react-gears/commit/68c0731db505d84c4a029eaed633c19b69f89e35))
+* remove .col-form-label from RadioGroup and CheckboxGroup to prevent gray labels ([75419e8](https://github.com/appfolio/react-gears/commit/75419e8b95f41da3a02bd6638a7bdb6e620f4747))
+* remove named types as it is a breaking change ([7fa5329](https://github.com/appfolio/react-gears/commit/7fa5329539f64d81937f38e019e46b4c3ddc1b69))
+* remove small uppercase style from SummaryBox ([3a07287](https://github.com/appfolio/react-gears/commit/3a07287491152e0e1868052ab4e82edc9a703ea0))
+* report visible rows on initial render ([02a8a1f](https://github.com/appfolio/react-gears/commit/02a8a1febede7099ae17149b212466598ee11096))
+* revert Table back to class component ([df9f103](https://github.com/appfolio/react-gears/commit/df9f1036bf80dafb23b26f01ee5f730fd8d5d495))
+* **select:** have consistent clear (x) position ([0a4eca3](https://github.com/appfolio/react-gears/commit/0a4eca35eb2f9d6d304f41cfa1eb424e4fdbb77b))
+* sync DateInput types with PropTypes ([0804977](https://github.com/appfolio/react-gears/commit/0804977a80b1735c291ee05877adb9c5ad75c052))
+* type definition for getAlignment ([ec2c1b6](https://github.com/appfolio/react-gears/commit/ec2c1b68a6311b73cb5fad1a5f3dc007d7b1d70a))
+* type imports from reactstrap ([6db8fe3](https://github.com/appfolio/react-gears/commit/6db8fe31d9ceb66d599f8f390934d2e459f3b441))
+* update icon ([8d0b657](https://github.com/appfolio/react-gears/commit/8d0b657270d5d7522df35f0d519311930799a6e5))
+* update list icons to match prod ([37760c9](https://github.com/appfolio/react-gears/commit/37760c9edd3e3198700aca0eeb1589aa8056ac7c))
+* use BS5 classes instead of inline styles ([38af48a](https://github.com/appfolio/react-gears/commit/38af48af8682a8475be7f9181e7434d5458c928d))
+
+
+### build
+
+* use bootstrap5 themes for storybook ([2b05e59](https://github.com/appfolio/react-gears/commit/2b05e5951189376ff3ad84e19d8bc93600559559))
+
+
+### Miscellaneous
+
+* add commitlint github action ([750cf01](https://github.com/appfolio/react-gears/commit/750cf0184ac58f32c0f6863bea9452cb2539f572))
+* Add fullscreen and xl options to Modal story ([4ab36ad](https://github.com/appfolio/react-gears/commit/4ab36ad77a9fda4154ce6567bbb0beca71d74a00))
+* add ignore-revs file ([0391339](https://github.com/appfolio/react-gears/commit/0391339bc5d7185c1ffbc6188349454f29755256))
+* Add story for floating labels ([b4466a5](https://github.com/appfolio/react-gears/commit/b4466a53706e36ed3da0b4857de36d7bada5d319))
+* bump imask packages to latest ([247cbe6](https://github.com/appfolio/react-gears/commit/247cbe6039d99676ceb10e5e5b71940a72f309ce))
+* **combobox:** add tests for input type prop ([e48d5e5](https://github.com/appfolio/react-gears/commit/e48d5e5c6948cd9505f20b2f18e1bec976b4cdf7))
+* convert AddressInput to functional/TS component ([582d7e8](https://github.com/appfolio/react-gears/commit/582d7e891d4b486e902720d087bd4198d1e1c55e))
+* convert ConfirmationButton to function/TS component ([e2cc9aa](https://github.com/appfolio/react-gears/commit/e2cc9aad66952ef26a193f957bfac3424d33afca))
+* convert FeatureBanner to TS/function ([a474e3a](https://github.com/appfolio/react-gears/commit/a474e3a23da4e22c7d0b9c82c0581a5964c47e29))
+* convert SortableTable and UncontrolledTable to ts/func ([5a54baa](https://github.com/appfolio/react-gears/commit/5a54baafe91722b3e6295161fba70b8dc24df10c))
+* convert Tooltip to function/TS ([3b44e61](https://github.com/appfolio/react-gears/commit/3b44e61806be4c28407743369ebb2b0aa68a9bac))
+* **CurrencyInput:** covert test to pure jest ([7db5a5b](https://github.com/appfolio/react-gears/commit/7db5a5bf1fb326195a78433cbc020753897235fd))
+* **CurrencyInput:** run code formatter ([e57fafc](https://github.com/appfolio/react-gears/commit/e57fafcf2a835171d84ec8a5a8b2430fbbf43581))
+* **DateInput:** update positionFixed logic ([f8c19b6](https://github.com/appfolio/react-gears/commit/f8c19b6e79a9b64fa03e33eb71fc5663020ba039))
+* **List:** convert List and SortableList to ts ([1423980](https://github.com/appfolio/react-gears/commit/1423980a4ff70ed4c28b214186b62cda778f22d3))
+* **master:** release 7.1.1 ([61694f8](https://github.com/appfolio/react-gears/commit/61694f8c8f6f34cdec2b4cd232f9296980fd8c0f))
+* migrate Calendar/MonthCalendar to TS/function ([202725a](https://github.com/appfolio/react-gears/commit/202725a8c670663224549ac555b15dbb292efaed))
+* move `[@types](https://github.com/types)` packages to dev dependencies ([815e780](https://github.com/appfolio/react-gears/commit/815e7800213f38d64ff86e69df3033823cd83bb6))
+* move components to their own directory ([5db1101](https://github.com/appfolio/react-gears/commit/5db1101100f03e82d3c6af11a5f8dd0ef8d814be))
+* release 6.10.0 ([5713095](https://github.com/appfolio/react-gears/commit/571309595c7fc7863d6f24617860d739772bcf6e))
+* release 6.11.0 ([e17fc4f](https://github.com/appfolio/react-gears/commit/e17fc4f772060a04c3aa72ca06137cbb96ab4e7c))
+* release 6.11.1 ([7a58b79](https://github.com/appfolio/react-gears/commit/7a58b7934c8e61975d37744d73b2691175557357))
+* release 6.11.2 ([f066994](https://github.com/appfolio/react-gears/commit/f066994cdebdb39b64807fadf6ac04964ae2a867))
+* release 6.12.0 ([72b8584](https://github.com/appfolio/react-gears/commit/72b85844675a2c269ff281ceb14046b403cee481))
+* release 6.12.1 ([02b7398](https://github.com/appfolio/react-gears/commit/02b739835327f281d195e4e70c6f5b5321494d63))
+* release 6.12.2 ([5c371a3](https://github.com/appfolio/react-gears/commit/5c371a3af71e4e473db306f4724ddd44a1e039d8))
+* release 6.12.3 ([7c520f5](https://github.com/appfolio/react-gears/commit/7c520f51449ebf6547cc2f3e5a901c1abebe14ce))
+* release 6.13.0 ([1385fd9](https://github.com/appfolio/react-gears/commit/1385fd96b9bf28557645e05f1cc5683967bb8373))
+* release 6.14.0 ([91b68b6](https://github.com/appfolio/react-gears/commit/91b68b6ed16e36335752064dfca5847afaf6d135))
+* release 6.14.1 ([1bc7641](https://github.com/appfolio/react-gears/commit/1bc76413c19da970963f583f12374b184958e16a))
+* release 6.15.0 ([1b6c6cc](https://github.com/appfolio/react-gears/commit/1b6c6cccb110b63a414f927b1e016ec7389a0da0))
+* release 6.15.1 ([83a2568](https://github.com/appfolio/react-gears/commit/83a25681f1fc752f6124782f14229076612424be))
+* release 6.8.0 ([f100cba](https://github.com/appfolio/react-gears/commit/f100cbab4974a9f849c6c6c78caab60f51c4f169))
+* release 6.8.1 ([237ea45](https://github.com/appfolio/react-gears/commit/237ea4520fb6a7c06b6e00c0c99833545dfe902b))
+* release 6.9.0 ([afebbae](https://github.com/appfolio/react-gears/commit/afebbae5e74b8f70824a7194cfdc1db549cc5866))
+* release 6.9.1 ([1fa3776](https://github.com/appfolio/react-gears/commit/1fa3776f3673824b04478d92f34a25f7fb129ca9))
+* release 6.9.2 ([77ff2cf](https://github.com/appfolio/react-gears/commit/77ff2cfa7cfc21afc4e9c777bf827e58856f21ff))
+* release 6.9.3 ([073620a](https://github.com/appfolio/react-gears/commit/073620ae798eeabb5e457fe7743e1285ab6924f2))
+* release 6.9.4 ([9d2039b](https://github.com/appfolio/react-gears/commit/9d2039b391a43f4c6a62f6ea49758f4e3adb6793))
+* release 7.0.0 ([8dd106a](https://github.com/appfolio/react-gears/commit/8dd106ab023673a6ad084878b36a2176a4cadaf9))
+* release 7.0.1 ([15e43ba](https://github.com/appfolio/react-gears/commit/15e43babd8ce2466d7a1b8703977f6bc11740d67))
+* release 7.0.2 ([5808a81](https://github.com/appfolio/react-gears/commit/5808a81244075732d709ccdcfe133fa514884445))
+* release 7.0.3 ([16e0b04](https://github.com/appfolio/react-gears/commit/16e0b04684a18f68088102e7c8fcab0a7e8e2ba2))
+* release 7.0.4 ([e20cffe](https://github.com/appfolio/react-gears/commit/e20cffe94414ce3a44a54c87391af312272498db))
+* release 7.1.0 ([7f79593](https://github.com/appfolio/react-gears/commit/7f79593c6e104b5caaa985bec5dfdec333e6e46d))
+* remove Portal component ([e0a3367](https://github.com/appfolio/react-gears/commit/e0a3367514fca5a06226ee5ac49f66464c93424c))
+* **storybook:** add story for InputGroup with multiple inputs ([91c494e](https://github.com/appfolio/react-gears/commit/91c494e49f64053a77210f0f27d5dcd7f0fe8673))
+* **storybook:** update story for status component to have 'none' option instead of '' ([c553356](https://github.com/appfolio/react-gears/commit/c553356aa303473a1a458076d8f89760d4181981))
+* update docs for 6.8.0 ([c5c1d51](https://github.com/appfolio/react-gears/commit/c5c1d517dba7e896b5194fb418b3f8f8390ab0a7))
+* update eslint and format all files ([58c03e2](https://github.com/appfolio/react-gears/commit/58c03e25323a4a751115071024decbb472d10038))
+* update eslint to use @typescript-eslint/no-unused-vars ([1249773](https://github.com/appfolio/react-gears/commit/12497736ce58c4d72ae737364011f48e62cbd8c4))
+* Update tests for BS5 changes ([5007219](https://github.com/appfolio/react-gears/commit/500721997d4f7a3955723d3319f953759cd90df3))
+* update typescript; cleanup imports ([74882a4](https://github.com/appfolio/react-gears/commit/74882a4339c68580694835481a837f400c3877e2))
+* update use-deep-compare-effect, react-use, and add @types/lodash.uniqueid ([1fa4265](https://github.com/appfolio/react-gears/commit/1fa4265c78d4ad2fb8d1e0d5744d5b03c2cb8fe0))
+* use es imports from reactstrap vs lib imports ([2b681bb](https://github.com/appfolio/react-gears/commit/2b681bb407b359fb24264225014afa84b2284353))
+
 ### [7.1.1](https://github.com/appfolio/react-gears/compare/v7.1.0...v7.1.1) (2022-05-04)
 
 
