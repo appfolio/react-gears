@@ -1,19 +1,20 @@
 on:
   push:
     branches:
-      - master
+      - releasesStuff
 name: release-please-pr
 jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v2
+      - uses: google-github-actions/release-please-action@v3
         id: release-please
         with:
           release-type: node
           package-name: "@appfolio/react-gears"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
           command: release-pr
+          default-branch: releasesStuff
       - uses: actions/github-script@v5
         if: ${{ steps.release-please.outputs.pr }}
         id: extract-branch
@@ -21,15 +22,7 @@ jobs:
           PR_NUM: ${{ steps.release-please.outputs.pr }}
         with:
           result-encoding: string
-          script: |
-            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-            const { data: pullRequest } = await github.rest.pulls.get({
-              owner,
-              repo,
-              pull_number: process.env.PR_NUM,
-            });
-            const branchName = pullRequest.head.ref;
-            return branchName;
+          script: return JSON.parse(process.env.PR_NUM).headBranchName
       - uses: actions/checkout@v2
         if: ${{ steps.release-please.outputs.pr }}
         with:
@@ -41,17 +34,18 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: ${{ steps.release-please.outputs.pr }}
         with:
-          commit_message: "docs: update storybook for ${{ steps.extract-branch.outputs.result }}"
+          commit_message: "docs: update documentation for the latest release"
 
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v2
+      - uses: google-github-actions/release-please-action@v3
         id: release
         with:
           release-type: node
           package-name: "@appfolio/react-gears"
           command: github-release
+          default-branch: releasesStuff
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v2
@@ -63,15 +57,15 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: npm run dist
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm run publish:github
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v2
-        with:
-          registry-url: 'https://registry.npmjs.org'
-        if: ${{ steps.release.outputs.release_created }}
-      - run: npm run publish:npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
+      # - run: npm run publish:github
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   if: ${{ steps.release.outputs.release_created }}
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     registry-url: 'https://registry.npmjs.org'
+      #   if: ${{ steps.release.outputs.release_created }}
+      # - run: npm run publish:npm
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   if: ${{ steps.release.outputs.release_created }}
