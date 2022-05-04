@@ -1,5 +1,5 @@
-import React, { type FC } from 'react';
-import { type InputProps } from 'reactstrap';
+import React, { FC } from 'react';
+import { InputProps } from 'reactstrap';
 import Input from './Input';
 
 export interface StaticInputProps extends InputProps {

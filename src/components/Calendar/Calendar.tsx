@@ -1,8 +1,8 @@
 import format from 'date-fns/format';
 import enLocale from 'date-fns/locale/en';
 import noop from 'lodash.noop';
-import React, { useMemo, type FC } from 'react';
-import Table, { type TableProps } from '../Table/Table';
+import React, { useMemo, FC } from 'react';
+import Table, { TableProps } from '../Table/Table';
 import Day from './components/Day';
 import { getVisibleWeeks } from './util/getVisibleWeeks';
 

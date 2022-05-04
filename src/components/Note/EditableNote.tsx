@@ -1,11 +1,11 @@
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 import FormLabelGroup from '../Form/FormLabelGroup';
 import Input from '../Input/Input';
-import { type Note } from './Note.types';
+import { Note } from './Note.types';
 import NoteHeader from './NoteHeader';
 
 type EditableNoteProps = {

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useMemo, type HTMLProps } from 'react';
+import React, { useMemo, HTMLProps } from 'react';
 import range from '../../util/range';
 
 interface PlaceholderProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {

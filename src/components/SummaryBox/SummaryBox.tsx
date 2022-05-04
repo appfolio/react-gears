@@ -1,5 +1,5 @@
-import React, { type FC, type ReactNode } from 'react';
-import { type CardGroupProps } from 'reactstrap';
+import React, { FC, ReactNode } from 'react';
+import { CardGroupProps } from 'reactstrap';
 import CardGroup from '../Card/CardGroup';
 import SummaryBoxItem from './SummaryBoxItem';
 

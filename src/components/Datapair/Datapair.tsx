@@ -1,9 +1,11 @@
 import classnames from 'classnames';
-import React, { type FC, type ReactNode } from 'react';
-import FormLabelGroup, { type FormLabelGroupProps } from '../Form/FormLabelGroup';
+import React, { ComponentProps, FC, ReactNode } from 'react';
+import FormLabelGroup from '../Form/FormLabelGroup';
 import Input from '../Input/Input';
 
-interface DatapairProps extends FormLabelGroupProps {
+// For some reason I was getting import errors when importing FormLabelGroupProps without `type`
+// TODO: Revert to extends FormLabelGroupProps when we support TS 4.5+
+interface DatapairProps extends ComponentProps<typeof FormLabelGroup> {
   className?: string;
   label?: ReactNode;
   value?: ReactNode;

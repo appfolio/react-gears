@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { render } from '@testing-library/react';
 import axe from 'axe-core';
-import { type ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 export async function assertAccessibleContainer(container: axe.ElementContext) {
   const { violations } = await axe.run(container);

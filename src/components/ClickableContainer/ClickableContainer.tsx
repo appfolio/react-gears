@@ -1,10 +1,5 @@
 import classnames from 'classnames';
-import React, {
-  type FC,
-  type KeyboardEvent,
-  type SyntheticEvent,
-  type HTMLAttributes,
-} from 'react';
+import React, { FC, KeyboardEvent, SyntheticEvent, HTMLAttributes } from 'react';
 
 export interface ContainerProps extends HTMLAttributes<HTMLElement> {
   className?: string;

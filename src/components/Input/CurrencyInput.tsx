@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import type IMask from 'imask';
-import React, { type FC } from 'react';
-import { IMaskInput, type IMaskInputProps } from 'react-imask';
+import React, { FC } from 'react';
+import { IMaskInput, IMaskInputProps } from 'react-imask';
 import InputGroup from '../InputGroup/InputGroup';
 import InputGroupText from '../InputGroup/InputGroupText';
 

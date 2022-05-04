@@ -1,11 +1,11 @@
 import classnames from 'classnames';
 import fecha from 'fecha';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import CardHeader from '../Card/CardHeader';
 import CardTitle from '../Card/CardTitle';
-import { type Note } from './Note.types';
+import { Note } from './Note.types';
 
 // TODO extract to date helper, i18n:
 const format = (date: Date | number, dateFormat: string) => fecha.format(date, dateFormat);

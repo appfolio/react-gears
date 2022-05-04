@@ -1,7 +1,7 @@
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Alert from '../Alert/Alert';
 import Button from '../Button/Button';
-import { type Note } from './Note.types';
+import { Note } from './Note.types';
 
 type DeletedNoteProps = {
   className?: string;

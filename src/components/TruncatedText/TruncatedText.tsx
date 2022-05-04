@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { type TooltipProps, type UncontrolledTooltipProps } from 'reactstrap';
+import { TooltipProps, UncontrolledTooltipProps } from 'reactstrap';
 import Tooltip from '../Tooltip/Tooltip';
 
 interface TruncatedTextProps {

@@ -1,5 +1,5 @@
-import React, { type FC, type ReactNode } from 'react';
-import { type InputProps } from 'reactstrap';
+import React, { FC, ReactNode } from 'react';
+import { InputProps } from 'reactstrap';
 import CheckboxBooleanInput from './CheckboxBooleanInput';
 import CheckboxListInput from './CheckboxListInput';
 

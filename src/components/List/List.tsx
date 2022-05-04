@@ -1,7 +1,7 @@
 import uniqueId from 'lodash.uniqueid';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import { type ListGroupProps } from 'reactstrap';
+import { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
 import Input from '../Input/Input';
@@ -10,9 +10,9 @@ import Row from '../Layout/Row';
 import ScrollContainer from '../ScrollContainer/ScrollContainer';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
-import ListItem, { type ListItemProps } from './ListItem';
-import FilterHeader, { type FilterHeaderProps } from './components/FilterHeader';
-import SortHeader, { type SortHeaderProps } from './components/SortHeader';
+import ListItem, { ListItemProps } from './ListItem';
+import FilterHeader, { FilterHeaderProps } from './components/FilterHeader';
+import SortHeader, { SortHeaderProps } from './components/SortHeader';
 
 interface Sort {
   property?: string | string[];

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 
 type SummaryProps = {
   className?: string;

@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import format from 'date-fns/format';
 import isToday from 'date-fns/is_today';
-import React, { type FC, type MouseEventHandler, type TdHTMLAttributes } from 'react';
-import { type DayInfo } from '../Calendar.types';
+import React, { FC, MouseEventHandler, TdHTMLAttributes } from 'react';
+import { DayInfo } from '../Calendar.types';
 
 export interface DayProps
   extends Omit<TdHTMLAttributes<HTMLTableCellElement>, 'className' | 'onClick' | 'role' | 'style'> {

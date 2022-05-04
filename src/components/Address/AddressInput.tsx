@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import flow from 'lodash.flow';
 import noop from 'lodash.noop';
-import React, { useCallback, type ChangeEvent } from 'react';
+import React, { useCallback, ChangeEvent } from 'react';
 import FormLabelGroup from '../Form/FormLabelGroup';
 import Input from '../Input/Input';
 import Col from '../Layout/Col';
