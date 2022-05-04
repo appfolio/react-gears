@@ -1,6 +1,6 @@
 import range from 'lodash.range';
 import PropTypes from 'prop-types';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Icon from '../Icon/Icon';
 import Pagination from './Pagination';
 import Page from './components/Page';

@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import React, { type FC } from 'react';
-import { ListGroup as ListGroupComponent, type ListGroupProps } from 'reactstrap';
+import React, { FC } from 'react';
+import { ListGroup as ListGroupComponent, ListGroupProps } from 'reactstrap';
 
 type Props = {
   striped?: boolean;

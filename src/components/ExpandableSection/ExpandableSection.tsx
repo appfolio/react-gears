@@ -1,4 +1,4 @@
-import React, { useState, useEffect, type FC } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import ClickableContainer from '../ClickableContainer/ClickableContainer';
 import Collapse from '../Collapse/Collapse';
 import Icon from '../Icon/Icon';

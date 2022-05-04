@@ -1,5 +1,5 @@
-import React, { type FC } from 'react';
-import { type TableProps as ReactStrapTableProps, Table as TableComponent } from 'reactstrap';
+import React, { FC } from 'react';
+import { TableProps as ReactStrapTableProps, Table as TableComponent } from 'reactstrap';
 
 export interface TableProps extends ReactStrapTableProps {
   size?: string;

@@ -1,6 +1,6 @@
-import cardTypeInfo, { type CardBrand } from 'credit-card-type';
-import React, { type FC } from 'react';
-import { type InputProps } from 'reactstrap';
+import cardTypeInfo, { CardBrand } from 'credit-card-type';
+import React, { FC } from 'react';
+import { InputProps } from 'reactstrap';
 import Icon from '../Icon/Icon';
 import InputGroup from '../InputGroup/InputGroup';
 import InputGroupText from '../InputGroup/InputGroupText';

@@ -1,7 +1,7 @@
 import equal from 'fast-deep-equal';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { findDOMNode } from 'react-dom';
-import { type DropdownProps, type InputProps } from 'reactstrap';
+import { DropdownProps, InputProps } from 'reactstrap';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdown';

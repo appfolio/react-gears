@@ -1,6 +1,6 @@
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import noop from 'lodash.noop';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import Nav from '../Nav/Nav';

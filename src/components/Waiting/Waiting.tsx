@@ -1,5 +1,5 @@
-import React, { type ReactNode, type FC } from 'react';
-import { type ModalProps } from 'reactstrap';
+import React, { ReactNode, FC } from 'react';
+import { ModalProps } from 'reactstrap';
 import Modal from '../Modal/Modal';
 import Spinner from '../Spinner/Spinner';
 

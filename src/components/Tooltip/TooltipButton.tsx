@@ -1,8 +1,8 @@
-import { type Placement } from '@popperjs/core';
+import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import uniqid from 'uniqid';
-import Button, { type ButtonProps } from '../Button/Button';
+import Button, { ButtonProps } from '../Button/Button';
 import Tooltip from './Tooltip';
 
 interface TooltipButtonProps extends ButtonProps {

@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import React, { type FC } from 'react';
-import { type CardProps } from 'reactstrap';
+import React, { FC } from 'react';
+import { CardProps } from 'reactstrap';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 

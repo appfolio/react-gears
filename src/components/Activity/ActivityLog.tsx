@@ -1,5 +1,5 @@
-import React, { type FC } from 'react';
-import { ListGroup, type ListGroupProps } from 'reactstrap';
+import React, { FC } from 'react';
+import { ListGroup, ListGroupProps } from 'reactstrap';
 
 /**
  * Extension to Bootstrap [ListGroup](https://getbootstrap.com/docs/4.3/components/list-group/)

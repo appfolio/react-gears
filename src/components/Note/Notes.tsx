@@ -1,6 +1,6 @@
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Note from './Note';
-import { type Note as NoteType } from './Note.types';
+import { Note as NoteType } from './Note.types';
 
 type NotesProps = {
   children?: React.ReactNode;

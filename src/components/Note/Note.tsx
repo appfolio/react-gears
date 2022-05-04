@@ -1,10 +1,10 @@
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 import CardText from '../Card/CardText';
 import DeletedNote from './DeletedNote';
 import EditableNote, { EditableNoteDefaultProps } from './EditableNote';
-import { type Note as NoteType } from './Note.types';
+import { Note as NoteType } from './Note.types';
 import NoteHeader from './NoteHeader';
 
 type NoteProps = {

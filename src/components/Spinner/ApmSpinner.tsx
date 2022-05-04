@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import range from '../../util/range';
 
 // const since these don't behave well as live props, some animation issues:

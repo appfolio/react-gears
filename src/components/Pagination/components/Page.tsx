@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { type FC } from 'react';
+import React, { FC } from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
 

@@ -10,7 +10,7 @@ import startOfWeek from 'date-fns/start_of_week';
 import subDays from 'date-fns/sub_days';
 import React from 'react';
 import Calendar from './Calendar';
-import { type DayInfo } from './Calendar.types';
+import { DayInfo } from './Calendar.types';
 
 describe('<Calendar />', () => {
   it('renders correctly', () => {

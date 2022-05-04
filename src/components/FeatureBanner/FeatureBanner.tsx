@@ -1,4 +1,4 @@
-import React, { type FC, type ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Alert } from 'reactstrap';
 
 interface FeatureBannerProps {

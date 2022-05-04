@@ -1,4 +1,4 @@
-import { getVisibleWeeks, type VisibilityInfo } from './getVisibleWeeks';
+import { getVisibleWeeks, VisibilityInfo } from './getVisibleWeeks';
 
 describe('Calendar - getVisibleWeeks', () => {
   it('can get a list of weeks with the correct visibility information', () => {

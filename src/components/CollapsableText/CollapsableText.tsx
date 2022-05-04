@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Button, { type ButtonProps } from '../Button/Button';
+import Button, { ButtonProps } from '../Button/Button';
 
 const Toggle = ({ children, ...props }: ButtonProps) => (
   <Button color="link" size="sm" className="p-0 m-0 ms-2" {...props}>

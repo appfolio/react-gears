@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useEffect, useState, type FC, type ReactNode } from 'react';
+import React, { useEffect, useState, FC, ReactNode } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';

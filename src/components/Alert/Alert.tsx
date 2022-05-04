@@ -1,5 +1,5 @@
-import React, { useState, useEffect, type FC } from 'react';
-import { Alert as AlertComponent, type AlertProps } from 'reactstrap';
+import React, { useState, useEffect, FC } from 'react';
+import { Alert as AlertComponent, AlertProps } from 'reactstrap';
 import Icon from '../Icon/Icon';
 
 const noop = () => undefined;

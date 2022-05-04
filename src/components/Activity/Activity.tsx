@@ -1,6 +1,6 @@
 import fecha from 'fecha';
-import React, { type FC, type ReactNode } from 'react';
-import { type ListGroupItemProps } from 'reactstrap';
+import React, { FC, ReactNode } from 'react';
+import { ListGroupItemProps } from 'reactstrap';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import ListGroupItem from '../List/ListGroupItem';
