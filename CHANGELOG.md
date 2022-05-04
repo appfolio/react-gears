@@ -1,5 +1,12 @@
 # Change Log
 
+### [7.1.1](https://github.com/appfolio/react-gears/compare/v7.1.0...v7.1.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* remove named types as it is a breaking change ([7fa5329](https://github.com/appfolio/react-gears/commit/7fa5329539f64d81937f38e019e46b4c3ddc1b69))
+
 ## [7.1.0](https://www.github.com/appfolio/react-gears/compare/v7.0.4...v7.1.0) (2022-04-27)
 
 
