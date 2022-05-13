@@ -81,7 +81,6 @@
     "reactstrap": "^9.0.1",
     "styled-jsx": "^3.3.2",
     "text-mask-addons": "^3.8.0",
-    "uniqid": "^5.2.0",
     "use-deep-compare-effect": "^1.8.1",
     "use-local-storage-state": "^4.0.0",
     "uuid": "^8.3.1"
