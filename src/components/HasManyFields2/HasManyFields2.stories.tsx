@@ -51,7 +51,6 @@ class AddressStore {
       addAddress: mobxAction,
       orderChanged: mobxAction,
     });
-    
   }
 
   addAddress() {
@@ -82,11 +81,11 @@ const HasManyAddresses: React.FC<{store: AddressStore}> = observer(({store}) => 
       disabled={boolean('disabled', false)}
       onAdd={() => {
         store.addAddress();
-        action('hasManyFields onAdd');
+        action('hasManyFields onAdd')();
       }}
       onOrderChanged={(order) => {
         store.orderChanged(order);
-        action('order changed');
+        action('order changed')();
       }}
       maximumRows={number('maximumRows', 5)}
       minimumRows={number('minimumRows', 0)}
@@ -96,9 +95,10 @@ const HasManyAddresses: React.FC<{store: AddressStore}> = observer(({store}) => 
         <HasManyFields2Row
           key={address.rowId}
           rowId={address.rowId}
-          disabled={false}
+          disabled={boolean('disabled', false)}
           disabledReason={undefined}
           disabledReasonPlacement={undefined}
+          onDelete={action(`hasManyFieldsRow onDelete: rowId=${address.rowId}`)}
         >
           <AddressInput value={address} />
         </HasManyFields2Row>

@@ -19,6 +19,7 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({
 
   const handleClick = useCallback(
     (e) => {
+      console.log('confirmationVisible:', confirmationVisible)
       if (confirmationVisible) {
         onClick(e);
       }
@@ -28,7 +29,7 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({
   );
 
   return (
-    <Button onBlur={() => setConfirmationVisible(false)} onClick={handleClick} {...props}>
+    <Button /* onBlur={() => setConfirmationVisible(false)} */ onClick={handleClick} {...props}>
       {confirmationVisible ? confirmation : children}
     </Button>
   );
