@@ -48,7 +48,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       color="danger"
       onClick={(e) => e.preventDefault()}
       outline
-      className="p-2 disabled align-self-stretch"
+      className="p-2 disabled col-auto"
     >
       <Icon name="times-circle-o" size="lg" />
     </Button>
@@ -59,7 +59,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       aria-label="Delete"
       outline
       onClick={onDelete}
-      className="p-2 align-self-stretch"
+      className="p-2 col-auto"
       //{...deleteProps}
     >
       <Icon name="times-circle-o" size="lg" />
@@ -72,11 +72,13 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       style={style}
       {...attributes}
       {...listeners}
-      className="d-flex js-reorderable-item mb-4 gx-0 w-100"
+      className="js-reorderable-item mb-4 w-100 row"
       key={rowId}
     >
       {reorderable ? <DragHandle /> : null}
-      {children}
+      <div className="col w-100">
+        {children}
+      </div>
       {button}
       {tooltip}
     </div>
@@ -121,7 +123,7 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
   });
 
   const [itemIds, setItemIds] = useState<string[]>(childItems);
-  
+
   const onDragStart = ({ active }: DragStartEvent) => {
     if (disabled) {
       return;
