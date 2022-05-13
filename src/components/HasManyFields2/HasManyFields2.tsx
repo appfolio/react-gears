@@ -14,6 +14,7 @@ interface HasManyFields2RowProps {
   disabled: boolean;
   disabledReason: string | undefined;
   disabledReasonPlacement: string | undefined;
+  onDelete: () => any;
   rowId: string;
 }
 
@@ -23,6 +24,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
   disabled,
   disabledReason,
   disabledReasonPlacement,
+  onDelete
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: rowId });
 
@@ -40,46 +42,47 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       </Tooltip>
     ) : null;
 
-  const onDelete = () => undefined;
-
-  const button = disabled ? (
-    <Button
-      id={rowId}
-      color="danger"
-      onClick={(e) => e.preventDefault()}
-      outline
-      className="p-2 disabled col-auto"
-    >
-      <Icon name="times-circle-o" size="lg" />
-    </Button>
-  ) : (
-    <ConfirmationButton
-      color="danger"
-      confirmation="Delete"
-      aria-label="Delete"
-      outline
-      onClick={onDelete}
-      className="p-2 col-auto"
-      //{...deleteProps}
-    >
-      <Icon name="times-circle-o" size="lg" />
-    </ConfirmationButton>
-  );
+  // const button = disabled ? (
+  //   <Button
+  //     id={rowId}
+  //     color="danger"
+  //     onClick={(e) => e.preventDefault()}
+  //     outline
+  //     className="p-2 disabled col-auto"
+  //   >
+  //     <Icon name="times-circle-o" size="lg" />
+  //   </Button>
+  // ) : (
+  // );
 
   return (
     <div
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
       className="js-reorderable-item mb-4 w-100 row"
       key={rowId}
     >
-      {reorderable ? <DragHandle /> : null}
+      {reorderable ? <DragHandle {...listeners} /> : null}
       <div className="col w-100">
         {children}
       </div>
-      {button}
+      <ConfirmationButton
+        color="danger"
+        confirmation="Delete"
+        aria-label="Delete"
+        outline
+        onClick={(e) => {
+          e.preventDefault();
+          console.log('FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+          onDelete();
+        }}
+        className="p-2 col-auto"
+        disabled={disabled}
+        //{...deleteProps}
+      >
+        <Icon name="times-circle-o" size="lg" />
+      </ConfirmationButton>
       {tooltip}
     </div>
   );
