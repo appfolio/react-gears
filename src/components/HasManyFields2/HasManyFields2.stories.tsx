@@ -94,6 +94,7 @@ const HasManyAddresses: React.FC<{store: AddressStore}> = observer(({store}) => 
     >
       {store.addresses.map((address) => (
         <HasManyFields2Row
+          key={address.rowId}
           rowId={address.rowId}
           disabled={false}
           disabledReason={undefined}
