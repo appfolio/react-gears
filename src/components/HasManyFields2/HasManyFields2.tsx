@@ -41,19 +41,6 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       </Tooltip>
     ) : null;
 
-  // const button = disabled ? (
-  //   <Button
-  //     id={rowId}
-  //     color="danger"
-  //     onClick={(e) => e.preventDefault()}
-  //     outline
-  //     className="p-2 disabled col-auto"
-  //   >
-  //     <Icon name="times-circle-o" size="lg" />
-  //   </Button>
-  // ) : (
-  // );
-
   return (
     <div
       ref={setNodeRef}
@@ -122,10 +109,10 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
       }
       newItemIds.push(child.props.rowId);
       newComponentLookupMap[child.props.rowId] = child;
-      setComponentLookupMap(newComponentLookupMap);
-      setItemIds(newItemIds);
       return undefined;
     });
+    setComponentLookupMap(newComponentLookupMap);
+    setItemIds(newItemIds);
   }, [children])
 
   const onDragStart = ({ active }: DragStartEvent) => {
@@ -142,11 +129,12 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 
   const swapItemIdPositions = (id1: string, id2: string) => {
     const newItemIds = [...itemIds];
-    [newItemIds[newItemIds.indexOf(id2)], newItemIds[newItemIds.indexOf(id1)]] = [
-      newItemIds[newItemIds.indexOf(id1)],
-      newItemIds[newItemIds.indexOf(id2)],
-    ];
-    setItemIds(newItemIds);
+    const idx1 = newItemIds.indexOf(id1);
+    const idx2 = newItemIds.indexOf(id2);
+    const temp = newItemIds[idx1];
+    newItemIds[idx1] = newItemIds[idx2];
+    newItemIds[idx2] = temp;
+     return newItemIds;
   };
 
   const onDragEnd = ({ over }: DragEndEvent) => {
@@ -168,10 +156,11 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
       return;
     }
 
-    swapItemIdPositions(activeId, over.id);
+    const newItemIds = swapItemIdPositions(activeId, over.id);
+    setItemIds(newItemIds);
 
     if (onOrderChanged) {
-      onOrderChanged(itemIds);
+      onOrderChanged(newItemIds);
     }
   };
 
