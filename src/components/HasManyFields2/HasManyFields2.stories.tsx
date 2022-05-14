@@ -53,7 +53,7 @@ class AddressStore {
 
   addAddress() {
     const defaultAddress = {
-      address1: '90 Castilian Dr.',
+      address1: `${Math.floor(Math.random() * 1000)} Castilian Dr.`,
       address2: '',
       city: 'Goleta',
       state: 'CA',
@@ -65,6 +65,7 @@ class AddressStore {
   }
 
   orderChanged(order: string[]) {
+    console.log("new order", order)
     // TODO: make this not O(n^2)
     const newAddresses = order
       .map((rowId) => this.addresses.find((address) => address.rowId === rowId))
