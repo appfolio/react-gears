@@ -42,14 +42,12 @@ class AddressStore {
     },
   ];
 
-  order: string[] = this.addresses.map(address => address.rowId);
-
   constructor() {
     makeObservable(this, {
       addresses: observable,
-      order: observable,
       addAddress: mobxAction,
       orderChanged: mobxAction,
+      rowDeleted: mobxAction,
     });
   }
 
@@ -64,46 +62,55 @@ class AddressStore {
       rowId: crypto.randomUUID(),
     };
     this.addresses.push(defaultAddress);
-    this.order.push(defaultAddress.rowId);
-    console.log("addAddress", this.addresses);
   }
 
   orderChanged(order: string[]) {
-    console.log("order changed", order);
-    this.order = order;
+    // TODO: make this not O(n^2)
+    const newAddresses = order
+      .map((rowId) => this.addresses.find((address) => address.rowId === rowId))
+      .filter((address) => address !== undefined) as Address[];
+
+    this.addresses = newAddresses;
+  }
+
+  rowDeleted(rowId: string) {
+    this.addresses = this.addresses.filter((address) => address.rowId !== rowId);
   }
 }
 const addressStore = new AddressStore();
 
-const HasManyAddresses: React.FC<{store: AddressStore}> = observer(({store}) => (
-    <HasManyFields2
-      label={text('label', 'Add an Address')}
-      disabled={boolean('disabled', false)}
-      onAdd={() => {
-        store.addAddress();
-        action('hasManyFields onAdd')();
-      }}
-      onOrderChanged={(order) => {
-        store.orderChanged(order);
-        action('order changed')();
-      }}
-      maximumRows={number('maximumRows', 5)}
-      minimumRows={number('minimumRows', 0)}
-      reorderable={boolean('reorderable', true)}
-    >
-      {store.addresses.map((address) => (
-        <HasManyFields2Row
-          key={address.rowId}
-          rowId={address.rowId}
-          disabled={boolean('disabled', false)}
-          disabledReason={undefined}
-          disabledReasonPlacement={undefined}
-          onDelete={action(`hasManyFieldsRow onDelete: rowId=${address.rowId}`)}
-        >
-          <AddressInput value={address} />
-        </HasManyFields2Row>
-      ))}
-    </HasManyFields2>
-  ));
+const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store }) => (
+  <HasManyFields2
+    label={text('label', 'Add an Address')}
+    disabled={boolean('disabled', false)}
+    onAdd={() => {
+      store.addAddress();
+      action('hasManyFields onAdd')();
+    }}
+    onOrderChanged={(order) => {
+      store.orderChanged(order);
+      action('order changed')();
+    }}
+    maximumRows={number('maximumRows', 5)}
+    minimumRows={number('minimumRows', 0)}
+    reorderable={boolean('reorderable', true)}
+  >
+    {store.addresses.map((address) => (
+      <HasManyFields2Row
+        key={address.rowId}
+        rowId={address.rowId}
+        disabled={boolean('disabled', false)}
+        disabledReason={undefined}
+        disabledReasonPlacement={undefined}
+        onDelete={() => {
+          store.rowDeleted(address.rowId);
+          action(`hasManyFieldsRow onDelete: rowId=${address.rowId}`)();
+        }}
+      >
+        <AddressInput value={address} />
+      </HasManyFields2Row>
+    ))}
+  </HasManyFields2>
+));
 
-  export const LiveExample = () => (<HasManyAddresses store={addressStore} />);
+export const LiveExample = () => <HasManyAddresses store={addressStore} />;
