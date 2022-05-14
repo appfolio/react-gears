@@ -1,8 +1,7 @@
 import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import React, { useContext, useMemo, useState } from 'react';
-import Button from '../Button/Button';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import ConfirmationButton from '../Button/ConfirmationButton';
 import Icon from '../Icon/Icon';
 import Tooltip from '../Tooltip/Tooltip';
@@ -14,7 +13,7 @@ interface HasManyFields2RowProps {
   disabled: boolean;
   disabledReason: string | undefined;
   disabledReasonPlacement: string | undefined;
-  onDelete: () => any;
+  onDelete: (rowId?: string) => any;
   rowId: string;
 }
 
@@ -74,8 +73,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
         outline
         onClick={(e) => {
           e.preventDefault();
-          console.log('FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
-          onDelete();
+          onDelete(rowId);
         }}
         className="p-2 col-auto"
         disabled={disabled}
@@ -112,20 +110,23 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
   minimumRows,
 }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [itemIds, setItemIds] = useState<string[]>([]);
+  const [componentLookupMap, setComponentLookupMap] = useState<Record<string, HasManyFields2Child>>({});
 
-  const childItems: string[] = [];
-  const componentLookupMap: Record<string, HasManyFields2Child> = {};
-
-  React.Children.forEach(children, (child) => {
-    if (!React.isValidElement(child)) {
+  useEffect(() => {
+    const newComponentLookupMap: Record<string, HasManyFields2Child> = {}
+    const newItemIds: string[] = [];
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) {
+        return undefined;
+      }
+      newItemIds.push(child.props.rowId);
+      newComponentLookupMap[child.props.rowId] = child;
+      setComponentLookupMap(newComponentLookupMap);
+      setItemIds(newItemIds);
       return undefined;
-    }
-    childItems.push(child.props.rowId);
-    componentLookupMap[child.props.rowId] = child;
-    return undefined;
-  });
-
-  const [itemIds, setItemIds] = useState<string[]>(childItems);
+    });
+  }, [children])
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (disabled) {
@@ -195,133 +196,3 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 };
 
 export default HasManyFields2;
-
-// const noop = () => {};
-
-// const DragHandler = withDragHandler();
-
-// interface ReorderableElementParamProps {
-//   key: string;
-//   reorderable?: boolean;
-//   children: ReactChild & { props: { key: string } };
-//   disabled?: boolean;
-// }
-
-// function DraggableItem<V>({ key, reorderable, children }: ReorderableElementParamProps) {
-//   return (
-//     <div className="d-flex js-reorderable-item" key={key}>
-//       { reorderable && <DragHandler /> }
-//       <div className="w-100">
-//         {children}
-//       </div>
-//     </div>
-//   );
-// }
-
-// const HasManyFieldsChildWrapper = SortableElement(DraggableItem as WrappedComponent<ReorderableElementParamProps>);
-
-// type HasManyFieldsChild = ReactElement & { props: { key: string } };
-
-// interface HasManyFieldsProps {
-//   disabled?: boolean;
-//   label: string;
-//   onAdd: any;
-//   maximumRows?: number;
-//   reorderable: boolean;
-//   children: HasManyFieldsChild[];
-// }
-
-// const defaultHasManyFieldsProps = {
-//   onAdd: noop,
-//   onRemove: noop,
-//   maximumRows: Infinity,
-//   reorderable: false,
-//   children: [],
-//   label: 'Add an item'
-// };
-
-// const applyDefaultProps = (props: Partial<HasManyFieldsProps>): HasManyFieldsProps => {
-//   return {
-//     ...defaultHasManyFieldsProps,
-//     ...props
-//   };
-// };
-
-// interface MaybeSortableContainerProps {
-//   disabled: boolean;
-//   reorderable: boolean;
-//   children: ReactChild | ReactChild[];
-// }
-
-// const MaybeSortableContainer: FC<MaybeSortableContainerProps> = ({
-//   disabled,
-//   reorderable,
-//   children
-// }: MaybeSortableContainerProps) => {
-//   const UnsortableContainer: FC<{ className: string }> = () => (
-//     <>
-//       {children}
-//     </>
-//   );
-
-//   if (!disabled && reorderable) {
-//     const SortableContainer = makeContainerSortable(UnsortableContainer);
-
-//     return (
-//       <div>
-//         <SortableContainer
-//           className="js-reorderable-container"
-//           helperClass="hmf-dragging"
-//           useDragHandle
-//           lockAxis="y"
-//         />
-//         {/*
-//           //@ts-ignore */}
-//         <style jsx>
-//           {`
-//             div {
-//               -webkit-touch-callout: none;
-//               -webkit-user-select: none;
-//               -moz-user-select: none;
-//               -ms-user-select: none;
-//               user-select: none;
-//             }
-//           `}
-//         </style>
-//       </div>
-//     );
-//   }
-
-//   return <UnsortableContainer className="js-reorderable-container" />;
-// };
-
-// const HasManyFields2: FC<HasManyFieldsProps> = (props: HasManyFieldsProps) => {
-//   const { reorderable, disabled, label, children, onAdd, maximumRows } = applyDefaultProps(props);
-
-//   const addDisabled = maximumRows && (children.length >= maximumRows);
-//   return (
-//     <div>
-//       <MaybeSortableContainer disabled={Boolean(disabled)} reorderable={reorderable}>
-//         {
-//           children?.map(
-//             (child, index) => (
-//               <HasManyFieldsChildWrapper
-//                 key={`has_many_fields_child_${child.props.key}`}
-//                 reorderable={reorderable}
-//                 disabled={disabled}
-//                 index={index}
-//               >
-//                 {child}
-//               </HasManyFieldsChildWrapper>
-//             )
-//           )
-//         }
-//       </MaybeSortableContainer>
-//       <HasManyFieldsAdd onClick={onAdd} disabled={addDisabled}>
-//         {label}
-//       </HasManyFieldsAdd>
-//     </div>
-//   );
-// };
-
-// export default HasManyFields2;
