@@ -1,5 +1,5 @@
 import format from 'date-fns/format';
-import enLocale from 'date-fns/locale/en';
+import enLocale from 'date-fns/locale/en-US';
 import noop from 'lodash.noop';
 import React, { useMemo, FC } from 'react';
 import Table, { TableProps } from '../Table/Table';

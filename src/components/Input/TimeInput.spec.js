@@ -1,5 +1,5 @@
 import assert from 'assert';
-import isSameDay from 'date-fns/is_same_day';
+import isSameDay from 'date-fns/isSameDay';
 import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';

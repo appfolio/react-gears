@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import isSameMonth from 'date-fns/is_same_month';
+import isSameMonth from 'date-fns/isSameMonth';
 import fecha from 'fecha';
 import React from 'react';
 import MonthCalendar from './MonthCalendar';

@@ -1,8 +1,8 @@
-import addMonths from 'date-fns/add_months';
-import addYears from 'date-fns/add_years';
+import addMonths from 'date-fns/addMonths';
+import addYears from 'date-fns/addYears';
 import format from 'date-fns/format';
-import isSameDay from 'date-fns/is_same_day';
-import isValid from 'date-fns/is_valid';
+import isSameDay from 'date-fns/isSameDay';
+import isValid from 'date-fns/isValid';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import PropTypes from 'prop-types';
 import React from 'react';

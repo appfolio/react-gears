@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import format from 'date-fns/format';
-import isToday from 'date-fns/is_today';
+import isToday from 'date-fns/isToday';
 import React, { FC, MouseEventHandler, TdHTMLAttributes } from 'react';
 import { DayInfo } from '../Calendar.types';
 
