@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Label from '../Label/Label';
 import Col from '../Layout/Col';
+import Required from './components/Required';
 import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
-import Required from './components/Required';
 
 const labelSizeTranslations = {
   sm: 2,

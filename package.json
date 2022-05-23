@@ -30,7 +30,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "start": "start-storybook -p 6006",
-    "docs": "build-storybook -o docs",
+    "docs": "npm run build-storybook -o docs",
     "version": "npm run docs && git add -A docs",
     "clean": "rm -rf esm lib",
     "dist:types": "tsc --project tsconfig.build.json",

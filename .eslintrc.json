@@ -22,7 +22,7 @@
         ]
       }
     ],
-    "import/order": ["warn", { "alphabetize": { "order": "asc" } }],
+    "import/order": ["warn", { "alphabetize": { "order": "asc", "caseInsensitive": true } }],
     "max-len": "off",
     "no-confusing-arrow": "off",
     "no-only-tests/no-only-tests": "error",
