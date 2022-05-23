@@ -127,10 +127,7 @@ export const DateEnabled = () => (
 
 export const CalendarDefault = () => (
   <div className="d-inline-flex">
-    <Calendar
-      dateFormat={text('dateFormat', Calendar.defaultProps.dateFormat)}
-      onSelect={action('onSelect')}
-    />
+    <Calendar dateFormat={text('dateFormat', 'D')} onSelect={action('onSelect')} />
   </div>
 );
 

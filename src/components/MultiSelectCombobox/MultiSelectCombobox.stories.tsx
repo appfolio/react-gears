@@ -1,0 +1,114 @@
+import { action } from '@storybook/addon-actions';
+import { boolean, text } from '@storybook/addon-knobs';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
+import { states } from '../../tooling/comboboxData';
+import ComboboxItem from './ComboboxItem';
+import ComboboxItems from './ComboboxItems';
+import ComboboxSelection from './ComboboxSelection';
+import ComboboxSelections from './ComboboxSelections';
+import FilteredComboboxItems from './FilteredComboboxItems';
+import MultiSelectCombobox from './MultiSelectCombobox';
+
+export default {
+  title: ' Multi-Select Combobox',
+  component: MultiSelectCombobox,
+} as ComponentMeta<typeof MultiSelectCombobox>;
+
+const options = [
+  { label: 'Foo', value: 'foo', id: 1 },
+  { label: 'Bar', value: 'bar', id: 2 },
+  { label: 'Dog', value: 'dog', id: 3 },
+  { label: 'Llama', value: 'llama', id: 4 },
+  { label: 'Sloth', value: 'sloth', id: 5 },
+];
+
+const selections = [
+  { label: 'Cat', value: 'cat', id: 100 },
+  { label: 'Lemur', value: 'lemur', id: 200 },
+];
+
+export const UncontrolledMode: ComponentStory<typeof MultiSelectCombobox> = () => (
+  <MultiSelectCombobox
+    options={states}
+    onChange={action('onChange')}
+    filterOptions={boolean('filterOptions', true)}
+    allowCreation={boolean('allowCreation', false)}
+    onCreateOption={(newOptionLabel) => {
+      action('onCreateOption')();
+      return { label: newOptionLabel, value: newOptionLabel.toLowerCase() };
+    }}
+    closeOnSelect={boolean('closeOnSelect', true)}
+  />
+);
+
+export const LongOptionLabels: ComponentStory<typeof MultiSelectCombobox> = () => (
+  <MultiSelectCombobox
+    options={[
+      {
+        label:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        value: 1,
+      },
+      {
+        label:
+          "Feta cheddar when the cheese comes out everybody's happy. Cut the cheese ricotta who moved my cheese airedale fromage stilton melted cheese edam.",
+        value: 2,
+      },
+      { label: 'short one for fun', value: 3 },
+      {
+        label:
+          'I trust you. Could you solutionize that for me can you please change the color theme of the website to pink and purple?',
+        value: 4,
+      },
+    ]}
+    onChange={action('onChange')}
+  />
+);
+
+export const ControlledModeSimple: ComponentStory<typeof MultiSelectCombobox> = () => (
+  <MultiSelectCombobox isOpen={boolean('isOpen', false)} onToggle={action('onToggle')}>
+    <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
+      {selections.map((selection) => (
+        <ComboboxSelection key={selection.id} onRemove={action('onRemoveClick (selection)')}>
+          {selection.label}
+        </ComboboxSelection>
+      ))}
+    </ComboboxSelections>
+    <ComboboxItems>
+      {options.map((option) => (
+        <ComboboxItem key={option.id} onClick={action('onClick (item)')}>
+          {option.label}
+        </ComboboxItem>
+      ))}
+    </ComboboxItems>
+  </MultiSelectCombobox>
+);
+
+export const ControlledModeWithFilter: ComponentStory<typeof MultiSelectCombobox> = () => (
+  <MultiSelectCombobox
+    isOpen={boolean('isOpen', false)}
+    onToggle={action('onToggle')}
+    allowCreation={boolean('allowCreation', false)}
+  >
+    <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
+      {selections.map((selection) => (
+        <ComboboxSelection key={selection.id} onRemove={action('onRemoveClick (selection)')}>
+          {selection.label}
+        </ComboboxSelection>
+      ))}
+    </ComboboxSelections>
+    <FilteredComboboxItems
+      filterValue={text('filterValue', '')}
+      onFilterChange={action('onFilterChange')}
+      allowCreation={boolean('allowCreation', true)}
+      onCreateClick={action('onCreateClick')}
+    >
+      {options.map((option) => (
+        <ComboboxItem key={option.id} onClick={action('onClick (item)')}>
+          {option.label}
+        </ComboboxItem>
+      ))}
+    </FilteredComboboxItems>
+  </MultiSelectCombobox>
+);

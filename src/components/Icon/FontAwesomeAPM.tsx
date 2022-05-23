@@ -108,7 +108,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
 
     return (
       <Tag {...props} aria-hidden className={classNames.join(' ')}>
-        {ariaLabel && <span style={srOnlyStyle}>ariaLabel</span>}
+        {ariaLabel && <span style={srOnlyStyle}>{ariaLabel}</span>}
       </Tag>
     );
   }
