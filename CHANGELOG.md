@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.2.0](https://github.com/appfolio/react-gears/compare/v7.1.1...v7.2.0) (2022-05-25)
+
+
+### Features
+
+* merge the Tree component to react-gears ([14bdd6f](https://github.com/appfolio/react-gears/commit/14bdd6f2e77dbfef1f43edd190d1eec49c4eee5f))
+
+
+### Miscellaneous
+
+* replace uniqid dependency with counter ([b1e2d21](https://github.com/appfolio/react-gears/commit/b1e2d21192e36542a2ccbda4e37f4aa233e7df09))
+
 ### [7.1.1](https://github.com/appfolio/react-gears/compare/v7.1.0...v7.1.1) (2022-05-04)
 
 
