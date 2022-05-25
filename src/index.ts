@@ -176,3 +176,5 @@ export { default as Jumbotron } from './components/Jumbotron/Jumbotron';
 export { default as Label } from './components/Label/Label';
 export { default as TabContent } from './components/Tabs/TabContent';
 export { default as TabPane } from './components/Tabs/TabPane';
+export { default as Tree } from './components/Tree/Tree';
+export { default as TreeItem } from './components/Tree/TreeItem';
