@@ -179,11 +179,11 @@ class HasManyFields extends React.Component {
   };
 
   render() {
-    const { disabled, reorderable } = this.props;
+    const { className, disabled, reorderable } = this.props;
 
     if (!disabled && reorderable) {
       return (
-        <div>
+        <div className={className}>
           <SortableContainer
             className="js-reorderable-container"
             helperClass="hmf-dragging"
@@ -210,7 +210,7 @@ class HasManyFields extends React.Component {
     }
 
     return (
-      <div>
+      <div className={className}>
         {this.value.map((item, index) => this.renderHasManyFieldsRow(index, index, item))}
         {this.renderAddRow()}
       </div>
