@@ -1,5 +1,6 @@
 import assert from 'assert';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import sinon from 'sinon';
 import RadioGroup from './RadioGroup';
@@ -37,7 +38,8 @@ describe('<RadioGroup />', () => {
       { label: 'Konjac Pearls', value: { id: 3, type: 'topping', price: '0.50' } },
     ];
     const mockOnChange = sinon.spy();
-    const checkboxes = render(
+
+    render(
       <RadioGroup
         options={coolerOptions}
         selected={{ id: 1, type: 'topping', price: '0.50' }}
@@ -45,7 +47,7 @@ describe('<RadioGroup />', () => {
       />
     );
 
-    const option = checkboxes.getByLabelText('Aiyu Jelly');
+    const option = screen.getByLabelText('Aiyu Jelly');
     fireEvent.click(option);
 
     sinon.assert.calledWith(mockOnChange, { id: 2, type: 'topping', price: '0.50' });
@@ -59,7 +61,8 @@ describe('<RadioGroup />', () => {
     ];
     const mockOnChange1 = sinon.spy();
     const mockOnChange2 = sinon.spy();
-    const checkboxes = render(
+
+    render(
       <div>
         <div>
           Peach Green Tea
@@ -80,7 +83,7 @@ describe('<RadioGroup />', () => {
       </div>
     );
 
-    const opts = checkboxes.getAllByLabelText('Aiyu Jelly');
+    const opts = screen.getAllByLabelText('Aiyu Jelly');
     assert.strictEqual(opts.length, 2);
 
     fireEvent.click(opts[0]);
@@ -90,5 +93,32 @@ describe('<RadioGroup />', () => {
     fireEvent.click(opts[1]);
 
     sinon.assert.calledWith(mockOnChange2, { id: 2, type: 'topping', price: '0.50' });
+  });
+
+  it('should tab to next group', async () => {
+    const firstOptions = [
+      { label: '1', value: 1 },
+      { label: '2', value: 2 },
+      { label: '3', value: 3 },
+    ];
+    const secondOptions = [
+      { label: '4', value: 4 },
+      { label: '5', value: 5 },
+      { label: '6', value: 6 },
+    ];
+    const mockOnChange = sinon.spy();
+
+    render(
+      <>
+        <RadioGroup options={firstOptions} onChange={mockOnChange} name="group1" />
+        <RadioGroup options={secondOptions} onChange={mockOnChange} name="group2" />
+        <button type="button">Should not be focused</button>
+      </>
+    );
+
+    await userEvent.tab();
+    sinon.assert.match(document.activeElement.name, 'group1');
+    await userEvent.tab();
+    sinon.assert.match(document.activeElement.name, 'group2');
   });
 });

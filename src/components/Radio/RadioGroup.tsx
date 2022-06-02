@@ -3,42 +3,35 @@ import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
 
-type Value = any;
 interface Option {
   label: JSX.Element | string;
-  value: Value;
+  value: any;
 }
 
 export interface RadioGroupProps {
   options: Option[];
-  selected?: Value;
-  onChange: (value?: Value) => void;
+  onChange: (value: any) => void;
+  selected?: any;
+  name?: string;
 }
 
-const RadioGroup = ({ options, selected, onChange }: RadioGroupProps) => {
-  const handleRadioChange = (checked: boolean, value: Value) => {
-    if (checked) {
-      onChange(value);
-    }
-  };
-
-  return (
-    <FormGroup>
-      {options.map((option) => (
-        <FormGroup check key={option.value}>
-          <Label check>
-            <Input
-              type="radio"
-              checked={selected === option.value}
-              onChange={(ev) => handleRadioChange(ev.target.checked, option.value)}
-            />{' '}
-            {option.label}
-          </Label>
-        </FormGroup>
-      ))}
-    </FormGroup>
-  );
-};
+const RadioGroup = ({ options, onChange, selected, name }: RadioGroupProps) => (
+  <FormGroup>
+    {options.map((option) => (
+      <FormGroup check key={option.value}>
+        <Label check>
+          <Input
+            type="radio"
+            checked={selected === option.value}
+            onChange={(e) => e.target.checked && onChange(option.value)}
+            name={name}
+          />{' '}
+          {option.label}
+        </Label>
+      </FormGroup>
+    ))}
+  </FormGroup>
+);
 
 RadioGroup.displayName = 'RadioGroup';
 
