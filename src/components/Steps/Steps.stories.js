@@ -45,3 +45,21 @@ export const Clickable = () => (
     onStepClick={action('index')}
   />
 );
+
+export const Granular = () => (
+  <Steps
+    granular
+    steps={steps}
+    step={number('step', 0)}
+    complete={boolean('complete', false)}
+    vertical={boolean('vertical', false)}
+    collapse={boolean('collapse', false)}
+    onStepClick={action('index')}
+    stepProgress={number('stepProgress', 30, {
+      range: true,
+      min: 0,
+      max: 100,
+      step: 1,
+    })}
+  />
+);

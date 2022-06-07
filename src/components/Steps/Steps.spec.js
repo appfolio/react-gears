@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { render, screen } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
@@ -61,6 +62,39 @@ describe('<Steps />', () => {
 
         buttons.at(2).simulate('click');
         sinon.assert.calledOnceWithExactly(onStepClick, 2);
+      });
+    });
+
+    describe('granular', () => {
+      it('should render correctly', () => {
+        render(<Steps steps={steps} step={0} granular stepProgress={50} />);
+        const listItemSteps = screen.getAllByRole('listitem');
+        expect(listItemSteps.length).toBe(4);
+        expect(listItemSteps[0]).toHaveClass('render-step-progress');
+        expect(listItemSteps[1]).not.toHaveClass('render-prev-step-progress');
+      });
+
+      it('should render correctly for values > 50%', () => {
+        render(<Steps steps={steps} step={1} granular stepProgress={60} />);
+        const listItemSteps = screen.getAllByRole('listitem');
+        expect(listItemSteps[1]).toHaveClass('render-step-progress');
+        expect(listItemSteps[2]).toHaveClass('render-prev-step-progress');
+      });
+
+      it('should not render for vertical', () => {
+        render(<Steps steps={steps} step={0} granular vertical stepProgress={60} />);
+        const listItemSteps = screen.getAllByRole('listitem');
+        expect(listItemSteps.length).toBe(4);
+        listItemSteps.map((li) => expect(li).not.toHaveClass('render-step-progress'));
+        listItemSteps.map((li) => expect(li).not.toHaveClass('render-prev-step-progress'));
+      });
+
+      it('should not render on the final step', () => {
+        render(<Steps steps={steps} step={3} granular stepProgress={60} />);
+        const listItemSteps = screen.getAllByRole('listitem');
+        expect(listItemSteps.length).toBe(4);
+        listItemSteps.map((li) => expect(li).not.toHaveClass('render-step-progress'));
+        listItemSteps.map((li) => expect(li).not.toHaveClass('render-prev-step-progress'));
       });
     });
   });
