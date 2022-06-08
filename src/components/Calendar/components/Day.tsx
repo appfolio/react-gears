@@ -7,7 +7,7 @@ import { DayInfo } from '../Calendar.types';
 export interface DayProps
   extends Omit<TdHTMLAttributes<HTMLTableCellElement>, 'className' | 'onClick' | 'role' | 'style'> {
   day: DayInfo;
-  dateFormat?: string;
+  dateFormat: string;
   locale?: { [key: string]: any };
   onClick: MouseEventHandler<HTMLTableCellElement>;
 }

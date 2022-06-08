@@ -3,7 +3,7 @@ import addYears from 'date-fns/addYears';
 import format from 'date-fns/format';
 import isSameDay from 'date-fns/isSameDay';
 import isValid from 'date-fns/isValid';
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
+import parse from 'date-fns/parse';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button/Button';
@@ -15,8 +15,6 @@ import DropdownToggle from '../Dropdown/DropdownToggle';
 import Icon from '../Icon/Icon';
 import InputGroup from '../InputGroup/InputGroup';
 
-const { parse } = Fecha;
-
 // This is basically same as DateInput - maybe consider Dropdown+Input that encapsulates focus/blur/dropdown behavior?
 
 /**
@@ -25,8 +23,8 @@ const { parse } = Fecha;
  * | defaultValue   | date  | string         |
  * |----------------|-------|----------------|
  * | null,          | today | ''             |
- * | Date           | Date  | 'MMM YYYY'     |
- * | 'MMM YYYY'     | Date  | 'MMM YYYY'     |
+ * | Date           | Date  | 'MMM yyyy'     |
+ * | 'MMM yyyy'     | Date  | 'MMM yyyy'     |
  * | invalid string | today | invalid string |
  */
 function parseValue(defaultValue, dateFormat, parseDate) {
@@ -76,15 +74,15 @@ export default class MonthInput extends React.Component {
 
   static defaultProps = {
     className: '',
-    dateFormat: 'MMM YYYY',
+    dateFormat: 'MMM yyyy',
     dateVisible: () => true,
     disabled: false,
     keyboard: true,
     monthFormat: 'MMM',
-    yearFormat: 'YYYY',
+    yearFormat: 'yyyy',
     onBlur: () => {},
     onChange: () => {},
-    parse: (value, dateFormat) => parse(value, dateFormat),
+    parse: (value, dateFormat) => parse(value, dateFormat, new Date()),
     showOnFocus: true,
   };
 
@@ -181,7 +179,7 @@ export default class MonthInput extends React.Component {
   parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
 
-    if (date) {
+    if (date && isValid(date)) {
       this.props.onChange(date, true);
     } else {
       this.props.onChange(value, false);
@@ -229,7 +227,7 @@ export default class MonthInput extends React.Component {
     this.props.onBlur(e);
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
-    if (parsedDate) {
+    if (parsedDate && isValid(parsedDate)) {
       this.inputEl.value = format(parsedDate, this.props.dateFormat);
     }
   };
@@ -317,7 +315,7 @@ export default class MonthInput extends React.Component {
                   </Button>
                 </ButtonGroup>
 
-                <span className="m-auto">{format(date, 'MMMM YYYY')}</span>
+                <span className="m-auto">{format(date, 'MMMM yyyy')}</span>
 
                 <ButtonGroup size="sm">
                   <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>

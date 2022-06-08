@@ -6,9 +6,9 @@ import format from 'date-fns/format';
 import isSameDay from 'date-fns/isSameDay';
 import isValid from 'date-fns/isValid';
 import enLocale from 'date-fns/locale/en-US';
+import parse from 'date-fns/parse';
 import startOfToday from 'date-fns/startOfToday';
 import deprecated from 'deprecated-prop-type';
-import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button/Button';
@@ -20,16 +20,14 @@ import DropdownToggle from '../Dropdown/DropdownToggle';
 import Icon from '../Icon/Icon';
 import InputGroup from '../InputGroup/InputGroup';
 
-const { parse: dateParser } = Fecha;
-
 /**
  * Given a defaultValue, return the corresponding calendar date and input string value:
  *
  * | defaultValue   | date  | string         |
  * |----------------|-------|----------------|
  * | null,          | today | ''             |
- * | Date           | Date  | 'M/D/YYYY'     |
- * | 'M/D/YYYY'     | Date  | 'M/D/YYYY'     |
+ * | Date           | Date  | 'M/d/yyyy'     |
+ * | 'M/d/yyyy'     | Date  | 'M/d/yyyy'     |
  * | invalid string | today | invalid string |
  */
 function parseValue(defaultValue, dateFormat, parseDate) {
@@ -83,7 +81,7 @@ export default class DateInput extends React.Component {
 
   static defaultProps = {
     className: '',
-    dateFormat: 'M/D/YYYY',
+    dateFormat: 'M/d/yyyy',
     dateEnabled: () => true,
     dateVisible: () => true,
     disabled: false,
@@ -91,7 +89,7 @@ export default class DateInput extends React.Component {
     locale: enLocale,
     onBlur: () => {},
     onChange: () => {},
-    parse: (value, dateFormat) => dateParser(value, dateFormat),
+    parse: (value, dateFormat) => parse(value, dateFormat, new Date()),
     renderHeader: () => {},
     renderFooter: () => {},
     showOnFocus: true,
@@ -206,7 +204,7 @@ export default class DateInput extends React.Component {
   parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
 
-    if (date) {
+    if (date && isValid(date)) {
       this.props.onChange(date, true);
     } else {
       this.props.onChange(value, false);
@@ -255,7 +253,7 @@ export default class DateInput extends React.Component {
     this.props.onBlur(e);
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
-    if (parsedDate) {
+    if (parsedDate && isValid(parsedDate)) {
       const value = format(parsedDate, this.props.dateFormat, { locale: this.props.locale });
       this.inputEl.value = value;
       this.inputEl.setAttribute('value', value);
@@ -305,7 +303,6 @@ export default class DateInput extends React.Component {
       locale,
       onBlur,
       onChange,
-      parse,
       positionFixed,
       value,
       state,
@@ -366,7 +363,7 @@ export default class DateInput extends React.Component {
                 </ButtonGroup>
 
                 <span className="js-date-header m-auto">
-                  {format(date, 'MMMM YYYY', { locale })}
+                  {format(date, 'MMMM yyyy', { locale })}
                 </span>
 
                 <ButtonGroup size="sm">

@@ -21,10 +21,10 @@ const defaultProps = {
   date: new Date(),
   dateVisible: () => true,
   dateEnabled: () => true,
-  dateFormat: 'D',
+  dateFormat: 'd',
   locale: enLocale,
   onSelect: noop,
-  weekDayFormat: 'dd',
+  weekDayFormat: 'eeeeee',
 };
 
 const Calendar: FC<CalendarProps> = ({
