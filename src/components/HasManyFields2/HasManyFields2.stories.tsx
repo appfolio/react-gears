@@ -4,7 +4,8 @@ import { action as mobxAction, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import AddressInput from '../Address/AddressInput';
-import { HasManyFields2, HasManyFields2Row } from './HasManyFields2';
+import { HasManyFields2 } from './HasManyFields2';
+import { HasManyFields2Row } from './HasManyFields2Row';
 
 export default {
   title: 'HasManyFields2',
