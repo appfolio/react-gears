@@ -11,8 +11,8 @@ interface HasManyFields2Props {
   disabled: boolean;
   onAdd: () => void;
   onOrderChanged?: (newOrderIds: string[]) => void;
-  maximumRows: number;
-  minimumRows: number;
+  maximumRows: number | undefined;
+  minimumRows: number | undefined;
   reorderable: boolean;
 }
 
@@ -96,18 +96,27 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 
   const onDragCancel = () => setActiveId(null);
 
-  const reorderableCached = useMemo(() => {return {reorderable}}, [reorderable])
+  const contextCached = useMemo(
+    () => {
+      return {
+        reorderable,
+        minimumRowsReached: minimumRows !== undefined && itemIds.length <= minimumRows,
+      }
+    },
+    [reorderable, minimumRows, itemIds.length]);
+
+  const shouldDisplayAddButton = Boolean(onAdd) && (!maximumRows || itemIds.length < maximumRows);
 
   return (
     <>
       <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
         <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
-          <HasManyFields2Context.Provider value={reorderableCached}>
+          <HasManyFields2Context.Provider value={contextCached}>
             {itemIds.map((itemId) => componentLookupMap[itemId])}
           </HasManyFields2Context.Provider>
         </SortableContext>
       </DndContext>
-      <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={Boolean(onAdd)}>
+      <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={shouldDisplayAddButton}>
         {label}
       </HasManyFields2Add>
     </>

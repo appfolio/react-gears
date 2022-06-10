@@ -21,11 +21,11 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
   disabled,
   disabledReason,
   disabledReasonPlacement,
-  onDelete
+  onDelete,
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: rowId });
 
-  const { reorderable } = useContext(HasManyFields2Context);
+  const { reorderable, minimumRowsReached } = useContext(HasManyFields2Context);
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -48,24 +48,24 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
       key={rowId}
     >
       {reorderable ? <DragHandle {...listeners} /> : null}
-      <div className="col w-100">
-        {children}
-      </div>
-      <ConfirmationButton
-        color="danger"
-        confirmation="Delete"
-        aria-label="Delete"
-        outline
-        onClick={(e) => {
-          e.preventDefault();
-          onDelete(rowId);
-        }}
-        className="p-2 col-auto"
-        disabled={disabled}
-        //{...deleteProps}
-      >
-        <Icon name="times-circle-o" size="lg" />
-      </ConfirmationButton>
+      <div className="col w-100">{children}</div>
+      {minimumRowsReached ? null : (
+        <ConfirmationButton
+          color="danger"
+          confirmation="Delete"
+          aria-label="Delete"
+          outline
+          onClick={(e) => {
+            e.preventDefault();
+            onDelete(rowId);
+          }}
+          className="p-2 col-auto"
+          disabled={disabled}
+          //{...deleteProps}
+        >
+          <Icon name="times-circle-o" size="lg" />
+        </ConfirmationButton>
+      )}
       {tooltip}
     </div>
   );

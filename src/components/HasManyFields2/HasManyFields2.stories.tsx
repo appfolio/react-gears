@@ -66,7 +66,6 @@ class AddressStore {
   }
 
   orderChanged(order: string[]) {
-    console.log("new order", order)
     // TODO: make this not O(n^2)
     const newAddresses = order
       .map((rowId) => this.addresses.find((address) => address.rowId === rowId))
