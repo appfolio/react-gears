@@ -19,7 +19,6 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({
 
   const handleClick = useCallback(
     (e) => {
-      console.log('confirmationVisible:', confirmationVisible)
       if (confirmationVisible) {
         onClick(e);
       }
