@@ -1,6 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, text } from '@storybook/addon-knobs';
-import { action as mobxAction, makeObservable, observable } from 'mobx';
+import { action as mobxAction, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import AddressInput from '../Address/AddressInput';
@@ -10,6 +9,11 @@ import { HasManyFields2Row } from './HasManyFields2Row';
 export default {
   title: 'HasManyFields2',
   component: HasManyFields2,
+  argTypes: {
+    minimumRows: { control: { type: 'number', min: 0, max: 10 } },
+    maxiumRows: { control: { type: 'number', min: 0, max: 10 } },
+    reorderable: {control: 'boolean' },
+  },
 };
 
 type Address = {
@@ -43,10 +47,22 @@ class AddressStore {
     },
   ];
 
+  maximumRows = 5;
+
+  minimumRows = 1;
+
+  reorderable = true;
+
+  addButtonLabel = 'Add an Address';
+
   constructor() {
     makeObservable(this, {
       addresses: observable,
       addAddress: mobxAction,
+      maximumRows: observable,
+      minimumRows: observable,
+      reorderable: observable,
+      addButtonLabel: observable,
       orderChanged: mobxAction,
       rowDeleted: mobxAction,
     });
@@ -82,8 +98,8 @@ const addressStore = new AddressStore();
 
 const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store }) => (
   <HasManyFields2
-    label={text('label', 'Add an Address')}
-    disabled={boolean('disabled', false)}
+    label={store.addButtonLabel}
+    disabled={false}
     onAdd={() => {
       store.addAddress();
       action('hasManyFields onAdd')();
@@ -92,15 +108,15 @@ const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store })
       store.orderChanged(order);
       action('order changed')();
     }}
-    maximumRows={number('maximumRows', 5)}
-    minimumRows={number('minimumRows', 0)}
-    reorderable={boolean('reorderable', true)}
+    maximumRows={store.maximumRows}
+    minimumRows={store.minimumRows}
+    reorderable={store.reorderable}
   >
     {store.addresses.map((address) => (
       <HasManyFields2Row
         key={address.rowId}
         rowId={address.rowId}
-        disabled={boolean('disabled', false)}
+        disabled={false}
         disabledReason={undefined}
         disabledReasonPlacement={undefined}
         onDelete={() => {
@@ -114,4 +130,27 @@ const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store })
   </HasManyFields2>
 ));
 
-export const LiveExample = () => <HasManyAddresses store={addressStore} />;
+interface Controls {
+  minimumRows: number;
+  maximumRows: number;
+  reorderable: boolean;
+  addButtonLabel: string;
+}
+
+export const LiveExample = (args: Controls) => {
+  runInAction(() => {
+    addressStore.minimumRows = args.minimumRows;
+    addressStore.maximumRows = args.maximumRows;
+    addressStore.reorderable = args.reorderable;
+    addressStore.addButtonLabel = args.addButtonLabel;
+  });
+
+  return (<HasManyAddresses store={addressStore} />);
+}
+
+LiveExample.args = {
+  minimumRows: 1,
+  maximumRows: 5,
+  reorderable: true,
+  addButtonLabel: 'Add an Address',
+}

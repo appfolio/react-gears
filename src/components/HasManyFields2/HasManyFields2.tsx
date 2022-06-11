@@ -28,10 +28,12 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [itemIds, setItemIds] = useState<string[]>([]);
-  const [componentLookupMap, setComponentLookupMap] = useState<Record<string, HasManyFields2Child>>({});
+  const [componentLookupMap, setComponentLookupMap] = useState<Record<string, HasManyFields2Child>>(
+    {}
+  );
 
   useEffect(() => {
-    const newComponentLookupMap: Record<string, HasManyFields2Child> = {}
+    const newComponentLookupMap: Record<string, HasManyFields2Child> = {};
     const newItemIds: string[] = [];
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) {
@@ -43,7 +45,7 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
     });
     setComponentLookupMap(newComponentLookupMap);
     setItemIds(newItemIds);
-  }, [children])
+  }, [children]);
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (disabled) {
@@ -64,7 +66,7 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
     const temp = newItemIds[idx1];
     newItemIds[idx1] = newItemIds[idx2];
     newItemIds[idx2] = temp;
-     return newItemIds;
+    return newItemIds;
   };
 
   const onDragEnd = ({ over }: DragEndEvent) => {
@@ -96,26 +98,36 @@ export const HasManyFields2: React.FC<HasManyFields2Props> = ({
 
   const onDragCancel = () => setActiveId(null);
 
-  const contextCached = useMemo(
-    () => {
-      return {
-        reorderable,
-        minimumRowsReached: minimumRows !== undefined && itemIds.length <= minimumRows,
-      }
-    },
-    [reorderable, minimumRows, itemIds.length]);
+  const contextCached = useMemo(() => {
+    return {
+      reorderable,
+      minimumRowsReached: minimumRows !== undefined && itemIds.length <= minimumRows,
+    };
+  }, [reorderable, minimumRows, itemIds.length]);
 
   const shouldDisplayAddButton = Boolean(onAdd) && (!maximumRows || itemIds.length < maximumRows);
 
+  const renderRows = useMemo(
+    () => (
+      <HasManyFields2Context.Provider value={contextCached}>
+        {itemIds.map((itemId) => componentLookupMap[itemId])}
+      </HasManyFields2Context.Provider>
+    ),
+    [itemIds, contextCached, componentLookupMap]
+  );
+
   return (
     <>
-      <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
-        <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
-          <HasManyFields2Context.Provider value={contextCached}>
-            {itemIds.map((itemId) => componentLookupMap[itemId])}
-          </HasManyFields2Context.Provider>
-        </SortableContext>
-      </DndContext>
+      {reorderable ? (
+        <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={onDragCancel}>
+          <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
+            {renderRows}
+          </SortableContext>
+        </DndContext>
+      ) : (
+        renderRows
+      )}
+
       <HasManyFields2Add disabled={disabled} onClick={onAdd} visible={shouldDisplayAddButton}>
         {label}
       </HasManyFields2Add>
