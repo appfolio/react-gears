@@ -6,9 +6,9 @@ const DURATION = '1s';
 const SEGMENTS = 12;
 
 type Props = {
-  className: string;
-  color: string;
-  size: string;
+  className?: string;
+  color?: string;
+  size?: string;
 };
 
 const ApmSpinner: FC<Props> = ({ color, size, ...props }) => (
