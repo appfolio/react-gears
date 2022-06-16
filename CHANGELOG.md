@@ -1,5 +1,24 @@
 # Change Log
 
+## [7.4.0](https://github.com/appfolio/react-gears/compare/v7.3.0...v7.4.0) (2022-06-16)
+
+
+### Features
+
+* add granular steps component ([51fce7f](https://github.com/appfolio/react-gears/commit/51fce7f61aff1c12d2731137d86986025b5e2ab7))
+
+
+### Bug Fixes
+
+* fixed the chevron in the listitem to be centered ([19b6ce7](https://github.com/appfolio/react-gears/commit/19b6ce7fef571d3f4ac5889ef45f250c195a2f58))
+
+
+### Miscellaneous
+
+* rename Spinner.js to Spinner.tsx ([2c05d98](https://github.com/appfolio/react-gears/commit/2c05d98f9a4df4f1a6fc9b935e0f42f725527cdb))
+* update package-lock.json ([1a008e7](https://github.com/appfolio/react-gears/commit/1a008e7282da9a67d9a6d4ac80a6b6310336c160))
+* update Spinner to typescript ([2332855](https://github.com/appfolio/react-gears/commit/2332855e6281f77fa6e54cb201e82d8d83504a3a))
+
 ## [7.3.0](https://github.com/appfolio/react-gears/compare/v7.2.0...v7.3.0) (2022-06-02)
 
 
