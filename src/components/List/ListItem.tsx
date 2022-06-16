@@ -75,7 +75,6 @@ function ListItem<T>({
           <Button
             color="link"
             onClick={() => setExpanded(!expanded)}
-            className="pe-0"
             style={{
               visibility: ExpandedItem === undefined ? 'hidden' : 'visible',
             }}
