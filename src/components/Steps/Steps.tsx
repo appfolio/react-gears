@@ -10,6 +10,8 @@ interface StepProps {
   step?: number;
   steps?: string[];
   vertical?: boolean;
+  granular?: boolean;
+  stepProgress?: number;
 }
 
 const Steps = ({
@@ -19,6 +21,8 @@ const Steps = ({
   step = 0,
   steps = [],
   vertical = false,
+  granular = false,
+  stepProgress = 0,
 }: StepProps) => {
   const className = classNames({
     complete,
@@ -33,13 +37,42 @@ const Steps = ({
     'd-sm-none': collapse !== true,
     'text-center': true,
   });
-
+  const barColor = granular ? '#cdd5db' : '#818a91';
   return (
     <div className="mb-3">
       <ol className={className}>
         {steps.map((name, index) => {
           const stepComplete = !complete && index < step;
           const stepActive = !complete && index === step;
+          const stepAfterActive = !complete && index === step + 1;
+          const progressPercent = 50;
+          const progressColor = '#016eb7';
+          const renderActiveProgress =
+            granular && !vertical && stepActive && index < steps.length - 1;
+          const renderPrevStepProgress =
+            granular && !vertical && stepAfterActive && index < steps.length && stepProgress > 50;
+
+          const progressStyle: { backgroundImage?: string } = {};
+          if (renderActiveProgress) {
+            progressStyle.backgroundImage = `
+              linear-gradient(
+                to right,
+                ${step === 0 ? 'transparent' : progressColor} 50%,
+                ${progressColor} 50%,
+                ${progressColor} ${progressPercent + stepProgress}%,
+                ${barColor} ${progressPercent + stepProgress}%
+              )
+            `;
+          } else if (renderPrevStepProgress) {
+            progressStyle.backgroundImage = `
+              linear-gradient(
+                to right,
+                ${progressColor} ${stepProgress - progressPercent}%,
+                ${barColor} ${stepProgress - progressPercent}%,
+                ${barColor} 50%, ${index === steps.length - 1 ? 'transparent' : barColor} 50%
+              )
+            `;
+          }
 
           const liClasses = classNames('mb-2', {
             step: true,
@@ -48,6 +81,8 @@ const Steps = ({
             'text-success': complete,
             'text-primary': !complete && (stepComplete || stepActive),
             'text-muted': !(stepComplete || stepActive || complete),
+            'render-step-progress': renderActiveProgress,
+            'render-prev-step-progress': renderPrevStepProgress,
           });
 
           const bubbleClasses = classNames({
@@ -104,10 +139,9 @@ const Steps = ({
           ) : (
             stepContent
           );
-
           return (
             /* eslint-disable-next-line react/no-array-index-key -- iterating over a string[]. no way to guarantee uniqueness other than index */
-            <li key={index} className={liClasses}>
+            <li key={index} className={liClasses} style={progressStyle}>
               {wrappedStepContent}
             </li>
           );
@@ -128,9 +162,9 @@ const Steps = ({
             padding: 0;
           }
           .rg-steps:not(.vertical) .step {
-            background-image: linear-gradient(to right, #818a91, #818a91);
-            background-size: 100% 1px;
-            background-position: center 1.26rem;
+            background-image: linear-gradient(to right, ${barColor}, ${barColor});
+            background-size: 100% ${granular ? '6px' : '1px'};
+            background-position: center ${granular ? '1.15rem' : '1.26rem'};
             background-repeat: repeat-x;
             align-items: center;
             display: inline-flex;
@@ -141,10 +175,20 @@ const Steps = ({
             text-align: center;
           }
           .rg-steps:not(.vertical) .step:first-child {
-            background-image: linear-gradient(to right, transparent 50%, #818a91 50%, #818a91 100%);
+            background-image: linear-gradient(
+              to right,
+              transparent 50%,
+              ${barColor} 50%,
+              ${barColor} 100%
+            );
           }
           .rg-steps:not(.vertical) .step:first-child.active {
-            background-image: linear-gradient(to right, transparent 50%, #818a91 50%, #818a91 100%);
+            background-image: linear-gradient(
+              to right,
+              transparent 50%,
+              ${barColor} 50%,
+              ${barColor} 100%
+            );
           }
           .rg-steps:not(.vertical) .step:first-child.complete {
             background-image: linear-gradient(
@@ -157,7 +201,7 @@ const Steps = ({
           .rg-steps:not(.vertical) .step:last-child {
             background-image: linear-gradient(
               to right,
-              #818a91 50%,
+              ${barColor} 50%,
               transparent 50%,
               transparent 100%
             );
@@ -194,8 +238,8 @@ const Steps = ({
             background-image: linear-gradient(
               to right,
               currentColor 50%,
-              #818a91 50%,
-              #818a91 100%
+              ${barColor} 50%,
+              ${barColor} 100%
             );
           }
           .rg-steps:not(.vertical) .step.active .bubble {
