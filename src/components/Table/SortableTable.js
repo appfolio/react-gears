@@ -5,8 +5,8 @@ import React from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Label from '../Label/Label';
-import Table from './Table';
 import Header from './components/Header';
+import Table from './Table';
 
 function getAlignment(align) {
   /* eslint-disable no-console */

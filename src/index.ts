@@ -119,6 +119,7 @@ export { default as Modal } from './components/Modal/Modal';
 export { default as ModalBody } from './components/Modal/ModalBody';
 export { default as ModalFooter } from './components/Modal/ModalFooter';
 export { default as ModalHeader } from './components/Modal/ModalHeader';
+export { default as MultiSelectCombobox } from './components/MultiSelectCombobox/MultiSelectCombobox';
 export { default as Nav } from './components/Nav/Nav';
 export { default as Navbar } from './components/Nav/Navbar';
 export { default as NavbarBrand } from './components/Nav/NavbarBrand';

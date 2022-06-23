@@ -8,11 +8,11 @@ import Input from '../Input/Input';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import ScrollContainer from '../ScrollContainer/ScrollContainer';
+import FilterHeader, { FilterHeaderProps } from './components/FilterHeader';
+import SortHeader, { SortHeaderProps } from './components/SortHeader';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
 import ListItem, { ListItemProps } from './ListItem';
-import FilterHeader, { FilterHeaderProps } from './components/FilterHeader';
-import SortHeader, { SortHeaderProps } from './components/SortHeader';
 
 interface Sort {
   property?: string | string[];

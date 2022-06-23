@@ -7,11 +7,11 @@ import DropdownMenu from '../Dropdown/DropdownMenu';
 import DropdownToggle from '../Dropdown/DropdownToggle';
 import UncontrolledDropdown from '../Dropdown/UncontrolledDropdown';
 import Nav from './Nav';
-import NavItem from './NavItem';
-import NavLink from './NavLink';
 import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
+import NavItem from './NavItem';
+import NavLink from './NavLink';
 
 export default {
   title: 'Navbar',

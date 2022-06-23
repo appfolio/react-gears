@@ -6,9 +6,9 @@ import {
   DropdownMenu,
   DropdownToggle,
   Nav,
+  Navbar,
   NavItem,
   NavLink,
-  Navbar,
   UncontrolledDropdown,
 } from '../src';
 import allThemes from './themes';
@@ -38,14 +38,14 @@ export const decorators = [
           {Object.keys(allThemes).map((name) => {
             const links = allThemes[name];
             return (
-              <NavItem>
+              <NavItem key={name}>
                 <UncontrolledDropdown>
                   <DropdownToggle nav caret>
                     {name}
                   </DropdownToggle>
                   <DropdownMenu>
                     {links.map((theme, i) => (
-                      <DropdownItem>
+                      <DropdownItem key={theme.url}>
                         <ThemeLink key={i} url={theme.url}>
                           {theme.name}
                         </ThemeLink>

@@ -2,11 +2,11 @@ import range from 'lodash.range';
 import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 import Icon from '../Icon/Icon';
-import Pagination from './Pagination';
 import Page from './components/Page';
 import ShortcutLink from './components/ShortcutLink';
 import State from './components/State';
 import Summary from './components/Summary';
+import Pagination from './Pagination';
 
 const DEFAULT_PER_PAGE = 20;
 
