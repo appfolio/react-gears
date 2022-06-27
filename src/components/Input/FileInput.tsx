@@ -4,7 +4,7 @@ import Input from './Input';
 type FileInputProps = {
   onChange: (files: FileList | null) => void;
   type: 'file';
-}
+};
 
 class FileInput extends React.Component<FileInputProps> {
   handleChange = (changeEvent: ChangeEvent) => {
