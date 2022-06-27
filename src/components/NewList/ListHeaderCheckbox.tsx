@@ -42,7 +42,7 @@ const ListHeaderCheckbox = ({
     <Input
       aria-label={title}
       title={title}
-      className="me-2"
+      className="me-2 p-2"
       innerRef={checkboxRef}
       type="checkbox"
       checked={checkboxState === 'checked'}

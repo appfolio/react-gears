@@ -2,8 +2,10 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import Input from '../Input/Input';
 import ListHeader from './ListHeader';
 import ListHeaderCheckbox from './ListHeaderCheckbox';
+import ListHeaderChildren from './ListHeaderChildren';
 import ListHeaderFilter from './ListHeaderFilter';
 import ListHeaderSlots from './ListHeaderSlots';
 import ListHeaderSortDirection from './ListHeaderSortDirection';
@@ -88,6 +90,39 @@ export const FullyDecomposed = () => (
       {items.map((item) => (
         <ListGroupItem key={item} className="list-group-item-action">
           <input type="checkbox" className="form-check-input me-1" />
+          <div>
+            <ListGroupItemHeading>{item.toUpperCase()}</ListGroupItemHeading>
+            <ListGroupItemText>{item}</ListGroupItemText>
+          </div>
+        </ListGroupItem>
+      ))}
+    </ListGroup>
+  </div>
+);
+
+export const NoSlotsAllChildren = () => (
+  <div>
+    <ListHeaderChildren>
+      <ListHeaderCheckbox checkboxState="unchecked" onChange={action('Checkbox: onChange')} />
+      <ListHeaderFilter
+        placeholder="Search for an item"
+        onChange={action('Filter: onChange')}
+        value=""
+      />
+      <ListHeaderSortOptions
+        options={[
+          { label: 'Title', value: 'title' },
+          { label: 'Text', value: 'text' },
+        ]}
+        value="text"
+        onChange={action('Sort Options: onChange')}
+      />
+      <ListHeaderSortDirection direction="ascending" onClick={action('Sort Direction: onClick')} />
+    </ListHeaderChildren>
+    <ListGroup>
+      {items.map((item) => (
+        <ListGroupItem key={item} className="list-group-item-action">
+          <Input type="checkbox" />
           <div>
             <ListGroupItemHeading>{item.toUpperCase()}</ListGroupItemHeading>
             <ListGroupItemText>{item}</ListGroupItemText>
