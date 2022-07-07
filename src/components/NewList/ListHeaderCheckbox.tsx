@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import type { ChangeEventHandler } from 'react';
 import Input from '../Input/Input';
 
-type CheckboxState = 'checked' | 'unchecked' | 'indeterminate';
+export type CheckboxTriState = 'checked' | 'unchecked' | 'indeterminate';
 interface ListHeaderCheckboxProps {
-  checkboxState?: CheckboxState;
+  checkboxState?: CheckboxTriState;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 

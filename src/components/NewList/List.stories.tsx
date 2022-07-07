@@ -1,24 +1,25 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import Input from '../Input/Input';
 import ListHeader from './ListHeader';
 import ListHeaderCheckbox from './ListHeaderCheckbox';
-import ListHeaderChildren from './ListHeaderChildren';
 import ListHeaderFilter from './ListHeaderFilter';
-import ListHeaderSlots from './ListHeaderSlots';
-import ListHeaderSortDirection from './ListHeaderSortDirection';
-import ListHeaderSortOptions from './ListHeaderSortOptions';
+import ListHeaderSort from './ListHeaderSort';
 
 export default {
-  title: 'New List',
+  title: 'New List/Controlled',
 };
 
 const items = ['foo', 'bar'];
 
 function renderItem(item: string) {
-  return item;
+  return (
+    <>
+      <ListGroupItemHeading>{item.toUpperCase()}</ListGroupItemHeading>
+      <ListGroupItemText>{item}</ListGroupItemText>
+    </>
+  );
 }
 
 const sortOptions = [
@@ -26,106 +27,31 @@ const sortOptions = [
   { label: 'Label', value: 'label' },
 ];
 
-const sortValues = sortOptions.map((option) => option.value);
-
 export const NewListExample = () => (
   <div>
-    <ListHeader
-      checkbox={boolean('checkbox', true)}
-      checkboxState={select(
-        'checkboxState',
-        ['checked', 'unchecked', 'indeterminate'],
-        'unchecked'
-      )}
-      filterable={boolean('filterable', true)}
-      filterValue={text('filterValue', '')}
-      onCheckboxChange={action('onCheckboxChange')}
-      onFilterChange={action('onFilterChange')}
-      onSortDirectionToggle={action('onSortDirectionToggle')}
-      onSortValueChange={action('onSortValueChange')}
-      sortable={boolean('sortable', true)}
-      sortDirection={select('sortDirection', ['ascending', 'descending'], 'ascending')}
-      sortOptions={sortOptions}
-      sortValue={select('sortValue', sortValues, 'label')}
-    />
-    <ListGroup className="rounded-bottom">
-      {items.map((item) => (
-        <ListGroupItem key={item}>{renderItem(item)}</ListGroupItem>
-      ))}
-    </ListGroup>
-  </div>
-);
-
-export const FullyDecomposed = () => (
-  <div>
-    <ListHeaderSlots
-      checkbox={
+    <ListHeader className="justify-content-between">
+      <div className="d-flex">
         <ListHeaderCheckbox checkboxState="unchecked" onChange={action('Checkbox: onChange')} />
-      }
-      filter={
         <ListHeaderFilter
           placeholder="Search for an item"
           onChange={action('Filter: onChange')}
           value=""
         />
-      }
-      sortOptions={
-        <ListHeaderSortOptions
-          options={[
-            { label: 'Title', value: 'title' },
-            { label: 'Text', value: 'text' },
-          ]}
-          value="text"
-          onChange={action('Sort Options: onChange')}
-        />
-      }
-      sortDirection={
-        <ListHeaderSortDirection
-          direction="ascending"
-          onClick={action('Sort Direction: onClick')}
-        />
-      }
-    />
+      </div>
+      <ListHeaderSort
+        direction="ascending"
+        onDirectionClick={action('Sort: onDirectionClick')}
+        onValueChange={action('Sort: onValueChange')}
+        options={sortOptions}
+        value="label"
+      />
+    </ListHeader>
     <ListGroup>
       {items.map((item) => (
         <ListGroupItem key={item} className="list-group-item-action">
-          <input type="checkbox" className="form-check-input me-1" />
-          <div>
-            <ListGroupItemHeading>{item.toUpperCase()}</ListGroupItemHeading>
-            <ListGroupItemText>{item}</ListGroupItemText>
-          </div>
-        </ListGroupItem>
-      ))}
-    </ListGroup>
-  </div>
-);
-
-export const NoSlotsAllChildren = () => (
-  <div>
-    <ListHeaderChildren>
-      <ListHeaderCheckbox checkboxState="unchecked" onChange={action('Checkbox: onChange')} />
-      <ListHeaderFilter
-        placeholder="Search for an item"
-        onChange={action('Filter: onChange')}
-        value=""
-      />
-      <ListHeaderSortOptions
-        options={[
-          { label: 'Title', value: 'title' },
-          { label: 'Text', value: 'text' },
-        ]}
-        value="text"
-        onChange={action('Sort Options: onChange')}
-      />
-      <ListHeaderSortDirection direction="ascending" onClick={action('Sort Direction: onClick')} />
-    </ListHeaderChildren>
-    <ListGroup>
-      {items.map((item) => (
-        <ListGroupItem key={item} className="list-group-item-action">
-          <Input type="checkbox" />
-          <div>
-            <ListGroupItemHeading>{item.toUpperCase()}</ListGroupItemHeading>
-            <ListGroupItemText>{item}</ListGroupItemText>
+          <div className="d-flex align-items-center">
+            <Input type="checkbox" className="me-3" />
+            <div>{renderItem(item)}</div>
           </div>
         </ListGroupItem>
       ))}
