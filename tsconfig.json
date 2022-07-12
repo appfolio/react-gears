@@ -12,10 +12,15 @@
     "noEmitOnError": true,
     "noEmit": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "skipLibCheck": true
+
   },
   "include": [
     "src",
     "./tooling/helpers.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
