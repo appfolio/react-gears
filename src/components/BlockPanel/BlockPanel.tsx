@@ -47,6 +47,7 @@ export interface BlockPanelProps {
   title: ReactNode;
   stickyId?: string;
   bodyClassName?: string;
+  collapseClassName?: string;
 }
 
 const defaultProps = {
@@ -73,6 +74,7 @@ const BlockPanel: FC<BlockPanelProps> = ({
   title,
   stickyId,
   bodyClassName,
+  collapseClassName,
   ...props
 }: BlockPanelProps) => {
   const useIsOpen = createIsOpenHook(stickyId, open);
@@ -154,7 +156,7 @@ const BlockPanel: FC<BlockPanelProps> = ({
         </div>
       </CardHeader>
       {children && (
-        <Collapse isOpen={children ? !expandable || isOpen : false} onExited={() => onClosed()}>
+        <Collapse className={collapseClassName} isOpen={children ? !expandable || isOpen : false} onExited={() => onClosed()}>
           {(!expandable || hideOnToggle || !collapsed) && (
             <CardBody className={bodyClassName}>{children}</CardBody>
           )}

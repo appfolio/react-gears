@@ -1,6 +1,8 @@
 import { text, boolean } from '@storybook/addon-knobs';
 import React from 'react';
+import { Button } from 'reactstrap';
 import { colors } from '../../tooling/colors';
+import Alert from '../Alert/Alert';
 import Card from './Card';
 import CardBody from './CardBody';
 import CardFooter from './CardFooter';
@@ -11,6 +13,22 @@ export default {
   title: 'Card',
   component: Card,
 };
+
+export const MyExample = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <Button color="danger" className="float-end" onClick={() => undefined}>Delete</Button>
+        <CardTitle>Edit Application</CardTitle>
+        {/* <ErrorMessage message={this.state.error} /> */}
+      </CardHeader>
+      <CardBody>
+        {true && <Alert dismissible color="success">Application Saved</Alert>}
+        <div>Stub</div>
+      </CardBody>
+    </Card>
+  );
+}
 
 export const LiveExample = () => {
   const outline = boolean('outline', false);
