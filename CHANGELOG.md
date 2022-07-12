@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.5.0](https://github.com/appfolio/react-gears/compare/v7.4.0...v7.5.0) (2022-07-12)
+
+
+### Features
+
+* add API agnostic FeedbackButton ([27b4dfe](https://github.com/appfolio/react-gears/commit/27b4dfebd7b3401327daf92ddc8fbf673e67f0af))
+* introduce new MultiSelectCombobox ([24c276e](https://github.com/appfolio/react-gears/commit/24c276ebd630737a70b3bba6787cc795cce0c16b))
+
+
+### Bug Fixes
+
+* minor tweaks for stability/linting/storybook ([bc5528a](https://github.com/appfolio/react-gears/commit/bc5528a6dd25133c7eb2dd838d346c8de9f0810e))
+* work around typedef bug in react-use ([d8ec9b4](https://github.com/appfolio/react-gears/commit/d8ec9b43c13b48d06abb4291562bd293c39b8d6c))
+
+
+### Miscellaneous
+
+* convert to functional component ([cd67fac](https://github.com/appfolio/react-gears/commit/cd67fac4bbc35d60e9882b227495b5364949b9e4))
+* typify component ([3931140](https://github.com/appfolio/react-gears/commit/39311404e0fe7029950dc417baff880f3a2e88ce))
+
 ## [7.4.0](https://github.com/appfolio/react-gears/compare/v7.3.0...v7.4.0) (2022-06-16)
 
 
