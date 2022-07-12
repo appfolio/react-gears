@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { boolean, text, select } from '@storybook/addon-knobs';
 import { action as mobxAction, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
@@ -14,6 +15,7 @@ export default {
     maxiumRows: { control: { type: 'number', min: 0, max: 10 } },
     reorderable: {control: 'boolean' },
   },
+  subcomponents: { HasManyFields2Row }
 };
 
 type Address = {
@@ -116,9 +118,10 @@ const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store })
       <HasManyFields2Row
         key={address.rowId}
         rowId={address.rowId}
-        disabled={false}
-        disabledReason={undefined}
-        disabledReasonPlacement={undefined}
+        disabled={boolean(`row ${address.rowId} disabled`, false)}
+        disabledReason={text(`row ${address.rowId} disabledReason`, 'disabledReason')}
+        disabledReasonPlacement={select(`row ${address.rowId} disabledReasonPlacement`, ['top', 'left', 'bottom', 'right'], 'right')}
+        deleteable
         onDelete={() => {
           store.rowDeleted(address.rowId);
           action(`hasManyFieldsRow onDelete: rowId=${address.rowId}`)();
