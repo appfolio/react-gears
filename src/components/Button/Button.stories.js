@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { text, boolean, select } from '@storybook/addon-knobs';
-import React from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { buttonColors } from '../../tooling/colors';
 import DropdownItem from '../Dropdown/DropdownItem';
 import DropdownMenu from '../Dropdown/DropdownMenu';
@@ -11,24 +11,41 @@ import ButtonDropdown from './ButtonDropdown';
 import ButtonGroup from './ButtonGroup';
 import ButtonToolbar from './ButtonToolbar';
 import ConfirmationButton from './ConfirmationButton';
+import Tooltip from '../Tooltip/Tooltip';
 
 export default {
   title: 'Buttons',
   component: Button,
 };
 
-export const LiveExample = () => (
-  <Button
-    color={select('color', buttonColors, 'primary')}
-    block={boolean('block', false)}
-    disabled={boolean('disabled', false)}
-    outline={boolean('outline', false)}
-    active={boolean('active', false)}
-    size={select('size', ['', 'sm', 'lg'])}
-  >
-    {text('Label', 'Click Me')}
-  </Button>
-);
+export const LiveExample = () => {
+  // const ref = useRef(null);
+  const [tooltipTarget, setTooltipTarget] = useState();
+  const callbackRef = useCallback(node => {
+    if (node) {
+      setTooltipTarget(node);
+    }
+  }, []);
+  return (
+    <span ref={callbackRef}>
+      {
+        tooltipTarget && <Tooltip target={tooltipTarget}>
+          some tooltip stuff
+        </Tooltip>
+      }
+      <Button
+        color={select('color', buttonColors, 'primary')}
+        block={boolean('block', false)}
+        disabled={boolean('disabled', false)}
+        outline={boolean('outline', false)}
+        active={boolean('active', false)}
+        size={select('size', ['', 'sm', 'lg'])}
+      >
+        {text('Label', 'Click Me')}
+      </Button>
+    </span>
+  );
+};
 
 export const Colors = () => (
   <ButtonToolbar>
@@ -45,38 +62,42 @@ export const Colors = () => (
   </ButtonToolbar>
 );
 
-export const Disabled = () => (
-  <ButtonToolbar>
-    <Button disabled>Default</Button>
-    <Button disabled color="primary">
-      Primary
-    </Button>
-    <Button disabled color="secondary">
-      Secondary
-    </Button>
-    <Button disabled color="success">
-      Success
-    </Button>
-    <Button disabled color="info">
-      Info
-    </Button>
-    <Button disabled color="warning">
-      Warning
-    </Button>
-    <Button disabled color="danger">
-      Danger
-    </Button>
-    <Button disabled color="dark">
-      Dark
-    </Button>
-    <Button disabled color="light">
-      Light
-    </Button>
-    <Button disabled color="link">
-      Link
-    </Button>
-  </ButtonToolbar>
-);
+export const Disabled = () => {
+  // const ref = useRef(null);
+  return (
+    <ButtonToolbar>
+      <Tooltip target={tooltipTarget}>Some thing here</Tooltip>
+      <Button ref={callbackRef} disabled>Default</Button>
+      <Button disabled color="primary">
+        Primary
+      </Button>
+      <Button disabled color="secondary">
+        Secondary
+      </Button>
+      <Button disabled color="success">
+        Success
+      </Button>
+      <Button disabled color="info">
+        Info
+      </Button>
+      <Button disabled color="warning">
+        Warning
+      </Button>
+      <Button disabled color="danger">
+        Danger
+      </Button>
+      <Button disabled color="dark">
+        Dark
+      </Button>
+      <Button disabled color="light">
+        Light
+      </Button>
+      <Button disabled color="link">
+        Link
+      </Button>
+    </ButtonToolbar>
+  );
+};
 
 export const Outline = () => (
   <ButtonToolbar>
