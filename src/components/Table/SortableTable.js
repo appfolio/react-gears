@@ -38,7 +38,8 @@ function defaultRenderRow(
   rowExpanded,
   rowOnClick,
   truncate,
-  rowSelected
+  rowSelected,
+  isLastRow
 ) {
   const expanded = rowExpanded(row);
   return [
@@ -53,7 +54,7 @@ function defaultRenderRow(
     >
       {columns.map((column) => (
         <td key={column.key} className={generateColumnClassName(column, truncate)}>
-          {column.cell(row, expanded)}
+          {column.cell(row, expanded, isLastRow)}
         </td>
       ))}
     </tr>,
@@ -171,6 +172,7 @@ class SortableTable extends React.Component {
       onExpand,
       rowExpanded,
       renderRow,
+      isLastRow,
       ...props
     } = this.props;
     const selectable = rowSelected;
@@ -245,8 +247,10 @@ class SortableTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) =>
-            renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected)
+          {rows.map((row, index) => {
+              const isLastRow = rows.length == index + 1;
+              return renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, isLastRow)
+            }
           )}
         </tbody>
         {(showFooter || footer) && (
