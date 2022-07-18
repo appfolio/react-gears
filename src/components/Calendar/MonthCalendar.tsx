@@ -10,6 +10,7 @@ import { getMonths, getYears } from './util/dateRanges';
 export interface MonthCalendarProps {
   date?: Date;
   dateVisible?: (date: Date) => boolean;
+  centerYearSelection?: boolean;
   monthFormat?: string;
   yearFormat?: string;
   onSelect?: (date: Date) => void;
@@ -18,6 +19,7 @@ export interface MonthCalendarProps {
 const { format } = Fecha;
 
 const defaultProps = {
+  centerYearSelection: false,
   date: new Date(),
   dateVisible: () => true,
   monthFormat: 'MMM',
@@ -28,6 +30,7 @@ const defaultProps = {
 const MonthCalendar: FC<MonthCalendarProps> = ({
   date = defaultProps.date,
   dateVisible = defaultProps.dateVisible,
+  centerYearSelection = defaultProps.centerYearSelection,
   monthFormat = defaultProps.monthFormat,
   onSelect = defaultProps.onSelect,
   yearFormat = defaultProps.yearFormat,
@@ -51,7 +54,7 @@ const MonthCalendar: FC<MonthCalendarProps> = ({
 
         <Col className="border-start">
           <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
-            {getYears(date).map((monthYear) => (
+            {getYears(date, centerYearSelection).map((monthYear) => (
               <NavLabel
                 selected={date.getFullYear() === monthYear.getFullYear()}
                 label={format(monthYear, yearFormat)}

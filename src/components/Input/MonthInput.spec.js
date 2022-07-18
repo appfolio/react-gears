@@ -250,8 +250,10 @@ describe('<MonthInput />', () => {
     const callback = sinon.spy();
     const defaultDate = new Date(2017, 7, 14);
     const dateVisible = (date) => isSameDay(date, defaultDate);
+    const centerYearSelection = true;
     const component = mount(
       <MonthInput
+        centerYearSelection={centerYearSelection}
         defaultValue={defaultDate}
         onChange={callback}
         dateVisible={dateVisible}
@@ -264,6 +266,11 @@ describe('<MonthInput />', () => {
     it('should pass dateVisible func to Calendar component', () => {
       const calendar = component.find('MonthCalendar');
       assert.equal(calendar.props().dateVisible, dateVisible);
+    });
+
+    it('should pass centerYearSelection to Calendar component', () => {
+      const calendar = component.find('MonthCalendar');
+      assert.equal(calendar.props().centerYearSelection, centerYearSelection);
     });
 
     it('should not allow to pick invisible date', () => {
