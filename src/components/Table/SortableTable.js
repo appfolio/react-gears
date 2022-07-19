@@ -247,10 +247,18 @@ class SortableTable extends React.Component {
         </thead>
         <tbody>
           {rows.map((row, index) => {
-              const isLastRow = (index === rows.length - 1);
-              return renderRow(row, cols, rowClassName, rowExpanded, rowOnClick, truncate, rowSelected, isLastRow)
-            }
-          )}
+            const isLastRow = index === rows.length - 1;
+            return renderRow(
+              row,
+              cols,
+              rowClassName,
+              rowExpanded,
+              rowOnClick,
+              truncate,
+              rowSelected,
+              isLastRow
+            );
+          })}
         </tbody>
         {(showFooter || footer) && (
           <tfoot>
