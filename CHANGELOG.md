@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.6.0](https://github.com/appfolio/react-gears/compare/v7.5.0...v7.6.0) (2022-07-19)
+
+
+### Features
+
+* add prop to center year input on MonthInput and MonthCalendar ([5518ec2](https://github.com/appfolio/react-gears/commit/5518ec216fa92df512de694a22f547e3231e8cec))
+
 ## [7.5.0](https://github.com/appfolio/react-gears/compare/v7.4.0...v7.5.0) (2022-07-12)
 
 
