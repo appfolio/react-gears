@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import MonthCalendar from './MonthCalendar';
 
@@ -17,6 +17,7 @@ export const MonthCalendarExample = () => {
         setDate(e);
         action('onSelect')(e);
       }}
+      centerYearSelection={boolean('Center Year Selection', false)}
       monthFormat={select('Month Format', ['M', 'MM', 'MMM', 'MMMM'], 'MMM')}
       yearFormat={select('Year Format', ['YY', 'YYYY'], 'YYYY')}
     />

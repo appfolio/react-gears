@@ -54,6 +54,7 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 
 export default class MonthInput extends React.Component {
   static propTypes = {
+    centerYearSelection: PropTypes.bool,
     className: PropTypes.string,
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
@@ -75,6 +76,7 @@ export default class MonthInput extends React.Component {
   };
 
   static defaultProps = {
+    centerYearSelection: false,
     className: '',
     dateFormat: 'MMM YYYY',
     dateVisible: () => true,
@@ -244,6 +246,7 @@ export default class MonthInput extends React.Component {
 
   render() {
     const {
+      centerYearSelection,
       className,
       dateVisible,
       disabled,
@@ -335,6 +338,7 @@ export default class MonthInput extends React.Component {
             <Calendar
               date={date}
               dateVisible={dateVisible}
+              centerYearSelection={centerYearSelection}
               monthFormat={monthFormat}
               yearFormat={yearFormat}
               onSelect={this.onSelect}

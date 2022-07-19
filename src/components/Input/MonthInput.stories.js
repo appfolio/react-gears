@@ -13,6 +13,10 @@ export default {
 export const WithProps = () => (
   <div className="d-flex">
     <MonthInput
+      centerYearSelection={boolean(
+        'centerYearSelection',
+        MonthInput.defaultProps.centerYearSelection
+      )}
       dateFormat={text('dateFormat', MonthInput.defaultProps.dateFormat)}
       monthFormat={text('monthFormat', MonthInput.defaultProps.monthFormat)}
       yearFormat={text('yearFormat', MonthInput.defaultProps.yearFormat)}

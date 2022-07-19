@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 interface MonthInputProps {
+  centerYearSelection?: boolean;
   className?: string;
   dateVisible?: (d: Date) => boolean;
   dateFormat?: string;

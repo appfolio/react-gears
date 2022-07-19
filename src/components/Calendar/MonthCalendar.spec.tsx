@@ -33,6 +33,32 @@ describe('<MonthCalendar />', () => {
     expect(selectedYear.classList.contains('active')).toBe(true);
   });
 
+  it('renders a range of 12 years before today date by default', () => {
+    const { getAllByTestId } = render(<MonthCalendar />);
+
+    const all = getAllByTestId('monthcalendar-navitem');
+    const years = all.slice(12);
+    const date = new Date();
+
+    years.reverse().forEach((item, index) => {
+      const year = date.getFullYear() - index;
+      expect(item.textContent).toBe(year.toString());
+    });
+  });
+
+  it('centers a range of 6 +/- years before today date if centerYearSelection', () => {
+    const { getAllByTestId } = render(<MonthCalendar centerYearSelection />);
+
+    const all = getAllByTestId('monthcalendar-navitem');
+    const years = all.slice(12);
+    const date = new Date();
+
+    years.reverse().forEach((item, index) => {
+      const year = date.getFullYear() + 6 - index;
+      expect(item.textContent).toBe(year.toString());
+    });
+  });
+
   it('calls onSelect after clicking a date', () => {
     const selectedDate = new Date(1992, 10, 30);
     const selectSpy = jest.fn();
