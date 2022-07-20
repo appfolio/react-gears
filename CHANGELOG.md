@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.6.1](https://github.com/appfolio/react-gears/compare/v7.6.0...v7.6.1) (2022-07-20)
+
+
+### Bug Fixes
+
+* add prop to identify last row in responsive table ([406b62b](https://github.com/appfolio/react-gears/commit/406b62b8eca4cd8631cc78d6b2f5d11f4edc0d2f))
+
 ## [7.6.0](https://github.com/appfolio/react-gears/compare/v7.5.0...v7.6.0) (2022-07-19)
 
 
