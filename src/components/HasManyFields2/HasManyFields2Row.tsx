@@ -1,7 +1,7 @@
-import { cornersOfRectangle } from '@dnd-kit/core/dist/utilities/algorithms/helpers';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import React, { useContext, useRef } from 'react';
+import { Placement } from '@popperjs/core';
+import React, { ElementRef, FC, useContext, useRef, useState } from 'react';
 import ConfirmationButton from '../Button/ConfirmationButton';
 import Icon from '../Icon/Icon';
 import Tooltip from '../Tooltip/Tooltip';
@@ -12,10 +12,27 @@ export interface HasManyFields2RowProps {
   deleteable?: boolean;
   disabled: boolean;
   disabledReason: string | undefined;
-  disabledReasonPlacement: string | undefined;
+  disabledReasonPlacement: Placement | undefined;
   onDelete: (rowId?: string) => any;
   rowId: string;
 }
+
+
+interface RowTooltipProps {
+  disabled: boolean;
+  disabledReason: string | undefined;
+  disabledReasonPlacement: Placement;
+  tooltipRef: ElementRef<any> | null;
+
+}
+const RowTooltip: FC<RowTooltipProps> = ({ disabled, disabledReason, disabledReasonPlacement, tooltipRef }) => {
+  const showTooltip = disabled && disabledReason && tooltipRef;
+  return showTooltip ? (
+    <Tooltip placement={disabledReasonPlacement} target={tooltipRef}>
+      {disabledReason}
+    </Tooltip>
+  ) : null;
+};
 
 export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
   children,
@@ -26,13 +43,8 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
   disabledReasonPlacement,
   onDelete,
 }) => {
-  console.log('rowId', rowId);
-  console.log('deleteable', deleteable);
-  console.log('disabled', disabled);
-  console.log('disabledReason', disabledReason);
-  console.log('disabledReasonPlacement', disabledReasonPlacement);
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: rowId });
   const tooltipRef = useRef(null);
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: rowId });
 
   const { reorderable, minimumRowsReached } = useContext(HasManyFields2Context);
 
@@ -41,12 +53,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
     transition,
   };
 
-  const tooltip =
-    disabled && disabledReason && tooltipRef ? (
-      <Tooltip placement={disabledReasonPlacement} target={tooltipRef}>
-        {disabledReason}
-      </Tooltip>
-    ) : null;
+  const showDeleteButton = !minimumRowsReached && deleteable;
 
   return (
     <div
@@ -58,7 +65,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
     >
       {reorderable ? <DragHandle {...listeners} /> : null}
       <div className="col w-100">{children}</div>
-      {minimumRowsReached ? null : (
+      {showDeleteButton ? (
         <ConfirmationButton
           color="danger"
           confirmation="Delete"
@@ -75,8 +82,8 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
         >
           <Icon name="times-circle-o" size="lg" />
         </ConfirmationButton>
-      )}
-      {tooltip}
+      ) : null}
+      <RowTooltip disabled={disabled} disabledReason={disabledReason} disabledReasonPlacement={disabledReasonPlacement || 'auto'} tooltipRef={null}/>
     </div>
   );
 };

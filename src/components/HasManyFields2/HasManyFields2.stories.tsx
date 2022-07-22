@@ -1,5 +1,5 @@
+import { Placement } from '@popperjs/core';
 import { action } from '@storybook/addon-actions';
-import { boolean, text, select } from '@storybook/addon-knobs';
 import { action as mobxAction, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
@@ -13,7 +13,8 @@ export default {
   argTypes: {
     minimumRows: { control: { type: 'number', min: 0, max: 10 } },
     maxiumRows: { control: { type: 'number', min: 0, max: 10 } },
-    reorderable: {control: 'boolean' },
+    reorderable: { control: 'boolean' },
+    disabled: { control: 'boolean' }
   },
   subcomponents: { HasManyFields2Row }
 };
@@ -49,6 +50,12 @@ class AddressStore {
     },
   ];
 
+  disabled = false;
+
+  disabledReason: string | undefined;
+
+  disabledReasonPlacement: Placement = 'auto';
+
   maximumRows = 5;
 
   minimumRows = 1;
@@ -61,6 +68,9 @@ class AddressStore {
     makeObservable(this, {
       addresses: observable,
       addAddress: mobxAction,
+      disabled: observable,
+      disabledReason: observable,
+      disabledReasonPlacement: observable,
       maximumRows: observable,
       minimumRows: observable,
       reorderable: observable,
@@ -101,7 +111,7 @@ const addressStore = new AddressStore();
 const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store }) => (
   <HasManyFields2
     label={store.addButtonLabel}
-    disabled={false}
+    disabled={store.disabled}
     onAdd={() => {
       store.addAddress();
       action('hasManyFields onAdd')();
@@ -118,16 +128,16 @@ const HasManyAddresses: React.FC<{ store: AddressStore }> = observer(({ store })
       <HasManyFields2Row
         key={address.rowId}
         rowId={address.rowId}
-        disabled={boolean(`row ${address.rowId} disabled`, false)}
-        disabledReason={text(`row ${address.rowId} disabledReason`, 'disabledReason')}
-        disabledReasonPlacement={select(`row ${address.rowId} disabledReasonPlacement`, ['top', 'left', 'bottom', 'right'], 'right')}
+        disabled={store.disabled}
+        disabledReason={store.disabledReason}
+        disabledReasonPlacement={store.disabledReasonPlacement}
         deleteable
         onDelete={() => {
           store.rowDeleted(address.rowId);
           action(`hasManyFieldsRow onDelete: rowId=${address.rowId}`)();
         }}
       >
-        <AddressInput value={address} />
+        <AddressInput value={address} disabled={store.disabled} />
       </HasManyFields2Row>
     ))}
   </HasManyFields2>
@@ -137,6 +147,9 @@ interface Controls {
   minimumRows: number;
   maximumRows: number;
   reorderable: boolean;
+  disabled: boolean;
+  disabledReason: string;
+  disabledReasonPlacement: Placement;
   addButtonLabel: string;
 }
 
@@ -145,6 +158,9 @@ export const LiveExample = (args: Controls) => {
     addressStore.minimumRows = args.minimumRows;
     addressStore.maximumRows = args.maximumRows;
     addressStore.reorderable = args.reorderable;
+    addressStore.disabled = args.disabled;
+    addressStore.disabledReason = args.disabledReason;
+    addressStore.disabledReasonPlacement = args.disabledReasonPlacement;
     addressStore.addButtonLabel = args.addButtonLabel;
   });
 
@@ -155,5 +171,8 @@ LiveExample.args = {
   minimumRows: 1,
   maximumRows: 5,
   reorderable: true,
+  disabled: false,
+  disabledReason: 'You clicked disabled',
+  disabledReasonPlacement: 'auto',
   addButtonLabel: 'Add an Address',
 }
