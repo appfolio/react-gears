@@ -16,7 +16,6 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-knobs',
     '@storybook/addon-actions',
-    '@storybook/addon-controls',
     {
       name: '@storybook/addon-storysource',
       options: {

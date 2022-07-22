@@ -58,11 +58,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
     >
       {reorderable ? <DragHandle {...listeners} /> : null}
       <div className="col w-100">{children}</div>
-<<<<<<< HEAD
       {minimumRowsReached ? null : (
-=======
-      {deleteable && (
->>>>>>> 778a2a36 (wip)
         <ConfirmationButton
           color="danger"
           confirmation="Delete"
@@ -74,10 +70,7 @@ export const HasManyFields2Row: React.FC<HasManyFields2RowProps> = ({
           }}
           className="p-2 col-auto"
           disabled={disabled}
-<<<<<<< HEAD
-=======
           innerRef={tooltipRef}
->>>>>>> 778a2a36 (wip)
           //{...deleteProps}
         >
           <Icon name="times-circle-o" size="lg" />
