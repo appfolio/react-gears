@@ -4,19 +4,14 @@ import Dropdown from '../Dropdown/Dropdown';
 import type { ComboboxItemsProps } from './ComboboxItems';
 import type { ComboboxSelectionsProps } from './ComboboxSelections';
 
-export interface ControlledMultiSelectComboboxProps {
+export interface ComboboxWrapperProps {
   children: [ReactElement<ComboboxSelectionsProps>, ReactElement<ComboboxItemsProps>];
   closeOnSelect?: boolean;
   isOpen?: boolean;
   onToggle?: () => void;
 }
 
-const ControlledMultiSelectCombobox = ({
-  children,
-  closeOnSelect,
-  isOpen,
-  onToggle,
-}: ControlledMultiSelectComboboxProps) => {
+const ComboboxWrapper = ({ children, closeOnSelect, isOpen, onToggle }: ComboboxWrapperProps) => {
   const handleToggle: MouseEventHandler = (e) => {
     if (closeOnSelect || (e?.target as HTMLButtonElement)?.getAttribute('role') !== 'menuitem') {
       onToggle?.();
@@ -30,4 +25,4 @@ const ControlledMultiSelectCombobox = ({
   );
 };
 
-export default ControlledMultiSelectCombobox;
+export default ComboboxWrapper;
