@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.7.0](https://github.com/appfolio/react-gears/compare/v7.6.1...v7.7.0) (2022-07-27)
+
+
+### Features
+
+* make MultiSelectCombobox composable, allow input of selections ([2873636](https://github.com/appfolio/react-gears/commit/2873636a1d7f2c0e570039fa23c365562ff0844a))
+
 ## [7.6.1](https://github.com/appfolio/react-gears/compare/v7.6.0...v7.6.1) (2022-07-20)
 
 
