@@ -1,16 +1,23 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import type { ComboboxOption, OnChangeEnventHandler } from './Combobox.types';
-import ComboboxItem from './ComboboxItem';
-import ComboboxItems from './ComboboxItems';
-import ComboboxSelection from './ComboboxSelection';
-import ComboboxSelections from './ComboboxSelections';
-import ControlledMultiSelectCombobox from './ControlledMultiSelectCombobox';
-import FilteredComboboxItems from './FilteredComboboxItems';
+import type {
+  ComboboxOption,
+  MultiSelectComboboxComponents,
+  OnChangeEnventHandler,
+  OptionKey,
+} from './Combobox.types';
+import DefaultComboboxItem from './ComboboxItem';
+import DefaultComboboxItems from './ComboboxItems';
+import DefaultComboboxSelection from './ComboboxSelection';
+import DefaultComboboxSelections from './ComboboxSelections';
+import DefaultComboboxWrapper from './ComboboxWrapper';
+import DefaultFilteredComboboxItems from './FilteredComboboxItems';
 
 export interface UncontrolledMultiSelectComboboxProps<T extends ComboboxOption> {
   allowCreation?: boolean;
   closeOnSelect?: boolean;
+  components?: MultiSelectComboboxComponents;
   filterOptions?: boolean;
+  initialSelections?: OptionKey[];
   onChange: OnChangeEnventHandler<T>;
   onCreateOption?: (newOptionText: string) => T;
   options: T[];
@@ -31,21 +38,37 @@ function isOptionFiltered<T extends ComboboxOption>(option: T, filterText: strin
 
 const defaultProps = {
   filterOptions: true,
+  initialSelections: [],
   optionComparisonKey: 'value',
+};
+
+const defaultComponents: Required<MultiSelectComboboxComponents> = {
+  FilteredItems: DefaultFilteredComboboxItems,
+  Item: DefaultComboboxItem,
+  Items: DefaultComboboxItems,
+  Selection: DefaultComboboxSelection,
+  Selections: DefaultComboboxSelections,
+  Wrapper: DefaultComboboxWrapper,
 };
 
 function UncontrolledMultiSelectCombobox<T extends ComboboxOption>({
   allowCreation,
   closeOnSelect,
+  components,
   filterOptions = defaultProps.filterOptions,
+  initialSelections = defaultProps.initialSelections,
   onCreateOption,
   onChange,
   options,
   optionComparisonKey = defaultProps.optionComparisonKey,
 }: UncontrolledMultiSelectComboboxProps<T>) {
+  const Components = { ...defaultComponents, ...components };
+
   const [isOpen, setIsOpen] = useState(false);
   const [visibleOptions, setVisibleOptions] = useState<T[]>([]);
-  const [selections, setSelections] = useState<T[]>([]);
+  const [selections, setSelections] = useState<T[]>(
+    options.filter((option) => initialSelections.includes(option[optionComparisonKey]))
+  );
   const [filterText, setFilterText] = useState('');
 
   useEffect(() => {
@@ -123,24 +146,20 @@ function UncontrolledMultiSelectCombobox<T extends ComboboxOption>({
   };
 
   return (
-    <ControlledMultiSelectCombobox
-      isOpen={isOpen}
-      onToggle={handleToggle}
-      closeOnSelect={closeOnSelect}
-    >
-      <ComboboxSelections onRemoveAll={handleRemoveAll}>
+    <Components.Wrapper isOpen={isOpen} onToggle={handleToggle} closeOnSelect={closeOnSelect}>
+      <Components.Selections onRemoveAll={handleRemoveAll}>
         {selections.map((selection) => (
-          <ComboboxSelection
+          <Components.Selection
             key={selection[optionComparisonKey]}
             onRemove={() => handleSelectionRemove(selection)}
           >
             {selection.label}
-          </ComboboxSelection>
+          </Components.Selection>
         ))}
-      </ComboboxSelections>
+      </Components.Selections>
 
       {filterOptions ? (
-        <FilteredComboboxItems
+        <Components.FilteredItems
           allowCreation={canCreateOption()}
           filterValue={filterText}
           filterInputRef={filterInputRef}
@@ -148,27 +167,27 @@ function UncontrolledMultiSelectCombobox<T extends ComboboxOption>({
           onFilterChange={handleFilterChanged}
         >
           {visibleOptions.map((option) => (
-            <ComboboxItem
+            <Components.Item
               key={option[optionComparisonKey]}
               onClick={() => handleOptionClicked(option)}
             >
               {option.label}
-            </ComboboxItem>
+            </Components.Item>
           ))}
-        </FilteredComboboxItems>
+        </Components.FilteredItems>
       ) : (
-        <ComboboxItems>
+        <Components.Items>
           {visibleOptions.map((option) => (
-            <ComboboxItem
+            <Components.Item
               key={option[optionComparisonKey]}
               onClick={() => handleOptionClicked(option)}
             >
               {option.label}
-            </ComboboxItem>
+            </Components.Item>
           ))}
-        </ComboboxItems>
+        </Components.Items>
       )}
-    </ControlledMultiSelectCombobox>
+    </Components.Wrapper>
   );
 }
 

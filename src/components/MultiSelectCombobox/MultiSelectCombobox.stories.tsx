@@ -3,12 +3,18 @@ import { boolean, text } from '@storybook/addon-knobs';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { states } from '../../tooling/comboboxData';
+import DropdownItem from '../Dropdown/DropdownItem';
+import Icon from '../Icon/Icon';
+import type { ItemComponent } from './Combobox.types';
 import ComboboxItem from './ComboboxItem';
+import type { ComboboxItemProps } from './ComboboxItem';
 import ComboboxItems from './ComboboxItems';
 import ComboboxSelection from './ComboboxSelection';
 import ComboboxSelections from './ComboboxSelections';
 import FilteredComboboxItems from './FilteredComboboxItems';
 import MultiSelectCombobox from './MultiSelectCombobox';
+
+type ComboboxStory = ComponentStory<typeof MultiSelectCombobox>;
 
 export default {
   title: ' Multi-Select Combobox',
@@ -28,8 +34,9 @@ const selections = [
   { label: 'Lemur', value: 'lemur', id: 200 },
 ];
 
-export const UncontrolledMode: ComponentStory<typeof MultiSelectCombobox> = () => (
+export const UncontrolledMode: ComboboxStory = () => (
   <MultiSelectCombobox
+    initialSelections={['CA', 'AK']}
     options={states}
     onChange={action('onChange')}
     filterOptions={boolean('filterOptions', true)}
@@ -42,7 +49,7 @@ export const UncontrolledMode: ComponentStory<typeof MultiSelectCombobox> = () =
   />
 );
 
-export const LongOptionLabels: ComponentStory<typeof MultiSelectCombobox> = () => (
+export const LongOptionLabels: ComboboxStory = () => (
   <MultiSelectCombobox
     options={[
       {
@@ -66,7 +73,7 @@ export const LongOptionLabels: ComponentStory<typeof MultiSelectCombobox> = () =
   />
 );
 
-export const ControlledModeSimple: ComponentStory<typeof MultiSelectCombobox> = () => (
+export const ControlledModeSimple: ComboboxStory = () => (
   <MultiSelectCombobox isOpen={boolean('isOpen', false)} onToggle={action('onToggle')}>
     <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
       {selections.map((selection) => (
@@ -85,7 +92,7 @@ export const ControlledModeSimple: ComponentStory<typeof MultiSelectCombobox> = 
   </MultiSelectCombobox>
 );
 
-export const ControlledModeWithFilter: ComponentStory<typeof MultiSelectCombobox> = () => (
+export const ControlledModeWithFilter: ComboboxStory = () => (
   <MultiSelectCombobox
     isOpen={boolean('isOpen', false)}
     onToggle={action('onToggle')}
@@ -111,4 +118,19 @@ export const ControlledModeWithFilter: ComponentStory<typeof MultiSelectCombobox
       ))}
     </FilteredComboboxItems>
   </MultiSelectCombobox>
+);
+
+const MyCustomItem: ItemComponent = ({ children, onClick }: ComboboxItemProps) => (
+  <DropdownItem onClick={onClick} className="fs-1">
+    <Icon name="award" className="me-2 text-primary" />
+    <span className="text-success">{children}</span>
+  </DropdownItem>
+);
+
+export const CustomItemRendering: ComboboxStory = () => (
+  <MultiSelectCombobox
+    onChange={action('onChange')}
+    options={states}
+    components={{ Item: MyCustomItem }}
+  />
 );

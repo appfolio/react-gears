@@ -5,7 +5,7 @@ import ComboboxItem from './ComboboxItem';
 import ComboboxItems from './ComboboxItems';
 import ComboboxSelection from './ComboboxSelection';
 import ComboboxSelections from './ComboboxSelections';
-import ControlledMultiSelectCombobox from './ControlledMultiSelectCombobox';
+import ComboboxWrapper from './ComboboxWrapper';
 import FilteredComboboxItems from './FilteredComboboxItems';
 
 describe('<MultiSelectCombobox>', () => {
@@ -19,12 +19,12 @@ describe('<MultiSelectCombobox>', () => {
   describe('Open/close behavior', () => {
     it('has visible items when isOpen is true', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <ComboboxItems>
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </ComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       const itemsMenu = await screen.findByRole('menu', { name: 'Menu Items' });
@@ -33,12 +33,12 @@ describe('<MultiSelectCombobox>', () => {
 
     it('does not have visible items when isOpen is false', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen={false} onToggle={toggleSpy}>
           <ComboboxSelections />
           <ComboboxItems>
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </ComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       const menu = await screen.findByRole('menu', { hidden: true });
@@ -54,12 +54,12 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can fire the onClick event', () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen={false} onToggle={toggleSpy}>
           <ComboboxSelections />
           <ComboboxItems>
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </ComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       user.click(screen.getByText('Label'));
@@ -70,12 +70,12 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can fire the onClick and onToggle events', () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={toggleSpy} closeOnSelect>
+        <ComboboxWrapper isOpen={false} onToggle={toggleSpy} closeOnSelect>
           <ComboboxSelections />
           <ComboboxItems>
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </ComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       user.click(screen.getByText('Label'));
@@ -88,12 +88,12 @@ describe('<MultiSelectCombobox>', () => {
   describe('<FilteredComboboxItems>', () => {
     it('can render the filtered combobox items container', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="">
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </FilteredComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       await screen.findByRole('menu');
@@ -102,12 +102,12 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render the filtered combobox items container with filter text', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="Alabama">
             <ComboboxItem onClick={clickSpy}>Label</ComboboxItem>
           </FilteredComboboxItems>
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       await screen.findByRole('menu');
@@ -116,10 +116,10 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render the container with no children', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="Alabama" />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       await screen.findByRole('menu');
@@ -128,10 +128,10 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render the no-children container with custom "no results" text', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="Alabama" noResultsLabel="Du hast nicht" />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       await screen.findByRole('menu');
@@ -140,10 +140,10 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render a link to create an option', async () => {
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="Alabama" allowCreation />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       const createLink = await screen.findByText('Create Alabama');
@@ -153,14 +153,14 @@ describe('<MultiSelectCombobox>', () => {
     it('calls the onCreateClick event', async () => {
       const createClickSpy = jest.fn();
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems
             filterValue="Alabama"
             allowCreation
             onCreateClick={createClickSpy}
           />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       const createLink = await screen.findByText('Create Alabama');
@@ -172,10 +172,10 @@ describe('<MultiSelectCombobox>', () => {
     it('calls the onFilterChange event', async () => {
       const filterChangeSpy = jest.fn();
       render(
-        <ControlledMultiSelectCombobox isOpen onToggle={toggleSpy}>
+        <ComboboxWrapper isOpen onToggle={toggleSpy}>
           <ComboboxSelections />
           <FilteredComboboxItems filterValue="" onFilterChange={filterChangeSpy} />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       await screen.findByRole('menu');
@@ -188,10 +188,10 @@ describe('<MultiSelectCombobox>', () => {
   describe('<ComboboxSelections>', () => {
     it('can render the component', () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections />
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       expect(screen.getByText('Click to select an option...')).toBeInTheDocument();
@@ -199,10 +199,10 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render with a custom placeholder', () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections placeholder="This is custom" />
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       expect(screen.getByText('This is custom')).toBeInTheDocument();
@@ -210,32 +210,86 @@ describe('<MultiSelectCombobox>', () => {
 
     it('can render existing selections', () => {
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections>
             <ComboboxSelection>Label</ComboboxSelection>
             <ComboboxSelection>Label2</ComboboxSelection>
           </ComboboxSelections>
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       expect(screen.getAllByRole('listitem').length).toBe(2);
       expect(screen.getByText('Label')).toBeInTheDocument();
     });
 
-    it('can fire the onRemoveAll event', () => {
+    it('can fire the onRemoveAll event from a mouse click', () => {
       const removeAllSpy = jest.fn();
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections onRemoveAll={removeAllSpy}>
             <ComboboxSelection>Label</ComboboxSelection>
           </ComboboxSelections>
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       user.click(screen.getByLabelText('Remove all selections'));
       expect(removeAllSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('can fire the onRemoveAll event when the button is focused and {enter} is typed', () => {
+      const removeAllSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections onRemoveAll={removeAllSpy}>
+            <ComboboxSelection>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const removeAllButton = screen.getByLabelText('Remove all selections');
+      removeAllButton.focus();
+      user.keyboard('{enter}');
+
+      expect(removeAllSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('can fire the onRemoveAll event when the button is focused and {space} is typed', () => {
+      const removeAllSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections onRemoveAll={removeAllSpy}>
+            <ComboboxSelection>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const removeAllButton = screen.getByLabelText('Remove all selections');
+      removeAllButton.focus();
+      user.keyboard('{space}');
+
+      expect(removeAllSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('can fire the onRemoveAll event when the button is focused and "z" is typed', () => {
+      const removeAllSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections onRemoveAll={removeAllSpy}>
+            <ComboboxSelection>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const removeAllButton = screen.getByLabelText('Remove all selections');
+      removeAllButton.focus();
+      user.keyboard('z');
+
+      expect(removeAllSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -243,12 +297,12 @@ describe('<MultiSelectCombobox>', () => {
     it('can render the selection', () => {
       const removeSpy = jest.fn();
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections>
             <ComboboxSelection onRemove={removeSpy}>Label</ComboboxSelection>
           </ComboboxSelections>
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       expect(screen.getByText('Label')).toBeInTheDocument();
@@ -257,12 +311,12 @@ describe('<MultiSelectCombobox>', () => {
     it('can call onRemove when the close button within the selection is clicked', () => {
       const removeSpy = jest.fn();
       render(
-        <ControlledMultiSelectCombobox isOpen={false} onToggle={() => {}}>
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
           <ComboboxSelections>
             <ComboboxSelection onRemove={removeSpy}>Label</ComboboxSelection>
           </ComboboxSelections>
           <ComboboxItems />
-        </ControlledMultiSelectCombobox>
+        </ComboboxWrapper>
       );
 
       const closeButton = within(screen.getByRole('list')).getByRole('button', {
@@ -270,6 +324,63 @@ describe('<MultiSelectCombobox>', () => {
       });
       user.click(closeButton);
       expect(removeSpy).toHaveBeenCalled();
+    });
+
+    it('can call onRemove when the close button within the selection is focused and {space} is typed', () => {
+      const removeSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections>
+            <ComboboxSelection onRemove={removeSpy}>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const closeButton = within(screen.getByRole('list')).getByRole('button', {
+        hidden: true,
+      });
+      closeButton.focus();
+      user.keyboard('{space}');
+      expect(removeSpy).toHaveBeenCalled();
+    });
+
+    it('can call onRemove when the close button within the selection is focused and {enter} is typed', () => {
+      const removeSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections>
+            <ComboboxSelection onRemove={removeSpy}>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const closeButton = within(screen.getByRole('list')).getByRole('button', {
+        hidden: true,
+      });
+      closeButton.focus();
+      user.keyboard('{enter}');
+      expect(removeSpy).toHaveBeenCalled();
+    });
+
+    it('does not call onRemove when the close button within the selection is focused and "a" is typed', () => {
+      const removeSpy = jest.fn();
+      render(
+        <ComboboxWrapper isOpen={false} onToggle={() => {}}>
+          <ComboboxSelections>
+            <ComboboxSelection onRemove={removeSpy}>Label</ComboboxSelection>
+          </ComboboxSelections>
+          <ComboboxItems />
+        </ComboboxWrapper>
+      );
+
+      const closeButton = within(screen.getByRole('list')).getByRole('button', {
+        hidden: true,
+      });
+      closeButton.focus();
+      user.keyboard('a');
+      expect(removeSpy).not.toHaveBeenCalled();
     });
   });
 });

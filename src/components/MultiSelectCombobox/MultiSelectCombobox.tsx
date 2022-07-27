@@ -1,14 +1,14 @@
 import React, { Children } from 'react';
 import type { ComboboxOption, ControlledModeChildren } from './Combobox.types';
-import type { ControlledMultiSelectComboboxProps } from './ControlledMultiSelectCombobox';
-import ControlledMultiSelectCombobox from './ControlledMultiSelectCombobox';
-import type { UncontrolledMultiSelectComboboxProps } from './UncontrolledMultiSelectCombobox';
+import type { ComboboxWrapperProps } from './ComboboxWrapper';
+import ComboboxWrapper from './ComboboxWrapper';
 import UncontrolledMultiSelectCombobox from './UncontrolledMultiSelectCombobox';
+import type { UncontrolledMultiSelectComboboxProps } from './UncontrolledMultiSelectCombobox';
 import checkInvariantViolations from './util/checkInvariantViolations';
 
 interface MultiSelectComboboxProps<T extends ComboboxOption>
   extends Partial<UncontrolledMultiSelectComboboxProps<T>>,
-    Partial<ControlledMultiSelectComboboxProps> {}
+    Partial<ComboboxWrapperProps> {}
 
 function MultiSelectCombobox<T extends ComboboxOption>({
   children,
@@ -32,9 +32,9 @@ function MultiSelectCombobox<T extends ComboboxOption>({
     );
   }
   return (
-    <ControlledMultiSelectCombobox isOpen={isOpen} onToggle={onToggle} {...remainingProps}>
+    <ComboboxWrapper isOpen={isOpen} onToggle={onToggle} {...remainingProps}>
       {children as ControlledModeChildren}
-    </ControlledMultiSelectCombobox>
+    </ComboboxWrapper>
   );
 }
 
