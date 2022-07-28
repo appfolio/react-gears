@@ -1,12 +1,10 @@
-import type { ReactElement } from 'react';
-import ComboboxItem from './ComboboxItem';
+import type { ComponentType, ReactElement } from 'react';
+import type { ComboboxItemProps } from './ComboboxItem';
 import type { ComboboxItemsProps } from './ComboboxItems';
-import ComboboxItems from './ComboboxItems';
-import ComboboxSelection from './ComboboxSelection';
+import type { ComboboxSelectionProps } from './ComboboxSelection';
 import type { ComboboxSelectionsProps } from './ComboboxSelections';
-import ComboboxSelections from './ComboboxSelections';
-import ComboboxWrapper from './ComboboxWrapper';
-import FilteredComboboxItems from './FilteredComboboxItems';
+import type { ComboboxWrapperProps } from './ComboboxWrapper';
+import type { FilteredComboboxItemsProps } from './FilteredComboboxItems';
 
 export interface ComboboxOption {
   label: string;
@@ -23,12 +21,12 @@ export type ControlledModeChildren = [
 
 export type OptionKey = string | number;
 
-export type FilteredItemsComponent = typeof FilteredComboboxItems;
-export type ItemComponent = typeof ComboboxItem;
-export type ItemsComponent = typeof ComboboxItems;
-export type SelectionComponent = typeof ComboboxSelection;
-export type SelectionsComponent = typeof ComboboxSelections;
-export type WrapperComponent = typeof ComboboxWrapper;
+export type FilteredItemsComponent = ComponentType<FilteredComboboxItemsProps>;
+export type ItemComponent = ComponentType<ComboboxItemProps>;
+export type ItemsComponent = ComponentType<ComboboxItemsProps>;
+export type SelectionComponent = ComponentType<ComboboxSelectionProps>;
+export type SelectionsComponent = ComponentType<ComboboxSelectionsProps>;
+export type WrapperComponent = ComponentType<ComboboxWrapperProps>;
 
 export interface MultiSelectComboboxComponents {
   FilteredItems?: FilteredItemsComponent;
