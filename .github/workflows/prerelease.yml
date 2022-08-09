@@ -18,8 +18,8 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: yarn install --immutable
       - run: yarn dist
-      - run: yarn version --prerelease --ignore-scripts --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false
-      - run: yarn publish --ignore-scripts --tag $GITHUB_HEAD_REF
+      - run: npm version prerelease --ignore-scripts --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false
+      - run: npm publish --ignore-scripts --tag $GITHUB_HEAD_REF
       - name: Extract NPM package name
         run: echo "::set-output name=npm-name::`node -p -e "require('./package.json').name"`"
         id: npm-name

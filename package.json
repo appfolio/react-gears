@@ -23,9 +23,9 @@
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src --ext .js,.ts,.jsx,.tsx",
-    "eslint:fix": "npm run eslint -- --fix",
-    "lint": "npm run tslint && npm run eslint",
-    "lint:ts": "npm run dist",
+    "eslint:fix": "yarn eslint --fix",
+    "lint": "yarn tslint && yarn eslint",
+    "lint:ts": "yarn dist",
     "format": "prettier --check src",
     "format:fix": "prettier --write src",
     "test": "jest --coverage",
@@ -33,18 +33,18 @@
     "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "docs": "build-storybook -o docs",
-    "version": "npm run docs && git add -A docs",
+    "version": "yarn docs && git add -A docs",
     "clean": "rm -rf esm lib",
     "dist:types": "tsc --project tsconfig.build.json",
     "dist:types:js": "scripts/copyDTSFiles.js",
     "dist:esm": "babel src --out-dir esm --config-file ./babel.esm.config.js --extensions '.js,.ts,.tsx'",
     "dist:lib": "babel src --out-dir lib --config-file ./babel.build.config.js --extensions '.js,.ts,.tsx'",
-    "dist": "npm run clean && concurrently \"npm:dist:*\"",
-    "publish:prerelease": "TAG=beta npm publish --tag beta",
-    "publish:npm": "npm publish --ignore-scripts --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
-    "publish:github": "npm publish --ignore-scripts",
-    "prepublishOnly": "npm run dist",
-    "postpublish": "npm run publish:npm && git push --no-verify && git push --tags"
+    "dist": "yarn clean && concurrently \"yarn:dist:*\"",
+    "publish:prerelease": "TAG=beta yarn publish --tag beta",
+    "publish:npm": "yarn publish --ignore-scripts --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
+    "publish:github": "yarn publish --ignore-scripts",
+    "prepublishOnly": "yarn dist",
+    "postpublish": "yarn publish:npm && git push --no-verify && git push --tags"
   },
   "peerDependencies": {
     "react": ">= 16.8",
@@ -164,5 +164,6 @@
     "@types/react": "^16.14.26",
     "@types/react-dom": "^16.9.16"
   },
-  "browserslist": "last 2 versions"
+  "browserslist": "last 2 versions",
+  "stableVersion": "7.7.0"
 }
