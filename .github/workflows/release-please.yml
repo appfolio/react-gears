@@ -11,7 +11,7 @@ jobs:
         id: release-please
         with:
           release-type: node
-          package-name: "@appfolio/react-gears"
+          package-name: '@appfolio/react-gears'
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
           command: release-pr
       - uses: actions/github-script@v5
@@ -26,14 +26,14 @@ jobs:
         if: ${{ steps.release-please.outputs.pr }}
         with:
           ref: ${{ steps.extract-branch.outputs.result }}
-      - run: npm ci
+      - run: yarn install --immutable
         if: ${{ steps.release-please.outputs.pr }}
-      - run: npm run docs
+      - run: yarn docs
         if: ${{ steps.release-please.outputs.pr }}
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: ${{ steps.release-please.outputs.pr }}
         with:
-          commit_message: "docs: update documentation for the latest release"
+          commit_message: 'docs: update documentation for the latest release'
 
   release:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: "@appfolio/react-gears"
+          package-name: '@appfolio/react-gears'
           command: github-release
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
@@ -51,11 +51,11 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com/'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm ci
+      - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm run dist
+      - run: yarn dist
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm run publish:github
+      - run: yarn publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
@@ -63,7 +63,7 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm run publish:npm
+      - run: yarn publish:npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
