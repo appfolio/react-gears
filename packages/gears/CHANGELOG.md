@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.7.2
+
+### Patch Changes
+
+- Add all files for move to a monorepo
+
 ## 7.7.1
 
 ### Patch Changes
