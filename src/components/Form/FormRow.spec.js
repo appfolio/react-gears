@@ -3,7 +3,6 @@ import { render, shallow } from 'enzyme';
 import React from 'react';
 import CheckboxInput from '../Checkbox/CheckboxInput';
 import FileInput from '../Input/FileInput';
-import Input from '../Input/Input';
 import StaticInput from '../Input/StaticInput';
 import RadioInput from '../Radio/RadioInput';
 import FormChoice from './FormChoice';
@@ -12,22 +11,17 @@ import FormRow from './FormRow';
 
 describe('<FormRow />', () => {
   describe('by default', () => {
-    const component = shallow(<FormRow label="First Name" id="someID" size="sm" />);
+    const component = render(<FormRow label="First Name" id="someID" size="sm" />);
 
-    it('should create a FormLabelGroup', () => {
-      const formLabelGroup = component.find(FormLabelGroup);
-      assert.equal(formLabelGroup.length, 1);
-      assert.equal(formLabelGroup.prop('label'), 'First Name');
-      assert.equal(formLabelGroup.prop('inputId'), 'someID');
-      assert.equal(formLabelGroup.prop('size'), 'sm');
+    it('should have a label', () => {
+      const labelEl = component.find('label[for=someID]');
+      assert.equal(labelEl.text(), 'First Name');
     });
 
-    it('should have an Input', () => {
-      const input = component.find(Input);
-      assert.equal(input.length, 1);
-      assert.equal(input.prop('id'), 'someID');
-      assert.equal(input.prop('size'), 'sm');
-      assert.equal(input.prop('type'), 'text');
+    it('should have an input', () => {
+      const inputEl = component.find('input#someID');
+      assert.equal(inputEl.attr().type, 'text');
+      assert.match(inputEl.attr().class, /sm/);
     });
   });
 
@@ -119,27 +113,25 @@ describe('<FormRow />', () => {
   });
 
   describe('with children', () => {
-    const component = shallow(
-      <FormRow label="First Name" type="select">
-        <FormChoice value="a">A</FormChoice>
-        {false && <FormChoice value="b">B</FormChoice>}
-        {undefined && <FormChoice value="c">C</FormChoice>}
-        {true && <FormChoice value="d">D</FormChoice>}
+    const component = render(
+      <FormRow label="Items" type="checkbox">
+        <FormChoice id="cb1" value="A" />
+        {false && <FormChoice id="cb2" value="B" />}
+        <FormChoice id="cb3" value="C" />
       </FormRow>
     );
 
     it('should pass type to children', () => {
-      const input = component.find(Input);
-      input.children().forEach((child) => {
-        assert.equal(child.prop('type'), 'select');
+      const inputEls = component.find('input');
+      assert(inputEls.length !== 0);
+      inputEls.each((_, inputEl) => {
+        assert.equal(inputEl.attribs.type, 'checkbox');
       });
     });
 
     it('should ignore falsy children', () => {
-      const input = component.find(Input);
-      assert.equal(input.children().length, 2);
-      assert.equal(input.childAt(0).children().text(), 'A');
-      assert.equal(input.childAt(1).children().text(), 'D');
+      assert.equal(component.find('input').length, 2);
+      assert.equal(component.find('#cb2').length, 0);
     });
   });
 });
