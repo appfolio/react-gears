@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import Input from './Input';
 
-interface FileInputProps extends Omit<React.ComponentProps<typeof Input>, 'type'> {
+export interface FileInputProps extends Omit<React.ComponentProps<typeof Input>, 'type'> {
   onChange: (files: FileList | null) => void;
 }
 

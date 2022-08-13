@@ -1,9 +1,21 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import type { InputProps } from 'reactstrap';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
+
+interface CheckboxBooleanInputSpecificProps {
+  checkboxLabel?: React.ReactNode;
+  onChange?: (isChecked: boolean) => void;
+  value?: boolean;
+}
+type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
+export type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
+  InputProps,
+  CheckboxBooleanInputSpecificProps
+>;
 
 let count = 0;
 
@@ -11,7 +23,7 @@ function getID() {
   return `checkbox-boolean-input-${count++}`;
 }
 
-class CheckboxBooleanInput extends React.Component {
+class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps> {
   static propTypes = {
     id: PropTypes.string,
     checkboxLabel: PropTypes.node,
@@ -20,10 +32,12 @@ class CheckboxBooleanInput extends React.Component {
     value: PropTypes.bool,
   };
 
-  constructor(props) {
+  id = getID();
+
+  constructor(props: CheckboxBooleanInputProps) {
     super(props);
 
-    this.id = props.id || getID();
+    this.id = props.id || this.id;
   }
 
   render() {
