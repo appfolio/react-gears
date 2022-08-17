@@ -19,7 +19,7 @@ describe('range', () => {
   });
 
   it('should support a step of 0', () => {
-    assert.deepEqual(range(1, 4, 0), [1, 1, 1]);
+    assert.deepEqual(range(1, 4, 0), []);
   });
 
   it('should work with a step larger than end', () => {

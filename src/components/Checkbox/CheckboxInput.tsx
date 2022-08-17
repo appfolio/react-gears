@@ -1,24 +1,6 @@
-import React, { FC, ReactNode } from 'react';
-import { InputProps } from 'reactstrap';
-import CheckboxBooleanInput from './CheckboxBooleanInput';
-import CheckboxListInput from './CheckboxListInput';
-
-interface CheckboxListInputProps {
-  children?: ReactNode;
-  onChange?: (value: string[]) => void;
-  value?: string[];
-}
-
-interface CheckboxBooleanInputSpecificProps {
-  checkboxLabel: ReactNode;
-  onChange?: (isChecked: boolean) => void;
-  value?: boolean;
-}
-type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
-type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
-  InputProps,
-  CheckboxBooleanInputSpecificProps
->;
+import React, { FC } from 'react';
+import CheckboxBooleanInput, { CheckboxBooleanInputProps } from './CheckboxBooleanInput';
+import CheckboxListInput, { CheckboxListInputProps } from './CheckboxListInput';
 
 type CheckboxInputProps = CheckboxListInputProps | CheckboxBooleanInputProps;
 

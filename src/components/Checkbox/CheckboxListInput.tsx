@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class CheckboxListInput extends React.Component {
+export interface CheckboxListInputProps {
+  children?: React.ReactNode;
+  className?: string;
+  onChange?: (value: string[]) => void;
+  value?: string[];
+}
+
+class CheckboxListInput extends React.Component<CheckboxListInputProps> {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -9,7 +16,7 @@ class CheckboxListInput extends React.Component {
     value: PropTypes.array,
   };
 
-  onChange = (e) => {
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.onChange) {
       const { checked, value } = e.target;
       const currentSelection = (this.props.value || []).slice(0);
