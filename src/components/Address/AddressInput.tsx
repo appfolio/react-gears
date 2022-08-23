@@ -218,7 +218,7 @@ const AddressInput = ({
               invalid={!!error.state}
               onBlur={() => onBlur(inputName.state)}
               onChange={(state) => {
-                valueChanged({ state });
+                valueChanged({ [inputName.state]: state });
               }}
               disabled={disabled}
             />
@@ -269,7 +269,7 @@ const AddressInput = ({
             invalid={!!error.countryCode}
             onBlur={() => onBlur(inputName.countryCode)}
             onChange={(countryCode) => {
-              valueChanged({ countryCode });
+              valueChanged({ [inputName.countryCode]: countryCode });
             }}
             disabled={disabled}
           />
