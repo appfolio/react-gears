@@ -21,7 +21,7 @@ export const Default = () => (
     feature={knobs.text('feature', 'default')}
     modalTitle={knobs.text('modalTitle', 'Modal Title')}
     outline={knobs.boolean('outline', false)}
-    recipient={knobs.text('recipient', 'recipient@example.com')}
+    recipient={knobs.text('recipient', 'my_team_name')}
   />
 );
 
