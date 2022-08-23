@@ -39,6 +39,7 @@ type InputComp<T extends TypeProp> = T extends InputTypes
   : T;
 
 type BaseFormRowProps = {
+  className?: string;
   children?: React.ReactNode;
   feedback?: any;
   hint?: string;
