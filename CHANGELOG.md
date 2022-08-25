@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.8.2](https://github.com/appfolio/react-gears/compare/v7.8.1...v7.8.2) (2022-08-25)
+
+
+### Bug Fixes
+
+* remove postpublish ([d401410](https://github.com/appfolio/react-gears/commit/d401410f71d68467d558695b40d0e94e608e680c))
+* remove unsupported ignore-scripts flag ([b7bc621](https://github.com/appfolio/react-gears/commit/b7bc6211ea70a98035545508ac419d802bf54b46))
+
 ## [7.8.1](https://github.com/appfolio/react-gears/compare/v7.8.0...v7.8.1) (2022-08-25)
 
 
