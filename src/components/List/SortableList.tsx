@@ -1,6 +1,6 @@
 import orderBy from 'lodash.orderby';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import List, { ListProps } from './List';
 
 export interface SortableListProps<T> extends Omit<ListProps<T>, 'onFilter'> {
@@ -26,20 +26,15 @@ function SortableList<T>({
   const [ascending, setAscending] = useState<boolean | undefined>(
     sort.ascending === undefined ? true : sort.ascending
   );
-  const [sorted, setSorted] = useState(items);
 
-  useEffect(() => {
-    const properties = typeof sortProperty === 'string' ? [sortProperty] : sortProperty;
-    const direction = properties?.map(() => (ascending ? 'asc' : 'desc'));
+  const properties = typeof sortProperty === 'string' ? [sortProperty] : sortProperty;
+  const direction = properties?.map(() => (ascending ? 'asc' : 'desc'));
 
-    setSorted(
-      orderBy(
-        filter && onFilter ? items.filter((item: T) => onFilter(filter, item)) : items,
-        properties,
-        direction
-      )
-    );
-  }, [ascending, filter, items, onFilter, sortProperty]);
+  const itemsSorted: T[] = orderBy(
+    filter && onFilter ? items.filter((item: T) => onFilter(filter, item)) : items,
+    properties,
+    direction
+  );
 
   const handleSort = (sortBy: SortableListProps<T>['sort']) => {
     setSortProperty(sortBy?.property);
@@ -53,7 +48,7 @@ function SortableList<T>({
       onSort={sortOptions && handleSort}
       sort={{ property: sortProperty, ascending }}
       sortOptions={sortOptions}
-      items={sorted}
+      items={itemsSorted}
       flush
       scrollPositionKey={scrollPositionKey}
       {...props}
