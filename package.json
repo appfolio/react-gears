@@ -41,8 +41,8 @@
     "dist:lib": "babel src --out-dir lib --config-file ./babel.build.config.js --extensions '.js,.ts,.tsx'",
     "dist": "yarn clean && concurrently \"yarn:dist:*\"",
     "publish:prerelease": "TAG=beta yarn npm publish --tag beta",
-    "publish:npm": "yarn npm publish --ignore-scripts --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
-    "publish:github": "yarn npm publish --ignore-scripts",
+    "publish:npm": "yarn npm publish --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
+    "publish:github": "yarn npm publish",
     "prepublishOnly": "yarn dist",
     "postpublish": "yarn publish:npm && git push --no-verify && git push --tags"
   },
