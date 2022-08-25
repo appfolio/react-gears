@@ -1,5 +1,18 @@
 # Change Log
 
+## [7.8.3](https://github.com/appfolio/react-gears/compare/v7.8.2...v7.8.3) (2022-08-25)
+
+
+### Bug Fixes
+
+* remove yarn publish ([f47d2a7](https://github.com/appfolio/react-gears/commit/f47d2a7254e706acb8a22b82e32fc93cad82436e))
+* use otp for auth token ([b3104ad](https://github.com/appfolio/react-gears/commit/b3104ad238769783897bafc41ff4286f6ae39691))
+
+
+### Miscellaneous
+
+* only use node 16 for tests ([67eace4](https://github.com/appfolio/react-gears/commit/67eace4f8e5680acf68e32e684df8b8fdc166477))
+
 ## [7.8.2](https://github.com/appfolio/react-gears/compare/v7.8.1...v7.8.2) (2022-08-25)
 
 
