@@ -350,9 +350,11 @@ describe('<List />', () => {
           ]}
         />
       );
-
+      assert.equal(wrapper.find('.js-sort-header').find('Icon').props().name, 'arrow-up');
+      
       wrapper.find('.js-sort-header').find('button').simulate('click');
 
+      assert.equal(wrapper.find('.js-sort-header').find('Icon').props().name, 'arrow-down');
       sinon.assert.calledWithExactly(onSort, { property: 'last', ascending: false });
     });
   });
