@@ -63,7 +63,7 @@ const SortHeader = ({
           id="sort-button"
           onClick={() => onChangeAscending(!ascending)}
         >
-          <Icon name={ascending ? 'arrow-down' : 'arrow-up'} size="lg" />
+          <Icon name={ascending ? 'arrow-up' : 'arrow-down'} size="lg" />
           <span className="sr-only">Change Sort Direction</span>
         </Button>
       )}
