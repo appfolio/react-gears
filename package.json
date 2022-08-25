@@ -43,8 +43,7 @@
     "publish:prerelease": "TAG=beta yarn npm publish --tag beta",
     "publish:npm": "yarn npm publish --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
     "publish:github": "yarn npm publish",
-    "prepublishOnly": "yarn dist",
-    "postpublish": "yarn publish:npm && git push --no-verify && git push --tags"
+    "prepublishOnly": "yarn dist"
   },
   "peerDependencies": {
     "react": ">= 16.8",
