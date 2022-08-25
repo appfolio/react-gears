@@ -36,9 +36,7 @@
     "dist:types:js": "scripts/copyDTSFiles.js",
     "dist:esm": "babel src --out-dir esm --config-file ./babel.esm.config.js --extensions '.js,.ts,.tsx'",
     "dist:lib": "babel src --out-dir lib --config-file ./babel.build.config.js --extensions '.js,.ts,.tsx'",
-    "dist": "yarn clean && concurrently \"yarn:dist:*\"",
-    "publish:prerelease": "TAG=beta yarn npm publish --tag beta --otp $NODE_AUTH_TOKEN",
-    "publish": "yarn npm publish --tag latest --access public --otp $NODE_AUTH_TOKEN"
+    "dist": "yarn clean && concurrently \"yarn:dist:*\""
   },
   "peerDependencies": {
     "react": ">= 16.8",
