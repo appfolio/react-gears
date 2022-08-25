@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.1](https://github.com/appfolio/react-gears/compare/v7.8.0...v7.8.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* release scripts must use yarn npm publish ([a3a3443](https://github.com/appfolio/react-gears/commit/a3a34439e4570c1893ecc35ed430881ba837b0e1))
+
 ## [7.8.0](https://github.com/appfolio/react-gears/compare/v7.7.0...v7.8.0) (2022-08-25)
 
 
