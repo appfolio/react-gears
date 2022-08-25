@@ -17,9 +17,6 @@
     "lib",
     "esm"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "tslint": "tsc --noEmit",
     "eslint": "eslint src --ext .js,.ts,.jsx,.tsx",
@@ -39,11 +36,7 @@
     "dist:types:js": "scripts/copyDTSFiles.js",
     "dist:esm": "babel src --out-dir esm --config-file ./babel.esm.config.js --extensions '.js,.ts,.tsx'",
     "dist:lib": "babel src --out-dir lib --config-file ./babel.build.config.js --extensions '.js,.ts,.tsx'",
-    "dist": "yarn clean && concurrently \"yarn:dist:*\"",
-    "publish:prerelease": "TAG=beta yarn npm publish --tag beta",
-    "publish:npm": "yarn npm publish --tag ${TAG:='latest'} --access public --@appfolio:registry='https://registry.npmjs.org'",
-    "publish:github": "yarn npm publish",
-    "prepublishOnly": "yarn dist"
+    "dist": "yarn clean && concurrently \"yarn:dist:*\""
   },
   "peerDependencies": {
     "react": ">= 16.8",

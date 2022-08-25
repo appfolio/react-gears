@@ -55,7 +55,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn dist
         if: ${{ steps.release.outputs.release_created }}
-      - run: yarn publish:github
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
@@ -63,7 +63,7 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
-      - run: yarn publish:npm
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
