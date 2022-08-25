@@ -523,8 +523,9 @@ describe('AddressInput', () => {
 
       Object.values(inputName).forEach((field) => {
         const input = component.find(`[name="${field}"]`).hostNodes();
-        input.simulate('change', { target: { name: field, value: '' } });
-        assert(onChange.called);
+        // State input doesn't support empty string so we'll use null for this test
+        input.simulate('change', { target: { name: field, value: null } });
+        sinon.assert.calledWith(onChange, { [field]: null });
       });
     });
 
