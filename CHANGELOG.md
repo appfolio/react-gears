@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.7](https://github.com/appfolio/react-gears/compare/v7.8.6...v7.8.7) (2022-08-26)
+
+
+### Bug Fixes
+
+* set auth token for publish ([a7a0a80](https://github.com/appfolio/react-gears/commit/a7a0a80deeea8c16665dd119a6bed159cced9f50))
+
 ## [7.8.6](https://github.com/appfolio/react-gears/compare/v7.8.5...v7.8.6) (2022-08-26)
 
 
