@@ -4,10 +4,6 @@ on:
 name: prerelease
 jobs:
   prerelease:
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,11 +11,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/
       - run: yarn install --immutable
       - run: yarn dist
       - run: npm version prerelease --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false
-      - run: npm publish --tag $GITHUB_HEAD_REF
+      - run: |
+          npm config set registry https://npm.pkg.github.com
+          npm config set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+          npm publish --tag $GITHUB_HEAD_REF
       - name: Extract NPM package name
         run: echo "::set-output name=npm-name::`node -p -e "require('./package.json').name"`"
         id: npm-name
