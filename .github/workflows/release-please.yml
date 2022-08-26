@@ -36,10 +36,6 @@ jobs:
           commit_message: 'docs: update documentation for the latest release'
 
   release:
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     runs-on: ubuntu-latest
     steps:
       - uses: google-github-actions/release-please-action@v3
@@ -53,15 +49,20 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-          registry-url: 'https://npm.pkg.github.com/'
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm config set _authToken=${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn dist
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish to GitHub
-        run: npm publish
+        run: |
+          npm config set registry https://npm.pkg.github.com
+          npm publish
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish to npm
-        run: npm publish --@appfolio:registry='https://registry.npmjs.org'
+        run: |
+          npm config set registry https://registry.npmjs.org
+          npm publish
         if: ${{ steps.release.outputs.release_created }}
