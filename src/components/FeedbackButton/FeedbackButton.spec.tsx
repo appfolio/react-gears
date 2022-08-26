@@ -17,11 +17,7 @@ describe('<FeedbackButton />', () => {
   it('submits feedback via doSubmit callback with all default properties', async () => {
     const doSubmit = jest.fn();
     const { getByRole, findByRole } = render(
-      <FeedbackButton
-        feature="test_feature"
-        recipient="test_team_name"
-        doSubmit={doSubmit}
-      />
+      <FeedbackButton feature="test_feature" recipient="test_team_name" doSubmit={doSubmit} />
     );
 
     const feedbackButton = getByRole('button');
