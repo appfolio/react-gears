@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.5](https://github.com/appfolio/react-gears/compare/v7.8.4...v7.8.5) (2022-08-26)
+
+
+### Bug Fixes
+
+* set registry to npmjs before publishing to npm ([1407b5b](https://github.com/appfolio/react-gears/commit/1407b5b4035dc0fd7fdf95faad1123b87cc2fd17))
+
 ## [7.8.4](https://github.com/appfolio/react-gears/compare/v7.8.3...v7.8.4) (2022-08-26)
 
 
