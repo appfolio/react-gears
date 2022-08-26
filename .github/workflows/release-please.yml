@@ -66,5 +66,5 @@ jobs:
       - name: Publish to npm
         run: |
           npm config set registry https://registry.npmjs.org
-          npm publish
+          npm publish --access public
         if: ${{ steps.release.outputs.release_created }}
