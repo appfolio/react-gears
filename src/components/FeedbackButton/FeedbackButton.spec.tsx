@@ -17,11 +17,7 @@ describe('<FeedbackButton />', () => {
   it('submits feedback via doSubmit callback with all default properties', async () => {
     const doSubmit = jest.fn();
     const { getByRole, findByRole } = render(
-      <FeedbackButton
-        feature="test_feature"
-        recipient="test_recipient@example.com"
-        doSubmit={doSubmit}
-      />
+      <FeedbackButton feature="test_feature" recipient="test_team_name" doSubmit={doSubmit} />
     );
 
     const feedbackButton = getByRole('button');
@@ -92,7 +88,7 @@ describe('<FeedbackButton />', () => {
       [
         {
           feature: 'test_feature',
-          recipient: 'test_recipient@example.com',
+          recipient: 'test_team_name',
           cc: undefined,
           rating: 5,
           comment: 'This is a comment!',
@@ -106,7 +102,7 @@ describe('<FeedbackButton />', () => {
     const { getByRole, findByRole } = render(
       <FeedbackButton
         feature="test_feature"
-        recipient="test_recipient@example.com"
+        recipient="test_team_name"
         doSubmit={doSubmit}
         backdrop
         cancelButtonText="Cancel2"
@@ -194,7 +190,7 @@ describe('<FeedbackButton />', () => {
       [
         {
           feature: 'test_feature',
-          recipient: 'test_recipient@example.com',
+          recipient: 'test_team_name',
           cc: undefined,
           rating: 5,
           comment: 'This is a comment!',
@@ -208,7 +204,7 @@ describe('<FeedbackButton />', () => {
     const { getByRole, findByRole } = render(
       <FeedbackButton
         feature="test_feature"
-        recipient="test_recipient@example.com"
+        recipient="test_team_name"
         doSubmit={doSubmit}
         commentIncluded={false}
         commentRequired={false}
@@ -270,7 +266,7 @@ describe('<FeedbackButton />', () => {
       [
         {
           feature: 'test_feature',
-          recipient: 'test_recipient@example.com',
+          recipient: 'test_team_name',
           cc: undefined,
           rating: 5,
           comment: null,
@@ -284,7 +280,7 @@ describe('<FeedbackButton />', () => {
     const { getByRole, findByRole } = render(
       <FeedbackButton
         feature="test_feature"
-        recipient="test_recipient@example.com"
+        recipient="test_team_name"
         doSubmit={doSubmit}
         ratingIncluded={false}
         ratingRequired={false}
@@ -323,7 +319,7 @@ describe('<FeedbackButton />', () => {
       [
         {
           feature: 'test_feature',
-          recipient: 'test_recipient@example.com',
+          recipient: 'test_team_name',
           cc: undefined,
           rating: null,
           comment: 'This is a comment!',
@@ -337,7 +333,7 @@ describe('<FeedbackButton />', () => {
     const { getByRole, findByRole } = render(
       <FeedbackButton
         feature="test_feature"
-        recipient="test_recipient@example.com"
+        recipient="test_team_name"
         doSubmit={doSubmit}
         ratingIncluded={false}
         ratingRequired={false}
@@ -376,7 +372,7 @@ describe('<FeedbackButton />', () => {
       [
         {
           feature: 'test_feature',
-          recipient: 'test_recipient@example.com',
+          recipient: 'test_team_name',
           cc: undefined,
           rating: null,
           comment: 'This is a comment!',
