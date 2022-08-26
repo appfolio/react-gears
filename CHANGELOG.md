@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.8](https://github.com/appfolio/react-gears/compare/v7.8.7...v7.8.8) (2022-08-26)
+
+
+### Bug Fixes
+
+* fix npm publish ([5bf6eaf](https://github.com/appfolio/react-gears/commit/5bf6eaf304f2def5fbdfa5b24c79994ff4ff643a))
+
 ## [7.8.7](https://github.com/appfolio/react-gears/compare/v7.8.6...v7.8.7) (2022-08-26)
 
 
