@@ -50,7 +50,9 @@ jobs:
         with:
           node-version: 16
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm config set _authToken=${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.GITHUB_TOKEN }}
+          npm config set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
