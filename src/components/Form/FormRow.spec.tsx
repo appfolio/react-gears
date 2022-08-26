@@ -125,7 +125,7 @@ describe('<FormRow />', () => {
       const inputEls = component.find('input');
       assert(inputEls.length !== 0);
       inputEls.each((_, inputEl) => {
-        assert.equal(inputEl.attribs.type, 'checkbox');
+        assert.equal((inputEl as any).attribs.type, 'checkbox');
       });
     });
 
