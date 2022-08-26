@@ -50,10 +50,6 @@ jobs:
         with:
           node-version: 16
         if: ${{ steps.release.outputs.release_created }}
-      - run: |
-          npm config set //registry.npmjs.org/:_authToken=${{ secrets.GITHUB_TOKEN }}
-          npm config set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
       - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn dist
@@ -61,10 +57,12 @@ jobs:
       - name: Publish to GitHub
         run: |
           npm config set registry https://npm.pkg.github.com
+          npm config set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
           npm publish
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish to npm
         run: |
           npm config set registry https://registry.npmjs.org
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
           npm publish --access public
         if: ${{ steps.release.outputs.release_created }}
