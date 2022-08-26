@@ -78,7 +78,9 @@ function FormRow<T extends TypeProp>({
   width,
   ...props
 }: FormRowProps<T>) {
-  const InputComponent = (typeof type === 'string' ? getInputByType(type as InputTypes) : type) as any;
+  const InputComponent = (
+    typeof type === 'string' ? getInputByType(type as InputTypes) : type
+  ) as any;
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
   const shouldPassChildren = type === 'checkbox' || type === 'radio' || type === 'select';
   const validityThings = shouldPassChildren ? { valid: !!validFeedback, invalid: !!feedback } : {};
