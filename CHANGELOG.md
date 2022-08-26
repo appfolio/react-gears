@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.6](https://github.com/appfolio/react-gears/compare/v7.8.5...v7.8.6) (2022-08-26)
+
+
+### Bug Fixes
+
+* release set config ([e7f0d40](https://github.com/appfolio/react-gears/commit/e7f0d40fff56fd3ec6c78c2832727c065a293742))
+
 ## [7.8.5](https://github.com/appfolio/react-gears/compare/v7.8.4...v7.8.5) (2022-08-26)
 
 
