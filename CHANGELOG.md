@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.9](https://github.com/appfolio/react-gears/compare/v7.8.8...v7.8.9) (2022-08-26)
+
+
+### Bug Fixes
+
+* use npm_token for npm publish ([3f1c1d0](https://github.com/appfolio/react-gears/commit/3f1c1d0ca312f726aab858d0b15a3cf91affd6aa))
+
 ## [7.8.8](https://github.com/appfolio/react-gears/compare/v7.8.7...v7.8.8) (2022-08-26)
 
 
