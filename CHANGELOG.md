@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.8.10](https://github.com/appfolio/react-gears/compare/v7.8.9...v7.8.10) (2022-08-26)
+
+
+### Bug Fixes
+
+* formatting ([cceca12](https://github.com/appfolio/react-gears/commit/cceca129af9412ea603fb097841a04050d568706))
+
+
+### Miscellaneous
+
+* fix recipient usage for FeedbackButton ([d3108fd](https://github.com/appfolio/react-gears/commit/d3108fd09b040c4fd142128240aac473fe31e410))
+
 ## [7.8.9](https://github.com/appfolio/react-gears/compare/v7.8.8...v7.8.9) (2022-08-26)
 
 
