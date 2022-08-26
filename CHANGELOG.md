@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.4](https://github.com/appfolio/react-gears/compare/v7.8.3...v7.8.4) (2022-08-26)
+
+
+### Miscellaneous
+
+* move auth token env ([b89fff3](https://github.com/appfolio/react-gears/commit/b89fff3368b847545631ef518e1b6a80cb3892ff))
+
 ## [7.8.3](https://github.com/appfolio/react-gears/compare/v7.8.2...v7.8.3) (2022-08-25)
 
 
