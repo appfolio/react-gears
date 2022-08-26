@@ -61,7 +61,7 @@ type FormRowProps<T extends TypeProp> = Omit<
 > &
   BaseFormRowProps & { type?: T };
 
-function FormRow<T extends InputTypes>({
+function FormRow<T extends InputTypes = 'text'>({
   children,
   feedback = '',
   hint = '',
