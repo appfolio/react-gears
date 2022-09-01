@@ -19,6 +19,8 @@ const defaultProps = {
 };
 
 type FormLabelGroupProps = React.PropsWithChildren<{
+  /** Deprecated. This prop does nothing. Do not use. */
+  className?: string;
   feedback?: React.ReactNode;
   hint?: React.ReactNode;
   inline?: boolean;
