@@ -78,12 +78,23 @@ function FormRow<T extends TypeProp>({
   width,
   ...props
 }: FormRowProps<T>) {
-  const InputComponent = (
-    typeof type === 'string' ? getInputByType(type as InputTypes) : type
+  const InputComponent = React.useMemo(
+    () => (typeof type === 'string' ? getInputByType(type as InputTypes) : type),
+    [type]
   ) as any;
   const [baseFeedback, childFeedback] = parseFeedback(feedback);
-  const shouldPassChildren = type === 'checkbox' || type === 'radio' || type === 'select';
-  const validityThings = shouldPassChildren ? { valid: !!validFeedback, invalid: !!feedback } : {};
+  const inputCouldHaveChildren = type === 'checkbox' || type === 'radio' || type === 'select';
+  const validProps = inputCouldHaveChildren ? { valid: !!validFeedback, invalid: !!feedback } : {};
+  const memoChildren = React.useMemo(
+    () =>
+      inputCouldHaveChildren
+        ? React.Children.map(
+            children,
+            (child) => React.isValidElement(child) && React.cloneElement(child, { type })
+          )
+        : undefined,
+    [inputCouldHaveChildren, children, type]
+  );
 
   return (
     <FormLabelGroup
@@ -100,13 +111,8 @@ function FormRow<T extends TypeProp>({
       validFeedback={validFeedback}
       width={width}
     >
-      <InputComponent id={id} size={size} {...validityThings} {...props} {...childFeedback}>
-        {shouldPassChildren
-          ? React.Children.map(
-              children,
-              (child) => React.isValidElement(child) && React.cloneElement(child, { type })
-            )
-          : undefined}
+      <InputComponent id={id} size={size} {...validProps} {...props} {...childFeedback}>
+        {memoChildren}
       </InputComponent>
     </FormLabelGroup>
   );
