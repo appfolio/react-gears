@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.12](https://github.com/appfolio/react-gears/compare/v7.8.11...v7.8.12) (2022-09-01)
+
+
+### Bug Fixes
+
+* form row input losing focus ([3d05854](https://github.com/appfolio/react-gears/commit/3d05854df6cd9e3d89e825b0f3ec98d71cdb6412))
+
 ## [7.8.11](https://github.com/appfolio/react-gears/compare/v7.8.10...v7.8.11) (2022-09-01)
 
 
