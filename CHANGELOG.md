@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.11](https://github.com/appfolio/react-gears/compare/v7.8.10...v7.8.11) (2022-09-01)
+
+
+### Bug Fixes
+
+* add classname prop for backwards compatibility ([03ad4c7](https://github.com/appfolio/react-gears/commit/03ad4c70129fd2c75798bca8d70f3a8c65fb3c37))
+
 ## [7.8.10](https://github.com/appfolio/react-gears/compare/v7.8.9...v7.8.10) (2022-08-26)
 
 
