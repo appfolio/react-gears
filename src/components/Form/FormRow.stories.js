@@ -151,3 +151,16 @@ export const WithRadioButtons = () => {
     </FormRow>
   );
 };
+
+export const ControlledValue = () => {
+  const [value, setValue] = React.useState('');
+  return (
+    <FormRow
+      label={text('label', 'Label')}
+      onChange={(e) => setValue(e.target.value)}
+      stacked={boolean('stacked', false)}
+      type={text('type', 'text')}
+      value={value}
+    />
+  );
+};
