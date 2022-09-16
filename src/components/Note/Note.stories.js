@@ -1,7 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, text } from '@storybook/addon-knobs';
-import React from 'react';
+import React, { useState } from 'react';
 import EditableNote from './EditableNote';
+import EditableNoteMentions from './EditableNoteMentions';
 import Note from './Note';
 
 const noteToEdit = {
@@ -105,5 +106,51 @@ export const EditableNoteWithChildren = () => {
       </button>
       <hr />
     </EditableNote>
+  );
+};
+
+export const EditableNoteMentionsExample = () => {
+  const [note, setNote] = useState({
+    date: new Date(),
+    from: 'Tom Brady',
+    text: '',
+  });
+
+  const mentionableUsers = [
+    {
+      key: 'Satoshi Nakamoto',
+      value: 'Satoshi.Nakamoto',
+      email: 'satoshi@appfolio.com',
+    },
+    {
+      key: 'LeBron James',
+      value: 'LeBron.James',
+      email: 'lebron.james@appfolio.com',
+    },
+    {
+      key: 'Barbra Streisand',
+      value: 'Barbra.Streisand',
+      email: 'barbra.streisand@appfolio.com',
+    },
+    {
+      key: 'Barry Bonds',
+      value: 'Barry.Bonds',
+      email: 'barry.bonds@appfolio.com',
+    },
+  ];
+
+  const onNoteChange = (e) => {
+    setNote({ ...note, text: e.target.value });
+  };
+
+  return (
+    <EditableNoteMentions
+      mentionableUsers={mentionableUsers}
+      note={note}
+      onCancel={action('onCancel')}
+      onChange={onNoteChange}
+      onSave={action('onSave')}
+      saving={boolean('saving', false)}
+    />
   );
 };
