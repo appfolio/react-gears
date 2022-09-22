@@ -167,7 +167,7 @@ export default class UncontrolledTable extends React.Component {
     const rowsChanged = !this.isEqualUsingKeys(this.props.rows, nextProps.rows);
 
     // Clear selection if rows or selectable change
-    if (rowsChanged || selectableChanged) {
+    if (selectableChanged) {
       this.setState({ selected: [] });
     }
 
@@ -255,16 +255,18 @@ export default class UncontrolledTable extends React.Component {
           {...expandableProps}
           {...selectableProps}
         />
-        {paginated && [
-          <hr key="separator" />,
-          <Paginator
-            key="paginator"
-            currentPage={page + 1}
-            onClick={(pg) => this.setPage(pg - 1)}
-            perPage={pageSize}
-            totalItems={rows.length}
-          />,
-        ]}
+        {paginated && (
+          <>
+            <hr key="separator" />
+            <Paginator
+              key="paginator"
+              currentPage={page + 1}
+              onClick={(pg) => this.setPage(pg - 1)}
+              perPage={pageSize}
+              totalItems={rows.length}
+            />
+          </>
+        )}
       </div>
     );
   }
