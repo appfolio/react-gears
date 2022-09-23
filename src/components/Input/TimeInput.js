@@ -93,6 +93,7 @@ export default class TimeInput extends React.Component {
     noResultsText: PropTypes.string,
     step: PropTypes.number, // TODO? 1-60
     timeFormat: PropTypes.string,
+    initiallyHiddenTimes: PropTypes.array,
     value: PropTypes.string,
   };
 
@@ -177,8 +178,8 @@ export default class TimeInput extends React.Component {
    * - missing whitespace "9:30AM"
    * - typing am/pm upper or lower case "9:30 am"
    */
-  filterOption = ({ label, time }, input) => {
-    const { step } = this.props;
+  filterOption = ({ label, time, value }, input) => {
+    const { step, initiallyHiddenTimes } = this.props;
 
     const removeWhitespace = (str) => str.replace(/\s/gi, '');
     const removeLeadingZeros = (str) => str.replace(/^0*/, '');
@@ -186,6 +187,10 @@ export default class TimeInput extends React.Component {
     const inputCandidate = flow(removeWhitespace, removeLeadingZeros, toLower)(input);
 
     const [hasTypedTens, hasTypedMin] = userInputProgress(inputCandidate, time);
+
+    if (input === '' && initiallyHiddenTimes?.includes(value)) {
+      return false;
+    }
 
     // only show times on step if we havent started to type minutes
     if (!hasTypedTens && !onInterval(time, step)) {
@@ -209,7 +214,15 @@ export default class TimeInput extends React.Component {
   };
 
   selectedOption() {
-    return this.props.value ? this.valueStrToOption(this.props.value) : this.state.selectedOption;
+    let result;
+    if (this.props.value === '' || this.props.value === null || this.props === undefined) {
+      result = '';
+    } else {
+      result = this.props.value
+        ? this.valueStrToOption(this.props.value)
+        : this.state.selectedOption;
+    }
+    return result;
   }
 
   render() {
@@ -223,6 +236,7 @@ export default class TimeInput extends React.Component {
       placeholder,
       step,
       timeFormat,
+      initiallyHiddenTimes,
       ...props
     } = this.props;
     /* eslint-enable @typescript-eslint/no-unused-vars */
