@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.13](https://github.com/appfolio/react-gears/compare/v7.8.12...v7.8.13) (2022-09-23)
+
+
+### Bug Fixes
+
+* **UncontrolledTable:** persist selected rows even after change ([84b2715](https://github.com/appfolio/react-gears/commit/84b27150b777d67825761c8ad4521b26da77cf68))
+
 ## [7.8.12](https://github.com/appfolio/react-gears/compare/v7.8.11...v7.8.12) (2022-09-01)
 
 
