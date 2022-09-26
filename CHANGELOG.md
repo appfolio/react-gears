@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.14](https://github.com/appfolio/react-gears/compare/v7.8.13...v7.8.14) (2022-09-26)
+
+
+### Bug Fixes
+
+* add prop initiallyHiddenTimes and support clearing values ([18dc6ab](https://github.com/appfolio/react-gears/commit/18dc6ab1634a037a30a0fc87ac2784436a8215b5))
+
 ## [7.8.13](https://github.com/appfolio/react-gears/compare/v7.8.12...v7.8.13) (2022-09-23)
 
 
