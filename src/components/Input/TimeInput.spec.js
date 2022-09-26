@@ -236,6 +236,21 @@ describe('<TimeInput />', () => {
       assert(options.contains('11:20 PM'));
       assert.equal(options.length, 4);
     });
+
+    it('should hide some of options initially but allow users to manually input them', () => {
+      const initiallyHiddenTimes = ['17:00', '05:00'];
+      const component = mount(
+        <TimeInput allowOtherTimes initiallyHiddenTimes={initiallyHiddenTimes} />
+      );
+      const input = component.find('input');
+      let options = component.find(OPTION_SELECTOR);
+      assert(!options.contains('5:00 PM'));
+      assert(!options.contains('5:00 AM'));
+
+      input.simulate('change', { target: { value: '5:00 PM' } });
+      options = component.find(OPTION_SELECTOR);
+      assert(options.contains('5:00 PM'));
+    });
   });
 
   describe('filtering options', () => {
