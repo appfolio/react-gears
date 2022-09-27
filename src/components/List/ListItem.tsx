@@ -54,7 +54,7 @@ function ListItem<T>({
     >
       <div className="d-flex align-items-center">
         {select && (
-          <div className="pe-2">
+          <div className="pe-2" style={{ width: '26px' }}>
             <Input
               id={id}
               type={select}
@@ -70,7 +70,12 @@ function ListItem<T>({
             </Label>
           </div>
         )}
-        <div className="me-auto w-100 px-2">{render(item, selected)}</div>
+        <div
+          className="me-auto w-100 px-2"
+          style={{ maxWidth: select ? 'calc(100% - 26px)' : '100%' }}
+        >
+          {render(item, selected)}
+        </div>
         {isExpandable && (
           <Button
             color="link"
