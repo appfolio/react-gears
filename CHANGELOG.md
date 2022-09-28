@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.15](https://github.com/appfolio/react-gears/compare/v7.8.14...v7.8.15) (2022-09-28)
+
+
+### Bug Fixes
+
+* prevent list item content from overflowing ([2a548a2](https://github.com/appfolio/react-gears/commit/2a548a249c80fe0db448584ee08bc5ce0c0cad81))
+
 ## [7.8.14](https://github.com/appfolio/react-gears/compare/v7.8.13...v7.8.14) (2022-09-26)
 
 
