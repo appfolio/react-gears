@@ -109,6 +109,7 @@ export const WithEverything = () => {
       ]}
       striped={boolean('striped', false)}
       flush={boolean('flush')}
+      selectAnywhere={boolean('selectAnywhere', false)}
     >
       {(item) => <ItemRow item={item} />}
     </List>

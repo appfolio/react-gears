@@ -2,6 +2,7 @@ import assert from 'assert';
 import { render } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
+import { Label } from 'reactstrap';
 import sinon from 'sinon';
 import List from './List';
 import ListItem from './ListItem';
@@ -384,5 +385,19 @@ describe('<List />', () => {
     const wrapper = mount(<List items={items} header={header} />);
 
     assert.strictEqual(wrapper.find('.custom-header').parent().hasClass('w-100'), true);
+  });
+
+  it('should add styling to each item when selectAnywhere is true', () => {
+    const component = mount(
+      <List items={items} selectAnywhere>
+        {(item) => item}
+      </List>
+    );
+    const listItems = component.find(ListItem);
+    listItems.forEach((item) => {
+      assert.equal(item.prop('tag'), Label);
+      assert.equal(item.prop('style').cursor, 'pointer');
+      assert.equal(item.prop('style').marginBottom, 0);
+    });
   });
 });

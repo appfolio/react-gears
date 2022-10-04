@@ -5,6 +5,7 @@ import { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
 import Input from '../Input/Input';
+import Label from '../Label/Label';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import ScrollContainer from '../ScrollContainer/ScrollContainer';
@@ -45,6 +46,7 @@ export interface ListProps<T> extends Omit<ListGroupProps, 'onSelect'> {
   sortByLabel?: SortHeaderProps['sortByLabel'];
   sortOptions?: SortHeaderProps['sortOptions'];
   selectable?: (item: T) => boolean;
+  selectAnywhere?: boolean;
 }
 
 const defaultProps = {
@@ -58,6 +60,7 @@ const defaultProps = {
   sort: {},
   sortByLabel: 'Sort by',
   selectable: () => true,
+  selectAnywhere: false,
 };
 
 function List<T extends Item>({
@@ -81,6 +84,7 @@ function List<T extends Item>({
   sortByLabel = defaultProps.sortByLabel,
   sortOptions,
   selectable = defaultProps.selectable,
+  selectAnywhere = defaultProps.selectAnywhere,
   ...props
 }: ListProps<T>) {
   const {
@@ -160,6 +164,10 @@ function List<T extends Item>({
 
   const showHeader = header || select === 'checkbox' || select === 'switch' || onFilter || onSort;
 
+  const selectAnywhereProps = selectAnywhere
+    ? { tag: Label, style: { cursor: 'pointer', marginBottom: 0 } }
+    : {};
+
   return (
     <ListGroup flush={flush} tag="div" {...props}>
       {showHeader && (
@@ -223,6 +231,7 @@ function List<T extends Item>({
               onSelect={handleSelection}
               onExpand={onExpand}
               selectable={selectable}
+              {...selectAnywhereProps}
             >
               {render}
             </ListItem>
@@ -256,6 +265,7 @@ List.propTypes = {
   }),
   sortByLabel: PropTypes.string,
   sortOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  selectAnywhere: PropTypes.bool,
 };
 
 List.defaultProps = defaultProps;
