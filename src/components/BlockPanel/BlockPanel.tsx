@@ -134,7 +134,7 @@ const BlockPanel: FC<BlockPanelProps> = ({
               style={{ transition: 'transform 200ms ease-in-out' }}
             />
           )}
-          <CardTitle tag="h2" className="h5 m-0 my-1 me-auto">
+          <CardTitle tag="h2" className="m-0 my-1 me-auto">
             {title}
           </CardTitle>
         </BlockPanelTitle>
