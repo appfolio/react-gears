@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.16](https://github.com/appfolio/react-gears/compare/v7.8.15...v7.8.16) (2022-10-06)
+
+
+### Bug Fixes
+
+* remove h5 class from blockpanel card title ([560e8ee](https://github.com/appfolio/react-gears/commit/560e8eeba1ae6d8a498bf57f3cdd64decfc429f2))
+
 ## [7.8.15](https://github.com/appfolio/react-gears/compare/v7.8.14...v7.8.15) (2022-09-28)
 
 
