@@ -15,10 +15,10 @@ const FeedbackModalRating: FC<FeedbackModalRatingProps> = ({
   setRating,
 }) => (
   <div data-testid="feedback-modal-rating">
-    <div className="mb-5">
+    <div className="mb-5 text-center">
       <div className="d-flex mb-2 mx-3 justify-content-between">
-        <span className="js-low-rating-text font-italic">{lowRatingText}</span>
-        <span className="js-high-rating-text font-italic">{highRatingText}</span>
+        <span className="js-low-rating-text">{lowRatingText}</span>
+        <span className="js-high-rating-text">{highRatingText}</span>
       </div>
       <div className="d-flex justify-content-around mb-2">
         {[1, 2, 3, 4, 5].map((rating) => (
