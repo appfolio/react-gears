@@ -95,15 +95,22 @@ function List<T extends Item>({
   const selectAllRef = useRef<HTMLInputElement>(null);
 
   useDeepCompareEffect(
-    () => onSelect(Array.from(selection.values())),
+    () => {
+      console.log('useDeepCompareEffect 1 - invoking onSelect with: ', selection.values());
+      onSelect(Array.from(selection.values()))
+    },
     [Array.from(selection.values()), onSelect]
   );
-  useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);
+  useDeepCompareEffect(() => {
+    console.log('Replacing selection with:', selected)
+    replaceSelection(selected)
+  }, [selected, replaceSelection]);
 
   useDeepCompareEffect(() => {
     const includes = (xs: T[], x: T) => xs.map(selectedKeyMapper).includes(selectedKeyMapper(x));
     selection.forEach((item) => {
       if (!includes(items, item)) {
+        console.log('Removing items not in list:', item)
         removeItem(item);
       }
     });
@@ -124,6 +131,7 @@ function List<T extends Item>({
         addItem(item);
       }
     } else if (!hasItem(item)) {
+      console.log('handleSelection clearing and adding', item);
       clearSelection();
       addItem(item);
     }
