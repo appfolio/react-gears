@@ -35,8 +35,8 @@ export const ShorterThanMaxLength = () => (
 export const CustomComponents = () => (
   <div>
     <CollapsableText
-      moreLabel={<Icon name="plus-circle" className="text-success" />}
-      lessLabel={<Icon name="minus-circle" className="text-danger" />}
+      moreLabel={<Icon name="plus" className="text-success" />}
+      lessLabel={<Icon name="circle-minus" className="text-danger" />}
     >
       {loremIpsum}
     </CollapsableText>

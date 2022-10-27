@@ -86,7 +86,7 @@ export const ComponentsForTitleAndControls = () => (
           <Icon name="list" />
         </Button>
         <Button>
-          <Icon name="th-list" />
+          <Icon name="table-list" />
         </Button>
       </ButtonGroup>,
     ]}

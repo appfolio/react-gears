@@ -20,7 +20,7 @@ export const LiveExample = () => (
     rotate={select('rotate', ['', '90', '180', '270'], '')}
     flip={select('flip', ['', 'horizontal', 'vertical'], '')}
     border={boolean('border', false)}
-    isSolid={boolean('isSolid', false)}
+    iconStyle={select('iconStyle', ['regular', 'solid', 'thin', 'light', 'duotone'], 'solid')}
   />
 );
 
@@ -49,7 +49,7 @@ export const InlineText = () => (
       <Icon name="print" /> Print
     </p>
     <p>
-      <Icon name="plus-circle" /> Add Item
+      <Icon name="plus" /> Add Item
     </p>
     <p>
       <Icon name="pencil" /> Edit
@@ -64,7 +64,7 @@ export const Buttons = () => (
   <div>
     <p>
       <Button>
-        <Icon name="plus-circle" fixedWidth /> Add Item
+        <Icon name="plus" fixedWidth /> Add Item
       </Button>
     </p>
     <p>
@@ -107,7 +107,7 @@ export const Size = () => (
 export const Animation = () => (
   <div>
     <Icon name="spinner" spin size="3x" />
-    <Icon name="circle-o-notch" spin size="3x" />
+    <Icon name="circle-notch" spin size="3x" />
     <Icon name="refresh" spin size="3x" />
     <Icon name="cog" spin size="3x" />
     <Icon name="spinner" pulse size="3x" />

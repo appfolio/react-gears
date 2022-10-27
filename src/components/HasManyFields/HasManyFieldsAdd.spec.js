@@ -25,7 +25,7 @@ describe('<HasManyFieldsAdd />', () => {
 
   it('should have an icon', () => {
     const icon = component.find(Icon);
-    assert.equal(icon.prop('name'), 'plus-circle');
+    assert.equal(icon.prop('name'), 'plus');
   });
 
   it('should be a disabled button when disabled', () => {

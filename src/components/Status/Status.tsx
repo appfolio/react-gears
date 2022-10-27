@@ -12,19 +12,19 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
   let name = '';
   switch (type) {
     case 'info':
-      name = 'info-circle';
+      name = 'circle-info';
       break;
     case 'muted':
-      name = 'circle-thin';
+      name = 'circle';
       break;
     case 'success':
-      name = 'check-circle';
+      name = 'circle-check';
       break;
     case 'danger':
       name = 'warning';
       break;
     case 'warning':
-      name = 'exclamation-circle';
+      name = 'circle-exclamation';
       break;
     case 'none':
       name = 'circle';

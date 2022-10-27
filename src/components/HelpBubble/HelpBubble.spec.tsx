@@ -25,7 +25,7 @@ describe('<HelpBubble />', () => {
 
   it('should have a question mark', () => {
     const icon = mount(<HelpBubble title="hello" />, { attachTo: div }).find(Icon);
-    assert.equal(icon.prop('name'), 'question-circle');
+    assert.equal(icon.prop('name'), 'circle-question');
   });
 
   it('should link popover and icon trigger', () => {

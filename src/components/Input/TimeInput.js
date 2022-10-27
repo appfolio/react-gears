@@ -76,7 +76,7 @@ function userInputProgress(input, time) {
   return [!!hasTypedTens, !!hasTypedMin];
 }
 
-const ClockIcon = () => <Icon name="clock-o" />;
+const ClockIcon = () => <Icon name="clock" />;
 
 export default class TimeInput extends React.Component {
   static propTypes = {

@@ -28,7 +28,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   spin?: boolean;
   stack?: '1x' | '2x';
   tag?: keyof JSX.IntrinsicElements;
-  isSolid?: boolean;
+  iconStyle?: 'regular' | 'solid' | 'thin' | 'light' | 'duotone';
 }
 
 /**
@@ -68,7 +68,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       spin,
       stack,
       tag: Tag = 'i',
-      isSolid,
+      iconStyle,
       ariaLabel,
       ...props
     } = this.props;
@@ -100,8 +100,8 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       inverse && classNames.push('inverse');
 
       const fa = classNames.map((iconName) => `fa-${iconName}`);
-      isSolid? fa.unshift('fas') : fa.unshift('fa');
-
+      !iconStyle ? fa.unshift(`fa-solid`) : fa.unshift(`fa-${iconStyle}`);
+      
       classNames = fa;
     }
 

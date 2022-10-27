@@ -57,7 +57,7 @@ const HasManyFieldsRow = ({
       outline
       className="p-2 disabled align-self-stretch"
     >
-      <Icon name="times-circle-o" size="lg" />
+      <Icon name="circle-xmark" size="lg" />
     </Button>
   ) : (
     <ConfirmationButton
@@ -69,7 +69,7 @@ const HasManyFieldsRow = ({
       className="p-2 align-self-stretch"
       {...deleteProps}
     >
-      <Icon name="times-circle-o" size="lg" />
+      <Icon name="circle-xmark" size="lg" />
     </ConfirmationButton>
   );
 

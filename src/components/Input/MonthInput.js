@@ -291,7 +291,7 @@ export default class MonthInput extends React.Component {
                 type="button"
                 tabIndex={-1}
               >
-                <Icon name="calendar-o" fixedWidth />
+                <Icon name="calendar" fixedWidth />
                 <span className="visually-hidden">Open Calendar</span>
               </Button>
             </InputGroup>
