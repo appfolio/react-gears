@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.8.17](https://github.com/appfolio/react-gears/compare/v7.8.16...v7.8.17) (2022-10-27)
+
+
+### Miscellaneous
+
+* bump reactstrap ([4903ec5](https://github.com/appfolio/react-gears/commit/4903ec511c47940471dbfd0a8109ac5125b16afd))
+
 ## [7.8.16](https://github.com/appfolio/react-gears/compare/v7.8.15...v7.8.16) (2022-10-06)
 
 
