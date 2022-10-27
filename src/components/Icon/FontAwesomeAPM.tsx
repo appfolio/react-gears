@@ -101,7 +101,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
 
       const fa = classNames.map((iconName) => `fa-${iconName}`);
       !iconStyle ? fa.unshift(`fa-solid`) : fa.unshift(`fa-${iconStyle}`);
-      
+
       classNames = fa;
     }
 
