@@ -32,7 +32,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
 }
 
 /**
- * A React component for the font-awesome icon library.
+ * A React component for the fontawesome icon library.
  *
  *
  * @param {String} [ariaLabel] An extra accessibility label to put on the icon
