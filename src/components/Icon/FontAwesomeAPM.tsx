@@ -32,7 +32,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
 }
 
 /**
- * A React component for the font-awesome icon library.
+ * A React component for the fontawesome icon library.
  *
  *
  * @param {String} [ariaLabel] An extra accessibility label to put on the icon
@@ -49,6 +49,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
  * @param {Boolean} [spin=false] Spin the icon
  * @param {String} [stack] Stack an icon on top of another
  * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+ * @param {String} [iconStyle] Font Awesome classic family with multiple icon styles to choose from
  * @module FontAwesome
  * @type {ReactClass}
  */
@@ -101,7 +102,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
 
       const fa = classNames.map((iconName) => `fa-${iconName}`);
       !iconStyle ? fa.unshift(`fa-solid`) : fa.unshift(`fa-${iconStyle}`);
-      
+
       classNames = fa;
     }
 

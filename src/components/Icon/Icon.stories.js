@@ -11,6 +11,7 @@ export default {
   component: Icon,
 };
 
+// React component for font awesome v6
 export const LiveExample = () => (
   <Icon
     name={text('name', 'motorcycle')}
