@@ -1,5 +1,20 @@
 # Change Log
 
+## [7.8.18](https://github.com/appfolio/react-gears/compare/v7.8.17...v7.8.18) (2022-10-28)
+
+
+### Bug Fixes
+
+* add a comment ([641e3d7](https://github.com/appfolio/react-gears/commit/641e3d74b054da1fe13732428f484963ba85b9a9))
+* add icon style as a parameter to icon component ([8be45dc](https://github.com/appfolio/react-gears/commit/8be45dc406c2d1e4bf3393e9c20e5af47b9bacc3))
+* add prop isSolid ([f0d9dc5](https://github.com/appfolio/react-gears/commit/f0d9dc50aed448054b720fa12d6b145ce1c9f174))
+* add yarn lock file ([cfb4891](https://github.com/appfolio/react-gears/commit/cfb4891d0b706abd5bc716a2f2d1e6f3e6b0e719))
+* format files ([8688c39](https://github.com/appfolio/react-gears/commit/8688c3942058bc9a23f73444ea7f7f47db838221))
+* update coastline to 5.3.1-pre ([7b74052](https://github.com/appfolio/react-gears/commit/7b7405279d432d49022caab9a1570306e70afd2b))
+* update font awesome icons to v6 ([d6b310c](https://github.com/appfolio/react-gears/commit/d6b310c8b7f4da7ca6d58ac749e93bdf6f94ce30))
+* update font awesome icons to v6 in alert and status test files ([305bf2f](https://github.com/appfolio/react-gears/commit/305bf2f33547830b650a9a0b1732d9635c06d9f9))
+* update fontawesome cdn link to v6.2.0 ([d6452bb](https://github.com/appfolio/react-gears/commit/d6452bb19cf3fe594c49e64a7bf4ac94eb1d90c6))
+
 ## [7.8.17](https://github.com/appfolio/react-gears/compare/v7.8.16...v7.8.17) (2022-10-27)
 
 
