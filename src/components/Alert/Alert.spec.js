@@ -36,7 +36,7 @@ describe('<Alert />', () => {
 
     it('should show info for info', () => {
       const icon = shallow(<Alert icon color="info" />).find(Icon);
-      assert.equal(icon.prop('name'), 'fa-info');
+      assert.equal(icon.prop('name'), 'info');
     });
 
     it('should show check for success', () => {
