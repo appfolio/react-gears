@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.9.0](https://github.com/appfolio/react-gears/compare/v7.8.18...v7.9.0) (2022-10-31)
+
+
+### Features
+
+* add EditableNoteMentions ([d02a59f](https://github.com/appfolio/react-gears/commit/d02a59f2dd8416006a3a1d067c15b4753da19ddb))
+
 ## [7.8.18](https://github.com/appfolio/react-gears/compare/v7.8.17...v7.8.18) (2022-10-28)
 
 
