@@ -152,6 +152,7 @@ __metadata:
     sinon: ^9.2.1
     styled-jsx: ^3.3.2
     text-mask-addons: ^3.8.0
+    tributejs: ^5.1.3
     ts-node: ^10.7.0
     typescript: ^4.6.3
     uncontrollable: ^4.1.0
@@ -17080,6 +17081,13 @@ __metadata:
   bin:
     tree-kill: cli.js
   checksum: 49117f5f410d19c84b0464d29afb9642c863bc5ba40fcb9a245d474c6d5cc64d1b177a6e6713129eb346b40aebb9d4631d967517f9fbe8251c35b21b13cd96c7
+  languageName: node
+  linkType: hard
+
+"tributejs@npm:^5.1.3":
+  version: 5.1.3
+  resolution: "tributejs@npm:5.1.3"
+  checksum: 06110d74c69a8229ffcee73c180536b7c7f644397074fbe471da696b144a8a3583c6821b3c0f889a681cd475fcb83033a31a5bfa6cf95e675ec97ef99cc72288
   languageName: node
   linkType: hard
 
