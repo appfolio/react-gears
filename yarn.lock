@@ -140,6 +140,7 @@ __metadata:
     raf-stub: ^3.0.0
     react: ^16.14.0
     react-dom: ^16.14.0
+    react-hook-form: ^7.39.0
     react-imask: ^6.2.2
     react-resize-detector: ^4.2.3
     react-select-plus: 1.2.0
@@ -14715,6 +14716,15 @@ __metadata:
   version: 3.2.0
   resolution: "react-fast-compare@npm:3.2.0"
   checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.39.0":
+  version: 7.39.0
+  resolution: "react-hook-form@npm:7.39.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: f0f9a081ee634d1125ddde6e8896717d1416da95e1c07c57814a6421b9ab4cc8c057e8431c879c921dffde3d5cb1531cd8dfaa203f0a87e8a0da371a4f381a26
   languageName: node
   linkType: hard
 
