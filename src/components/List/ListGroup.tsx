@@ -6,6 +6,7 @@ type Props = {
   striped?: boolean;
 } & ListGroupProps;
 
+// ref
 const ListGroup: FC<Props> = ({ className, striped, ...props }) => (
   <ListGroupComponent
     className={classnames(className, { 'list-group-striped': striped })}

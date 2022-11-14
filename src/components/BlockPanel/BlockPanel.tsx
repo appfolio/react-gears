@@ -59,6 +59,7 @@ const defaultProps = {
 /**
  * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
  */
+// Ref stuff
 const BlockPanel: FC<BlockPanelProps> = ({
   children,
   className = defaultProps.className,

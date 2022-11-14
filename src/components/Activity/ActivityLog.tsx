@@ -5,6 +5,7 @@ import { ListGroup, ListGroupProps } from 'reactstrap';
  * Extension to Bootstrap [ListGroup](https://getbootstrap.com/docs/4.3/components/list-group/)
  * for listing a timeline of Activities
  */
+// Passes in ref
 const ActivityLog: FC<ListGroupProps> = ({ children, ...props }) => (
   <ListGroup {...props}>{children}</ListGroup>
 );

@@ -28,6 +28,7 @@ function updateSelection(selected: boolean, children?: Option<any>[]): Option<an
 let count = 0;
 const getID = () => `tree-item-${count++}`;
 
+// ref
 function TreeItem<T>({
   className,
   indent = 0,

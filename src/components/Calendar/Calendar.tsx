@@ -27,6 +27,7 @@ const defaultProps = {
   weekDayFormat: 'dd',
 };
 
+// Pass in ref
 const Calendar: FC<CalendarProps> = ({
   date = defaultProps.date,
   dateFormat = defaultProps.dateFormat,

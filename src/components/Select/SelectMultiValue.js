@@ -42,6 +42,7 @@ export default class SelectMultiValue extends React.Component {
       className
     );
 
+    // ref
     return (
       <Badge
         className={classNames}

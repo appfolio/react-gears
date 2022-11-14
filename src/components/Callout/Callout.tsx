@@ -8,6 +8,7 @@ interface CalloutProps extends HTMLProps<HTMLDivElement> {
   placement: 'top' | 'bottom' | 'left' | 'right';
 }
 
+// forward ref maybe
 const Callout = ({ className, color, background, placement, children, ...props }: CalloutProps) => (
   <>
     <div className={`callout text-${color} m${placement[0]}-5 ${className}`} {...props}>

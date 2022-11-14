@@ -246,6 +246,7 @@ export default class UncontrolledTable extends React.Component {
 
     const visibleRows = this.getVisibleRows();
 
+    // ref
     return (
       <div>
         <SortableTable

@@ -25,6 +25,8 @@ type OptionGroup<T> = {
   options: Option<T>[];
 };
 
+// Forward ref
+
 interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   options: Option<T>[] | OptionGroup<T>[];
   direction?: Direction;

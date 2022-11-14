@@ -13,6 +13,7 @@ const FileInput = (props: FileInputProps) => {
     onChange?.(files);
   };
 
+  // ref
   return <Input {...props} type="file" onChange={handleChange} />;
 };
 

@@ -220,6 +220,7 @@ class SortableTable extends React.Component {
       });
     }
 
+    // ref
     return (
       <Table style={tableStyle} {...props}>
         {showColgroup && (

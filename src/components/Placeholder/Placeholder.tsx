@@ -12,6 +12,7 @@ interface PlaceholderProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
   words?: number;
 }
 
+// ref
 const Placeholder = ({
   className,
   color,

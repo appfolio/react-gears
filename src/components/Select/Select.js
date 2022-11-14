@@ -47,6 +47,7 @@ const Select = ({
   const classNames = classnames(className, { 'select-async': props.loadOptions });
   const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
 
+  // ref
   return (
     <SelectElement
       arrowRenderer={({ isOpen }) => getSelectArrow(isOpen, arrowRenderer)}

@@ -8,6 +8,8 @@ export interface CheckboxListInputProps {
   value?: string[];
 }
 
+// Forward ref
+
 class CheckboxListInput extends React.Component<CheckboxListInputProps> {
   static propTypes = {
     children: PropTypes.node,

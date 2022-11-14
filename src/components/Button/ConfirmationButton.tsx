@@ -9,6 +9,7 @@ export interface ConfirmationButtonProps extends ButtonProps {
 
 const defaultProps = { onClick: noop };
 
+// Pass in ref here
 const ConfirmationButton: FC<ConfirmationButtonProps> = ({
   children,
   confirmation,

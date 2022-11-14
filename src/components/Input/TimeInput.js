@@ -241,6 +241,7 @@ export default class TimeInput extends React.Component {
     } = this.props;
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
+    // ref
     const times = this.times();
 
     return (

@@ -15,6 +15,7 @@ const defaultProps = {
   onChange: () => {},
 };
 
+// Forwards ref
 const CountryInput: FC<CountryInputProps> = ({
   onChange = defaultProps.onChange,
   ...otherProps

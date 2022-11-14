@@ -11,6 +11,7 @@ interface InfoBoxProps extends Omit<React.HTMLProps<HTMLDivElement>, 'className'
   vertical?: boolean;
 }
 
+// ref
 const InfoBox = ({
   children,
   className,

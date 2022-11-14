@@ -5,6 +5,7 @@ export interface TooltipProps extends Omit<InnerTooltipProps, 'toggle'> {}
 
 const defaultProps = { isOpen: false, fade: false };
 
+// ref
 const Tooltip: FC<TooltipProps> = ({
   isOpen = defaultProps.isOpen,
   fade = defaultProps.fade,

@@ -52,6 +52,7 @@ function parseValue(defaultValue, dateFormat, parseDate) {
   return date;
 }
 
+// ref
 export default class MonthInput extends React.Component {
   static propTypes = {
     centerYearSelection: PropTypes.bool,

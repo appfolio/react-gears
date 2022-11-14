@@ -11,6 +11,7 @@ type Props = {
   size?: string;
 };
 
+// ref
 const ApmSpinner: FC<Props> = ({ color, size, ...props }) => (
   <svg width={size} height={size} viewBox="-200 -200 200 200" version="1.1" {...props}>
     <defs>

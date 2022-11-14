@@ -53,6 +53,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
  * @module FontAwesome
  * @type {ReactClass}
  */
+// ref
 export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps> {
   render() {
     const {

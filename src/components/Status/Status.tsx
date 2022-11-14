@@ -32,6 +32,7 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
     default:
       throw new Error(`Unsupported value for 'type' prop passed to Status component: "${type}"`);
   }
+  // ref
   return (
     <Icon
       {...props}

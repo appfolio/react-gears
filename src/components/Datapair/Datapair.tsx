@@ -16,6 +16,7 @@ interface DatapairProps extends ComponentProps<typeof FormLabelGroup> {
  * of two parts: the key (label) and a value. The key is an identifier for some form of data and
  * the value can be text or links.
  */
+// Forward ref
 const Datapair: FC<DatapairProps> = ({ children, className, label, value, ...attributes }) => {
   const classNames = classnames('js-datapair', className);
   return (

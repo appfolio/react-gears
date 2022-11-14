@@ -80,6 +80,7 @@ const CurrencyInput: FC<Props> = ({
     (maskedProps as any).inputRef = innerRef;
   }
 
+  // ref
   return (
     <InputGroup size={size} className={className}>
       <InputGroupText>$</InputGroupText>

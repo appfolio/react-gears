@@ -318,6 +318,7 @@ export default class DateInput extends React.Component {
 
     // <DropdownToggle tag="div" disabled> is to wrap the input in a container for positioning dropdown/up, without breaking showOnFocus
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
+    // ref
     return (
       <div>
         <Dropdown direction={direction} isOpen={!disabled && open} toggle={this.toggle}>

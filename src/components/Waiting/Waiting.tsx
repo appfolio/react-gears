@@ -16,6 +16,7 @@ interface WaitingProps extends Omit<ModalProps, 'toggle'> {
 /**
  * A 'Waiting' indicator for unknown durations. See https://qa.qa.appfolio.com/gears/waiting
  */
+// ref
 const Waiting: FC<WaitingProps> = ({ children, className, title = 'Please Wait', ...props }) => (
   <Modal
     {...props}

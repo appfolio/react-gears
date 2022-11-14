@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Form from './Form';
 
+// ref and maybe get rid of comp
 class BoundForm extends React.Component {
   static propTypes = {
     errors: PropTypes.object,

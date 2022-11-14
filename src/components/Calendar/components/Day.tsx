@@ -12,6 +12,7 @@ export interface DayProps
   onClick: MouseEventHandler<HTMLTableCellElement>;
 }
 
+// Pass in ref
 const Day: FC<DayProps> = ({ day, dateFormat, locale, onClick, ...props }) => {
   const disabled = !day.enabled;
   const classNames = classnames(

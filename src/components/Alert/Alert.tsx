@@ -21,6 +21,7 @@ type Props = {
  * Extension to Bootstrap [Alert](https://getbootstrap.com/docs/4.3/components/alert/)
  * adding icon support and onToggle callback when dismissed.
  */
+// passes in ref potentially
 const Alert: FC<Props> = ({
   color = 'warning',
   children,

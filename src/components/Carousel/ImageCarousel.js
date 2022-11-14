@@ -8,6 +8,7 @@ import Icon from '../Icon/Icon';
 import Modal from '../Modal/Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
 
+// ref stuff
 export default class ImageCarousel extends React.Component {
   static propTypes = {
     items: PropTypes.array.isRequired,

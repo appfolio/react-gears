@@ -17,6 +17,7 @@ interface ActivityProps extends Omit<ListGroupItemProps, 'action'> {
  * Extension to Bootstrap [ListGroupItem](https://getbootstrap.com/docs/4.3/components/list-group-item/)
  * representing a timeline event.
  */
+// Forward ref
 const Activity: FC<ActivityProps> = ({
   action,
   by,

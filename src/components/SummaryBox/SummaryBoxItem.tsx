@@ -17,6 +17,7 @@ const defaultProps = {
   value: '--',
 };
 
+// ref
 const SummaryBoxItem: FC<SummaryBoxItemProps> = ({
   className,
   label = defaultProps.label,

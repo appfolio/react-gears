@@ -18,6 +18,7 @@ const propTypes = {
   goToIndex: PropTypes.func,
 };
 
+// Forward ref
 class UncontrolledCarousel extends Component {
   constructor(props) {
     super(props);

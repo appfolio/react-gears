@@ -6,6 +6,7 @@ export interface StaticInputProps extends InputProps {
   children?: React.ReactNode;
 }
 
+// ref
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars -- Figure out a better way to omit children (will need a reusable solution) */
 const StaticInput: FC<StaticInputProps> = ({ children, ...props }) => (
   <Input {...props} type="text" plaintext />

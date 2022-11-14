@@ -12,6 +12,7 @@ export interface TableProps extends ReactStrapTableProps {
   children: React.ReactNode;
 }
 
+// ref
 const Table: FC<TableProps> = ({ children, ...props }) => (
   <TableComponent {...props}>{children}</TableComponent>
 );

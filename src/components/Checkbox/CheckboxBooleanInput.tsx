@@ -23,6 +23,7 @@ function getID() {
   return `checkbox-boolean-input-${count++}`;
 }
 
+// Forwards ref
 class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps> {
   static propTypes = {
     id: PropTypes.string,

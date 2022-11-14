@@ -11,6 +11,7 @@ function getID() {
   return `form-choice-${count++}`;
 }
 
+// Ref
 class FormChoice extends React.Component {
   static propTypes = {
     inline: PropTypes.bool,

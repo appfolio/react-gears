@@ -2,6 +2,7 @@ import React from 'react';
 import { Spinner, SpinnerProps } from 'reactstrap';
 import ApmSpinner from './ApmSpinner';
 
+// ref
 const SpinnerWrapper = ({ type, ...props }: SpinnerProps) =>
   type === 'spin' ? <ApmSpinner {...props} /> : <Spinner type={type} {...props} />;
 
