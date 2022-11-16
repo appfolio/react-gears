@@ -8,7 +8,7 @@ import isToday from 'date-fns/is_today';
 import frLocale from 'date-fns/locale/fr';
 import startOfToday from 'date-fns/start_of_today';
 import { mount } from 'enzyme';
-import React from 'react';
+import React, { useState } from 'react';
 import sinon from 'sinon';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
@@ -159,11 +159,17 @@ describe('<DateInput />', () => {
   });
 
   describe('date picker', () => {
-    const callback = sinon.spy();
-    const component = mount(<DateInput onChange={callback} showOnFocus />);
+    let callback;
+    let onCloseCallback;
+    let component;
+
+    beforeEach(() => {
+      callback = sinon.spy();
+      onCloseCallback = sinon.spy();
+      component = mount(<DateInput onChange={callback} onClose={onCloseCallback} showOnFocus />);
+    });
 
     it('should set date after clicking a date', () => {
-      callback.resetHistory();
       const firstDate = component.find('Day').first();
       const expectedDate = firstDate.props().day.date;
       firstDate.simulate('click');
@@ -172,7 +178,6 @@ describe('<DateInput />', () => {
     });
 
     it('should call onChange after clicking a date', () => {
-      callback.resetHistory();
       const lastDate = component.find('Day').first();
       const expectedDate = lastDate.props().day.date;
       lastDate.simulate('click');
@@ -180,7 +185,6 @@ describe('<DateInput />', () => {
     });
 
     it('should set date after clicking prev year', () => {
-      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
       const prevYear = component.find('Button.js-prev-year');
 
@@ -191,7 +195,6 @@ describe('<DateInput />', () => {
     });
 
     it('should set date after clicking next year', () => {
-      callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
       const nextYear = component.find('Button.js-next-year');
 
@@ -202,7 +205,6 @@ describe('<DateInput />', () => {
     });
 
     it('should set date after clicking prev month', () => {
-      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
       const prevMonth = component.find('Button.js-prev-month');
 
@@ -213,7 +215,6 @@ describe('<DateInput />', () => {
     });
 
     it('should set date after clicking next month', () => {
-      callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
       const nextMonth = component.find('Button.js-next-month');
 
@@ -230,7 +231,6 @@ describe('<DateInput />', () => {
     });
 
     it('should call onChange after clicking today', () => {
-      callback.resetHistory();
       const today = component.find('footer Button').at(0);
       today.simulate('click');
       assert(callback.called);
@@ -246,7 +246,6 @@ describe('<DateInput />', () => {
     });
 
     it('should call onChange after clicking clear', () => {
-      callback.resetHistory();
       const clear = component.find('footer Button').at(1);
       clear.simulate('click');
       assert(callback.calledWith('', false));
@@ -271,6 +270,109 @@ describe('<DateInput />', () => {
       expectedDate = addDays(component.instance().getCurrentDate(), 1);
       input.simulate('keydown', { key: 'ArrowRight', keyCode: 39, which: 39 });
       assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+    });
+
+    it('should call onClose when closing the date picker with the latest selected date in the current month', () => {
+      const toggle = component.find('InputGroup').find('Button');
+      toggle.simulate('click');
+
+      const initialDate = component.instance().getCurrentDate();
+      const isFirstOfMonth = initialDate.getDate() === 1;
+      const dayToPick = isFirstOfMonth ? component.find('Day').at(1) : component.find('Day').at(0);
+
+      const expectedDate = dayToPick.props().day.date;
+
+      dayToPick.simulate('click');
+      assert(onCloseCallback.calledOnce);
+      assert(onCloseCallback.calledWith(expectedDate, true));
+    });
+
+    it('should call onClose with the last selected date when we change the month', () => {
+      const toggle = component.find('InputGroup').find('Button');
+      toggle.simulate('click');
+
+      const nextMonth = component.find('Button.js-next-month');
+      nextMonth.simulate('click');
+
+      const tentativeIndexDayToPick = 15;
+      const tentativeDayToPick = component.find('Day').at(tentativeIndexDayToPick);
+      const dayToPick =
+        tentativeDayToPick.props().day.date.getDate() ===
+        component.instance().getCurrentDate().getDate()
+          ? component.find('Day').at(tentativeIndexDayToPick + 1)
+          : tentativeDayToPick;
+
+      const expectedDate = dayToPick.props().day.date;
+
+      dayToPick.simulate('click');
+      assert(onCloseCallback.calledOnce);
+      assert(onCloseCallback.calledWith(expectedDate, true));
+    });
+  });
+
+  describe('date picker with value property', () => {
+    let onChangeCallback;
+    let onCloseCallback;
+    let wrapper;
+
+    beforeEach(() => {
+      onChangeCallback = sinon.spy();
+      onCloseCallback = sinon.spy();
+
+      const WrappingComponent = () => {
+        const [dateValue, setDateValue] = useState(new Date());
+
+        const onChange = (date, valid) => {
+          onChangeCallback(date, valid);
+          setDateValue(date);
+        };
+
+        return <DateInput onChange={onChange} onClose={onCloseCallback} value={dateValue} />;
+      };
+
+      wrapper = mount(<WrappingComponent />);
+    });
+
+    it('should call onClose when closing the date picker with the latest selected date in the current month', () => {
+      const toggle = wrapper.find('DateInput').find('InputGroup').find('Button');
+      toggle.simulate('click');
+
+      const initialDate = wrapper.find('DateInput').instance().getCurrentDate();
+      const isFirstOfMonth = initialDate.getDate() === 1;
+      const dayToPick = isFirstOfMonth
+        ? wrapper.find('DateInput').find('Day').at(1)
+        : wrapper.find('DateInput').find('Day').at(0);
+
+      const expectedDate = dayToPick.props().day.date;
+
+      dayToPick.simulate('click');
+      assert(onCloseCallback.calledOnce);
+      assert(onCloseCallback.calledWith(expectedDate, true));
+    });
+
+    it('should call onClose with the last selected date when we change the month', () => {
+      const toggle = wrapper.find('DateInput').find('InputGroup').find('Button');
+      toggle.simulate('click');
+
+      const nextMonth = wrapper.find('DateInput').find('Button.js-next-month');
+      nextMonth.simulate('click');
+
+      const tentativeIndexDayToPick = 15;
+      const tentativeDayToPick = wrapper.find('DateInput').find('Day').at(tentativeIndexDayToPick);
+      const dayToPick =
+        tentativeDayToPick.props().day.date.getDate() ===
+        wrapper.find('DateInput').instance().getCurrentDate().getDate()
+          ? wrapper
+              .find('DateInput')
+              .find('Day')
+              .at(tentativeIndexDayToPick + 1)
+          : tentativeDayToPick;
+
+      const expectedDate = dayToPick.props().day.date;
+
+      dayToPick.simulate('click');
+      assert(onCloseCallback.calledOnce);
+      assert(onCloseCallback.calledWith(expectedDate, true));
     });
   });
 
