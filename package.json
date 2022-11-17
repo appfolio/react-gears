@@ -1,6 +1,6 @@
 {
   "name": "@appfolio/react-gears",
-  "version": "7.9.0",
+  "version": "7.10.0-hook-form.8",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {
@@ -12,6 +12,21 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
+    },
+    "./hook-form": {
+      "require": "./lib/components/HookForm/index.js",
+      "default": "./esm/components/HookForm/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "hook-form": ["esm/components/HookForm/index.d.ts"]
+    }
+  },
   "sideEffects": false,
   "files": [
     "lib",
@@ -67,6 +82,7 @@
     "lodash.without": "^4.4.0",
     "memoize-one": "^5.1.1",
     "prop-types": "^15.7.2",
+    "react-hook-form": "^7.39.0",
     "react-imask": "^6.2.2",
     "react-resize-detector": "^4.2.3",
     "react-select-plus": "1.2.0",
