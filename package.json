@@ -1,6 +1,6 @@
 {
   "name": "@appfolio/react-gears",
-  "version": "7.9.0",
+  "version": "7.10.0-hook-form.8",
   "description": "React-based version of Gears",
   "author": "Appfolio, Inc.",
   "repository": {

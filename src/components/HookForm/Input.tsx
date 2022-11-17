@@ -10,10 +10,10 @@ type DetermineValidateValue<
   TValueAsDate extends ValueAsDate
 > = TValueAsNumber extends true ? number : TValueAsDate extends true ? Date : string;
 
-type InputProps<TValueAsNumber extends ValueAsNumber, TValueAsDate extends ValueAsDate> = Omit<
-  ComponentProps<typeof GearsInput>,
-  keyof RegisterOptions
-> &
+export type InputProps<
+  TValueAsNumber extends ValueAsNumber = undefined,
+  TValueAsDate extends ValueAsDate = undefined
+> = Omit<ComponentProps<typeof GearsInput>, keyof RegisterOptions> &
   Omit<RegisterOptions, 'validate' | 'valueAsNumber' | 'valueAsDate'> & {
     name: string;
     validate?:

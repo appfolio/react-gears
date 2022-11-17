@@ -17,7 +17,7 @@ const gearsInputs = {
 
 type PropOrDefault<T extends {}, K extends PropertyKey, D = never> = K extends keyof T ? T[K] : D;
 type ReactStrapInputTypes = NonNullable<React.ComponentProps<typeof Input>['type']>;
-type InputTypes = ReactStrapInputTypes | keyof typeof gearsInputs;
+export type InputTypes = ReactStrapInputTypes | keyof typeof gearsInputs;
 
 function getInputByType<T extends InputTypes>(type: T) {
   return (

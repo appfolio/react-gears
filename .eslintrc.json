@@ -3,6 +3,7 @@
   "extends": ["@appfolio/eslint-config-appfolio-react", "prettier"],
   "plugins": ["no-only-tests", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "camelcase": ["error", { "allow": "^experimental_" }],
     "curly": ["error", "all"],
     "react/jsx-props-no-spreading": "off",
     "react/static-property-placement": "off",
