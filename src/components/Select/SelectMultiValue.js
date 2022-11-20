@@ -55,7 +55,7 @@ export default class SelectMultiValue extends React.Component {
           className="ms-1"
           style={{ opacity: 0.5 }}
           role="button"
-          name="times"
+          name="xmark"
           onClick={() => {
             if (!disabled) {
               onRemove(value);
