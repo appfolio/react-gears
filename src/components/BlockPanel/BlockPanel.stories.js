@@ -109,7 +109,7 @@ export const DropdownForControls = () => (
           role="button"
           title="More options"
         >
-          <Icon name="ellipsis-h" size="lg" />
+          <Icon name="ellipsis" size="lg" />
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Eenie</DropdownItem>
