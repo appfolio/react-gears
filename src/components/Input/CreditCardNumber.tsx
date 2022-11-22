@@ -94,7 +94,7 @@ const CreditCardNumber: FC<CreditCardNumberProps> = ({
     <InputGroup className={className}>
       <Input value={value || ''} onChange={onChangeHandler} {...inputProps} />
       <InputGroupText className="p-0 px-2">
-        <Icon name={typeToIconName(ccType)} fixedWidth size="lg" />
+        <Icon iconStyle='regular' name={typeToIconName(ccType)} fixedWidth size="lg" />
       </InputGroupText>
     </InputGroup>
   );
