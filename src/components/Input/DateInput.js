@@ -346,7 +346,7 @@ export default class DateInput extends React.Component {
                 tabIndex={-1}
                 onClick={this.toggle}
               >
-                <Icon iconStyle='regular' name="calendar" fixedWidth />
+                <Icon iconStyle="regular" name="calendar" fixedWidth />
                 <span className="visually-hidden">Open Calendar</span>
               </Button>
             </InputGroup>
