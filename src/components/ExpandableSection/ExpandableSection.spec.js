@@ -61,6 +61,14 @@ describe('<ExpandableSection />', () => {
     assert.equal(component.find(Collapse).prop('isOpen'), true, 'inner block should be visible');
   });
 
+  it('should render chevron on right side', () => {
+    const component = mount(
+      <ExpandableSection title="title" rightChevron>
+        <h1>Hello World!</h1>
+      </ExpandableSection>
+    );
+  });
+
   it('should call onToggle when state changed', () => {
     const onToggle = sinon.spy();
     const component = mount(

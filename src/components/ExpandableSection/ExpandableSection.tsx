@@ -9,6 +9,7 @@ interface ExpandableSectionProps {
   onToggle?: (open: boolean) => void;
   open?: boolean;
   title: React.ReactNode;
+  rightChevron?: boolean;
 }
 
 const ExpandableSection: FC<ExpandableSectionProps> = ({
@@ -17,6 +18,7 @@ const ExpandableSection: FC<ExpandableSectionProps> = ({
   onToggle = () => {},
   open: defaultOpen,
   title,
+  rightChevron = false,
 }) => {
   const [open, setOpen] = useState(defaultOpen);
   useEffect(() => {
@@ -28,6 +30,12 @@ const ExpandableSection: FC<ExpandableSectionProps> = ({
     onToggle(!open);
   };
 
+  const iconProps = {
+    name: `chevron-${open ? 'up' : 'down'}`,
+    className: `text-muted ${rightChevron ? 'ms-1' : 'me-1'}`,
+    style: { transition: 'transform 200ms ease-in-out' },
+  };
+
   return (
     <section className={className}>
       <header>
@@ -36,13 +44,9 @@ const ExpandableSection: FC<ExpandableSectionProps> = ({
           className="d-flex align-items-center w-100"
           onClick={toggle}
         >
-          <Icon
-            name={`chevron-${open ? 'up' : 'down'}`}
-            className="text-muted me-1"
-            fixedWidth
-            style={{ transition: 'transform 200ms ease-in-out' }}
-          />
-          {title}
+          {rightChevron && title}
+          <Icon {...iconProps} fixedWidth />
+          {!rightChevron && title}
           <style jsx>
             {`
               b {

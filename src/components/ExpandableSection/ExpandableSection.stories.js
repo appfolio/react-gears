@@ -29,6 +29,17 @@ export const Open = () => (
   </ExpandableSection>
 );
 
+export const RightChevron = () => (
+  <ExpandableSection
+    title={text('title', 'Click to expand me')}
+    open={boolean('open', ExpandableSection.defaultProps.open)}
+    onToggle={action('onToggle')}
+    rightChevron
+  >
+    <h2>BOO!</h2>
+  </ExpandableSection>
+);
+
 export const Header = () => (
   <ExpandableSection
     title={
