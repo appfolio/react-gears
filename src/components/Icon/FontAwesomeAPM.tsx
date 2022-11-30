@@ -101,7 +101,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       inverse && classNames.push('inverse');
 
       const fa = classNames.map((iconName) => `fa-${iconName}`);
-      !iconStyle ? fa.unshift(`fa-solid`) : fa.unshift(`fa-${iconStyle}`);
+      iconStyle ? fa.unshift(`fa-${iconStyle}`) : fa.unshift(`fa-solid`);
 
       classNames = fa;
     }
