@@ -1,5 +1,15 @@
 # Change Log
 
+## [7.9.1](https://github.com/appfolio/react-gears/compare/v7.9.0...v7.9.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* rating key centering ([be645ef](https://github.com/appfolio/react-gears/commit/be645efd0113c201113a975b22b62ecac5fca365))
+* run prettier ([04d7394](https://github.com/appfolio/react-gears/commit/04d739453e81b88a8507a4603281b5af8a19777c))
+* update credit card and calendar icons to font awesome v6.2.1 ([5f10449](https://github.com/appfolio/react-gears/commit/5f10449f5679fb0744e01bd8011de75d21acacaf))
+* update ellipsis and times icons to font awesome v6.2.1 ([7775e7e](https://github.com/appfolio/react-gears/commit/7775e7e1b93f7577b8913d5b347cc42765b75df2))
+
 ## [7.9.0](https://github.com/appfolio/react-gears/compare/v7.8.18...v7.9.0) (2022-10-31)
 
 
