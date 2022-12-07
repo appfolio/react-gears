@@ -5,9 +5,9 @@ import Icon from '../Icon/Icon';
 const noop = () => undefined;
 
 const ICON_MAP: { [key: string]: string } = {
-  warning: 'exclamation',
+  warning: 'exclamation-circle',
   success: 'check',
-  info: 'info',
+  info: 'info-circle',
   danger: 'ban',
 };
 
@@ -50,7 +50,7 @@ const Alert: FC<Props> = ({
       {...props}
     >
       <div className="d-flex align-items-start">
-        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-2" /> : null}
+        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-1" /> : null}
         {icon ? (
           <div className="w-100" style={{ overflow: 'hidden' }}>
             {children}

@@ -82,7 +82,7 @@ export default class ImageCarousel extends React.Component {
         external={
           <div className="h-100">
             <Icon
-              name="xmark"
+              name="times"
               size="2x"
               className="text-white"
               style={{ position: 'fixed', top: '2rem', right: '2rem', zIndex: 15000 }}
