@@ -12,7 +12,7 @@ describe('<Status />', () => {
 
   it('should take a type option', () => {
     const icon = shallow(<Status type="info" />).find(Icon);
-    assert.strictEqual(icon.prop('name'), 'circle-info');
+    assert.strictEqual(icon.prop('name'), 'info-circle');
     assert.strictEqual(icon.prop('className'), 'text-info');
   });
 

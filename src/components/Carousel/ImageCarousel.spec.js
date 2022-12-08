@@ -38,7 +38,7 @@ describe('<ImageCarousel />', () => {
     const external = shallow(component.prop('external'));
     const icon = external.find(Icon);
 
-    assert.strictEqual(icon.prop('name'), 'xmark');
+    assert.strictEqual(icon.prop('name'), 'times');
   });
 
   it('should render a carousel', () => {

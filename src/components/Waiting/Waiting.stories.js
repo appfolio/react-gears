@@ -22,6 +22,6 @@ export const CustomTitle = () => (
 
 export const Children = () => (
   <Waiting isOpen={boolean('isOpen', true)} backdrop={boolean('backdrop', true)}>
-    <Icon name="clock" size="4x" />
+    <Icon name="clock-o" size="4x" />
   </Waiting>
 );

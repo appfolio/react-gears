@@ -11,7 +11,7 @@ export default {
   component: Icon,
 };
 
-// React component for font awesome v6
+// React component for font awesome v5
 export const LiveExample = () => (
   <Icon
     name={text('name', 'motorcycle')}
@@ -21,7 +21,7 @@ export const LiveExample = () => (
     rotate={select('rotate', ['', '90', '180', '270'], '')}
     flip={select('flip', ['', 'horizontal', 'vertical'], '')}
     border={boolean('border', false)}
-    iconStyle={select('iconStyle', ['regular', 'solid', 'thin', 'light', 'duotone'], 'solid')}
+    isSolid={boolean('isSolid', false)}
   />
 );
 
@@ -50,7 +50,7 @@ export const InlineText = () => (
       <Icon name="print" /> Print
     </p>
     <p>
-      <Icon name="plus" /> Add Item
+      <Icon name="plus-circle" /> Add Item
     </p>
     <p>
       <Icon name="pencil" /> Edit
@@ -65,7 +65,7 @@ export const Buttons = () => (
   <div>
     <p>
       <Button>
-        <Icon name="plus" fixedWidth /> Add Item
+        <Icon name="plus-circle" fixedWidth /> Add Item
       </Button>
     </p>
     <p>
@@ -108,7 +108,7 @@ export const Size = () => (
 export const Animation = () => (
   <div>
     <Icon name="spinner" spin size="3x" />
-    <Icon name="circle-notch" spin size="3x" />
+    <Icon name="circle-o-notch" spin size="3x" />
     <Icon name="refresh" spin size="3x" />
     <Icon name="cog" spin size="3x" />
     <Icon name="spinner" pulse size="3x" />
