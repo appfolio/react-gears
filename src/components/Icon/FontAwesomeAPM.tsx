@@ -49,6 +49,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
  * @param {Boolean} [spin=false] Spin the icon
  * @param {String} [stack] Stack an icon on top of another
  * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+ * @param {Boolean} [isSolid] FontAwesome 5 to use solid icons if true
  * @module FontAwesome
  * @type {ReactClass}
  */
