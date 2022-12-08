@@ -1,5 +1,19 @@
 # Change Log
 
+## [7.10.0](https://github.com/appfolio/react-gears/compare/v7.9.1...v7.10.0) (2022-12-08)
+
+
+### Features
+
+* export combobox sub components ([5ff519e](https://github.com/appfolio/react-gears/commit/5ff519e96d468133741f09232e1a5d56963aecf4))
+
+
+### Bug Fixes
+
+* format prettier ([a597bce](https://github.com/appfolio/react-gears/commit/a597bcea5188f3f688159365be5b59ecb4aced23))
+* remove fa6 from links and add param ([f0315d2](https://github.com/appfolio/react-gears/commit/f0315d207b7fff87d893dfc8228f7883c7685f03))
+* revert icons, props and dependencies to fa v5 ([ad64437](https://github.com/appfolio/react-gears/commit/ad64437beb3185bff98bf5bd511594457e30ff28))
+
 ## [7.9.1](https://github.com/appfolio/react-gears/compare/v7.9.0...v7.9.1) (2022-11-30)
 
 
