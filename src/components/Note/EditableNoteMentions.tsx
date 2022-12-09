@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import Tribute, { TributeItem } from 'tributejs';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
@@ -14,26 +14,6 @@ type MentionableUser = {
   value: string;
   email: string;
 };
-
-function injectTribute(
-  mentionableUsers: MentionableUser[],
-  ref: RefObject<HTMLInputElement | HTMLTextAreaElement>
-) {
-  if (mentionableUsers.length > 0) {
-    if (ref.current) {
-      const tribute = new Tribute({
-        values: mentionableUsers,
-        menuItemTemplate(item: TributeItem<any>) {
-          return `${item.string}<span class="note__mention-email">${item.original.email}</span>`;
-        },
-        noMatchTemplate: () => '',
-        selectClass: 'note__mention-highlight',
-        allowSpaces: true,
-      });
-      tribute.attach(ref.current);
-    }
-  }
-}
 
 type EditableNoteMentionsProps = {
   children?: React.ReactNode;
@@ -78,7 +58,27 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
   const ref = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    injectTribute(mentionableUsers, ref);
+    if (mentionableUsers.length > 0 && ref.current) {
+      const tribute = new Tribute({
+        allowSpaces: true,
+        menuItemTemplate(item: TributeItem<any>) {
+          return `${item.string}<span class="note__mention-email">${item.original.email}</span>`;
+        },
+        noMatchTemplate: () => '',
+        selectClass: 'note__mention-highlight',
+        selectTemplate(item) {
+          if (ref.current) {
+            const event = {
+              target: { value: `${ref.current.value}${item.original.value}` },
+            } as React.ChangeEvent<HTMLInputElement>;
+            onChange(event, note);
+          }
+          return `@${item.original.value}`;
+        },
+        values: mentionableUsers,
+      });
+      tribute.attach(ref.current);
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const mentionStyles = () => (
