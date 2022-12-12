@@ -133,6 +133,7 @@ export { default as NavItem } from './components/Nav/NavItem';
 export { default as NavLink } from './components/Nav/NavLink';
 export { default as DeletedNote } from './components/Note/DeletedNote';
 export { default as EditableNote } from './components/Note/EditableNote';
+export { default as EditableNoteMentions } from './components/Note/EditableNoteMentions';
 export { default as Note } from './components/Note/Note';
 export { default as NoteHeader } from './components/Note/NoteHeader';
 export { default as Notes } from './components/Note/Notes';
