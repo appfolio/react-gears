@@ -57,6 +57,8 @@ __metadata:
     "@babel/preset-env": ^7.16.11
     "@babel/preset-react": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
+    "@fortawesome/fontawesome-free": ^6.2.0
+    "@fortawesome/fontawesome-svg-core": ^6.2.0
     "@jest/types": ^27.5.1
     "@popperjs/core": ^2.10.1
     "@storybook/addon-a11y": ^6.3.11
@@ -138,7 +140,6 @@ __metadata:
     raf-stub: ^3.0.0
     react: ^16.14.0
     react-dom: ^16.14.0
-    react-fontawesome: ^1.7.1
     react-imask: ^6.2.2
     react-resize-detector: ^4.2.3
     react-select-plus: 1.2.0
@@ -1911,6 +1912,29 @@ __metadata:
     minimatch: ^3.1.2
     strip-json-comments: ^3.1.1
   checksum: a1e734ad31a8b5328dce9f479f185fd4fc83dd7f06c538e1fa457fd8226b89602a55cc6458cd52b29573b01cdfaf42331be8cfc1fec732570086b591f4ed6515
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-common-types@npm:6.2.1":
+  version: 6.2.1
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.2.1"
+  checksum: 1a6e202beac46bc7e7bf791b37b6164b15453cc70b078456121c77d516a1077a1cfdab8aa9c77358c71f87f54560c0d9cbfb440cfb871f6d0f1f4671aabf9a0a
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-free@npm:^6.2.0":
+  version: 6.2.1
+  resolution: "@fortawesome/fontawesome-free@npm:6.2.1"
+  checksum: c77b7c8b0965e5c17f4ca45667885b6273e26af97a9e83db343fc756c159b5acd35cf420e73e1b916af1d275179290ccfb1900af48631749e30f36464f339bd3
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.2.0":
+  version: 6.2.1
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.2.1"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.2.1
+  checksum: 16caf6052b77c03826274325d4bd76d11cba486411c3101a635d3342dd764df8f5b4789456c9caa1667c232853a670f91dddf0449218e5fea7a27f4396b838af
   languageName: node
   linkType: hard
 
@@ -14660,17 +14684,6 @@ __metadata:
   version: 3.2.0
   resolution: "react-fast-compare@npm:3.2.0"
   checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
-  languageName: node
-  linkType: hard
-
-"react-fontawesome@npm:^1.7.1":
-  version: 1.7.1
-  resolution: "react-fontawesome@npm:1.7.1"
-  dependencies:
-    prop-types: ^15.5.6
-  peerDependencies:
-    react: ">=0.12.0"
-  checksum: 0b4ff66aac939b0fb288c68466b1702f7e2c51238bec0ca0899cea968c7bebe74a6f6a8dfe23d0771986fca83b32a1c7af7b706caee4b739a216ced48bf3f6bb
   languageName: node
   linkType: hard
 

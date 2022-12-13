@@ -28,7 +28,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   spin?: boolean;
   stack?: '1x' | '2x';
   tag?: keyof JSX.IntrinsicElements;
-  isSolid?: boolean;
+  iconStyle?: 'regular' | 'solid' | 'thin' | 'light' | 'duotone';
 }
 
 /**
@@ -49,6 +49,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
  * @param {Boolean} [spin=false] Spin the icon
  * @param {String} [stack] Stack an icon on top of another
  * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+ * @param {String} [iconStyle] Font Awesome classic family with multiple icon styles to choose from
  * @param {Boolean} [isSolid] FontAwesome 5 to use solid icons if true
  * @module FontAwesome
  * @type {ReactClass}
@@ -69,7 +70,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       spin,
       stack,
       tag: Tag = 'i',
-      isSolid,
+      iconStyle,
       ariaLabel,
       ...props
     } = this.props;
@@ -101,7 +102,7 @@ export default class FontAwesomeAPM extends React.Component<FontAwesomeAPMProps>
       inverse && classNames.push('inverse');
 
       const fa = classNames.map((iconName) => `fa-${iconName}`);
-      isSolid ? fa.unshift('fas') : fa.unshift('fa');
+      iconStyle ? fa.unshift(`fa-${iconStyle}`) : fa.unshift(`fa-solid`);
 
       classNames = fa;
     }

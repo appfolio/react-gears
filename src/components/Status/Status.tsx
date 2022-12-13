@@ -9,22 +9,26 @@ interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {
 }
 
 const Status = ({ type = 'none', className, ...props }: StatusProps) => {
+
   let name = '';
+  let iconStyle: 'regular' | 'solid' | 'thin' | 'light' | 'duotone' | undefined;
+
   switch (type) {
     case 'info':
-      name = 'info-circle';
+      name = 'circle-info';
       break;
     case 'muted':
-      name = 'circle-thin';
+      name = 'circle';
+      iconStyle = 'regular';
       break;
     case 'success':
-      name = 'check-circle';
+      name = 'circle-check';
       break;
     case 'danger':
       name = 'warning';
       break;
     case 'warning':
-      name = 'exclamation-circle';
+      name = 'circle-exclamation';
       break;
     case 'none':
       name = 'circle';
@@ -36,6 +40,7 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
     <Icon
       {...props}
       name={name}
+      iconStyle={iconStyle}
       fixedWidth
       className={classnames(`text-${type === 'none' ? 'muted' : type}`, className)}
     />

@@ -24,9 +24,9 @@ describe('<Alert />', () => {
   });
 
   describe('with icon', () => {
-    it('should show exclamation-circle for warning', () => {
+    it('should show circle-exclamation for warning', () => {
       const icon = shallow(<Alert icon color="warning" />).find(Icon);
-      assert.equal(icon.prop('name'), 'exclamation-circle');
+      assert.equal(icon.prop('name'), 'circle-exclamation');
     });
 
     it('should show ban for danger', () => {
@@ -36,12 +36,12 @@ describe('<Alert />', () => {
 
     it('should show info for info', () => {
       const icon = shallow(<Alert icon color="info" />).find(Icon);
-      assert.equal(icon.prop('name'), 'info-circle');
+      assert.equal(icon.prop('name'), 'circle-info');
     });
 
     it('should show check for success', () => {
       const icon = shallow(<Alert icon color="success" />).find(Icon);
-      assert.equal(icon.prop('name'), 'check');
+      assert.equal(icon.prop('name'), 'circle-check');
     });
 
     it('should wrap children with block (for alignment) with icon', () => {
