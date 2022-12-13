@@ -9,7 +9,6 @@ interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {
 }
 
 const Status = ({ type = 'none', className, ...props }: StatusProps) => {
-
   let name = '';
   let iconStyle: 'regular' | 'solid' | 'thin' | 'light' | 'duotone' | undefined;
 
