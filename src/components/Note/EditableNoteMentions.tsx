@@ -68,8 +68,11 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
         selectClass: 'note__mention-highlight',
         selectTemplate(item) {
           if (ref.current) {
+            const atIndex = ref.current.value.lastIndexOf('@');
             const event = {
-              target: { value: `${ref.current.value}${item.original.value}` },
+              target: {
+                value: `${ref.current.value.substring(0, atIndex + 1)}${item.original.value}`,
+              },
             } as React.ChangeEvent<HTMLInputElement>;
             onChange(event, note);
           }
