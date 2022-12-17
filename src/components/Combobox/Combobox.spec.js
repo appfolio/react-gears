@@ -80,6 +80,18 @@ describe('<Combobox />', () => {
     sinon.assert.calledWith(mockOnChange, OPTIONS[2].value);
   });
 
+  it('should call onChangeText when user types', () => {
+    const mockOnChangeText = sinon.spy();
+    const combobox = render(<Combobox options={OPTIONS} onChangeText={mockOnChangeText} />);
+
+    const input = combobox.getByTestId('combobox-input');
+    fireEvent.focus(input);
+    fireEvent.change(input, { target: { value: 'R' } });
+
+    sinon.assert.called(mockOnChangeText);
+    sinon.assert.calledWith(mockOnChangeText, 'R');
+  });
+
   it('should close menu on blur', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 

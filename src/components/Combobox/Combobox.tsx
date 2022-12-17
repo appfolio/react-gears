@@ -31,6 +31,7 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   dropdownProps?: DropdownProps;
   noResultsLabel?: string;
   onChange?: (value?: T | T[]) => void;
+  onChangeText?: (value: string) => void;
   onCreate?: (str: string) => T;
   isValidNewOption?: (label: string) => boolean;
   filterOptions?: (options: Option<T>[], value: string) => Option<T>[];
@@ -42,6 +43,7 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
 const defaultProps = {
   noResultsLabel: 'No results found',
   onChange: () => {},
+  onChangeText: () => {},
   filterOptions: (o: Option<any>[], v: any) =>
     o.filter((option) => (v ? option.label.toLowerCase().indexOf(v.toLowerCase()) > -1 : true)),
   isValidNewOption: () => true,
@@ -61,6 +63,7 @@ function Combobox<T>({
   multi,
   noResultsLabel = defaultProps.noResultsLabel,
   onChange = defaultProps.onChange,
+  onChangeText = defaultProps.onChangeText,
   onCreate,
   isValidNewOption = defaultProps.isValidNewOption,
   filterOptions = defaultProps.filterOptions,
@@ -382,6 +385,7 @@ function Combobox<T>({
                 e.stopPropagation();
                 setInputValue(e.target.value);
 
+                onChangeText(e.target.value);
                 if (!multi && selected && cursorAtStart() && e.target.value === '') {
                   onChange(undefined);
                 }
