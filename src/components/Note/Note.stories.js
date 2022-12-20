@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import EditableNote from './EditableNote';
 import EditableNoteMentions from './EditableNoteMentions';
 import Note from './Note';
+import NoteMentions from './NoteMentions';
 
 const noteToEdit = {
   date: new Date(),
@@ -109,35 +110,62 @@ export const EditableNoteWithChildren = () => {
   );
 };
 
-export const EditableNoteMentionsExample = () => {
+const mentionableUsers = [
+  {
+    key: 'Satoshi Nakamoto',
+    value: 'Satoshi.Nakamoto',
+    email: 'satoshi@appfolio.com',
+  },
+  {
+    key: 'LeBron James',
+    value: 'LeBron.James',
+    email: 'lebron.james@appfolio.com',
+  },
+  {
+    key: 'Barbra Streisand',
+    value: 'Barbra.Streisand',
+    email: 'barbra.streisand@appfolio.com',
+  },
+  {
+    key: 'Barry Bonds',
+    value: 'Barry.Bonds',
+    email: 'barry.bonds@appfolio.com',
+  },
+];
+
+export const NoteWithMentions = () => {
+  const noteWithMentions = {
+    date: new Date(),
+    deleted: boolean('deleted', false),
+    edited: boolean('edited', false),
+    editing: boolean('editing', false),
+    from: text('from', 'Tom Brady'),
+    text: text('text', 'Hi @Satoshi.Nakamoto Who are you??? I lost all my crypto.'),
+    title: text('title', ''),
+  };
+
+  return (
+    <NoteMentions
+      mentionableUsers={mentionableUsers}
+      note={noteWithMentions}
+      onCancel={action('onCancel')}
+      onChange={action('onChange')}
+      onDelete={action('onDelete')}
+      onEdit={action('onEdit')}
+      onSave={action('onSave')}
+      onUndelete={action('onUndelete')}
+      rows={number('rows', Note.defaultProps.rows)}
+      saving={boolean('saving')}
+    />
+  );
+};
+
+export const EditableNoteWithMentions = () => {
   const [note, setNote] = useState({
     date: new Date(),
     from: 'Tom Brady',
     text: '',
   });
-
-  const mentionableUsers = [
-    {
-      key: 'Satoshi Nakamoto',
-      value: 'Satoshi.Nakamoto',
-      email: 'satoshi@appfolio.com',
-    },
-    {
-      key: 'LeBron James',
-      value: 'LeBron.James',
-      email: 'lebron.james@appfolio.com',
-    },
-    {
-      key: 'Barbra Streisand',
-      value: 'Barbra.Streisand',
-      email: 'barbra.streisand@appfolio.com',
-    },
-    {
-      key: 'Barry Bonds',
-      value: 'Barry.Bonds',
-      email: 'barry.bonds@appfolio.com',
-    },
-  ];
 
   const onNoteChange = (e) => {
     setNote({ ...note, text: e.target.value });
