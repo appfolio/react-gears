@@ -4,6 +4,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { assertAccessible } from '../../tooling/a11yHelpers';
 import Button from '../Button/Button';
+import Card from '../Card/Card';
 import CardBody from '../Card/CardBody';
 import CardTitle from '../Card/CardTitle';
 import Collapse from '../Collapse/Collapse';
@@ -19,6 +20,16 @@ describe('<BlockPanel />', () => {
 
   it('should be accessible when empty', async () => {
     await assertAccessible(<BlockPanel title="Open" />);
+  });
+
+  it('should pass classname from default props to Card', () => {
+    const component = shallow(
+      <BlockPanel title="Open">
+        <h1 id="hi">Hello World!</h1>
+      </BlockPanel>
+    );
+
+    assert.equal(component.find(Card).hasClass('text-break'), true);
   });
 
   it('sticky block panel should render correctly', async () => {

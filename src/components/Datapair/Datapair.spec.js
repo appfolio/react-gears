@@ -43,12 +43,12 @@ describe('<Datapair />', () => {
   it('should support a className', () => {
     const fancyComponent = shallow(<Datapair className="fancy-component" label="stuff" />);
     const formLabelGroup = fancyComponent.find(FormLabelGroup);
-    assert.equal(formLabelGroup.prop('rowClassName'), 'js-datapair fancy-component');
+    assert.equal(formLabelGroup.prop('rowClassName'), 'js-datapair text-break fancy-component');
   });
 
   it('should omit undefined class name', () => {
     const fancyComponent = shallow(<Datapair label="stuff" />);
     const formLabelGroup = fancyComponent.find(FormLabelGroup);
-    assert.equal(formLabelGroup.prop('rowClassName'), 'js-datapair');
+    assert.equal(formLabelGroup.prop('rowClassName'), 'js-datapair text-break');
   });
 });

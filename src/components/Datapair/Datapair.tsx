@@ -17,7 +17,7 @@ interface DatapairProps extends ComponentProps<typeof FormLabelGroup> {
  * the value can be text or links.
  */
 const Datapair: FC<DatapairProps> = ({ children, className, label, value, ...attributes }) => {
-  const classNames = classnames('js-datapair', className);
+  const classNames = classnames('js-datapair', 'text-break', className);
   return (
     <FormLabelGroup inline label={label} rowClassName={classNames} {...attributes}>
       {children || (
