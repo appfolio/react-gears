@@ -50,7 +50,7 @@ export interface BlockPanelProps {
 }
 
 const defaultProps = {
-  className: '',
+  className: 'text-break',
   open: true,
   expandable: false,
   hideOnToggle: false,

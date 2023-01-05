@@ -16,7 +16,6 @@ const monthArray = [
 ];
 
 const yearArray = [
-  new Date(1999, 0),
   new Date(2000, 0),
   new Date(2001, 0),
   new Date(2002, 0),
@@ -28,6 +27,7 @@ const yearArray = [
   new Date(2008, 0),
   new Date(2009, 0),
   new Date(2010, 0),
+  new Date(2011, 0),
 ];
 
 const centeredYearArray = [
