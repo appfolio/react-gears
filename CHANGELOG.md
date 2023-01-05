@@ -1,5 +1,21 @@
 # Change Log
 
+## [7.11.0](https://github.com/appfolio/react-gears/compare/v7.10.0...v7.11.0) (2023-01-05)
+
+
+### Features
+
+* add NoteMentions ([21cc225](https://github.com/appfolio/react-gears/commit/21cc2250e453ce655468666e22efa243b37cf5d2))
+
+
+### Bug Fixes
+
+* add `text-break` classname to break long strings ([f557534](https://github.com/appfolio/react-gears/commit/f5575342f63103a0405f4b58d5911ea4481f4850))
+* auto-complete bug ([68db766](https://github.com/appfolio/react-gears/commit/68db766c6fd0924b7ecedf7e4fa2eae4a7be308a))
+* empty mention string bug ([de89b5d](https://github.com/appfolio/react-gears/commit/de89b5d183756f24dae06e9154fecb8201f0dd3b))
+* export EditableNoteMentions ([bfec9c1](https://github.com/appfolio/react-gears/commit/bfec9c1fd4aea6301bce2fe322f0dfebf1c98376))
+* spec timebomb caused by New Year ([7d95ef8](https://github.com/appfolio/react-gears/commit/7d95ef873542a84287f71a037217f8950e38145e))
+
 ## [7.10.0](https://github.com/appfolio/react-gears/compare/v7.9.1...v7.10.0) (2022-12-08)
 
 
