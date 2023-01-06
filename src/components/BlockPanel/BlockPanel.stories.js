@@ -38,7 +38,15 @@ export const LiveExample = () => (
     hideOnToggle={boolean('hideOnToggle', false)}
     open={boolean('open', true)}
   >
-    Now you see me.
+    {text('title') ? (
+      <div>
+        The header is shown when a <em>title</em> prop is provided
+      </div>
+    ) : (
+      <div>
+        The header is removed when the <em>title</em> prop is <em>undefined</em>
+      </div>
+    )}
   </BlockPanel>
 );
 
