@@ -44,7 +44,7 @@ export interface BlockPanelProps {
   onEdit?: (event: React.MouseEvent<any, MouseEvent>) => void;
   onToggle?: (willOpen?: boolean) => void;
   open?: boolean;
-  title: ReactNode;
+  title?: ReactNode;
   stickyId?: string;
   bodyClassName?: string;
 }
@@ -119,40 +119,42 @@ const BlockPanel: FC<BlockPanelProps> = ({
 
   return (
     <Card className={className} {...props}>
-      <CardHeader className={headerClassNames}>
-        <BlockPanelTitle
-          className="d-inline-flex align-items-center"
-          expandable={expandable}
-          onClick={toggle}
-        >
-          {expandable && (
-            <Icon
-              className={iconClassName}
-              name="chevron-up"
-              rotate={!isOpen ? 180 : undefined}
-              fixedWidth
-              style={{ transition: 'transform 200ms ease-in-out' }}
-            />
-          )}
-          <CardTitle tag="h2" className="m-0 my-1 me-auto">
-            {title}
-          </CardTitle>
-        </BlockPanelTitle>
-        <div className="d-inline-flex">
-          {controls && controls}
-          {onEdit && (
-            <Button
-              color="link"
-              className={`${
-                color === 'primary' || color === 'dark' ? 'text-white' : ''
-              } p-0 ms-2 me-1`}
-              onClick={onEdit}
-            >
-              Edit
-            </Button>
-          )}
-        </div>
-      </CardHeader>
+      {title && (
+        <CardHeader className={headerClassNames}>
+          <BlockPanelTitle
+            className="d-inline-flex align-items-center"
+            expandable={expandable}
+            onClick={toggle}
+          >
+            {expandable && (
+              <Icon
+                className={iconClassName}
+                name="chevron-up"
+                rotate={!isOpen ? 180 : undefined}
+                fixedWidth
+                style={{ transition: 'transform 200ms ease-in-out' }}
+              />
+            )}
+            <CardTitle tag="h2" className="m-0 my-1 me-auto">
+              {title}
+            </CardTitle>
+          </BlockPanelTitle>
+          <div className="d-inline-flex">
+            {controls && controls}
+            {onEdit && (
+              <Button
+                color="link"
+                className={`${
+                  color === 'primary' || color === 'dark' ? 'text-white' : ''
+                } p-0 ms-2 me-1`}
+                onClick={onEdit}
+              >
+                Edit
+              </Button>
+            )}
+          </div>
+        </CardHeader>
+      )}
       {children && (
         <Collapse isOpen={children ? !expandable || isOpen : false} onExited={() => onClosed()}>
           {(!expandable || hideOnToggle || !collapsed) && (

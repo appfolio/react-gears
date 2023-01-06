@@ -12,14 +12,80 @@ import Icon from '../Icon/Icon';
 import BlockPanel from './BlockPanel';
 
 describe('<BlockPanel />', () => {
-  it('should be empty with no children', () => {
-    const component = mount(<BlockPanel title="Open" />);
+  describe('when no title or children are provided', () => {
+    const example = () => <BlockPanel />;
 
-    assert.equal(component.find('CardBody').length, 0);
+    it('should be an empty card with no header', () => {
+      const component = mount(example());
+
+      assert.equal(component.find('Card').length, 1);
+      assert.equal(component.find('CardHeader').length, 0);
+      assert.equal(component.find('CardBody').length, 0);
+    });
+
+    it('should be accessible when empty with not header', async () => {
+      await assertAccessible(example());
+    });
   });
 
-  it('should be accessible when empty', async () => {
-    await assertAccessible(<BlockPanel title="Open" />);
+  describe('when a title is provided but no children', () => {
+    const example = () => <BlockPanel title="Open" />;
+
+    it('should be an empty card with a header ', () => {
+      const component = mount(example());
+
+      assert.equal(component.find('Card').length, 1);
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').text(), 'Open');
+      assert.equal(component.find('CardBody').length, 0);
+    });
+
+    it('should be accessible when empty', async () => {
+      await assertAccessible(example());
+    });
+  });
+
+  describe('when children are provided but no title', () => {
+    const example = () => (
+      <BlockPanel>
+        <h1 id="hi">Hello World</h1>
+      </BlockPanel>
+    );
+
+    it('should be empty with no children', () => {
+      const component = mount(example());
+
+      assert.equal(component.find('Card').length, 1);
+      assert.equal(component.find('CardHeader').length, 0);
+      assert.equal(component.find('CardBody').length, 1);
+      assert.equal(component.find('#hi').length, 1);
+    });
+
+    it('should be accessible when empty', async () => {
+      await assertAccessible(example());
+    });
+  });
+
+  describe('when title and children are provided', () => {
+    const example = () => (
+      <BlockPanel title="Open">
+        <h1 id="hi">Hello World!</h1>
+      </BlockPanel>
+    );
+
+    it('should have both header and body', () => {
+      const component = mount(example());
+
+      assert.equal(component.find('Card').length, 1);
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').text(), 'Open');
+      assert.equal(component.find('CardBody').length, 1);
+      assert.equal(component.find('#hi').length, 1);
+    });
+
+    it('should be accessible when empty', async () => {
+      await assertAccessible(example());
+    });
   });
 
   it('should pass classname from default props to Card', () => {
