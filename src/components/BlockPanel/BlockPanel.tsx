@@ -117,11 +117,17 @@ const BlockPanel: FC<BlockPanelProps> = ({
     'text-muted': color !== 'primary' && color !== 'dark',
   });
 
+  const propProvided = (prop?: ReactNode) =>
+    typeof prop === 'string' ? prop !== '' : React.Children.count(prop) > 0;
+
+  const shouldRenderHeader = propProvided(title) || propProvided(controls) || expandable || onEdit;
+
   return (
     <Card className={className} {...props}>
-      {title && (
+      {shouldRenderHeader && (
         <CardHeader className={headerClassNames}>
           <BlockPanelTitle
+            aria-label={expandable ? (isOpen ? 'collapse' : 'expand') : undefined}
             className="d-inline-flex align-items-center"
             expandable={expandable}
             onClick={toggle}
@@ -135,9 +141,11 @@ const BlockPanel: FC<BlockPanelProps> = ({
                 style={{ transition: 'transform 200ms ease-in-out' }}
               />
             )}
-            <CardTitle tag="h2" className="m-0 my-1 me-auto">
-              {title}
-            </CardTitle>
+            {propProvided(title) && (
+              <CardTitle tag="h2" className="m-0 my-1 me-auto">
+                {title}
+              </CardTitle>
+            )}
           </BlockPanelTitle>
           <div className="d-inline-flex">
             {controls && controls}
