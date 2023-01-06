@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.12.0](https://github.com/appfolio/react-gears/compare/v7.11.0...v7.12.0) (2023-01-06)
+
+
+### Features
+
+* render BlockPanel header when title provided ([b21f138](https://github.com/appfolio/react-gears/commit/b21f1387647fa840000373298560aa0faf04431e))
+
+
+### Miscellaneous
+
+* run prettier ([c93eff6](https://github.com/appfolio/react-gears/commit/c93eff65d47dd7d8f7a4d308a90a4c70d686b432))
+
 ## [7.11.0](https://github.com/appfolio/react-gears/compare/v7.10.0...v7.11.0) (2023-01-05)
 
 
