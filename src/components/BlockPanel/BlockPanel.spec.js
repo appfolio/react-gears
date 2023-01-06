@@ -12,7 +12,7 @@ import Icon from '../Icon/Icon';
 import BlockPanel from './BlockPanel';
 
 describe('<BlockPanel />', () => {
-  describe('when no title or children are provided', () => {
+  describe('when no header components or children are provided', () => {
     const example = () => <BlockPanel />;
 
     it('should be an empty card with no header', () => {
@@ -23,24 +23,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('CardBody').length, 0);
     });
 
-    it('should be accessible when empty with not header', async () => {
-      await assertAccessible(example());
-    });
-  });
-
-  describe('when a title is provided but no children', () => {
-    const example = () => <BlockPanel title="Open" />;
-
-    it('should be an empty card with a header ', () => {
-      const component = mount(example());
-
-      assert.equal(component.find('Card').length, 1);
-      assert.equal(component.find('CardHeader').length, 1);
-      assert.equal(component.find('CardTitle').text(), 'Open');
-      assert.equal(component.find('CardBody').length, 0);
-    });
-
-    it('should be accessible when empty', async () => {
+    it('should be accessible', async () => {
       await assertAccessible(example());
     });
   });
@@ -52,7 +35,7 @@ describe('<BlockPanel />', () => {
       </BlockPanel>
     );
 
-    it('should be empty with no children', () => {
+    it('should render the card body with no header', () => {
       const component = mount(example());
 
       assert.equal(component.find('Card').length, 1);
@@ -61,7 +44,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1);
     });
 
-    it('should be accessible when empty', async () => {
+    it('should be accessible', async () => {
       await assertAccessible(example());
     });
   });
@@ -83,7 +66,7 @@ describe('<BlockPanel />', () => {
       assert.equal(component.find('#hi').length, 1);
     });
 
-    it('should be accessible when empty', async () => {
+    it('should be accessible', async () => {
       await assertAccessible(example());
     });
   });
@@ -317,7 +300,7 @@ describe('<BlockPanel />', () => {
 
     it('should render edit link when passed onEdit', () => {
       const component = mount(
-        <BlockPanel title="Open" onEdit={() => {}}>
+        <BlockPanel onEdit={() => {}}>
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
@@ -327,7 +310,7 @@ describe('<BlockPanel />', () => {
 
     it('should be accessible when passed onEdit', async () => {
       await assertAccessible(
-        <BlockPanel title="Open" onEdit={() => {}}>
+        <BlockPanel onEdit={() => {}}>
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
@@ -344,6 +327,54 @@ describe('<BlockPanel />', () => {
       const editButton = component.find(Button);
       editButton.simulate('click');
       assert(onEdit.calledOnce);
+    });
+
+    it('should render header controls', () => {
+      const component = mount(<BlockPanel controls={<h1 id="hey">Hey!</h1>} />);
+
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').length, 0);
+      assert.equal(component.find('#hey').length, 1);
+    });
+
+    it('should be accessible with header controls', async () => {
+      await assertAccessible(<BlockPanel controls={<h1 id="hey">Hey!</h1>} />);
+    });
+
+    it('should render a header with expander with no other header parts', () => {
+      const component = mount(<BlockPanel expandable />);
+
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').length, 0);
+    });
+
+    it('should be accessible with expandable header', async () => {
+      await assertAccessible(<BlockPanel expandable />);
+    });
+
+    it('should render header controls if the title is empty', () => {
+      const component = mount(<BlockPanel title="" controls={<h1 id="hey">Hey!</h1>} />);
+
+      assert.equal(component.find('Card').length, 1);
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').length, 0);
+      assert.equal(component.find('#hey').length, 1);
+      assert.equal(component.find('CardBody').length, 0);
+    });
+
+    it('should be accessible with a blank title and controls', async () => {
+      await assertAccessible(<BlockPanel title="" controls={<h1 id="hey">Hey!</h1>} />);
+    });
+
+    it('should render a header with a title', () => {
+      const component = mount(<BlockPanel title="Open" />);
+
+      assert.equal(component.find('CardHeader').length, 1);
+      assert.equal(component.find('CardTitle').text(), 'Open');
+    });
+
+    it('should be accessible', async () => {
+      await assertAccessible(<BlockPanel title="Open" />);
     });
 
     it('should render title components when passed', () => {
@@ -368,6 +399,29 @@ describe('<BlockPanel />', () => {
           <h1 id="hi">Hello World!</h1>
         </BlockPanel>
       );
+    });
+  });
+
+  describe('header title', () => {
+    it('has no ARIA label if not expandable', () => {
+      const component = mount(<BlockPanel title="Open" />);
+      const title = component.find('BlockPanelTitle').first();
+
+      assert.equal(title.prop('aria-label'), undefined);
+    });
+
+    it('has ARIA label if expandable and open', () => {
+      const component = mount(<BlockPanel expandable open />);
+      const title = component.find('BlockPanelTitle').first();
+
+      assert.equal(title.prop('aria-label'), 'collapse');
+    });
+
+    it('has ARIA label if expandable and closed', () => {
+      const component = mount(<BlockPanel expandable open={false} />);
+      const title = component.find('BlockPanelTitle').first();
+
+      assert.equal(title.prop('aria-label'), 'expand');
     });
   });
 });
