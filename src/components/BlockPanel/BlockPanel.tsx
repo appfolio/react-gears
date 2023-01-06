@@ -54,7 +54,7 @@ const defaultProps = {
   open: true,
   expandable: false,
   hideOnToggle: false,
-  onToggle: () => { },
+  onToggle: () => {},
 };
 /**
  * BlockPanel is an extension to Bootstrap Card, which allows for expand/collapse and standardized header.
@@ -144,8 +144,9 @@ const BlockPanel: FC<BlockPanelProps> = ({
             {onEdit && (
               <Button
                 color="link"
-                className={`${color === 'primary' || color === 'dark' ? 'text-white' : ''
-                  } p-0 ms-2 me-1`}
+                className={`${
+                  color === 'primary' || color === 'dark' ? 'text-white' : ''
+                } p-0 ms-2 me-1`}
                 onClick={onEdit}
               >
                 Edit
