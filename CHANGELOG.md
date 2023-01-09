@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.12.1](https://github.com/appfolio/react-gears/compare/v7.12.0...v7.12.1) (2023-01-09)
+
+
+### Bug Fixes
+
+* block panel header with optional parts ([df8a8d8](https://github.com/appfolio/react-gears/commit/df8a8d8216a36c2cff7858bb094389251db258c7))
+
 ## [7.12.0](https://github.com/appfolio/react-gears/compare/v7.11.0...v7.12.0) (2023-01-06)
 
 
