@@ -132,6 +132,7 @@ export default [
   'circle-dot',
   'circle-down',
   'circle-exclamation',
+  'circle-info',
   'circle-left',
   'circle-minus',
   'circle-notch',
