@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.13.0](https://github.com/appfolio/react-gears/compare/v7.12.1...v7.13.0) (2023-01-24)
+
+
+### Features
+
+* update syled jsx to v5 for security ([e028f43](https://github.com/appfolio/react-gears/commit/e028f437391495d318fd37eed0070f72c3d416e0))
+
 ## [7.12.1](https://github.com/appfolio/react-gears/compare/v7.12.0...v7.12.1) (2023-01-09)
 
 
