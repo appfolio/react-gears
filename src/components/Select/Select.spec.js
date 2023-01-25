@@ -39,13 +39,13 @@ describe('<Select />', () => {
     });
 
     describe('with defaultValue', () => {
-      const component = shallow(<Select options={OPTIONS} defaultValue={2} />);
-
       it('should start with default', () => {
-        assert.equal(component.prop('value'), 2);
+        const screen = render(<Select options={OPTIONS} defaultValue={2} />);
+        screen.getByText('Meeny');
       });
 
       it('should update the value when changed', () => {
+        const component = shallow(<Select options={OPTIONS} defaultValue={2} />);
         component.simulate('change', 'stuff');
         assert.equal(component.prop('value'), 'stuff');
       });

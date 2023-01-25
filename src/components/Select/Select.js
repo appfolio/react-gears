@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactSelect from 'react-select-plus';
 import Close from '../Button/Close';
 import SelectArrow from './SelectArrow';
@@ -29,7 +29,9 @@ const Select = ({
 }) => {
   const [value, setValue] = useState(valueProp || props.defaultValue);
 
-  useEffect(() => setValue(valueProp), [valueProp]);
+  if (typeof valueProp !== 'undefined' && !Object.is(valueProp, value)) {
+    setValue(valueProp);
+  }
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -55,7 +57,7 @@ const Select = ({
       inputProps={{ name, ...inputProps }}
       multi={multi}
       onChange={handleChange}
-      value={valueProp || value}
+      value={value}
       valueComponent={valueComponentRenderer}
       className={classNames}
       name={name}
