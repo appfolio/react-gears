@@ -1,7 +1,6 @@
 import classnames from 'classnames';
-import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactSelect from 'react-select-plus';
 import Close from '../Button/Close';
 import SelectArrow from './SelectArrow';
@@ -19,21 +18,23 @@ const getCloseButton = () => (
 const Select = ({
   arrowRenderer,
   className,
+  defaultValue,
   inputProps,
-  multi,
-  name,
-  value: valueProp,
+  onChange: propsOnChange,
+  value: propsValue,
   valueComponent,
-  onChange,
   ...props
 }) => {
-  const [value, setValue] = useState(valueProp || props.defaultValue);
+  const valueNotSet = typeof propsValue === 'undefined';
+  const [value, setValue] = useState(valueNotSet ? defaultValue : propsValue);
 
-  useEffect(() => setValue(valueProp), [valueProp]);
+  if (!valueNotSet && !Object.is(propsValue, value)) {
+    setValue(propsValue);
+  }
 
-  const handleChange = (newValue) => {
+  const onChange = (newValue) => {
     setValue(newValue);
-    onChange(newValue);
+    propsOnChange?.(newValue);
   };
 
   let SelectElement = ReactSelect;
@@ -45,38 +46,27 @@ const Select = ({
     SelectElement = ReactSelect.Creatable;
   }
   const classNames = classnames(className, { 'select-async': props.loadOptions });
-  const valueComponentRenderer = valueComponent || (multi ? SelectMultiValue : undefined);
+  const valueComponentRenderer = valueComponent || (props.multi ? SelectMultiValue : undefined);
 
   return (
     <SelectElement
       arrowRenderer={({ isOpen }) => getSelectArrow(isOpen, arrowRenderer)}
-      clearRenderer={getCloseButton}
-      optionComponent={Option}
-      inputProps={{ name, ...inputProps }}
-      multi={multi}
-      onChange={handleChange}
-      value={valueProp || value}
-      valueComponent={valueComponentRenderer}
       className={classNames}
-      name={name}
+      clearRenderer={getCloseButton}
+      inputProps={{ name: props.name, ...inputProps }}
+      onChange={onChange}
+      optionComponent={Option}
+      value={value}
+      valueComponent={valueComponentRenderer}
       {...props}
     />
   );
 };
 
 Select.propTypes = {
-  className: PropTypes.string,
   defaultValue: PropTypes.any,
-  loadOptions: PropTypes.func,
-  onChange: PropTypes.func,
-  value: PropTypes.any,
   ...ReactSelect.propTypes,
 };
-
-Select.defaultProps = {
-  onChange: noop,
-};
-
 Select.displayName = 'Select';
 
 export default Select;
