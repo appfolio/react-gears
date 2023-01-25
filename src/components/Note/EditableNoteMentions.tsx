@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from 'react';
-import Tribute, { TributeItem } from 'tributejs';
+import { TributeItem } from 'tributejs';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
 import Card from '../Card/Card';
@@ -58,30 +58,33 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
   const ref = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (mentionableUsers.length > 0 && ref.current) {
-      const tribute = new Tribute({
-        allowSpaces: true,
-        menuItemTemplate(item: TributeItem<any>) {
-          return `${item.string}<span class="note__mention-email">${item.original.email}</span>`;
-        },
-        noMatchTemplate: () => '',
-        selectClass: 'note__mention-highlight',
-        selectTemplate(item) {
-          if (ref.current) {
-            const atIndex = ref.current.value.lastIndexOf('@');
-            const event = {
-              target: {
-                value: `${ref.current.value.substring(0, atIndex + 1)}${item.original.value}`,
-              },
-            } as React.ChangeEvent<HTMLInputElement>;
-            onChange(event, note);
-          }
-          return `@${item.original.value}`;
-        },
-        values: mentionableUsers,
-      });
-      tribute.attach(ref.current);
-    }
+    (async () => {
+      if (mentionableUsers.length > 0 && ref.current) {
+        const Tribute = (await import('tributejs')).default;
+        const tribute = new Tribute({
+          allowSpaces: true,
+          menuItemTemplate(item: TributeItem<any>) {
+            return `${item.string}<span class="note__mention-email">${item.original.email}</span>`;
+          },
+          noMatchTemplate: () => '',
+          selectClass: 'note__mention-highlight',
+          selectTemplate(item) {
+            if (ref.current) {
+              const atIndex = ref.current.value.lastIndexOf('@');
+              const event = {
+                target: {
+                  value: `${ref.current.value.substring(0, atIndex + 1)}${item.original.value}`,
+                },
+              } as React.ChangeEvent<HTMLInputElement>;
+              onChange(event, note);
+            }
+            return `@${item.original.value}`;
+          },
+          values: mentionableUsers,
+        });
+        tribute.attach(ref.current);
+      }
+    })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const mentionStyles = () => (

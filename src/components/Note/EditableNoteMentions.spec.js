@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mount } from 'enzyme';
 import React from 'react';
@@ -55,7 +55,7 @@ describe('<EditableNoteMentions />', () => {
       });
 
       describe('with mentionable users', () => {
-        it('should show mentionable user dropdown on @ trigger', () => {
+        it('should show mentionable user dropdown on @ trigger', async () => {
           const mentionableUsers = [
             {
               key: 'John Doe',
@@ -73,10 +73,12 @@ describe('<EditableNoteMentions />', () => {
           render(<EditableNoteMentions {...props} />);
 
           const input = screen.getByRole('textbox');
-          userEvent.type(input, '@');
-
-          expect(screen.getByText('John Doe')).toBeTruthy();
-          expect(screen.getByText('Mike Smith')).toBeTruthy();
+          await waitFor(() => {
+            userEvent.clear(input);
+            userEvent.type(input, '@');
+            expect(screen.getByText('John Doe')).toBeTruthy();
+            expect(screen.getByText('Mike Smith')).toBeTruthy();
+          });
         });
       });
 
