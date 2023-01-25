@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.13.1](https://github.com/appfolio/react-gears/compare/v7.13.0...v7.13.1) (2023-01-25)
+
+
+### Bug Fixes
+
+* dont useeffect to sync props with state ([c03d3d0](https://github.com/appfolio/react-gears/commit/c03d3d0943178e1bc49bdea60a8608c87eb66273))
+* reduce manual passing of props ([a56ae2a](https://github.com/appfolio/react-gears/commit/a56ae2a067e8718823c54ab17e3ab034bb9ae0e3))
+
 ## [7.13.0](https://github.com/appfolio/react-gears/compare/v7.12.1...v7.13.0) (2023-01-24)
 
 
