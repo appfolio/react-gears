@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.13.2](https://github.com/appfolio/react-gears/compare/v7.13.1...v7.13.2) (2023-01-26)
+
+
+### Bug Fixes
+
+* **EditableNoteMentions:** make tributejs import a dynamic import ([a048293](https://github.com/appfolio/react-gears/commit/a04829350c181f9182ca91d5ea40c8609bba2cb1))
+
 ## [7.13.1](https://github.com/appfolio/react-gears/compare/v7.13.0...v7.13.1) (2023-01-25)
 
 
