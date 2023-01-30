@@ -4,6 +4,7 @@ interface FilterType {
   label: string;
   value: string;
   removable?: boolean;
+  [index: string]: any;
 }
 
 interface FilterListProps {

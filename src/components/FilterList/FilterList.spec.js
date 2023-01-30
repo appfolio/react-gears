@@ -43,10 +43,10 @@ describe('<FilterList />', () => {
   it('passes onRemove callback to LabelBadge', () => {
     const onRemove = sinon.stub();
     const wrapper = mount(
-      <FilterList filters={[{ label: 'hello', value: 'world' }]} onRemove={onRemove} />
+      <FilterList filters={[{ label: 'hello', value: 'world', myVal: 'value' }]} onRemove={onRemove} />
     );
     wrapper.find('.btn-close').simulate('click');
-    sinon.assert.calledWith(onRemove);
+    sinon.assert.calledWith(onRemove, { label: "hello", myVal: "value", value: "world" });
   });
 
   it('passes removable to LabelBadge', () => {
