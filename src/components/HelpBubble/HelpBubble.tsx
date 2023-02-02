@@ -41,7 +41,7 @@ function HelpBubble(props: HelpBubbleProps) {
   return (
     <span className={className} style={style}>
       <Button color="link" className="p-0" aria-label="More Info" onClick={toggle}>
-        <Icon name="question-circle" id={id} className="text-primary" />
+        <Icon name="circle-question" id={id} className="text-primary" />
       </Button>
       <Popover isOpen={isOpen} toggle={toggle} target={id} {...other}>
         <div aria-live="polite">

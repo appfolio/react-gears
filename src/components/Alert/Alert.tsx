@@ -5,9 +5,9 @@ import Icon from '../Icon/Icon';
 const noop = () => undefined;
 
 const ICON_MAP: { [key: string]: string } = {
-  warning: 'exclamation-circle',
-  success: 'check',
-  info: 'info-circle',
+  warning: 'circle-exclamation',
+  success: 'circle-check',
+  info: 'circle-info',
   danger: 'ban',
 };
 
@@ -21,6 +21,7 @@ type Props = {
  * Extension to Bootstrap [Alert](https://getbootstrap.com/docs/4.3/components/alert/)
  * adding icon support and onToggle callback when dismissed.
  */
+
 const Alert: FC<Props> = ({
   color = 'warning',
   children,
@@ -50,7 +51,7 @@ const Alert: FC<Props> = ({
       {...props}
     >
       <div className="d-flex align-items-start">
-        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-1" /> : null}
+        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-2" /> : null}
         {icon ? (
           <div className="w-100" style={{ overflow: 'hidden' }}>
             {children}

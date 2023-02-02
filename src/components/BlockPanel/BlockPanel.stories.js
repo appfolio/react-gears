@@ -94,7 +94,7 @@ export const ComponentsForTitleAndControls = () => (
           <Icon name="list" />
         </Button>
         <Button>
-          <Icon name="th-list" />
+          <Icon name="table-list" />
         </Button>
       </ButtonGroup>,
     ]}
@@ -117,7 +117,7 @@ export const DropdownForControls = () => (
           role="button"
           title="More options"
         >
-          <Icon name="ellipsis-h" size="lg" />
+          <Icon name="ellipsis" size="lg" />
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Eenie</DropdownItem>
