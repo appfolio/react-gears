@@ -1,5 +1,23 @@
 # Change Log
 
+## [8.0.0](https://github.com/appfolio/react-gears/compare/v7.13.2...v8.0.0) (2023-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace link to coastline
+* update icon list
+* add spacing
+* correct formatting
+
+### Bug Fixes
+
+* add spacing ([f94ca34](https://github.com/appfolio/react-gears/commit/f94ca343285c9a3e0b1f9ca7bab63027bb055144))
+* correct formatting ([0c48f1b](https://github.com/appfolio/react-gears/commit/0c48f1b1e70f6abfc6175d665c45e6e633970753))
+* replace icon ([2da576c](https://github.com/appfolio/react-gears/commit/2da576c13f183b2b3df75548ffeedc4665d2c8b4))
+* replace link to coastline ([dbb646e](https://github.com/appfolio/react-gears/commit/dbb646ec455bed9c0fd1309a3bdab167e24d7a8c))
+* update icon list ([5f34ebb](https://github.com/appfolio/react-gears/commit/5f34ebb6f2d6533c3d03f09ce18e6b8c8d01044e))
+
 ## [7.13.2](https://github.com/appfolio/react-gears/compare/v7.13.1...v7.13.2) (2023-01-26)
 
 
