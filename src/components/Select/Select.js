@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactSelect from 'react-select-plus';
 import Close from '../Button/Close';
 import SelectArrow from './SelectArrow';
@@ -20,21 +20,22 @@ const Select = ({
   className,
   defaultValue,
   inputProps,
-  onChange: propsOnChange,
-  value: propsValue,
   valueComponent,
   ...props
 }) => {
-  const valueNotSet = typeof propsValue === 'undefined';
-  const [value, setValue] = useState(valueNotSet ? defaultValue : propsValue);
+  const [value, setValue] = useState(props.value || defaultValue);
 
-  if (!valueNotSet && !Object.is(propsValue, value)) {
-    setValue(propsValue);
+  // Store last props.value and call setValue when it changes.
+  // This is not correct behavior for controlled components but consumers rely on it.
+  const lastPropsValue = useRef(props.value);
+  if (!Object.is(props.value, lastPropsValue.current)) {
+    lastPropsValue.current = props.value;
+    setValue(props.value);
   }
 
   const onChange = (newValue) => {
     setValue(newValue);
-    propsOnChange?.(newValue);
+    props.onChange?.(newValue);
   };
 
   let SelectElement = ReactSelect;
@@ -54,11 +55,11 @@ const Select = ({
       className={classNames}
       clearRenderer={getCloseButton}
       inputProps={{ name: props.name, ...inputProps }}
-      onChange={onChange}
       optionComponent={Option}
-      value={value}
       valueComponent={valueComponentRenderer}
       {...props}
+      onChange={onChange}
+      value={props.value || value}
     />
   );
 };
