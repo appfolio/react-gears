@@ -89,12 +89,13 @@ const CreditCardNumber: FC<CreditCardNumberProps> = ({
   const { type, value, ...inputProps } = props;
 
   const ccType = getType(value);
+  const ccIconName = typeToIconName(ccType);
 
   return (
     <InputGroup className={className}>
       <Input value={value || ''} onChange={onChangeHandler} {...inputProps} />
       <InputGroupText className="p-0 px-2">
-        <Icon name={typeToIconName(ccType)} iconStyle="regular" fixedWidth size="lg" />
+        <Icon name={ccIconName} iconStyle={ccIconName === 'credit-card' ? 'regular' : 'brands'} fixedWidth size="lg" />
       </InputGroupText>
     </InputGroup>
   );
