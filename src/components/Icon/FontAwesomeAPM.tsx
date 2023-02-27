@@ -28,7 +28,7 @@ export interface FontAwesomeAPMProps extends React.HTMLAttributes<any> {
   spin?: boolean;
   stack?: '1x' | '2x';
   tag?: keyof JSX.IntrinsicElements;
-  iconStyle?: 'regular' | 'solid' | 'thin' | 'light' | 'duotone';
+  iconStyle?: 'regular' | 'solid' | 'thin' | 'light' | 'duotone' | 'brands';
 }
 
 /**

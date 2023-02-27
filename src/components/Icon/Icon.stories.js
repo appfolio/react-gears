@@ -21,7 +21,11 @@ export const LiveExample = () => (
     rotate={select('rotate', ['', '90', '180', '270'], '')}
     flip={select('flip', ['', 'horizontal', 'vertical'], '')}
     border={boolean('border', false)}
-    iconStyle={select('iconStyle', ['regular', 'solid', 'thin', 'light', 'duotone'], 'solid')}
+    iconStyle={select(
+      'iconStyle',
+      ['regular', 'solid', 'thin', 'light', 'duotone', 'brands'],
+      'solid'
+    )}
   />
 );
 
