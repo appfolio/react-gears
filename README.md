@@ -1,7 +1,7 @@
 # react-gears
 react-gears is a React implementation of Appfolio UI components, using
 [React](https://reactstrap.github.io),
-[Bootstrap 4](http://getbootstrap.com),
+[Bootstrap 5](http://getbootstrap.com),
 and [reactstrap](https://reactstrap.github.io).
 
 https://appfolio.github.io/react-gears
