@@ -28,10 +28,11 @@ describe('useMap', () => {
 
   describe('add', () => {
     it('should add an item', () => {
+      let ret;
       const { result } = renderHook(() => useMap(initial));
 
       act(() => {
-        result.current.add('Charlie');
+        ret = result.current.add('Charlie');
       });
 
       assert.deepStrictEqual(
@@ -42,6 +43,8 @@ describe('useMap', () => {
           ['Charlie', 'Charlie'],
         ])
       );
+
+      assert.strictEqual(ret, result.current.map);
     });
   });
 
@@ -61,13 +64,16 @@ describe('useMap', () => {
 
   describe('remove', () => {
     it('should remove an item', () => {
+      let ret;
       const { result } = renderHook(() => useMap(initial));
 
       act(() => {
-        result.current.remove('Alpha');
+        ret = result.current.remove('Alpha');
       });
 
       assert.deepStrictEqual(result.current.map, new Map([['Bravo', 'Bravo']]));
+
+      assert.strictEqual(ret, result.current.map);
     });
 
     it('should remove an object using keyMapper', () => {
@@ -84,11 +90,12 @@ describe('useMap', () => {
 
   describe('toggle', () => {
     it('should toggle existence of an item', () => {
+      let ret;
       const { result } = renderHook(() => useMap(initial));
 
       act(() => {
         result.current.toggle('Alpha');
-        result.current.toggle('Charlie');
+        ret = result.current.toggle('Charlie');
       });
 
       assert.deepStrictEqual(
@@ -98,6 +105,8 @@ describe('useMap', () => {
           ['Charlie', 'Charlie'],
         ])
       );
+
+      assert.strictEqual(ret, result.current.map);
     });
   });
 
