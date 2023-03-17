@@ -3,6 +3,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { states } from '../../tooling/comboboxData';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import DropdownItem from '../Dropdown/DropdownItem';
 import Icon from '../Icon/Icon';
 import type { ItemComponent } from './Combobox.types';
@@ -19,6 +20,15 @@ type ComboboxStory = ComponentStory<typeof MultiSelectCombobox>;
 export default {
   title: ' Multi-Select Combobox',
   component: MultiSelectCombobox,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        name="Combobox"
+        story={Story}
+        storyPath="/story/components-combobox--multiple"
+      />
+    ),
+  ],
 } as ComponentMeta<typeof MultiSelectCombobox>;
 
 const options = [

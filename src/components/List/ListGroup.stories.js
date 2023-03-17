@@ -2,12 +2,24 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import { colors } from '../../tooling/colors';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
 
 export default {
   title: 'List',
   component: ListGroup,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        additionalInfo="Alternatively, use the ListGroup and ListGroupItem components directly
+          from reactstrap."
+        name="List"
+        story={Story}
+        storyPath="/story/components-list--basic"
+      />
+    ),
+  ],
 };
 
 export const ListGroupExample = () => (

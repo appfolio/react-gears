@@ -1,6 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import COUNTRIES from '../Address/util/Countries';
 import Select from './Select';
 
@@ -71,6 +72,15 @@ const groups = [
 export default {
   title: 'Select',
   component: Select,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        name="Combobox"
+        story={Story}
+        storyPath="/story/components-combobox--all-props"
+      />
+    ),
+  ],
 };
 
 export const WithOptions = () => (

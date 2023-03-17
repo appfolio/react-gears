@@ -1,5 +1,6 @@
 import { boolean, text, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import Icon from '../Icon/Icon';
 import Combobox from './Combobox';
 
@@ -70,6 +71,15 @@ const options = [
 export default {
   title: 'Combobox',
   component: Combobox,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        name="Combobox"
+        story={Story}
+        storyPath="/story/components-combobox--all-props"
+      />
+    ),
+  ],
 };
 
 export const LiveExample = () => {

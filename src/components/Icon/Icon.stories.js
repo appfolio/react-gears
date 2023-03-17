@@ -1,5 +1,6 @@
 import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import Button from '../Button/Button';
 import Icon from './Icon';
 import icons from './icons.js';
@@ -9,6 +10,15 @@ const colors = ['primary', 'info', 'success', 'warning', 'danger', 'muted', 'dar
 export default {
   title: 'Icon',
   component: Icon,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        name="Icon"
+        story={Story}
+        storyPath="/story/components-icon--basic-usage"
+      />
+    ),
+  ],
 };
 
 // React component for font awesome v6

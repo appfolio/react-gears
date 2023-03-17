@@ -1,6 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text, number } from '@storybook/addon-knobs';
 import React, { useState, useEffect } from 'react';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import Label from '../Label/Label';
 import List from './List';
 import data from './util/data';
@@ -8,6 +9,11 @@ import data from './util/data';
 export default {
   title: 'List',
   component: List,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator name="List" story={Story} storyPath="/story/components-list--basic" />
+    ),
+  ],
 };
 
 const currency = new Intl.NumberFormat('en-US', {
