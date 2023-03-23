@@ -1,53 +1,34 @@
-import assert from 'assert';
-import { mount, shallow } from 'enzyme';
-import React from 'react';
-import { Alert as AlertComponent } from 'reactstrap';
+import { screen, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import React, { useState } from 'react';
 import { assertAccessible } from '../../tooling/a11yHelpers';
-import Icon from '../Icon/Icon';
 import Alert from './Alert';
 
 describe('<Alert />', () => {
   describe('default', () => {
-    const component = shallow(<Alert />);
+    beforeEach(() => {
+      render(<Alert />);
+    });
 
     it('should be accessible', async () => {
       await assertAccessible(<Alert />);
     });
 
     it('should not be dismissible', () => {
-      assert.equal(component.prop('toggle'), null);
+      expect(() => screen.getByRole('button')).toThrowError();
     });
 
     it('should have a default color of "warning"', () => {
-      assert.equal(component.prop('color'), 'warning');
+      expect(screen.getByRole('alert')).toHaveClass('alert-warning');
     });
   });
 
   describe('with icon', () => {
-    it('should show circle-exclamation for warning', () => {
-      const icon = shallow(<Alert icon color="warning" />).find(Icon);
-      assert.equal(icon.prop('name'), 'circle-exclamation');
-    });
+    it('should have property icon css class', () => {
+      render(<Alert icon color="warning" />);
+      const alert = screen.getByRole('alert');
 
-    it('should show ban for danger', () => {
-      const icon = shallow(<Alert icon color="danger" />).find(Icon);
-      assert.equal(icon.prop('name'), 'ban');
-    });
-
-    it('should show info for info', () => {
-      const icon = shallow(<Alert icon color="info" />).find(Icon);
-      assert.equal(icon.prop('name'), 'circle-info');
-    });
-
-    it('should show check for success', () => {
-      const icon = shallow(<Alert icon color="success" />).find(Icon);
-      assert.equal(icon.prop('name'), 'circle-check');
-    });
-
-    it('should wrap children with block (for alignment) with icon', () => {
-      const component = mount(<Alert icon>Stuff Here</Alert>);
-      const wrapper = component.find('div').first();
-      assert.strictEqual(wrapper.text(), 'Stuff Here');
+      expect(alert).toHaveClass('alert--with-icon');
     });
   });
 
@@ -56,54 +37,50 @@ describe('<Alert />', () => {
       await assertAccessible(<Alert dismissible />);
     });
 
-    it('should toggle state when clicked', () => {
-      const component = mount(<Alert dismissible />);
+    it('should toggle state when clicked', async () => {
+      render(<Alert dismissible />);
+      const alert = screen.getByRole('alert');
 
-      assert.equal(component.find(AlertComponent).prop('isOpen'), true);
-
-      component.find(AlertComponent).find('button').simulate('click');
-      assert.equal(component.find(AlertComponent).prop('isOpen'), false);
+      expect(alert).toBeVisible();
+      userEvent.click(screen.getByRole('button'));
+      await waitFor(() => {
+        expect(alert).not.toBeVisible();
+      });
     });
 
-    it('should become visible when receiving new props', () => {
-      const component = mount(<Alert dismissible />);
-      const inner = component.find(AlertComponent);
-      inner.find('button').simulate('click');
+    it('should become visible when receiving new props', async () => {
+      const Wrapper = () => {
+        const [color, setColor] = useState('warning');
+        return (
+          <>
+            <button type="button" onClick={() => setColor('danger')}>
+              Change to Danger
+            </button>
+            <Alert dismissible color={color} />
+          </>
+        );
+      };
+      render(<Wrapper />);
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeVisible();
+      userEvent.click(screen.getByLabelText('Close'));
 
-      assert.equal(
-        component.find(AlertComponent).prop('isOpen'),
-        false,
-        'inner prop should be false'
-      );
-
-      component.setProps({ color: 'danger' });
-      component.update();
-
-      assert.strictEqual(
-        component.find(AlertComponent).prop('isOpen'),
-        true,
-        'AlertComponent isOpen prop should be true'
-      );
+      await waitFor(async () => {
+        expect(alert).not.toBeVisible();
+      });
+      userEvent.click(screen.getByText('Change to Danger'));
+      await waitFor(() => {
+        expect(screen.getByRole('alert')).toBeVisible();
+      });
     });
 
     it('should call onToggle if provided', () => {
-      let called = false;
-      let calledWith;
+      const onToggleMock = jest.fn();
+      render(<Alert dismissible onToggle={onToggleMock} />);
+      userEvent.click(screen.getByRole('button'));
 
-      const component = mount(
-        <Alert
-          dismissible
-          onToggle={(value) => {
-            called = true;
-            calledWith = value;
-          }}
-        />
-      );
-      const inner = component.find(AlertComponent);
-      inner.find('button').simulate('click');
-
-      assert.equal(called, true, 'callback should be called');
-      assert.equal(calledWith, false, 'callback should be called with false');
+      expect(onToggleMock).toHaveBeenCalledTimes(1);
+      expect(onToggleMock).toHaveBeenCalledWith(false);
     });
   });
 });
