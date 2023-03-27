@@ -111,7 +111,15 @@ function FormRow<T extends TypeProp>({
       validFeedback={validFeedback}
       width={width}
     >
-      <InputComponent id={id} size={size} aria-required={required} className='test' {...validProps} {...props} {...childFeedback}>
+      <InputComponent
+        id={id}
+        size={size}
+        aria-required={required}
+        className="test"
+        {...validProps}
+        {...props}
+        {...childFeedback}
+      >
         {memoChildren}
       </InputComponent>
     </FormLabelGroup>
