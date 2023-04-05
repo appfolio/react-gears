@@ -1,15 +1,8 @@
+import classNames from 'classnames';
 import React, { useState, useEffect, FC } from 'react';
 import { Alert as AlertComponent, AlertProps } from 'reactstrap';
-import Icon from '../Icon/Icon';
 
 const noop = () => undefined;
-
-const ICON_MAP: { [key: string]: string } = {
-  warning: 'circle-exclamation',
-  success: 'circle-check',
-  info: 'circle-info',
-  danger: 'ban',
-};
 
 type Props = {
   icon?: boolean;
@@ -47,19 +40,10 @@ const Alert: FC<Props> = ({
       color={color}
       isOpen={visible}
       toggle={dismissible ? toggle : undefined}
-      className={className}
+      className={classNames(className, { 'alert--with-icon': icon })}
       {...props}
     >
-      <div className="d-flex align-items-start">
-        {icon ? <Icon name={ICON_MAP[color]} size="lg" className="me-3 mt-2" /> : null}
-        {icon ? (
-          <div className="w-100" style={{ overflow: 'hidden' }}>
-            {children}
-          </div>
-        ) : (
-          <div className="w-100">{children}</div>
-        )}
-      </div>
+      {children}
     </AlertComponent>
   );
 };
