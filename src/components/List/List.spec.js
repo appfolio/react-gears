@@ -296,15 +296,166 @@ describe('<List />', () => {
       sinon.assert.calledWith(onSelect, [items[4]]);
     });
 
-    it('should pre-select items specified in selected', () => {
-      const component = mount(
-        <List items={items} select="checkbox" selected={[items[1], items[3]]}>
-          {(item) => item}
-        </List>
-      );
+    describe('selected', () => {
+      let onSelect;
 
-      const checkboxes = component.find('input[type="checkbox"]').find({ checked: true });
-      assert.equal(checkboxes.length, 2);
+      const itemObjs = items.map((item) => {
+        return { key: item, name: item };
+      });
+
+      beforeEach(() => {
+        onSelect = sinon.stub();
+      });
+
+      it('should pre-select items specified in selected', () => {
+        const component = mount(
+          <List items={items} select="checkbox" selected={[items[1], items[3]]}>
+            {(item) => item}
+          </List>
+        );
+
+        const checkboxes = component.find('input[type="checkbox"]').find({ checked: true });
+        assert.equal(checkboxes.length, 2);
+      });
+
+      it('should not call onSelect when the selected property changes', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="checkbox"
+            onSelect={onSelect}
+            selectedKeyMapper={(item) => item.key}
+            selected={[itemObjs[1], itemObjs[3]]}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        let checkboxes = component
+          .find(ListItem)
+          .find('input[type="checkbox"]')
+          .find({ checked: true });
+        assert.equal(checkboxes.length, 2);
+        sinon.assert.notCalled(onSelect);
+
+        component.setProps({ selected: [itemObjs[3]] });
+        component.update();
+
+        sinon.assert.notCalled(onSelect);
+        checkboxes = component
+          .find(ListItem)
+          .find('input[type="checkbox"]')
+          .find({ checked: true });
+        assert.equal(checkboxes.length, 1);
+
+        component.setProps({ selected: [itemObjs[3], itemObjs[4]] });
+        component.update();
+
+        sinon.assert.notCalled(onSelect);
+        checkboxes = component
+          .find(ListItem)
+          .find('input[type="checkbox"]')
+          .find({ checked: true });
+        assert.equal(checkboxes.length, 2);
+      });
+
+      it('should call onSelect when a checkbox is checked or unchecked (not using selected property)', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="checkbox"
+            onSelect={onSelect}
+            selectedKeyMapper={(item) => item.key}
+            selected={[itemObjs[1], itemObjs[3]]}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        let checkbox = component.find(ListItem).at(1).find('input[type="checkbox"]');
+        checkbox.simulate('change', { target: { checked: false } });
+        assert(onSelect.getCall(0).calledWith([itemObjs[3]]));
+
+        checkbox = component.find(ListItem).at(0).find('input[type="checkbox"]');
+        checkbox.simulate('change', { target: { checked: true } });
+        assert(onSelect.getCall(1).calledWith([itemObjs[3], itemObjs[0]]));
+
+        sinon.assert.callCount(onSelect, 2);
+      });
+
+      it('should call onSelect when a switch is on or off (not using selected property)', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="switch"
+            onSelect={onSelect}
+            selectedKeyMapper={(item) => item.key}
+            selected={[itemObjs[1], itemObjs[3]]}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        let switchElt = component.find(ListItem).at(1).find('input[type="checkbox"]');
+        switchElt.simulate('change', { target: { checked: false } });
+        assert(onSelect.getCall(0).calledWith([itemObjs[3]]));
+
+        switchElt = component.find(ListItem).at(0).find('input[type="checkbox"]');
+        switchElt.simulate('change', { target: { checked: true } });
+        assert(onSelect.getCall(1).calledWith([itemObjs[3], itemObjs[0]]));
+
+        sinon.assert.callCount(onSelect, 2);
+      });
+
+      it('should call onSelect when a radio button is checked (not using the selected property)', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="radio"
+            onSelect={onSelect}
+            selectedKeyMapper={(item) => item.key}
+            selected={[itemObjs[1]]}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        let radio = component.find(ListItem).at(2).find('input[type="radio"]');
+        radio.simulate('change', { target: { checked: true } });
+        assert(onSelect.getCall(0).calledWith([itemObjs[2]]));
+
+        radio = component.find(ListItem).at(3).find('input[type="radio"]');
+        radio.simulate('change', { target: { checked: true } });
+        assert(onSelect.getCall(1).calledWith([itemObjs[3]]));
+
+        sinon.assert.callCount(onSelect, 2);
+      });
+
+      it('should call onSelect when clicking on the select all checkbox', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="checkbox"
+            onSelect={onSelect}
+            selectedKeyMapper={(item) => item.key}
+            selected={[itemObjs[1], itemObjs[3]]}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        let checkbox = component
+          .find({ 'data-testid': 'select-all' })
+          .find('input[type="checkbox"]');
+        checkbox.simulate('change', { target: { checked: true } });
+        assert(onSelect.getCall(0).calledWith(itemObjs));
+
+        checkbox = component.find({ 'data-testid': 'select-all' }).find('input[type="checkbox"]');
+        checkbox.simulate('change', { target: { checked: false } });
+        assert(onSelect.getCall(1).calledWith([]));
+
+        sinon.assert.callCount(onSelect, 2);
+      });
     });
   });
 

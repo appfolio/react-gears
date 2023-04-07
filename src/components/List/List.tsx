@@ -94,10 +94,6 @@ function List<T extends Item>({
   const [selectAllId] = useState(() => uniqueId('selectall-'));
   const selectAllRef = useRef<HTMLInputElement>(null);
 
-  useDeepCompareEffect(
-    () => onSelect(Array.from(selection.values())),
-    [Array.from(selection.values()), onSelect]
-  );
   useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);
 
   useDeepCompareEffect(() => {
@@ -117,16 +113,19 @@ function List<T extends Item>({
   }, [items, Array.from(selection.values())]);
 
   const handleSelection = (item: T, checked?: boolean) => {
+    let newSelection = selection;
+
     if (select === 'checkbox' || select === 'switch') {
       if (hasItem(item) && !checked) {
-        removeItem(item);
+        newSelection = removeItem(item);
       } else if (checked) {
-        addItem(item);
+        newSelection = addItem(item);
       }
     } else if (!hasItem(item)) {
       clearSelection();
-      addItem(item);
+      newSelection = addItem(item);
     }
+    onSelect(Array.from(newSelection.values()));
   };
 
   const handleSelectAll = () => {
@@ -134,14 +133,17 @@ function List<T extends Item>({
     const unselectableItems = items.filter((item) => !selectable(item));
     const unselectableSelectedItems = unselectableItems.filter((item) => selected.includes(item));
     const allSelectableSelected = selectableItems.every((item) => hasItem(item));
+    let newSelection;
 
     if (allSelectableSelected) {
       // deselecting all items except those are selected and unselectable
-      replaceSelection(unselectableSelectedItems);
+      newSelection = unselectableSelectedItems;
     } else {
       // selecting all selectable items
-      replaceSelection(unselectableSelectedItems.concat(selectableItems));
+      newSelection = unselectableSelectedItems.concat(selectableItems);
     }
+    replaceSelection(newSelection);
+    onSelect(Array.from(newSelection));
   };
 
   const [sortProperty, setSortProperty] = useState(sort.property);

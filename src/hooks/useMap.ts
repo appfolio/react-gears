@@ -5,18 +5,25 @@ export default function useMap<T>(defaultValue: T[], keyMapper: (value: T) => an
   const has = (value: T) => map.has(keyMapper(value));
   const add = (value: T) => {
     map.set(keyMapper(value), value);
-    setMap(new Map(map));
+
+    const newMap = new Map(map);
+    setMap(newMap);
+
+    return newMap;
   };
   const remove = (value: T) => {
     map.delete(keyMapper(value));
-    setMap(new Map(map));
+
+    const newMap = new Map(map);
+    setMap(newMap);
+
+    return newMap;
   };
   const toggle = (value: T) => {
     if (has(value)) {
-      remove(value);
-    } else {
-      add(value);
+      return remove(value);
     }
+    return add(value);
   };
   const clear = () => map.clear();
   const replace = useCallback(

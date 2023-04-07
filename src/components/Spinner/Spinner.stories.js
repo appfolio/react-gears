@@ -1,12 +1,22 @@
 import { number, select } from '@storybook/addon-knobs';
 import React from 'react';
 import { textColors } from '../../tooling/colors';
+import DeprecationDecorator from '../../tooling/ReactComponentsDeprecation';
 import Button from '../Button/Button';
 import Spinner from './Spinner';
 
 export default {
   title: 'Spinner',
   component: Spinner,
+  decorators: [
+    (Story) => (
+      <DeprecationDecorator
+        name="Spinner"
+        story={Story}
+        storyPath="/story/components-spinner--default"
+      />
+    ),
+  ],
 };
 
 export const Default = () => {
