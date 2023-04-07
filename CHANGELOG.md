@@ -1,5 +1,27 @@
 # Change Log
 
+## [8.0.2](https://github.com/appfolio/react-gears/compare/v8.0.0...v8.0.2) (2023-04-07)
+
+
+### Bug Fixes
+
+* add icon style to include cc brands ([25ab541](https://github.com/appfolio/react-gears/commit/25ab54179ce805f027ac9320f744cacef3300fab))
+* **Alert:** use coastline predefined class for Alert components ([9c42c99](https://github.com/appfolio/react-gears/commit/9c42c99c34b23d77b4127e36da57434337aee22d))
+* dont use select props value when falsy ([3e7362d](https://github.com/appfolio/react-gears/commit/3e7362d1d1563195b8a946d96b6a76725d78e7ce))
+* onSelect should not be called when the List selected property is updated ([4aec9fc](https://github.com/appfolio/react-gears/commit/4aec9fc140b4b6adc4651ed1d503902a0fffaaf8))
+* run prettier ([b0ad9ed](https://github.com/appfolio/react-gears/commit/b0ad9ed8bf74be43823210d9196600004257f638))
+
+
+### Miscellaneous
+
+* **master:** release 8.0.1 ([8b1a19b](https://github.com/appfolio/react-gears/commit/8b1a19b4ac2060ba33b8521fb1df442fdfd4e939))
+* **useMap:** replace state with ref to persist obj reference ([ed1a42f](https://github.com/appfolio/react-gears/commit/ed1a42f5e6a11f4a19fb165a4803b5c7a5191800))
+
+
+### build
+
+* pin node version for release-pr action ([21b8f64](https://github.com/appfolio/react-gears/commit/21b8f64b30114519cf7e0ccf7dbd812f4c2e8d70))
+
 ## [8.0.1](https://github.com/appfolio/react-gears/compare/v8.0.0...v8.0.1) (2023-02-27)
 
 
