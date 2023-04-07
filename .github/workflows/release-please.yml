@@ -7,6 +7,9 @@ jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
       - uses: google-github-actions/release-please-action@v3
         id: release-please
         with:
