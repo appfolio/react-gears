@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.0.1](https://github.com/appfolio/react-gears/compare/v8.0.0...v8.0.1) (2023-04-07)
+
+
+### Bug Fixes
+
+* add icon style to include cc brands ([25ab541](https://github.com/appfolio/react-gears/commit/25ab54179ce805f027ac9320f744cacef3300fab))
+* dont use select props value when falsy ([3e7362d](https://github.com/appfolio/react-gears/commit/3e7362d1d1563195b8a946d96b6a76725d78e7ce))
+* run prettier ([b0ad9ed](https://github.com/appfolio/react-gears/commit/b0ad9ed8bf74be43823210d9196600004257f638))
+
 ## [8.0.0](https://github.com/appfolio/react-gears/compare/v7.13.2...v8.0.0) (2023-02-02)
 
 
