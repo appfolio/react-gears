@@ -1,4 +1,4 @@
-import { number, select } from '@storybook/addon-knobs';
+import { number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import { textColors } from '../../tooling/colors';
 import Button from '../Button/Button';
@@ -12,6 +12,7 @@ export default {
 export const Default = () => {
   const color = select('color', textColors, 'primary');
   const type = select('type', ['spin', 'border', 'grow'], Spinner.default);
+  const label = text('label', 'loading');
 
   return (
     <div>
@@ -36,6 +37,16 @@ export const Default = () => {
       <h1 className={`text-${color}`}>
         text-{color}: <Spinner type={type} className={`text-${color}`} />
       </h1>
+
+      <hr />
+      <h2>
+        ...and accept a label prop for accessibility by screen-readers (default to
+        &apos;loading&apos;):{' '}
+      </h2>
+      <p>
+        {' '}
+        <Spinner type={type} label={label} />{' '}
+      </p>
     </div>
   );
 };
