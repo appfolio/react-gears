@@ -28,7 +28,6 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "docs": "build-storybook -o docs",
     "version": "yarn docs && git add -A docs",
     "clean": "rm -rf esm lib",
