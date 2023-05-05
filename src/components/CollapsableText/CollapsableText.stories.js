@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { boolean, number, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Icon from '../Icon/Icon';
@@ -18,17 +19,19 @@ export default {
 export const LiveExample = () => (
   <CollapsableText
     collapsed={boolean('collapsed', CollapsableText.defaultProps.collapsed)}
-    maxLength={number('maxLength', CollapsableText.defaultProps.maxLength)}
+    maxLines={number('maxLines', CollapsableText.defaultProps.maxLines)}
     moreLabel={text('showMore', CollapsableText.defaultProps.moreLabel)}
     lessLabel={text('lessLabel', CollapsableText.defaultProps.lessLabel)}
   >
+    Some text <strong>with bold</strong> and <a href="#">links and other things</a>
+    <br />
     {loremIpsum}
   </CollapsableText>
 );
 
-export const ShorterThanMaxLength = () => (
+export const ShorterThanMaxLines = () => (
   <div>
-    <CollapsableText maxLength={number('maxLength', 2048)}>{loremIpsum}</CollapsableText>
+    <CollapsableText maxLines={number('maxLines', 2)}>Short text</CollapsableText>
   </div>
 );
 

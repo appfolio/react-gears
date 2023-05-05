@@ -1,72 +1,74 @@
-import assert from 'assert';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import Button from '../Button/Button';
 import CollapsableText from './CollapsableText';
 
+const mockElement = {
+  clientHeight: 1,
+  scrollHeight: 2,
+};
+
+jest.mock('../../hooks/useIntervalRef', () => {
+  return {
+    useIntervalRef: jest.fn((cb) => () => cb(mockElement)),
+  };
+});
+
 describe('<CollapsableText />', () => {
-  it('should show whole string without button if string length is smaller than maxLength', () => {
-    const component = mount(<CollapsableText>Hello World</CollapsableText>);
-    assert.equal(component.text(), 'Hello World');
+  beforeEach(() => {
+    mockElement.scrollHeight = 2;
   });
 
-  it('should shorten the string and show button if string length is greater than maxLength', () => {
-    const component = mount(<CollapsableText maxLength={5}>Hello World</CollapsableText>);
-    assert.equal(component.text(), 'Hello… Show More');
+  it('should show the whole string without button if line length is less than maxLines', () => {
+    mockElement.scrollHeight = 1;
+    render(<CollapsableText maxLines={1}>Hello World</CollapsableText>);
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
+    expect(screen.queryByText('Show More')).toBeNull();
   });
 
-  it('should show whole string and show button if string length is greater than maxLength and default is to show all', () => {
-    const component = mount(
-      <CollapsableText maxLength={5} collapsed={false}>
-        Hello World
+  it('should limit the container style.maxHeight and show a "Show More" button', () => {
+    render(
+      <CollapsableText maxLines={1}>
+        Hello World <br /> Wow
       </CollapsableText>
     );
-    assert.equal(component.text(), 'Hello World Show Less');
+    expect(screen.getByText(/Hello World/).style.maxHeight).toBeTruthy();
+    expect(screen.getByText('Show More')).toBeInTheDocument();
   });
 
-  it('toggle show whole or part of string after clicking button', () => {
-    const component = mount(<CollapsableText maxLength={5}>Hello World</CollapsableText>);
-    assert.equal(component.text(), 'Hello… Show More');
-
-    let button = component.find(Button);
-    button.simulate('click');
-    assert.equal(component.text(), 'Hello World Show Less');
-
-    button = component.find(Button);
-    button.simulate('click');
-    assert.equal(component.text(), 'Hello… Show More');
-  });
-
-  it('should toggle after prop change', () => {
-    const component = mount(<CollapsableText maxLength={5}>Hello World</CollapsableText>);
-    assert.equal(component.text(), 'Hello… Show More');
-
-    component.setProps({ collapsed: false });
-    component.update();
-    assert.equal(component.text(), 'Hello World Show Less');
-
-    component.setProps({ collapsed: true });
-    component.update();
-    assert.equal(component.text(), 'Hello… Show More');
-  });
-
-  it('should respect overwritten value of moreLabel', () => {
-    const component = mount(
-      <CollapsableText maxLength={5} moreLabel="Gimme more">
-        Hello World
+  it('should remove style.maxHeight when "Show More" button is clicked', async () => {
+    render(
+      <CollapsableText maxLines={1}>
+        Hello World <br /> Wow
       </CollapsableText>
     );
-    assert.equal(component.text(), 'Hello… Gimme more');
+    await userEvent.click(screen.getByText('Show More'));
+    expect(await screen.findByText('Show Less')).toBeInTheDocument();
+    expect(screen.getByText(/Hello World/).style.maxHeight).toBe('');
   });
 
-  it('should respect overwritten value of lessLabel', () => {
-    const component = mount(
-      <CollapsableText maxLength={5} lessLabel="Hide it from me">
-        Hello World
+  it('should add style.maxHeight when "Show Less" button is clicked', async () => {
+    render(
+      <CollapsableText collapsed={false} maxLines={1}>
+        Hello World <br /> Wow
       </CollapsableText>
     );
-    const button = component.find(Button);
-    button.simulate('click');
-    assert.equal(component.text(), 'Hello World Hide it from me');
+    await userEvent.click(screen.getByText('Show Less'));
+    expect(await screen.findByText('Show More')).toBeInTheDocument();
+    expect(screen.getByText(/Hello World/).style.maxHeight).toBeTruthy();
+  });
+
+  it('should allow custom button labels', async () => {
+    render(
+      <CollapsableText
+        maxLines={1}
+        moreLabel={<strong>SHOW IT</strong>}
+        lessLabel={<strong>HIDE IT</strong>}
+      >
+        Hello World <br /> Wow
+      </CollapsableText>
+    );
+    await userEvent.click(screen.getByText('SHOW IT'));
+    expect(await screen.findByText('HIDE IT')).toBeInTheDocument();
   });
 });
