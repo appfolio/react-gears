@@ -3,12 +3,11 @@ import React from 'react';
 import Icon from '../Icon/Icon';
 import CollapsableText from './CollapsableText';
 
-const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-laborum.`;
+const loremIpsum = `Units Interested: 
+Discover the epitome of modern living in our exquisite 2-bedroom, 2-bathroom luxury retreat, thoughtfully designed for ultimate comfort and style. 
+<a href="http://localhost:3000/properties/256/units/2534">1424N</a> This spacious residence boasts a contemporary open-concept layout, high-quality finishes, and an abundance o, 
+<a href="http://localhost:3000/properties/256/units/2534">1S</a>This should also show up 
+`;
 
 export default {
   title: 'CollapsableText',
