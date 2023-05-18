@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.1.0](https://github.com/appfolio/react-gears/compare/v8.0.3...v8.1.0) (2023-05-09)
+
+
+### Features
+
+* add aria-label to spinner by default ([bfd278a](https://github.com/appfolio/react-gears/commit/bfd278a269346d18cc38165f38052bb7c84a9590))
+* **CollapsableText:** Change maxLength prop to maxHeight, allow any children, move show more button to bottom ([ef444a3](https://github.com/appfolio/react-gears/commit/ef444a37b48843573b68fa0ee47fb4b6bd536012))
+
+
+### Miscellaneous
+
+* remove unused postcss config ([a174bef](https://github.com/appfolio/react-gears/commit/a174bef79d9154f58fe5ace5f532bc84fb496654))
+* remove unused storybook-static ([89da8c9](https://github.com/appfolio/react-gears/commit/89da8c9ebcf0dbb47f12d7ff499ae42fa51e6038))
+
 ## [8.0.3](https://github.com/appfolio/react-gears/compare/v8.0.2...v8.0.3) (2023-04-27)
 
 
