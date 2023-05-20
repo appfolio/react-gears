@@ -6,6 +6,9 @@ import UncontrolledCollapse from './UncontrolledCollapse';
 export default {
   title: 'Collapse',
   component: Collapse,
+  parameters: {
+    sourceLink: 'Collapse/Collapse.tsx',
+  },
 };
 
 export const Controlled = () => {

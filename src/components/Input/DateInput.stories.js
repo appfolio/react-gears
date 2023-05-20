@@ -11,6 +11,9 @@ import DateInput from './DateInput';
 export default {
   title: 'DateInput',
   component: DateInput,
+  parameters: {
+    sourceLink: 'Input/DateInput.js',
+  },
 };
 
 export const WithProps = () => (

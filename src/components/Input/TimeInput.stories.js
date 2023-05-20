@@ -7,6 +7,9 @@ import TimeInput from './TimeInput';
 export default {
   title: 'TimeInput',
   component: TimeInput,
+  parameters: {
+    sourceLink: 'Input/TimeInput.js',
+  },
 };
 
 export const WithProps = () => (

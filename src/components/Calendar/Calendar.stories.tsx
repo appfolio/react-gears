@@ -6,6 +6,9 @@ import Calendar from './Calendar';
 export default {
   title: 'Calendar',
   component: Calendar,
+  parameters: {
+    sourceLink: 'Calendar/Calendar.tsx',
+  },
 };
 
 export const CalendarExample = () => (

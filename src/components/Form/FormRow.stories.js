@@ -7,6 +7,9 @@ import FormRow from './FormRow';
 export default {
   title: 'FormRow',
   component: FormRow,
+  parameters: {
+    sourceLink: 'Form/FormRow.tsx',
+  },
 };
 
 export const LiveExample = () => (

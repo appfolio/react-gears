@@ -9,6 +9,9 @@ import FormLabelGroup from './FormLabelGroup';
 export default {
   title: 'FormLabelGroup',
   component: FormLabelGroup,
+  parameters: {
+    sourceLink: 'Form/FormLabelGroup.tsx',
+  },
 };
 
 export const LiveExample = () => (

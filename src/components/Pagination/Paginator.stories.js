@@ -6,6 +6,9 @@ import Paginator from './Paginator';
 export default {
   title: 'Pagination',
   component: Paginator,
+  parameters: {
+    sourceLink: 'Pagination/Paginator.tsx',
+  },
 };
 
 export const PaginatorExample = () => (

@@ -7,6 +7,9 @@ import InputGroupText from './InputGroupText';
 export default {
   title: 'InputGroup',
   component: InputGroup,
+  parameters: {
+    sourceLink: 'InputGroup/InputGroup.tsx',
+  },
 };
 
 export const WithProps = () => (

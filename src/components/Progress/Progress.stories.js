@@ -5,6 +5,9 @@ import Progress from './Progress';
 export default {
   title: 'Progress',
   component: Progress,
+  parameters: {
+    sourceLink: 'Progress/Progress.js',
+  },
 };
 
 export const LiveExample = () => (

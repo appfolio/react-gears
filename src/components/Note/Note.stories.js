@@ -15,6 +15,9 @@ const noteToEdit = {
 export default {
   title: 'Note',
   component: Note,
+  parameters: {
+    sourceLink: 'Note/Note.tsx',
+  },
 };
 
 export const LiveExample = () => {

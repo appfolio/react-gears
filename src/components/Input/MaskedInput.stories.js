@@ -5,6 +5,9 @@ import MaskedInput from './MaskedInput';
 export default {
   title: 'MaskedInput',
   component: MaskedInput,
+  parameters: {
+    sourceLink: 'Input/MaskedInput.tsx',
+  },
 };
 
 export const PhoneNumber = () => (

@@ -5,6 +5,9 @@ import PatternInput from './PatternInput';
 export default {
   title: 'PatternInput',
   component: PatternInput,
+  parameters: {
+    sourceLink: 'Input/PatternInput.js',
+  },
 };
 
 export const LiveExample = () => {

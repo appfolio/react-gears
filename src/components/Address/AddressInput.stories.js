@@ -8,6 +8,9 @@ import states from './util/USStates.ts';
 export default {
   title: 'AddressInput',
   component: AddressInput,
+  parameters: {
+    sourceLink: 'Address/AddressInput.tsx',
+  },
 };
 
 const defaultLabels = {

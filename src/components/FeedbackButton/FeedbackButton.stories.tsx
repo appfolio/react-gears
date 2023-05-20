@@ -7,6 +7,9 @@ import FeedbackButton from './FeedbackButton';
 export default {
   title: 'FeedbackButton',
   component: FeedbackButton,
+  parameters: {
+    sourceLink: 'FeedbackButton/FeedbackButton.tsx',
+  },
 };
 
 export const Default = () => (

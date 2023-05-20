@@ -6,6 +6,9 @@ import MonthCalendar from './MonthCalendar';
 export default {
   title: 'Calendar',
   component: MonthCalendar,
+  parameters: {
+    sourceLink: 'Calendar/MonthCalendar.tsx',
+  },
 };
 
 export const MonthCalendarExample = () => {

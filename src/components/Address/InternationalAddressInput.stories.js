@@ -7,6 +7,9 @@ import InternationalAddressInput from './InternationalAddressInput';
 export default {
   title: 'AddressInput',
   component: InternationalAddressInput,
+  parameters: {
+    sourceLink: 'Address/InternationalAddressInput.tsx',
+  },
 };
 
 // Wrapping as uncontrolled so that story is easier to use:

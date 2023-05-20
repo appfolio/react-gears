@@ -9,6 +9,9 @@ const colors = ['primary', 'info', 'success', 'warning', 'danger', 'muted', 'dar
 export default {
   title: 'Icon',
   component: Icon,
+  parameters: {
+    sourceLink: 'Icon/Icon.tsx',
+  },
 };
 
 // React component for font awesome v6

@@ -11,6 +11,9 @@ import ModalHeader from './ModalHeader';
 export default {
   title: 'Modal',
   component: Modal,
+  parameters: {
+    sourceLink: 'Modal/Modal.tsx',
+  },
 };
 
 export const LiveExample = () => (

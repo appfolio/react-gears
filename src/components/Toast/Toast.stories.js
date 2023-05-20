@@ -7,6 +7,9 @@ import ToastHeader from './ToastHeader';
 export default {
   title: 'Toast',
   component: Toast,
+  parameters: {
+    sourceLink: 'Toast/Toast.tsx',
+  },
 };
 
 export const Colors = () => (

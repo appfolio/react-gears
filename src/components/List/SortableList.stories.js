@@ -10,6 +10,9 @@ import data from './util/data';
 export default {
   title: 'SortableList',
   component: SortableList,
+  parameters: {
+    sourceLink: 'List/SortableList.tsx',
+  },
 };
 
 const currency = new Intl.NumberFormat('en-US', {

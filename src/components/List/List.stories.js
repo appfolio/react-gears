@@ -8,6 +8,9 @@ import data from './util/data';
 export default {
   title: 'List',
   component: List,
+  parameters: {
+    sourceLink: 'List/List.tsx',
+  },
 };
 
 const currency = new Intl.NumberFormat('en-US', {

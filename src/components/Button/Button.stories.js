@@ -15,6 +15,9 @@ import ConfirmationButton from './ConfirmationButton';
 export default {
   title: 'Buttons',
   component: Button,
+  parameters: {
+    sourceLink: 'Button/Button.tsx',
+  },
 };
 
 export const LiveExample = () => (

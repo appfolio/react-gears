@@ -5,6 +5,9 @@ import ScrollContainer from './ScrollContainer';
 export default {
   title: 'ScrollContainer',
   component: ScrollContainer,
+  parameters: {
+    sourceLink: 'ScrollContainer/ScrollContainer.tsx',
+  },
 };
 
 export const Default = () => (

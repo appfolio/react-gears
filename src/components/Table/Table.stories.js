@@ -89,6 +89,7 @@ const DATA = [
 export default {
   title: 'Table',
   component: Table,
+  parameters: { sourceLink: 'Table/Table.tsx' },
 };
 
 export const Defalut = () => (

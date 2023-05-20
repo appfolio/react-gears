@@ -13,6 +13,9 @@ const steps = [
 export default {
   title: 'Steps',
   component: Steps,
+  parameters: {
+    sourceLink: 'Steps/Steps.tsx',
+  },
 };
 
 export const LiveExample = () => (

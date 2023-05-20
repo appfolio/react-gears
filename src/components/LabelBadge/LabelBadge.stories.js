@@ -6,6 +6,9 @@ import LabelBadge from './LabelBadge';
 export default {
   title: 'LabelBadge',
   component: LabelBadge,
+  parameters: {
+    sourceLink: 'LabelBadge/LabelBadge.tsx',
+  },
 };
 
 export const LiveExample = () => (

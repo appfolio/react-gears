@@ -6,6 +6,9 @@ import InfoBox from './InfoBox';
 export default {
   title: 'InfoBox',
   component: InfoBox,
+  parameters: {
+    sourceLink: 'InfoBox/InfoBox.tsx',
+  },
 };
 
 export const LiveExample = () => (

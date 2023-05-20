@@ -6,6 +6,9 @@ import Waiting from './Waiting';
 export default {
   title: 'Waiting',
   component: Waiting,
+  parameters: {
+    sourceLink: 'Waiting/Waiting.tsx',
+  },
 };
 
 export const Default = () => (

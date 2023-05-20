@@ -7,6 +7,9 @@ const types = ['none', 'info', 'muted', 'success', 'danger', 'warning'];
 export default {
   title: 'Status',
   component: Status,
+  parameters: {
+    sourceLink: 'Status/Status.tsx',
+  },
 };
 
 export const LiveExample = () => (

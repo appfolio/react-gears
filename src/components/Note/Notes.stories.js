@@ -22,6 +22,9 @@ const moreNotes = [
 export default {
   title: 'Notes',
   component: Notes,
+  parameters: {
+    sourceLink: 'Note/Notes.tsx',
+  },
 };
 
 export const WithNotesProp = () => {

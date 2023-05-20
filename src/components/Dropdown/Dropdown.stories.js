@@ -11,6 +11,9 @@ import UncontrolledDropdown from './UncontrolledDropdown';
 export default {
   title: 'Dropdown',
   component: Dropdown,
+  parameters: {
+    sourceLink: 'Dropdown/Dropdown.tsx',
+  },
 };
 
 export const Uncontrolled = () => (

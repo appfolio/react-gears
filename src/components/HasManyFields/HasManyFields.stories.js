@@ -37,6 +37,9 @@ const items = [
 export default {
   title: 'HasManyFields',
   component: HasManyFields,
+  parameters: {
+    sourceLink: 'HasManyFields/HasManyFields.js',
+  },
 };
 
 export const LiveExample = () => (

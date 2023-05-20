@@ -6,6 +6,9 @@ import Tree from './Tree';
 export default {
   title: 'Tree',
   component: Tree,
+  parameters: {
+    sourceLink: 'Tree/Tree.tsx',
+  },
 };
 
 const data = [

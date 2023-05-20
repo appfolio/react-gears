@@ -35,6 +35,9 @@ const formData = {
 
 export default {
   title: 'Forms',
+  parameters: {
+    sourceLink: 'Form/Form.tsx',
+  },
 };
 
 export const Inputs = () => (

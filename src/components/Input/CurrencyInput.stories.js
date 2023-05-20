@@ -6,6 +6,9 @@ import CurrencyInput from './CurrencyInput';
 export default {
   title: 'CurrencyInput',
   component: CurrencyInput,
+  parameters: {
+    sourceLink: 'Input/CurrencyInput.tsx',
+  },
 };
 
 export const Example = () => (

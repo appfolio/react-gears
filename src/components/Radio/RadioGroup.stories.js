@@ -21,6 +21,9 @@ const veggieOptions = [
 export default {
   title: 'RadioGroup',
   component: RadioGroup,
+  parameters: {
+    sourceLink: 'Radio/RadioGroup.tsx',
+  },
 };
 
 export const LiveExample = () => {
