@@ -15,6 +15,9 @@ const items = [
 export default {
   title: 'SummaryBox',
   component: SummaryBox,
+  parameters: {
+    sourceLink: 'SummaryBox/SummaryBox.tsx',
+  },
 };
 
 export const WithItems = () => (

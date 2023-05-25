@@ -7,6 +7,9 @@ import PaginationLink from './PaginationLink';
 export default {
   title: 'Pagination',
   component: Pagination,
+  parameters: {
+    sourceLink: 'Pagination/Pagination.tsx',
+  },
 };
 
 export const LiveExample = () => (

@@ -5,6 +5,9 @@ import Fade from './Fade';
 export default {
   title: 'Fade',
   component: Fade,
+  parameters: {
+    sourceLink: 'Fade/Fade.tsx',
+  },
 };
 
 export const LiveExample = () => {

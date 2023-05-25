@@ -19,6 +19,9 @@ type ComboboxStory = ComponentStory<typeof MultiSelectCombobox>;
 export default {
   title: ' Multi-Select Combobox',
   component: MultiSelectCombobox,
+  parameters: {
+    sourceLink: 'MultiSelectCombobox/MultiSelectCombobox.tsx',
+  },
 } as ComponentMeta<typeof MultiSelectCombobox>;
 
 const options = [

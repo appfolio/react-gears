@@ -5,6 +5,9 @@ import Badge from './Badge';
 export default {
   title: 'Badge',
   component: Badge,
+  parameters: {
+    sourceLink: 'Badge/Badge.tsx',
+  },
 };
 
 export const Default = () => (

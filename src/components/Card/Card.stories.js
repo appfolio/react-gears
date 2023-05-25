@@ -10,6 +10,9 @@ import CardTitle from './CardTitle';
 export default {
   title: 'Card',
   component: Card,
+  parameters: {
+    sourceLink: 'Card/Card.tsx',
+  },
 };
 
 export const LiveExample = () => {

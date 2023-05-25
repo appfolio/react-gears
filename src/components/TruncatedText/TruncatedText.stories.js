@@ -5,6 +5,9 @@ import TruncatedText from './TruncatedText';
 export default {
   title: 'TruncatedText',
   component: TruncatedText,
+  parameters: {
+    sourceLink: 'TruncatedText/TruncatedText.tsx',
+  },
 };
 
 export const LiveExample = () => (

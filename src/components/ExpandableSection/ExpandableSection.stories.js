@@ -7,6 +7,9 @@ import ExpandableSection from './ExpandableSection';
 export default {
   title: 'ExpandableSection',
   component: ExpandableSection,
+  parameters: {
+    sourceLink: 'ExpandableSection/ExpandableSection.tsx',
+  },
 };
 
 export const Default = () => (

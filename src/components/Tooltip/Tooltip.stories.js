@@ -5,6 +5,9 @@ import Tooltip from './Tooltip';
 export default {
   title: 'Tooltip',
   component: Tooltip,
+  parameters: {
+    sourceLink: 'Tooltip/Tooltip.tsx',
+  },
 };
 
 export const LiveExample = () => (

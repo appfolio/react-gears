@@ -14,6 +14,9 @@ laborum.`;
 export default {
   title: 'CollapsableText',
   component: CollapsableText,
+  parameters: {
+    sourceLink: 'CollapsableText/CollapsableText.tsx',
+  },
 };
 
 export const LiveExample = () => (

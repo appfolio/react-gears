@@ -6,6 +6,9 @@ import FilterList from './FilterList';
 export default {
   title: 'FilterList',
   component: FilterList,
+  parameters: {
+    sourceLink: 'FilterList/FilterList.js',
+  },
 };
 
 export const LiveExample = () => {

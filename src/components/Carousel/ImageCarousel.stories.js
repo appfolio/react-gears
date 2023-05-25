@@ -35,6 +35,9 @@ const items = [
 export default {
   title: 'Carousel',
   component: ImageCarousel,
+  parameters: {
+    sourceLink: 'Carousel/ImageCarousel.js',
+  },
 };
 
 export const DefaultProps = () => (

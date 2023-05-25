@@ -5,6 +5,9 @@ import Highlight from './Highlight';
 export default {
   title: 'Highlight',
   component: Highlight,
+  parameters: {
+    sourceLink: 'Highlight/Highlight.tsx',
+  },
 };
 
 export const LiveExample = () => (

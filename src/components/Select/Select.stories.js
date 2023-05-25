@@ -71,6 +71,9 @@ const groups = [
 export default {
   title: 'Select',
   component: Select,
+  parameters: {
+    sourceLink: 'Select/Select.js',
+  },
 };
 
 export const WithOptions = () => (

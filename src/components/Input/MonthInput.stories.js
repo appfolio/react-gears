@@ -8,6 +8,9 @@ import MonthInput from './MonthInput';
 export default {
   title: 'MonthInput',
   component: MonthInput,
+  parameters: {
+    sourceLink: 'Input/MonthInput.js',
+  },
 };
 
 export const WithProps = () => (

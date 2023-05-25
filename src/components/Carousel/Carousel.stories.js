@@ -25,6 +25,9 @@ const items = [
 export default {
   title: 'Carousel',
   component: UncontrolledCarousel,
+  parameters: {
+    sourceLink: 'Carousel/Carousel.tsx',
+  },
 };
 
 export const Uncontrolled = () => <UncontrolledCarousel items={items} />;

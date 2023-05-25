@@ -8,6 +8,9 @@ import ListGroupItem from './ListGroupItem';
 export default {
   title: 'List',
   component: ListGroup,
+  parameters: {
+    sourceLink: 'List/ListGroup.tsx',
+  },
 };
 
 export const ListGroupExample = () => (

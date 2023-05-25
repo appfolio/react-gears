@@ -4,6 +4,9 @@ import Media from './Media';
 export default {
   title: 'Media',
   component: Media,
+  parameters: {
+    sourceLink: 'Media/Media.tsx',
+  },
 };
 
 export const LiveExample = () => (

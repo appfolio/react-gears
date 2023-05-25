@@ -11,6 +11,10 @@ import {
 export default {
   title: 'Accordion',
   component: Accordion,
+  parameters: {
+    sourceLinkPrefix: 'https://github.com/reactstrap/reactstrap/tree/master/src/',
+    sourceLink: 'Accordion.js',
+  },
 };
 
 export const Example = () => {

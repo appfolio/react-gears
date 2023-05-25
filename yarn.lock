@@ -150,6 +150,7 @@ __metadata:
     reactstrap: ^9.1.5
     regenerator-runtime: ^0.13.7
     sinon: ^9.2.1
+    storybook-source-link: ^2.0.8
     styled-jsx: ^5.1.1
     text-mask-addons: ^3.8.0
     tributejs: ^5.1.3
@@ -16343,6 +16344,26 @@ __metadata:
   version: 2.14.2
   resolution: "store2@npm:2.14.2"
   checksum: 6f270fc5bab99b63f45fcc7bd8b99c2714b4adf880f557ed7ffb5ed3987131251165bccde425a00928aaf044870aee79ddeef548576d093c68703ed2edec45d7
+  languageName: node
+  linkType: hard
+
+"storybook-source-link@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "storybook-source-link@npm:2.0.8"
+  peerDependencies:
+    "@storybook/addons": ^6.4.0
+    "@storybook/api": ^6.4.0
+    "@storybook/components": ^6.4.0
+    "@storybook/core-events": ^6.4.0
+    "@storybook/theming": ^6.4.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 7f7878e6eea5c7c4f48102ad936129cf2a12c9a244958c70b032b91aae6bcee5e3d0e2cae5e8bb1bf8398b94b578345418e11ffadb51e77adc888e690859eb81
   languageName: node
   linkType: hard
 

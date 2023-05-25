@@ -9,6 +9,9 @@ import Datapair from './Datapair';
 export default {
   title: 'Datapair',
   component: Datapair,
+  parameters: {
+    sourceLink: 'Datapair/Datapair.tsx',
+  },
 };
 
 export const WithProps = () => {

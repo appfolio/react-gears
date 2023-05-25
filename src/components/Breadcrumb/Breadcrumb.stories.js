@@ -5,6 +5,9 @@ import BreadcrumbItem from './BreadcrumbItem';
 export default {
   title: 'Breadcrumb',
   component: Breadcrumb,
+  parameters: {
+    sourceLink: 'Breadcrumb/Breadcrumb.tsx',
+  },
 };
 
 export const LiveExample = () => (

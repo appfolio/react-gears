@@ -17,6 +17,9 @@ import BlockPanel from './BlockPanel';
 export default {
   title: 'BlockPanel',
   component: BlockPanel,
+  parameters: {
+    sourceLink: 'BlockPanel/BlockPanel.tsx',
+  },
 };
 
 export const LiveExample = () => (

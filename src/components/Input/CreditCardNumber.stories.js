@@ -13,6 +13,9 @@ UncontrolledCreditCardNumber.defaultProps = CreditCardNumber.defaultProps;
 export default {
   title: 'CreditCardNumber',
   component: CreditCardNumber,
+  parameters: {
+    sourceLink: 'Input/CreditCardNumber.tsx',
+  },
 };
 
 export const LiveExample = () => (

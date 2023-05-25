@@ -7,6 +7,9 @@ import SortableTable from './SortableTable';
 export default {
   title: 'Table',
   component: SortableTable,
+  parameters: {
+    sourceLink: 'Table/SortableTable.js',
+  },
 };
 
 const DATA = [

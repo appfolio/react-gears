@@ -99,6 +99,9 @@ const EditButton = () => <Button size="sm">Edit</Button>;
 export default {
   title: 'Table',
   component: UncontrolledTable,
+  parameters: {
+    sourceLink: 'Table/UncontrolledTable.js',
+  },
 };
 
 export const UncontrolledTableExample = () => (

@@ -6,6 +6,9 @@ import Callout from './Callout';
 export default {
   title: 'Callout',
   component: Callout,
+  parameters: {
+    sourceLink: 'Callout/Callout.tsx',
+  },
 };
 
 export const LiveExample = () => (

@@ -6,6 +6,9 @@ import Row from './Row';
 
 export default {
   title: 'Layout',
+  parameters: {
+    sourceLink: 'Layout',
+  },
 };
 
 export const Grid = () => (

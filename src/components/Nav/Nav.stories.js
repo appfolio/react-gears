@@ -8,6 +8,9 @@ import NavLink from './NavLink';
 export default {
   title: 'Nav',
   component: Nav,
+  parameters: {
+    sourceLink: 'Nav/Nav.tsx',
+  },
 };
 
 export const Tabs = () => {

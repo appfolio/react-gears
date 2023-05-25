@@ -5,6 +5,9 @@ import HelpBubble from './HelpBubble';
 export default {
   title: 'HelpBubble',
   component: HelpBubble,
+  parameters: {
+    sourceLink: 'HelpBubble/HelpBubble.tsx',
+  },
 };
 
 export const LiveExample = () => (

@@ -13,6 +13,10 @@ import {
 } from '../src';
 import allThemes from './themes';
 
+export const parameters = {
+  sourceLinkPrefix: 'https://github.com/appfolio/react-gears/tree/master/src/components/',
+}
+
 const changeTheme = (url) => {
   const link = document.getElementById('theme');
   link.href = url;

@@ -70,6 +70,9 @@ const options = [
 export default {
   title: 'Combobox',
   component: Combobox,
+  parameters: {
+    sourceLink: 'Combobox/Combobox.tsx',
+  },
 };
 
 export const LiveExample = () => {

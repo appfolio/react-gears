@@ -10,6 +10,9 @@ import UncontrolledPopover from './UncontrolledPopover';
 export default {
   title: 'Popover',
   component: Popover,
+  parameters: {
+    sourceLink: 'Popover/Popover.tsx',
+  },
 };
 
 export const LiveExample = () => {

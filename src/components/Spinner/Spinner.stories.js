@@ -7,6 +7,9 @@ import Spinner from './Spinner';
 export default {
   title: 'Spinner',
   component: Spinner,
+  parameters: {
+    sourceLink: 'Spinner/Spinner.tsx',
+  },
 };
 
 export const Default = () => {

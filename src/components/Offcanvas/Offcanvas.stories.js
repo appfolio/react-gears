@@ -5,6 +5,10 @@ import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button } from 'reactstrap';
 export default {
   title: 'Offcanvas',
   component: Offcanvas,
+  parameters: {
+    sourceLinkPrefix: 'https://github.com/reactstrap/reactstrap/tree/master/src/',
+    sourceLink: 'Offcanvas.js',
+  },
 };
 
 export const Example = () => {

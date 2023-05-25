@@ -19,6 +19,9 @@ const optionsSomeDisabled = [
 export default {
   title: 'CheckboxGroup',
   component: CheckboxGroup,
+  parameters: {
+    sourceLink: 'Checkbox/CheckboxGroup.tsx',
+  },
 };
 
 export const LiveExample = () => {

@@ -6,6 +6,9 @@ import ActivityLog from './ActivityLog';
 export default {
   title: 'ActivityLog',
   component: ActivityLog,
+  parameters: {
+    sourceLink: 'Activity/ActivityLog.tsx',
+  },
 };
 
 export const WithProps = () => (

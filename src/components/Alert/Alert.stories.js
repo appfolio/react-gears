@@ -7,6 +7,9 @@ import Alert from './Alert';
 export default {
   title: 'Alerts',
   component: Alert,
+  parameters: {
+    sourceLink: 'Alert/Alert.tsx',
+  },
 };
 
 export const LiveExample = () => (

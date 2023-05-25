@@ -8,6 +8,9 @@ import FeatureBanner from './FeatureBanner';
 export default {
   title: 'FeatureBanner',
   component: FeatureBanner,
+  parameters: {
+    sourceLink: 'FeatureBanner/FeatureBanner.tsx',
+  },
 };
 
 export const LiveExample = () => (

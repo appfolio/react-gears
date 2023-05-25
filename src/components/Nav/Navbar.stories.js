@@ -16,6 +16,9 @@ import NavLink from './NavLink';
 export default {
   title: 'Navbar',
   component: Navbar,
+  parameters: {
+    sourceLink: 'Nav/Navbar.tsx',
+  },
 };
 
 export const LiveExample = () => {

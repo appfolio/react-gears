@@ -6,6 +6,9 @@ import Placeholder from './Placeholder';
 export default {
   title: 'Placeholder',
   component: Placeholder,
+  parameters: {
+    sourceLink: 'Placeholder/Placeholder.tsx',
+  },
 };
 
 export const LiveExample = () => (
