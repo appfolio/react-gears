@@ -1,5 +1,18 @@
 # Change Log
 
+## [8.2.0](https://github.com/appfolio/react-gears/compare/v8.1.0...v8.2.0) (2023-05-25)
+
+
+### Features
+
+* add `storybook-source-link` ([b349196](https://github.com/appfolio/react-gears/commit/b349196bbec41721fe55c519981a444fc77bf436))
+* define `sourceLink` for each component ([397c494](https://github.com/appfolio/react-gears/commit/397c4946b62af1c2eeee6be7d96bc115fd7a47de))
+
+
+### Bug Fixes
+
+* storybook source links ([16786b4](https://github.com/appfolio/react-gears/commit/16786b4c0a68619fb866e54ba0cf0e5f89779704))
+
 ## [8.1.0](https://github.com/appfolio/react-gears/compare/v8.0.3...v8.1.0) (2023-05-09)
 
 
