@@ -20,7 +20,7 @@ export default {
   title: 'CheckboxGroup',
   component: CheckboxGroup,
   parameters: {
-    sourceLink: 'CheckboxGroup/CheckboxGroup.tsx',
+    sourceLink: 'Checkbox/CheckboxGroup.tsx',
   },
 };
 

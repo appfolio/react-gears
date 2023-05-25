@@ -12,7 +12,7 @@ export default {
   title: 'Modal',
   component: Modal,
   parameters: {
-    sourceLink: 'Modal/Modal.tsx',
+    sourceLink: 'Modal/Modal.js',
   },
 };
 
