@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.4.0](https://github.com/appfolio/react-gears/compare/v8.3.0...v8.4.0) (2023-06-06)
+
+
+### Features
+
+* change Element to ReactNode type for title on InfoBox ([fdba880](https://github.com/appfolio/react-gears/commit/fdba880b1ce8ddb7dde2269f4f6969bec8bda82d))
+
 ## [8.3.0](https://github.com/appfolio/react-gears/compare/v8.2.0...v8.3.0) (2023-06-06)
 
 
