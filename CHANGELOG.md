@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.3.0](https://github.com/appfolio/react-gears/compare/v8.2.0...v8.3.0) (2023-06-06)
+
+
+### Features
+
+* add Element as a type for title on InfoBox ([0e2d634](https://github.com/appfolio/react-gears/commit/0e2d6342dce8286d823ef547273a198e7006545d))
+
 ## [8.2.0](https://github.com/appfolio/react-gears/compare/v8.1.0...v8.2.0) (2023-05-25)
 
 
