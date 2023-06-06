@@ -2,12 +2,12 @@ import classnames from 'classnames';
 import React, { ReactNode } from 'react';
 import Icon from '../Icon/Icon';
 
-interface InfoBoxProps extends Omit<React.HTMLProps<HTMLDivElement>, 'className'> {
+interface InfoBoxProps extends Omit<React.HTMLProps<HTMLDivElement>, 'className' | 'title'> {
   children?: ReactNode;
   className?: string;
   color?: string;
   icon?: string;
-  title?: string;
+  title?: string | Element;
   vertical?: boolean;
 }
 
