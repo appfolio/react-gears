@@ -73,7 +73,7 @@
     "react-text-mask": "~5.0.2",
     "react-transition-group": "^2.9.0",
     "react-use": "^17.3.2",
-    "reactstrap": "^9.1.5",
+    "reactstrap": "^9.2.0",
     "storybook-source-link": "^2.0.8",
     "styled-jsx": "^5.1.1",
     "text-mask-addons": "^3.8.0",
