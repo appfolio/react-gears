@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.4.1](https://github.com/appfolio/react-gears/compare/v8.4.0...v8.4.1) (2023-06-14)
+
+
+### Miscellaneous
+
+* Makes passed style props additive rather than replacing in tooltipbutton ([6ceb54d](https://github.com/appfolio/react-gears/commit/6ceb54d2e4243bb77e17b564596edc1a469a7f7c))
+
 ## [8.4.0](https://github.com/appfolio/react-gears/compare/v8.3.0...v8.4.0) (2023-06-06)
 
 
