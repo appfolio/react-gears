@@ -39,7 +39,7 @@ const TooltipButton: FC<TooltipButtonProps> = ({
         <Button
           aria-describedby={tooltipId}
           disabled={disabled}
-          style={{ pointerEvents: disabled ? 'none' : 'auto' }}
+          style={{ pointerEvents: disabled ? 'none' : 'auto', ...props.style }}
           {...props}
         >
           {children}
