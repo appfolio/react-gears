@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.4.2](https://github.com/appfolio/react-gears/compare/v8.4.1...v8.4.2) (2023-06-15)
+
+
+### Bug Fixes
+
+* update README ([2008938](https://github.com/appfolio/react-gears/commit/2008938d50767b264901d7e6c45ba6122adff21b))
+
 ## [8.4.1](https://github.com/appfolio/react-gears/compare/v8.4.0...v8.4.1) (2023-06-14)
 
 
