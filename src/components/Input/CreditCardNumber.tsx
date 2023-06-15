@@ -40,18 +40,12 @@ function typeToIconName(type = ''): IconName {
   return ICONS[type.toLowerCase()] || 'credit-card';
 }
 
-function removeTypes(props: InputProps): Omit<InputProps, 'types'> {
-  delete props.types;
-  return props;
-}
-
 function isAllowedCardType(x: string | undefined, allowedTypes: CardType[]): x is CardType {
   // ok to cast here because we are inside the type card that validates the cast
   return allowedTypes.includes(x as CardType);
 }
 
 const defaultProps = {
-  ...removeTypes(Input.defaultProps),
   className: '',
   types: Object.keys(ICONS) as CardType[],
   onChange: () => {},

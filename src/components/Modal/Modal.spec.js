@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { render } from '@testing-library/react';
 import { mount } from 'enzyme';
 import React from 'react';
 import Button from '../Button/Button';
@@ -24,9 +25,14 @@ describe('<Modal />', () => {
     }
   });
 
-  it('should render correctly', () => {
-    component = mount(<Modal toggle={noop} />);
-    assert(component);
+  it('should render without modal backdrop by default', () => {
+    render(<Modal isOpen />);
+    expect(document.querySelector('.modal-backdrop')).not.toBeInTheDocument();
+  });
+
+  it('should render with modal backdrop if backdrop is set to true', () => {
+    render(<Modal isOpen backdrop />);
+    expect(document.querySelector('.modal-backdrop')).toBeInTheDocument();
   });
 
   describe('when autoFocus="true"', () => {

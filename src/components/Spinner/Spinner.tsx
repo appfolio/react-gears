@@ -10,8 +10,6 @@ const SpinnerWrapper = ({ type, label, ...props }: SpinnerProps) =>
   );
 
 SpinnerWrapper.defaultProps = {
-  // TODO: update, Spinner doesn't contain the defaultProps types so we cast as any
-  ...(Spinner as any).defaultProps,
   type: 'spin',
   label: 'loading',
 };

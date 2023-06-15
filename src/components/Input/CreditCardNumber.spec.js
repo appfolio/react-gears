@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { render, screen } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
@@ -78,8 +79,7 @@ describe('<CreditCardNumber />', () => {
   });
 
   it('should remain type="text"', () => {
-    const component = mount(<CreditCardNumber type="wth" />);
-    const input = component.find('Input');
-    assert.equal(input.prop('type'), 'text');
+    render(<CreditCardNumber type="wth" />);
+    screen.getByRole('textbox', { type: 'text' });
   });
 });
