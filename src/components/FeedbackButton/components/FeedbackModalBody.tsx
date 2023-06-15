@@ -40,7 +40,7 @@ const FeedbackModalBody: FC<FeedbackModalBodyProps> = ({
       visible={ratingIncluded}
       required={ratingRequired}
       text={ratingSubtitle}
-      labelClassNames={classnames({ 'js-rating-subtitle': true, 'text-danger': ratingRequired })}
+      labelClassNames={classnames({ 'js-rating-subtitle': true })}
     />
     {ratingIncluded && (
       <FeedbackModalRating
@@ -54,10 +54,7 @@ const FeedbackModalBody: FC<FeedbackModalBodyProps> = ({
       visible={commentIncluded}
       required={commentRequired}
       text={commentSubtitle}
-      labelClassNames={classnames({
-        'js-rating-subtitle': true,
-        'text-danger': commentRequired,
-      })}
+      labelClassNames={classnames({ 'js-rating-subtitle': true })}
     />
     {commentIncluded && (
       <Input

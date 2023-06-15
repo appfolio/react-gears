@@ -34,7 +34,6 @@ describe('<FeedbackButton />', () => {
     const ratingSubtitle = within(feedbackModal).getByText(
       'So far, how satisfied are you with this feature?'
     );
-    expect(ratingSubtitle).toHaveClass('text-danger');
     const ratingAsterisk = within(ratingSubtitle).getByText('*');
     expect(ratingAsterisk).toHaveClass('text-danger');
     const feedbackModalRating = within(feedbackModal).getByTestId('feedback-modal-rating');
@@ -65,7 +64,6 @@ describe('<FeedbackButton />', () => {
     const commentSubtitle = within(feedbackModal).getByText(
       'How could we improve the way this works for you?'
     );
-    expect(commentSubtitle).toHaveClass('text-danger');
     const commentAsterisk = within(commentSubtitle).getByText('*');
     expect(commentAsterisk).toHaveClass('text-danger');
     const commentInput = within(feedbackModal).getByPlaceholderText(
