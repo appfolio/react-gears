@@ -103,7 +103,7 @@ For more information about Conventional Commits, see the [official documentation
 
 Open a pull request, get it approved by the relevant code owners, and merge your pull request.
 
-**IMPORTANT**: Make sure your pull request is NOT squash merged. The merge button has dropdown options. Choose "Create a merge commit" or "Rebase and merge".
+**IMPORTANT**: Make sure your pull request is rebased when merged. The merge button has dropdown options. Choose "Rebase and merge".
 
 ### Creating a release
 
