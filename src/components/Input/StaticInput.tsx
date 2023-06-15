@@ -13,8 +13,4 @@ const StaticInput: FC<StaticInputProps> = ({ children, ...props }) => (
 
 StaticInput.displayName = 'StaticInput';
 
-StaticInput.defaultProps = {
-  ...Input.defaultProps,
-};
-
 export default StaticInput;

@@ -1,8 +1,4 @@
+import React from 'react';
 import { Progress } from 'reactstrap';
 
-Progress.defaultProps = {
-  ...Progress.defaultProps,
-  animated: true,
-};
-
-export default Progress;
+export default ({ animated = true, ...props }) => <Progress {...props} animated={animated} />;

@@ -13,7 +13,7 @@ export default {
 export const LiveExample = () => (
   <Progress
     color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
-    animated={boolean('animated', Progress.defaultProps.animated)}
+    animated={boolean('animated', true)}
     value={number('value', 50, {
       range: true,
       min: 0,
