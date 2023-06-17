@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.5.0](https://github.com/appfolio/react-gears/compare/v8.4.2...v8.5.0) (2023-06-17)
+
+
+### Features
+
+* bump reactstrap for aria-modal ([972b3e4](https://github.com/appfolio/react-gears/commit/972b3e48219c7a9c081e83d2564cdaa9775306c4))
+
+
+### Bug Fixes
+
+* no more using reactstrap defaultProps ([675f9e2](https://github.com/appfolio/react-gears/commit/675f9e2cdcaae49a8a624411cc2f0dd19fbc0da4))
+
 ## [8.4.2](https://github.com/appfolio/react-gears/compare/v8.4.1...v8.4.2) (2023-06-15)
 
 
