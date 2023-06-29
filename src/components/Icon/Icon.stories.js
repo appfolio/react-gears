@@ -1,8 +1,9 @@
 import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import Button from '../Button/Button';
+import basicIcons from './basicIcons.js';
+import brandIcons from './brandIcons.js';
 import Icon from './Icon';
-import icons from './icons.js';
 
 const colors = ['primary', 'info', 'success', 'warning', 'danger', 'muted', 'dark'];
 
@@ -32,18 +33,64 @@ export const LiveExample = () => (
   />
 );
 
-export const AvailableIcons = () => {
+export const AvailableBasicIcons = () => {
   const size = select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x');
+  const iconStyle = select('iconStyle', ['regular', 'solid', 'thin', 'light', 'duotone'], 'solid');
   return (
     <div>
       <em>Hover over icon to view name:</em>
       <br />
-      {icons.map((name, i) => (
+      <p>
+        A full list of usable basic icon names can be found{' '}
+        <a
+          href="https://fontawesome.com/v6/search"
+          className="fw-bold"
+          target="_blank"
+          rel="noreferrer"
+        >
+          here
+        </a>
+      </p>
+      <br />
+      {basicIcons.map((name, i) => (
         <Icon
           name={name}
           fixedWidth
           size={size}
           title={name}
+          iconStyle={iconStyle}
+          className={`py-2 text-${colors[i % colors.length]}`}
+        />
+      ))}
+    </div>
+  );
+};
+
+export const AvailableBrandIcons = () => {
+  const size = select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x');
+  return (
+    <div>
+      <em>Hover over icon to view name:</em>
+      <br />
+      <p>
+        A full list of usable brand icon names can be found{' '}
+        <a
+          href="https://fontawesome.com/v6/search?o=r&f=brands"
+          className="fw-bold"
+          target="_blank"
+          rel="noreferrer"
+        >
+          here
+        </a>
+      </p>
+      <br />
+      {brandIcons.map((name, i) => (
+        <Icon
+          name={name}
+          fixedWidth
+          size={size}
+          title={name}
+          iconStyle="brands"
           className={`py-2 text-${colors[i % colors.length]}`}
         />
       ))}
