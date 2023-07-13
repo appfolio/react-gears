@@ -144,7 +144,8 @@ const SelectArrow = ({ isOpen, render }) => (
         .Select-placeholder,
         .Select--single > .Select-control .Select-value {
           bottom: 0;
-          color: #aaa;
+          color: #517b98;
+          font-style: italic;
           left: 0;
           line-height: 2.25rem;
           padding-left: 10px;
