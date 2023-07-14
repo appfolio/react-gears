@@ -7,6 +7,7 @@ import Icon from '../Icon/Icon';
   Remove if/when we upgrade react-select.
 */
 
+
 const SelectArrow = ({ isOpen, render }) => (
   <>
     {render ? render() : <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
