@@ -6,6 +6,7 @@ import Icon from '../Icon/Icon';
   wrapper/fragment to Select, which then breaks downstream tests...
   Remove if/when we upgrade react-select.
 */
+
 const SelectArrow = ({ isOpen, render }) => (
   <>
     {render ? render() : <Icon name={`caret-${isOpen ? 'up' : 'down'}`} />}
