@@ -1,4 +1,6 @@
 import React from 'react';
-import { Progress } from 'reactstrap';
+import { Progress as RsProgress } from 'reactstrap';
 
-export default ({ animated = true, ...props }) => <Progress {...props} animated={animated} />;
+const Progress = ({ animated = true, ...props }) => <RsProgress {...props} animated={animated} />;
+
+export default Progress;

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Modal } from 'reactstrap';
+import { Modal as RsModal } from 'reactstrap';
 
-export default ({ backdrop = false, fade = false, zIndex = 10050, ...props }) => (
-  <Modal {...props} backdrop={backdrop} fade={fade} zIndex={zIndex} />
+const Modal = ({ backdrop = false, fade = false, zIndex = 10050, ...props }) => (
+  <RsModal {...props} backdrop={backdrop} fade={fade} zIndex={zIndex} />
 );
+
+export default Modal;
