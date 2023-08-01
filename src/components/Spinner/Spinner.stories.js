@@ -28,7 +28,7 @@ export const Default = () => {
       </p>
 
       <hr />
-      <h3>...and inherit color from it&apos;s container:</h3>
+      <h3>...and inherit color from its container:</h3>
       <p>
         <Button color="secondary" size="lg" className="me-3">
           <Spinner type={type} /> Loading
