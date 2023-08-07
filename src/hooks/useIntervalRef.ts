@@ -12,7 +12,9 @@ export function useIntervalRef<T extends Element>(callback: (el: T) => any, inte
   const cleanup = () => clearTimeout(timeoutRef.current);
   const runInterval = () => {
     cb(elRef.current!);
-    timeoutRef.current = window.setTimeout(runInterval, intervalMsRef.current);
+    if (process.env.NODE_ENV !== 'test') {
+      timeoutRef.current = window.setTimeout(runInterval, intervalMsRef.current);
+    }
   };
 
   useEffect(() => cleanup, []);
