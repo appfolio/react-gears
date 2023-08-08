@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.5.1](https://github.com/appfolio/react-gears/compare/v8.5.0...v8.5.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* adjust placeholder color and style ([2c32eec](https://github.com/appfolio/react-gears/commit/2c32eec71335aa5fe31e2c8d6420f9e14ffd3899))
+* eliminate race condition for test ([ba37b8f](https://github.com/appfolio/react-gears/commit/ba37b8fabeedb4754cd41f2ddf00854284c2fbac))
+* pass display name for element naming ([ed26e7f](https://github.com/appfolio/react-gears/commit/ed26e7f53f568c9fb1036edec1e7f029ff5f39dd))
+
 ## [8.5.0](https://github.com/appfolio/react-gears/compare/v8.4.2...v8.5.0) (2023-06-17)
 
 
