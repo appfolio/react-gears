@@ -145,8 +145,7 @@ const SelectArrow = ({ isOpen, render }) => (
         .Select-placeholder,
         .Select--single > .Select-control .Select-value {
           bottom: 0;
-          color: #517b98;
-          font-style: italic;
+          color: #aaa;
           left: 0;
           line-height: 2.25rem;
           padding-left: 10px;
@@ -158,6 +157,10 @@ const SelectArrow = ({ isOpen, render }) => (
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+        }
+        .Select-placeholder {
+          color: #517b98;
+          font-style: italic;
         }
         .Select-input {
           height: 2.25rem;
