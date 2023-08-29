@@ -62,6 +62,15 @@ describe('<FormLabelGroup />', () => {
       assert.equal(label.children().text(), 'First Name');
     });
 
+    it('should allow label classname to be overridden', () => {
+      props.labelClassName = 'text-lg-start';
+      const component = shallow(<FormLabelGroup {...props}>Hello World</FormLabelGroup>);
+
+      const label = component.find(Label);
+      assert.equal(label.length, 1);
+      assert.equal(label.prop('className'), 'text-lg-start');
+    });
+
     it('should include an asterisk after the label text when required', () => {
       const component = shallow(
         <FormLabelGroup {...props} required>
