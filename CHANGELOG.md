@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.6.0](https://github.com/appfolio/react-gears/compare/v8.5.1...v8.6.0) (2023-08-29)
+
+
+### Features
+
+* allow labelClassName to be overridden ([5f79809](https://github.com/appfolio/react-gears/commit/5f798099989ef418a20cff98ab1309892ae0b19b))
+
 ## [8.5.1](https://github.com/appfolio/react-gears/compare/v8.5.0...v8.5.1) (2023-08-08)
 
 
