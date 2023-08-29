@@ -27,6 +27,7 @@ type FormLabelGroupProps = React.PropsWithChildren<{
   inputId?: string;
   label?: React.ReactNode;
   labelSize?: keyof typeof labelSizeTranslations;
+  labelClassName?: string;
   required?: boolean;
   rowClassName?: string;
   size?: string;
@@ -50,6 +51,7 @@ function FormLabelGroup({
   inputId,
   label,
   labelSize = defaultProps.labelSize,
+  labelClassName,
   required,
   rowClassName,
   size,
@@ -65,12 +67,14 @@ function FormLabelGroup({
     },
     rowClassName
   );
-  const labelClassNames = classnames({
-    'text-sm-end pe-0': !stacked,
-    'text-danger': feedback,
-    'text-success': validFeedback,
-    'visually-hidden visually-hidden-focusable': srLabel,
-  });
+  const labelClassNames =
+    labelClassName ??
+    classnames({
+      'text-sm-end pe-0': !stacked,
+      'text-danger': feedback,
+      'text-success': validFeedback,
+      'visually-hidden visually-hidden-focusable': srLabel,
+    });
   const hiddenClassNames = classnames(
     {
       'is-invalid': feedback,
