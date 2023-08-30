@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.6.1](https://github.com/appfolio/react-gears/compare/v8.6.0...v8.6.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* correct selected fields font style ([29f902f](https://github.com/appfolio/react-gears/commit/29f902f1113b72e8d637d7991d9f5b9461c0e8ff))
+
 ## [8.6.0](https://github.com/appfolio/react-gears/compare/v8.5.1...v8.6.0) (2023-08-29)
 
 
