@@ -105,9 +105,15 @@ Open a pull request, get it approved by the relevant code owners, and merge your
 
 **IMPORTANT**: Make sure your pull request is rebased when merged. The merge button has dropdown options. Choose "Rebase and merge".
 
-### Creating a release
+### Creating a prerelease
 
-Any pull request against the default branch will cause a prerelease to be created. This prerelease can be used to test your branch.
+- Open a pull request with your changes against the default branch.
+- After a few minutes, GitHub bot will leave a comment on the pull request notifying the prerelease was created.
+- Use this prerelease version (e.g. 8.0.1-some-branch-a48dadc.0) to test your changes in apps/libraries that depend on this library.
 
-[release-please](https://github.com/googleapis/release-please) will automatically create or update a "release pull request" with the changes you made.
-Merge this "release pull request" to release an official new version.
+### Creating an official release
+
+After merging your pull request to the default branch, [release-please](https://github.com/googleapis/release-please) will automatically create or update a special "release pull request".
+
+- Find this "release pull request" under the "Pull requests" tab for this repo. The title will be something like, **chore(master): release 8.0.2**.
+- Approve and merge this "release pull request" to create an official release (e.g. 8.0.2).
