@@ -25,6 +25,8 @@ type NoteHeaderProps = {
   onDelete?: (note: Omit<Note, 'text'>) => void;
   onEdit?: (note: Omit<Note, 'text'>) => void;
   onSetReminder?: (note: Omit<Note, 'text'>, time: number) => void;
+  onDismissReminder?: (note: Omit<Note, 'text'>) => void;
+  reminderExists?: boolean;
 };
 
 const defaultProps = {
@@ -32,7 +34,7 @@ const defaultProps = {
 };
 
 const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
-  const { note, onDelete, onEdit, showTimezone, onSetReminder } = props;
+  const { note, onDelete, onEdit, showTimezone, onSetReminder, onDismissReminder, reminderExists } = props;
   const { date, edited, from, title } = note;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -97,7 +99,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
             Delete
           </Button>
         ) : null}
-        { onSetReminder ? (
+        { !reminderExists && onSetReminder ? (
           <div className="ms-3">
             <ButtonDropdown isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
               <DropdownToggle caret>Remind Me</DropdownToggle>
@@ -143,6 +145,15 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
               </DropdownMenu>
             </ButtonDropdown>
           </div>
+        ) : null}
+        { reminderExists && onDismissReminder ? (
+          <Button
+            color="secondary"
+            onClick={() => onDismissReminder(note)}
+            className="js-note-header__dismiss-reminder ms-3"
+          >
+            Dismiss
+          </Button>
         ) : null}
       </div>
     </CardHeader>
