@@ -155,6 +155,7 @@ export const NoteWithMentions = () => {
       onChange={action('onChange')}
       onDelete={action('onDelete')}
       onEdit={action('onEdit')}
+      onSetReminder={action('onSetReminder')}
       onSave={action('onSave')}
       onUndelete={action('onUndelete')}
       rows={number('rows', Note.defaultProps.rows)}

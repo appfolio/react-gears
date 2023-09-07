@@ -1,8 +1,12 @@
 import classnames from 'classnames';
 import fecha from 'fecha';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
+import ButtonDropdown from '../Button/ButtonDropdown'
+import DropdownItem from '../Dropdown/DropdownItem';
+import DropdownMenu from '../Dropdown/DropdownMenu';
+import DropdownToggle from '../Dropdown/DropdownToggle';
 import CardHeader from '../Card/CardHeader';
 import CardTitle from '../Card/CardTitle';
 import { Note } from './Note.types';
@@ -20,6 +24,7 @@ type NoteHeaderProps = {
   showTimezone?: boolean;
   onDelete?: (note: Omit<Note, 'text'>) => void;
   onEdit?: (note: Omit<Note, 'text'>) => void;
+  onSetReminder?: (note: Omit<Note, 'text'>, time: number) => void;
 };
 
 const defaultProps = {
@@ -27,8 +32,9 @@ const defaultProps = {
 };
 
 const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
-  const { note, onDelete, onEdit, showTimezone } = props;
+  const { note, onDelete, onEdit, showTimezone, onSetReminder } = props;
   const { date, edited, from, title } = note;
+  const [isOpen, setIsOpen] = useState(false);
 
   const headerClassNames = classnames(
     'd-flex',
@@ -90,6 +96,53 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
           >
             Delete
           </Button>
+        ) : null}
+        { onSetReminder ? (
+          <div className="ms-3">
+            <ButtonDropdown isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
+              <DropdownToggle caret>Remind Me</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 20
+                    )
+                  )}
+                >
+                  In 20 minutes</DropdownItem>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 60
+                    )
+                  )}
+                >
+                  In 1 hour</DropdownItem>
+                <DropdownItem
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 1440
+                    )
+                  )}
+                >
+                  Tomorrow
+                </DropdownItem>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 10080
+                    )
+                  )}
+                >
+                  Next Week
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </div>
         ) : null}
       </div>
     </CardHeader>
