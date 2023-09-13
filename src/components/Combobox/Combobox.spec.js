@@ -27,12 +27,18 @@ describe('<Combobox />', () => {
 
   it('should show options when focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should pass inputClassName to Input', () => {
@@ -86,11 +92,17 @@ describe('<Combobox />', () => {
     const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     fireEvent.blur(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
   });
 
   it('should not close menu when menu container is focused', () => {
@@ -101,7 +113,9 @@ describe('<Combobox />', () => {
     const menu = combobox.getByTestId('react-gears-combobox-menu');
     fireEvent.blur(dropdown, { relatedTarget: menu });
 
-    expect(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden')).toEqual('false');
+    expect(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden')).toEqual(
+      'false'
+    );
   });
 
   it('should close menu on blur of caret button', () => {
@@ -110,11 +124,17 @@ describe('<Combobox />', () => {
     const caret = combobox.getByTestId('react-gears-combobox-caret');
     fireEvent.mouseDown(caret);
 
-    assert.strictEqual(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     fireEvent.blur(caret);
 
-    assert.strictEqual(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
   });
 
   it('should blur input on close', () => {
@@ -186,7 +206,10 @@ describe('<Combobox />', () => {
 
     fireEvent.keyDown(input, { key: 'Enter', code: 13 });
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
     sinon.assert.called(mockOnChange);
     sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
@@ -221,27 +244,42 @@ describe('<Combobox />', () => {
     const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     const caret = combobox.getByTestId('react-gears-combobox-caret');
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     fireEvent.keyDown(input, { key: 'ArrowDown', code: 40 });
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should open options if input is clicked', async () => {
     const combobox = render(<Combobox options={OPTIONS} value={3} />);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.mouseDown(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should open/close options with dropdown toggle', () => {
@@ -250,16 +288,25 @@ describe('<Combobox />', () => {
     const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     const caret = combobox.getByTestId('react-gears-combobox-caret');
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-menu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   describe('default filterOptions ', () => {
