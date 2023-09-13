@@ -305,7 +305,7 @@ function Combobox<T>({
       return (
         <DropdownItem
           active={noMatches}
-          data-testid="create-new-option"
+          data-testid="react-gears-combobox-create-new-option"
           disabled={!isValidNewOption(inputValue)}
           onMouseDown={(ev) => {
             ev.preventDefault();
@@ -353,7 +353,7 @@ function Combobox<T>({
         </div>
       )}
       <Dropdown
-        data-testid="combobox-dropdown"
+        data-testid="react-gears-combobox-dropdown"
         direction={direction}
         isOpen={!disabled && open}
         toggle={() => {}}
@@ -368,7 +368,7 @@ function Combobox<T>({
           <InputGroup className={className}>
             <Input
               innerRef={inputElement}
-              data-testid="combobox-input"
+              data-testid="react-gears-combobox-input"
               disabled={disabled}
               className={inputClassName}
               placeholder={selected ? undefined : placeholder}
@@ -408,7 +408,7 @@ function Combobox<T>({
             />
             <Button
               className="px-2"
-              data-testid="combobox-caret"
+              data-testid="react-gears-combobox-caret"
               disabled={disabled}
               active={open}
               onMouseDown={(ev) => {
@@ -423,7 +423,7 @@ function Combobox<T>({
           </InputGroup>
         </DropdownToggle>
         <DropdownMenu
-          data-testid="combobox-menu"
+          data-testid="react-gears-combobox-menu"
           className="p-0 w-100"
           style={{ maxHeight: menuMaxHeight || '12rem', overflowY: 'auto' }}
           {...dropdownProps}
