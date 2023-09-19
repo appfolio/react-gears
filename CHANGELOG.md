@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.6.2](https://github.com/appfolio/react-gears/compare/v8.6.1...v8.6.2) (2023-09-19)
+
+
+### Bug Fixes
+
+* correct placeholder color ([5aebc9c](https://github.com/appfolio/react-gears/commit/5aebc9c57e4feb870762f88bede8302cd9994ac4))
+
 ## [8.6.1](https://github.com/appfolio/react-gears/compare/v8.6.0...v8.6.1) (2023-08-30)
 
 
