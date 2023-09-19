@@ -159,7 +159,7 @@ const SelectArrow = ({ isOpen, render }) => (
           white-space: nowrap;
         }
         .Select-placeholder {
-          color: #517b98;
+          color: #637989;
           font-style: italic;
         }
         .Select-input {
