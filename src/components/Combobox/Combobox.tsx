@@ -411,7 +411,7 @@ function Combobox<T>({
               data-testid="combobox-caret"
               disabled={disabled}
               active={open}
-              onMouseDown={(ev) => {
+              onMouseDown={(ev: React.MouseEvent<HTMLButtonElement>) => {
                 ev.stopPropagation();
                 setOpen(!open);
               }}
