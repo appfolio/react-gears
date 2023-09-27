@@ -53,7 +53,7 @@ const HasManyFieldsRow = ({
     <Button
       id={id}
       color="danger"
-      onClick={(e) => e.preventDefault()}
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault()}
       outline
       className="p-2 disabled align-self-stretch"
     >
