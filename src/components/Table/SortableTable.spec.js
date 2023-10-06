@@ -337,14 +337,14 @@ describe('<SortableTable />', () => {
 
     it('should not render expandable column helper when onExpand not present', () => {
       const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
-      assert.equal(wrapper.find('td Button').length, 0, 'expand buttons present');
+      assert.equal(wrapper.find('td button').length, 0, 'expand buttons present');
     });
 
     it('should render expandable column helper when onExpand present', () => {
       const wrapper = mount(
         <SortableTable columns={columns} rows={[1, 2, 3]} onExpand={() => {}} />
       );
-      assert.equal(wrapper.find('td Button').length, 3, 'expand buttons missing');
+      assert.equal(wrapper.find('td button').length, 3, 'expand buttons missing');
     });
 
     it('should call onExpand when clicked', () => {
@@ -352,9 +352,9 @@ describe('<SortableTable />', () => {
       const wrapper = mount(
         <SortableTable columns={columns} rows={[1, 2, 3]} onExpand={onExpand} />
       );
-      wrapper.find('td Button').first().simulate('click');
+      wrapper.find('td button').first().simulate('click');
       assert(onExpand.calledWith(1));
-      wrapper.find('td Button').last().simulate('click');
+      wrapper.find('td button').last().simulate('click');
       assert(onExpand.calledWith(3));
     });
   });

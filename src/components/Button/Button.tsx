@@ -1,18 +1,33 @@
 import React from 'react';
-import { Button as RsButton } from 'reactstrap';
+import { Button as RsButton, ButtonProps as RsButtonProps } from 'reactstrap';
 
-const Button = ({ disabled = false, block = false, outline = false, ...props }) => (
-  <RsButton
-    {...props}
-    disabled={disabled}
-    block={block}
-    outline={outline}
-    role="button"
-    aria-disabled={disabled}
-    aria-labelledby={typeof props.children === 'string' ? props.children : undefined}
-  />
-);
+export interface ButtonProps extends RsButtonProps {
+  ariaLabelledBy?: string;
+}
 
-export type { ButtonProps } from 'reactstrap';
+const Button = ({
+  ariaLabelledBy = '',
+  disabled = false,
+  children,
+  'aria-label': ariaLabel,
+  ...props
+}: ButtonProps) => {
+  if (!ariaLabel && children && typeof children === 'string') {
+    ariaLabel = children;
+  }
+
+  return (
+    <RsButton
+      {...props}
+      disabled={disabled}
+      role="button"
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy || undefined}
+    >
+      {children}
+    </RsButton>
+  );
+};
 
 export default Button;

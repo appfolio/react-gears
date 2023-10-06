@@ -78,7 +78,7 @@ function Combobox<T>({
 
   const grouped = !!(optionsProp[0] as OptionGroup<T>)?.options;
   const options: Option<T>[] = useMemo(() => {
-    if (optionsProp === [] || !optionsProp) {
+    if (!Array.isArray(optionsProp) || !optionsProp.length) {
       return [];
     }
 

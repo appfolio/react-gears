@@ -50,7 +50,7 @@ describe('<DateInput />', () => {
     const component = mount(<DateInput />);
 
     const toggle = component.find('InputGroup');
-    const calendarButton = toggle.find('Button');
+    const calendarButton = toggle.find(Button);
     assert.equal(calendarButton.props().tabIndex, -1);
   });
 
@@ -58,7 +58,7 @@ describe('<DateInput />', () => {
     const component = mount(<DateInput />);
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroup').find('Button');
+    const toggle = component.find('InputGroup').find(Button);
     toggle.simulate('click');
     assert.equal(component.find('Dropdown').props().isOpen, true);
 
@@ -91,7 +91,7 @@ describe('<DateInput />', () => {
     const dropdown = component.find('Dropdown');
     assert.equal(dropdown.props().isOpen, false);
 
-    const toggle = component.find('InputGroup').find('Button');
+    const toggle = component.find('InputGroup').find(Button);
     toggle.simulate('click');
     assert.equal(dropdown.props().isOpen, false);
 
@@ -182,7 +182,7 @@ describe('<DateInput />', () => {
     it('should set date after clicking prev year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-      const prevYear = component.find('Button.js-prev-year');
+      const prevYear = component.find('button.js-prev-year');
 
       prevYear.simulate('click');
 
@@ -193,7 +193,7 @@ describe('<DateInput />', () => {
     it('should set date after clicking next year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-      const nextYear = component.find('Button.js-next-year');
+      const nextYear = component.find('button.js-next-year');
 
       nextYear.simulate('click');
 
@@ -204,7 +204,7 @@ describe('<DateInput />', () => {
     it('should set date after clicking prev month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-      const prevMonth = component.find('Button.js-prev-month');
+      const prevMonth = component.find('button.js-prev-month');
 
       prevMonth.simulate('click');
 
@@ -215,7 +215,7 @@ describe('<DateInput />', () => {
     it('should set date after clicking next month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-      const nextMonth = component.find('Button.js-next-month');
+      const nextMonth = component.find('button.js-next-month');
 
       nextMonth.simulate('click');
 
@@ -224,14 +224,14 @@ describe('<DateInput />', () => {
     });
 
     it('should set date to start of today after clicking today', () => {
-      const today = component.find('footer Button').at(0);
+      const today = component.find('footer button').at(0);
       today.simulate('click');
       assert.deepEqual(component.instance().getCurrentDate(), startOfToday());
     });
 
     it('should call onChange after clicking today', () => {
       callback.resetHistory();
-      const today = component.find('footer Button').at(0);
+      const today = component.find('footer button').at(0);
       today.simulate('click');
       assert(callback.called);
       const spyCall = callback.getCall(0);
@@ -240,14 +240,14 @@ describe('<DateInput />', () => {
     });
 
     it('should clear date after clicking clear', () => {
-      const clear = component.find('footer Button').at(1);
+      const clear = component.find('footer button').at(1);
       clear.simulate('click');
       assert.equal(component.instance().inputEl.value, '');
     });
 
     it('should call onChange after clicking clear', () => {
       callback.resetHistory();
-      const clear = component.find('footer Button').at(1);
+      const clear = component.find('footer button').at(1);
       clear.simulate('click');
       assert(callback.calledWith('', false));
     });
@@ -374,7 +374,7 @@ describe('<DateInput />', () => {
       it('should allow setting to prev year', () => {
         onChange.resetHistory();
         const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-        const prevYear = component.find('Button.js-prev-year');
+        const prevYear = component.find('button.js-prev-year');
 
         prevYear.simulate('click');
 
@@ -385,7 +385,7 @@ describe('<DateInput />', () => {
       it('should allow setting to next year', () => {
         onChange.resetHistory();
         const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-        const nextYear = component.find('Button.js-next-year');
+        const nextYear = component.find('button.js-next-year');
 
         nextYear.simulate('click');
 
@@ -396,7 +396,7 @@ describe('<DateInput />', () => {
       it('should allow setting to prev month', () => {
         onChange.resetHistory();
         const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-        const prevMonth = component.find('Button.js-prev-month');
+        const prevMonth = component.find('button.js-prev-month');
 
         prevMonth.simulate('click');
 
@@ -407,7 +407,7 @@ describe('<DateInput />', () => {
       it('should allow setting to next month', () => {
         onChange.resetHistory();
         const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-        const nextMonth = component.find('Button.js-next-month');
+        const nextMonth = component.find('button.js-next-month');
 
         nextMonth.simulate('click');
 
@@ -467,7 +467,7 @@ describe('<DateInput />', () => {
 
       it('should allow setting date to today', () => {
         onChange.resetHistory();
-        const today = component.find('Button.today-button').first();
+        const today = component.find('button.today-button').first();
         today.simulate('click');
 
         assert.deepStrictEqual(component.instance().getCurrentDate(), startOfToday());
@@ -481,7 +481,7 @@ describe('<DateInput />', () => {
 
       it('should allow clearing date', () => {
         onChange.resetHistory();
-        const clear = component.find('Button.clear-button').first();
+        const clear = component.find('button.clear-button').first();
         clear.simulate('click');
 
         assert.strictEqual(component.instance().inputEl.value, '');
