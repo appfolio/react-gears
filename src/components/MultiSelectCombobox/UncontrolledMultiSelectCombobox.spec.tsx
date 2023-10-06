@@ -133,7 +133,6 @@ describe('<UncontrolledMultiSelectCombobox>', () => {
 
     const removeAllButton = screen.getByLabelText('Remove all selections');
     user.click(removeAllButton);
-
     expect(changeSpy).toHaveBeenCalledTimes(3);
     expect(changeSpy).toHaveBeenLastCalledWith([]);
   });

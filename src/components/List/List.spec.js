@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
+import Button from '../Button/Button';
 import List from './List';
 import ListItem from './ListItem';
 
@@ -62,7 +63,7 @@ describe('<List />', () => {
           {(item) => item}
         </List>
       );
-      const buttons = component.find('Button');
+      const buttons = component.find(Button);
 
       assert.equal(buttons.length, 5);
       assert.equal(buttons.at(0).props().style.visibility, 'hidden');

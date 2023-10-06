@@ -7,6 +7,7 @@ import isToday from 'date-fns/is_today';
 import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
+import Button from '../Button/Button';
 import MonthInput from './MonthInput';
 
 describe('<MonthInput />', () => {
@@ -45,7 +46,7 @@ describe('<MonthInput />', () => {
     const component = mount(<MonthInput />);
 
     const toggle = component.find('InputGroup');
-    const calendarButton = toggle.find('Button');
+    const calendarButton = toggle.find(Button);
     assert.equal(calendarButton.props().tabIndex, -1);
   });
 
@@ -53,7 +54,7 @@ describe('<MonthInput />', () => {
     const component = mount(<MonthInput />);
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroup').find('Button');
+    const toggle = component.find('InputGroup').find(Button);
     toggle.simulate('click');
 
     assert.equal(component.find('Dropdown').props().isOpen, true);
@@ -86,7 +87,7 @@ describe('<MonthInput />', () => {
 
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
-    const toggle = component.find('InputGroup').find('Button');
+    const toggle = component.find('InputGroup').find(Button);
     toggle.simulate('click');
     assert.equal(component.find('Dropdown').props().isOpen, false);
 
@@ -177,7 +178,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking prev year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), -1);
-      const prevYear = component.find('Button.js-prev-year');
+      const prevYear = component.find('button.js-prev-year');
 
       prevYear.simulate('click');
 
@@ -188,7 +189,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking next year', () => {
       callback.resetHistory();
       const expectedDate = addYears(component.instance().getCurrentDate(), 1);
-      const nextYear = component.find('Button.js-next-year');
+      const nextYear = component.find('button.js-next-year');
 
       nextYear.simulate('click');
 
@@ -199,7 +200,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking prev month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), -1);
-      const prevMonth = component.find('Button.js-prev-month');
+      const prevMonth = component.find('button.js-prev-month');
 
       prevMonth.simulate('click');
 
@@ -210,7 +211,7 @@ describe('<MonthInput />', () => {
     it('should set date after clicking next month', () => {
       callback.resetHistory();
       const expectedDate = addMonths(component.instance().getCurrentDate(), 1);
-      const nextMonth = component.find('Button.js-next-month');
+      const nextMonth = component.find('button.js-next-month');
 
       nextMonth.simulate('click');
 
@@ -219,7 +220,7 @@ describe('<MonthInput />', () => {
     });
 
     it('should set date after clicking today', () => {
-      const today = component.find('footer Button');
+      const today = component.find('footer button');
       today.simulate('click');
       assert(isSameMonth(new Date(), component.instance().getCurrentDate()));
     });
@@ -260,7 +261,7 @@ describe('<MonthInput />', () => {
         showOnFocus
       />
     );
-    const toggle = component.find('InputGroup').find('Button');
+    const toggle = component.find('InputGroup').find(Button);
     toggle.simulate('click');
 
     it('should pass dateVisible func to Calendar component', () => {
