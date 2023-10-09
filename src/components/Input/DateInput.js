@@ -274,7 +274,7 @@ export default class DateInput extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     this.setInputValue();
     if (this.props.onClose && this.state.open !== prevState.open && !this.state.open) {
-      const value = this.props.value !== undefined ? this.props.value : this.state.value;
+      const value = this.state.value;
       const date = this.props.parse(value, this.props.dateFormat);
 
       if (date) {
