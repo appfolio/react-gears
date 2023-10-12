@@ -2,14 +2,14 @@ import React from 'react';
 import { Button as RsButton, ButtonProps as RsButtonProps } from 'reactstrap';
 
 export interface ButtonProps extends RsButtonProps {
-  ariaLabelledBy?: string;
+  'aria-labelledby'?: string;
 }
 
 const Button = ({
-  ariaLabelledBy = '',
   disabled = false,
   children,
   'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   ...props
 }: ButtonProps) => {
   if (!ariaLabel && children && typeof children === 'string') {
