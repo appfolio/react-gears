@@ -365,6 +365,22 @@ describe('<UncontrolledTable />', () => {
     assert.strictEqual(paginator.prop('currentPage'), 2);
   });
 
+  it('should prefer totalItems prop for paginator, but default to rows.length', () => {
+    const columns = [{ header: 'Name', cell: (row) => row }];
+    const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];
+    const wrapper = shallow(
+      <UncontrolledTable columns={columns} rows={rows} paginated pageSize={4} />
+    );
+    let paginator = wrapper.find(Paginator);
+
+    assert.strictEqual(paginator.prop('totalItems'), rows.length);
+
+    wrapper.setProps({ totalItems: 10 });
+    paginator = wrapper.find(Paginator);
+
+    assert.strictEqual(paginator.prop('totalItems'), 10);
+  });
+
   it('should show correct rows on sort change', () => {
     const columns = [{ header: 'Name', key: 'name', cell: (row) => row }];
     const rows = [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }];
