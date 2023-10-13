@@ -207,6 +207,7 @@ export default class UncontrolledTable extends React.Component {
       rows,
       selectable,
       sort,
+      totalItems,
       onSelect,
       onExpand,
       onSort,
@@ -263,7 +264,7 @@ export default class UncontrolledTable extends React.Component {
               currentPage={page + 1}
               onClick={(pg) => this.setPage(pg - 1)}
               perPage={pageSize}
-              totalItems={rows.length}
+              totalItems={totalItems || rows.length}
             />
           </>
         )}
