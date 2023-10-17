@@ -14,6 +14,7 @@ export default class UncontrolledTable extends React.Component {
     onPageChange: PropTypes.func,
     page: PropTypes.number,
     pageSize: PropTypes.number,
+    resetPageOnRowChange: PropTypes.bool,
     selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     sort: PropTypes.shape({
       column: PropTypes.string,
@@ -31,6 +32,7 @@ export default class UncontrolledTable extends React.Component {
     onPageChange: () => {},
     page: 0,
     pageSize: 10,
+    resetPageOnRowChange: true,
     selected: [],
     sort: {
       ascending: true,
@@ -175,7 +177,7 @@ export default class UncontrolledTable extends React.Component {
       this.setState({ expanded: [] });
     }
 
-    if (rowsChanged) {
+    if (nextProps.resetPageOnRowChange && rowsChanged) {
       this.setState({ page: 0 });
     }
 
