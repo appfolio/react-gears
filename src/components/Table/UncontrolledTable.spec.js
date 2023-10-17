@@ -618,14 +618,19 @@ describe('<UncontrolledTable />', () => {
 
   describe('UNSAFE_componentWillReceiveProps()', () => {
     let wrapper;
+    let columns;
+    let rows;
+    let expanded;
+    let selected;
+
     beforeEach(() => {
-      const columns = [{ header: 'Name', cell: (row) => row.name }];
-      const rows = [
+      columns = [{ header: 'Name', cell: (row) => row.name }];
+      rows = [
         { name: 'Alpha', key: '1' },
         { name: 'Bravo', key: '2' },
       ];
-      const expanded = [{ name: 'Alpha', key: '1' }];
-      const selected = [{ name: 'Bravo', key: '2' }];
+      expanded = [{ name: 'Alpha', key: '1' }];
+      selected = [{ name: 'Bravo', key: '2' }];
 
       wrapper = mount(
         <UncontrolledTable
@@ -689,6 +694,39 @@ describe('<UncontrolledTable />', () => {
         'the selected state should not change'
       );
       assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
+    });
+
+    it('should reset state for expanded, but not page if a rows key attributes have changed and resetPageOnRowChange is false', () => {
+      wrapper = mount(
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          expanded={expanded}
+          page={1}
+          selected={selected}
+          resetPageOnRowChange={false}
+        />
+      );
+      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
+      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
+      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
+
+      const prevSelectedLength = wrapper.props().selected.length;
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
+      newProps.rows[0].key = '3';
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(
+        wrapper.state().expanded.length,
+        0,
+        'the expanded state should be reset to empty'
+      );
+      assert.strictEqual(
+        wrapper.state().selected.length,
+        prevSelectedLength,
+        'the selected state should not change'
+      );
+      assert.strictEqual(wrapper.state().page, 1, 'the page state should still be 1');
     });
 
     it('should reset state for selected if a change is detected in the selected key attributes have changed', () => {
