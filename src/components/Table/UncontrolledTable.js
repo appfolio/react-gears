@@ -41,6 +41,7 @@ export default class UncontrolledTable extends React.Component {
   };
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       sort: props.sort,
@@ -176,6 +177,7 @@ export default class UncontrolledTable extends React.Component {
     }
 
     if (rowsChanged) {
+      console.log('rows changed');
       this.setState({ page: 0 });
     }
 
