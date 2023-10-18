@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.7.0](https://github.com/appfolio/react-gears/compare/v8.6.2...v8.7.0) (2023-10-18)
+
+
+### Features
+
+* add resetPageOnRowChange prop to UncontrolledTable ([f6bb91e](https://github.com/appfolio/react-gears/commit/f6bb91ee0f4fc83adc3683fce7271d53eb61a5c3))
+
+
+### Bug Fixes
+
+* add aria label to component ([f156117](https://github.com/appfolio/react-gears/commit/f1561174e519138d55957aca32a3b276d30fa7ad))
+
 ## [8.6.2](https://github.com/appfolio/react-gears/compare/v8.6.1...v8.6.2) (2023-09-19)
 
 
