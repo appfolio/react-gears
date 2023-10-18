@@ -20,7 +20,6 @@ const Button = ({
     <RsButton
       {...props}
       disabled={disabled}
-      role="button"
       aria-disabled={disabled}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy || undefined}
