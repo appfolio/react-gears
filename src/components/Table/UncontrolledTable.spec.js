@@ -628,6 +628,7 @@ describe('<UncontrolledTable />', () => {
       rows = [
         { name: 'Alpha', key: '1' },
         { name: 'Bravo', key: '2' },
+        { name: 'Charlie', key: '3' },
       ];
       expanded = [{ name: 'Alpha', key: '1' }];
       selected = [{ name: 'Bravo', key: '2' }];
@@ -643,14 +644,12 @@ describe('<UncontrolledTable />', () => {
       );
     });
 
-    it('should not reset state for expanded, page, and selected if a rows key attributes have not changed', () => {
+    it('should not reset state for expanded or selected if a rows key attributes have not changed', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
-      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
 
       const expectedStateExpanded = wrapper.state().expanded;
       const expectedStateSelected = wrapper.state().selected;
-      const expectedStatePage = wrapper.state().page;
 
       const newProps = JSON.parse(JSON.stringify(wrapper.props()));
       newProps.rows[0].name = 'Charlie';
@@ -666,21 +665,15 @@ describe('<UncontrolledTable />', () => {
         expectedStateSelected.map((r) => r.key),
         'the selected state should not have changed'
       );
-      assert.strictEqual(
-        wrapper.state().page,
-        expectedStatePage,
-        'the page state should not have been changed'
-      );
     });
 
-    it('should reset state for expanded, and page if a rows key attributes have changed', () => {
+    it('should reset state for expanded if a rows key attributes have changed', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
-      assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
 
       const prevSelectedLength = wrapper.props().selected.length;
       const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.rows[0].key = '3';
+      newProps.rows[0].key = '4';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(
@@ -693,47 +686,76 @@ describe('<UncontrolledTable />', () => {
         prevSelectedLength,
         'the selected state should not change'
       );
-      assert.strictEqual(wrapper.state().page, 0, 'the page state should have been set to 0');
     });
 
-    it('should reset state for expanded, but not page if a rows key attributes have changed and resetPageOnRowChange is false', () => {
+    it('should not change the page if rows change and user is still within the page bounds', () => {
       wrapper = mount(
         <UncontrolledTable
           columns={columns}
           rows={rows}
           expanded={expanded}
           page={1}
+          pageSize={1}
           selected={selected}
           resetPageOnRowChange={false}
         />
       );
-      assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
-      assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
       assert.strictEqual(wrapper.props().page, 1, 'the page prop should be 1');
 
-      const prevSelectedLength = wrapper.props().selected.length;
       const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.rows[0].key = '3';
+      newProps.rows.pop();
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
-      assert.strictEqual(
-        wrapper.state().expanded.length,
-        0,
-        'the expanded state should be reset to empty'
-      );
-      assert.strictEqual(
-        wrapper.state().selected.length,
-        prevSelectedLength,
-        'the selected state should not change'
-      );
       assert.strictEqual(wrapper.state().page, 1, 'the page state should still be 1');
+    });
+
+    it('should set page to the last page if rows change and user is now out of page bounds', () => {
+      wrapper = mount(
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          expanded={expanded}
+          page={2}
+          pageSize={1}
+          selected={selected}
+          resetPageOnRowChange={false}
+        />
+      );
+      assert.strictEqual(wrapper.props().page, 2, 'the page prop should be 2');
+
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
+      newProps.rows.pop();
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(wrapper.state().page, 1, 'the page state should now be 1');
+    });
+
+    it('should set page to the first page if rows change and there are no rows', () => {
+      wrapper = mount(
+        <UncontrolledTable
+          columns={columns}
+          rows={rows}
+          expanded={expanded}
+          page={2}
+          pageSize={1}
+          selected={selected}
+          resetPageOnRowChange={false}
+        />
+      );
+      assert.strictEqual(wrapper.props().page, 2, 'the page prop should be 2');
+
+      const newProps = JSON.parse(JSON.stringify(wrapper.props()));
+      newProps.rows = [];
+      wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
+
+      assert.strictEqual(wrapper.state().page, 0, 'the page state should now be 0');
     });
 
     it('should reset state for selected if a change is detected in the selected key attributes have changed', () => {
       assert(wrapper.props().selected.length > 0, 'the selected props should be non empty');
 
       const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.selected[0].key = '3';
+      newProps.selected[0].key = '4';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(
@@ -743,7 +765,7 @@ describe('<UncontrolledTable />', () => {
       );
       assert.strictEqual(
         wrapper.state().selected[0].key,
-        '3',
+        '4',
         'the selected state should be set to the new array'
       );
     });
@@ -752,7 +774,7 @@ describe('<UncontrolledTable />', () => {
       assert(wrapper.props().expanded.length > 0, 'the expanded props should be non empty');
 
       const newProps = JSON.parse(JSON.stringify(wrapper.props()));
-      newProps.expanded[0].key = '3';
+      newProps.expanded[0].key = '4';
       wrapper.instance().UNSAFE_componentWillReceiveProps(newProps);
 
       assert.strictEqual(
@@ -762,7 +784,7 @@ describe('<UncontrolledTable />', () => {
       );
       assert.strictEqual(
         wrapper.state().expanded[0].key,
-        '3',
+        '4',
         'the expanded state should be set to the new array'
       );
     });
