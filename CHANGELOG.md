@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.8.0](https://github.com/appfolio/react-gears/compare/v8.7.0...v8.8.0) (2023-10-19)
+
+
+### Features
+
+* update uncontrolled table behavior to only update page if user is out of bounds ([060a3fb](https://github.com/appfolio/react-gears/commit/060a3fbd6779f8bba0c8c466e7cf26ba0cebbabb))
+
 ## [8.7.0](https://github.com/appfolio/react-gears/compare/v8.6.2...v8.7.0) (2023-10-18)
 
 
