@@ -366,42 +366,75 @@ describe('<UncontrolledTable />', () => {
   });
 
   it('should show correct rows on sort change', () => {
-    const columns = [{ header: 'Name', key: 'name', cell: (row) => row }];
-    const rows = [{ name: 'Alpha' }, { name: 'Bravo' }, { name: 'Charlie' }];
+    const columns = [
+      { header: 'Name', key: 'name', cell: (row) => row },
+      { header: 'Age', key: 'age', cell: (row) => row },
+    ];
+    const rows = [
+      { name: 'Alpha', age: 35 },
+      { name: 'Bravo', age: 30 },
+      { name: 'Charlie', age: 25 },
+      { name: 'amanda', age: 50 },
+      { name: '2 Chainz', age: 40 },
+    ];
     const wrapper = shallow(
       <UncontrolledTable
         columns={columns}
         rows={rows}
         sort={{ column: 'name', ascending: false }}
-        paginated
-        pageSize={4}
       />
     );
 
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Charlie' },
-      { name: 'Bravo' },
-      { name: 'Alpha' },
+      { name: 'Charlie', age: 25 },
+      { name: 'Bravo', age: 30 },
+      { name: 'amanda', age: 50 },
+      { name: 'Alpha', age: 35 },
+      { name: '2 Chainz', age: 40 },
     ]);
 
-    wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order
+    wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order by name (string)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Alpha' },
-      { name: 'Bravo' },
-      { name: 'Charlie' },
+      { name: '2 Chainz', age: 40 },
+      { name: 'Alpha', age: 35 },
+      { name: 'amanda', age: 50 },
+      { name: 'Bravo', age: 30 },
+      { name: 'Charlie', age: 25 },
     ]);
 
-    wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order
+    wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order by name (string)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Charlie' },
-      { name: 'Bravo' },
-      { name: 'Alpha' },
+      { name: 'Charlie', age: 25 },
+      { name: 'Bravo', age: 30 },
+      { name: 'amanda', age: 50 },
+      { name: 'Alpha', age: 35 },
+      { name: '2 Chainz', age: 40 },
+    ]);
+
+    wrapper.find(SortableTable).prop('columns')[1].onSort(true); // Simulate sort by ascending order by age (integer)
+    wrapper.update();
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie', age: 25 },
+      { name: 'Bravo', age: 30 },
+      { name: 'Alpha', age: 35 },
+      { name: '2 Chainz', age: 40 },
+      { name: 'amanda', age: 50 },
+    ]);
+
+    wrapper.find(SortableTable).prop('columns')[1].onSort(false); // Simulate sort by descending order by age (integer)
+    wrapper.update();
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'amanda', age: 50 },
+      { name: '2 Chainz', age: 40 },
+      { name: 'Alpha', age: 35 },
+      { name: 'Bravo', age: 30 },
+      { name: 'Charlie', age: 25 },
     ]);
   });
 
-  it('should show correct rows on sort change', () => {
+  it('should call onSort with correct props on sort change', () => {
     const columns = [
       { header: 'Name', key: 'name', cell: (row) => row },
       { header: 'Age', key: 'age', cell: (row) => row },

@@ -50,7 +50,12 @@ export default class UncontrolledTable extends React.Component {
     };
   }
 
-  sortedData = (rows, column, ascending) => orderBy(rows, [column], [ascending ? 'asc' : 'desc']);
+  sortedData = (rows, column, ascending) =>
+    orderBy(
+      rows,
+      (row) => (typeof row[column] === 'string' ? row[column].toLowerCase() : row[column]),
+      [ascending ? 'asc' : 'desc']
+    );
 
   sortBy = (column, ascending) => {
     let sort;
