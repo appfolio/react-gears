@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.8.1](https://github.com/appfolio/react-gears/compare/v8.8.0...v8.8.1) (2023-10-20)
+
+
+### Bug Fixes
+
+* update UncontrolledTable to use case insensitive sorting ([f599fd2](https://github.com/appfolio/react-gears/commit/f599fd25fa57272e166a42b15de4895687a50ad7))
+
 ## [8.8.0](https://github.com/appfolio/react-gears/compare/v8.7.0...v8.8.0) (2023-10-19)
 
 
