@@ -1,3 +1,4 @@
+import get from 'lodash.get';
 import isEqual from 'lodash.isequal';
 import orderBy from 'lodash.orderby';
 import some from 'lodash.some';
@@ -53,7 +54,10 @@ export default class UncontrolledTable extends React.Component {
   sortedData = (rows, column, ascending) =>
     orderBy(
       rows,
-      (row) => (typeof row[column] === 'string' ? row[column].toLowerCase() : row[column]),
+      (row) => {
+        const value = get(row, column);
+        return typeof value === 'string' ? value.toLowerCase() : value;
+      },
       [ascending ? 'asc' : 'desc']
     );
 

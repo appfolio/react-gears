@@ -54,6 +54,7 @@
     "imask": "^6.2.2",
     "invariant": "^2.2.4",
     "lodash.flow": "^3.5.0",
+    "lodash.get": "^4.4.2",
     "lodash.includes": "^4.3.0",
     "lodash.isequal": "^4.5.0",
     "lodash.noop": "^3.0.1",
