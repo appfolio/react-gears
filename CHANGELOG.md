@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.8.2](https://github.com/appfolio/react-gears/compare/v8.8.1...v8.8.2) (2023-10-24)
+
+
+### Bug Fixes
+
+* fix UncontrolledTable column sorting for keys that use dot notation ([40872d2](https://github.com/appfolio/react-gears/commit/40872d214ef0768ebd78944fdd72a5f1c94a42d8))
+
 ## [8.8.1](https://github.com/appfolio/react-gears/compare/v8.8.0...v8.8.1) (2023-10-20)
 
 
