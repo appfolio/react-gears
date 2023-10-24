@@ -369,13 +369,14 @@ describe('<UncontrolledTable />', () => {
     const columns = [
       { header: 'Name', key: 'name', cell: (row) => row },
       { header: 'Age', key: 'age', cell: (row) => row },
+      { header: 'Pet Name', key: 'pet.name', call: (row) => row },
     ];
     const rows = [
-      { name: 'Alpha', age: 35 },
-      { name: 'Bravo', age: 30 },
-      { name: 'Charlie', age: 25 },
-      { name: 'amanda', age: 50 },
-      { name: '2 Chainz', age: 40 },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
     ];
     const wrapper = shallow(
       <UncontrolledTable
@@ -386,51 +387,61 @@ describe('<UncontrolledTable />', () => {
     );
 
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Charlie', age: 25 },
-      { name: 'Bravo', age: 30 },
-      { name: 'amanda', age: 50 },
-      { name: 'Alpha', age: 35 },
-      { name: '2 Chainz', age: 40 },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
     ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(true); // Simulate sort by ascending order by name (string)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: '2 Chainz', age: 40 },
-      { name: 'Alpha', age: 35 },
-      { name: 'amanda', age: 50 },
-      { name: 'Bravo', age: 30 },
-      { name: 'Charlie', age: 25 },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
     ]);
 
     wrapper.find(SortableTable).prop('columns')[0].onSort(false); // Simulate sort by descending order by name (string)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Charlie', age: 25 },
-      { name: 'Bravo', age: 30 },
-      { name: 'amanda', age: 50 },
-      { name: 'Alpha', age: 35 },
-      { name: '2 Chainz', age: 40 },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
     ]);
 
     wrapper.find(SortableTable).prop('columns')[1].onSort(true); // Simulate sort by ascending order by age (integer)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'Charlie', age: 25 },
-      { name: 'Bravo', age: 30 },
-      { name: 'Alpha', age: 35 },
-      { name: '2 Chainz', age: 40 },
-      { name: 'amanda', age: 50 },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
     ]);
 
     wrapper.find(SortableTable).prop('columns')[1].onSort(false); // Simulate sort by descending order by age (integer)
     wrapper.update();
     assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
-      { name: 'amanda', age: 50 },
-      { name: '2 Chainz', age: 40 },
-      { name: 'Alpha', age: 35 },
-      { name: 'Bravo', age: 30 },
-      { name: 'Charlie', age: 25 },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+    ]);
+
+    wrapper.find(SortableTable).prop('columns')[2].onSort(true); // Simulate sort by ascending order by pet.name (dot notation)
+    wrapper.update();
+    assert.deepStrictEqual(wrapper.find(SortableTable).prop('rows'), [
+      { name: 'Charlie', age: 25, pet: { name: 'Doggy' } },
+      { name: 'amanda', age: 50, pet: { name: 'fido' } },
+      { name: 'Bravo', age: 30, pet: { name: 'Fluffy' } },
+      { name: '2 Chainz', age: 40, pet: { name: 'Garfield' } },
+      { name: 'Alpha', age: 35, pet: { name: 'Kitty' } },
     ]);
   });
 

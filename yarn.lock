@@ -124,6 +124,7 @@ __metadata:
     jsdom: ^11.12.0
     jsdom-global: ^3.0.2
     lodash.flow: ^3.5.0
+    lodash.get: ^4.4.2
     lodash.includes: ^4.3.0
     lodash.isequal: ^4.5.0
     lodash.noop: ^3.0.1
