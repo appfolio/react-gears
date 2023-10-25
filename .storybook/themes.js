@@ -2,7 +2,7 @@ export default {
   APM: [
     {
       name: 'APM/Coastline',
-      url: 'https://appfolio.github.io/bootstrap-coastline/bootstrap-coastline.css',
+      url: 'https://appfolio.github.io/style-libs/bootstrap-coastline.css',
     },
     {
       name: 'APM/Coastline Dark',
