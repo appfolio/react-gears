@@ -1,5 +1,13 @@
 # Change Log
 
+## [8.8.3](https://github.com/appfolio/react-gears/compare/v8.8.2...v8.8.3) (2023-10-25)
+
+
+### Miscellaneous
+
+* update storbook CSS to new coastline URL ([2e621c8](https://github.com/appfolio/react-gears/commit/2e621c86494f5cdfaaea190d83300d83888422d6))
+* update storbook CSS to new coastline URL (in themes) ([314f3d3](https://github.com/appfolio/react-gears/commit/314f3d33c050e7b1353e47ab83fee01ad1309a18))
+
 ## [8.8.2](https://github.com/appfolio/react-gears/compare/v8.8.1...v8.8.2) (2023-10-24)
 
 
