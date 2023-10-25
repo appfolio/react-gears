@@ -29,5 +29,5 @@ const GearsButton = ({
   );
 };
 
-GearsButton.displayName = 'GearsNameButton';
+// GearsButton.displayName = 'GearsNameButton';
 export default GearsButton;
