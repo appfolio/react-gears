@@ -5,7 +5,7 @@ export interface ButtonProps extends RsButtonProps {
   'aria-labelledby'?: string;
 }
 
-const Button = ({
+const GearsButton = ({
   disabled = false,
   children,
   'aria-label': ariaLabel,
@@ -29,4 +29,5 @@ const Button = ({
   );
 };
 
-export default Button;
+GearsButton.displayName = 'GearsNameButton';
+export default GearsButton;
