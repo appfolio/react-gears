@@ -29,5 +29,4 @@ const Button = ({
   );
 };
 
-Button.displayName = 'GearsWrapperButton';
 export default Button;
