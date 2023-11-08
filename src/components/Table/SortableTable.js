@@ -86,6 +86,7 @@ function getSelectableCell(row, rowSelected, onSelect) {
         checked={rowSelected(row)}
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => onSelect(row, e.target.checked)}
+        disabled={!!row.disabled}
       />
     </>
   );

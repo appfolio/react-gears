@@ -377,6 +377,24 @@ describe('<SortableTable />', () => {
       assert.equal(wrapper.find('input').length, 4, 'select checkbox missing');
     });
 
+    it('should disable select checkbox when specified', () => {
+      const rows = [
+        { name: 'Alpha', disabled: false },
+        { name: 'Bravo', disabled: true },
+        { name: 'Charlie', disabled: true },
+        { name: 'Delta', disabled: true },
+      ];
+      const wrapper = mount(
+        <SortableTable columns={columns} rows={rows} rowSelected={() => false} />
+      );
+
+      const trs = wrapper.find('tr');
+      assert.equal(trs.at(1).find('input').prop('disabled'), false);
+      assert.equal(trs.at(2).find('input').prop('disabled'), true);
+      assert.equal(trs.at(3).find('input').prop('disabled'), true);
+      assert.equal(trs.at(4).find('input').prop('disabled'), true);
+    });
+
     it('should call onSelect when clicked', () => {
       const onSelect = sinon.stub();
       const wrapper = mount(

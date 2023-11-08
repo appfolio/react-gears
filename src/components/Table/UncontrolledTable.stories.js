@@ -77,6 +77,7 @@ const DATA = [
     last: 'Turner',
     email: 'maxine.turner@example.com',
     dob: new Date(1961, 8, 19),
+    disabled: true,
   },
   {
     key: '000',
@@ -85,6 +86,7 @@ const DATA = [
     last: 'Headroom',
     email: 'max.headroom@example.com',
     dob: new Date(1984, 6, 1),
+    disabled: true,
   },
 ];
 
