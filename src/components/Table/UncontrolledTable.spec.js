@@ -302,6 +302,40 @@ describe('<UncontrolledTable />', () => {
     assert.equal(ths.length, columns.length + 1); // For selectable column
   });
 
+  it('should disable select checkbox when specified', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', disabled: true },
+      { name: 'Bravo', disabled: false },
+      { name: 'Charlie', disabled: false },
+      { name: 'Delta' },
+    ];
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selectable />);
+
+    const trs = wrapper.find('tr');
+    assert.equal(trs.at(1).find('input').prop('disabled'), true);
+    assert.equal(trs.at(2).find('input').prop('disabled'), false);
+    assert.equal(trs.at(3).find('input').prop('disabled'), false);
+    assert.equal(trs.at(4).find('input').prop('disabled'), false);
+  });
+
+  it('should only select on selectable rows when selecting selectAll', () => {
+    const columns = [{ header: 'Name', cell: (row) => row.name }];
+    const rows = [
+      { name: 'Alpha', disabled: true },
+      { name: 'Bravo', disabled: false },
+      { name: 'Charlie', disabled: false },
+      { name: 'Delta', disabled: false },
+    ];
+    const wrapper = mount(<UncontrolledTable columns={columns} rows={rows} selectable />);
+
+    wrapper
+      .find({ type: 'checkbox' })
+      .first()
+      .simulate('change', { target: { checked: true } });
+    assert.equal(wrapper.state().selected.length, 3);
+  });
+
   it('should call onSelect when selectable row picked', () => {
     const columns = [{ header: 'Name', cell: (row) => row }];
     const rows = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel'];

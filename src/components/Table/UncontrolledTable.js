@@ -78,7 +78,8 @@ export default class UncontrolledTable extends React.Component {
   };
 
   get allSelected() {
-    return this.props.rows.length && this.state.selected.length === this.props.rows.length;
+    const selectableRows = this.props.rows.filter((row) => !row.disabled);
+    return this.props.rows.length && this.state.selected.length === selectableRows.length;
   }
 
   selected(value) {
@@ -97,7 +98,8 @@ export default class UncontrolledTable extends React.Component {
   };
 
   toggleAll = () => {
-    const newSelection = this.allSelected ? [] : this.props.rows;
+    const selectableRows = this.props.rows.filter((row) => !row.disabled);
+    const newSelection = this.allSelected ? [] : selectableRows;
 
     this.setState({ selected: newSelection }, () => {
       this.props.onSelect(newSelection);
