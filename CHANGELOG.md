@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.9.0](https://github.com/appfolio/react-gears/compare/v8.8.3...v8.9.0) (2023-11-08)
+
+
+### Features
+
+* **UncontrolledTable:** allow disabled attribute to be passed in with rows ([02c6951](https://github.com/appfolio/react-gears/commit/02c695175ab19c4f3b234bdb07cfea67c2cf5176))
+
 ## [8.8.3](https://github.com/appfolio/react-gears/compare/v8.8.2...v8.8.3) (2023-10-25)
 
 
