@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { TributeItem } from 'tributejs';
+import Alert from '../Alert/Alert';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
 import Card from '../Card/Card';
@@ -20,6 +21,7 @@ type EditableNoteMentionsProps = {
   className?: string;
   dateFormat?: string;
   showTimezone?: boolean;
+  showMentionsEditNotificationWarning?: boolean;
   mentionableUsers: MentionableUser[] | undefined;
   note: Note;
   onCancel: (note: Note) => void;
@@ -40,6 +42,7 @@ export const EditableNoteMentionsDefaultProps = {
   saveLabel: 'Save',
   savingLabel: 'Saving...',
   showTimezone: true,
+  showMentionsEditNotificationWarning: false,
 };
 
 const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
@@ -51,11 +54,13 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
   saveLabel = EditableNoteMentionsDefaultProps.saveLabel,
   savingLabel = EditableNoteMentionsDefaultProps.savingLabel,
   showTimezone = EditableNoteMentionsDefaultProps.showTimezone,
+  showMentionsEditNotificationWarning = EditableNoteMentionsDefaultProps.showMentionsEditNotificationWarning,
   ...props
 }) => {
   const { children, note, onCancel, onChange, onSave } = props;
   const { errors, text } = note;
   const ref = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const [initialNoteText, setInitialNoteText] = useState<string>(note.text);
 
   useEffect(() => {
     (async () => {
@@ -85,6 +90,7 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
         tribute.attach(ref.current);
       }
     })();
+    setInitialNoteText(note.text);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const mentionStyles = () => (
@@ -135,6 +141,21 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
     </style>
   );
 
+  const editNoteMentionsAlert = () => {
+    const mentionStrings = new Set(mentionableUsers.map((user) => `@${user.value}`));
+    const userIsMentioned =
+      initialNoteText?.split(/(\s+)/).filter((word) => mentionStrings.has(word)).length > 0;
+
+    if (showMentionsEditNotificationWarning && userIsMentioned) {
+      return (
+        <Alert icon className="my-0" color="warning">
+          Notifications aren&apos;t sent to mentioned users when notes are edited
+        </Alert>
+      );
+    }
+    return null;
+  };
+
   return (
     <Card className={className}>
       <NoteHeader note={note} dateFormat={dateFormat} showTimezone={showTimezone} />
@@ -154,7 +175,7 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
           {mentionStyles()}
         </FormLabelGroup>
         {children}
-        <ButtonToolbar className="mt-3 mb-0">
+        <ButtonToolbar className="mt-3 mb-3">
           <Button
             className="js-editable-note_save"
             color="primary"
@@ -171,6 +192,7 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
             Cancel
           </Button>
         </ButtonToolbar>
+        {editNoteMentionsAlert()}
       </CardBody>
     </Card>
   );
