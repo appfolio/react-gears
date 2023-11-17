@@ -12,6 +12,18 @@ describe('<EditableNoteMentions />', () => {
   const note = {
     text: 'Hello World!',
   };
+  const mentionableUsers = [
+    {
+      key: 'John Doe',
+      value: 'John.Doe',
+      email: 'john.doe@appfolio.com',
+    },
+    {
+      key: 'Mike Smith',
+      value: 'Mike.Smith',
+      email: 'mike.smith@appfolio.com',
+    },
+  ];
   let component;
   let props;
 
@@ -19,7 +31,7 @@ describe('<EditableNoteMentions />', () => {
     const onCancel = sinon.spy();
     const onChange = sinon.spy();
     const onSave = sinon.spy();
-    props = { note, onCancel, onChange, onSave };
+    props = { note, onCancel, onChange, onSave, mentionableUsers };
   });
 
   describe('rendering', () => {
@@ -56,19 +68,6 @@ describe('<EditableNoteMentions />', () => {
 
       describe('with mentionable users', () => {
         it('should show mentionable user dropdown on @ trigger', async () => {
-          const mentionableUsers = [
-            {
-              key: 'John Doe',
-              value: 'John.Doe',
-              email: 'john.doe@appfolio.com',
-            },
-            {
-              key: 'Mike Smith',
-              value: 'Mike.Smith',
-              email: 'mike.smith@appfolio.com',
-            },
-          ];
-          props.mentionableUsers = mentionableUsers;
           props.note = 'Hey ';
           render(<EditableNoteMentions {...props} />);
 
@@ -216,6 +215,24 @@ describe('<EditableNoteMentions />', () => {
 
         assert.equal(1, header.length);
         assert.equal(note, header.props().note);
+      });
+    });
+
+    describe('if showMentionsEditNotificationWarning is true', () => {
+      const warningText = "Notifications aren't sent to mentioned users when notes are edited";
+
+      it('should render a warning if a user is mentioned', () => {
+        props.note.text = 'Hello @John.Doe What is up?';
+        render(<EditableNoteMentions {...props} showMentionsEditNotificationWarning />);
+
+        expect(screen.getByText(warningText)).toBeTruthy();
+      });
+
+      it('should not render a warning if no users are mentioned', () => {
+        props.note.text = 'Hello World!';
+        render(<EditableNoteMentions {...props} showMentionsEditNotificationWarning />);
+
+        expect(screen.queryByText(warningText)).toBeNull();
       });
     });
   });

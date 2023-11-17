@@ -182,6 +182,31 @@ export const EditableNoteWithMentions = () => {
       onChange={onNoteChange}
       onSave={action('onSave')}
       saving={boolean('saving', false)}
+      showMentionsEditNotificationWarning
+    />
+  );
+};
+
+export const EditableNoteWithMentionsEditNotificationAlert = () => {
+  const [note, setNote] = useState({
+    date: new Date(),
+    from: 'Tom Brady',
+    text: 'Hey! @Satoshi.Nakamoto why did BTC drop 20% today?',
+  });
+
+  const onNoteChange = (e) => {
+    setNote({ ...note, text: e.target.value });
+  };
+
+  return (
+    <EditableNoteMentions
+      mentionableUsers={mentionableUsers}
+      note={note}
+      onCancel={action('onCancel')}
+      onChange={onNoteChange}
+      onSave={action('onSave')}
+      saving={boolean('saving', false)}
+      showMentionsEditNotificationWarning
     />
   );
 };
