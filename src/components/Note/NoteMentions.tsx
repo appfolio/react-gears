@@ -63,7 +63,7 @@ const NoteMentions: FC<NoteMentionsProps> = ({
 }) => {
   const { deleted, editing, text } = note;
 
-  const mentionStrings = mentionableUsers.map((user) => `@${user.value}`);
+  const mentionStrings = new Set(mentionableUsers.map((user) => `@${user.value}`));
 
   const mentionStyles = () => (
     <style jsx global>
@@ -109,8 +109,8 @@ const NoteMentions: FC<NoteMentionsProps> = ({
       />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>
-          {text.split(/(\s+)/).map((word) =>
-            mentionStrings.includes(word) ? (
+          {text?.split(/(\s+)/).map((word) =>
+            mentionStrings.has(word) ? (
               <span className="note__mention-info">
                 {word}
                 {mentionStyles()}
