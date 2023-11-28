@@ -1,5 +1,27 @@
 # Change Log
 
+## [8.10.0](https://github.com/appfolio/react-gears/compare/v8.9.0...v8.10.0) (2023-11-28)
+
+
+### Features
+
+* add aria attributes ([3e4a5ec](https://github.com/appfolio/react-gears/commit/3e4a5ececbc17480409bedf7e45848467b230dc5))
+* add notification warning to editable note mentions ([d46a736](https://github.com/appfolio/react-gears/commit/d46a736993771e8235b78cb2b81101aba2f58b21))
+* adjust types ([10c3826](https://github.com/appfolio/react-gears/commit/10c38266d2b9ed4ec3e3d2f1b32f51e8f71cf325))
+* final button component with displayName ([8ce182f](https://github.com/appfolio/react-gears/commit/8ce182fbf6e9f75e19d061999659a5062c7071c7))
+* refactor component ([23a50bd](https://github.com/appfolio/react-gears/commit/23a50bd65e5c33b8b2ddfe635c03e6f87c80986a))
+* remove displayname ([6be86c9](https://github.com/appfolio/react-gears/commit/6be86c923f6044199a752d8889ce1d06a91e3b97))
+* remove the role prop ([ccc2040](https://github.com/appfolio/react-gears/commit/ccc2040bd428df4c8f4f9d11b73483d6e272c6c0))
+* replace prop with hyphenated attribute ([9e2a5f1](https://github.com/appfolio/react-gears/commit/9e2a5f1ce2972379542f1149271ad4fcfeaab77a))
+* revert condition to be handled on future release ([e44ae86](https://github.com/appfolio/react-gears/commit/e44ae86bdf70a13fbdf0a06bc6c074fc4ee46954))
+* test rename component for enzyme compatibility ([0329c5e](https://github.com/appfolio/react-gears/commit/0329c5ef3e57ad841ea5c207d6d37cbfab937846))
+* test without displayName ([5138b91](https://github.com/appfolio/react-gears/commit/5138b912929a0f467933f69fa8cd3d13c1c9aaf9))
+
+
+### Bug Fixes
+
+* use set for mentions comparison ([bf2fc2f](https://github.com/appfolio/react-gears/commit/bf2fc2fadf37c0112914527c727bb387ac86d2a4))
+
 ## [8.9.0](https://github.com/appfolio/react-gears/compare/v8.8.3...v8.9.0) (2023-11-08)
 
 
