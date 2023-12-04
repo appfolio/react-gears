@@ -67,7 +67,7 @@ function TreeItem<T>({
         <Button
           color="link"
           className="rg-treeitem-expand py-0 px-0"
-          data-testid="react-gears-treeitem--button"
+          data-testid="react-gears-treeitem-button"
           onClick={() => updateOption(option, { expanded: !option.expanded })}
         >
           <Icon name="angle-down" rotate={option.expanded ? 180 : undefined} size="lg" />
@@ -85,7 +85,7 @@ function TreeItem<T>({
             updateOption(option, { children, selected: newSelection });
           }}
           type="checkbox"
-          data-testid="react-gears-treeitem--input-checkbox"
+          data-testid="react-gears-treeitem-input-checkbox"
         />
       )}
       <div className="js-tree-item-label w-100">{label(option.item, option)}</div>
