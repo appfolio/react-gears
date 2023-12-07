@@ -22,43 +22,49 @@ describe('<Combobox />', () => {
 
   it('should render with empty options array', () => {
     const combobox = render(<Combobox options={[]} />);
-    combobox.getByTestId('combobox-input');
+    combobox.getByTestId('react-gears-combobox-input');
   });
 
   it('should show options when focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should pass inputClassName to Input', () => {
     const innerClassName = 'js-no-autofocus';
     const combobox = render(<Combobox options={OPTIONS} inputClassName={innerClassName} />);
 
-    assert(combobox.getByTestId('combobox-input').classList.contains(innerClassName));
+    assert(combobox.getByTestId('react-gears-combobox-input').classList.contains(innerClassName));
   });
 
   it('should have "search" as default Input type', () => {
     const combobox = render(<Combobox options={[]} />);
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
 
     assert.strictEqual(input.type, 'search');
   });
 
   it('should pass type to Input', () => {
     const combobox = render(<Combobox options={[]} type="text" />);
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
 
     assert.strictEqual(input.type, 'text');
   });
 
   it('should show all options when there is a selected option', () => {
     const combobox = render(<Combobox options={OPTIONS} value={OPTIONS[0]} />);
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
     OPTIONS.forEach((o) => {
@@ -70,7 +76,7 @@ describe('<Combobox />', () => {
     const mockOnChange = sinon.spy();
     const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
     const option = combobox.getByText('D-O');
@@ -83,43 +89,57 @@ describe('<Combobox />', () => {
   it('should close menu on blur', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     fireEvent.blur(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
   });
 
   it('should not close menu when menu container is focused', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
-    const dropdown = combobox.getByTestId('combobox-dropdown');
-    const menu = combobox.getByTestId('combobox-menu');
+    const dropdown = combobox.getByTestId('react-gears-combobox-dropdown');
+    const menu = combobox.getByTestId('react-gears-combobox-dropdownmenu');
     fireEvent.blur(dropdown, { relatedTarget: menu });
 
-    expect(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden')).toEqual('false');
+    expect(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden')
+    ).toEqual('false');
   });
 
   it('should close menu on blur of caret button', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
-    const caret = combobox.getByTestId('combobox-caret');
+    const caret = combobox.getByTestId('react-gears-combobox-button');
     fireEvent.mouseDown(caret);
 
-    assert.strictEqual(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
 
     fireEvent.blur(caret);
 
-    assert.strictEqual(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
   });
 
   it('should blur input on close', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     input.focus();
 
     let option = combobox.getByText('D-O');
@@ -141,7 +161,7 @@ describe('<Combobox />', () => {
   it('should navigate options by up/down keys', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
     assert(combobox.getByText('R2-D2').classList.contains('active'));
@@ -168,7 +188,7 @@ describe('<Combobox />', () => {
       />
     );
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.click(input);
 
     assert.strictEqual(input.value, 'bar');
@@ -178,7 +198,7 @@ describe('<Combobox />', () => {
     const mockOnChange = sinon.spy();
     const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown', code: 40 });
 
@@ -186,7 +206,10 @@ describe('<Combobox />', () => {
 
     fireEvent.keyDown(input, { key: 'Enter', code: 13 });
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
     sinon.assert.called(mockOnChange);
     sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
@@ -197,7 +220,7 @@ describe('<Combobox />', () => {
       value = v;
     };
     let combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
-    let input = combobox.getByTestId('combobox-input');
+    let input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
     const option = combobox.getByText('D-O');
@@ -207,7 +230,7 @@ describe('<Combobox />', () => {
 
     cleanup();
     combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} />);
-    input = combobox.getByTestId('combobox-input');
+    input = combobox.getByTestId('react-gears-combobox-input');
 
     fireEvent.mouseDown(input);
     fireEvent.keyDown(input, { key: 'Backspace', code: 8 });
@@ -218,55 +241,79 @@ describe('<Combobox />', () => {
   it('should open options with down key', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
 
-    const caret = combobox.getByTestId('combobox-caret');
+    const caret = combobox.getByTestId('react-gears-combobox-button');
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     fireEvent.keyDown(input, { key: 'ArrowDown', code: 40 });
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should open options if input is clicked', async () => {
     const combobox = render(<Combobox options={OPTIONS} value={3} />);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.mouseDown(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   it('should open/close options with dropdown toggle', () => {
     const combobox = render(<Combobox options={OPTIONS} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
 
-    const caret = combobox.getByTestId('combobox-caret');
+    const caret = combobox.getByTestId('react-gears-combobox-button');
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'true');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
 
     fireEvent.mouseDown(caret);
 
-    assert.equal(combobox.getByTestId('combobox-menu').getAttribute('aria-hidden'), 'false');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
   });
 
   describe('default filterOptions ', () => {
     it('should filter by input (case insensitive)', () => {
       const combobox = render(<Combobox options={OPTIONS} />);
 
-      const input = combobox.getByTestId('combobox-input');
+      const input = combobox.getByTestId('react-gears-combobox-input');
       fireEvent.focus(input);
 
       fireEvent.change(input, { target: { value: 'bb8' } });
@@ -278,7 +325,7 @@ describe('<Combobox />', () => {
     it('should update filtered options when input is updated', () => {
       const combobox = render(<Combobox options={OPTIONS} />);
 
-      const input = combobox.getByTestId('combobox-input');
+      const input = combobox.getByTestId('react-gears-combobox-input');
       fireEvent.focus(input);
       fireEvent.change(input, { target: { value: 'd2' } });
 
@@ -306,7 +353,7 @@ describe('<Combobox />', () => {
 
     const combobox = render(<Combobox options={groupedOptions} />);
 
-    const input = combobox.getByTestId('combobox-input');
+    const input = combobox.getByTestId('react-gears-combobox-input');
     fireEvent.focus(input);
 
     const droidLabel = combobox.getByText('Droids');
@@ -335,7 +382,7 @@ describe('<Combobox />', () => {
         <Combobox options={OPTIONS} onChange={mockOnChange} onCreate={mockOnCreate} />
       );
 
-      const input = combobox.getByTestId('combobox-input');
+      const input = combobox.getByTestId('react-gears-combobox-input');
       fireEvent.focus(input);
 
       userEvent.type(input, 'new option');
@@ -360,18 +407,20 @@ describe('<Combobox />', () => {
         />
       );
 
-      const input = combobox.getByTestId('combobox-input');
+      const input = combobox.getByTestId('react-gears-combobox-input');
 
       userEvent.type(input, 'new option');
 
-      let newOptionButton = combobox.getByTestId('create-new-option');
+      let newOptionButton = combobox.getByTestId(
+        'react-gears-combobox-dropdownitem-create-new-option'
+      );
 
       assert(newOptionButton.hasAttribute('disabled'));
 
       input.setSelectionRange(0, 'new option'.length);
       userEvent.type(input, 'foobar');
 
-      newOptionButton = combobox.getByTestId('create-new-option');
+      newOptionButton = combobox.getByTestId('react-gears-combobox-dropdownitem-create-new-option');
 
       assert(!newOptionButton.hasAttribute('disabled'));
     });
@@ -393,7 +442,7 @@ describe('<Combobox />', () => {
       let combobox = render(
         <Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />
       );
-      let input = combobox.getByTestId('combobox-input');
+      let input = combobox.getByTestId('react-gears-combobox-input');
       fireEvent.focus(input);
 
       const option1 = combobox.getByText('D-O');
@@ -409,7 +458,7 @@ describe('<Combobox />', () => {
 
       cleanup();
       combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} value={value} multi />);
-      input = combobox.getByTestId('combobox-input');
+      input = combobox.getByTestId('react-gears-combobox-input');
 
       fireEvent.keyDown(input, { key: 'Backspace', code: 8 });
 

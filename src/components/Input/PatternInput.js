@@ -39,6 +39,7 @@ export default class PatternInput extends React.Component {
         ref={(self) => {
           this.input = self;
         }}
+        data-testid="react-gears-patterninput-input"
         onChange={this.handleChange}
         pattern={pattern?.source}
       />

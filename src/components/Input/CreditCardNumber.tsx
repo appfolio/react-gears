@@ -87,8 +87,16 @@ const CreditCardNumber: FC<CreditCardNumberProps> = ({
 
   return (
     <InputGroup className={className}>
-      <Input value={value || ''} onChange={onChangeHandler} {...inputProps} />
-      <InputGroupText className="p-0 px-2">
+      <Input
+        data-testid="react-gears-creditcardnumber-input"
+        value={value || ''}
+        onChange={onChangeHandler}
+        {...inputProps}
+      />
+      <InputGroupText
+        className="p-0 px-2"
+        data-testid="react-gears-creditcardnumber-inputgrouptext"
+      >
         <Icon
           name={ccIconName}
           iconStyle={ccIconName === 'credit-card' ? 'regular' : 'brands'}

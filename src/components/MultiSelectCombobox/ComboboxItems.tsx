@@ -13,6 +13,7 @@ const defaultProps = { maxHeight: '12rem' };
 const ComboboxItems = ({ children, maxHeight = defaultProps.maxHeight }: ComboboxItemsProps) => (
   <DropdownMenu
     className="w-100"
+    data-testid="react-gears-comboboxitems-dropdownmenu"
     style={{ maxHeight, overflowY: 'auto' }}
     title="Menu Items"
     updateOnSelect

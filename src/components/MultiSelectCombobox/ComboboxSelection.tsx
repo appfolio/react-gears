@@ -23,6 +23,7 @@ const ComboboxSelection = ({ children, onRemove }: ComboboxSelectionProps) => {
   return (
     <div role="listitem" className="mw-100">
       <Badge
+        data-testid="react-gears-comboboxselection-badge"
         tabIndex={0}
         onClick={handleRemoveClick}
         onKeyDown={handleKeyDown}
