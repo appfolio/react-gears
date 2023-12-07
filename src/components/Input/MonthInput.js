@@ -272,6 +272,7 @@ export default class MonthInput extends React.Component {
               <input
                 className="form-control"
                 id={id}
+                data-testid="react-gears-monthinput-dropdowntoggle-input"
                 ref={(el) => {
                   this.inputEl = el;
                 }}
@@ -284,6 +285,7 @@ export default class MonthInput extends React.Component {
                 disabled={disabled}
               />
               <Button
+                data-testid="react-gears-monthinput-dropdowntoggle-button"
                 onClick={this.toggle}
                 className="px-2"
                 disabled={disabled}
@@ -306,13 +308,19 @@ export default class MonthInput extends React.Component {
             {header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
-                  <Button className="p-2 js-prev-year" color="link" onClick={() => this.prevYear()}>
+                  <Button
+                    className="p-2 js-prev-year"
+                    color="link"
+                    data-testid="react-gears-monthinput-dropdownmenu-button-prev-year"
+                    onClick={() => this.prevYear()}
+                  >
                     <Icon name="angle-double-left" fixedWidth />
                     <span className="visually-hidden">Previous Year</span>
                   </Button>
                   <Button
                     className="p-2 js-prev-month"
                     color="link"
+                    data-testid="react-gears-monthinput-dropdownmenu-button-prev-month"
                     onClick={() => this.prevMonth()}
                   >
                     <Icon name="angle-left" fixedWidth />
@@ -323,11 +331,21 @@ export default class MonthInput extends React.Component {
                 <span className="m-auto">{format(date, 'MMMM YYYY')}</span>
 
                 <ButtonGroup size="sm">
-                  <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
+                  <Button
+                    className="js-next-month"
+                    color="link"
+                    data-testid="react-gears-monthinput-dropdownmenu-button-next-month"
+                    onClick={() => this.nextMonth()}
+                  >
                     <Icon name="angle-right" fixedWidth />
                     <span className="visually-hidden">Next Month</span>
                   </Button>
-                  <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
+                  <Button
+                    className="js-next-year"
+                    color="link"
+                    data-testid="react-gears-monthinput-dropdownmenu-button-next-year"
+                    onClick={() => this.nextYear()}
+                  >
                     <Icon name="angle-double-right" fixedWidth />
                     <span className="visually-hidden">Next Year</span>
                   </Button>
@@ -336,6 +354,7 @@ export default class MonthInput extends React.Component {
             )}
 
             <Calendar
+              data-testid="react-gears-monthinput-dropdownmenu-calendar"
               date={date}
               dateVisible={dateVisible}
               centerYearSelection={centerYearSelection}
@@ -348,7 +367,11 @@ export default class MonthInput extends React.Component {
             {footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button onClick={this.today} className="me-2">
+                  <Button
+                    data-testid="react-gears-monthinput-dropdownmenu-footer-button"
+                    onClick={this.today}
+                    className="me-2"
+                  >
                     Today
                   </Button>
                 </div>

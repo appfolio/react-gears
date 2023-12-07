@@ -140,6 +140,7 @@ const AddressInput = ({
       >
         <Input
           autoComplete="address-line1"
+          data-testid="react-gears-addressinput-input-line1"
           id={address1Id}
           name={inputName.address1}
           type="text"
@@ -161,6 +162,7 @@ const AddressInput = ({
       >
         <Input
           autoComplete="address-line2"
+          data-testid="react-gears-addressinput-input-line2"
           id={address2Id}
           name={inputName.address2}
           type="text"
@@ -185,6 +187,7 @@ const AddressInput = ({
           >
             <Input
               autoComplete="address-level2"
+              data-testid="react-gears-addressinput-input-level2"
               id={cityId}
               type="text"
               name={inputName.city}
@@ -209,6 +212,7 @@ const AddressInput = ({
           >
             <StateInput
               autoComplete="address-level1"
+              data-testid="react-gears-addressinput-input-state"
               className="w-100"
               countries={countries}
               id={stateId}
@@ -236,6 +240,7 @@ const AddressInput = ({
           >
             <Input
               autoComplete="postal-code"
+              data-testid="react-gears-addressinput-input-postal-code"
               id={postalId}
               type="text"
               name={inputName.postal}
@@ -262,6 +267,7 @@ const AddressInput = ({
           <CountryInput
             autoComplete="country"
             className="w-100"
+            data-testid="react-gears-addressinput-input-country"
             id={countryCodeId}
             name={inputName.countryCode}
             placeholder={labels.countryCode}

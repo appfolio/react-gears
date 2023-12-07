@@ -38,7 +38,6 @@ function Tree<T>({
       {options.map((option, index) => (
         <Fragment key={option.key || index}>
           <TreeItem
-            data-testid="react-gears-tree-treeitem"
             indent={indent}
             label={label}
             option={option}
@@ -48,7 +47,6 @@ function Tree<T>({
           {option.children && option.children.length > 0 && (
             <Collapse className="list-group-item p-0" isOpen={option.expanded}>
               <Tree
-                data-testid="react-gears-tree-treeitem-tree"
                 indent={indent + 1}
                 label={label}
                 options={option.children}
