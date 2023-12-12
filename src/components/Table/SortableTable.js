@@ -42,7 +42,7 @@ function defaultRenderRow(
   isLastRow
 ) {
   const expanded = rowExpanded(row);
-  return [
+  return <>
     <tr
       key={row.key}
       className={classnames(
@@ -57,9 +57,9 @@ function defaultRenderRow(
           {column.cell(row, expanded, isLastRow)}
         </td>
       ))}
-    </tr>,
-    expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />,
-    expanded && (
+    </tr>
+    {expanded && <tr key={row.key ? `${row.key}-hidden` : null} hidden />}
+    {expanded && (
       <tr
         key={row.key ? `${row.key}-expanded` : null}
         className={classnames({ 'table-primary': rowSelected && rowSelected(row) }, 'tr-expanded')}
@@ -68,8 +68,8 @@ function defaultRenderRow(
           {expanded}
         </td>
       </tr>
-    ),
-  ];
+    )}
+  </>;
 }
 
 function getSelectableCell(row, rowSelected, onSelect) {
