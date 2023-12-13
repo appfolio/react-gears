@@ -33,13 +33,17 @@ export default class PatternInput extends React.Component {
   render() {
     /* eslint-disable-next-line  @typescript-eslint/no-unused-vars -- This should go away when converting to function component  */
     const { pattern, restrictInput, ...inputProps } = this.props;
+
+    if (inputProps && !inputProps['data-testid']) {
+      inputProps['data-testid'] = 'react-gears-patterninput-input';
+    }
+
     return (
       <Input
         {...inputProps}
         ref={(self) => {
           this.input = self;
         }}
-        data-testid="react-gears-patterninput-input"
         onChange={this.handleChange}
         pattern={pattern?.source}
       />
