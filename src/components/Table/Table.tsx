@@ -22,7 +22,7 @@ Table.defaultProps = {
   hover: true,
   responsive: true,
   size: 'sm',
-  striped: true,
+  bordered: true,
 };
 
 export default Table;
