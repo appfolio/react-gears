@@ -30,6 +30,6 @@ describe('<Table />', () => {
     assert.equal(props.hover, true);
     assert.equal(props.responsive, true);
     assert.equal(props.size, 'sm');
-    assert.equal(props.striped, true);
+    assert.equal(props.bordered, true);
   });
 });
