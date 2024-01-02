@@ -82,7 +82,7 @@ describe('<Tree />', () => {
     expect(screen.queryAllByTestId('js-item-label').length).toEqual(10);
     expect(screen.queryByText('Regular is selected')).toBeInTheDocument();
     expect(screen.queryByText('Chicken is not selected')).toBeInTheDocument();
-    fireEvent.click(screen.queryAllByTestId('react-gears-treeitem-input-checkbox')[1]);
+    fireEvent.click(screen.queryAllByTestId('react-gears-treeitem--input-checkbox')[1]);
     expect(updateOption).toHaveBeenCalled();
   });
 });

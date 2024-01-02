@@ -326,7 +326,6 @@ export default class DateInput extends React.Component {
               <input
                 id={id}
                 className="form-control"
-                data-testid="react-gears-dateinput-inputgroup-input"
                 ref={(el) => {
                   this.inputEl = el;
                 }}
@@ -341,7 +340,6 @@ export default class DateInput extends React.Component {
               />
               <Button
                 className="px-2"
-                data-testid="react-gears-dateinput-inputgroup-button"
                 disabled={disabled}
                 active={open}
                 type="button"
@@ -357,21 +355,11 @@ export default class DateInput extends React.Component {
             {renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear) || header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
-                  <Button
-                    className="js-prev-year"
-                    color="link"
-                    data-testid="react-gears-dateinput-dropdownmenu-button-prev-year"
-                    onClick={() => this.prevYear()}
-                  >
+                  <Button className="js-prev-year" color="link" onClick={() => this.prevYear()}>
                     <Icon name="angle-double-left" fixedWidth />
                     <span className="visually-hidden">Previous Year</span>
                   </Button>
-                  <Button
-                    className="js-prev-month"
-                    color="link"
-                    data-testid="react-gears-dateinput-dropdownmenu-button-prev-month"
-                    onClick={() => this.prevMonth()}
-                  >
+                  <Button className="js-prev-month" color="link" onClick={() => this.prevMonth()}>
                     <Icon name="angle-left" fixedWidth />
                     <span className="visually-hidden">Previous Month</span>
                   </Button>
@@ -382,21 +370,11 @@ export default class DateInput extends React.Component {
                 </span>
 
                 <ButtonGroup size="sm">
-                  <Button
-                    className="js-next-month"
-                    color="link"
-                    data-testid="react-gears-dateinput-dropdownmenu-button-next-month"
-                    onClick={() => this.nextMonth()}
-                  >
+                  <Button className="js-next-month" color="link" onClick={() => this.nextMonth()}>
                     <Icon name="angle-right" fixedWidth />
                     <span className="visually-hidden">Next Month</span>
                   </Button>
-                  <Button
-                    className="js-next-year"
-                    color="link"
-                    data-testid="react-gears-dateinput-dropdownmenu-button-next-year"
-                    onClick={() => this.nextYear()}
-                  >
+                  <Button className="js-next-year" color="link" onClick={() => this.nextYear()}>
                     <Icon name="angle-double-right" fixedWidth />
                     <span className="visually-hidden">Next Year</span>
                   </Button>
@@ -406,7 +384,6 @@ export default class DateInput extends React.Component {
 
             <Calendar
               date={date}
-              data-testid="react-gears-dateinput-dropdownmenu-calendar"
               dateEnabled={dateEnabled}
               dateVisible={dateVisible}
               locale={locale}
@@ -418,18 +395,10 @@ export default class DateInput extends React.Component {
             {renderFooter(this.today, this.clear) || footer || (
               <footer className="text-center pb-2 pt-1">
                 <div>
-                  <Button
-                    onClick={this.today}
-                    className="me-2"
-                    data-testid="react-gears-dateinput-footer-button-today"
-                  >
+                  <Button onClick={this.today} className="me-2">
                     Today
                   </Button>
-                  <Button
-                    onClick={this.clear}
-                    className="me-2"
-                    data-testid="react-gears-dateinput-footer-button-clear"
-                  >
+                  <Button onClick={this.clear} className="me-2">
                     Clear
                   </Button>
                 </div>

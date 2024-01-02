@@ -39,7 +39,6 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
         return (
           <FormGroup check key={option.value}>
             <Input
-              data-testid="react-gears-checkboxgroup-formgroup-input"
               type="checkbox"
               checked={selected.includes(option.value)}
               onChange={(ev) => handleCheckboxChange(ev.target.checked, option.value)}

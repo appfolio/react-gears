@@ -21,7 +21,6 @@ const RadioGroup = ({ options, onChange, selected, name }: RadioGroupProps) => (
       <FormGroup check key={option.value}>
         <Label check>
           <Input
-            data-testid="react-gears-radiogroup-formgroup-input"
             type="radio"
             checked={selected === option.value}
             onChange={(e) => e.target.checked && onChange(option.value)}

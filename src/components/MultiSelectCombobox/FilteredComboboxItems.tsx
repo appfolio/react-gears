@@ -38,7 +38,6 @@ const FilteredComboboxItems = ({
       <div className="p-3">
         <Input
           aria-label="Filter available items"
-          data-testid="react-gears-filteredcomboboxitems-dropdown-menu"
           innerRef={filterInputRef}
           onChange={(e) => onFilterChange?.(e.target.value)}
           tabIndex={0}

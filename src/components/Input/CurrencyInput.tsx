@@ -81,12 +81,8 @@ const CurrencyInput: FC<Props> = ({
   }
 
   return (
-    <InputGroup
-      data-testid="react-gears-currencyinput-inputgroup"
-      size={size}
-      className={className}
-    >
-      <InputGroupText data-testid="react-gears-currencyinput-inputgrouptext">$</InputGroupText>
+    <InputGroup size={size} className={className}>
+      <InputGroupText>$</InputGroupText>
       <IMaskInput {...maskedProps} />
     </InputGroup>
   );

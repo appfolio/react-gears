@@ -46,7 +46,6 @@ const ComboboxSelections = ({
             </div>
             <Button
               aria-label="Remove all selections"
-              data-testid="react-gears-comboboxselections-button"
               onClick={handleRemoveAll}
               onKeyDown={handleRemoveAllKeyDown}
               type="button"

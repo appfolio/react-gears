@@ -8,12 +8,7 @@ export interface ComboboxItemProps {
 }
 
 const ComboboxItem = ({ children, onClick }: ComboboxItemProps) => (
-  <DropdownItem
-    onClick={onClick}
-    className="overflow-hidden text-truncate"
-    data-testid="react-gears-comboboxitem-dropdownitem"
-    title={children}
-  >
+  <DropdownItem onClick={onClick} className="overflow-hidden text-truncate" title={children}>
     {children}
   </DropdownItem>
 );

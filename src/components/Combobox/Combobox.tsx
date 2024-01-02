@@ -269,7 +269,6 @@ function Combobox<T>({
         <DropdownItem
           disabled={option.disabled}
           className={`${isOptionVisible(option) ? '' : 'visually-hidden'}`}
-          data-testid="react-gears-combobox-dropdownitem-options"
           key={key}
           id={`option-${key}`}
           active={focusedOptionIndex === visibleIndex}
@@ -295,9 +294,7 @@ function Combobox<T>({
   const renderGroupedOptions = (groups: OptionGroup<T>[]) =>
     groups.map((group, i) => (
       <>
-        <DropdownItem header data-testid="react-gears-combobox-dropdownitem-grouped-options">
-          {group.label}
-        </DropdownItem>
+        <DropdownItem header>{group.label}</DropdownItem>
         {renderOptions(group.options)}
         {i !== groups.length - 1 && <DropdownItem divider />}
       </>
@@ -308,7 +305,7 @@ function Combobox<T>({
       return (
         <DropdownItem
           active={noMatches}
-          data-testid="react-gears-combobox-dropdownitem-create-new-option"
+          data-testid="create-new-option"
           disabled={!isValidNewOption(inputValue)}
           onMouseDown={(ev) => {
             ev.preventDefault();
@@ -356,7 +353,7 @@ function Combobox<T>({
         </div>
       )}
       <Dropdown
-        data-testid="react-gears-combobox-dropdown"
+        data-testid="combobox-dropdown"
         direction={direction}
         isOpen={!disabled && open}
         toggle={() => {}}
@@ -371,7 +368,7 @@ function Combobox<T>({
           <InputGroup className={className}>
             <Input
               innerRef={inputElement}
-              data-testid="react-gears-combobox-input"
+              data-testid="combobox-input"
               disabled={disabled}
               className={inputClassName}
               placeholder={selected ? undefined : placeholder}
@@ -411,7 +408,7 @@ function Combobox<T>({
             />
             <Button
               className="px-2"
-              data-testid="react-gears-combobox-button"
+              data-testid="combobox-caret"
               disabled={disabled}
               active={open}
               onMouseDown={(ev: React.MouseEvent<HTMLButtonElement>) => {
@@ -426,7 +423,7 @@ function Combobox<T>({
           </InputGroup>
         </DropdownToggle>
         <DropdownMenu
-          data-testid="react-gears-combobox-dropdownmenu"
+          data-testid="combobox-menu"
           className="p-0 w-100"
           style={{ maxHeight: menuMaxHeight || '12rem', overflowY: 'auto' }}
           {...dropdownProps}
