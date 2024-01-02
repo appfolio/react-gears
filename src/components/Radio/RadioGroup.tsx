@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
@@ -16,28 +15,24 @@ export interface RadioGroupProps {
   name?: string;
 }
 
-const RadioGroup = ({ options, onChange, selected, name }: RadioGroupProps) => {
-  const [groupId] = useState(uuidv4());
-
-  return (
-    <FormGroup>
-      {options.map((option, index) => (
-        <FormGroup check key={option.value}>
-          <Label check>
-            <Input
-              data-testid={`react-gears-radiogroup-${groupId}-${index}`}
-              type="radio"
-              checked={selected === option.value}
-              onChange={(e) => e.target.checked && onChange(option.value)}
-              name={name}
-            />{' '}
-            {option.label}
-          </Label>
-        </FormGroup>
-      ))}
-    </FormGroup>
-  );
-};
+const RadioGroup = ({ options, onChange, selected, name }: RadioGroupProps) => (
+  <FormGroup>
+    {options.map((option) => (
+      <FormGroup check key={option.value}>
+        <Label check>
+          <Input
+            data-testid="react-gears-radiogroup-formgroup-input"
+            type="radio"
+            checked={selected === option.value}
+            onChange={(e) => e.target.checked && onChange(option.value)}
+            name={name}
+          />{' '}
+          {option.label}
+        </Label>
+      </FormGroup>
+    ))}
+  </FormGroup>
+);
 
 RadioGroup.displayName = 'RadioGroup';
 

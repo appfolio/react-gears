@@ -34,13 +34,12 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
 
   return (
     <FormGroup>
-      {options.map((option, index) => {
+      {options.map((option) => {
         const id = `option-${option.label}-${groupId}`;
-        const dataTestId = `react-gears-checkboxgroup-${groupId}-${index}`;
         return (
           <FormGroup check key={option.value}>
             <Input
-              data-testid={dataTestId}
+              data-testid="react-gears-checkboxgroup-formgroup-input"
               type="checkbox"
               checked={selected.includes(option.value)}
               onChange={(ev) => handleCheckboxChange(ev.target.checked, option.value)}
