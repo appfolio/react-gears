@@ -1,14 +1,20 @@
 import React, { FC } from 'react';
 import MaskedInputBase, { MaskedInputProps as RTMaskedInputProps } from 'react-text-mask';
 
-interface MaskedInputProps extends RTMaskedInputProps {
-  'data-testid'?: string;
+export interface MaskedInputProps extends RTMaskedInputProps {
+  'data-testid': string;
 }
 
-const MaskedInput: FC<MaskedInputProps> = ({ guide = false, ...props }) => {
-  if (props && !props['data-testid']) {
-    props['data-testid'] = 'react-gears-maskedinput';
-  }
-  return <MaskedInputBase className="form-control" guide={guide} {...props} />;
+const MaskedInput: FC<MaskedInputProps> = ({
+  guide = false,
+  'data-testid': dataTestId,
+  ...props
+}) => {
+  dataTestId = dataTestId || 'react-gears-masked-input';
+
+  return (
+    <MaskedInputBase className="form-control" guide={guide} data-testid={dataTestId} {...props} />
+  );
 };
+
 export default MaskedInput;
