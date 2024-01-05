@@ -5,7 +5,7 @@ import Col from '../Layout/Col';
 import Row from '../Layout/Row';
 import Nav from '../Nav/Nav';
 import NavLabel from './components/NavLabel';
-import { getMonths, getYears } from './util/dateRanges';
+import { getMonths, getPreviousYears } from './util/dateRanges';
 
 export interface MonthCalendarProps {
   date?: Date;
@@ -54,7 +54,7 @@ const MonthCalendar: FC<MonthCalendarProps> = ({
 
         <Col className="border-start">
           <Nav pills className="d-block p-1 m-0" style={{ columnCount: 2, columnGap: 0 }}>
-            {getYears(date, centerYearSelection).map((monthYear) => (
+            {getPreviousYears(date, centerYearSelection).map((monthYear) => (
               <NavLabel
                 selected={date.getFullYear() === monthYear.getFullYear()}
                 label={format(monthYear, yearFormat)}
