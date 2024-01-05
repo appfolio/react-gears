@@ -1,4 +1,4 @@
-import { getMonths, getYears } from './dateRanges';
+import { getMonths, getPreviousYears } from './dateRanges';
 
 const monthArray = [
   new Date(2000, 0),
@@ -52,13 +52,13 @@ describe('Calendar - dateRanges', () => {
     });
   });
 
-  describe('getYears', () => {
+  describe('getPreviousYears', () => {
     it('can get a range of years', () => {
-      expect(getYears(new Date(2000, 0, 1))).toEqual(yearArray);
+      expect(getPreviousYears(new Date(2011, 0, 1))).toEqual(yearArray);
     });
 
     it('can get a centered range of years', () => {
-      expect(getYears(new Date(2000, 0, 1), true)).toEqual(centeredYearArray);
+      expect(getPreviousYears(new Date(2000, 0, 1), true)).toEqual(centeredYearArray);
     });
   });
 });
