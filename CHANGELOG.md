@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.10.1](https://github.com/appfolio/react-gears/compare/v8.10.0...v8.10.1) (2024-01-08)
+
+
+### Bug Fixes
+
+* add data-testid to tree components ([26251ec](https://github.com/appfolio/react-gears/commit/26251ec6b3969a469e73f42649656947eee467cd))
+* add groupid and index to checkboxes and radio buttons ([2a1379b](https://github.com/appfolio/react-gears/commit/2a1379b6d0e0bd0680e1956da5c0854d8e0a761c))
+* add passthrough testid ([ec737a5](https://github.com/appfolio/react-gears/commit/ec737a584d174766a483d97a9252373338f3e1b9))
+* add testids ([57b3ee2](https://github.com/appfolio/react-gears/commit/57b3ee2fe912d79640635f71a95ac4d83b9165ce))
+* correct data-testid format ([c3ae66a](https://github.com/appfolio/react-gears/commit/c3ae66a318ed50eec83cdff8cf36e527df562547))
+* correct date test ([ec3156f](https://github.com/appfolio/react-gears/commit/ec3156f35f0b73919e724a2f24fea0e9ce7dad37))
+* further react-gears update ([36e80bf](https://github.com/appfolio/react-gears/commit/36e80bf6ee0eb2615676d53c07c121c9e797be76))
+* reword import and make prop optional ([ee3f261](https://github.com/appfolio/react-gears/commit/ee3f261dc5ccfdb0c961cecce2071555aa927114))
+
 ## [8.10.0](https://github.com/appfolio/react-gears/compare/v8.9.0...v8.10.0) (2023-11-28)
 
 
