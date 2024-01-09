@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.10.2](https://github.com/appfolio/react-gears/compare/v8.10.1...v8.10.2) (2024-01-09)
+
+
+### Bug Fixes
+
+* replace table striped with bordered ([a931458](https://github.com/appfolio/react-gears/commit/a931458d28299723440dce9508c1396736248352))
+
 ## [8.10.1](https://github.com/appfolio/react-gears/compare/v8.10.0...v8.10.1) (2024-01-08)
 
 
