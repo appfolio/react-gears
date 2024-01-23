@@ -148,7 +148,7 @@ __metadata:
     react-text-mask: ~5.0.2
     react-transition-group: ^2.9.0
     react-use: ^17.3.2
-    reactstrap: ^9.2.0
+    reactstrap: ^9.2.2
     regenerator-runtime: ^0.13.7
     sinon: ^9.2.1
     storybook-source-link: ^2.0.8
@@ -14977,9 +14977,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reactstrap@npm:^9.2.0":
-  version: 9.2.0
-  resolution: "reactstrap@npm:9.2.0"
+"reactstrap@npm:^9.2.2":
+  version: 9.2.2
+  resolution: "reactstrap@npm:9.2.2"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@popperjs/core": ^2.6.0
@@ -14990,7 +14990,7 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: e6b056a3f8e82ef7dec681e87949be01ee66e3700c2c4a1136bdf2aa08366e16301358f3a4438bfa5da9f73ede2c3e758c6d4e90a9cebd2720bdb63ddd715725
+  checksum: 1d859f562e24f65720813dfbc0198e6921ce55344106e6f5b7518efe2b31cd7ad4fdaf29820b1ff0fd9dd70ecfa98bb5911b81770ba0e192d0e1deb9fdeb92d2
   languageName: node
   linkType: hard
 
