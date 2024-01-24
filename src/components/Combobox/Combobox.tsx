@@ -279,6 +279,10 @@ function Combobox<T>({
             setFocusedOptionIndex(visibleIndex);
           }}
           onMouseDown={(ev) => {
+            if (ev.button !== 0) {
+              return;
+            }
+
             ev.preventDefault();
             ev.stopPropagation();
             selectOption(option.value);
@@ -311,6 +315,10 @@ function Combobox<T>({
           data-testid="react-gears-combobox-dropdownitem-create-new-option"
           disabled={!isValidNewOption(inputValue)}
           onMouseDown={(ev) => {
+            if (ev.button !== 0) {
+              return;
+            }
+
             ev.preventDefault();
             ev.stopPropagation();
             createOption();
@@ -389,17 +397,22 @@ function Combobox<T>({
                   onChange(undefined);
                 }
               }}
-              onMouseDown={(e) => {
+              onMouseDown={(ev) => {
+                if (ev.button !== 0) {
+                  ev.preventDefault();
+                  return;
+                }
+
                 if (!multi && selected) {
                   inputElement!.current!.setSelectionRange(0, 0);
 
                   if ((selected as Option<T>).label === inputValue) {
-                    e.preventDefault();
+                    ev.preventDefault();
                   }
                 }
 
                 // @ts-ignore
-                e.target.focus();
+                ev.target.focus();
               }}
               onKeyDown={handleOptionsKeyboardNav}
               onKeyPress={clearSelectedPreview}
@@ -415,6 +428,10 @@ function Combobox<T>({
               disabled={disabled}
               active={open}
               onMouseDown={(ev: React.MouseEvent<HTMLButtonElement>) => {
+                if (ev.button !== 0) {
+                  return;
+                }
+
                 ev.stopPropagation();
                 setOpen(!open);
               }}

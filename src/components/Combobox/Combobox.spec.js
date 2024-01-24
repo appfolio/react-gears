@@ -214,6 +214,31 @@ describe('<Combobox />', () => {
     sinon.assert.calledWith(mockOnChange, OPTIONS[1].value);
   });
 
+  it('should select an option with left-click only', () => {
+    const mockOnChange = sinon.spy();
+    const combobox = render(<Combobox options={OPTIONS} onChange={mockOnChange} />);
+    const input = combobox.getByTestId('react-gears-combobox-input');
+
+    fireEvent.focus(input);
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
+
+    const option = combobox.getByText('D-O');
+    fireEvent.mouseDown(option, { button: 2 });
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
+
+    fireEvent.mouseDown(option);
+    assert.strictEqual(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
+  });
+
   it('should deselect option on backspace', () => {
     let value;
     const mockOnChange = (v) => {
@@ -265,7 +290,7 @@ describe('<Combobox />', () => {
     );
   });
 
-  it('should open options if input is clicked', async () => {
+  it('should open options if input is left-clicked', async () => {
     const combobox = render(<Combobox options={OPTIONS} value={3} />);
 
     assert.equal(
@@ -274,8 +299,14 @@ describe('<Combobox />', () => {
     );
 
     const input = combobox.getByTestId('react-gears-combobox-input');
-    fireEvent.mouseDown(input);
 
+    fireEvent.mouseDown(input, { button: 2 });
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
+
+    fireEvent.mouseDown(input);
     assert.equal(
       combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
       'false'
@@ -303,6 +334,27 @@ describe('<Combobox />', () => {
 
     fireEvent.mouseDown(caret);
 
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'false'
+    );
+  });
+
+  it('should open options with dropdown toggle left-click only', () => {
+    const combobox = render(<Combobox options={OPTIONS} />);
+    const caret = combobox.getByTestId('react-gears-combobox-button');
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
+
+    fireEvent.mouseDown(caret, { button: 2 });
+    assert.equal(
+      combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
+      'true'
+    );
+
+    fireEvent.mouseDown(caret);
     assert.equal(
       combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
       'false'
