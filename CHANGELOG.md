@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.10.3](https://github.com/appfolio/react-gears/compare/v8.10.2...v8.10.3) (2024-01-26)
+
+
+### Bug Fixes
+
+* don't capture non-left mouse clicks on combobox ([8c50b2a](https://github.com/appfolio/react-gears/commit/8c50b2a07275f1ac56cd3462ec22c22a9e7c6df8))
+
+
+### Miscellaneous
+
+* update reactstrap to 9.2.2 ([cda36ee](https://github.com/appfolio/react-gears/commit/cda36ee7d29388e9573ac9931a44fb49bf5b323c))
+
 ## [8.10.2](https://github.com/appfolio/react-gears/compare/v8.10.1...v8.10.2) (2024-01-09)
 
 
