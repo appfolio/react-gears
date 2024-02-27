@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  title: react-gears
+  description: >
+    React Gears is a library of reusable React Components to support simpler
+    front-end development in all of our apps.
+  tags:
+    - react
+  annotations:
+    appfolio.com/package-location: url:https://github.com/appfolio/react-gears/pkgs/npm/react-gears
+    appfolio.com/package-type: npm
+  name: react-gears
+spec:
+  type: library
+  lifecycle: maintenance
+  owner: boyz2dev
