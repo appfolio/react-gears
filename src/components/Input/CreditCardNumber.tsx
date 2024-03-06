@@ -7,7 +7,14 @@ import InputGroupText from '../InputGroup/InputGroupText';
 import Input from './Input';
 
 // runtime representation of card types for input validation
-type CardType = 'visa' | 'master-card' | 'american-express' | 'discover' | 'diners-club' | 'jcb';
+type CardType =
+  | 'visa'
+  | 'master-card'
+  | 'american-express'
+  | 'discover'
+  | 'diners-club'
+  | 'jcb'
+  | 'unionpay';
 
 type IconName =
   | 'cc-amex'
@@ -33,6 +40,7 @@ const ICONS: {
   'master-card': 'cc-mastercard',
   discover: 'cc-discover',
   jcb: 'cc-jcb',
+  unionpay: 'credit-card',
   visa: 'cc-visa',
 };
 
