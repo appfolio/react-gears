@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.11.0](https://github.com/appfolio/react-gears/compare/v8.10.3...v8.11.0) (2024-03-08)
+
+
+### Features
+
+* **CreditCardNumber:** Add unionpay as an accepted card type ([0b890ce](https://github.com/appfolio/react-gears/commit/0b890ceb1a45482e8962325fcf22f263355fd0b0))
+
+
+### Miscellaneous
+
+* add software catalog metadata file(s) ([cbd2b65](https://github.com/appfolio/react-gears/commit/cbd2b658b089a209fe35b5c6c0d5fc6b6be91095))
+
 ## [8.10.3](https://github.com/appfolio/react-gears/compare/v8.10.2...v8.10.3) (2024-01-26)
 
 
