@@ -28,7 +28,7 @@ const SummaryBoxItem: FC<SummaryBoxItemProps> = ({
     'flex-column-reverse': reverse,
     'flex-column': !reverse,
   });
-  const valueClassNames = classnames('h3', {
+  const valueClassNames = classnames('display-4', {
     'mb-1 mt-0': reverse,
     'mb-0 mt-1': !reverse,
   });
