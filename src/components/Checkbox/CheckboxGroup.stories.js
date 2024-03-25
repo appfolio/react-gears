@@ -47,3 +47,21 @@ export const SomeDisabled = () => {
     <CheckboxGroup options={optionsSomeDisabled} onChange={handleChange} selected={selected} />
   );
 };
+
+export const Horizontal = () => {
+  const [selected, setSelected] = useState([]);
+
+  const handleChange = (values) => {
+    setSelected(values);
+    action('onChange')(values);
+  };
+
+  return (
+    <CheckboxGroup
+      className="d-flex gap-3"
+      options={options}
+      onChange={handleChange}
+      selected={selected}
+    />
+  );
+};
