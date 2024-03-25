@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.11.1](https://github.com/appfolio/react-gears/compare/v8.11.0...v8.11.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* allow className on CheckboxGroup ([cada747](https://github.com/appfolio/react-gears/commit/cada747d0ad3e8183572f274cfb428b39cd483ed))
+
 ## [8.11.0](https://github.com/appfolio/react-gears/compare/v8.10.3...v8.11.0) (2024-03-08)
 
 
