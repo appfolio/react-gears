@@ -12,12 +12,13 @@ interface Option {
 }
 
 export interface CheckboxGroupProps {
+  className?: string;
   options: Option[];
   selected: Value[];
   onChange: (values: Value[]) => void;
 }
 
-const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
+const CheckboxGroup = ({ className, options, selected, onChange }: CheckboxGroupProps) => {
   const [groupId] = useState(uuidv4());
 
   const handleCheckboxChange = (checked: boolean, value: Value) => {
@@ -33,7 +34,7 @@ const CheckboxGroup = ({ options, selected, onChange }: CheckboxGroupProps) => {
   };
 
   return (
-    <FormGroup>
+    <FormGroup className={className}>
       {options.map((option, index) => {
         const id = `option-${option.label}-${groupId}`;
         const dataTestId = `react-gears-checkboxgroup-${groupId}-${index}`;
