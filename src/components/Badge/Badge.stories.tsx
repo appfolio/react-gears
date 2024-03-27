@@ -21,13 +21,11 @@ export const Default = () => (
 );
 
 export const Pills = () => (
-  <div>
+  <div className="d-flex gap-3">
     {colors.map((color) => (
-      <div>
-        <Badge pill color={color}>
-          {color}
-        </Badge>
-      </div>
+      <Badge pill color={color}>
+        {color}
+      </Badge>
     ))}
   </div>
 );
