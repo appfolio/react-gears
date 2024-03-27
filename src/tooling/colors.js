@@ -5,6 +5,7 @@ export const colors = [
   'danger',
   'warning',
   'info',
+  'ai',
   'light',
   'dark',
 ];
