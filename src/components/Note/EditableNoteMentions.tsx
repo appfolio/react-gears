@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { TributeItem } from 'tributejs';
+import { TributeItem } from '@appfolio/tributejs';
 import Alert from '../Alert/Alert';
 import Button from '../Button/Button';
 import ButtonToolbar from '../Button/ButtonToolbar';
@@ -65,7 +65,7 @@ const EditableNoteMentions: FC<EditableNoteMentionsProps> = ({
   useEffect(() => {
     (async () => {
       if (mentionableUsers.length > 0 && ref.current) {
-        const Tribute = (await import('tributejs')).default;
+        const Tribute = (await import('@appfolio/tributejs')).default;
         const tribute = new Tribute({
           allowSpaces: true,
           menuItemTemplate(item: TributeItem<any>) {
