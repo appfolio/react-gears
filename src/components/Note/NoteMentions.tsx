@@ -25,6 +25,9 @@ type NoteMentionsProps = {
   onDelete?: (note: Omit<NoteType, 'text'>) => void;
   onEdit?: (note: Omit<NoteType, 'text'>) => void;
   onSave?: (note: NoteType) => void;
+  onSetReminder?: (note: Omit<NoteType, 'text'>, time: number) => void;
+  onDismissReminder?: (note: Omit<NoteType, 'text'>) => void;
+  reminderExists?: boolean;
   onUndelete?: (note: NoteType) => void;
   rows?: number;
   saving?: boolean;
@@ -59,6 +62,9 @@ const NoteMentions: FC<NoteMentionsProps> = ({
   onDelete,
   onEdit,
   onSave,
+  onSetReminder,
+  onDismissReminder,
+  reminderExists,
   onUndelete,
 }) => {
   const { deleted, editing, text } = note;
@@ -106,6 +112,9 @@ const NoteMentions: FC<NoteMentionsProps> = ({
         showTimezone={showTimezone}
         onDelete={onDelete}
         onEdit={onEdit}
+        onSetReminder={onSetReminder}
+        onDismissReminder={onDismissReminder}
+        reminderExists={reminderExists}
       />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>

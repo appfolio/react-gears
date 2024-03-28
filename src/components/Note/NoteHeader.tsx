@@ -1,8 +1,12 @@
 import classnames from 'classnames';
 import fecha from 'fecha';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
+import ButtonDropdown from '../Button/ButtonDropdown'
+import DropdownItem from '../Dropdown/DropdownItem';
+import DropdownMenu from '../Dropdown/DropdownMenu';
+import DropdownToggle from '../Dropdown/DropdownToggle';
 import CardHeader from '../Card/CardHeader';
 import CardTitle from '../Card/CardTitle';
 import { Note } from './Note.types';
@@ -20,6 +24,9 @@ type NoteHeaderProps = {
   showTimezone?: boolean;
   onDelete?: (note: Omit<Note, 'text'>) => void;
   onEdit?: (note: Omit<Note, 'text'>) => void;
+  onSetReminder?: (note: Omit<Note, 'text'>, time: number) => void;
+  onDismissReminder?: (note: Omit<Note, 'text'>) => void;
+  reminderExists?: boolean;
 };
 
 const defaultProps = {
@@ -27,8 +34,9 @@ const defaultProps = {
 };
 
 const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
-  const { note, onDelete, onEdit, showTimezone } = props;
+  const { note, onDelete, onEdit, showTimezone, onSetReminder, onDismissReminder, reminderExists } = props;
   const { date, edited, from, title } = note;
+  const [isOpen, setIsOpen] = useState(false);
 
   const headerClassNames = classnames(
     'd-flex',
@@ -89,6 +97,62 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
             className="js-note-header__delete p-0"
           >
             Delete
+          </Button>
+        ) : null}
+        { !reminderExists && onSetReminder ? (
+          <div className="ms-3">
+            <ButtonDropdown isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
+              <DropdownToggle caret>Remind Me</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 20
+                    )
+                  )}
+                >
+                  In 20 minutes</DropdownItem>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 60
+                    )
+                  )}
+                >
+                  In 1 hour</DropdownItem>
+                <DropdownItem
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 1440
+                    )
+                  )}
+                >
+                  Tomorrow
+                </DropdownItem>
+                <DropdownItem 
+                  onClick={() => onSetReminder(
+                    note,
+                    new Date().setMinutes(
+                      new Date().getMinutes() + 10080
+                    )
+                  )}
+                >
+                  Next Week
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </div>
+        ) : null}
+        { reminderExists && onDismissReminder ? (
+          <Button
+            color="secondary"
+            onClick={() => onDismissReminder(note)}
+            className="js-note-header__dismiss-reminder ms-3"
+          >
+            Dismiss
           </Button>
         ) : null}
       </div>
