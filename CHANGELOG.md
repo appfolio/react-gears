@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.11.2](https://github.com/appfolio/react-gears/compare/v8.11.1...v8.11.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* re-write Badge to use badge-{color} classes ([c920062](https://github.com/appfolio/react-gears/commit/c920062add5c518b9afc2bb552dddcadbd4cae02))
+
 ## [8.11.1](https://github.com/appfolio/react-gears/compare/v8.11.0...v8.11.1) (2024-03-25)
 
 
