@@ -212,7 +212,7 @@ export const CustomFooter = () => (
           key: 'cost',
           cell: (row) => row.cost,
           width: '25%',
-          align: 'right',
+          align: 'end',
         },
       ]}
       rows={[
@@ -297,7 +297,7 @@ export const CustomExpandColumn = () => (
       sort={{ column: 'last', ascending: true }}
       expandable
       expandableColumn={{
-        align: 'right',
+        align: 'end',
         header: 'Actions',
         cell: EditButton,
       }}

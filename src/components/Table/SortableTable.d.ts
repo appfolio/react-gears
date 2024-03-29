@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TableProps } from '../Table/Table';
 import { HeaderProps } from './components/Header';
 
-type HorizontalAlignment = 'left' | 'center' | 'right';
+type HorizontalAlignment = 'start' | 'center' | 'end';
 
 export interface SortableColumn<T> extends Omit<HeaderProps, 'children' | 'onSort'> {
   align?: HorizontalAlignment;

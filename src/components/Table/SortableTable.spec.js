@@ -296,9 +296,9 @@ describe('<SortableTable />', () => {
   it('should render correct align when present', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', align: 'left' },
+      { header: 'Start', cell: () => '-', footer: '-', align: 'start' },
       { header: 'Center', cell: () => '-', footer: '-', align: 'center' },
-      { header: 'Right', cell: () => '-', footer: '-', align: 'right' },
+      { header: 'End', cell: () => '-', footer: '-', align: 'end' },
     ];
     const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
 
@@ -318,7 +318,7 @@ describe('<SortableTable />', () => {
   it('should render correct column classnames when present', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
+      { header: 'Start', cell: () => '-', footer: '-', className: 'whatever' },
     ];
     const wrapper = mount(<SortableTable columns={columns} rows={[1, 2, 3]} />);
 
@@ -332,7 +332,7 @@ describe('<SortableTable />', () => {
   describe('Expandable column', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
+      { header: 'Start', cell: () => '-', footer: '-', className: 'whatever' },
     ];
 
     it('should not render expandable column helper when onExpand not present', () => {
@@ -362,7 +362,7 @@ describe('<SortableTable />', () => {
   describe('Selectable column', () => {
     const columns = [
       { header: 'Default', cell: () => '-', footer: '-' },
-      { header: 'Left', cell: () => '-', footer: '-', className: 'whatever' },
+      { header: 'Start', cell: () => '-', footer: '-', className: 'whatever' },
     ];
 
     it('should not render selectable column helper when rowSelected not present', () => {
