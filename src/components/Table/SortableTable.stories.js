@@ -175,7 +175,7 @@ export const AlignColumn = () => (
           cell: (row) => row.first,
         },
         {
-          align: 'left',
+          align: 'start',
           header: 'Left Align',
           key: 'last',
           cell: (row) => row.last,
@@ -187,7 +187,7 @@ export const AlignColumn = () => (
           cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
         },
         {
-          align: 'right',
+          align: 'end',
           header: 'Right Align',
           key: 'email',
           cell: EmailCell,
