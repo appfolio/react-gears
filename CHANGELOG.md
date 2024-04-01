@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.11.2](https://github.com/appfolio/react-gears/compare/v8.11.1...v8.11.2) (2024-04-01)
+
+
+### Bug Fixes
+
+* change summarybox title from h3 to display-4 ([0a0235f](https://github.com/appfolio/react-gears/commit/0a0235ffa53f5b06915e24205bfc9b28a18f3174))
+* correct tests ([612f88f](https://github.com/appfolio/react-gears/commit/612f88f28c74cc8485d8150e135edff02f2e0652))
+* re-write Badge to use badge-{color} classes ([c920062](https://github.com/appfolio/react-gears/commit/c920062add5c518b9afc2bb552dddcadbd4cae02))
+
+
+### Miscellaneous
+
+* convert left/right to start/end ([1130d7d](https://github.com/appfolio/react-gears/commit/1130d7d03b79a3746a046c188d6414e5c8dd6da4))
+
 ## [8.11.1](https://github.com/appfolio/react-gears/compare/v8.11.0...v8.11.1) (2024-03-25)
 
 
