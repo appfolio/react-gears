@@ -35,7 +35,7 @@ export const LiveExample = () => (
     <ModalFooter>
       <ButtonToolbar>
         <Button color="primary">Do Something</Button>
-        <Button>Cancel</Button>
+        <Button color="link">Cancel</Button>
       </ButtonToolbar>
     </ModalFooter>
   </Modal>
@@ -55,7 +55,7 @@ export const Autofocus = () => (
     <ModalFooter>
       <ButtonToolbar>
         <Button color="primary">Do Something</Button>
-        <Button>Cancel</Button>
+        <Button color="link">Cancel</Button>
       </ButtonToolbar>
     </ModalFooter>
   </Modal>
