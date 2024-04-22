@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import sinon from 'sinon';
@@ -359,6 +359,21 @@ describe('<Combobox />', () => {
       combobox.getByTestId('react-gears-combobox-dropdownmenu').getAttribute('aria-hidden'),
       'false'
     );
+  });
+
+  it('can render the dropdown menu inside a portal', async () => {
+    render(<Combobox options={OPTIONS} portalEl={document.body} />);
+    const toggle = await screen.findByTestId('react-gears-combobox-button');
+    await userEvent.click(toggle);
+    const dropdown = await screen.findByTestId('react-gears-combobox-dropdownmenu');
+
+    expect(dropdown.parentElement).toEqual(document.body);
+
+    expect(
+      within(await screen.findByTestId('react-gears-combobox-dropdown')).queryByTestId(
+        'react-gears-combobox-dropdownmenu'
+      )
+    ).toBeNull();
   });
 
   describe('default filterOptions ', () => {
