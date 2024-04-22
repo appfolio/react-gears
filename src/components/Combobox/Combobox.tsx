@@ -1,6 +1,6 @@
 import equal from 'fast-deep-equal';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { findDOMNode } from 'react-dom';
+import { createPortal, findDOMNode } from 'react-dom';
 import { DropdownProps, InputProps } from 'reactstrap';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
@@ -37,6 +37,7 @@ interface ComboboxProps<T> extends Omit<InputProps, 'onChange'> {
   renderOption?: (option: Option<T>) => React.ReactNode;
   menuMaxHeight?: string;
   multi?: boolean;
+  portalEl?: HTMLElement;
 }
 
 const defaultProps = {
@@ -60,6 +61,7 @@ function Combobox<T>({
   menuMaxHeight,
   multi,
   noResultsLabel = defaultProps.noResultsLabel,
+  portalEl,
   onChange = defaultProps.onChange,
   onCreate,
   isValidNewOption = defaultProps.isValidNewOption,
@@ -118,7 +120,7 @@ function Combobox<T>({
 
     if (open && !multi && selected && inputElement?.current) {
       window.setTimeout(() => {
-        inputElement!.current!.setSelectionRange(0, 0);
+        inputElement!.current?.setSelectionRange(0, 0);
       }, 1);
     }
   }, [open, multi, selected]);
@@ -332,6 +334,25 @@ function Combobox<T>({
     return <DropdownItem disabled>{noResultsLabel}</DropdownItem>;
   };
 
+  const menu = (
+    <DropdownMenu
+      data-testid="react-gears-combobox-dropdownmenu"
+      className="p-0 w-100"
+      style={{ maxHeight: menuMaxHeight || '12rem', overflowY: 'auto' }}
+      {...dropdownProps}
+      ref={dropdownMenu}
+      role="listbox"
+      aria-activedescendant={
+        visibleOptions[focusedOptionIndex] &&
+        `option-${JSON.stringify(visibleOptions[focusedOptionIndex].value)}`
+      }
+      aria-multiselectable={multi}
+    >
+      {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
+      {noMatches && renderNoOptions()}
+    </DropdownMenu>
+  );
+
   return (
     <>
       {multi && (selected as Option<T>[]).length > 0 && (
@@ -442,22 +463,7 @@ function Combobox<T>({
             </Button>
           </InputGroup>
         </DropdownToggle>
-        <DropdownMenu
-          data-testid="react-gears-combobox-dropdownmenu"
-          className="p-0 w-100"
-          style={{ maxHeight: menuMaxHeight || '12rem', overflowY: 'auto' }}
-          {...dropdownProps}
-          ref={dropdownMenu}
-          role="listbox"
-          aria-activedescendant={
-            visibleOptions[focusedOptionIndex] &&
-            `option-${JSON.stringify(visibleOptions[focusedOptionIndex].value)}`
-          }
-          aria-multiselectable={multi}
-        >
-          {grouped ? renderGroupedOptions(optionsProp as OptionGroup<T>[]) : renderOptions(options)}
-          {noMatches && renderNoOptions()}
-        </DropdownMenu>
+        {portalEl ? <div>{createPortal(menu, portalEl)}</div> : menu}
       </Dropdown>
     </>
   );

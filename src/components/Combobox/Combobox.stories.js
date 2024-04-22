@@ -203,3 +203,23 @@ export const CustomOptions = () => {
     />
   );
 };
+
+export const PortalElement = () => {
+  const [value, setValue] = useState();
+  return (
+    <>
+      <div>value: {value}</div>
+      <Combobox
+        direction={select('direction', ['', 'down', 'up'], '')}
+        onChange={setValue}
+        options={options}
+        value={value}
+        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
+        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
+        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
+        inputClassName={text('inputClassName', '')}
+        portalEl={document.body}
+      />
+    </>
+  );
+};
