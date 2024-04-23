@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.12.0](https://github.com/appfolio/react-gears/compare/v8.11.2...v8.12.0) (2024-04-23)
+
+
+### Features
+
+* **APT-1610:** add portalEl prop to Combobox ([ebdacbc](https://github.com/appfolio/react-gears/commit/ebdacbccfd98d44b51bb9e061f0198e125f34b15))
+
+
+### Bug Fixes
+
+* make the Modal cancel buttons `btn-link` ([d2cb166](https://github.com/appfolio/react-gears/commit/d2cb1667e8c0c75a1eca5a6c1105c6780937e8cd))
+
 ## [8.11.2](https://github.com/appfolio/react-gears/compare/v8.11.1...v8.11.2) (2024-04-01)
 
 
