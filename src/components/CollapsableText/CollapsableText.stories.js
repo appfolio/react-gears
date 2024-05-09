@@ -48,3 +48,9 @@ export const CustomComponents = () => (
     </CollapsableText>
   </div>
 );
+
+export const AutoAlignToggleButton = () => (
+  <div>
+    <CollapsableText autoAlignToggleButton>{loremIpsum}</CollapsableText>
+  </div>
+);

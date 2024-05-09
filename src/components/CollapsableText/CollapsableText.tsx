@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
+import classNames from 'classnames';
 import React, { useState, useRef } from 'react';
 import { useIntervalRef } from '../../hooks/useIntervalRef';
 import Button from '../Button/Button';
@@ -23,6 +24,7 @@ export interface CollapsableTextProps {
   /**  @deprecated maxLength has no effect. Use maxLines instead */
   maxLength?: number;
   maxLines?: number;
+  autoAlignToggleButton?: boolean;
 }
 
 export default function CollapsableText({
@@ -31,6 +33,7 @@ export default function CollapsableText({
   lessLabel = CollapsableText.defaultProps.lessLabel,
   moreLabel = CollapsableText.defaultProps.moreLabel,
   maxLines = CollapsableText.defaultProps.maxLines,
+  autoAlignToggleButton = CollapsableText.defaultProps.autoAlignToggleButton,
 }: CollapsableTextProps) {
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
   const [hideToggle, setHideToggle] = useState(collapsed);
@@ -59,7 +62,11 @@ export default function CollapsableText({
         {children}
       </div>
       {!hideToggle && (
-        <Button color="link" onClick={() => setIsCollapsed((c) => !c)}>
+        <Button
+          color="link"
+          className={classNames({ 'align-self-center align-self-sm-auto': autoAlignToggleButton })}
+          onClick={() => setIsCollapsed((c) => !c)}
+        >
           {isCollapsed ? moreLabel : lessLabel}
         </Button>
       )}
@@ -72,4 +79,5 @@ CollapsableText.defaultProps = {
   lessLabel: 'Show Less',
   maxLines: 2,
   moreLabel: 'Show More',
+  autoAlignToggleButton: false,
 };
