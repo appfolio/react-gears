@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text, radios } from '@storybook/addon-knobs';
 import React from 'react';
 import Icon from '../Icon/Icon';
 import CollapsableText from './CollapsableText';
@@ -25,6 +25,11 @@ export const LiveExample = () => (
     maxLines={number('maxLines', CollapsableText.defaultProps.maxLines)}
     moreLabel={text('showMore', CollapsableText.defaultProps.moreLabel)}
     lessLabel={text('lessLabel', CollapsableText.defaultProps.lessLabel)}
+    alignToggleButton={radios(
+      'alignToggleButton',
+      ['start', 'center', 'end', 'auto'],
+      CollapsableText.defaultProps.alignToggleButton
+    )}
   >
     Some text <strong>with bold</strong> and <a href="#">links and other things</a>
     <br />
@@ -46,5 +51,29 @@ export const CustomComponents = () => (
     >
       {loremIpsum}
     </CollapsableText>
+  </div>
+);
+
+export const AlignToggleButtonStart = () => (
+  <div>
+    <CollapsableText alignToggleButton="start">{loremIpsum}</CollapsableText>
+  </div>
+);
+
+export const AlignToggleButtonCenter = () => (
+  <div>
+    <CollapsableText alignToggleButton="center">{loremIpsum}</CollapsableText>
+  </div>
+);
+
+export const AlignToggleButtonEnd = () => (
+  <div>
+    <CollapsableText alignToggleButton="end">{loremIpsum}</CollapsableText>
+  </div>
+);
+
+export const AlignToggleButtonAuto = () => (
+  <div>
+    <CollapsableText alignToggleButton="auto">{loremIpsum}</CollapsableText>
   </div>
 );
