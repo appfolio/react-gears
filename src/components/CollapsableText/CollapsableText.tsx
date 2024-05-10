@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
+import classNames from 'classnames';
 import React, { useState, useRef } from 'react';
 import { useIntervalRef } from '../../hooks/useIntervalRef';
 import Button from '../Button/Button';
@@ -15,6 +16,8 @@ function getEllipsisStyle(maxLines: number) {
   } as const;
 }
 
+type AlignToggleButton = 'start' | 'center' | 'end' | 'auto';
+
 export interface CollapsableTextProps {
   children?: React.ReactNode;
   collapsed?: boolean;
@@ -23,6 +26,7 @@ export interface CollapsableTextProps {
   /**  @deprecated maxLength has no effect. Use maxLines instead */
   maxLength?: number;
   maxLines?: number;
+  alignToggleButton?: AlignToggleButton;
 }
 
 export default function CollapsableText({
@@ -31,6 +35,7 @@ export default function CollapsableText({
   lessLabel = CollapsableText.defaultProps.lessLabel,
   moreLabel = CollapsableText.defaultProps.moreLabel,
   maxLines = CollapsableText.defaultProps.maxLines,
+  alignToggleButton = CollapsableText.defaultProps.alignToggleButton,
 }: CollapsableTextProps) {
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
   const [hideToggle, setHideToggle] = useState(collapsed);
@@ -59,7 +64,17 @@ export default function CollapsableText({
         {children}
       </div>
       {!hideToggle && (
-        <Button color="link" onClick={() => setIsCollapsed((c) => !c)}>
+        <Button
+          color="link"
+          className={classNames({
+            'align-self-start': alignToggleButton === 'start',
+            'align-self-center': alignToggleButton === 'center',
+            'align-self-end': alignToggleButton === 'end',
+            // 'auto' should center align the button on xs screen sizes and start align on sm breakpoint and up (FEE-476)
+            'align-self-center align-self-sm-start': alignToggleButton === 'auto',
+          })}
+          onClick={() => setIsCollapsed((c) => !c)}
+        >
           {isCollapsed ? moreLabel : lessLabel}
         </Button>
       )}
@@ -67,9 +82,20 @@ export default function CollapsableText({
   );
 }
 
-CollapsableText.defaultProps = {
+export interface CollapsableTextDefaultProps {
+  collapsed: boolean;
+  lessLabel: string;
+  moreLabel: string;
+  maxLines: number;
+  alignToggleButton: AlignToggleButton;
+}
+
+const defaultProps: CollapsableTextDefaultProps = {
   collapsed: true,
   lessLabel: 'Show Less',
-  maxLines: 2,
   moreLabel: 'Show More',
+  maxLines: 2,
+  alignToggleButton: 'start',
 };
+
+CollapsableText.defaultProps = defaultProps;
