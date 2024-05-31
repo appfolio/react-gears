@@ -4,6 +4,7 @@ module.exports = {
     '../src/**/*.stories.{js,tsx}',
     './stories/More.stories.js',
   ],
+
   addons: [
     {
       name: '@storybook/addon-essentials',
@@ -32,5 +33,13 @@ module.exports = {
       },
     },
   ],
-  framework: '@storybook/react',
+
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
+  },
+
+  docs: {
+    autodocs: true
+  }
 };
