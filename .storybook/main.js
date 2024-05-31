@@ -4,6 +4,7 @@ module.exports = {
     '../src/**/*.stories.{js,tsx}',
     './stories/More.stories.js',
   ],
+
   addons: [
     {
       name: '@storybook/addon-essentials',
@@ -16,6 +17,8 @@ module.exports = {
     '@storybook/addon-knobs',
     '@storybook/addon-actions',
     'storybook-source-link',
+    '@storybook/addon-webpack5-compiler-babel',
+    '@chromatic-com/storybook',
     {
       name: '@storybook/addon-storysource',
       options: {
@@ -32,5 +35,9 @@ module.exports = {
       },
     },
   ],
-  framework: '@storybook/react',
+
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
 };
