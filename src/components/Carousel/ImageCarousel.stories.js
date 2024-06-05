@@ -1,4 +1,3 @@
-import { boolean, number } from '@storybook/addon-knobs';
 import React from 'react';
 import Jumbotron from '../Jumbotron/Jumbotron';
 import ImageCarousel from './ImageCarousel';
@@ -40,16 +39,14 @@ export default {
   },
 };
 
-export const DefaultProps = () => (
-  <ImageCarousel
-    autoPlay={boolean('autoPlay', ImageCarousel.defaultProps.autoPlay)}
-    controls={boolean('controls', true)}
-    fade={boolean('fade', ImageCarousel.defaultProps.fade)}
-    slide={boolean('slide', ImageCarousel.defaultProps.slide)}
-    index={number('index', 0)}
-    indicators={boolean('indicators', true)}
-    interval={number('interval', ImageCarousel.defaultProps.interval)}
-    isOpen={boolean('isOpen', true)}
-    items={items}
-  />
-);
+export const DefaultProps = (args) => <ImageCarousel items={items} {...args} />;
+DefaultProps.args = {
+  autoPlay: ImageCarousel.defaultProps.autoPlay,
+  controls: true,
+  fade: ImageCarousel.defaultProps.fade,
+  slide: ImageCarousel.defaultProps.slide,
+  index: 0,
+  indicators: true,
+  interval: ImageCarousel.defaultProps.interval,
+  isOpen: true,
+};

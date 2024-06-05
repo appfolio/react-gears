@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import { colors } from '../../tooling/colors';
 import Alert from './Alert';
@@ -12,23 +11,24 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Alert
-    color={select('color', ['', ...colors], 'info')}
-    icon={boolean('icon', false)}
-    dismissible={boolean('dismissible', false)}
-    onToggle={action('onToggle')}
-  >
-    {text(
-      'content',
-      `Lorem ipsum dolor sit amet, consectetur adipiscing
-elit, sed do eiusmod tempor incididunt ut labore
-et dolore magna aliqua.  Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat.`
-    )}
-  </Alert>
-);
+export const LiveExample = ({ content, ...args }) => <Alert {...args}>{content}</Alert>;
+LiveExample.args = {
+  icon: false,
+  dismissible: false,
+  color: 'info',
+  onToggle: action('onToggle'),
+  content: `Lorem ipsum dolor sit amet, consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore
+  et dolore magna aliqua.  Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut
+  aliquip ex ea commodo consequat.`,
+};
+LiveExample.argTypes = {
+  color: {
+    options: ['', ...colors],
+    control: { type: 'select' },
+  },
+};
 
 export const Icons = () => (
   <div>

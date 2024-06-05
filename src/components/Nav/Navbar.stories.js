@@ -1,4 +1,3 @@
-import { boolean, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { bgColors } from '../../tooling/colors';
 import Collapse from '../Collapse/Collapse';
@@ -21,19 +20,12 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const [isOpen, setIsOpen] = useState(false);
-  const fixed = select('fixed', ['', 'top', 'bottom'], undefined);
 
   return (
     <div>
-      <Navbar
-        expand="md"
-        light={boolean('light', false)}
-        dark={boolean('dark', true)}
-        fixed={fixed}
-        color={select('color', bgColors, 'primary')}
-      >
+      <Navbar expand="md" {...args}>
         <NavbarBrand href="/">react-gears</NavbarBrand>
         <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
         <Collapse isOpen={isOpen} navbar>
@@ -44,7 +36,7 @@ export const LiveExample = () => {
             <NavItem>
               <NavLink href="https://github.com/appfolio/react-gears">GitHub</NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar direction={fixed === 'bottom' ? 'up' : 'down'}>
+            <UncontrolledDropdown nav inNavbar direction={args.fixed === 'bottom' ? 'up' : 'down'}>
               <DropdownToggle nav caret>
                 Options
               </DropdownToggle>
@@ -60,4 +52,24 @@ export const LiveExample = () => {
       </Navbar>
     </div>
   );
+};
+LiveExample.args = {
+  fixed: undefined,
+  light: false,
+  dark: true,
+  color: 'primary',
+};
+LiveExample.argTypes = {
+  fixed: {
+    control: {
+      type: 'select',
+      options: ['', 'top', 'bottom'],
+    },
+  },
+  color: {
+    control: {
+      type: 'select',
+      options: bgColors,
+    },
+  },
 };

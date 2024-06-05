@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { array } from '@storybook/addon-knobs';
 import React from 'react';
 import uncontrollable from 'uncontrollable';
 import CreditCardNumber from './CreditCardNumber';
@@ -18,16 +17,8 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <UncontrolledCreditCardNumber
-    onChange={action('onChange')}
-    types={array('types', [
-      'visa',
-      'master-card',
-      'american-express',
-      'discover',
-      'diners-club',
-      'jcb',
-    ])}
-  />
-);
+export const LiveExample = (args) => <UncontrolledCreditCardNumber {...args} />;
+LiveExample.args = {
+  onChange: action('onChange'),
+  types: ['visa', 'master-card', 'american-express', 'discover', 'diners-club', 'jcb'],
+};

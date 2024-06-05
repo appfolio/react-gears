@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
 import classNames from 'classnames';
 import React from 'react';
 import Calendar from '../Calendar/Calendar';
@@ -16,35 +15,36 @@ export default {
   },
 };
 
-export const WithProps = () => (
+export const WithProps = (args) => (
   <div>
-    <DateInput
-      dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
-      showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
-      direction={text('direction', 'down')}
-      disabled={boolean('disabled', DateInput.defaultProps.disabled)}
-      readOnly={boolean('readOnly', false)}
-      onBlur={action('onBlur')}
-      onChange={action('onChange')}
-      onClose={action('onClose')}
-      positionFixed={boolean('positionFixed', false)}
-    />
+    <DateInput {...args} />
   </div>
 );
+WithProps.args = {
+  dateFormat: DateInput.defaultProps.dateFormat,
+  showOnFocus: DateInput.defaultProps.showOnFocus,
+  direction: 'down',
+  disabled: DateInput.defaultProps.disabled,
+  readOnly: false,
+  onBlur: action('onBlur'),
+  onChange: action('onChange'),
+  onClose: action('onClose'),
+  positionFixed: false,
+};
 
-export const WithId = () => (
+export const WithId = (args) => (
   <div>
     <Label for="calendar">Click this label to Focus Calendar Input:</Label>
-    <DateInput
-      id="calendar"
-      dateFormat={text('dateFormat', DateInput.defaultProps.dateFormat)}
-      showOnFocus={boolean('showOnFocus', DateInput.defaultProps.showOnFocus)}
-      disabled={boolean('disabled', DateInput.defaultProps.disabled)}
-      onBlur={action('onBlur')}
-      onChange={action('onChange')}
-    />
+    <DateInput id="calendar" {...args} />
   </div>
 );
+WithId.args = {
+  dateFormat: DateInput.defaultProps.dateFormat,
+  showOnFocus: DateInput.defaultProps.showOnFocus,
+  disabled: DateInput.defaultProps.disabled,
+  onBlur: action('onBlur'),
+  onChange: action('onChange'),
+};
 
 export const UncontrolledDefaultValue = () => (
   <div>
@@ -128,11 +128,15 @@ export const DateEnabled = () => (
   </div>
 );
 
-export const CalendarDefault = () => (
+export const CalendarDefault = (args) => (
   <div className="d-inline-flex">
-    <Calendar dateFormat={text('dateFormat', 'D')} onSelect={action('onSelect')} />
+    <Calendar {...args} />
   </div>
 );
+CalendarDefault.args = {
+  dateFormat: 'D',
+  onSelect: action('onSelect'),
+};
 
 export const CalendarCustomDay = () => (
   <div className="d-inline-flex">

@@ -14,7 +14,7 @@ module.exports = {
         docs: false,
       },
     },
-    '@storybook/addon-knobs',
+    '@storybook/addon-controls',
     '@storybook/addon-actions',
     'storybook-source-link',
     '@storybook/addon-webpack5-compiler-babel',

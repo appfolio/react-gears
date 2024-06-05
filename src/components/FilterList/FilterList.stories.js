@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { number } from '@storybook/addon-knobs';
 import React from 'react';
 import FilterList from './FilterList';
 
@@ -11,7 +10,7 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const filters = [
     {
       label: 'User',
@@ -29,11 +28,11 @@ export const LiveExample = () => {
   ];
   return (
     <div>
-      <FilterList
-        filters={filters}
-        maxWidth={number('maxWidth', 14)}
-        onRemove={(filter) => action('onRemove', filter)}
-      />
+      <FilterList filters={filters} {...args} />
     </div>
   );
+};
+LiveExample.args = {
+  maxWidth: 14,
+  onRemove: action('onRemove'),
 };

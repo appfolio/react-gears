@@ -1,4 +1,3 @@
-import { boolean } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import BlockPanel from '../BlockPanel/BlockPanel';
 import Tree from './Tree';
@@ -79,7 +78,7 @@ const labelRenderer = (item, { selected }) => (
   </div>
 );
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const [options, setOptions] = useState(data);
 
   return (
@@ -88,8 +87,11 @@ export const LiveExample = () => {
         options={options}
         onChange={(updatedOptions) => setOptions(updatedOptions)}
         label={labelRenderer}
-        selectable={boolean('selectable', true)}
+        {...args}
       />
     </BlockPanel>
   );
+};
+LiveExample.args = {
+  selectable: true,
 };

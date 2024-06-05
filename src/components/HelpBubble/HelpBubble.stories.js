@@ -1,4 +1,3 @@
-import { text, select } from '@storybook/addon-knobs';
 import React from 'react';
 import HelpBubble from './HelpBubble';
 
@@ -10,16 +9,12 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = ({ title, placement, content }) => (
   <div>
     <p>
       I can be placed in context to provide some contextual help!
-      <HelpBubble
-        title={text('title', 'What does this mean?')}
-        className="ms-1"
-        placement={select('placement', ['top', 'left', 'bottom', 'right'], 'bottom')}
-      >
-        {text('content', 'Help bubbles are a handy way of explaining things.')}
+      <HelpBubble title={title} className="ms-1" placement={placement}>
+        {content}
       </HelpBubble>
     </p>
     <p>
@@ -30,3 +25,16 @@ export const LiveExample = () => (
     </p>
   </div>
 );
+LiveExample.args = {
+  title: 'What does this mean?',
+  placement: 'bottom',
+  content: 'Help bubbles are a handy way of explaining things.',
+};
+LiveExample.argTypes = {
+  placement: {
+    control: {
+      type: 'select',
+      options: ['top', 'left', 'bottom', 'right'],
+    },
+  },
+};

@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import COUNTRIES from '../Address/util/Countries';
 import Select from './Select';
@@ -76,16 +75,9 @@ export default {
   },
 };
 
-export const WithOptions = () => (
+export const WithOptions = (args) => (
   <div>
-    <Select
-      className="w-100"
-      disabled={boolean('disabled', false)}
-      multi={boolean('multi', false)}
-      options={COUNTRIES}
-      placeholder={text('placeholder')}
-      onChange={action('onChange')}
-    />
+    <Select className="w-100" options={COUNTRIES} {...args} />
     <p className="pt-5">
       Please see{' '}
       <a
@@ -99,36 +91,42 @@ export const WithOptions = () => (
     </p>
   </div>
 );
+WithOptions.args = {
+  disabled: false,
+  multi: false,
+  placeholder: undefined,
+  onChange: action('onChange'),
+};
 
-export const WithGroups = () => (
+export const WithGroups = (args) => (
   <div>
-    <Select
-      className="w-100"
-      disabled={boolean('disabled', false)}
-      multi={boolean('multi', false)}
-      options={groups}
-      placeholder={text('placeholder')}
-      onChange={action('onChange')}
-    />
+    <Select className="w-100" options={groups} {...args} />
   </div>
 );
+WithGroups.args = {
+  disable: false,
+  multi: false,
+  placeholder: undefined,
+  onChange: action('onChange'),
+};
 
 export const WithDefaultValueUncontrolled = () => (
   <Select className="w-100" defaultValue="US" options={COUNTRIES} onChange={action('onChange')} />
 );
 
-export const Controlled = () => (
-  <Select
-    className="w-100"
-    value={select(
-      'value',
-      COUNTRIES.map((c) => c.value),
-      'US'
-    )}
-    options={COUNTRIES}
-    onChange={action('onChange')}
-  />
-);
+export const Controlled = (args) => <Select className="w-100" options={COUNTRIES} {...args} />;
+Controlled.args = {
+  value: 'US',
+  onChange: action('onChange'),
+};
+Controlled.argTypes = {
+  value: {
+    control: {
+      type: 'select',
+      options: COUNTRIES.map((c) => c.value),
+    },
+  },
+};
 
 export const Async = () => {
   const getOptions = (input, callback) => {
@@ -171,10 +169,9 @@ export const DisabledOptions = () => (
   />
 );
 
-export const MultipleAndCreatableOptions = () => (
+export const MultipleAndCreatableOptions = (args) => (
   <Select
     className="w-100"
-    creatable={boolean('creatable', true)}
     multi
     options={[
       { label: 'alpha@team.com', value: 'alpha@team.com' },
@@ -186,6 +183,10 @@ export const MultipleAndCreatableOptions = () => (
       { label: 'golf@club.com', value: 'golf@club.com' },
     ]}
     isValidNewOption={({ label }) => validateEmail(label)}
-    onChange={action('onChange')}
+    {...args}
   />
 );
+MultipleAndCreatableOptions.args = {
+  creatable: true,
+  onChange: action('onChange'),
+};

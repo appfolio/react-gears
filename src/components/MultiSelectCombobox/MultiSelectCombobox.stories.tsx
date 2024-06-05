@@ -1,6 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { states } from '../../tooling/comboboxData';
 import DropdownItem from '../Dropdown/DropdownItem';
@@ -14,15 +13,16 @@ import ComboboxSelections from './ComboboxSelections';
 import FilteredComboboxItems from './FilteredComboboxItems';
 import MultiSelectCombobox from './MultiSelectCombobox';
 
-type ComboboxStory = ComponentStory<typeof MultiSelectCombobox>;
-
-export default {
+const meta: Meta = {
   title: ' Multi-Select Combobox',
   component: MultiSelectCombobox,
   parameters: {
     sourceLink: 'MultiSelectCombobox/MultiSelectCombobox.tsx',
   },
-} as ComponentMeta<typeof MultiSelectCombobox>;
+};
+export default meta;
+
+type Story = StoryObj<typeof MultiSelectCombobox>;
 
 const options = [
   { label: 'Foo', value: 'foo', id: 1 },
@@ -37,91 +37,134 @@ const selections = [
   { label: 'Lemur', value: 'lemur', id: 200 },
 ];
 
-export const UncontrolledMode: ComboboxStory = () => (
-  <MultiSelectCombobox
-    initialSelections={['CA', 'AK']}
-    options={states}
-    onChange={action('onChange')}
-    filterOptions={boolean('filterOptions', true)}
-    allowCreation={boolean('allowCreation', false)}
-    onCreateOption={(newOptionLabel) => {
-      action('onCreateOption')();
-      return { label: newOptionLabel, value: newOptionLabel.toLowerCase() };
-    }}
-    closeOnSelect={boolean('closeOnSelect', true)}
-  />
-);
+export const UncontrolledMode: Story = {
+  args: {
+    onChange: action('onChange'),
+    filterOptions: true,
+    allowCreation: false,
+    closeOnSelect: true,
+  },
+  render: (args) => (
+    <MultiSelectCombobox
+      initialSelections={['CA', 'AK']}
+      options={states}
+      onCreateOption={(newOptionLabel) => {
+        action('onCreateOption')();
+        return { label: newOptionLabel, value: newOptionLabel.toLowerCase() };
+      }}
+      {...args}
+    />
+  ),
+};
 
-export const LongOptionLabels: ComboboxStory = () => (
-  <MultiSelectCombobox
-    options={[
-      {
-        label:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        value: 1,
-      },
-      {
-        label:
-          "Feta cheddar when the cheese comes out everybody's happy. Cut the cheese ricotta who moved my cheese airedale fromage stilton melted cheese edam.",
-        value: 2,
-      },
-      { label: 'short one for fun', value: 3 },
-      {
-        label:
-          'I trust you. Could you solutionize that for me can you please change the color theme of the website to pink and purple?',
-        value: 4,
-      },
-    ]}
-    onChange={action('onChange')}
-  />
-);
+export const LongOptionLabels: Story = {
+  args: {
+    onChange: action('onChange'),
+  },
+  render: (args) => (
+    <MultiSelectCombobox
+      options={[
+        {
+          label:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          value: 1,
+        },
+        {
+          label:
+            "Feta cheddar when the cheese comes out everybody's happy. Cut the cheese ricotta who moved my cheese airedale fromage stilton melted cheese edam.",
+          value: 2,
+        },
+        { label: 'short one for fun', value: 3 },
+        {
+          label:
+            'I trust you. Could you solutionize that for me can you please change the color theme of the website to pink and purple?',
+          value: 4,
+        },
+      ]}
+      {...args}
+    />
+  ),
+};
 
-export const ControlledModeSimple: ComboboxStory = () => (
-  <MultiSelectCombobox isOpen={boolean('isOpen', false)} onToggle={action('onToggle')}>
-    <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
-      {selections.map((selection) => (
-        <ComboboxSelection key={selection.id} onRemove={action('onRemoveClick (selection)')}>
-          {selection.label}
-        </ComboboxSelection>
-      ))}
-    </ComboboxSelections>
-    <ComboboxItems>
-      {options.map((option) => (
-        <ComboboxItem key={option.id} onClick={action('onClick (item)')}>
-          {option.label}
-        </ComboboxItem>
-      ))}
-    </ComboboxItems>
-  </MultiSelectCombobox>
-);
+export const ControlledModeSimple: Story = {
+  args: {
+    isOpen: false,
+    onToggle: action('onToggle'),
+  },
+  render: (args) => (
+    <MultiSelectCombobox {...args}>
+      <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
+        {selections.map((selection) => (
+          <ComboboxSelection key={selection.id} onRemove={action('onRemoveClick (selection)')}>
+            {selection.label}
+          </ComboboxSelection>
+        ))}
+      </ComboboxSelections>
+      <ComboboxItems>
+        {options.map((option) => (
+          <ComboboxItem key={option.id} onClick={action('onClick (item)')}>
+            {option.label}
+          </ComboboxItem>
+        ))}
+      </ComboboxItems>
+    </MultiSelectCombobox>
+  ),
+};
 
-export const ControlledModeWithFilter: ComboboxStory = () => (
+// * Can't convert to CSF3 (https://storybook.js.org/docs/api/csf) because of the
+// composite nature of this story.  Would need to refactor subcomponents into
+// separate stories (https://storybook.js.org/docs/writing-stories/stories-for-multiple-components)
+const controlledModeWithFilterArgs = {
+  isOpen: false,
+  onToggle: action('onToggle'),
+  allowCreationMultiSelectCombobox: false,
+  onRemoveAll: action('onRemoveAll'),
+  onRemove: action('onRemoveClick (selection)'),
+  filterValue: '',
+  onFilterChange: action('onFilterChange'),
+  allowCreationFilteredComboboxItems: true,
+  onCreateClick: action('onCreateClick'),
+  onClick: action('onClick (item)'),
+};
+export const ControlledModeWithFilter = ({
+  isOpen,
+  onToggle,
+  allowCreationMultiSelectCombobox,
+  onRemoveAll,
+  onRemove,
+  filterValue,
+  onFilterChange,
+  allowCreationFilteredComboboxItems,
+  onCreateClick,
+  onClick,
+}: typeof controlledModeWithFilterArgs) => (
   <MultiSelectCombobox
-    isOpen={boolean('isOpen', false)}
-    onToggle={action('onToggle')}
-    allowCreation={boolean('allowCreation', false)}
+    isOpen={isOpen}
+    onToggle={onToggle}
+    allowCreation={allowCreationMultiSelectCombobox}
   >
-    <ComboboxSelections onRemoveAll={action('onRemoveAll')}>
+    <ComboboxSelections onRemoveAll={onRemoveAll}>
       {selections.map((selection) => (
-        <ComboboxSelection key={selection.id} onRemove={action('onRemoveClick (selection)')}>
+        <ComboboxSelection key={selection.id} onRemove={onRemove}>
           {selection.label}
         </ComboboxSelection>
       ))}
     </ComboboxSelections>
     <FilteredComboboxItems
-      filterValue={text('filterValue', '')}
-      onFilterChange={action('onFilterChange')}
-      allowCreation={boolean('allowCreation', true)}
-      onCreateClick={action('onCreateClick')}
+      filterValue={filterValue}
+      onFilterChange={onFilterChange}
+      allowCreation={allowCreationFilteredComboboxItems}
+      onCreateClick={onCreateClick}
     >
       {options.map((option) => (
-        <ComboboxItem key={option.id} onClick={action('onClick (item)')}>
+        <ComboboxItem key={option.id} onClick={onClick}>
           {option.label}
         </ComboboxItem>
       ))}
     </FilteredComboboxItems>
   </MultiSelectCombobox>
 );
+ControlledModeWithFilter.args = controlledModeWithFilterArgs;
 
 const MyCustomItem: ItemComponent = ({ children, onClick }: ComboboxItemProps) => (
   <DropdownItem onClick={onClick} className="fs-1">
@@ -130,10 +173,12 @@ const MyCustomItem: ItemComponent = ({ children, onClick }: ComboboxItemProps) =
   </DropdownItem>
 );
 
-export const CustomItemRendering: ComboboxStory = () => (
-  <MultiSelectCombobox
-    onChange={action('onChange')}
-    options={states}
-    components={{ Item: MyCustomItem }}
-  />
-);
+export const CustomItemRendering: Story = {
+  render: () => (
+    <MultiSelectCombobox
+      onChange={action('onChange')}
+      options={states}
+      components={{ Item: MyCustomItem }}
+    />
+  ),
+};

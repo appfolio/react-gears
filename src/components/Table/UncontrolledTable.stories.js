@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number } from '@storybook/addon-knobs';
 import fecha from 'fecha';
 import React from 'react';
 import Button from '../Button/Button';
@@ -106,7 +105,7 @@ export default {
   },
 };
 
-export const UncontrolledTableExample = () => (
+export const UncontrolledTableExample = (args) => (
   <div>
     <UncontrolledTable
       columns={[
@@ -138,19 +137,22 @@ export const UncontrolledTableExample = () => (
       rows={DATA}
       rowExpanded={FullName}
       sort={{ column: 'last', ascending: true }}
-      expandable={boolean('expandable', false)}
-      responsive={boolean('responsive', true)}
-      selectable={boolean('selectable', false)}
-      truncate={boolean('truncate', false)}
-      paginated={boolean('paginated', false)}
-      pageSize={number('pageSize', 10)}
-      onSelect={action('onSelect')}
-      onSort={action('onSort')}
-      onPageChange={action('onPageChange')}
-      onVisibleRowsChange={action('onVisibleRowsChange')}
+      {...args}
     />
   </div>
 );
+UncontrolledTableExample.args = {
+  expandable: false,
+  responsive: true,
+  selectable: false,
+  truncate: false,
+  paginated: false,
+  pageSize: 10,
+  onSelect: action('onSelect'),
+  onSort: action('onSort'),
+  onPageChange: action('onPageChange'),
+  onVisibleRowsChange: action('onVisibleRowsChange'),
+};
 
 export const CustomHeader = () => (
   <UncontrolledTable

@@ -1,4 +1,3 @@
-import { boolean, number, select } from '@storybook/addon-knobs';
 import React from 'react';
 import Progress from './Progress';
 
@@ -10,15 +9,25 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Progress
-    color={select('color', ['', 'info', 'success', 'warning', 'danger'], '')}
-    animated={boolean('animated', true)}
-    value={number('value', 50, {
-      range: true,
+export const LiveExample = (args) => <Progress {...args} />;
+LiveExample.args = {
+  color: '',
+  animated: true,
+  value: 50,
+};
+LiveExample.argTypes = {
+  color: {
+    control: {
+      type: 'select',
+      options: ['', 'info', 'success', 'warning', 'danger'],
+    },
+  },
+  value: {
+    control: {
+      type: 'range',
       min: 0,
       max: 100,
       step: 1,
-    })}
-  />
-);
+    },
+  },
+};

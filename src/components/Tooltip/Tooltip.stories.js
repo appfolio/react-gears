@@ -1,4 +1,3 @@
-import { select } from '@storybook/addon-knobs';
 import React from 'react';
 import Tooltip from './Tooltip';
 
@@ -10,16 +9,24 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
     <p>
       Somewhere in here is a <span id="TooltipExample">tooltip</span>.
     </p>
-    <Tooltip
-      placement={select('placement', ['top', 'left', 'bottom', 'right'], 'right')}
-      target="TooltipExample"
-    >
+    <Tooltip target="TooltipExample" {...args}>
       Hello world!
     </Tooltip>
   </div>
 );
+LiveExample.args = {
+  placement: 'right',
+};
+LiveExample.argTypes = {
+  placement: {
+    control: {
+      type: 'select',
+      options: ['top', 'left', 'bottom', 'right'],
+    },
+  },
+};

@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { select, boolean } from '@storybook/addon-knobs';
 import fecha from 'fecha';
 import React from 'react';
 import SortableTable from './SortableTable';
@@ -97,68 +96,81 @@ const DATA = [
 
 const EmailCell = (row) => <a href={`mailto:${row.email}`}>{row.email}</a>;
 
-export const SortableTableExample = () => {
-  const column = select('active', ['first', 'last', 'dob', 'email'], 'last');
-  const ascending = boolean('ascending', true);
-  return (
-    <div>
-      <p className="text-warning">
-        <b>Note:</b> This is an uncontrolled example, will not sort on click. See UncontrolledTable
-        story.
-      </p>
-      <SortableTable
-        bordered={boolean('bordered', false)}
-        hover={boolean('hover', true)}
-        responsive={boolean('responsive', true)}
-        size={select('size', ['', 'sm', 'lg'], 'sm')}
-        striped={boolean('striped', true)}
-        truncate={boolean('truncate', false)}
-        columns={[
-          {
-            active: column === 'first',
-            ascending,
-            header: 'First',
-            key: 'first',
-            cell: (row) => row.first,
-            onSort: action('onSort', 'First'),
-            width: '20%',
-          },
-          {
-            active: column === 'last',
-            ascending,
-            header: 'Last',
-            key: 'last',
-            cell: (row) => row.last,
-            onSort: action('onSort', 'Last'),
-            width: '30%',
-          },
-          {
-            active: column === 'dob',
-            ascending,
-            header: 'DOB',
-            key: 'dob',
-            cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
-            onSort: action('onSort', 'DOB'),
-            width: '15%',
-          },
-          {
-            active: column === 'email',
-            ascending,
-            header: <span>Email</span>,
-            key: 'email',
-            cell: EmailCell,
-            onSort: action('onSort', 'Email'),
-            width: '35%',
-          },
-        ]}
-        rows={DATA}
-        rowSelected={(row) => row.key === '777'}
-        onExpand={action('onExpand')}
-        onSelect={action('onSelect')}
-        onSelectAll={action('onSelectAll')}
-      />
-    </div>
-  );
+export const SortableTableExample = ({ column, ascending, ...args }) => (
+  <div>
+    <p className="text-warning">
+      <b>Note:</b> This is an uncontrolled example, will not sort on click. See UncontrolledTable
+      story.
+    </p>
+    <SortableTable
+      columns={[
+        {
+          active: column === 'first',
+          ascending,
+          header: 'First',
+          key: 'first',
+          cell: (row) => row.first,
+          onSort: action('onSort-First'),
+          width: '20%',
+        },
+        {
+          active: column === 'last',
+          ascending,
+          header: 'Last',
+          key: 'last',
+          cell: (row) => row.last,
+          onSort: action('onSort-Last'),
+          width: '30%',
+        },
+        {
+          active: column === 'dob',
+          ascending,
+          header: 'DOB',
+          key: 'dob',
+          cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
+          onSort: action('onSort-DOB'),
+          width: '15%',
+        },
+        {
+          active: column === 'email',
+          ascending,
+          header: <span>Email</span>,
+          key: 'email',
+          cell: EmailCell,
+          onSort: action('onSort-Email'),
+          width: '35%',
+        },
+      ]}
+      rows={DATA}
+      rowSelected={(row) => row.key === '777'}
+      {...args}
+    />
+  </div>
+);
+SortableTableExample.args = {
+  column: 'last',
+  ascending: true,
+  bordered: false,
+  hover: true,
+  responsive: true,
+  size: 'sm',
+  striped: true,
+  truncate: false,
+  onExpand: action('onExpand'),
+  onSelect: action('onSelect'),
+  onSelectAll: action('onSelectAll'),
+};
+SortableTableExample.argTypes = {
+  column: {
+    control: {
+      type: 'select',
+      options: ['first', 'last', 'dob', 'email'],
+    },
+  },
+  size: {
+    options: ['', 'lg', 'sm'],
+    control: { type: 'select' },
+  },
 };
 
 export const AlignColumn = () => (

@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { object } from '@storybook/addon-knobs';
 import React from 'react';
 import AddressInput from '../Address/AddressInput';
 import CountryInput from '../Address/CountryInput';
@@ -147,12 +146,8 @@ export const FormRows = () => (
   </Form>
 );
 
-export const Bound = () => (
-  <BoundForm
-    object={formData}
-    errors={object('errors', { lastName: 'Last Name is required' })}
-    onSubmit={action('submit')}
-  >
+export const Bound = (args) => (
+  <BoundForm object={formData} {...args}>
     <BoundFormRow label="First Name" name="firstName" id="firstName" />
     <BoundFormRow label="Last Name" name="lastName" required id="lastName" />
     <BoundFormRow
@@ -197,3 +192,7 @@ export const Bound = () => (
     </button>
   </BoundForm>
 );
+Bound.args = {
+  errors: { lastName: 'Last Name is required' },
+  onSubmit: action('submit'),
+};

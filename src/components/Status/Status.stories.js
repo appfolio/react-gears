@@ -1,4 +1,3 @@
-import { select } from '@storybook/addon-knobs';
 import React from 'react';
 import Status from './Status';
 
@@ -12,9 +11,9 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
-    <Status type={select('type', types, 'none')} />
+    <Status {...args} />
     <Status type="info" />
     <Status type="muted" />
     <Status type="success" />
@@ -22,3 +21,14 @@ export const LiveExample = () => (
     <Status type="warning" />
   </div>
 );
+LiveExample.args = {
+  type: 'none',
+};
+LiveExample.argTypes = {
+  type: {
+    control: {
+      type: 'select',
+      options: types,
+    },
+  },
+};

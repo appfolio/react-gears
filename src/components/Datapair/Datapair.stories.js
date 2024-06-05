@@ -1,4 +1,3 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
@@ -14,29 +13,34 @@ export default {
   },
 };
 
-export const WithProps = () => {
-  const stacked = boolean('stacked', false);
-  const labelSize = select('labelSize', ['sm', 'md', 'lg'], 'md');
-  return (
-    <Card className="mt-1">
-      <CardBody>
-        <Datapair
-          label={text('label', 'Key')}
-          value={text('value', 'Some simple content would go here')}
-          labelSize={labelSize}
-          feedback={text('feedback')}
-          hint={text('hint', '')}
-          stacked={stacked}
-        />
-        <Datapair
-          label="Another Key"
-          value="More content"
-          labelSize={labelSize}
-          stacked={stacked}
-        />
-      </CardBody>
-    </Card>
-  );
+export const WithProps = ({ stacked, labelSize, label, value, feedback, hint }) => (
+  <Card className="mt-1">
+    <CardBody>
+      <Datapair
+        label={label}
+        value={value}
+        labelSize={labelSize}
+        feedback={feedback}
+        hint={hint}
+        stacked={stacked}
+      />
+      <Datapair label="Another Key" value="More content" labelSize={labelSize} stacked={stacked} />
+    </CardBody>
+  </Card>
+);
+WithProps.args = {
+  stacked: false,
+  labelSize: 'md',
+  label: 'Key',
+  value: 'Some simple content would go here',
+  feedback: undefined,
+  hint: '',
+};
+WithProps.argTypes = {
+  labelSize: {
+    options: ['sm', 'md', 'lg'],
+    control: { type: 'select' },
+  },
 };
 
 export const WithHTMLValue = () => (

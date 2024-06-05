@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
 import React from 'react';
 import Note from './Note';
 import Notes from './Notes';
@@ -27,42 +26,44 @@ export default {
   },
 };
 
-export const WithNotesProp = () => {
+export const WithNotesProp = ({ deleted, edited, editing, saving, ...args }) => {
   const notes = [
     {
       id: 0,
       date: new Date(),
-      deleted: boolean('deleted', false),
-      edited: boolean('edited', false),
-      editing: boolean('editing', false),
-      saving: boolean('saving', false),
+      deleted,
+      edited,
+      editing,
+      saving,
       from: 'Gary Thomas',
       text: 'Hello World',
     },
     ...moreNotes,
   ];
 
-  return (
-    <Notes
-      notes={notes}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onDelete={action('onDelete')}
-      onEdit={action('onEdit')}
-      onSave={action('onSave')}
-      onUndelete={action('onUndelete')}
-    />
-  );
+  return <Notes notes={notes} {...args} />;
+};
+WithNotesProp.args = {
+  deleted: false,
+  edited: false,
+  editing: false,
+  saving: false,
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onDelete: action('onDelete'),
+  onEdit: action('onEdit'),
+  onSave: action('onSave'),
+  onUndelete: action('onUndelete'),
 };
 
-export const WithChildren = () => {
+export const WithChildren = ({ deleted, edited, editing, saving, ...args }) => {
   const notes = [
     {
       date: new Date(),
-      deleted: boolean('deleted', false),
-      edited: boolean('edited', false),
-      editing: boolean('editing', false),
-      saving: boolean('saving', false),
+      deleted,
+      edited,
+      editing,
+      saving,
       from: 'Gary Thomas',
       text: 'Hello World',
     },
@@ -72,17 +73,20 @@ export const WithChildren = () => {
   return (
     <Notes>
       {notes.map((note) => (
-        <Note
-          note={note}
-          onCancel={action('onCancel')}
-          onChange={action('onChange')}
-          onDelete={action('onDelete')}
-          onEdit={action('onEdit')}
-          onSave={action('onSave')}
-          onUndelete={action('onUndelete')}
-          saving={note.saving}
-        />
+        <Note note={note} saving={note.saving} {...args} />
       ))}
     </Notes>
   );
+};
+WithChildren.args = {
+  deleted: false,
+  edited: false,
+  editing: false,
+  saving: false,
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onDelete: action('onDelete'),
+  onEdit: action('onEdit'),
+  onSave: action('onSave'),
+  onUndelete: action('onUndelete'),
 };

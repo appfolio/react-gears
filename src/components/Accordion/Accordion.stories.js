@@ -1,4 +1,3 @@
-import { boolean } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import {
   Accordion,
@@ -17,7 +16,7 @@ export default {
   },
 };
 
-export const Example = () => {
+export const Example = (args) => {
   const [open, setOpen] = useState('1');
   const toggle = (id) => {
     if (open === id) {
@@ -29,7 +28,7 @@ export const Example = () => {
 
   return (
     <div>
-      <Accordion open={open} toggle={toggle} flush={boolean('flush', false)}>
+      <Accordion open={open} toggle={toggle} {...args}>
         <AccordionItem>
           <AccordionHeader targetId="1">Accordion Item 1</AccordionHeader>
           <AccordionBody accordionId="1">
@@ -61,14 +60,11 @@ export const Example = () => {
     </div>
   );
 };
+Example.args = { flush: false };
 
-export const Uncontrolled = () => (
+export const Uncontrolled = (args) => (
   <div>
-    <UncontrolledAccordion
-      defaultOpen="1"
-      flush={boolean('flush', false)}
-      stayOpen={boolean('stayOpen', false)}
-    >
+    <UncontrolledAccordion defaultOpen="1" {...args}>
       <AccordionItem>
         <AccordionHeader targetId="1">Accordion Item 1</AccordionHeader>
         <AccordionBody accordionId="1">
@@ -99,3 +95,7 @@ export const Uncontrolled = () => (
     </UncontrolledAccordion>
   </div>
 );
+Uncontrolled.args = {
+  flush: false,
+  stayOpen: false,
+};
