@@ -1,4 +1,3 @@
-import { boolean, select } from '@storybook/addon-knobs';
 import fecha from 'fecha';
 import React from 'react';
 import Table from './Table';
@@ -92,14 +91,8 @@ export default {
   parameters: { sourceLink: 'Table/Table.tsx' },
 };
 
-export const Defalut = () => (
-  <Table
-    bordered={boolean('bordered', false)}
-    responsive={boolean('responsive', true)}
-    striped={boolean('striped', true)}
-    hover={boolean('hover', true)}
-    size={select('size', ['', 'sm', 'lg'], 'sm')}
-  >
+export const Default = (args) => (
+  <Table {...args}>
     <thead>
       <tr>
         <th>First</th>
@@ -123,3 +116,16 @@ export const Defalut = () => (
     </tbody>
   </Table>
 );
+Default.args = {
+  bordered: false,
+  responsive: true,
+  striped: true,
+  hover: true,
+  size: 'sm',
+};
+Default.argTypes = {
+  size: {
+    options: ['', 'lg', 'sm'],
+    control: { type: 'select' },
+  },
+};

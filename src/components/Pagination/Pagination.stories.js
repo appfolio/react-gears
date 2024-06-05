@@ -1,4 +1,3 @@
-import { select } from '@storybook/addon-knobs';
 import React from 'react';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
@@ -12,8 +11,8 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Pagination size={select('size', ['', 'sm', 'lg'])}>
+export const LiveExample = (args) => (
+  <Pagination {...args}>
     <PaginationItem>
       <PaginationLink first href="#" />
     </PaginationItem>
@@ -46,3 +45,14 @@ export const LiveExample = () => (
     </PaginationItem>
   </Pagination>
 );
+LiveExample.args = {
+  size: undefined,
+};
+LiveExample.argTypes = {
+  size: {
+    control: {
+      type: 'select',
+      options: ['', 'sm', 'lg'],
+    },
+  },
+};

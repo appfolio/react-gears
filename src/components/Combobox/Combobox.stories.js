@@ -1,4 +1,3 @@
-import { boolean, text, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import Icon from '../Icon/Icon';
 import Combobox from './Combobox';
@@ -67,159 +66,177 @@ const options = [
   { label: 'Virgin Islands', value: 'VI' },
 ];
 
-export default {
+const meta = {
   title: 'Combobox',
   component: Combobox,
   parameters: {
     sourceLink: 'Combobox/Combobox.tsx',
   },
-};
-
-export const LiveExample = () => {
-  const [value, setValue] = useState();
-  return (
-    <>
-      <div>value: {value}</div>
-      <Combobox
-        direction={select('direction', ['', 'down', 'up'], '')}
-        onChange={setValue}
-        options={options}
-        value={value}
-        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-        inputClassName={text('inputClassName', '')}
-      />
-    </>
-  );
-};
-
-export const Multi = () => {
-  const [value, setValue] = useState();
-  return (
-    <Combobox
-      multi
-      direction={select('direction', ['', 'down', 'up'], '')}
-      onChange={setValue}
-      options={options}
-      value={value}
-      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-      inputClassName={text('inputClassName', '')}
-    />
-  );
-};
-
-export const Grouped = () => {
-  const [value, setValue] = useState();
-  return (
-    <Combobox
-      multi={boolean('multi', false)}
-      direction={select('direction', ['', 'down', 'up'], '')}
-      onChange={setValue}
-      options={[
-        {
-          label: 'Colors',
-          options: [
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-          ],
-        },
-        { label: 'States', options },
-      ]}
-      value={value}
-      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-      inputClassName={text('inputClassName', '')}
-      menuMaxHeight="20rem"
-    />
-  );
-};
-
-export const CreatableOptions = () => {
-  const [value, setValue] = useState();
-  const [opts, setOpts] = useState(options);
-
-  const onCreate = (str) => {
-    const newOpt = { value: str, label: str };
-    setOpts([...opts, newOpt]);
-
-    return newOpt.value;
-  };
-
-  return (
-    <Combobox
-      direction={select('direction', ['', 'down', 'up'], '')}
-      onChange={setValue}
-      onCreate={onCreate}
-      options={opts}
-      value={value}
-      disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-      noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-      placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-      inputClassName={text('inputClassName', '')}
-    />
-  );
-};
-
-export const CustomOptions = () => {
-  const [value, setValue] = useState();
-  const mixedOptions = [
-    {
-      label: '71548561868 Super-duper long word like impossibly long Lane',
-      value: 'address-1',
-      type: 'address',
+  argTypes: {
+    direction: {
+      control: {
+        type: 'select',
+        options: ['', 'down', 'up'],
+      },
     },
-    { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
-    { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
-    { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
-    { label: 'Panda', value: 'tenant-2', type: 'tenant' },
-    { label: '77 Snowball Blvd', value: 'address-4', type: 'address' },
-    { label: 'Bob', value: 'tenant-3', type: 'tenant' },
-  ];
-  const renderOption = (option) => (
-    <div>
-      <Icon name={option.type === 'address' ? 'home' : 'user'} className="me-2 py-4" />
-      {option.label}
-    </div>
-  );
-
-  const renderInputValue = (option) => (
-    <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-      {option.label}
-    </div>
-  );
-
-  return (
-    <Combobox
-      onChange={setValue}
-      options={mixedOptions}
-      value={value}
-      renderOption={renderOption}
-      renderInputValue={renderInputValue}
-      menuMaxHeight="20rem"
-    />
-  );
+  },
 };
 
-export const PortalElement = () => {
-  const [value, setValue] = useState();
-  return (
-    <>
-      <div>value: {value}</div>
+export default meta;
+
+export const LiveExample = {
+  args: {
+    direction: '',
+    disabled: Combobox.defaultProps.disabled,
+    noResultsLabel: Combobox.defaultProps.noResultsLabel,
+    placeholder: Combobox.defaultProps.placeholder,
+    inputClassName: '',
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState();
+    return (
+      <>
+        <div>value: {value}</div>
+        <Combobox onChange={setValue} options={options} value={value} {...args} />
+      </>
+    );
+  },
+};
+
+export const Multi = {
+  args: {
+    direction: '',
+    disabled: Combobox.defaultProps.disabled,
+    noResultsLabel: Combobox.defaultProps.noResultsLabel,
+    placeholder: Combobox.defaultProps.placeholder,
+    inputClassName: '',
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState();
+    return <Combobox multi onChange={setValue} options={options} value={value} {...args} />;
+  },
+};
+
+export const Grouped = {
+  args: {
+    multi: false,
+    direction: '',
+    disabled: Combobox.defaultProps.disabled,
+    noResultsLabel: Combobox.defaultProps.noResultsLabel,
+    placeholder: Combobox.defaultProps.placeholder,
+    inputClassName: '',
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState();
+    return (
       <Combobox
-        direction={select('direction', ['', 'down', 'up'], '')}
         onChange={setValue}
-        options={options}
+        options={[
+          {
+            label: 'Colors',
+            options: [
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+            ],
+          },
+          { label: 'States', options },
+        ]}
         value={value}
-        disabled={boolean('disabled', Combobox.defaultProps.disabled)}
-        noResultsLabel={text('noResultsLabel', Combobox.defaultProps.noResultsLabel)}
-        placeholder={text('placeholder', Combobox.defaultProps.placeholder)}
-        inputClassName={text('inputClassName', '')}
-        portalEl={document.body}
+        menuMaxHeight="20rem"
+        {...args}
       />
-    </>
-  );
+    );
+  },
+};
+
+export const CreatableOptions = {
+  args: {
+    direction: '',
+    disabled: Combobox.defaultProps.disabled,
+    noResultsLabel: Combobox.defaultProps.noResultsLabel,
+    placeholder: Combobox.defaultProps.placeholder,
+    inputClassName: '',
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState();
+    const [opts, setOpts] = useState(options);
+
+    const onCreate = (str) => {
+      const newOpt = { value: str, label: str };
+      setOpts([...opts, newOpt]);
+
+      return newOpt.value;
+    };
+
+    return (
+      <Combobox onChange={setValue} onCreate={onCreate} options={opts} value={value} {...args} />
+    );
+  },
+};
+
+export const CustomOptions = {
+  render: function Render() {
+    const [value, setValue] = useState();
+    const mixedOptions = [
+      {
+        label: '71548561868 Super-duper long word like impossibly long Lane',
+        value: 'address-1',
+        type: 'address',
+      },
+      { label: '439 Sunset Drive', value: 'address-2', disabled: true, type: 'address' },
+      { label: '940 Penguin Ct', value: 'address-3', type: 'address' },
+      { label: 'Ice Bear', value: 'tenant-1', type: 'tenant' },
+      { label: 'Panda', value: 'tenant-2', type: 'tenant' },
+      { label: '77 Snowball Blvd', value: 'address-4', type: 'address' },
+      { label: 'Bob', value: 'tenant-3', type: 'tenant' },
+    ];
+    const renderOption = (option) => (
+      <div>
+        <Icon name={option.type === 'address' ? 'home' : 'user'} className="me-2 py-4" />
+        {option.label}
+      </div>
+    );
+
+    const renderInputValue = (option) => (
+      <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        {option.label}
+      </div>
+    );
+
+    return (
+      <Combobox
+        onChange={setValue}
+        options={mixedOptions}
+        value={value}
+        renderOption={renderOption}
+        renderInputValue={renderInputValue}
+        menuMaxHeight="20rem"
+      />
+    );
+  },
+};
+
+export const PortalElement = {
+  args: {
+    direction: '',
+    disabled: Combobox.defaultProps.disabled,
+    noResultsLabel: Combobox.defaultProps.noResultsLabel,
+    placeholder: Combobox.defaultProps.placeholder,
+    inputClassName: '',
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState();
+    return (
+      <>
+        <div>value: {value}</div>
+        <Combobox
+          onChange={setValue}
+          options={options}
+          value={value}
+          portalEl={document.body}
+          {...args}
+        />
+      </>
+    );
+  },
 };

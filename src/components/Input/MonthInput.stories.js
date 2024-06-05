@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
 import React from 'react';
 import FormRow from '../Form/FormRow';
 import Icon from '../Icon/Icon';
@@ -13,23 +12,21 @@ export default {
   },
 };
 
-export const WithProps = () => (
+export const WithProps = (args) => (
   <div className="d-flex">
-    <MonthInput
-      centerYearSelection={boolean(
-        'centerYearSelection',
-        MonthInput.defaultProps.centerYearSelection
-      )}
-      dateFormat={text('dateFormat', MonthInput.defaultProps.dateFormat)}
-      monthFormat={text('monthFormat', MonthInput.defaultProps.monthFormat)}
-      yearFormat={text('yearFormat', MonthInput.defaultProps.yearFormat)}
-      showOnFocus={boolean('showOnFocus', MonthInput.defaultProps.showOnFocus)}
-      disabled={boolean('disabled', MonthInput.defaultProps.disabled)}
-      onBlur={action('onBlur')}
-      onChange={action('onChange')}
-    />
+    <MonthInput {...args} />
   </div>
 );
+WithProps.args = {
+  centerYearSelection: MonthInput.defaultProps.centerYearSelection,
+  dateFormat: MonthInput.defaultProps.dateFormat,
+  monthFormat: MonthInput.defaultProps.monthFormat,
+  yearFormat: MonthInput.defaultProps.yearFormat,
+  showOnFocus: MonthInput.defaultProps.showOnFocus,
+  disabled: MonthInput.defaultProps.disabled,
+  onBlur: action('onBlur'),
+  onChange: action('onChange'),
+};
 
 export const DefaultValueUncontrolled = () => (
   <div>

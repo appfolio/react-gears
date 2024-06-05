@@ -1,4 +1,3 @@
-import { text, boolean } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import PatternInput from './PatternInput';
 
@@ -10,15 +9,18 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = ({ pattern, restrictInput }) => {
   const [value, setValue] = useState('');
-  const pattern = text('pattern', '^\\d{0,3}(\\.\\d{0,2})?$');
   return (
     <PatternInput
       pattern={new RegExp(pattern)}
-      restrictInput={boolean('restrictInput', true)}
+      restrictInput={restrictInput}
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
   );
+};
+LiveExample.args = {
+  pattern: '^\\d{0,3}(\\.\\d{0,2})?$',
+  restrictInput: true,
 };

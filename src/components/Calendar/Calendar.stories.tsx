@@ -1,19 +1,29 @@
 import { action } from '@storybook/addon-actions';
-import { select } from '@storybook/addon-knobs';
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Calendar from './Calendar';
 
-export default {
+const meta: Meta<typeof Calendar> = {
   title: 'Calendar',
   component: Calendar,
   parameters: {
     sourceLink: 'Calendar/Calendar.tsx',
   },
+  argTypes: {
+    weekDayFormat: {
+      options: [undefined, 'dd', 'ddd', 'dddd'],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 
-export const CalendarExample = () => (
-  <Calendar
-    onSelect={action('onSelect')}
-    weekDayFormat={select('weekday format', ['dd', 'ddd', 'dddd'], 'dd')}
-  />
-);
+export default meta;
+type Story = StoryObj<typeof Calendar>;
+
+export const CalendarExample: Story = {
+  args: {
+    onSelect: action('onSelect'),
+    weekDayFormat: undefined,
+  },
+};

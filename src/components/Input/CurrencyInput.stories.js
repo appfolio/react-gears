@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
 import React from 'react';
 import CurrencyInput from './CurrencyInput';
 
@@ -11,16 +10,18 @@ export default {
   },
 };
 
-export const Example = () => (
-  <CurrencyInput
-    onChange={action('onChange')}
-    allowDecimal={boolean('allowDecimal', true)}
-    allowNegative={boolean('allowNegative', true)}
-    includeThousandsSeparator={boolean('includeThousandsSeparator', true)}
-    padZeros={boolean('padZeros', true)}
-  />
-);
+export const Example = (args) => <CurrencyInput {...args} />;
+Example.args = {
+  onChange: action('onChange'),
+  allowDecimal: true,
+  allowNegative: true,
+  includeThousandsSeparator: true,
+  padZeros: true,
+};
 
-export const RightAligned = () => (
-  <CurrencyInput inputProps={{ className: 'text-end' }} onChange={action('onChange')} />
+export const RightAligned = (args) => (
+  <CurrencyInput inputProps={{ className: 'text-end' }} {...args} />
 );
+RightAligned.args = {
+  onChange: action('onChange'),
+};

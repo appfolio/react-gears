@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Paginator from './Paginator';
 
@@ -11,13 +10,20 @@ export default {
   },
 };
 
-export const PaginatorExample = () => (
-  <Paginator
-    currentPage={number('currentPage', 1, { min: 1, max: 19 })}
-    onClick={action('onClick')}
-    perPage={select('perPage', [5, 10, 20, 25], 20)}
-    size={select('size', ['', 'sm', 'lg'], '')}
-    summary={text('summary')}
-    totalItems={100}
-  />
-);
+export const PaginatorExample = (args) => <Paginator totalItems={100} {...args} />;
+PaginatorExample.args = {
+  currentPage: 1,
+  onClick: action('onClick'),
+  perPage: 20,
+  size: '',
+  summary: undefined,
+};
+PaginatorExample.argTypes = {
+  currentPage: {
+    control: {
+      type: 'number',
+      min: 1,
+      max: 19,
+    },
+  },
+};

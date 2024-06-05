@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import { colors } from '../../tooling/colors';
 import ListGroup from './ListGroup';
@@ -13,28 +12,41 @@ export default {
   },
 };
 
-export const ListGroupExample = () => (
-  <ListGroup flush={boolean('flush', false)} striped={boolean('striped', false)}>
+export const ListGroupExample = ({ onClick, ...args }) => (
+  <ListGroup {...args}>
     <ListGroupItem active>Alpha</ListGroupItem>
     <ListGroupItem action>Bravo</ListGroupItem>
-    <ListGroupItem action onClick={action('onClick')}>
+    <ListGroupItem action onClick={onClick}>
       Charlie
     </ListGroupItem>
     <ListGroupItem disabled>Delta (disabled)</ListGroupItem>
     <ListGroupItem action>Echo</ListGroupItem>
   </ListGroup>
 );
+ListGroupExample.args = {
+  flush: false,
+  striped: false,
+  onClick: action('onClick'),
+};
 
-export const ListGroupItemExample = () => (
-  <ListGroup flush={boolean('flush (ListGroup)', false)}>
-    <ListGroupItem
-      active={boolean('active', false)}
-      action={boolean('action', false)}
-      color={select('color', ['', ...colors], undefined)}
-      disabled={boolean('disabled', false)}
-      onClick={action('onClick')}
-    >
-      Button Action
-    </ListGroupItem>
+export const ListGroupItemExample = ({ flush, ...args }) => (
+  <ListGroup flush={flush}>
+    <ListGroupItem {...args}>Button Action</ListGroupItem>
   </ListGroup>
 );
+ListGroupItemExample.args = {
+  flush: false,
+  active: false,
+  action: false,
+  color: undefined,
+  disabled: false,
+  onClick: action('onClick'),
+};
+ListGroupItemExample.argTypes = {
+  color: {
+    control: {
+      type: 'select',
+      options: ['', ...colors],
+    },
+  },
+};

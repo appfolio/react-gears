@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import EditableNote from './EditableNote';
 import EditableNoteMentions from './EditableNoteMentions';
@@ -20,97 +19,103 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = ({ deleted, edited, editing, from, text, title, ...args }) => {
   const note = {
     date: new Date(),
-    deleted: boolean('deleted', false),
-    edited: boolean('edited', false),
-    editing: boolean('editing', false),
-    from: text('from', 'Gary Thomas'),
-    text: text('text', 'Goodbye Cruel World'),
-    title: text('title', ''),
+    deleted,
+    edited,
+    editing,
+    from,
+    text,
+    title,
   };
 
-  return (
-    <Note
-      dateFormat={text('dateFormat', Note.defaultProps.dateFormat)}
-      note={note}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onDelete={action('onDelete')}
-      onEdit={action('onEdit')}
-      onSave={action('onSave')}
-      onUndelete={action('onUndelete')}
-      rows={number('rows', Note.defaultProps.rows)}
-      saving={boolean('saving')}
-      saveLabel={text('saveLabel', EditableNote.defaultProps.saveLabel)}
-      savingLabel={text('savingLabel', EditableNote.defaultProps.savingLabel)}
-    />
-  );
+  return <Note note={note} {...args} />;
+};
+LiveExample.args = {
+  deleted: false,
+  edited: false,
+  editing: false,
+  from: 'Gary Thomas',
+  text: 'Goodbye Cruel World',
+  title: '',
+  dateFormat: Note.defaultProps.dateFormat,
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onDelete: action('onDelete'),
+  onEdit: action('onEdit'),
+  onSave: action('onSave'),
+  onUndelete: action('onUndelete'),
+  rows: Note.defaultProps.rows,
+  saving: undefined,
+  saveLabel: EditableNote.defaultProps.saveLabel,
+  savingLabel: EditableNote.defaultProps.savingLabel,
 };
 
-export const WithChildren = () => {
+export const WithChildren = ({ deleted, edited, editing, from, text, ...args }) => {
   const note = {
     date: new Date(),
-    deleted: boolean('deleted', false),
-    edited: boolean('edited', false),
-    editing: boolean('editing', false),
-    from: text('from', 'Aaron Panchal'),
-    text: text('text', 'Everybody wants to rule the world.'),
+    deleted,
+    edited,
+    editing,
+    from,
+    text,
   };
 
   return (
-    <Note
-      note={note}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onDelete={action('onDelete')}
-      onEdit={action('onEdit')}
-      onSave={action('onSave')}
-      onUndelete={action('onUndelete')}
-      rows={number('rows', Note.defaultProps.rows)}
-      saving={boolean('saving')}
-    >
+    <Note note={note} {...args}>
       <img src="http://lorempixel.com/200/100/sports/" alt="Sample" />
     </Note>
   );
 };
-
-export const EditableNoteExample = () => {
-  const withNote = boolean('with note', true);
-  const note = withNote ? noteToEdit : { text: '' };
-
-  return (
-    <EditableNote
-      note={note}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onSave={action('onSave')}
-      saving={boolean('saving', false)}
-    />
-  );
+WithChildren.args = {
+  deleted: false,
+  edited: false,
+  editing: false,
+  from: 'Aaron Panchal',
+  text: 'Everybody wants to rule the world.',
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onDelete: action('onDelete'),
+  onEdit: action('onEdit'),
+  onSave: action('onSave'),
+  onUndelete: action('onUndelete'),
+  rows: Note.defaultProps.rows,
+  saving: undefined,
 };
 
-export const EditableNoteWithChildren = () => {
-  const withNote = boolean('with note', true);
-  const saving = boolean('saving', false);
+export const EditableNoteExample = ({ withNote, ...args }) => {
+  const note = withNote ? noteToEdit : { text: '' };
+
+  return <EditableNote note={note} {...args} />;
+};
+EditableNoteExample.args = {
+  withNote: true,
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onSave: action('onSave'),
+  saving: false,
+};
+
+export const EditableNoteWithChildren = ({ withNote, ...args }) => {
   const note = withNote ? noteToEdit : { text: '' };
 
   return (
-    <EditableNote
-      note={note}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onSave={action('onSave')}
-      saving={saving}
-    >
+    <EditableNote note={note} {...args}>
       <span>Add an attachment: </span>
-      <button disabled={saving} type="button">
+      <button disabled={args.saving} type="button">
         Choose file...
       </button>
       <hr />
     </EditableNote>
   );
+};
+EditableNoteWithChildren.args = {
+  withNote: true,
+  saving: false,
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onSave: action('onSave'),
 };
 
 const mentionableUsers = [
@@ -136,34 +141,37 @@ const mentionableUsers = [
   },
 ];
 
-export const NoteWithMentions = () => {
+export const NoteWithMentions = ({ deleted, edited, editing, from, text, title, ...args }) => {
   const noteWithMentions = {
     date: new Date(),
-    deleted: boolean('deleted', false),
-    edited: boolean('edited', false),
-    editing: boolean('editing', false),
-    from: text('from', 'Tom Brady'),
-    text: text('text', 'Hi @Satoshi.Nakamoto Who are you??? I lost all my crypto.'),
-    title: text('title', ''),
+    deleted,
+    edited,
+    editing,
+    from,
+    text,
+    title,
   };
 
-  return (
-    <NoteMentions
-      mentionableUsers={mentionableUsers}
-      note={noteWithMentions}
-      onCancel={action('onCancel')}
-      onChange={action('onChange')}
-      onDelete={action('onDelete')}
-      onEdit={action('onEdit')}
-      onSave={action('onSave')}
-      onUndelete={action('onUndelete')}
-      rows={number('rows', Note.defaultProps.rows)}
-      saving={boolean('saving')}
-    />
-  );
+  return <NoteMentions mentionableUsers={mentionableUsers} note={noteWithMentions} {...args} />;
+};
+NoteWithMentions.args = {
+  deleted: false,
+  edited: false,
+  editing: false,
+  from: 'Tom Brady',
+  text: 'Hi @Satoshi.Nakamoto Who are you??? I lost all my crypto.',
+  title: '',
+  onCancel: action('onCancel'),
+  onChange: action('onChange'),
+  onDelete: action('onDelete'),
+  onEdit: action('onEdit'),
+  onSave: action('onSave'),
+  onUndelete: action('onUndelete'),
+  rows: Note.defaultProps.rows,
+  saving: undefined,
 };
 
-export const EditableNoteWithMentions = () => {
+export const EditableNoteWithMentions = (args) => {
   const [note, setNote] = useState({
     date: new Date(),
     from: 'Tom Brady',
@@ -178,16 +186,19 @@ export const EditableNoteWithMentions = () => {
     <EditableNoteMentions
       mentionableUsers={mentionableUsers}
       note={note}
-      onCancel={action('onCancel')}
       onChange={onNoteChange}
-      onSave={action('onSave')}
-      saving={boolean('saving', false)}
       showMentionsEditNotificationWarning
+      {...args}
     />
   );
 };
+EditableNoteWithMentions.args = {
+  onCancel: action('onCancel'),
+  onSave: action('onSave'),
+  saving: false,
+};
 
-export const EditableNoteWithMentionsEditNotificationAlert = () => {
+export const EditableNoteWithMentionsEditNotificationAlert = (args) => {
   const [note, setNote] = useState({
     date: new Date(),
     from: 'Tom Brady',
@@ -202,11 +213,14 @@ export const EditableNoteWithMentionsEditNotificationAlert = () => {
     <EditableNoteMentions
       mentionableUsers={mentionableUsers}
       note={note}
-      onCancel={action('onCancel')}
       onChange={onNoteChange}
-      onSave={action('onSave')}
-      saving={boolean('saving', false)}
       showMentionsEditNotificationWarning
+      {...args}
     />
   );
+};
+EditableNoteWithMentionsEditNotificationAlert.args = {
+  onCancel: action('onCancel'),
+  onSave: action('onSave'),
+  saving: false,
 };

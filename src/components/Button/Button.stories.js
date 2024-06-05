@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import { buttonColors } from '../../tooling/colors';
 import DropdownItem from '../Dropdown/DropdownItem';
@@ -20,18 +19,26 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Button
-    color={select('color', buttonColors, 'primary')}
-    block={boolean('block', false)}
-    disabled={boolean('disabled', false)}
-    outline={boolean('outline', false)}
-    active={boolean('active', false)}
-    size={select('size', ['', 'sm', 'lg'])}
-  >
-    {text('Label', 'Click Me')}
-  </Button>
-);
+export const LiveExample = ({ label, ...args }) => <Button {...args}>{label}</Button>;
+LiveExample.args = {
+  color: 'primary',
+  block: false,
+  disabled: false,
+  outline: false,
+  active: false,
+  size: undefined,
+  label: 'Click Me',
+};
+LiveExample.argTypes = {
+  color: {
+    options: buttonColors,
+    control: { type: 'select' },
+  },
+  size: {
+    options: ['', 'sm', 'lg'],
+    control: { type: 'select' },
+  },
+};
 
 export const Colors = () => (
   <ButtonToolbar>
@@ -130,17 +137,27 @@ export const Sizes = () => (
   </div>
 );
 
-export const TooltipButtonExample = () => (
-  <TooltipButton
-    color={select('color', buttonColors, 'primary')}
-    disabled={boolean('disabled', false)}
-    onClick={action('onClick')}
-    tooltip={text('tooltip', 'Here is a tooltip.')}
-    tooltipPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
-  >
-    {text('Label', 'Click Me')}
-  </TooltipButton>
+export const TooltipButtonExample = ({ label, ...args }) => (
+  <TooltipButton {...args}>{label}</TooltipButton>
 );
+TooltipButtonExample.args = {
+  color: 'primary',
+  disabled: false,
+  onClick: action('onClick'),
+  tooltip: 'Here is a tooltip.',
+  placement: 'top',
+  label: 'Click Me',
+};
+TooltipButtonExample.argTypes = {
+  color: {
+    options: buttonColors,
+    control: { type: 'select' },
+  },
+  placement: {
+    options: ['top', 'left', 'bottom', 'right'],
+    control: { type: 'select' },
+  },
+};
 
 export const ButtonGroupExample = () => (
   <div>

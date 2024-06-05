@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number } from '@storybook/addon-knobs';
 import React from 'react';
 import Steps from './Steps';
 
@@ -18,51 +17,47 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Steps
-    steps={steps}
-    step={number('step', 0)}
-    complete={boolean('complete', false)}
-    vertical={boolean('vertical', false)}
-    collapse={boolean('collapse', false)}
-  />
-);
+export const LiveExample = (args) => <Steps steps={steps} {...args} />;
+LiveExample.args = {
+  step: 0,
+  complete: false,
+  vertical: false,
+  collapse: false,
+};
 
-export const Vertical = () => (
-  <Steps
-    steps={steps}
-    step={number('step', 0)}
-    complete={boolean('complete', false)}
-    vertical={boolean('vertical', true)}
-    collapse={boolean('collapse', false)}
-  />
-);
+export const Vertical = (args) => <Steps steps={steps} {...args} />;
+Vertical.args = {
+  step: 0,
+  complete: false,
+  vertical: true,
+  collapse: false,
+};
 
-export const Clickable = () => (
-  <Steps
-    steps={steps}
-    step={number('step', 0)}
-    complete={boolean('complete', false)}
-    vertical={boolean('vertical', false)}
-    collapse={boolean('collapse', false)}
-    onStepClick={action('index')}
-  />
-);
+export const Clickable = (args) => <Steps steps={steps} {...args} />;
+Clickable.args = {
+  step: 0,
+  complete: false,
+  vertical: false,
+  collapse: false,
+  onStepClick: action('index'),
+};
 
-export const Granular = () => (
-  <Steps
-    granular
-    steps={steps}
-    step={number('step', 0)}
-    complete={boolean('complete', false)}
-    vertical={boolean('vertical', false)}
-    collapse={boolean('collapse', false)}
-    onStepClick={action('index')}
-    stepProgress={number('stepProgress', 30, {
-      range: true,
+export const Granular = (args) => <Steps granular steps={steps} {...args} />;
+Granular.args = {
+  step: 0,
+  complete: false,
+  vertical: false,
+  collapse: false,
+  onStepClick: action('index'),
+  stepProgress: 30,
+};
+Granular.argTypes = {
+  stepProgress: {
+    control: {
+      type: 'range',
       min: 0,
       max: 100,
       step: 1,
-    })}
-  />
-);
+    },
+  },
+};

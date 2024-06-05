@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { number, boolean } from '@storybook/addon-knobs';
 import React from 'react';
 import Nav from './Nav';
 import NavItem from './NavItem';
@@ -13,116 +12,118 @@ export default {
   },
 };
 
-export const Tabs = () => {
-  const activeTab = number('activeTab', 1);
-  return (
-    <div>
-      <Nav tabs fill={boolean('fill', undefined)} justified={boolean('justified', undefined)}>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
-            Receivables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 2} onClick={action('onClick')}>
-            Payables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 3} onClick={action('onClick')}>
-            Bank Accounts
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 4} onClick={action('onClick')}>
-            Journal Entries
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 5} disabled onClick={action('onClick')}>
-            Disabled
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </div>
-  );
+export const Tabs = ({ activeTab, onClick, fill, justified }) => (
+  <div>
+    <Nav tabs fill={fill} justified={justified}>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 1} onClick={onClick}>
+          Receivables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 2} onClick={onClick}>
+          Payables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 3} onClick={onClick}>
+          Bank Accounts
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 4} onClick={onClick}>
+          Journal Entries
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 5} disabled onClick={onClick}>
+          Disabled
+        </NavLink>
+      </NavItem>
+    </Nav>
+  </div>
+);
+Tabs.args = {
+  activeTab: 1,
+  fill: undefined,
+  justified: undefined,
+  onClick: action('onClick'),
 };
 
-export const Pills = () => {
-  const activeTab = number('activeTab', 1);
-  return (
-    <div>
-      <Nav
-        pills
-        fill={boolean('fill', undefined)}
-        justified={boolean('justified', undefined)}
-        vertical={boolean('vertical', false)}
-      >
-        <NavItem>
-          <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
-            Receivables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 2} onClick={action('onClick')}>
-            Payables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 3} onClick={action('onClick')}>
-            Bank Accounts
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 4} onClick={action('onClick')}>
-            Journal Entries
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 5} disabled onClick={action('onClick')}>
-            Disabled
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </div>
-  );
+export const Pills = ({ activeTab, onClick, fill, justified, vertical }) => (
+  <div>
+    <Nav pills fill={fill} justified={justified} vertical={vertical}>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 1} onClick={onClick}>
+          Receivables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 2} onClick={onClick}>
+          Payables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 3} onClick={onClick}>
+          Bank Accounts
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 4} onClick={onClick}>
+          Journal Entries
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 5} disabled onClick={onClick}>
+          Disabled
+        </NavLink>
+      </NavItem>
+    </Nav>
+  </div>
+);
+Pills.args = {
+  activeTab: 1,
+  fill: undefined,
+  justified: undefined,
+  vertical: false,
+  onClick: action('onClick'),
 };
 
-export const Default = () => {
-  const activeTab = number('activeTab', 1);
-  return (
-    <div>
-      <Nav
-        vertical={boolean('vertical', false)}
-        fill={boolean('fill', undefined)}
-        justified={boolean('justified', undefined)}
-      >
-        <NavItem>
-          <NavLink href="#" active={activeTab === 1} onClick={action('onClick')}>
-            Receivables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 2} onClick={action('onClick')}>
-            Payables
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 3} onClick={action('onClick')}>
-            Bank Accounts
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 4} onClick={action('onClick')}>
-            Journal Entries
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active={activeTab === 5} disabled onClick={action('onClick')}>
-            Disabled
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </div>
-  );
+export const Default = ({ activeTab, onClick, fill, justified, vertical }) => (
+  <div>
+    <Nav vertical={vertical} fill={fill} justified={justified}>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 1} onClick={onClick}>
+          Receivables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 2} onClick={onClick}>
+          Payables
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 3} onClick={onClick}>
+          Bank Accounts
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 4} onClick={onClick}>
+          Journal Entries
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#" active={activeTab === 5} disabled onClick={onClick}>
+          Disabled
+        </NavLink>
+      </NavItem>
+    </Nav>
+  </div>
+);
+Default.args = {
+  activeTab: 1,
+  vertical: false,
+  fill: undefined,
+  justified: undefined,
+  onClick: action('onClick'),
 };

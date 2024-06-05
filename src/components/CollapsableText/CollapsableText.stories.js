@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { boolean, number, text, radios } from '@storybook/addon-knobs';
 import React from 'react';
 import Icon from '../Icon/Icon';
 import CollapsableText from './CollapsableText';
@@ -19,29 +18,35 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <CollapsableText
-    collapsed={boolean('collapsed', CollapsableText.defaultProps.collapsed)}
-    maxLines={number('maxLines', CollapsableText.defaultProps.maxLines)}
-    moreLabel={text('showMore', CollapsableText.defaultProps.moreLabel)}
-    lessLabel={text('lessLabel', CollapsableText.defaultProps.lessLabel)}
-    alignToggleButton={radios(
-      'alignToggleButton',
-      ['start', 'center', 'end', 'auto'],
-      CollapsableText.defaultProps.alignToggleButton
-    )}
-  >
+export const LiveExample = (args) => (
+  <CollapsableText {...args}>
     Some text <strong>with bold</strong> and <a href="#">links and other things</a>
     <br />
     {loremIpsum}
   </CollapsableText>
 );
+LiveExample.args = {
+  collapsed: CollapsableText.defaultProps.collapsed,
+  maxLines: CollapsableText.defaultProps.maxLines,
+  moreLabel: CollapsableText.defaultProps.moreLabel,
+  lessLabel: CollapsableText.defaultProps.lessLabel,
+  alignToggleButton: CollapsableText.defaultProps.alignToggleButton,
+};
+LiveExample.argTypes = {
+  alignToggleButton: {
+    options: ['start', 'center', 'end', 'auto'],
+    control: { type: 'radio' },
+  },
+};
 
-export const ShorterThanMaxLines = () => (
+export const ShorterThanMaxLines = ({ maxLines }) => (
   <div>
-    <CollapsableText maxLines={number('maxLines', 2)}>Short text</CollapsableText>
+    <CollapsableText maxLines={maxLines}>Short text</CollapsableText>
   </div>
 );
+ShorterThanMaxLines.args = {
+  maxLines: 2,
+};
 
 export const CustomComponents = () => (
   <div>

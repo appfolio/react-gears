@@ -1,4 +1,3 @@
-import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import TruncatedText from './TruncatedText';
 
@@ -10,14 +9,22 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
-    <TruncatedText
-      targetId="TruncatedTextExample"
-      charLimit={number('charLimit', 20)}
-      text={text('text', 'The quick brown fox jumps over the lazy dog')}
-      tooltip={boolean('tooltip', true)}
-      placement={select('placement', ['top', 'bottom', 'left', 'right'])}
-    />
+    <TruncatedText targetId="TruncatedTextExample" {...args} />
   </div>
 );
+LiveExample.args = {
+  charLimit: 20,
+  text: 'The quick brown fox jumps over the lazy dog',
+  tooltip: true,
+  placement: undefined,
+};
+LiveExample.argTypes = {
+  placement: {
+    control: {
+      type: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+    },
+  },
+};

@@ -1,4 +1,3 @@
-import { text, boolean, select } from '@storybook/addon-knobs';
 import React from 'react';
 import Button from '../Button/Button';
 import Icon from './Icon';
@@ -15,40 +14,69 @@ export default {
 };
 
 // React component for font awesome v6
-export const LiveExample = () => (
-  <Icon
-    name={text('name', 'motorcycle')}
-    size={select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x')}
-    spin={boolean('spin', false)}
-    pulse={boolean('pulse', false)}
-    rotate={select('rotate', ['', '90', '180', '270'], '')}
-    flip={select('flip', ['', 'horizontal', 'vertical'], '')}
-    border={boolean('border', false)}
-    iconStyle={select(
-      'iconStyle',
-      ['regular', 'solid', 'thin', 'light', 'duotone', 'brands'],
-      'solid'
-    )}
-  />
-);
+export const LiveExample = (args) => <Icon {...args} />;
+LiveExample.args = {
+  name: 'motorcycle',
+  size: '4x',
+  spin: false,
+  pulse: false,
+  rotate: '',
+  flip: '',
+  border: false,
+  iconStyle: 'solid',
+};
+LiveExample.argTypes = {
+  size: {
+    control: {
+      type: 'select',
+      options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
+    },
+  },
+  rotate: {
+    control: {
+      type: 'radio',
+      options: ['', '90', '180', '270'],
+    },
+  },
+  flip: {
+    control: {
+      type: 'radio',
+      options: ['', 'horizontal', 'vertical'],
+    },
+  },
+  iconStyle: {
+    control: {
+      type: 'select',
+      options: ['regular', 'solid', 'thin', 'light', 'duotone', 'brands'],
+    },
+  },
+};
 
-export const AvailableIcons = () => {
-  const size = select('size', ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'], '4x');
-  return (
-    <div>
-      <em>Hover over icon to view name:</em>
-      <br />
-      {icons.map((name, i) => (
-        <Icon
-          name={name}
-          fixedWidth
-          size={size}
-          title={name}
-          className={`py-2 text-${colors[i % colors.length]}`}
-        />
-      ))}
-    </div>
-  );
+export const AvailableIcons = ({ size }) => (
+  <div>
+    <em>Hover over icon to view name:</em>
+    <br />
+    {icons.map((name, i) => (
+      <Icon
+        name={name}
+        fixedWidth
+        size={size}
+        title={name}
+        className={`py-2 text-${colors[i % colors.length]}`}
+      />
+    ))}
+  </div>
+);
+AvailableIcons.args = {
+  size: '4x',
+};
+AvailableIcons.argTypes = {
+  size: {
+    control: {
+      type: 'radio',
+      options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
+    },
+  },
 };
 
 export const InlineText = () => (

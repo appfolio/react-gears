@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Button from '../Button/Button';
 import ExpandableSection from './ExpandableSection';
@@ -12,27 +11,29 @@ export default {
   },
 };
 
-export const Default = () => (
-  <ExpandableSection
-    title={text('title', 'Click to expand me')}
-    open={boolean('open', ExpandableSection.defaultProps.open)}
-    onToggle={action('onToggle')}
-  >
+export const Default = (args) => (
+  <ExpandableSection {...args}>
     <h2>BOO!</h2>
   </ExpandableSection>
 );
+Default.args = {
+  title: 'Click to expand me',
+  open: ExpandableSection.defaultProps.open,
+  onToggle: action('onToggle'),
+};
 
-export const Open = () => (
-  <ExpandableSection
-    title={text('title', 'Expanded by default')}
-    open={boolean('open', true)}
-    onToggle={action('onToggle')}
-  >
+export const Open = (args) => (
+  <ExpandableSection {...args}>
     <h2>BOO!</h2>
   </ExpandableSection>
 );
+Open.args = {
+  title: 'Expanded by default',
+  open: true,
+  onToggle: action('onToggle'),
+};
 
-export const Header = () => (
+export const Header = (args) => (
   <ExpandableSection
     title={
       <>
@@ -47,9 +48,12 @@ export const Header = () => (
         </Button>
       </>
     }
-    open={boolean('open', true)}
-    onToggle={action('onToggle')}
+    {...args}
   >
     <h2>BOO!</h2>
   </ExpandableSection>
 );
+Header.args = {
+  open: true,
+  onToggle: action('onToggle'),
+};

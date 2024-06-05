@@ -1,28 +1,52 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import MonthCalendar from './MonthCalendar';
 
-export default {
+const meta: Meta<typeof MonthCalendar> = {
   title: 'Calendar',
   component: MonthCalendar,
   parameters: {
     sourceLink: 'Calendar/MonthCalendar.tsx',
   },
+  argTypes: {
+    monthFormat: {
+      options: ['M', 'MM', 'MMM', 'MMMM'],
+      control: {
+        type: 'select',
+      },
+    },
+    yearFormat: {
+      options: ['YY', 'YYYY'],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 
-export const MonthCalendarExample = () => {
-  const [date, setDate] = useState(new Date());
-  return (
-    <MonthCalendar
-      date={date}
-      onSelect={(e) => {
-        setDate(e);
-        action('onSelect')(e);
-      }}
-      centerYearSelection={boolean('Center Year Selection', false)}
-      monthFormat={select('Month Format', ['M', 'MM', 'MMM', 'MMMM'], 'MMM')}
-      yearFormat={select('Year Format', ['YY', 'YYYY'], 'YYYY')}
-    />
-  );
+export default meta;
+type Story = StoryObj<typeof MonthCalendar>;
+
+export const MonthCalendarExample: Story = {
+  args: {
+    centerYearSelection: false,
+    monthFormat: 'MMM',
+    yearFormat: 'YYYY',
+  },
+  render: function Render({ centerYearSelection, monthFormat, yearFormat }) {
+    const [date, setDate] = useState(new Date());
+    return (
+      <MonthCalendar
+        date={date}
+        onSelect={(e) => {
+          setDate(e);
+          action('onSelect')(e);
+        }}
+        centerYearSelection={centerYearSelection}
+        monthFormat={monthFormat}
+        yearFormat={yearFormat}
+      />
+    );
+  },
 };

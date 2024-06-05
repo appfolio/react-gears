@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Button from '../Button/Button';
 import ButtonGroup from '../Button/ButtonGroup';
@@ -22,26 +21,9 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <BlockPanel
-    title={text('title', 'Some simple content would go here')}
-    onEdit={() => action('onEdit')}
-    color={select('color', [
-      '',
-      'primary',
-      'secondary',
-      'info',
-      'success',
-      'warning',
-      'danger',
-      'light',
-      'dark',
-    ])}
-    expandable={boolean('expandable', true)}
-    hideOnToggle={boolean('hideOnToggle', false)}
-    open={boolean('open', true)}
-  >
-    {text('title') ? (
+export const LiveExample = (args) => (
+  <BlockPanel {...args}>
+    {args.title ? (
       <div>
         The header is shown when a <em>title</em> prop is provided
       </div>
@@ -52,34 +34,45 @@ export const LiveExample = () => (
     )}
   </BlockPanel>
 );
+LiveExample.args = {
+  title: 'Some simple content would go here',
+  onEdit: action('onEdit'),
+  color: '',
+  expandable: true,
+  hideOnToggle: false,
+  open: true,
+};
+LiveExample.argTypes = {
+  color: {
+    options: ['', 'primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'],
+    control: { type: 'select' },
+  },
+};
 
-export const InitiallyClosed = () => (
-  <BlockPanel
-    title={text('title', 'Some simple content would go here')}
-    onEdit={() => action('onEdit')}
-    expandable={boolean('expandable', true)}
-    open={false}
-  >
+export const InitiallyClosed = (args) => (
+  <BlockPanel open={false} {...args}>
     Now you don&apos;t.
   </BlockPanel>
 );
+InitiallyClosed.args = {
+  title: 'Some simple content would go here',
+  onEdit: action('onEdit'),
+  expandable: true,
+};
 
-export const OnToggle = () => (
-  <BlockPanel
-    title={text('title', 'Click me you fool')}
-    onToggle={action('onToggle')}
-    expandable={boolean('expandable', true)}
-  >
-    Now you don&apos;t.
-  </BlockPanel>
-);
+export const OnToggle = (args) => <BlockPanel {...args}>Now you don&apos;t.</BlockPanel>;
+OnToggle.args = {
+  title: 'Click me you fool',
+  onToggle: action('onToggle'),
+  expandable: true,
+};
 
-export const ComponentsForTitleAndControls = () => (
+export const ComponentsForTitleAndControls = ({ title }) => (
   <BlockPanel
     expandable
     title={
       <span className="text-uppercase">
-        {text('title', 'Invoices')}{' '}
+        {title}{' '}
         <HelpBubble className="text-primary" title="What does this mean?">
           It means nothing.
         </HelpBubble>
@@ -105,11 +98,14 @@ export const ComponentsForTitleAndControls = () => (
     Hello
   </BlockPanel>
 );
+ComponentsForTitleAndControls.args = {
+  title: 'Invoices',
+};
 
-export const DropdownForControls = () => (
+export const DropdownForControls = ({ title }) => (
   <BlockPanel
     expandable
-    title={<span className="text-uppercase">{text('title', 'Invoices')}</span>}
+    title={<span className="text-uppercase">{title}</span>}
     controls={[
       <UncontrolledDropdown>
         <DropdownToggle
@@ -141,9 +137,15 @@ export const DropdownForControls = () => (
     entities in a service that somehow match red
   </BlockPanel>
 );
+DropdownForControls.args = {
+  title: 'Invoices',
+};
 
-export const StickyBlockPanel = () => (
-  <BlockPanel expandable stickyId="rememberMe" title={text('title', 'I remember open/close')}>
+export const StickyBlockPanel = ({ title }) => (
+  <BlockPanel expandable stickyId="rememberMe" title={title}>
     I feel sticky, oh so sticky, I feel sticky, and witty, and wise.
   </BlockPanel>
 );
+StickyBlockPanel.args = {
+  title: 'I remember open/close',
+};

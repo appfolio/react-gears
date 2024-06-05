@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, object, text, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import FormChoice from './FormChoice';
 import FormRow from './FormRow';
@@ -12,36 +11,49 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
-    <FormRow
-      id="firstName"
-      label={text('label', 'First Name')}
-      labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
-      feedback={text('feedback', 'You must give a first name')}
-      validFeedback={text('validFeedback')}
-      hint={text('hint', '')}
-      width={object('width', {})}
-      required={boolean('required', false)}
-      inline={boolean('inline', false)}
-      onChange={action('onChange')}
-      stacked={boolean('stacked', false)}
-      type={select('type', ['checkbox', 'number', 'password', 'radio', 'static', 'text'], 'text')}
-      value={text('value', 2)}
-    />
+    <FormRow id="firstName" {...args} />
   </div>
 );
+LiveExample.args = {
+  label: 'First Name',
+  labelSize: 'md',
+  feedback: 'You must give a first name',
+  validFeedback: undefined,
+  hint: '',
+  width: {},
+  required: false,
+  inline: false,
+  onChange: action('onChange'),
+  stacked: false,
+  type: 'text',
+  value: '2',
+};
+LiveExample.argTypes = {
+  labelSize: {
+    control: {
+      type: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+  },
+  type: {
+    control: {
+      type: 'select',
+      options: ['checkbox', 'number', 'password', 'radio', 'static', 'text'],
+    },
+  },
+};
 
-export const WithSelect = () => {
+export const WithSelect = (args) => {
   const [favorite, setFavorite] = useState('Bravo');
   return (
     <FormRow
       id="nato"
-      label={text('label', 'Favorite NATO Phonetic')}
       onChange={(e) => setFavorite(e.target.value)}
-      stacked={boolean('stacked', false)}
       type="select"
       value={favorite}
+      {...args}
     >
       <FormChoice key={1} value="Alpha">
         Alpha
@@ -58,112 +70,85 @@ export const WithSelect = () => {
     </FormRow>
   );
 };
+LiveExample.args = {
+  label: 'Favorite NATO Phonetic',
+  stacked: false,
+};
 
-export const WithCheckboxes = () => {
+export const WithCheckboxes = ({ label, stacked, inline }) => {
   const [favorites, setFavorites] = useState(['Bravo']);
   return (
     <FormRow
       id="nato"
-      label={text('label', 'Favorite NATO Phonetics')}
-      stacked={boolean('stacked', false)}
+      label={label}
+      stacked={stacked}
       onChange={(selection) => setFavorites(selection)}
       type="checkbox"
     >
-      <FormChoice
-        key={1}
-        checked={favorites.includes('Alpha')}
-        inline={boolean('inline', false)}
-        value="Alpha"
-      >
+      <FormChoice key={1} checked={favorites.includes('Alpha')} inline={inline} value="Alpha">
         Alpha
       </FormChoice>
-      <FormChoice
-        key={2}
-        checked={favorites.includes('Bravo')}
-        inline={boolean('inline', false)}
-        value="Bravo"
-      >
+      <FormChoice key={2} checked={favorites.includes('Bravo')} inline={inline} value="Bravo">
         Bravo
       </FormChoice>
-      <FormChoice
-        key={3}
-        checked={favorites.includes('Charlie')}
-        inline={boolean('inline', false)}
-        value="Charlie"
-      >
+      <FormChoice key={3} checked={favorites.includes('Charlie')} inline={inline} value="Charlie">
         Charlie
       </FormChoice>
-      <FormChoice
-        key={4}
-        checked={favorites.includes('Delta')}
-        inline={boolean('inline', false)}
-        value="Delta"
-      >
+      <FormChoice key={4} checked={favorites.includes('Delta')} inline={inline} value="Delta">
         Delta
       </FormChoice>
     </FormRow>
   );
 };
+WithCheckboxes.args = {
+  label: 'Favorite NATO Phonetics',
+  stacked: false,
+  inline: false,
+};
 
-export const WithRadioButtons = () => {
+export const WithRadioButtons = ({ label, stacked, inline }) => {
   const [favorite, setFavorite] = useState('Bravo');
   return (
     <FormRow
       id="nato"
-      label={text('label', 'Favorite NATO Phonetic')}
+      label={label}
       onChange={(e) => setFavorite(e.target.value)}
-      stacked={boolean('stacked', false)}
+      stacked={stacked}
       type="radio"
     >
-      <FormChoice
-        key={1}
-        name="nato"
-        checked={favorite === 'Alpha'}
-        inline={boolean('inline', false)}
-        value="Alpha"
-      >
+      <FormChoice key={1} name="nato" checked={favorite === 'Alpha'} inline={inline} value="Alpha">
         Alpha
       </FormChoice>
-      <FormChoice
-        key={2}
-        name="nato"
-        checked={favorite === 'Bravo'}
-        inline={boolean('inline', false)}
-        value="Bravo"
-      >
+      <FormChoice key={2} name="nato" checked={favorite === 'Bravo'} inline={inline} value="Bravo">
         Bravo
       </FormChoice>
       <FormChoice
         key={3}
         name="nato"
         checked={favorite === 'Charlie'}
-        inline={boolean('inline', false)}
+        inline={inline}
         value="Charlie"
       >
         Charlie
       </FormChoice>
-      <FormChoice
-        key={4}
-        name="nato"
-        checked={favorite === 'Delta'}
-        inline={boolean('inline', false)}
-        value="Delta"
-      >
+      <FormChoice key={4} name="nato" checked={favorite === 'Delta'} inline={inline} value="Delta">
         Delta
       </FormChoice>
     </FormRow>
   );
 };
+WithRadioButtons.args = {
+  label: 'Favorite NATO Phonetic',
+  stacked: false,
+  inline: false,
+};
 
-export const ControlledValue = () => {
+export const ControlledValue = (args) => {
   const [value, setValue] = React.useState('');
-  return (
-    <FormRow
-      label={text('label', 'Label')}
-      onChange={(e) => setValue(e.target.value)}
-      stacked={boolean('stacked', false)}
-      type={text('type', 'text')}
-      value={value}
-    />
-  );
+  return <FormRow onChange={(e) => setValue(e.target.value)} value={value} {...args} />;
+};
+ControlledValue.args = {
+  label: 'Label',
+  stacked: false,
+  type: 'text',
 };

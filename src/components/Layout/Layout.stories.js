@@ -1,4 +1,3 @@
-import { select } from '@storybook/addon-knobs';
 import React from 'react';
 import Col from './Col';
 import Container from './Container';
@@ -152,17 +151,9 @@ export const Responsive = () => (
   </Container>
 );
 
-export const Spacing = () => {
-  const margin = `m${select('margin sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select(
-    'margin amount',
-    [0, 1, 2, 3, 4, 5],
-    3
-  )}`;
-  const padding = `p${select('padding sides', ['', 't', 'b', 'l', 'r', 'x', 'y'], '')}-${select(
-    'padding amount',
-    [0, 1, 2, 3, 4, 5],
-    3
-  )}`;
+export const Spacing = ({ marginSide, marginAmount, paddingSide, paddingAmount }) => {
+  const margin = `m${marginSide}-${marginAmount}`;
+  const padding = `p${paddingSide}-${paddingAmount}`;
   return (
     <div>
       <p>
@@ -187,4 +178,28 @@ export const Spacing = () => {
       </h4>
     </div>
   );
+};
+Spacing.args = {
+  marginSide: '',
+  marginAmount: 3,
+  paddingSide: '',
+  paddingAmount: 3,
+};
+Spacing.argsTypes = {
+  marginSide: {
+    options: ['', 't', 'b', 'l', 'r', 'x', 'y'],
+    control: { type: 'select' },
+  },
+  marginAmount: {
+    options: [0, 1, 2, 3, 4, 5],
+    control: { type: 'select' },
+  },
+  paddingSide: {
+    options: ['', 't', 'b', 'l', 'r', 'x', 'y'],
+    control: { type: 'select' },
+  },
+  paddingAmount: {
+    options: [0, 1, 2, 3, 4, 5],
+    control: { type: 'select' },
+  },
 };

@@ -1,4 +1,3 @@
-import { text, boolean } from '@storybook/addon-knobs';
 import React from 'react';
 import Highlight from './Highlight';
 
@@ -10,22 +9,16 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Highlight
-    caseSensitive={boolean('caseSensitive', false)}
-    ignoreSpecial={boolean('ignoreSpecial', false)}
-    pattern={text('pattern', 'dog')}
-  >
-    {text('children', 'The quick brown fox jumps over the lazy dog.')}
-  </Highlight>
-);
+export const LiveExample = ({ children, ...args }) => <Highlight {...args}>{children}</Highlight>;
+LiveExample.args = {
+  caseSensitive: false,
+  ignoreSpecial: false,
+  pattern: 'dog',
+  children: 'The quick brown fox jumps over the lazy dog.',
+};
 
-export const DOMNodesAsChildren = () => (
-  <Highlight
-    caseSensitive={boolean('caseSensitive', false)}
-    ignoreSpecial={boolean('ignoreSpecial', false)}
-    pattern={text('pattern', 'dog')}
-  >
+export const DOMNodesAsChildren = (args) => (
+  <Highlight {...args}>
     <div>The quick brown fox jumps over the lazy dog.</div>
     <div>
       Henlo, I am doge. Gib treatos pls.
@@ -33,15 +26,21 @@ export const DOMNodesAsChildren = () => (
     </div>
   </Highlight>
 );
+DOMNodesAsChildren.args = {
+  caseSensitive: false,
+  ignoreSpecial: false,
+  pattern: 'dog',
+};
 
-export const UseRegexAsPattern = () => (
-  <Highlight
-    caseSensitive={boolean('caseSensitive', false)}
-    ignoreSpecial={boolean('ignoreSpecial', false)}
-    escape={boolean('escape', false)}
-    pattern={text('pattern', '(fox)|(dog)')}
-  >
+export const UseRegexAsPattern = (args) => (
+  <Highlight {...args}>
     <div>The quick brown fox jumps over the lazy dog.</div>
     <div>THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.</div>
   </Highlight>
 );
+UseRegexAsPattern.args = {
+  caseSensitive: false,
+  ignoreSpecial: false,
+  escape: false,
+  pattern: '(fox)|(dog)',
+};

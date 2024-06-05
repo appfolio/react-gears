@@ -1,4 +1,3 @@
-import { boolean, object, text, select } from '@storybook/addon-knobs';
 import React from 'react';
 import Alert from '../Alert/Alert';
 import Input from '../Input/Input';
@@ -14,25 +13,34 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
-    <FormLabelGroup
-      label={text('label', 'Some Input')}
-      labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
-      feedback={text('feedback', 'You must give a first name')}
-      validFeedback={text('validFeedback')}
-      hint={text('hint', '')}
-      width={object('width', {})}
-      required={boolean('required', false)}
-      inline={boolean('inline', false)}
-      stacked={boolean('stacked', false)}
-    >
+    <FormLabelGroup {...args}>
       <Alert color="info" className="text-center p-4 mb-0" style={{ borderStyle: 'dashed' }}>
         Your content here
       </Alert>
     </FormLabelGroup>
   </div>
 );
+LiveExample.args = {
+  label: 'Some Input',
+  labelSize: 'md',
+  feedback: 'You must give a first name',
+  validFeedback: undefined,
+  hint: '',
+  width: {},
+  required: false,
+  inline: false,
+  stacked: false,
+};
+LiveExample.argTypes = {
+  labelSize: {
+    control: {
+      type: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+  },
+};
 
 export const RadioExample = () => (
   <FormLabelGroup label="Transaction Method" stacked>

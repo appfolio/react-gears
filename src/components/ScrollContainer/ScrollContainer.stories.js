@@ -1,18 +1,39 @@
-import { number, text } from '@storybook/addon-knobs';
 import React from 'react';
 import ScrollContainer from './ScrollContainer';
 
-export default {
+const meta = {
   title: 'ScrollContainer',
   component: ScrollContainer,
   parameters: {
     sourceLink: 'ScrollContainer/ScrollContainer.tsx',
   },
+  argTypes: {
+    height: {
+      control: {
+        type: 'number',
+      },
+    },
+  },
+};
+export default meta;
+
+export const Default = (args) => (
+  <div>
+    <ScrollContainer {...args}>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+        alt="Map"
+      />
+    </ScrollContainer>
+  </div>
+);
+Default.args = {
+  height: undefined,
 };
 
-export const Default = () => (
+export const MaxHeight = (args) => (
   <div>
-    <ScrollContainer height={number('height')}>
+    <ScrollContainer {...args}>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
         alt="Map"
@@ -20,24 +41,13 @@ export const Default = () => (
     </ScrollContainer>
   </div>
 );
+MaxHeight.args = {
+  height: 300,
+};
 
-export const MaxHeight = () => (
+export const SaveScrollPosition = (args) => (
   <div>
-    <ScrollContainer height={number('height', 300)}>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
-        alt="Map"
-      />
-    </ScrollContainer>
-  </div>
-);
-
-export const SaveScrollPosition = () => (
-  <div>
-    <ScrollContainer
-      height={number('height', 500)}
-      scrollPositionKey={text('scrollPositionKey', 'story-example')}
-    >
+    <ScrollContainer {...args}>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg"
         alt="Map"
@@ -45,16 +55,20 @@ export const SaveScrollPosition = () => (
     </ScrollContainer>
   </div>
 );
+SaveScrollPosition.args = {
+  height: 500,
+  scrollPositionKey: 'story-example',
+};
 
-export const CustomTheme = () => (
+export const CustomTheme = (args) => (
   <ScrollContainer
-    height={number('height', 300)}
     theme={{
       overflowTop: 'border-dark border-top',
       overflowBottom: 'border-dark border-bottom',
       overflowLeft: 'border-dark border-start',
       overflowRight: 'border-dark border-end',
     }}
+    {...args}
   >
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
@@ -62,3 +76,6 @@ export const CustomTheme = () => (
     />
   </ScrollContainer>
 );
+CustomTheme.args = {
+  height: 300,
+};

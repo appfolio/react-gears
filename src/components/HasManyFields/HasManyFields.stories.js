@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import AddressInput from '../Address/AddressInput';
 import Input from '../Input/Input';
@@ -42,7 +41,7 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <HasManyFields
     defaultValue={items}
     template={AddressInput}
@@ -55,27 +54,39 @@ export const LiveExample = () => (
       countryCode: 'US',
     }}
     label="Add an Address"
-    disabled={boolean('disabled', false)}
-    onAdd={action('hasManyFields onAdd')}
-    onRemove={action('hasManyFields onRemove')}
-    onUpdate={action('hasManyFields onUpdate')}
-    onChange={action('hasManyFields onChange')}
-    minimumRows={number('minimumRows', 1)}
-    maximumRows={number('maximumRows', 5)}
-    reorderable={boolean('reorderable', false)}
+    {...args}
   />
 );
+LiveExample.args = {
+  disabled: false,
+  onAdd: action('hasManyFields onAdd'),
+  onRemove: action('hasManyFields onRemove'),
+  onUpdate: action('hasManyFields onUpdate'),
+  onChange: action('hasManyFields onChange'),
+  minimumRows: 1,
+  maximumRows: 5,
+  reorderable: false,
+};
 
-export const RowWrapper = () => (
-  <HasManyFieldsRow
-    onDelete={action('onDelete')}
-    disabled={boolean('disabled', false)}
-    disabledReason={text('disabledReason')}
-    disabledReasonPlacement={select('placement', ['top', 'left', 'bottom', 'right'], 'top')}
-  >
+export const RowWrapper = (args) => (
+  <HasManyFieldsRow {...args}>
     <Input defaultValue="I can put an input (or whatever else) inside a HasManyFieldsRow" />
   </HasManyFieldsRow>
 );
+RowWrapper.args = {
+  onDelete: action('onDelete'),
+  disabled: false,
+  disabledReason: undefined,
+  disabledReasonPlacement: 'top',
+};
+RowWrapper.argTypes = {
+  disabledReasonPlacement: {
+    control: {
+      type: 'select',
+      options: ['top', 'left', 'bottom', 'right'],
+    },
+  },
+};
 
 export const AddItemButton = () => (
   <HasManyFieldsAdd onClick={action('onClick')}>Button Label Content</HasManyFieldsAdd>

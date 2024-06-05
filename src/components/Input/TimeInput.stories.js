@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, text } from '@storybook/addon-knobs';
 import React from 'react';
 import FormRow from '../Form/FormRow';
 import TimeInput from './TimeInput';
@@ -12,20 +11,21 @@ export default {
   },
 };
 
-export const WithProps = () => (
+export const WithProps = (args) => (
   <div>
-    <TimeInput
-      allowOtherTimes={boolean('allowOtherTimes', true)}
-      disabled={boolean('disabled', false)}
-      max={text('max')}
-      min={text('min')}
-      onChange={action('onChange')}
-      placeholder={text('placeholder', TimeInput.defaultProps.placeholder)}
-      step={number('step', TimeInput.defaultProps.step)}
-      timeFormat={text('timeFormat', TimeInput.defaultProps.timeFormat)}
-    />
+    <TimeInput {...args} />
   </div>
 );
+WithProps.args = {
+  allowOtherTimes: true,
+  disabled: false,
+  max: undefined,
+  min: undefined,
+  onChange: action('onChange'),
+  placeholder: TimeInput.defaultProps.placeholder,
+  step: TimeInput.defaultProps.step,
+  timeFormat: TimeInput.defaultProps.timeFormat,
+};
 
 export const DefaultValueUncontrolled = () => (
   <div>
