@@ -11,9 +11,7 @@ const meta: Meta<typeof Calendar> = {
   argTypes: {
     weekDayFormat: {
       options: [undefined, 'dd', 'ddd', 'dddd'],
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
     },
   },
 };

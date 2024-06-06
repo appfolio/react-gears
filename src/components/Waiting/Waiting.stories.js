@@ -7,6 +7,15 @@ export default {
   component: Waiting,
   parameters: {
     sourceLink: 'Waiting/Waiting.tsx',
+    docs: {
+      // contain modal within iframe to enable user interaction
+      // https://github.com/storybookjs/storybook/issues/16949#issuecomment-1106586570
+      // unfortunately, it seems to break the controls functionality, but only in the Docs view
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
+    },
   },
 };
 

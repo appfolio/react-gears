@@ -17,6 +17,11 @@ export default {
   parameters: {
     sourceLink: 'Note/Note.tsx',
   },
+  argTypes: {
+    saving: {
+      control: 'boolean',
+    },
+  },
 };
 
 export const LiveExample = ({ deleted, edited, editing, from, text, title, ...args }) => {
@@ -40,16 +45,16 @@ LiveExample.args = {
   text: 'Goodbye Cruel World',
   title: '',
   dateFormat: Note.defaultProps.dateFormat,
+  rows: Note.defaultProps.rows,
+  saving: undefined,
+  saveLabel: EditableNote.defaultProps.saveLabel,
+  savingLabel: EditableNote.defaultProps.savingLabel,
   onCancel: action('onCancel'),
   onChange: action('onChange'),
   onDelete: action('onDelete'),
   onEdit: action('onEdit'),
   onSave: action('onSave'),
   onUndelete: action('onUndelete'),
-  rows: Note.defaultProps.rows,
-  saving: undefined,
-  saveLabel: EditableNote.defaultProps.saveLabel,
-  savingLabel: EditableNote.defaultProps.savingLabel,
 };
 
 export const WithChildren = ({ deleted, edited, editing, from, text, ...args }) => {

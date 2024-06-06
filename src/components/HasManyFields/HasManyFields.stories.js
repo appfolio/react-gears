@@ -81,10 +81,8 @@ RowWrapper.args = {
 };
 RowWrapper.argTypes = {
   disabledReasonPlacement: {
-    control: {
-      type: 'select',
-      options: ['top', 'left', 'bottom', 'right'],
-    },
+    control: { type: 'select' },
+    options: ['top', 'left', 'bottom', 'right'],
   },
 };
 

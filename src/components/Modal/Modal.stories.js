@@ -12,19 +12,24 @@ const meta = {
   component: Modal,
   parameters: {
     sourceLink: 'Modal/Modal.js',
+    docs: {
+      // contain modal within iframe to enable user interaction
+      // https://github.com/storybookjs/storybook/issues/16949#issuecomment-1106586570
+      // unfortunately, it seems to break the controls functionality, but only in the Docs view
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
+    },
   },
   argTypes: {
     fullscreen: {
-      control: {
-        type: 'select',
-        options: [null, true, 'sm', 'md', 'lg', 'xl', 'xxl'],
-      },
+      control: { type: 'select' },
+      options: [null, true, 'sm', 'md', 'lg', 'xl', 'xxl'],
     },
     size: {
-      control: {
-        type: 'radio',
-        options: [null, 'sm', 'lg', 'xl'],
-      },
+      control: { type: 'radio' },
+      options: [null, 'sm', 'lg', 'xl'],
     },
   },
 };

@@ -50,9 +50,7 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   size: {
-    control: {
-      type: 'select',
-      options: ['', 'sm', 'lg'],
-    },
+    control: { type: 'select' },
+    options: ['', 'sm', 'lg'],
   },
 };

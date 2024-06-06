@@ -32,16 +32,12 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   labelSize: {
-    control: {
-      type: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
+    control: { type: 'select' },
+    options: ['sm', 'md', 'lg'],
   },
   type: {
-    control: {
-      type: 'select',
-      options: ['checkbox', 'number', 'password', 'radio', 'static', 'text'],
-    },
+    control: { type: 'select' },
+    options: ['checkbox', 'number', 'password', 'radio', 'static', 'text'],
   },
 };
 

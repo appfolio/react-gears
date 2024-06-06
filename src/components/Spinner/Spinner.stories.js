@@ -55,16 +55,12 @@ Default.args = {
 };
 Default.argTypes = {
   color: {
-    control: {
-      type: 'select',
-      options: textColors,
-    },
+    control: { type: 'select' },
+    options: textColors,
   },
   type: {
-    control: {
-      type: 'select',
-      options: ['spin', 'border', 'grow'],
-    },
+    control: { type: 'select' },
+    options: ['spin', 'border', 'grow'],
   },
   fontSize: {
     control: {

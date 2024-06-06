@@ -44,9 +44,7 @@ ListGroupItemExample.args = {
 };
 ListGroupItemExample.argTypes = {
   color: {
-    control: {
-      type: 'select',
-      options: ['', ...colors],
-    },
+    control: { type: 'select' },
+    options: ['', ...colors],
   },
 };

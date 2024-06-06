@@ -162,10 +162,8 @@ SortableTableExample.args = {
 };
 SortableTableExample.argTypes = {
   column: {
-    control: {
-      type: 'select',
-      options: ['first', 'last', 'dob', 'email'],
-    },
+    control: { type: 'select' },
+    options: ['first', 'last', 'dob', 'email'],
   },
   size: {
     options: ['', 'lg', 'sm'],

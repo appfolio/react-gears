@@ -29,9 +29,7 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   color: {
-    control: {
-      type: 'select',
-      options: colors,
-    },
+    control: { type: 'select' },
+    options: colors,
   },
 };

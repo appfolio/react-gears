@@ -41,9 +41,7 @@ Example.args = {
 };
 Example.argTypes = {
   direction: {
-    control: {
-      type: 'select',
-      options: ['top', 'start', 'end', 'bottom'],
-    },
+    control: { type: 'select' },
+    options: ['top', 'start', 'end', 'bottom'],
   },
 };

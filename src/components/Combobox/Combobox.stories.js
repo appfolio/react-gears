@@ -74,11 +74,12 @@ const meta = {
   },
   argTypes: {
     direction: {
-      control: {
-        type: 'select',
-        options: ['', 'down', 'up'],
-      },
+      options: ['', 'down', 'up'],
+      control: { type: 'select' },
     },
+    disabled: { control: 'boolean' },
+    noResultsLabel: { control: 'text' },
+    placeholder: { control: 'text' },
   },
 };
 
