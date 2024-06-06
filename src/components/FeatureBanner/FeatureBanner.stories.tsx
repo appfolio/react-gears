@@ -14,9 +14,7 @@ const meta: Meta<typeof FeatureBanner> = {
   argTypes: {
     color: {
       options: colors,
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
     },
   },
 };

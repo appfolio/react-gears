@@ -123,10 +123,8 @@ WithEverything.args = {
 };
 WithEverything.argTypes = {
   select: {
-    control: {
-      type: 'select',
-      options: ['', 'checkbox', 'radio', 'switch'],
-    },
+    control: { type: 'select' },
+    options: ['', 'checkbox', 'radio', 'switch'],
   },
 };
 

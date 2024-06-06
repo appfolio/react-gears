@@ -35,10 +35,8 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   labelSize: {
-    control: {
-      type: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
+    control: { type: 'select' },
+    options: ['sm', 'md', 'lg'],
   },
 };
 

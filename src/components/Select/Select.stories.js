@@ -121,10 +121,8 @@ Controlled.args = {
 };
 Controlled.argTypes = {
   value: {
-    control: {
-      type: 'select',
-      options: COUNTRIES.map((c) => c.value),
-    },
+    control: { type: 'select' },
+    options: COUNTRIES.map((c) => c.value),
   },
 };
 

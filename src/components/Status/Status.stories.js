@@ -26,9 +26,7 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   type: {
-    control: {
-      type: 'select',
-      options: types,
-    },
+    control: { type: 'select' },
+    options: types,
   },
 };

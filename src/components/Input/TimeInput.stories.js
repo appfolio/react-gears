@@ -9,6 +9,14 @@ export default {
   parameters: {
     sourceLink: 'Input/TimeInput.js',
   },
+  argTypes: {
+    max: {
+      control: 'text',
+    },
+    min: {
+      control: 'text',
+    },
+  },
 };
 
 export const WithProps = (args) => (

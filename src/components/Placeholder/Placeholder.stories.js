@@ -10,22 +10,16 @@ const meta = {
   },
   argTypes: {
     color: {
-      control: {
-        type: 'select',
-        options: ['', ...colors],
-      },
+      control: { type: 'select' },
+      options: ['', ...colors],
     },
     size: {
-      control: {
-        type: 'select',
-        options: ['', 'xs', 'sm', 'lg'],
-      },
+      control: { type: 'select' },
+      options: ['', 'xs', 'sm', 'lg'],
     },
     type: {
-      control: {
-        type: 'select',
-        options: ['', 'glow', 'wave'],
-      },
+      control: { type: 'select' },
+      options: ['', 'glow', 'wave'],
     },
   },
 };

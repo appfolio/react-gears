@@ -14,16 +14,12 @@ const meta = {
   },
   argTypes: {
     trigger: {
-      control: {
-        type: 'select',
-        options: ['click', 'hover', 'focus'],
-      },
+      control: { type: 'select' },
+      options: ['click', 'hover', 'focus'],
     },
     placement: {
-      control: {
-        type: 'select',
-        options: ['top', 'bottom', 'left', 'right'],
-      },
+      control: { type: 'select' },
+      options: ['top', 'bottom', 'left', 'right'],
     },
   },
 };

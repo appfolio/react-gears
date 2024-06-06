@@ -17,10 +17,8 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   color: {
-    control: {
-      type: 'select',
-      options: ['', 'info', 'success', 'warning', 'danger'],
-    },
+    control: { type: 'select' },
+    options: ['', 'info', 'success', 'warning', 'danger'],
   },
   value: {
     control: {

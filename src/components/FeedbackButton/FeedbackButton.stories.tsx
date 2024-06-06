@@ -13,15 +13,11 @@ const meta: Meta<typeof FeedbackButton> = {
   argTypes: {
     color: {
       options: buttonColors,
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
     },
     size: {
       options: ['lg', 'md', 'sm'],
-      control: {
-        type: 'inline-radio',
-      },
+      control: { type: 'inline-radio' },
     },
   },
 };

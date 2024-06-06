@@ -32,10 +32,24 @@ const items = [
 ];
 
 export default {
-  title: 'Carousel',
+  title: 'ImageCarousel',
   component: ImageCarousel,
   parameters: {
     sourceLink: 'Carousel/ImageCarousel.js',
+    docs: {
+      // contain modal within iframe to enable user interaction
+      // https://github.com/storybookjs/storybook/issues/16949#issuecomment-1106586570
+      // unfortunately, it seems to break the controls functionality, but only in the Docs view
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
+    },
+  },
+  argTypes: {
+    interval: {
+      control: 'number',
+    },
   },
 };
 

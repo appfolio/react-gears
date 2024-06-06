@@ -27,28 +27,20 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   size: {
-    control: {
-      type: 'select',
-      options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
-    },
+    control: { type: 'select' },
+    options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
   },
   rotate: {
-    control: {
-      type: 'radio',
-      options: ['', '90', '180', '270'],
-    },
+    control: { type: 'radio' },
+    options: ['', '90', '180', '270'],
   },
   flip: {
-    control: {
-      type: 'radio',
-      options: ['', 'horizontal', 'vertical'],
-    },
+    control: { type: 'radio' },
+    options: ['', 'horizontal', 'vertical'],
   },
   iconStyle: {
-    control: {
-      type: 'select',
-      options: ['regular', 'solid', 'thin', 'light', 'duotone', 'brands'],
-    },
+    control: { type: 'select' },
+    options: ['regular', 'solid', 'thin', 'light', 'duotone', 'brands'],
   },
 };
 
@@ -72,10 +64,8 @@ AvailableIcons.args = {
 };
 AvailableIcons.argTypes = {
   size: {
-    control: {
-      type: 'radio',
-      options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
-    },
+    control: { type: 'radio' },
+    options: ['', 'xs', 'sm', 'lg', '2x', '3x', '4x', '5x'],
   },
 };
 

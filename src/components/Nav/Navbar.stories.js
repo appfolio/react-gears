@@ -61,15 +61,11 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   fixed: {
-    control: {
-      type: 'select',
-      options: ['', 'top', 'bottom'],
-    },
+    control: { type: 'select' },
+    options: ['', 'top', 'bottom'],
   },
   color: {
-    control: {
-      type: 'select',
-      options: bgColors,
-    },
+    control: { type: 'select' },
+    options: bgColors,
   },
 };

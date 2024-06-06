@@ -24,9 +24,7 @@ LiveExample.args = {
 };
 LiveExample.argTypes = {
   placement: {
-    control: {
-      type: 'select',
-      options: ['top', 'left', 'bottom', 'right'],
-    },
+    control: { type: 'select' },
+    options: ['top', 'left', 'bottom', 'right'],
   },
 };
