@@ -10,9 +10,9 @@ export default {
   },
 };
 
-export const LiveExample = () => (
+export const LiveExample = (args) => (
   <div>
-    <Breadcrumb>
+    <Breadcrumb {...args}>
       <BreadcrumbItem>
         <a href="/">Home</a>
       </BreadcrumbItem>

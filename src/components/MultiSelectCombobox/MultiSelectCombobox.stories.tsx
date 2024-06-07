@@ -174,11 +174,12 @@ const MyCustomItem: ItemComponent = ({ children, onClick }: ComboboxItemProps) =
 );
 
 export const CustomItemRendering: Story = {
-  render: () => (
+  render: (args) => (
     <MultiSelectCombobox
       onChange={action('onChange')}
       options={states}
       components={{ Item: MyCustomItem }}
+      {...args}
     />
   ),
 };

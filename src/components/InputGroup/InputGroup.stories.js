@@ -12,9 +12,9 @@ export default {
   },
 };
 
-export const WithProps = () => (
+export const WithProps = (args) => (
   <div>
-    <InputGroup>
+    <InputGroup {...args}>
       <InputGroupText>@</InputGroupText>
       <Input placeholder="username" />
     </InputGroup>
@@ -47,9 +47,9 @@ export const WithProps = () => (
   </div>
 );
 
-export const Addons = () => (
+export const Addons = (args) => (
   <div>
-    <InputGroup>
+    <InputGroup {...args}>
       <InputGroupText>To the Left!</InputGroupText>
       <Input />
     </InputGroup>
@@ -67,9 +67,9 @@ export const Addons = () => (
   </div>
 );
 
-export const AddonSizing = () => (
+export const AddonSizing = (args) => (
   <div>
-    <InputGroup size="lg">
+    <InputGroup size="lg" {...args}>
       <InputGroupText>@lg</InputGroupText>
       <Input />
     </InputGroup>
@@ -86,9 +86,9 @@ export const AddonSizing = () => (
   </div>
 );
 
-export const ButtonShorthand = () => (
+export const ButtonShorthand = (args) => (
   <div>
-    <InputGroup>
+    <InputGroup {...args}>
       <Button color="danger">To the Left!</Button>
       <Input />
     </InputGroup>
@@ -106,8 +106,8 @@ export const ButtonShorthand = () => (
   </div>
 );
 
-export const MultipleInputs = () => (
-  <InputGroup>
+export const MultipleInputs = (args) => (
+  <InputGroup {...args}>
     <InputGroupText>
       <Input addon type="checkbox" />
     </InputGroupText>

@@ -104,12 +104,12 @@ export const CustomizedBody = {
 };
 
 export const UncontrolledExample = {
-  render: () => (
+  render: (args) => (
     <div>
       <Button id="UncontrolledPopover" type="button">
         Launch Popover
       </Button>
-      <UncontrolledPopover placement="bottom" target="UncontrolledPopover">
+      <UncontrolledPopover placement="bottom" target="UncontrolledPopover" {...args}>
         <PopoverHeader>Popover Title</PopoverHeader>
         <PopoverBody>
           Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem

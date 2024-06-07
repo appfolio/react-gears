@@ -26,7 +26,7 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const [fruit, setFruit] = useState('');
   const [veggie, setVeggie] = useState('');
 
@@ -46,6 +46,7 @@ export const LiveExample = () => {
         onChange={handleFruitChange}
         selected={fruit}
         name="fruit"
+        {...args}
       />
       <hr />
       <RadioGroup

@@ -12,10 +12,10 @@ export default {
   },
 };
 
-export const Colors = () => (
+export const Colors = (args) => (
   <div>
     <div className="p-3 my-2 rounded">
-      <Toast>
+      <Toast {...args}>
         <ToastHeader>default</ToastHeader>
         <ToastBody>This is a toast on a white background — check it out!</ToastBody>
       </Toast>
@@ -77,9 +77,9 @@ export const Colors = () => (
   </div>
 );
 
-export const HeaderIcons = () => (
+export const HeaderIcons = (args) => (
   <div>
-    <Toast>
+    <Toast {...args}>
       <ToastHeader icon="primary">primary</ToastHeader>
       <ToastBody>This is a toast with a primary icon — check it out!</ToastBody>
     </Toast>

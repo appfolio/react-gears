@@ -40,9 +40,9 @@ LiveExample.argTypes = {
   },
 };
 
-export const Colors = () => (
+export const Colors = (args) => (
   <ButtonToolbar>
-    <Button>Default</Button>
+    <Button {...args}>Default</Button>
     <Button color="primary">Primary</Button>
     <Button color="secondary">Secondary</Button>
     <Button color="success">Success</Button>
@@ -55,9 +55,11 @@ export const Colors = () => (
   </ButtonToolbar>
 );
 
-export const Disabled = () => (
+export const Disabled = (args) => (
   <ButtonToolbar>
-    <Button disabled>Default</Button>
+    <Button disabled {...args}>
+      Default
+    </Button>
     <Button disabled color="primary">
       Primary
     </Button>
@@ -88,9 +90,11 @@ export const Disabled = () => (
   </ButtonToolbar>
 );
 
-export const Outline = () => (
+export const Outline = (args) => (
   <ButtonToolbar>
-    <Button outline>Default</Button>
+    <Button outline {...args}>
+      Default
+    </Button>
     <Button outline color="primary">
       Primary
     </Button>
@@ -121,9 +125,9 @@ export const Outline = () => (
   </ButtonToolbar>
 );
 
-export const Sizes = () => (
+export const Sizes = (args) => (
   <div>
-    <Button color="primary" size="lg">
+    <Button color="primary" size="lg" {...args}>
       Large button
     </Button>
     &nbsp;
@@ -159,10 +163,10 @@ TooltipButtonExample.argTypes = {
   },
 };
 
-export const ButtonGroupExample = () => (
+export const ButtonGroupExample = (args) => (
   <div>
     <div className="mb-1">
-      <Button size="lg" block>
+      <Button size="lg" block {...args}>
         Block level button
       </Button>
     </div>
@@ -214,8 +218,8 @@ export const ButtonGroupExample = () => (
   </div>
 );
 
-export const ConfirmationButtonExample = () => (
-  <ConfirmationButton confirmation="You sure?" onClick={action('onClick')}>
+export const ConfirmationButtonExample = (args) => (
+  <ConfirmationButton confirmation="You sure?" onClick={action('onClick')} {...args}>
     Do the thing!
   </ConfirmationButton>
 );

@@ -46,7 +46,9 @@ WithId.args = {
   onChange: action('onChange'),
 };
 
-export const UncontrolledDefaultValue = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const UncontrolledDefaultValue = (args) => (
   <div>
     <p>
       When defaultValue is set, component is &apos;uncontrolled&apos; and maintains its own state.
@@ -80,7 +82,9 @@ export const UncontrolledDefaultValue = () => (
   </div>
 );
 
-export const ValueControlled = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const ValueControlled = (args) => (
   <div>
     <p>
       When value is set, component is &apos;controlled&apos; and does not maintain its own state.
@@ -105,7 +109,7 @@ export const ValueControlled = () => (
   </div>
 );
 
-export const CustomHeaderAndFooter = () => (
+export const CustomHeaderAndFooter = (args) => (
   <div className="d-inline-flex">
     <DateInput
       header={<h2 className="text-center text-danger p-2 font-italic">PIRELLI</h2>}
@@ -118,13 +122,14 @@ export const CustomHeaderAndFooter = () => (
           <Icon name="flag-checkered" />
         </div>
       }
+      {...args}
     />
   </div>
 );
 
-export const DateEnabled = () => (
+export const DateEnabled = (args) => (
   <div className="d-inline-flex">
-    <DateInput dateEnabled={(date) => date.getDay() > 0 && date.getDay() < 6} />
+    <DateInput dateEnabled={(date) => date.getDay() > 0 && date.getDay() < 6} {...args} />
   </div>
 );
 
@@ -138,7 +143,7 @@ CalendarDefault.args = {
   onSelect: action('onSelect'),
 };
 
-export const CalendarCustomDay = () => (
+export const CalendarCustomDay = (args) => (
   <div className="d-inline-flex">
     <Calendar
       renderDay={(day) => {
@@ -154,6 +159,7 @@ export const CalendarCustomDay = () => (
           </td>
         );
       }}
+      {...args}
     />
   </div>
 );

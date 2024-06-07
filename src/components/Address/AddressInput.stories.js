@@ -49,7 +49,7 @@ Default.args = {
   hints: {},
 };
 
-export const WithId = () => (
+export const WithId = (args) => (
   <div>
     <Label for="myid_address1">Click This Label to Focus First Input:</Label>
     <AddressInput
@@ -62,6 +62,7 @@ export const WithId = () => (
         countryCode: 'US',
       }}
       id="myid"
+      {...args}
     />
   </div>
 );

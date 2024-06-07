@@ -86,6 +86,8 @@ RowWrapper.argTypes = {
   },
 };
 
-export const AddItemButton = () => (
-  <HasManyFieldsAdd onClick={action('onClick')}>Button Label Content</HasManyFieldsAdd>
+export const AddItemButton = (args) => (
+  <HasManyFieldsAdd onClick={action('onClick')} {...args}>
+    Button Label Content
+  </HasManyFieldsAdd>
 );

@@ -10,7 +10,9 @@ export default {
   },
 };
 
-export const Grid = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const Default = (args) => (
   <Container fluid className="text-xs-center">
     <Row>
       <Col xs={1}>1</Col>
@@ -77,7 +79,9 @@ export const Grid = () => (
   </Container>
 );
 
-export const Offsets = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const Offsets = (args) => (
   <Container className="text-xs-center">
     <style>
       {`
@@ -105,7 +109,9 @@ export const Offsets = () => (
   </Container>
 );
 
-export const Responsive = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const Responsive = (args) => (
   <Container className="text-xs-center">
     <style>
       {`

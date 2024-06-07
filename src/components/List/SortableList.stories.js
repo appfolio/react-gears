@@ -100,8 +100,8 @@ export const WithEverything = {
   ),
 };
 export const WithExpandableRow = {
-  render: () => (
-    <SortableList items={data.slice(0, 10)} onExpand={ExpandoOne}>
+  render: (args) => (
+    <SortableList items={data.slice(0, 10)} onExpand={ExpandoOne} {...args}>
       {(item) => (
         <div className="d-flex justify-content-between flex-column flex-sm-row">
           <div className="me-auto">
@@ -135,7 +135,7 @@ export const WithSelection = {
   ),
 };
 export const WithSort = {
-  render: () => (
+  render: (args) => (
     <SortableList
       items={data.slice(0, 10)}
       sort={{ property: 'last', ascending: true }}
@@ -144,6 +144,7 @@ export const WithSort = {
         { label: 'Last Name', value: 'last' },
         { label: 'Address', value: 'address' },
       ]}
+      {...args}
     >
       {(item) => (
         <div className="d-flex justify-content-between flex-column flex-sm-row">
@@ -159,8 +160,8 @@ export const WithSort = {
   ),
 };
 export const WithFiltering = {
-  render: () => (
-    <SortableList height="60vh" items={data} onFilter={filterItems}>
+  render: (args) => (
+    <SortableList height="60vh" items={data} onFilter={filterItems} {...args}>
       {(item) => (
         <div className="d-flex justify-content-between flex-column flex-sm-row">
           <div className="me-auto pb-2">
@@ -244,7 +245,7 @@ export const WithOptionalExpand = {
   ),
 };
 export const WithControlledSelection = {
-  render: function Render() {
+  render: function Render(args) {
     const [selection, setSelection] = useState(data.slice(1, 5));
     return (
       <>
@@ -253,6 +254,7 @@ export const WithControlledSelection = {
           onSelect={setSelection}
           selected={selection}
           select="checkbox"
+          {...args}
         >
           {(item) => (
             <h3 className="m-0">
