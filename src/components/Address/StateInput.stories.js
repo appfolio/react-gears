@@ -10,4 +10,4 @@ export default {
   },
 };
 
-export const State = () => <StateInput onChange={action('onChange')} />;
+export const State = (args) => <StateInput onChange={action('onChange')} {...args} />;

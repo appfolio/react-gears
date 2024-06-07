@@ -10,14 +10,14 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const [open, setOpen] = useState(false);
   return (
     <div>
       <Button color="primary" onClick={() => setOpen(!open)}>
         Toggle Fade
       </Button>
-      <Fade in={open} className="mt-3">
+      <Fade in={open} className="mt-3" {...args}>
         This content will fade in and out as the button is pressed
       </Fade>
     </div>

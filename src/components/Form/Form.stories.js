@@ -39,9 +39,9 @@ export default {
   },
 };
 
-export const Inputs = () => (
+export const Inputs = (args) => (
   <div>
-    <FormLabelGroup label="Input" inputId="hello">
+    <FormLabelGroup label="Input" inputId="hello" {...args}>
       <Input placeholder="Hello World" id="hello" />
     </FormLabelGroup>
     <p>
@@ -81,7 +81,7 @@ export const Inputs = () => (
   </div>
 );
 
-export const FloatingLabels = () => (
+export const FloatingLabels = (args) => (
   <>
     <p>
       Wrap a pair of <code>&lt;Input&gt;</code> and <code>&lt;Label&gt;</code> components in{' '}
@@ -91,7 +91,7 @@ export const FloatingLabels = () => (
       Also note that the <code>&lt;Input&gt;</code> must come first so we can utilize a sibling
       selector (e.g., <code>~</code>).
     </p>
-    <Form inline>
+    <Form inline {...args}>
       <FormGroup floating>
         <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
         <Label for="exampleEmail">Email</Label>
@@ -105,9 +105,9 @@ export const FloatingLabels = () => (
   </>
 );
 
-export const FormRows = () => (
+export const FormRows = (args) => (
   <Form>
-    <FormRow label="First Name" id="first" />
+    <FormRow label="First Name" id="first" {...args} />
     <FormRow label="Last Name" feedback="can't be blank" color="danger" id="last" />
     <FormRow label="Nickname" hint="A fun name to describe yourself!" id="nick" />
     <FormRow label="DOB" required id="dob" />

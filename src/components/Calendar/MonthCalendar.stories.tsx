@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import MonthCalendar from './MonthCalendar';
 
 const meta: Meta<typeof MonthCalendar> = {
-  title: 'Calendar',
+  title: 'MonthCalendar',
   component: MonthCalendar,
   parameters: {
     sourceLink: 'Calendar/MonthCalendar.tsx',

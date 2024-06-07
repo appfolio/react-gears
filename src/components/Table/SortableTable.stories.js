@@ -4,7 +4,7 @@ import React from 'react';
 import SortableTable from './SortableTable';
 
 export default {
-  title: 'Table',
+  title: 'SortableTable',
   component: SortableTable,
   parameters: {
     sourceLink: 'Table/SortableTable.js',
@@ -134,7 +134,7 @@ export const SortableTableExample = ({ column, ascending, ...args }) => (
         {
           active: column === 'email',
           ascending,
-          header: <span>Email</span>,
+          header: 'Email',
           key: 'email',
           cell: EmailCell,
           onSort: action('onSort-Email'),
@@ -171,7 +171,7 @@ SortableTableExample.argTypes = {
   },
 };
 
-export const AlignColumn = () => (
+export const AlignColumn = (args) => (
   <div>
     <p className="text-warning">
       <b>Note:</b> This is an uncontrolled example, will not sort on click. See UncontrolledTable
@@ -204,6 +204,7 @@ export const AlignColumn = () => (
         },
       ]}
       rows={DATA}
+      {...args}
     />
   </div>
 );

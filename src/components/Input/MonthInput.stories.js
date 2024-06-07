@@ -28,7 +28,9 @@ WithProps.args = {
   onChange: action('onChange'),
 };
 
-export const DefaultValueUncontrolled = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const DefaultValueUncontrolled = (args) => (
   <div>
     <p>
       When defaultValue is set, component is &apos;uncontrolled&apos; and maintains its own state.
@@ -62,7 +64,9 @@ export const DefaultValueUncontrolled = () => (
   </div>
 );
 
-export const ValueControlled = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const ValueControlled = (args) => (
   <div>
     <p>
       When value is set, component is &apos;uncontrolled&apos; and does not maintain its own state.
@@ -92,7 +96,7 @@ export const ValueControlled = () => (
   </div>
 );
 
-export const CustomHeaderAndFooter = () => (
+export const CustomHeaderAndFooter = (args) => (
   <div className="d-inline-flex">
     <MonthInput
       header={<h2 className="text-center text-danger p-2 font-italic">PIRELLI</h2>}
@@ -105,6 +109,7 @@ export const CustomHeaderAndFooter = () => (
           <Icon name="flag-checkered" />
         </div>
       }
+      {...args}
     />
   </div>
 );

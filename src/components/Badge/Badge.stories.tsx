@@ -10,20 +10,22 @@ export default {
   },
 };
 
-export const Default = () => (
+export const Default = (args: any) => (
   <div>
     {colors.map((color) => (
       <div>
-        <Badge color={color}>{color}</Badge>
+        <Badge color={color} {...args}>
+          {color}
+        </Badge>
       </div>
     ))}
   </div>
 );
 
-export const Pills = () => (
+export const Pills = (args: any) => (
   <div className="d-flex gap-3">
     {colors.map((color) => (
-      <Badge pill color={color}>
+      <Badge pill color={color} {...args}>
         {color}
       </Badge>
     ))}

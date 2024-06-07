@@ -40,8 +40,8 @@ LiveExample.argTypes = {
   },
 };
 
-export const RadioExample = () => (
-  <FormLabelGroup label="Transaction Method" stacked>
+export const RadioExample = (args) => (
+  <FormLabelGroup label="Transaction Method" stacked {...args}>
     <FormGroup check>
       <Input type="radio" id="onlineTransfer" name="transactionMethod" />
       <Label check>I will be transferring money between banks online</Label>

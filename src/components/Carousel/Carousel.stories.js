@@ -30,4 +30,4 @@ export default {
   },
 };
 
-export const Uncontrolled = () => <UncontrolledCarousel items={items} />;
+export const Uncontrolled = (args) => <UncontrolledCarousel items={items} {...args} />;

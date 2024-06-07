@@ -69,10 +69,10 @@ AvailableIcons.argTypes = {
   },
 };
 
-export const InlineText = () => (
+export const InlineText = (args) => (
   <div>
     <p>
-      <Icon name="print" /> Print
+      <Icon name="print" {...args} /> Print
     </p>
     <p>
       <Icon name="circle-plus" /> Add Item
@@ -86,11 +86,11 @@ export const InlineText = () => (
   </div>
 );
 
-export const Buttons = () => (
+export const Buttons = (args) => (
   <div>
     <p>
       <Button>
-        <Icon name="circle-plus" fixedWidth /> Add Item
+        <Icon name="circle-plus" fixedWidth {...args} /> Add Item
       </Button>
     </p>
     <p>
@@ -111,9 +111,9 @@ export const Buttons = () => (
   </div>
 );
 
-export const Size = () => (
+export const Size = (args) => (
   <div>
-    <Icon name="calendar" size="xs" /> xs
+    <Icon name="calendar" size="xs" {...args} /> xs
     <br />
     <Icon name="calendar" size="sm" /> sm
     <br />
@@ -130,9 +130,9 @@ export const Size = () => (
   </div>
 );
 
-export const Animation = () => (
+export const Animation = (args) => (
   <div>
-    <Icon name="spinner" spin size="3x" />
+    <Icon name="spinner" spin size="3x" {...args} />
     <Icon name="circle-notch" spin size="3x" />
     <Icon name="refresh" spin size="3x" />
     <Icon name="cog" spin size="3x" />
@@ -140,9 +140,9 @@ export const Animation = () => (
   </div>
 );
 
-export const RotateAndFlip = () => (
+export const RotateAndFlip = (args) => (
   <div>
-    <Icon name="female" rotate={90} /> 90
+    <Icon name="female" rotate={90} {...args} /> 90
     <br />
     <Icon name="female" rotate={180} /> 180
     <br />
@@ -155,10 +155,10 @@ export const RotateAndFlip = () => (
   </div>
 );
 
-export const OtherProps = () => (
+export const OtherProps = (args) => (
   <div className="bg-color-muted">
     <p>
-      <Icon name="camera" size="2x" style={{ color: 'red' }} /> Default
+      <Icon name="camera" size="2x" style={{ color: 'red' }} {...args} /> Default
     </p>
     <p>
       <Icon name="camera" size="2x" fixedWidth /> fixedWidth

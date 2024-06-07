@@ -98,7 +98,7 @@ const FullName = (row) => (
 const EditButton = () => <Button size="sm">Edit</Button>;
 
 export default {
-  title: 'Table',
+  title: 'UncontrolledTable',
   component: UncontrolledTable,
   parameters: {
     sourceLink: 'Table/UncontrolledTable.js',
@@ -154,7 +154,7 @@ UncontrolledTableExample.args = {
   onVisibleRowsChange: action('onVisibleRowsChange'),
 };
 
-export const CustomHeader = () => (
+export const CustomHeader = (args) => (
   <UncontrolledTable
     columns={[
       {
@@ -190,10 +190,11 @@ export const CustomHeader = () => (
         <th colSpan={3}>Basic Info</th> <th colSpan={1}>Contact Info</th>
       </tr>,
     ]}
+    {...args}
   />
 );
 
-export const CustomFooter = () => (
+export const CustomFooter = (args) => (
   <div>
     <UncontrolledTable
       columns={[
@@ -261,11 +262,12 @@ export const CustomFooter = () => (
           <td className="text-end">$20,226.55</td>
         </tr>,
       ]}
+      {...args}
     />
   </div>
 );
 
-export const CustomExpandColumn = () => (
+export const CustomExpandColumn = (args) => (
   <div>
     <UncontrolledTable
       columns={[
@@ -303,6 +305,7 @@ export const CustomExpandColumn = () => (
         header: 'Actions',
         cell: EditButton,
       }}
+      {...args}
     />
   </div>
 );

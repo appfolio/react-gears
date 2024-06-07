@@ -3,7 +3,7 @@ import React from 'react';
 import Paginator from './Paginator';
 
 export default {
-  title: 'Pagination',
+  title: 'Paginator',
   component: Paginator,
   parameters: {
     sourceLink: 'Pagination/Paginator.tsx',

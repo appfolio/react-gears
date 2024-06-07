@@ -176,7 +176,7 @@ export const CreatableOptions = {
 };
 
 export const CustomOptions = {
-  render: function Render() {
+  render: function Render(args) {
     const [value, setValue] = useState();
     const mixedOptions = [
       {
@@ -212,6 +212,7 @@ export const CustomOptions = {
         renderOption={renderOption}
         renderInputValue={renderInputValue}
         menuMaxHeight="20rem"
+        {...args}
       />
     );
   },

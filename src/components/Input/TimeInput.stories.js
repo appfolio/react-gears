@@ -35,7 +35,9 @@ WithProps.args = {
   timeFormat: TimeInput.defaultProps.timeFormat,
 };
 
-export const DefaultValueUncontrolled = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const DefaultValueUncontrolled = (args) => (
   <div>
     <p>
       When defaultValue is set, component is &apos;uncontrolled&apos; and maintains its own state.
@@ -52,7 +54,9 @@ export const DefaultValueUncontrolled = () => (
   </div>
 );
 
-export const ValueControlled = () => (
+// declaring any arguments is required to enable displaying code in storybook docs
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+export const ValueControlled = (args) => (
   <div>
     <p>
       When value is set, component is &apos;controlled&apos; and does not maintain its own state.

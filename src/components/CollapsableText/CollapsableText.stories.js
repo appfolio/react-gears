@@ -48,37 +48,46 @@ ShorterThanMaxLines.args = {
   maxLines: 2,
 };
 
-export const CustomComponents = () => (
+export const CustomComponents = (args) => (
   <div>
     <CollapsableText
       moreLabel={<Icon name="circle-plus" className="text-success" />}
       lessLabel={<Icon name="circle-minus" className="text-danger" />}
+      {...args}
     >
       {loremIpsum}
     </CollapsableText>
   </div>
 );
 
-export const AlignToggleButtonStart = () => (
+export const AlignToggleButtonStart = (args) => (
   <div>
-    <CollapsableText alignToggleButton="start">{loremIpsum}</CollapsableText>
+    <CollapsableText alignToggleButton="start" {...args}>
+      {loremIpsum}
+    </CollapsableText>
   </div>
 );
 
-export const AlignToggleButtonCenter = () => (
+export const AlignToggleButtonCenter = (args) => (
   <div>
-    <CollapsableText alignToggleButton="center">{loremIpsum}</CollapsableText>
+    <CollapsableText alignToggleButton="center" {...args}>
+      {loremIpsum}
+    </CollapsableText>
   </div>
 );
 
-export const AlignToggleButtonEnd = () => (
+export const AlignToggleButtonEnd = (args) => (
   <div>
-    <CollapsableText alignToggleButton="end">{loremIpsum}</CollapsableText>
+    <CollapsableText alignToggleButton="end" {...args}>
+      {loremIpsum}
+    </CollapsableText>
   </div>
 );
 
-export const AlignToggleButtonAuto = () => (
+export const AlignToggleButtonAuto = (args) => (
   <div>
-    <CollapsableText alignToggleButton="auto">{loremIpsum}</CollapsableText>
+    <CollapsableText alignToggleButton="auto" {...args}>
+      {loremIpsum}
+    </CollapsableText>
   </div>
 );

@@ -10,4 +10,4 @@ export default {
   },
 };
 
-export const Country = () => <CountryInput onChange={action('onChange')} />;
+export const Country = (args) => <CountryInput onChange={action('onChange')} {...args} />;

@@ -9,8 +9,8 @@ export default {
   },
 };
 
-export const LiveExample = () => (
-  <Media>
+export const LiveExample = (args) => (
+  <Media {...args}>
     <Media left href="https://github.com/gthomas-appfolio">
       <Media
         className="me-2 rounded"

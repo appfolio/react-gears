@@ -43,10 +43,10 @@ WithProps.argTypes = {
   },
 };
 
-export const WithHTMLValue = () => (
+export const WithHTMLValue = (args) => (
   <Card className="mt-1">
     <CardBody>
-      <Datapair label="Label">
+      <Datapair label="Label" {...args}>
         Custom markup <Button color="primary">can go here</Button>
       </Datapair>
       <Datapair
@@ -57,7 +57,7 @@ export const WithHTMLValue = () => (
   </Card>
 );
 
-export const WithNodeInLabel = () => (
+export const WithNodeInLabel = (args) => (
   <Card className="mt-1">
     <CardBody>
       <Datapair
@@ -67,6 +67,7 @@ export const WithNodeInLabel = () => (
           </>
         }
         value="Stuff"
+        {...args}
       />
     </CardBody>
   </Card>

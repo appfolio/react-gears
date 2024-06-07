@@ -110,8 +110,14 @@ WithGroups.args = {
   onChange: action('onChange'),
 };
 
-export const WithDefaultValueUncontrolled = () => (
-  <Select className="w-100" defaultValue="US" options={COUNTRIES} onChange={action('onChange')} />
+export const WithDefaultValueUncontrolled = (args) => (
+  <Select
+    className="w-100"
+    defaultValue="US"
+    options={COUNTRIES}
+    onChange={action('onChange')}
+    {...args}
+  />
 );
 
 export const Controlled = (args) => <Select className="w-100" options={COUNTRIES} {...args} />;
@@ -126,7 +132,7 @@ Controlled.argTypes = {
   },
 };
 
-export const Async = () => {
+export const Async = (args) => {
   const getOptions = (input, callback) => {
     setTimeout(() => {
       callback(null, {
@@ -139,10 +145,12 @@ export const Async = () => {
     }, 1); // Tiny timeout for testing
   };
 
-  return <Select className="w-100" loadOptions={getOptions} onChange={action('onChange')} />;
+  return (
+    <Select className="w-100" loadOptions={getOptions} onChange={action('onChange')} {...args} />
+  );
 };
 
-export const DisabledOptions = () => (
+export const DisabledOptions = (args) => (
   <Select
     className="w-100"
     options={[
@@ -164,6 +172,7 @@ export const DisabledOptions = () => (
     ]}
     isValidNewOption={({ label }) => validateEmail(label)}
     onChange={action('onChange')}
+    {...args}
   />
 );
 

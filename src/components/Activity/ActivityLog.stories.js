@@ -25,8 +25,8 @@ WithProps.args = {
   flush: false,
 };
 
-export const AddingCustomComponents = () => (
-  <ActivityLog>
+export const AddingCustomComponents = (args) => (
+  <ActivityLog {...args}>
     <Activity date={new Date()} action="Edited" by="Jane Doe" />
     <Activity date={new Date()} action="Published" by="Martha (Leasing)" />
     <Activity date={new Date()} action="Created" by="services">

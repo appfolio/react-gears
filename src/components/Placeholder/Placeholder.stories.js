@@ -35,9 +35,9 @@ export const LiveExample = {
 };
 
 export const Words = {
-  render: () => (
+  render: (args) => (
     <div>
-      <Placeholder words={1} />
+      <Placeholder words={1} {...args} />
       <Placeholder words={3} />
       <Placeholder words={5} />
       <Placeholder words={7} />
@@ -47,9 +47,9 @@ export const Words = {
 };
 
 export const Widths = {
-  render: () => (
+  render: (args) => (
     <div>
-      100: <Placeholder width={100} />
+      100: <Placeholder width={100} {...args} />
       75: <Placeholder width={75} />
       50: <Placeholder width={50} />
       25: <Placeholder width={25} />

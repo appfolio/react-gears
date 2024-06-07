@@ -24,7 +24,7 @@ export default {
   },
 };
 
-export const LiveExample = () => {
+export const LiveExample = (args) => {
   const [selected, setSelected] = useState([]);
 
   const handleChange = (values) => {
@@ -32,10 +32,10 @@ export const LiveExample = () => {
     action('onChange')(values);
   };
 
-  return <CheckboxGroup options={options} onChange={handleChange} selected={selected} />;
+  return <CheckboxGroup options={options} onChange={handleChange} selected={selected} {...args} />;
 };
 
-export const SomeDisabled = () => {
+export const SomeDisabled = (args) => {
   const [selected, setSelected] = useState([]);
 
   const handleChange = (values) => {
@@ -44,11 +44,16 @@ export const SomeDisabled = () => {
   };
 
   return (
-    <CheckboxGroup options={optionsSomeDisabled} onChange={handleChange} selected={selected} />
+    <CheckboxGroup
+      options={optionsSomeDisabled}
+      onChange={handleChange}
+      selected={selected}
+      {...args}
+    />
   );
 };
 
-export const Horizontal = () => {
+export const Horizontal = (args) => {
   const [selected, setSelected] = useState([]);
 
   const handleChange = (values) => {
@@ -62,6 +67,7 @@ export const Horizontal = () => {
       options={options}
       onChange={handleChange}
       selected={selected}
+      {...args}
     />
   );
 };
