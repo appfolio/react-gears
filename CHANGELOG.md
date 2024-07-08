@@ -1,5 +1,39 @@
 # Change Log
 
+## [8.13.0](https://github.com/appfolio/react-gears/compare/v8.12.0...v8.13.0) (2024-07-08)
+
+
+### Features
+
+* **CollapsableText:** add alignToggleButton prop to CollapsableText ([f6e8938](https://github.com/appfolio/react-gears/commit/f6e8938c603ab090277f4f7b7fbdb0168dac86e6))
+
+
+### Bug Fixes
+
+* fix storybook control definitions ([66df6ec](https://github.com/appfolio/react-gears/commit/66df6ec4fbfd7266b6c442f926dd7dcbecbac192))
+
+
+### Miscellaneous
+
+* add args to all stories to enable "show code" ([b9ef202](https://github.com/appfolio/react-gears/commit/b9ef2025804ee8cdb9898d1a4f78b5c5bc31ec59))
+* bump node to v20 in github actions ([2cf2953](https://github.com/appfolio/react-gears/commit/2cf2953d0d6455ece451a51f27c5b10ee075a517))
+* migrate @storybook/addon-knobs to @storybook/addon-controls ([c399754](https://github.com/appfolio/react-gears/commit/c39975414b8eec77aa187e2a9e4062fe5b7a10b4))
+* move storybook-source-link to devDependencies ([cd146d0](https://github.com/appfolio/react-gears/commit/cd146d0e08cdaa2af22d9e40161c12b240e37f84))
+* remove @storybook/addon-storysource, add 'autodocs' ([6690995](https://github.com/appfolio/react-gears/commit/66909952a3fcb67ee8d0e445a947d743d48f8d6f))
+* remove direct jsdom and jsdom-global ([59929b8](https://github.com/appfolio/react-gears/commit/59929b8aa9d1f2ccab6184ade5965bf6cad4175a))
+* udpate tar transitive deps ([979f148](https://github.com/appfolio/react-gears/commit/979f148a165bd9b5a96c043e12c982f2bb7d0b09))
+* update .tool-versions ([5630652](https://github.com/appfolio/react-gears/commit/56306521fe74cb097c8c66377921032584cd8c8a))
+* update braces transitive deps to secure version ([04826b6](https://github.com/appfolio/react-gears/commit/04826b6848b4d8fc0aa5f38f6f1a6323927567f7))
+* update ip transitive deps ([2fec1c0](https://github.com/appfolio/react-gears/commit/2fec1c0bd020ba82ec0d756477135fd5621304f0))
+* update json5 transitive deps ([16c9a93](https://github.com/appfolio/react-gears/commit/16c9a93e9a141e90b58faff5a4b07cd83c6766dc))
+* update semver transtive deps ([78414ad](https://github.com/appfolio/react-gears/commit/78414ad88036067f22afbe002ef2246c29cd631c))
+* update to storybook dependencies to v8 ([c57ec46](https://github.com/appfolio/react-gears/commit/c57ec468084c7897e6cb124d727aaf9a16396829))
+* update word-wrap transitive deps ([ac6a535](https://github.com/appfolio/react-gears/commit/ac6a535e22da597f530f3bfdc4e9ad487b618f68))
+* update ws transitive deps ([f38b4f4](https://github.com/appfolio/react-gears/commit/f38b4f4a2f13d4b521e287143206af273cc49f80))
+* upgrade deps that use @babel/traverse ([834aeae](https://github.com/appfolio/react-gears/commit/834aeaec6036b8b3ccecdb7f6b502ebe4fe1bc61))
+* upgrade jest to v28 ([5f07cdc](https://github.com/appfolio/react-gears/commit/5f07cdc6dc016965014c3eb5fafd4bfb82bc1969))
+* upgrade jest to v29 ([ab4f232](https://github.com/appfolio/react-gears/commit/ab4f232037beb1e6e6c4af048ed61c9fabe26205))
+
 ## [8.12.0](https://github.com/appfolio/react-gears/compare/v8.11.2...v8.12.0) (2024-04-23)
 
 
