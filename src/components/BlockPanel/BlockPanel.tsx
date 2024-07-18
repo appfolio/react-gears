@@ -107,7 +107,7 @@ const BlockPanel: FC<BlockPanelProps> = ({
     'align-items-center',
     'justify-content-between',
     {
-      [`bg-${color}`]: color,
+      [`bg-${color}-subtle`]: color,
       'text-white': color === 'primary' || color === 'dark',
     },
     headerClassName
