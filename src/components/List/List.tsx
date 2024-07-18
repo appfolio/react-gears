@@ -165,7 +165,7 @@ function List<T extends Item>({
   return (
     <ListGroup flush={flush} tag="div" {...props}>
       {showHeader && (
-        <ListGroupItem tag="header" className="d-flex align-items-center bg-secondary js-header">
+        <ListGroupItem tag="header" className="d-flex align-items-center js-header">
           {select && select !== 'radio' && (
             <div className="h-100 d-flex align-items-center me-3">
               <Input
