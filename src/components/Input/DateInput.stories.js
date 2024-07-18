@@ -151,7 +151,7 @@ export const CalendarCustomDay = (args) => (
           'text-danger': !day.future,
           'text-muted': !day.sameMonth,
           'text-white bg-primary': day.date.getDate() === 24,
-          'bg-info': day.date.getDate() === 28,
+          'bg-info-subtle': day.date.getDate() === 28,
         });
         return (
           <td className={className}>

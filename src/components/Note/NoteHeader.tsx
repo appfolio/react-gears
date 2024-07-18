@@ -37,7 +37,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
     'justify-content-between',
     'py-2',
     'pe-2',
-    'bg-info'
+    'bg-info-subtle'
   );
 
   const anyDataExisting = date || from || title;

@@ -8,6 +8,7 @@ export const colors = [
   'ai',
   'light',
   'dark',
+  'white',
 ];
 export const buttonColors = [...colors, 'link'];
 export const bgColors = [...colors, 'transparent'];
