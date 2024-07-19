@@ -1,5 +1,13 @@
 # Change Log
 
+## [8.13.1](https://github.com/appfolio/react-gears/compare/v8.13.0...v8.13.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* add subtle suffix to bg-info and bg-secondary classes ([adc3280](https://github.com/appfolio/react-gears/commit/adc3280b0f40f91c625c13ec769267f3de751310))
+* adjust blackpanel header color to use subtle variation ([10962b5](https://github.com/appfolio/react-gears/commit/10962b5b605c73bf296c19538efb039e8d474071))
+
 ## [8.13.0](https://github.com/appfolio/react-gears/compare/v8.12.0...v8.13.0) (2024-07-08)
 
 
