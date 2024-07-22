@@ -28,7 +28,7 @@ describe('<FeedbackButton />', () => {
 
     const feedbackModal = await findByRole('dialog');
 
-    const heading = within(feedbackModal).getByRole('heading', { level: 5 });
+    const heading = within(feedbackModal).getByRole('heading', { level: 2 });
     expect(heading.textContent).toEqual('Give Feedback');
 
     const ratingSubtitle = within(feedbackModal).getByText(
@@ -129,7 +129,7 @@ describe('<FeedbackButton />', () => {
 
     const feedbackModal = await findByRole('dialog');
 
-    const heading = within(feedbackModal).getByRole('heading', { level: 5 });
+    const heading = within(feedbackModal).getByRole('heading', { level: 2 });
     expect(heading.textContent).toEqual('Give Feedback2');
 
     const ratingSubtitle = within(feedbackModal).getByText(
@@ -217,7 +217,7 @@ describe('<FeedbackButton />', () => {
 
     const feedbackModal = await findByRole('dialog');
 
-    const heading = within(feedbackModal).getByRole('heading', { level: 5 });
+    const heading = within(feedbackModal).getByRole('heading', { level: 2 });
     expect(heading.textContent).toEqual('Give Feedback');
 
     const feedbackModalRating = within(feedbackModal).getByTestId('feedback-modal-rating');
@@ -293,7 +293,7 @@ describe('<FeedbackButton />', () => {
 
     const feedbackModal = await findByRole('dialog');
 
-    const heading = within(feedbackModal).getByRole('heading', { level: 5 });
+    const heading = within(feedbackModal).getByRole('heading', { level: 2 });
     expect(heading.textContent).toEqual('Give Feedback');
 
     within(feedbackModal).getByText('How could we improve the way this works for you?');
@@ -346,7 +346,7 @@ describe('<FeedbackButton />', () => {
 
     const feedbackModal = await findByRole('dialog');
 
-    const heading = within(feedbackModal).getByRole('heading', { level: 5 });
+    const heading = within(feedbackModal).getByRole('heading', { level: 2 });
     expect(heading.textContent).toEqual('Give Feedback');
 
     within(feedbackModal).getByText('How could we improve the way this works for you?');
