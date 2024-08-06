@@ -1,1 +1,5 @@
-nodejs 20.14.0
+ruby 3.2.2
+nodejs 18.19.1
+yarn 1.22.18
+golang 1.22.1
+python 3.10.10
