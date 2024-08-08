@@ -21,7 +21,7 @@ export const Default = (args) => (
   <div>
     <ScrollContainer {...args}>
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+        src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg"
         alt="Map"
       />
     </ScrollContainer>
@@ -35,7 +35,7 @@ export const MaxHeight = (args) => (
   <div>
     <ScrollContainer {...args}>
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+        src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg"
         alt="Map"
       />
     </ScrollContainer>
@@ -71,7 +71,7 @@ export const CustomTheme = (args) => (
     {...args}
   >
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag-map_of_the_world.svg/1000px-Flag-map_of_the_world.svg.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/f/f7/World_map_2011_CIA_World_Factbook.svg"
       alt="Map"
     />
   </ScrollContainer>
