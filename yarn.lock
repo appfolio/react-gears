@@ -171,7 +171,7 @@ __metadata:
     uncontrollable: ^4.1.0
     use-deep-compare-effect: ^1.8.1
     use-local-storage-state: ^4.0.0
-    uuid: ^8.3.1
+    uuid: ^9.0.1
   peerDependencies:
     react: ">= 16.8"
     react-dom: ">= 16.8"
@@ -16343,16 +16343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^8.3.1":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^9.0.0":
+"uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
