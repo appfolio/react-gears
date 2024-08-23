@@ -1,5 +1,18 @@
 # Change Log
 
+## [8.13.2](https://github.com/appfolio/react-gears/compare/v8.13.1...v8.13.2) (2024-08-23)
+
+
+### Bug Fixes
+
+* **HasManyFieldsRow:** adds minWidth: 0 to HasManyFieldsRow to allow it to be smaller then it's content ([7754150](https://github.com/appfolio/react-gears/commit/77541506cc00f0df049cec07f38547e803da00b2))
+* **ScrollContainer:** replace broken sample image ([45c7e2d](https://github.com/appfolio/react-gears/commit/45c7e2df2439c0141b0f144bd7a5ee61eddc9e6c))
+
+
+### Miscellaneous
+
+* update uuid from v8 to v9 ([6790e2f](https://github.com/appfolio/react-gears/commit/6790e2fd322c2de7005a516919a8258ff8f7656d))
+
 ## [8.13.1](https://github.com/appfolio/react-gears/compare/v8.13.0...v8.13.1) (2024-07-19)
 
 
