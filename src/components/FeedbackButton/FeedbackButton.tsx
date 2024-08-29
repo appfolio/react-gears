@@ -137,6 +137,8 @@ const FeedbackButton: FC<FeedbackButtonProps> = ({
       setIsOpen(false);
       throw e;
     }
+
+    setIsOpen(false);
   };
 
   return (
