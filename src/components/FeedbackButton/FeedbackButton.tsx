@@ -134,10 +134,9 @@ const FeedbackButton: FC<FeedbackButtonProps> = ({
     try {
       await doSubmit(form);
     } catch (e) {
-      /* noop */
+      setIsOpen(false);
+      throw e;
     }
-
-    setIsOpen(false);
   };
 
   return (
