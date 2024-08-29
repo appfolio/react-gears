@@ -6,7 +6,7 @@ import CardBody from '../Card/CardBody';
 
 interface SummaryBoxItemProps extends Omit<CardProps, 'color' | 'outline' | 'className'> {
   className?: string;
-  label?: string;
+  label?: React.ReactNode;
   value?: React.ReactNode;
   reverse?: boolean;
 }
