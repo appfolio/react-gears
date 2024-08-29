@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.14.0](https://github.com/appfolio/react-gears/compare/v8.13.2...v8.14.0) (2024-08-29)
+
+
+### Features
+
+* **FeedbackButton:** Re-throw error from doSubmit instead of swallowing it. ([55f371d](https://github.com/appfolio/react-gears/commit/55f371d58c49ce1898f5166c27855f5c229ed5a0))
+
+
+### Bug Fixes
+
+* fixup ([99e82e7](https://github.com/appfolio/react-gears/commit/99e82e703a7c5a0ffc86c141c67a32d9758f0af2))
+
 ## [8.13.2](https://github.com/appfolio/react-gears/compare/v8.13.1...v8.13.2) (2024-08-23)
 
 
