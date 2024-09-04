@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.14.1](https://github.com/appfolio/react-gears/compare/v8.14.0...v8.14.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* Fix label type on SummaryBoxItem ([7251bcc](https://github.com/appfolio/react-gears/commit/7251bcc136da28d131e9d9c76f3c9a0f42b6fed7))
+
+
+### Miscellaneous
+
+* Fix missing yarn entry in .tool-versions ([a17f022](https://github.com/appfolio/react-gears/commit/a17f022514fac5373df55540252ed2453364968e))
+
 ## [8.14.0](https://github.com/appfolio/react-gears/compare/v8.13.2...v8.14.0) (2024-08-29)
 
 
