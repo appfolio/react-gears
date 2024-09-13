@@ -29,7 +29,7 @@ export const Default: Story = {
   args: {
     backdrop: false,
     className: '',
-    color: 'default',
+    color: 'primary',
     disabled: false,
     doSubmit: async () => {
       action('doSubmit');
@@ -48,7 +48,7 @@ export const AllProps: Story = {
     block: true,
     cancelButtonText: 'Cancel',
     className: '',
-    color: 'default',
+    color: 'primary',
     commentIncluded: false,
     commentPlaceholder: 'Please give as much detail as you can. Thanks!',
     commentRequired: false,
