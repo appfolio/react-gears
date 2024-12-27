@@ -159,7 +159,8 @@
   },
   "resolutions": {
     "@types/react": "^16.14.26",
-    "@types/react-dom": "^16.9.16"
+    "@types/react-dom": "^16.9.16",
+    "socks/ip": "git+https://github.com/zaptic/neoip.git#v2.1.0"
   },
   "browserslist": "last 2 versions",
   "stableVersion": "7.7.0"
