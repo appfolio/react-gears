@@ -561,5 +561,28 @@ describe('<Combobox />', () => {
 
       assert.deepStrictEqual(value, []);
     });
+
+    it('should remove invalid option from value', () => {
+      let value = [1, 2, 999];
+      const mockOnChange = (v) => {
+        value = v;
+      };
+      render(<Combobox options={OPTIONS} value={value} onChange={mockOnChange} multi />);
+
+      const removeOptionButtonOne = screen.getByRole('button', {
+        name: /remove option: 1/i,
+      });
+      within(removeOptionButtonOne).getByText(/r2-d2/i);
+
+      const removeOptionButtonTwo = screen.getByRole('button', {
+        name: /remove option: 2/i,
+      });
+      within(removeOptionButtonTwo).getByText(/bb8/i);
+
+      const removeOptionButtonInvalid = screen.queryByRole('button', {
+        name: /remove option: 999/i,
+      });
+      expect(removeOptionButtonInvalid).not.toBeInTheDocument();
+    });
   });
 });

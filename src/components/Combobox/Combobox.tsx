@@ -95,7 +95,9 @@ function Combobox<T>({
   const selected = useMemo<Option<T> | Option<T>[]>(
     () =>
       multi
-        ? (value || []).map((v: T) => options.find((option) => equal(option.value, v)))
+        ? (value || [])
+            .map((v: T) => options.find((option) => equal(option.value, v)))
+            .filter((option: Option<T>) => option !== undefined)
         : options.find((option) => equal(option.value, value)),
     [value, options, multi]
   );
