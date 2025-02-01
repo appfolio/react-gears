@@ -11,6 +11,7 @@ export interface SortableColumn<T> extends Omit<HeaderProps, 'children' | 'onSor
   header?: React.ReactNode;
   key: string;
   onSort?: (ascending: boolean) => void;
+  sortable?: boolean;
   width?: string;
 }
 

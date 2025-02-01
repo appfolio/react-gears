@@ -12,6 +12,7 @@ const DATA = [
     last: 'Jones',
     email: 'rufus.xavier.sarsparilla@example.com',
     dob: new Date(1968, 6, 15),
+    estimatedAge: '25-37',
   },
   {
     key: '222',
@@ -20,6 +21,7 @@ const DATA = [
     last: 'Thomas',
     email: 'albert.andreas.armadillo@example.com',
     dob: new Date(1972, 7, 17),
+    estimatedAge: '29-80',
   },
   {
     key: '333',
@@ -28,6 +30,7 @@ const DATA = [
     last: 'Douglas',
     email: 'arron.douglas@example.com',
     dob: new Date(1982, 4, 1),
+    estimatedAge: '31-85',
   },
   {
     key: '444',
@@ -36,6 +39,7 @@ const DATA = [
     last: 'Rhodes',
     email: 'reginald.rhodes@example.com',
     dob: new Date(1968, 8, 14),
+    estimatedAge: '40-69',
   },
   {
     key: '555',
@@ -44,6 +48,7 @@ const DATA = [
     last: 'Mendoza',
     email: 'jimmy.mendoza@example.com',
     dob: new Date(1964, 1, 1),
+    estimatedAge: '45-91',
   },
   {
     key: '666',
@@ -52,6 +57,7 @@ const DATA = [
     last: 'Montgomery',
     email: 'georgia.montgomery@example.com',
     dob: new Date(1960, 6, 4),
+    estimatedAge: '50-99',
   },
   {
     key: '777',
@@ -60,6 +66,7 @@ const DATA = [
     last: 'Thomas',
     email: 'serenity.thomas@example.com',
     dob: new Date(1973, 0, 11),
+    estimatedAge: '1-47',
   },
   {
     key: '888',
@@ -68,6 +75,7 @@ const DATA = [
     last: 'Elliott',
     email: 'tonya.elliott@example.com',
     dob: new Date(1954, 7, 17),
+    estimatedAge: '2-16',
   },
   {
     key: '999',
@@ -77,6 +85,7 @@ const DATA = [
     email: 'maxine.turner@example.com',
     dob: new Date(1961, 8, 19),
     disabled: true,
+    estimatedAge: '4-88',
   },
   {
     key: '000',
@@ -86,6 +95,7 @@ const DATA = [
     email: 'max.headroom@example.com',
     dob: new Date(1984, 6, 1),
     disabled: true,
+    estimatedAge: '70-72',
   },
 ];
 
@@ -305,6 +315,44 @@ export const CustomExpandColumn = (args) => (
         header: 'Actions',
         cell: EditButton,
       }}
+      {...args}
+    />
+  </div>
+);
+
+export const UnsortableColumn = (args) => (
+  <div>
+    <UncontrolledTable
+      columns={[
+        {
+          header: 'First',
+          key: 'first',
+          cell: (row) => row.first,
+          width: '20%',
+        },
+        {
+          header: 'Last',
+          key: 'last',
+          cell: (row) => row.last,
+          width: '30%',
+        },
+        {
+          header: 'Estimated Age',
+          key: 'estimatedAge',
+          cell: (row) => row.estimatedAge,
+          width: '15%',
+          sortable: false,
+        },
+        {
+          header: 'Email',
+          key: 'email',
+          cell: EmailCell,
+          width: '35%',
+        },
+      ]}
+      rows={DATA}
+      rowExpanded={FullName}
+      sort={{ column: 'last', ascending: true }}
       {...args}
     />
   </div>
