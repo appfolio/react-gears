@@ -111,6 +111,7 @@ export const SortableTableExample = ({ column, ascending, ...args }) => (
           key: 'first',
           cell: (row) => row.first,
           onSort: action('onSort-First'),
+          sortable: true,
           width: '20%',
         },
         {
@@ -120,6 +121,7 @@ export const SortableTableExample = ({ column, ascending, ...args }) => (
           key: 'last',
           cell: (row) => row.last,
           onSort: action('onSort-Last'),
+          sortable: true,
           width: '30%',
         },
         {
@@ -129,6 +131,7 @@ export const SortableTableExample = ({ column, ascending, ...args }) => (
           key: 'dob',
           cell: (row) => fecha.format(row.dob, 'MM/DD/YYYY'),
           onSort: action('onSort-DOB'),
+          sortable: true,
           width: '15%',
         },
         {
@@ -138,6 +141,7 @@ export const SortableTableExample = ({ column, ascending, ...args }) => (
           key: 'email',
           cell: EmailCell,
           onSort: action('onSort-Email'),
+          sortable: true,
           width: '35%',
         },
       ]}

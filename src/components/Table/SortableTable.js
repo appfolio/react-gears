@@ -118,6 +118,7 @@ class SortableTable extends React.Component {
         header: PropTypes.node,
         key: PropTypes.string,
         onSort: PropTypes.func,
+        sortable: PropTypes.bool,
         width: PropTypes.string,
       })
     ).isRequired,
