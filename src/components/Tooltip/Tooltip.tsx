@@ -9,6 +9,7 @@ const Tooltip: FC<TooltipProps> = ({
   isOpen = defaultProps.isOpen,
   fade = defaultProps.fade,
   target,
+  placement = 'top',
   ...props
 }) => {
   const [open, setOpen] = useState(isOpen);
@@ -17,8 +18,26 @@ const Tooltip: FC<TooltipProps> = ({
     setOpen(!open);
   }, [open]);
 
+  //adds offset for the popper placement base on placement prop
+  const offsets: Record<string, [number, number]> = {
+    top: [0, 5],
+    bottom: [0, 5],
+    left: [0, 8],
+    right: [0, 8],
+  };
+
+  const offset = offsets[placement];
+
   return (
-    <InnerTooltip isOpen={open} toggle={handleToggle} fade={fade} target={target} {...props} />
+    <InnerTooltip
+      isOpen={open}
+      toggle={handleToggle}
+      fade={fade}
+      target={target}
+      placement={placement}
+      offset={offset}
+      {...props}
+    />
   );
 };
 
