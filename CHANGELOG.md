@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.14.2](https://github.com/appfolio/react-gears/compare/v8.14.1...v8.14.2) (2025-02-04)
+
+
+### Bug Fixes
+
+* **Tooltip:** add offset on Tooltip popover content ([86a2d9f](https://github.com/appfolio/react-gears/commit/86a2d9f6f29cc0809610773f93a4e23f83864ce7))
+
+
+### Miscellaneous
+
+* patch ip with neoip to fix cve ([1546852](https://github.com/appfolio/react-gears/commit/15468529ae83786257e71ab9b8e41cca9a8e41c4))
+* resolve path-to-regexp cve ([25803bc](https://github.com/appfolio/react-gears/commit/25803bcdb7616fc87c4b0ce64fa0a0085c4b3edc))
+* upgrade to new cross-spawn patch with cve fix ([ddafa04](https://github.com/appfolio/react-gears/commit/ddafa0437a210adbf37a343a3652bbf777d89331))
+
 ## [8.14.1](https://github.com/appfolio/react-gears/compare/v8.14.0...v8.14.1) (2024-09-04)
 
 
