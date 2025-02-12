@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.14.3](https://github.com/appfolio/react-gears/compare/v8.14.2...v8.14.3) (2025-02-12)
+
+
+### Bug Fixes
+
+* **Combobox:** Ensure selected options array does not contain undefined values ([80e55e2](https://github.com/appfolio/react-gears/commit/80e55e2691de94c9ff363ab1c3d7ae509310694a))
+
+
+### Miscellaneous
+
+* export HorizontalAlignment type ([f9a0109](https://github.com/appfolio/react-gears/commit/f9a010972d557155153fd03240adbb560268a6b6))
+
 ## [8.14.2](https://github.com/appfolio/react-gears/compare/v8.14.1...v8.14.2) (2025-02-04)
 
 
