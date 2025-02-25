@@ -8,7 +8,7 @@ interface StepProps {
   complete?: boolean;
   onStepClick?: (stepIndex: number) => void;
   step?: number;
-  steps?: string[];
+  steps?: string[] | readonly string[];
   vertical?: boolean;
   granular?: boolean;
   stepProgress?: number;
