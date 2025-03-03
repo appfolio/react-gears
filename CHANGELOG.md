@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.15.0](https://github.com/appfolio/react-gears/compare/v8.14.3...v8.15.0) (2025-03-03)
+
+
+### Features
+
+* Add `readonly` option for `steps` prop for `Steps` component ([eb1cf60](https://github.com/appfolio/react-gears/commit/eb1cf60dd53e9c06bfc5a361ce0471e1ceda4102))
+
 ## [8.14.3](https://github.com/appfolio/react-gears/compare/v8.14.2...v8.14.3) (2025-02-12)
 
 
