@@ -2,9 +2,13 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   title: react-gears
-  description: >
+  description: |
     React Gears is a library of reusable React Components to support simpler
     front-end development in all of our apps.
+
+    These UI components are in maintenance-mode and are no longer under active development.
+    The new direction for implementing the Coastline Design System is the [Unified Component Library](https://coda.io/d/_dYFR3G4AskL/Integrated-Design-System_suoxAbAu)
+    which will be exclusively available in the new [Front-end Platform](https://coda.io/d/_dYFR3G4AskL/Unified-Front-end-Platform_suOdZ1dW).
   tags:
     - react
   annotations:
