@@ -1,16 +1,24 @@
 # react-gears
+
+> [!IMPORTANT]
+>
+> These UI components are in maintenance-mode and are no longer under active development. The new direction for implementing the Coastline Design System is [Coastline React](https://developer.appf.io/docs/default/domain/front-end-platform/explanations/coastline-react/) which will be exclusively available in the new [Front-end Platform](https://coda.io/d/_dYFR3G4AskL/Unified-Front-end-Platform_suOdZ1dW).
+
 react-gears is a React implementation of Appfolio UI components, using
+
 [React](https://reactstrap.github.io),
 [Bootstrap 4](http://getbootstrap.com),
 and [reactstrap](https://reactstrap.github.io).
 
-https://appfolio.github.io/react-gears
+<https://appfolio.github.io/react-gears>
 
 ----
 
 ## Getting Started
-```
+
+```sh
 yarn add @appfolio/react-gears
+
 # or for npm:
 npm install @appfolio/react-gears
 ```
@@ -74,13 +82,13 @@ This runs [ESLint](http://eslint.org/) using [appfolio-react](https://github.com
 
 Commit messages should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
 
-```
+```text
 <type>(<scope>): <message>
 ```
 
 Here's an example commit message:
 
-```
+```text
 feat(SomeComponent): add new thing that does something
 ```
 
