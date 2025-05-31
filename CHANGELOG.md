@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.15.1](https://github.com/appfolio/react-gears/compare/v8.15.0...v8.15.1) (2025-05-31)
+
+
+### Miscellaneous
+
+* update catalog description to align with lifecycle state ([c8cf137](https://github.com/appfolio/react-gears/commit/c8cf137538c0ec3889dc9607036ad0fca711c695))
+* update coastline-react link ([f49ee07](https://github.com/appfolio/react-gears/commit/f49ee076e9d516b2bef034c25a081279deaa360d))
+* use codeowners to determine catalog ownership ([b95e327](https://github.com/appfolio/react-gears/commit/b95e3277b505030464e5a6f2f9afda1e2b6ff9e7))
+
 ## [8.15.0](https://github.com/appfolio/react-gears/compare/v8.14.3...v8.15.0) (2025-03-03)
 
 
