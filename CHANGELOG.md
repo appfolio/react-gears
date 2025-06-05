@@ -1,5 +1,13 @@
 # Change Log
 
+## [8.16.0](https://github.com/appfolio/react-gears/compare/v8.15.1...v8.16.0) (2025-06-05)
+
+
+### Features
+
+* change note.from to ReactNode ([72ed5e1](https://github.com/appfolio/react-gears/commit/72ed5e1dd7c857a2df09e01c429d7398d1cbb140))
+* support change node header color ([b0017e7](https://github.com/appfolio/react-gears/commit/b0017e7ea9ff788b9fc2d9b7b4936c7635a47dcf))
+
 ## [8.15.1](https://github.com/appfolio/react-gears/compare/v8.15.0...v8.15.1) (2025-05-31)
 
 
