@@ -56,7 +56,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
             <span className="m-0 my-1 me-auto">
               <span className="d-none d-sm-inline">
                 {edited ? 'Last edited' : 'Posted'}
-                {from ? <span className="js-note-header__from">{` by ${from}`}</span> : ' '} on{' '}
+                {from ? <span className="js-note-header__from"> by {from}</span> : ' '} on{' '}
                 <span className="js-note-header__date">
                   {format(date, dateFormat)}
                   {showTimezone && ` ${timezone(date)}`}
