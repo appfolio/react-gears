@@ -20,13 +20,18 @@ type NoteHeaderProps = {
   showTimezone?: boolean;
   onDelete?: (note: Omit<Note, 'text'>) => void;
   onEdit?: (note: Omit<Note, 'text'>) => void;
+  color?: string;
 };
 
 const defaultProps = {
   dateFormat: 'ddd MMM DD YYYY HH:mm:ss',
 };
 
-const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat, ...props }) => {
+const NoteHeader: FC<NoteHeaderProps> = ({
+  dateFormat = defaultProps.dateFormat,
+  color = 'info',
+  ...props
+}) => {
   const { note, onDelete, onEdit, showTimezone } = props;
   const { date, edited, from, title } = note;
 
@@ -37,7 +42,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({ dateFormat = defaultProps.dateFormat,
     'justify-content-between',
     'py-2',
     'pe-2',
-    'bg-info-subtle'
+    `bg-${color}-subtle`
   );
 
   const anyDataExisting = date || from || title;

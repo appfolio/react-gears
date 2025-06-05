@@ -23,6 +23,7 @@ type NoteProps = {
   saving?: boolean;
   saveLabel?: React.ReactNode;
   savingLabel?: React.ReactNode;
+  headerColor?: string;
 };
 
 const defaultProps = {
@@ -51,6 +52,7 @@ const Note: FC<NoteProps> = ({
   onEdit,
   onSave,
   onUndelete,
+  headerColor = 'info',
 }) => {
   const { deleted, editing, text } = note;
 
@@ -82,6 +84,7 @@ const Note: FC<NoteProps> = ({
         showTimezone={showTimezone}
         onDelete={onDelete}
         onEdit={onEdit}
+        color={headerColor}
       />
       <CardBody>
         <CardText style={{ whiteSpace: 'pre-wrap' }}>{text}</CardText>
