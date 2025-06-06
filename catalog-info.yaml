@@ -18,4 +18,4 @@ metadata:
 spec:
   type: library
   lifecycle: maintenance
-  owner: engineering
+  owner: appfolio-developers
