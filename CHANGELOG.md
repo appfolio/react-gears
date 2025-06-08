@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.16.1](https://github.com/appfolio/react-gears/compare/v8.16.0...v8.16.1) (2025-06-08)
+
+
+### Miscellaneous
+
+* update team names and use codeowners to determine ownership ([b3cb55d](https://github.com/appfolio/react-gears/commit/b3cb55d7e57d91cac99ccdf72946512bf0f231dd))
+
 ## [8.16.0](https://github.com/appfolio/react-gears/compare/v8.15.1...v8.16.0) (2025-06-05)
 
 
