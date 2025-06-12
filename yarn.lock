@@ -72,6 +72,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.2.0
     "@jest/types": ^29.6.3
     "@popperjs/core": ^2.10.1
+    "@redmine-ui/tributejs": ^6.1.0
     "@storybook/addon-a11y": ^8.4.7
     "@storybook/addon-actions": ^8.4.7
     "@storybook/addon-controls": ^8.4.7
@@ -167,7 +168,6 @@ __metadata:
     storybook-source-link: ^4.0.1
     styled-jsx: ^5.1.1
     text-mask-addons: ^3.8.0
-    tributejs: ^5.1.3
     ts-node: ^10.7.0
     typescript: ^4.6.3
     uncontrollable: ^4.1.0
@@ -2815,6 +2815,13 @@ __metadata:
   version: 2.11.5
   resolution: "@popperjs/core@npm:2.11.5"
   checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
+  languageName: node
+  linkType: hard
+
+"@redmine-ui/tributejs@npm:^6.1.0":
+  version: 6.1.2
+  resolution: "@redmine-ui/tributejs@npm:6.1.2"
+  checksum: 3db383ecb5ee24a5678c1926335add07f4adfeb638781478b83769c26002b9ec169977d375d719f5cf1b7539b03e7868221218bdee7a7ea480d2089a50258c10
   languageName: node
   linkType: hard
 
@@ -11912,13 +11919,6 @@ __metadata:
   bin:
     tree-kill: cli.js
   checksum: 49117f5f410d19c84b0464d29afb9642c863bc5ba40fcb9a245d474c6d5cc64d1b177a6e6713129eb346b40aebb9d4631d967517f9fbe8251c35b21b13cd96c7
-  languageName: node
-  linkType: hard
-
-"tributejs@npm:^5.1.3":
-  version: 5.1.3
-  resolution: "tributejs@npm:5.1.3"
-  checksum: 06110d74c69a8229ffcee73c180536b7c7f644397074fbe471da696b144a8a3583c6821b3c0f889a681cd475fcb83033a31a5bfa6cf95e675ec97ef99cc72288
   languageName: node
   linkType: hard
 
