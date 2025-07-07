@@ -56,7 +56,10 @@ export default function CollapsableText({
     setIsCollapsed(collapsed);
   }
 
-  const textContainerStyle = isCollapsed ? getEllipsisStyle(maxLines) : undefined;
+  const textContainerStyle: React.CSSProperties = { overflowWrap: 'anywhere' };
+  if (isCollapsed) {
+    Object.assign(textContainerStyle, getEllipsisStyle(maxLines));
+  }
 
   return (
     <div className="d-inline-flex flex-column align-items-start mw-100">
