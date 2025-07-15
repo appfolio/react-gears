@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.16.2](https://github.com/appfolio/react-gears/compare/v8.16.1...v8.16.2) (2025-07-15)
+
+
+### Bug Fixes
+
+* break long words in CollapsibleText ([fe22d1a](https://github.com/appfolio/react-gears/commit/fe22d1a08ca821f0aa6b24a932a7cd19a450589c))
+
 ## [8.16.1](https://github.com/appfolio/react-gears/compare/v8.16.0...v8.16.1) (2025-06-08)
 
 
