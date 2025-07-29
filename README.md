@@ -1,8 +1,7 @@
 # react-gears
 
 > [!IMPORTANT]
->
-> These UI components are in maintenance-mode and are no longer under active development. The new direction for implementing the Coastline Design System is [Coastline React](https://developer.appf.io/docs/default/domain/front-end-platform/explanations/coastline-react/) which will be exclusively available in the new [Front-end Platform](https://coda.io/d/_dYFR3G4AskL/Unified-Front-end-Platform_suOdZ1dW).
+> These UI components are in maintenance-mode and no longer under active development. For further details, see [_UI component libraries and templates_](https://developer.appf.io/docs/default/domain/front-end-platform/design-system/explanations/ui-component-libraries-templates/).
 
 react-gears is a React implementation of Appfolio UI components, using
 
