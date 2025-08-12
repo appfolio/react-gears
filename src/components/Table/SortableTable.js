@@ -106,6 +106,46 @@ function getExpandableCell(row, expanded, onExpand) {
 }
 
 class SortableTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leftGradient: false,
+      rightGradient: false,
+    };
+    this.scrollContainerRef = React.createRef();
+  }
+
+  checkScroll = () => {
+    const el = this.scrollContainerRef.current;
+    if (!el) {
+      return;
+    }
+
+    const left = el.scrollLeft > 0;
+    const right = el.scrollLeft < el.scrollWidth - el.clientWidth - 1;
+
+    this.setState({ leftGradient: left, rightGradient: right });
+  };
+
+  componentDidMount() {
+    if (this.props.showScrollShadows) {
+      this.checkScroll();
+      const el = this.scrollContainerRef.current;
+      if (el) {
+        el.addEventListener('scroll', this.checkScroll);
+        window.addEventListener('resize', this.checkScroll);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    const el = this.scrollContainerRef.current;
+    if (el) {
+      el.removeEventListener('scroll', this.checkScroll);
+      window.removeEventListener('resize', this.checkScroll);
+    }
+  }
+
   static propTypes = {
     ...Table.propTypes,
     columns: PropTypes.arrayOf(
@@ -143,6 +183,7 @@ class SortableTable extends React.Component {
     allSelected: PropTypes.bool,
     truncate: PropTypes.bool,
     renderRow: PropTypes.func,
+    showScrollShadows: PropTypes.bool,
     // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
   };
 
@@ -154,6 +195,7 @@ class SortableTable extends React.Component {
     rowExpanded: () => false,
     truncate: false,
     renderRow: defaultRenderRow,
+    showScrollShadows: false,
   };
 
   render() {
@@ -174,6 +216,7 @@ class SortableTable extends React.Component {
       onExpand,
       rowExpanded,
       renderRow,
+      showScrollShadows,
       ...props
     } = this.props;
     const selectable = rowSelected;
@@ -222,7 +265,7 @@ class SortableTable extends React.Component {
       });
     }
 
-    return (
+    const tableContent = (
       <Table style={tableStyle} {...props}>
         {showColgroup && (
           <colgroup>
@@ -277,6 +320,57 @@ class SortableTable extends React.Component {
           </tfoot>
         )}
       </Table>
+    );
+
+    if (!showScrollShadows) {
+      return tableContent;
+    }
+
+    return (
+      <div style={{ position: 'relative', width: '100%' }}>
+        <div
+          ref={this.scrollContainerRef}
+          style={{
+            overflowX: 'auto',
+            width: '100%',
+            maxWidth: '100%',
+          }}
+        >
+          {tableContent}
+        </div>
+
+        {/* Left gradient */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '15px',
+            height: '100%',
+            background: 'linear-gradient(to right, #a0a0a0, transparent)',
+            opacity: this.state.leftGradient ? 1 : 0,
+            pointerEvents: 'none',
+            zIndex: 1,
+            transition: 'opacity 0.3s',
+          }}
+        />
+
+        {/* Right gradient */}
+        <div
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            width: '15px',
+            height: '100%',
+            background: 'linear-gradient(to left, #a0a0a0, transparent)',
+            opacity: this.state.rightGradient ? 1 : 0,
+            pointerEvents: 'none',
+            zIndex: 1,
+            transition: 'opacity 0.3s',
+          }}
+        />
+      </div>
     );
   }
 }
