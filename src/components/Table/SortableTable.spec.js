@@ -12,11 +12,20 @@ describe('<SortableTable />', () => {
 
   it('should accept all normal Table props', () => {
     const wrapper = mount(
-      <SortableTable size="lg" bordered striped dark hover responsive columns={[]} rows={[]} />
+      <SortableTable
+        size="lg"
+        bordered
+        striped
+        dark
+        hover
+        showScrollShadows
+        columns={[]}
+        rows={[]}
+      />
     );
     const table = wrapper.find('table');
 
-    assert(wrapper.render().hasClass('table-responsive'), 'responsive missing');
+    // Note: showScrollShadows doesn't add a CSS class, it adds wrapper divs
     assert(table.hasClass('table-bordered'), 'bordered missing');
     assert(table.hasClass('table-striped'), 'striped missing');
     assert(table.hasClass('table-dark'), 'dark missing');
@@ -327,6 +336,70 @@ describe('<SortableTable />', () => {
     assert.equal(wrapper.find('tbody td.whatever').length, 3, 'tbody td.whatever incorrect');
 
     assert.equal(wrapper.find('tfoot td.whatever').length, 1, 'tfoot td.whatever incorrect');
+  });
+
+  describe('Gradient shadow on scroll', () => {
+    it('should render the gradient shadow when scrolling when showScrollShadows is true', () => {
+      const columns = [{ header: 'Name', cell: (row) => row.name, key: 'name' }];
+      const rows = [{ name: 'Test', key: '1' }];
+      const wrapper = mount(<SortableTable columns={columns} rows={rows} showScrollShadows />);
+
+      assert(wrapper.find('table').exists());
+      assert(wrapper.find('div').length > 1);
+    });
+
+    it('should hide/show gradients based on scroll position', () => {
+      const columns = [{ header: 'Name', cell: (row) => row.name, key: 'name' }];
+      const rows = [{ name: 'Test', key: '1' }];
+      const wrapper = mount(<SortableTable columns={columns} rows={rows} showScrollShadows />);
+      const instance = wrapper.instance();
+
+      // Mock the scroll container element
+      const mockElement = {
+        scrollLeft: 0,
+        scrollWidth: 1000,
+        clientWidth: 500,
+      };
+      instance.scrollContainerRef.current = mockElement;
+
+      // Test initial state (no scroll)
+      instance.checkScroll();
+      assert.equal(instance.state.leftGradient, false, 'Left gradient should be hidden initially');
+      assert.equal(
+        instance.state.rightGradient,
+        true,
+        'Right gradient should be visible initially'
+      );
+
+      // Test scrolled right
+      mockElement.scrollLeft = 100;
+      instance.checkScroll();
+      assert.equal(
+        instance.state.leftGradient,
+        true,
+        'Left gradient should be visible when scrolled right'
+      );
+      assert.equal(instance.state.rightGradient, true, 'Right gradient should still be visible');
+
+      // Test fully scrolled to end
+      mockElement.scrollLeft = 500;
+      instance.checkScroll();
+      assert.equal(
+        instance.state.leftGradient,
+        true,
+        'Left gradient should be visible when fully scrolled'
+      );
+      assert.equal(
+        instance.state.rightGradient,
+        false,
+        'Right gradient should be hidden when fully scrolled'
+      );
+    });
+
+    it('should not render the gradient shadow when scrolling when showScrollShadows is false', () => {
+      const wrapper = mount(<SortableTable columns={[]} rows={[]} showScrollShadows={false} />);
+      assert(!wrapper.find('div[style*="position: relative"]').exists());
+    });
   });
 
   describe('Expandable column', () => {

@@ -30,6 +30,7 @@ interface SortableTableProps<T> extends Omit<TableProps, 'children'> {
   rowExpanded?: (row: T) => React.ReactNode | boolean;
   rowOnClick?: (row: T, evt: React.MouseEvent) => void;
   truncate?: boolean;
+  showScrollShadows?: boolean;
 }
 
 declare class SortableTable<T> extends React.Component<SortableTableProps<T>, {}> {}

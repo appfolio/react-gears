@@ -157,6 +157,7 @@ SortableTableExample.args = {
   bordered: false,
   hover: true,
   responsive: true,
+  showScrollShadows: true,
   size: 'sm',
   striped: true,
   truncate: false,
