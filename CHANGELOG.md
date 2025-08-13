@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.0](https://github.com/appfolio/react-gears/compare/v8.16.2...v8.17.0) (2025-08-13)
+
+
+### Features
+
+* **SortableTable:** Adds gradient shadow on scroll ([1ef09af](https://github.com/appfolio/react-gears/commit/1ef09af93332a9591adb495fd042215a63a89e99))
+
 ## [8.16.2](https://github.com/appfolio/react-gears/compare/v8.16.1...v8.16.2) (2025-07-15)
 
 
