@@ -68,6 +68,7 @@
     "lodash.without": "^4.4.0",
     "memoize-one": "^5.1.1",
     "prop-types": "^15.7.2",
+    "react-confetti": "^6.1.0",
     "react-imask": "^6.2.2",
     "react-resize-detector": "^4.2.3",
     "react-select-plus": "1.2.0",
