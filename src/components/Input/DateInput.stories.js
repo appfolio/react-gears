@@ -176,7 +176,7 @@ export const WithContainer = (args) => (
       style={{
         position: 'relative',
         overflow: 'hidden',
-        height: '310px',
+        height: '315px',
         border: '1px solid #ccc',
         padding: '10px',
       }}
