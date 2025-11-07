@@ -12,6 +12,16 @@ jobs:
     env:
       CODEARTIFACT_AUTH_TOKEN: ${{ secrets.CODEARTIFACT_AUTH_TOKEN }}
     steps:
+      - uses: actions/github-script@v5
+        id: extract-branch
+        env:
+          PR_NUM: ${{ steps.release-please.outputs.pr }}
+        with:
+          result-encoding: string
+          script: return JSON.parse(process.env.PR_NUM).headBranchName
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.extract-branch.outputs.result }}
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.tool-versions'
@@ -22,18 +32,6 @@ jobs:
           package-name: '@appfolio/react-gears'
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
           command: release-pr
-      - uses: actions/github-script@v5
-        if: ${{ steps.release-please.outputs.pr }}
-        id: extract-branch
-        env:
-          PR_NUM: ${{ steps.release-please.outputs.pr }}
-        with:
-          result-encoding: string
-          script: return JSON.parse(process.env.PR_NUM).headBranchName
-      - uses: actions/checkout@v5
-        if: ${{ steps.release-please.outputs.pr }}
-        with:
-          ref: ${{ steps.extract-branch.outputs.result }}
       - run: yarn install --immutable
         if: ${{ steps.release-please.outputs.pr }}
       - run: yarn docs
