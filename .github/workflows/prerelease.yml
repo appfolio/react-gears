@@ -1,16 +1,21 @@
 on:
   pull_request:
-    branches: [master]
+    branches:
+      - master
+
 name: prerelease
+
 jobs:
   prerelease:
     runs-on: ubuntu-latest
+    environment: ci
+    env:
+      CODEARTIFACT_AUTH_TOKEN: ${{ secrets.CODEARTIFACT_AUTH_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 20
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: '.tool-versions'
       - run: yarn install --immutable
       - run: yarn dist
       - run: npm version prerelease --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false
