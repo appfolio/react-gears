@@ -6,10 +6,4 @@ enableTelemetry: false
 
 nodeLinker: node-modules
 
-npmAlwaysAuth: true
-
-npmAuthToken: "${CODEARTIFACT_AUTH_TOKEN}"
-
-npmRegistryServer: "${CODEARTIFACT_REGISTRY_SERVER}"
-
 yarnPath: .yarn/releases/yarn-4.10.3.cjs

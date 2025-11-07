@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: ci
     env:
-      CODEARTIFACT_AUTH_TOKEN: ${{ secrets.CODEARTIFACT_AUTH_TOKEN }}
+      CODEARTIFACT_REGISTRY_SERVER: ${{ vars.CODEARTIFACT_REGISTRY_SERVER }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.tool-versions'
+      - uses: ./.github/actions/prep-secure-registries
+        with:
+          aws-access-key-id: ${{ secrets.SHARED_CODEARTIFACT_AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SHARED_CODEARTIFACT_AWS_SECRET_KEY }}
       - run: yarn install --immutable
       - run: yarn dist
       - run: npm version prerelease --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false

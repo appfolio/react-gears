@@ -1,0 +1,32 @@
+name: Prepare Secure Registries
+description: 'Do the necessary setup to use secure registries'
+
+inputs:
+  aws-access-key-id:
+    description: 'AWS access key ID'
+    required: true
+  aws-secret-access-key:
+    description: 'AWS secret access key'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v5.0.0
+      with:
+        aws-region: us-west-2
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+
+    - name: Generate CodeArtifact token
+      shell: bash
+      run: |
+        CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
+          --domain appfolio-ecr \
+          --domain-owner 195334327833 \
+          --query authorizationToken \
+          --output text \
+          --region us-west-2)
+        echo "::add-mask::${CODEARTIFACT_AUTH_TOKEN}"
+        echo "CODEARTIFACT_AUTH_TOKEN=${CODEARTIFACT_AUTH_TOKEN}" >> $GITHUB_ENV
