@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.17.1](https://github.com/appfolio/react-gears/compare/v8.17.0...v8.17.1) (2025-11-08)
+
+
+### Bug Fixes
+
+* allow non-appfolio members to yarn install and try to use generate-codeartifact-token ([b005c06](https://github.com/appfolio/react-gears/commit/b005c06e016b700876f09989414ca88ebc212c77))
+* move checkout to allow tool-versions file to be used for node version ([8ac4348](https://github.com/appfolio/react-gears/commit/8ac43488652bb8848e98d49fe43b17ed51c7b40d))
+* test workflow environments ([b1d88da](https://github.com/appfolio/react-gears/commit/b1d88da4e8bfa3074a619c497b9361439729eb60))
+* use hardcoded version of node to not have to checkout repo just for tool-versions ([e61b0f3](https://github.com/appfolio/react-gears/commit/e61b0f3bab81d9e8ad6243fe7ed10f3295d0e054))
+
+
+### Miscellaneous
+
+* updated npm and yarn config to use the new package repository ([9302031](https://github.com/appfolio/react-gears/commit/9302031b6e49406ad8161c5e98b103f88d662167))
+
 ## [8.17.0](https://github.com/appfolio/react-gears/compare/v8.16.2...v8.17.0) (2025-08-13)
 
 
