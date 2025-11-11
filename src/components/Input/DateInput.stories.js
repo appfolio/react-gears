@@ -30,6 +30,7 @@ WithProps.args = {
   onChange: action('onChange'),
   onClose: action('onClose'),
   positionFixed: false,
+  container: undefined,
 };
 
 export const WithId = (args) => (
@@ -163,3 +164,34 @@ export const CalendarCustomDay = (args) => (
     />
   </div>
 );
+
+export const WithContainer = (args) => (
+  <div>
+    <p>
+      The container prop allows you to specify where the dropdown menu is rendered. Use
+      &apos;body&apos; to avoid z-index issues or provide a custom container element.
+    </p>
+    <div
+      id="constrained-container"
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        height: '310px',
+        border: '1px solid #ccc',
+        padding: '10px',
+      }}
+    >
+      <p>This container has overflow: hidden and limited height</p>
+      <DateInput container="body" placeholder="Container = body" {...args} />
+      <br />
+      <br />
+      <DateInput container="#constrained-container" placeholder="Container = this div" {...args} />
+      <br />
+      <br />
+      <DateInput placeholder="Default positioning (may be clipped)" {...args} />
+    </div>
+  </div>
+);
+WithContainer.args = {
+  onChange: action('onChange'),
+};

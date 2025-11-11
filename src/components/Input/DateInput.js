@@ -79,6 +79,7 @@ export default class DateInput extends React.Component {
     showOnFocus: PropTypes.bool,
     state: PropTypes.any,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    container: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   };
 
   static defaultProps = {
@@ -309,6 +310,7 @@ export default class DateInput extends React.Component {
       positionFixed,
       value,
       state,
+      container,
       ...props
     } = this.props;
     /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -353,7 +355,12 @@ export default class DateInput extends React.Component {
               </Button>
             </InputGroup>
           </DropdownToggle>
-          <DropdownMenu className="p-0" onKeyDown={this.onKeyDown} {...dropdownProps}>
+          <DropdownMenu
+            className="p-0"
+            onKeyDown={this.onKeyDown}
+            container={container}
+            {...dropdownProps}
+          >
             {renderHeader(this.prevMonth, this.nextMonth, this.prevYear, this.nextYear) || header || (
               <header className="d-flex py-2">
                 <ButtonGroup size="sm">
