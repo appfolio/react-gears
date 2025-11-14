@@ -110,6 +110,7 @@ export default class MonthInput extends React.Component {
       value,
     });
     this.parseInput(value);
+    this.inputEl.setAttribute('value', value);
   };
 
   onSelect = (newDate) => {
@@ -224,6 +225,7 @@ export default class MonthInput extends React.Component {
 
     if (!isSame) {
       this.inputEl.value = currentValue;
+      this.inputEl.setAttribute('value', currentValue);
     }
   };
 
@@ -232,7 +234,9 @@ export default class MonthInput extends React.Component {
 
     const parsedDate = this.props.parse(this.inputEl.value, this.props.dateFormat);
     if (parsedDate) {
-      this.inputEl.value = format(parsedDate, this.props.dateFormat);
+      const value = format(parsedDate, this.props.dateFormat);
+      this.inputEl.value = value;
+      this.inputEl.setAttribute('value', value);
     }
   };
 
@@ -260,7 +264,7 @@ export default class MonthInput extends React.Component {
     } = this.props;
     const { open } = this.state;
     const date = this.getCurrentDate();
-    const dropdownProps = open ? { positionFixed } : {};
+    const dropdownProps = open && positionFixed ? { strategy: 'fixed' } : {};
 
     // <DropdownToggle tag="div" disabled> is to wrap the input in a container for positioning dropdown/up, without breaking showOnFocus
     // TODO extract a DropdownInput component that can encapsulate the defaultValue/value controlled/uncontrolled behavior.
