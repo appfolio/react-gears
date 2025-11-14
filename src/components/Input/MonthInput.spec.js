@@ -1,4 +1,6 @@
 import assert from 'assert';
+import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import addMonths from 'date-fns/add_months';
 import addYears from 'date-fns/add_years';
 import isSameDay from 'date-fns/is_same_day';
@@ -322,6 +324,37 @@ describe('<MonthInput />', () => {
       assert.strictEqual('visually-hidden', nextMonthLabel.prop('className'));
       assert.strictEqual('Previous Month', prevMonthLabel.text());
       assert.strictEqual('visually-hidden', prevMonthLabel.prop('className'));
+    });
+  });
+
+  describe('RTL compatibility', () => {
+    it('initial value should appear in the input value attribute', async () => {
+      const screen = render(<MonthInput defaultValue="Dec 2025" />);
+      assert.strictEqual(
+        screen.getByTestId('react-gears-monthinput-dropdowntoggle-input').getAttribute('value'),
+        'Dec 2025'
+      );
+    });
+    it('valid user typed value should appear in the input value attribute', async () => {
+      const screen = render(<MonthInput />);
+
+      const input = screen.getByTestId('react-gears-monthinput-dropdowntoggle-input');
+      await userEvent.type(input, 'Dec 2025');
+      assert.strictEqual(input.getAttribute('value'), 'Dec 2025');
+    });
+    it('invalid user typed value should appear in the input value attribute', async () => {
+      const screen = render(<MonthInput />);
+
+      const input = screen.getByTestId('react-gears-monthinput-dropdowntoggle-input');
+      await userEvent.type(input, 'Foo bar');
+      assert.strictEqual(input.getAttribute('value'), 'Foo bar');
+    });
+    it('blurring the input should update the input value to the formatted value', async () => {
+      const screen = render(<MonthInput parse={() => 'Dec 2025'} />);
+      const input = screen.getByTestId('react-gears-monthinput-dropdowntoggle-input');
+      await userEvent.type(input, '12/25/2025');
+      fireEvent.blur(input);
+      assert.strictEqual(input.getAttribute('value'), 'Dec 2025');
     });
   });
 });
