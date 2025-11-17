@@ -98,12 +98,18 @@ function List<T extends Item>({
 
   useDeepCompareEffect(() => {
     const includes = (xs: T[], x: T) => xs.map(selectedKeyMapper).includes(selectedKeyMapper(x));
+    let hasRemovedItems = false;
     selection.forEach((item) => {
       if (!includes(items, item)) {
         removeItem(item);
+        hasRemovedItems = true;
       }
     });
-  }, [items, Array.from(selection.values()), selectedKeyMapper]);
+
+    if (hasRemovedItems) {
+      onSelect(Array.from(selection.values()));
+    }
+  }, [items, Array.from(selection.values()), selectedKeyMapper, onSelect]);
 
   useDeepCompareEffect(() => {
     if (selectAllRef.current) {

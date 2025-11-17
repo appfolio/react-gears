@@ -457,6 +457,49 @@ describe('<List />', () => {
 
         sinon.assert.callCount(onSelect, 2);
       });
+
+      it('should call onSelect when selected items are removed from the items list', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="checkbox"
+            selected={[itemObjs[0], itemObjs[1]]}
+            selectedKeyMapper={(item) => item.key}
+            onSelect={onSelect}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        sinon.assert.notCalled(onSelect);
+
+        // Remove itemObjs[0] which is selected
+        component.setProps({ items: [itemObjs[1], itemObjs[2]] });
+        component.update();
+
+        sinon.assert.calledOnce(onSelect);
+        sinon.assert.calledWith(onSelect, [itemObjs[1]]);
+      });
+
+      it('should not call onSelect when items change but no selected items are removed', () => {
+        const component = mount(
+          <List
+            items={itemObjs}
+            select="checkbox"
+            selected={[itemObjs[1]]}
+            selectedKeyMapper={(item) => item.key}
+            onSelect={onSelect}
+          >
+            {(item) => <div id={item.name.toLowerCase()}>{item.name}</div>}
+          </List>
+        );
+
+        // Update items but keep the selected item
+        component.setProps({ items: [itemObjs[0], itemObjs[1]] });
+        component.update();
+
+        sinon.assert.notCalled(onSelect);
+      });
     });
   });
 
