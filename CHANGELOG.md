@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.2](https://github.com/appfolio/react-gears/compare/v8.17.1...v8.17.2) (2025-11-18)
+
+
+### Bug Fixes
+
+* add container prop ([88a3cd9](https://github.com/appfolio/react-gears/commit/88a3cd9453505f93ec9a778e7ce5fea01eb61992))
+
 ## [8.17.1](https://github.com/appfolio/react-gears/compare/v8.17.0...v8.17.1) (2025-11-08)
 
 
