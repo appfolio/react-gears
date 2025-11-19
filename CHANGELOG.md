@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.3](https://github.com/appfolio/react-gears/compare/v8.17.2...v8.17.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* call onSelect when items are unchecked on filter ([3334120](https://github.com/appfolio/react-gears/commit/33341208e372d060fb3db86138e685c469c3433d))
+
 ## [8.17.2](https://github.com/appfolio/react-gears/compare/v8.17.1...v8.17.2) (2025-11-18)
 
 
