@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.4](https://github.com/appfolio/react-gears/compare/v8.17.3...v8.17.4) (2025-11-20)
+
+
+### Bug Fixes
+
+* update DateInput to use initialCalendarDate ([90bee05](https://github.com/appfolio/react-gears/commit/90bee05991fc154107799d473f62c91249651c27))
+
 ## [8.17.3](https://github.com/appfolio/react-gears/compare/v8.17.2...v8.17.3) (2025-11-19)
 
 
