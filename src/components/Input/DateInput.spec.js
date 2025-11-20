@@ -46,6 +46,45 @@ describe('<DateInput />', () => {
     });
   });
 
+  describe('initialCalendarDate', () => {
+    it('should open calendar to initialCalendarDate when value is empty', () => {
+      const initialDate = new Date(2026, 2, 1); // March 1, 2026
+      const component = mount(<DateInput initialCalendarDate={initialDate} />);
+      const input = component.find('input');
+
+      assert.equal(input.getDOMNode().value, '');
+      assert(isSameDay(component.instance().getCurrentDate(), initialDate));
+    });
+
+    it('should use value over initialCalendarDate when both are provided', () => {
+      const value = new Date(2025, 10, 15); // November 15, 2025
+      const initialDate = new Date(2026, 2, 1); // March 1, 2026
+      const component = mount(<DateInput value={value} initialCalendarDate={initialDate} />);
+
+      assert(isSameDay(component.instance().getCurrentDate(), value));
+    });
+
+    it('should use state.value over initialCalendarDate when state has value', () => {
+      const initialDate = new Date(2026, 2, 1); // March 1, 2026
+      const component = mount(<DateInput initialCalendarDate={initialDate} />);
+      const input = component.find('input');
+
+      // Set state value by typing
+      input.simulate('change', { target: { value: '11/15/2025' } });
+      component.update();
+
+      const stateValueDate = new Date(2025, 10, 15); // November 15, 2025
+      assert(isSameDay(component.instance().getCurrentDate(), stateValueDate));
+    });
+
+    it('should format initialCalendarDate string prop', () => {
+      const component = mount(<DateInput initialCalendarDate="3/1/2026" />);
+
+      const expectedDate = new Date(2026, 2, 1); // March 1, 2026
+      assert(isSameDay(component.instance().getCurrentDate(), expectedDate));
+    });
+  });
+
   it('should not tab to the calendar button', () => {
     const component = mount(<DateInput />);
 

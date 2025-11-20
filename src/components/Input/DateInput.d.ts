@@ -24,6 +24,7 @@ interface DateInputPropTypes
   dateVisible?: (currentDate: Date) => any[];
   dateFormat?: string;
   defaultValue?: DateOrString;
+  initialCalendarDate?: DateOrString;
   direction?: Direction;
   disabled?: boolean;
   footer?: React.ReactNode;

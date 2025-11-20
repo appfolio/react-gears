@@ -62,6 +62,7 @@ export default class DateInput extends React.Component {
     dateVisible: PropTypes.func,
     dateFormat: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    initialCalendarDate: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     direction: PropTypes.string,
     disabled: PropTypes.bool,
     footer: deprecated(PropTypes.node, 'Use renderFooter instead.'),
@@ -197,12 +198,15 @@ export default class DateInput extends React.Component {
     return this.state.value;
   };
 
-  getCurrentDate = () =>
-    parseValue(
-      this.props.value !== undefined ? this.props.value : this.state.value,
-      this.props.dateFormat,
-      this.props.parse
-    );
+  getCurrentDate = () => {
+    // If value prop is provided and not empty, use it
+    // Otherwise, use state.value if available, or fall back to initialCalendarDate
+    const valueToUse =
+      this.props.value !== undefined && this.props.value !== ''
+        ? this.props.value
+        : this.state.value || this.props.initialCalendarDate || '';
+    return parseValue(valueToUse, this.props.dateFormat, this.props.parse);
+  };
 
   parseInput = (value) => {
     const date = this.props.parse(value, this.props.dateFormat);
