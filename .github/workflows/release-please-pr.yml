@@ -10,6 +10,9 @@ on:
 jobs:
   release-pr:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     if: ${{ github.event.pull_request.merged == true && !startsWith(github.head_ref, 'release-please--branches--') }}
     env:
       YARN_RC_FILENAME: .yarnrc-public.yml
