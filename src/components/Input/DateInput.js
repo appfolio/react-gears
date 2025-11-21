@@ -315,6 +315,7 @@ export default class DateInput extends React.Component {
       value,
       state,
       container,
+      initialCalendarDate,
       ...props
     } = this.props;
     /* eslint-enable @typescript-eslint/no-unused-vars */
