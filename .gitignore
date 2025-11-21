@@ -12,6 +12,7 @@ dist/
 package-lock.json
 lib/
 esm/
+storybook-static/
 
 .yarn/*
 !.yarn/patches

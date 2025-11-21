@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+
+name: github-pages
+
+jobs:
+  github-pages:
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+
+    runs-on: ubuntu-latest
+
+    env:
+      YARN_RC_FILENAME: .yarnrc-public.yml
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - run: |
+          yarn install --immutable
+          yarn run docs
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static/
+
+      - uses: actions/deploy-pages@v4

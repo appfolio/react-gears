@@ -11,6 +11,8 @@ jobs:
     environment: ci
     env:
       CODEARTIFACT_REGISTRY_SERVER: ${{ vars.CODEARTIFACT_REGISTRY_SERVER }}
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -51,6 +53,7 @@ jobs:
   release-public:
     runs-on: ubuntu-latest
     needs: release-github
+    if: ${{ needs.release-github.outputs.release_created == 'true' }}
     env:
       YARN_RC_FILENAME: .yarnrc-public.yml
     steps:

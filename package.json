@@ -28,15 +28,13 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "start": "storybook dev -p 6006",
-    "docs": "storybook build -o docs",
-    "version": "yarn docs && git add -A docs",
+    "docs": "storybook build -o storybook-static",
     "clean": "rm -rf esm lib",
     "dist:types": "tsc --project tsconfig.build.json",
     "dist:types:js": "scripts/copyDTSFiles.js",
     "dist:esm": "babel src --out-dir esm --config-file ./babel.esm.config.js --extensions '.js,.ts,.tsx'",
     "dist:lib": "babel src --out-dir lib --config-file ./babel.build.config.js --extensions '.js,.ts,.tsx'",
-    "dist": "yarn clean && concurrently \"yarn:dist:*\"",
-    "storybook:doctor": "npx storybook doctor"
+    "dist": "yarn clean && concurrently \"yarn:dist:*\""
   },
   "peerDependencies": {
     "react": ">= 16.8",
