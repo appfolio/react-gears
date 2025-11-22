@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.17.5](https://github.com/appfolio/react-gears/compare/v8.17.4...v8.17.5) (2025-11-22)
+
+
+### Bug Fixes
+
+* Keep input tag's value attribute updated with input's value ([8309e79](https://github.com/appfolio/react-gears/commit/8309e793c2ea500b95f2d0f591d88619967e1d63))
+* move release-please pr creation and public publishing to separate workflow and job ([0bd5114](https://github.com/appfolio/react-gears/commit/0bd5114efc318e96303ca5edb697ad38f9b8760a))
+* permission workflow ([81cc840](https://github.com/appfolio/react-gears/commit/81cc840db69f9140c457c461bf4d998763488db3))
+* remove generated storybook and make own workflow ([1d7a984](https://github.com/appfolio/react-gears/commit/1d7a9841c59c34c3943669ec2cbcf677a9663bd9))
+
 ## [8.17.4](https://github.com/appfolio/react-gears/compare/v8.17.3...v8.17.4) (2025-11-20)
 
 
