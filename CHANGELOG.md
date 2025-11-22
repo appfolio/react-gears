@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.7](https://github.com/appfolio/react-gears/compare/v8.17.6...v8.17.7) (2025-11-22)
+
+
+### Bug Fixes
+
+* streamline artifact upload and npm publish steps in release workflow ([4d35da8](https://github.com/appfolio/react-gears/commit/4d35da855d961ff0600da599a3f74f2c3e2d650b))
+
 ## [8.17.6](https://github.com/appfolio/react-gears/compare/v8.17.5...v8.17.6) (2025-11-22)
 
 
