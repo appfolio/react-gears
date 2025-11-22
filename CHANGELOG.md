@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.17.6](https://github.com/appfolio/react-gears/compare/v8.17.5...v8.17.6) (2025-11-22)
+
+
+### Bug Fixes
+
+* update artifact upload paths to include esm and lib directories ([502d26b](https://github.com/appfolio/react-gears/commit/502d26b83e17cd3e154be0651f46218cdcf5c27b))
+
 ## [8.17.5](https://github.com/appfolio/react-gears/compare/v8.17.4...v8.17.5) (2025-11-22)
 
 
