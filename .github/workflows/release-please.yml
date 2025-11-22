@@ -40,7 +40,9 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           name: dist
-          path: dist/
+          path: |
+            esm/
+            lib/
           retention-days: 1
           if-no-files-found: error
       - name: Publish to GitHub
