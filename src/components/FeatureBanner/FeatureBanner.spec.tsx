@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import FeatureBanner from './FeatureBanner';
 
@@ -37,5 +37,17 @@ describe('<FeatureBanner />', () => {
     );
 
     expect(queryByText('FeatureBannerChildElement')).not.toBeNull();
+  });
+
+  describe('when dismissable', () => {
+    it('can be closed', async () => {
+      const { getByRole, queryByRole } = render(<FeatureBanner {...commonProps} dismissable />);
+      const closeButton = getByRole('button');
+      expect(queryByRole('alert')).not.toBeNull();
+      closeButton.click();
+      await waitFor(() => {
+        expect(queryByRole('alert')).toBeNull();
+      });
+    });
   });
 });
