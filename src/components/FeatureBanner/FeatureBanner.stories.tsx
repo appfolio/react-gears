@@ -26,6 +26,7 @@ export const LiveExample: Story = {
   args: {
     alertText: 'New',
     color: 'info',
+    dismissable: false,
     title: 'Company-Wide View of Text Messages',
     subtitle: 'View all text messages sent by your company from this page.',
   },
