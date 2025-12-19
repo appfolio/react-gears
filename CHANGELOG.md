@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.18.0](https://github.com/appfolio/react-gears/compare/v8.17.7...v8.18.0) (2025-12-19)
+
+
+### Features
+
+* expose dismissable prop for feature banner ([d1989c7](https://github.com/appfolio/react-gears/commit/d1989c7d7dd1b3cea063013476e24d68adabb935))
+
 ## [8.17.7](https://github.com/appfolio/react-gears/compare/v8.17.6...v8.17.7) (2025-11-22)
 
 
