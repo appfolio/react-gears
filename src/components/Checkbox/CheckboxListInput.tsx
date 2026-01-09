@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 export interface CheckboxListInputProps {
@@ -9,13 +8,6 @@ export interface CheckboxListInputProps {
 }
 
 class CheckboxListInput extends React.Component<CheckboxListInputProps> {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.array,
-  };
-
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.onChange) {
       const { checked, value } = e.target;

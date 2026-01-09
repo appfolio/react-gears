@@ -36,6 +36,7 @@ type NoteMentionsProps = {
 const defaultProps = {
   className: 'mb-3',
   dateFormat: 'ddd, MMMM D, YYYY "at" h:mm A',
+  // eslint-disable-next-line react/default-props-match-prop-types
   mentionableUsers: [],
   showTimezone: true,
   rows: EditableNoteMentionsDefaultProps.rows,

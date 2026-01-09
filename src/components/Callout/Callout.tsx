@@ -61,6 +61,7 @@ Callout.defaultProps = {
   className: '',
   color: 'primary',
   background: 'light',
+  // eslint-disable-next-line react/default-props-match-prop-types
   placement: 'bottom',
 };
 

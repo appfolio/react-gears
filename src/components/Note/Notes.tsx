@@ -16,6 +16,7 @@ type NotesProps = {
 
 const defaultProps = {
   className: '',
+  // eslint-disable-next-line react/default-props-match-prop-types
   notes: [],
 };
 

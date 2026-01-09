@@ -2,29 +2,11 @@ import get from 'lodash.get';
 import isEqual from 'lodash.isequal';
 import orderBy from 'lodash.orderby';
 import some from 'lodash.some';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Paginator from '../Pagination/Paginator';
 import SortableTable from './SortableTable';
 
 export default class UncontrolledTable extends React.Component {
-  static propTypes = {
-    ...SortableTable.propTypes,
-    expanded: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    onExpand: PropTypes.func,
-    onPageChange: PropTypes.func,
-    page: PropTypes.number,
-    pageSize: PropTypes.number,
-    selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    sort: PropTypes.shape({
-      column: PropTypes.string,
-      ascending: PropTypes.bool,
-    }),
-    onSelect: PropTypes.func,
-    onSort: PropTypes.func,
-    onVisibleRowsChange: PropTypes.func,
-  };
-
   static defaultProps = {
     ...SortableTable.defaultProps,
     onExpand: () => {},

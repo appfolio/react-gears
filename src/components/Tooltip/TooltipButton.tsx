@@ -1,7 +1,7 @@
 import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import React, { FC } from 'react';
-
+import React, { FC, useState } from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Button, { ButtonProps } from '../Button/Button';
 import Tooltip from './Tooltip';
 
@@ -11,9 +11,6 @@ interface TooltipButtonProps extends ButtonProps {
   gearsBtnContainerClass?: string;
 }
 
-let count = 0;
-const getID = () => `tooltip-button-${count++}`;
-
 const TooltipButton: FC<TooltipButtonProps> = ({
   tooltip,
   disabled = false,
@@ -22,8 +19,7 @@ const TooltipButton: FC<TooltipButtonProps> = ({
   gearsBtnContainerClass,
   ...props
 }) => {
-  const buttonIdRef = React.useRef(`tooltip-button-${getID()}`);
-  const buttonId = buttonIdRef.current;
+  const [buttonId] = useState(() => `tooltip-button-${getUniqueId('tooltip-button-')}`);
   const tooltipId = `tooltip-for-${buttonId}`;
   const className = classnames('d-inline-block', gearsBtnContainerClass);
 

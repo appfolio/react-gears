@@ -1,66 +1,45 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import type { InputProps } from 'reactstrap';
+import { getUniqueId } from '../../util/uniqueId';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
 
-interface CheckboxBooleanInputSpecificProps {
+export type CheckboxBooleanInputProps = Omit<InputProps, 'onChange' | 'value'> & {
   checkboxLabel?: React.ReactNode;
   onChange?: (isChecked: boolean) => void;
   value?: boolean;
+};
+
+function CheckboxBooleanInput({
+  checkboxLabel,
+  className,
+  onChange,
+  value,
+  ...inputProps
+}: CheckboxBooleanInputProps) {
+  const [generatedId] = useState(() => getUniqueId('checkbox-boolean-input-'));
+  const id = inputProps.id || generatedId;
+  const classNames = classnames('pt-2', className);
+  return (
+    <FormGroup check className={classNames}>
+      <Input
+        {...inputProps}
+        id={id}
+        type="checkbox"
+        checked={value}
+        onChange={(e) => onChange && onChange(e.target.checked)}
+      />
+      {checkboxLabel && (
+        <Label check for={id}>
+          {checkboxLabel}
+        </Label>
+      )}
+    </FormGroup>
+  );
 }
-type ExtendsWithTypeOverrides<T, U> = U & Omit<T, keyof U>;
-export type CheckboxBooleanInputProps = ExtendsWithTypeOverrides<
-  InputProps,
-  CheckboxBooleanInputSpecificProps
->;
 
-let count = 0;
-
-function getID() {
-  return `checkbox-boolean-input-${count++}`;
-}
-
-class CheckboxBooleanInput extends React.Component<CheckboxBooleanInputProps> {
-  static propTypes = {
-    id: PropTypes.string,
-    checkboxLabel: PropTypes.node,
-    className: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.bool,
-  };
-
-  id = getID();
-
-  constructor(props: CheckboxBooleanInputProps) {
-    super(props);
-
-    this.id = props.id || this.id;
-  }
-
-  render() {
-    const { checkboxLabel, className, onChange, value, ...inputProps } = this.props;
-    const classNames = classnames('pt-2', className);
-
-    return (
-      <FormGroup check className={classNames}>
-        <Input
-          id={this.id}
-          {...inputProps}
-          type="checkbox"
-          checked={value}
-          onChange={(e) => onChange && onChange(e.target.checked)}
-        />
-        {checkboxLabel && (
-          <Label check for={this.id}>
-            {checkboxLabel}
-          </Label>
-        )}
-      </FormGroup>
-    );
-  }
-}
+CheckboxBooleanInput.displayName = 'CheckboxBooleanInput';
 
 export default CheckboxBooleanInput;

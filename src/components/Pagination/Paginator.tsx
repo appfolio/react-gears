@@ -1,5 +1,4 @@
 import range from 'lodash.range';
-import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 import Icon from '../Icon/Icon';
 import Page from './components/Page';
@@ -40,17 +39,6 @@ const LastPageLink: FC<LinkProps> = ({ disabled, page, onClick }) => (
     <Icon name="angle-double-right" />
   </ShortcutLink>
 );
-
-const linkPropTypes = {
-  disabled: PropTypes.bool,
-  page: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
-
-FirstPageLink.propTypes = linkPropTypes;
-PrevPageLink.propTypes = linkPropTypes;
-NextPageLink.propTypes = linkPropTypes;
-LastPageLink.propTypes = linkPropTypes;
 
 type PaginatorProps = {
   currentPage: number;
@@ -112,15 +100,6 @@ const Paginator: FC<PaginatorProps> = ({
       )}
     </div>
   );
-};
-
-Paginator.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  perPage: PropTypes.number,
-  size: PropTypes.oneOf(['sm', 'lg']),
-  summary: PropTypes.node,
-  totalItems: PropTypes.number.isRequired,
 };
 
 Paginator.displayName = 'Paginator';

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
@@ -23,12 +22,6 @@ const Page: FC<PageProps> = ({ current, page, ...props }) => {
       <PaginationLink onClick={onClick}>{page}</PaginationLink>
     </PaginationItem>
   );
-};
-
-Page.propTypes = {
-  current: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
 };
 
 Page.displayName = 'Page';

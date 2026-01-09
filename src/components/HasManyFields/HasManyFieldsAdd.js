@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
@@ -13,12 +12,6 @@ const HasManyFieldsAdd = ({ children, className, ...props }) => {
       <span>{children}</span>
     </Button>
   );
-};
-
-HasManyFieldsAdd.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  disabled: PropTypes.bool,
 };
 
 HasManyFieldsAdd.displayName = 'HasManyFieldsAdd';

@@ -1,22 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carousel from './Carousel';
 import CarouselCaption from './CarouselCaption';
 import CarouselControl from './CarouselControl';
 import CarouselIndicators from './CarouselIndicators';
 import CarouselItem from './CarouselItem';
-
-const propTypes = {
-  items: PropTypes.array.isRequired,
-  indicators: PropTypes.bool,
-  controls: PropTypes.bool,
-  autoPlay: PropTypes.bool,
-  defaultActiveIndex: PropTypes.number,
-  activeIndex: PropTypes.number,
-  next: PropTypes.func,
-  previous: PropTypes.func,
-  goToIndex: PropTypes.func,
-};
 
 class UncontrolledCarousel extends Component {
   constructor(props) {
@@ -123,7 +110,6 @@ class UncontrolledCarousel extends Component {
   }
 }
 
-UncontrolledCarousel.propTypes = propTypes;
 UncontrolledCarousel.defaultProps = {
   controls: true,
   indicators: true,

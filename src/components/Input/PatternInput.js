@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Input from './Input';
 
@@ -55,12 +54,4 @@ PatternInput.defaultProps = {
   pattern: /.*/g,
   restrictInput: true,
   value: '',
-};
-
-PatternInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  pattern: (props, propName) =>
-    props[propName] instanceof RegExp ? null : new Error('Pattern must be a valid RegExp'),
-  restrictInput: PropTypes.bool,
-  value: PropTypes.string,
 };

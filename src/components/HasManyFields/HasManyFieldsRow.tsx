@@ -1,6 +1,7 @@
 import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
 import React, { useState } from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import ConfirmationButton, { ConfirmationButtonProps } from '../Button/ConfirmationButton';
 import Icon from '../Icon/Icon';
@@ -9,11 +10,6 @@ import Row from '../Layout/Row';
 import Tooltip from '../Tooltip/Tooltip';
 
 const noop = () => undefined;
-let count = 0;
-
-function getID() {
-  return `hmf-${(count += 1)}`; // eslint-disable-line no-return-assign
-}
 
 interface HasManyFieldsRowProps {
   children: React.ReactNode;
@@ -37,7 +33,7 @@ const HasManyFieldsRow = ({
   deleteProps,
   ...props
 }: HasManyFieldsRowProps) => {
-  const [id] = useState(getID());
+  const [id] = useState(() => getUniqueId('hmf-', 1));
 
   const classNames = classnames('mb-4 gx-0', className);
   // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:

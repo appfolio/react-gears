@@ -1,5 +1,4 @@
 import orderBy from 'lodash.orderby';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import List, { ListProps } from './List';
 
@@ -48,18 +47,13 @@ function SortableList<T>({
       onSort={sortOptions && handleSort}
       sort={{ property: sortProperty, ascending }}
       sortOptions={sortOptions}
-      items={itemsSorted}
+      items={itemsSorted as any}
       flush
       scrollPositionKey={scrollPositionKey}
       {...props}
     />
   );
 }
-
-SortableList.propTypes = {
-  ...List.propTypes,
-  filterBy: PropTypes.any,
-};
 
 SortableList.defaultProps = defaultProps;
 

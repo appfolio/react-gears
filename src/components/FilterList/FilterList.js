@@ -1,15 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import LabelBadge from '../LabelBadge/LabelBadge';
 
 export default class FilterList extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    filters: PropTypes.array.isRequired,
-    maxWidth: PropTypes.number,
-    onRemove: PropTypes.func,
-  };
-
   static defaultProps = {
     maxWidth: 14,
   };

@@ -1,4 +1,5 @@
-import React, { useRef, useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Popover from '../Popover/Popover';
@@ -12,23 +13,12 @@ interface HelpBubbleProps
   className?: string;
 }
 
-let count = 0;
-
-function getID() {
-  return `help-bubble-${count++}`;
-}
-
 const style = {
   cursor: 'pointer',
 };
 
 function HelpBubble(props: HelpBubbleProps) {
-  const idRef = useRef<string | undefined>();
-  if (!idRef.current) {
-    idRef.current = getID();
-  }
-  const id = idRef.current;
-
+  const [id] = useState(() => getUniqueId('help-bubble-'));
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = (e: SyntheticEvent) => {

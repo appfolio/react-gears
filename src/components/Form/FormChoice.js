@@ -1,30 +1,14 @@
 import classname from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
 import FormGroup from './FormGroup';
 
-let count = 0;
-
-function getID() {
-  return `form-choice-${count++}`;
-}
-
 class FormChoice extends React.Component {
-  static propTypes = {
-    inline: PropTypes.bool,
-    disabled: PropTypes.bool,
-    children: PropTypes.node,
-    containerClassName: PropTypes.string,
-    id: PropTypes.string,
-    type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
-    value: PropTypes.any,
-  };
-
   constructor(props) {
     super(props);
-    this.id = props.id || getID();
+    this.id = props.id || getUniqueId('form-choice-');
   }
 
   render() {

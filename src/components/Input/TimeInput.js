@@ -11,7 +11,6 @@ import fecha from 'fecha';
 import flow from 'lodash.flow';
 import toLower from 'lodash.tolower';
 import memoizeOne from 'memoize-one';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon/Icon';
 import Select from '../Select/Select';
@@ -79,24 +78,6 @@ function userInputProgress(input, time) {
 const ClockIcon = () => <Icon name="clock" />;
 
 export default class TimeInput extends React.Component {
-  static propTypes = {
-    ...Select.propTypes,
-    className: PropTypes.string,
-    /** Allow entering times outside of step interval */
-    allowOtherTimes: PropTypes.bool,
-    defaultValue: PropTypes.string,
-    disabled: PropTypes.bool,
-    max: PropTypes.string,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    min: PropTypes.string,
-    noResultsText: PropTypes.string,
-    step: PropTypes.number, // TODO? 1-60
-    timeFormat: PropTypes.string,
-    initiallyHiddenTimes: PropTypes.array,
-    value: PropTypes.string,
-  };
-
   static defaultProps = {
     allowOtherTimes: false,
     onChange: () => {},

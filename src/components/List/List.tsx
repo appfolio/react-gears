@@ -1,9 +1,8 @@
-import uniqueId from 'lodash.uniqueid';
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
+import { getUniqueId } from '../../util/uniqueId';
 import Input from '../Input/Input';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
@@ -91,7 +90,7 @@ function List<T extends Item>({
     clear: clearSelection,
     replace: replaceSelection,
   } = useMap(selected, selectedKeyMapper);
-  const [selectAllId] = useState(() => uniqueId('selectall-'));
+  const [selectAllId] = useState(() => getUniqueId('selectall-', 1));
   const selectAllRef = useRef<HTMLInputElement>(null);
 
   useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);
@@ -240,31 +239,6 @@ function List<T extends Item>({
     </ListGroup>
   );
 }
-
-List.propTypes = {
-  ...ListGroup.propTypes,
-  children: PropTypes.func,
-  filter: PropTypes.string,
-  filterPlaceholder: PropTypes.string,
-  header: PropTypes.node,
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  scrollPositionKey: PropTypes.string,
-  onExpand: PropTypes.func,
-  onFilter: PropTypes.func,
-  itemClassName: PropTypes.string,
-  items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  select: PropTypes.string,
-  selected: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  onSelect: PropTypes.func,
-  onSort: PropTypes.func,
-  selectedKeyMapper: PropTypes.func,
-  sort: PropTypes.shape({
-    property: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-    ascending: PropTypes.bool,
-  }),
-  sortByLabel: PropTypes.string,
-  sortOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-};
 
 List.defaultProps = defaultProps;
 

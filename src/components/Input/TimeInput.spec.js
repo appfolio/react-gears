@@ -62,10 +62,6 @@ describe('<TimeInput />', () => {
     assert(Number.isNaN(time.getTime()));
   });
 
-  // TODO
-  // max: PropTypes.string,
-  // min: PropTypes.string,
-
   it('should format values with specified timeFormat', () => {
     const component = mount(<TimeInput timeFormat="hh:mm a" defaultValue="16:30" />);
     const options = component.find(Select).prop('options');

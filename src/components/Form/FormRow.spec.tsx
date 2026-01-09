@@ -75,7 +75,6 @@ describe('<FormRow />', () => {
           {props.invalid !== undefined && 'invalid!'}
         </div>
       );
-      Custom2.propTypes = {};
 
       it('should omit valid/invalid props', () => {
         const component2 = render(<FormRow label="First Name" type={Custom2} feedback="Na brah" />);
