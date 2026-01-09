@@ -1,6 +1,5 @@
-import uniqueId from 'lodash.uniqueid';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { getUniqueId } from '../../../util/uniqueId';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 import Input from '../../Input/Input';
@@ -29,7 +28,7 @@ const SortHeader = ({
   onChangeAscending,
   onChangeProperty,
 }: SortHeaderProps) => {
-  const [sortId] = useState(() => uniqueId('sort-'));
+  const [sortId] = useState(() => getUniqueId('sort-', 1));
   return (
     <Col
       xs="12"
@@ -69,15 +68,6 @@ const SortHeader = ({
       )}
     </Col>
   );
-};
-
-SortHeader.propTypes = {
-  ascending: PropTypes.bool.isRequired,
-  onChangeAscending: PropTypes.func.isRequired,
-  onChangeProperty: PropTypes.func.isRequired,
-  sortByLabel: PropTypes.string.isRequired,
-  sortOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
-  sortProperty: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 };
 
 export default SortHeader;

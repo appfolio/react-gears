@@ -6,7 +6,6 @@ import CreditCardNumber from './CreditCardNumber';
 // Wrapping as uncontrolled so that story is easier to use:
 const UncontrolledCreditCardNumber = uncontrollable(CreditCardNumber, { value: 'onChange' });
 UncontrolledCreditCardNumber.displayName = 'CreditCardNumber';
-UncontrolledCreditCardNumber.propTypes = CreditCardNumber.propTypes;
 UncontrolledCreditCardNumber.defaultProps = CreditCardNumber.defaultProps;
 
 export default {

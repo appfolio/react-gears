@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const noop = () => {};
@@ -21,14 +20,9 @@ export default (Component) => {
   };
 
   BoundWrapper.contextTypes = {
-    value: PropTypes.object,
-    errors: PropTypes.object,
-    onChange: PropTypes.func,
-  };
-
-  BoundWrapper.propTypes = {
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    value: noop,
+    errors: noop,
+    onChange: noop,
   };
 
   BoundWrapper.defaultProps = {

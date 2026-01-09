@@ -1,7 +1,6 @@
 import classnames from 'classnames';
-import uniqueId from 'lodash.uniqueid';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Label from '../Label/Label';
@@ -73,7 +72,7 @@ function defaultRenderRow(
 }
 
 function getSelectableCell(row, rowSelected, onSelect) {
-  const selectRowId = uniqueId('select-row-');
+  const selectRowId = getUniqueId('select-row-', 1);
   return (
     <>
       <Label for={selectRowId} hidden>
@@ -127,6 +126,17 @@ class SortableTable extends React.Component {
     this.setState({ leftGradient: left, rightGradient: right });
   };
 
+  static defaultProps = {
+    ...Table.defaultProps,
+    expandableColumn: {},
+    rows: [],
+    rowClassName: () => undefined,
+    rowExpanded: () => false,
+    truncate: false,
+    renderRow: defaultRenderRow,
+    showScrollShadows: false,
+  };
+
   componentDidMount() {
     if (this.props.showScrollShadows) {
       this.checkScroll();
@@ -145,58 +155,6 @@ class SortableTable extends React.Component {
       window.removeEventListener('resize', this.checkScroll);
     }
   }
-
-  static propTypes = {
-    ...Table.propTypes,
-    columns: PropTypes.arrayOf(
-      PropTypes.shape({
-        align: PropTypes.oneOf(['start', 'center', 'end']),
-        active: PropTypes.bool,
-        ascending: PropTypes.bool,
-        cell: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-        footer: PropTypes.node,
-        header: PropTypes.node,
-        key: PropTypes.string,
-        onSort: PropTypes.func,
-        sortable: PropTypes.bool,
-        width: PropTypes.string,
-      })
-    ).isRequired,
-    rows: PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // ensure each row has a unique key
-        })
-      ),
-      PropTypes.object,
-    ]),
-    expandableColumn: PropTypes.object,
-    header: PropTypes.node,
-    footer: PropTypes.node,
-    rowClassName: PropTypes.func,
-    onExpand: PropTypes.func,
-    onSelect: PropTypes.func,
-    onSelectAll: PropTypes.func,
-    rowExpanded: PropTypes.func,
-    rowSelected: PropTypes.func,
-    rowOnClick: PropTypes.func,
-    allSelected: PropTypes.bool,
-    truncate: PropTypes.bool,
-    renderRow: PropTypes.func,
-    showScrollShadows: PropTypes.bool,
-    // TODO? support sort type icons (FontAwesome has numeric, A->Z, Z->A)
-  };
-
-  static defaultProps = {
-    ...Table.defaultProps,
-    expandableColumn: {},
-    rows: [],
-    rowClassName: () => undefined,
-    rowExpanded: () => false,
-    truncate: false,
-    renderRow: defaultRenderRow,
-    showScrollShadows: false,
-  };
 
   render() {
     const {
@@ -231,7 +189,7 @@ class SortableTable extends React.Component {
     const cols = [...columns];
 
     if (selectable) {
-      const selectAllId = uniqueId('select-all-');
+      const selectAllId = getUniqueId('select-all-', 1);
       cols.unshift({
         align: 'center',
         key: 'select',

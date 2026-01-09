@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
+import { getUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Input from '../Input/Input';
@@ -25,9 +26,6 @@ function updateSelection(selected: boolean, children?: Option<any>[]): Option<an
   });
 }
 
-let count = 0;
-const getID = () => `tree-item-${count++}`;
-
 function TreeItem<T>({
   className,
   indent = 0,
@@ -38,7 +36,7 @@ function TreeItem<T>({
   ...props
 }: TreeItemProps<T>) {
   const selectAllRef = useRef<HTMLInputElement>(null);
-  const [checkboxId] = useState(getID());
+  const [checkboxId] = useState(() => getUniqueId('tree-item-'));
   const showExpand = option.children && option.children?.length > 0;
 
   useEffect(() => {

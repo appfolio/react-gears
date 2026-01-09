@@ -7,9 +7,7 @@ import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import enLocale from 'date-fns/locale/en';
 import startOfToday from 'date-fns/start_of_today';
-import deprecated from 'deprecated-prop-type';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
-import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button/Button';
 import ButtonGroup from '../Button/ButtonGroup';
@@ -56,33 +54,6 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 }
 
 export default class DateInput extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    dateEnabled: PropTypes.func,
-    dateVisible: PropTypes.func,
-    dateFormat: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    initialCalendarDate: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    direction: PropTypes.string,
-    disabled: PropTypes.bool,
-    footer: deprecated(PropTypes.node, 'Use renderFooter instead.'),
-    header: deprecated(PropTypes.node, 'Use renderHeader insread.'),
-    renderFooter: PropTypes.func,
-    renderHeader: PropTypes.func,
-    id: PropTypes.string,
-    keyboard: PropTypes.bool,
-    locale: PropTypes.object,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onClose: PropTypes.func,
-    parse: PropTypes.func,
-    positionFixed: PropTypes.bool,
-    showOnFocus: PropTypes.bool,
-    state: PropTypes.any,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    container: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  };
-
   static defaultProps = {
     className: '',
     dateFormat: 'M/D/YYYY',

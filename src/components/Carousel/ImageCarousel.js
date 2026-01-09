@@ -1,25 +1,10 @@
-/* eslint-disable react/default-props-match-prop-types */
-// Enable the above rule when the following is addressed https://github.com/yannickcr/eslint-plugin-react/issues/1674
-
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon/Icon';
 import Modal from '../Modal/Modal';
 import UncontrolledCarousel from './UncontrolledCarousel';
 
 export default class ImageCarousel extends React.Component {
-  static propTypes = {
-    items: PropTypes.array.isRequired,
-    indicators: PropTypes.bool,
-    controls: PropTypes.bool,
-    autoPlay: PropTypes.bool,
-    defaultActiveIndex: PropTypes.number,
-    activeIndex: PropTypes.number,
-    slide: PropTypes.bool,
-    ...Modal.propTypes,
-  };
-
   static defaultProps = {
     autoPlay: false,
     backdrop: true,

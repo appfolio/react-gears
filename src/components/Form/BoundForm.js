@@ -1,16 +1,8 @@
 import noop from 'lodash.noop';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Form from './Form';
 
 class BoundForm extends React.Component {
-  static propTypes = {
-    errors: PropTypes.object,
-    object: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func,
-    onChange: PropTypes.func,
-  };
-
   static defaultProps = {
     errors: {},
     onSubmit: noop,
@@ -18,9 +10,9 @@ class BoundForm extends React.Component {
   };
 
   static childContextTypes = {
-    value: PropTypes.object,
-    errors: PropTypes.object,
-    onChange: PropTypes.func,
+    value: noop,
+    errors: noop,
+    onChange: noop,
   };
 
   constructor(props) {

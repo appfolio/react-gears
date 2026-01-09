@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
 import classNames from 'classnames';
 import React, { useState, useRef } from 'react';
 import { useIntervalRef } from '../../hooks/useIntervalRef';
@@ -23,7 +22,7 @@ export interface CollapsableTextProps {
   collapsed?: boolean;
   lessLabel?: React.ReactNode;
   moreLabel?: React.ReactNode;
-  /**  @deprecated maxLength has no effect. Use maxLines instead */
+  /**  @deprecated maxLength has no effect. Use maxLines instead */ // eslint-disable-next-line react/no-unused-prop-types
   maxLength?: number;
   maxLines?: number;
   alignToggleButton?: AlignToggleButton;

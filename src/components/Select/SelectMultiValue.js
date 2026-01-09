@@ -1,20 +1,9 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Badge from '../Badge/Badge';
 import Icon from '../Icon/Icon';
 
 export default class SelectMultiValue extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    id: PropTypes.string,
-    instancePrefix: PropTypes.any,
-    disabled: PropTypes.bool,
-    onRemove: PropTypes.func,
-    value: PropTypes.object,
-  };
-
   static defaultProps = {
     className: '',
   };

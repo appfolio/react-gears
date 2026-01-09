@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { useState, useRef } from 'react';
 import ReactSelect from 'react-select-plus';
 import Close from '../Button/Close';
@@ -64,10 +63,6 @@ const Select = ({
   );
 };
 
-Select.propTypes = {
-  defaultValue: PropTypes.any,
-  ...ReactSelect.propTypes,
-};
 Select.displayName = 'Select';
 
 export default Select;

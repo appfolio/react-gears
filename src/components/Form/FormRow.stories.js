@@ -75,7 +75,6 @@ export const WithCheckboxes = ({ label, stacked, inline }) => {
   const [favorites, setFavorites] = useState(['Bravo']);
   return (
     <FormRow
-      id="nato"
       label={label}
       stacked={stacked}
       onChange={(selection) => setFavorites(selection)}
@@ -106,7 +105,6 @@ export const WithRadioButtons = ({ label, stacked, inline }) => {
   const [favorite, setFavorite] = useState('Bravo');
   return (
     <FormRow
-      id="nato"
       label={label}
       onChange={(e) => setFavorite(e.target.value)}
       stacked={stacked}

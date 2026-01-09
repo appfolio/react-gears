@@ -42,11 +42,10 @@
         "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
     ],
-    "react/default-props-match-prop-types": ["error", { "allowRequiredDefaults": true }],
     "react/no-array-index-key": "error",
     "react/no-find-dom-node": "error",
     "react/prefer-stateless-function": "off",
-    "react/prop-types": "off", // This will be unnecessary once everything is a function component
+    "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "require-jsdoc": "off"

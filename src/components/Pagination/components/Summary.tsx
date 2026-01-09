@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 
 type SummaryProps = {
@@ -23,14 +22,6 @@ const Summary: FC<SummaryProps> = ({ className = '', from, size, to, totalItems 
       Displaying: {start}-{end} of {totalItems}
     </p>
   );
-};
-
-Summary.propTypes = {
-  className: PropTypes.string,
-  from: PropTypes.number.isRequired,
-  size: PropTypes.oneOf(['sm', 'lg']),
-  to: PropTypes.number.isRequired,
-  totalItems: PropTypes.number.isRequired,
 };
 
 Summary.displayName = 'Summary';

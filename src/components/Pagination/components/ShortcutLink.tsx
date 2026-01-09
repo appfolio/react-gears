@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 import PaginationItem from '../PaginationItem';
 import PaginationLink from '../PaginationLink';
@@ -27,14 +26,6 @@ const ShortcutLink: FC<ShortcutLinkProps> = ({ page, children, disabled, ...prop
       </PaginationLink>
     </PaginationItem>
   );
-};
-
-ShortcutLink.propTypes = {
-  children: PropTypes.node,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  name: PropTypes.string,
 };
 
 ShortcutLink.displayName = 'ShortcutLink';

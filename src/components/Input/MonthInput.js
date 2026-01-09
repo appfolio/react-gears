@@ -4,7 +4,6 @@ import format from 'date-fns/format';
 import isSameDay from 'date-fns/is_same_day';
 import isValid from 'date-fns/is_valid';
 import Fecha from 'fecha'; // TODO replace with date-fns/parse after v2 is released
-import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button/Button';
 import ButtonGroup from '../Button/ButtonGroup';
@@ -53,28 +52,6 @@ function parseValue(defaultValue, dateFormat, parseDate) {
 }
 
 export default class MonthInput extends React.Component {
-  static propTypes = {
-    centerYearSelection: PropTypes.bool,
-    className: PropTypes.string,
-    dateVisible: PropTypes.func,
-    dateFormat: PropTypes.string,
-    id: PropTypes.string,
-    monthFormat: PropTypes.string,
-    yearFormat: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    disabled: PropTypes.bool,
-    footer: PropTypes.node,
-    header: PropTypes.node,
-    keyboard: PropTypes.bool,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    parse: PropTypes.func,
-    positionFixed: PropTypes.bool,
-    showOnFocus: PropTypes.bool,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    // TODO allow custom header/footer, header & day format?
-  };
-
   static defaultProps = {
     centerYearSelection: false,
     className: '',

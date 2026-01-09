@@ -1,7 +1,6 @@
 import classNames from 'classnames';
-import uniqueId from 'lodash.uniqueid';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { getUniqueId } from '../../../util/uniqueId';
 import Input from '../../Input/Input';
 import Label from '../../Label/Label';
 
@@ -11,7 +10,7 @@ export interface FilterHeaderProps
 }
 
 const FilterHeader = ({ value, onChange, className, id, ...props }: FilterHeaderProps) => {
-  const [filterId] = useState(() => uniqueId('filter-'));
+  const [filterId] = useState(() => getUniqueId('filter-', 1));
   return (
     <>
       <Label hidden for={filterId}>
@@ -27,11 +26,6 @@ const FilterHeader = ({ value, onChange, className, id, ...props }: FilterHeader
       />
     </>
   );
-};
-
-FilterHeader.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
 };
 
 export default FilterHeader;

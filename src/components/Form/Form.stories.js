@@ -42,7 +42,7 @@ export default {
 export const Inputs = (args) => (
   <div>
     <FormLabelGroup label="Input" inputId="hello" {...args}>
-      <Input placeholder="Hello World" id="hello" />
+      <Input placeholder="Hello World" id="hello" name="hello" />
     </FormLabelGroup>
     <p>
       See all supported Input types here:{' '}
@@ -52,31 +52,31 @@ export const Inputs = (args) => (
     <hr />
 
     <FormLabelGroup label="CheckboxInput" inputId="helloworld">
-      <CheckboxInput id="helloworld" checkboxLabel="Hello World" />
+      <CheckboxInput id="helloworld" checkboxLabel="Hello World" name="helloworld" />
     </FormLabelGroup>
     <FormLabelGroup label="CountryInput" inputId="countryinput">
-      <CountryInput id="countryinput" />
+      <CountryInput id="countryinput" name="countryinput" />
     </FormLabelGroup>
     <FormLabelGroup label="CreditCardNumber" inputId="creditcardnumber">
-      <CreditCardNumber value="4111111111111111" id="creditcardnumber" />
+      <CreditCardNumber value="4111111111111111" id="creditcardnumber" name="creditcardnumber" />
     </FormLabelGroup>
     <FormLabelGroup label="CurrencyInput" inputId="currencyinput">
-      <CurrencyInput value={123456.789} id="currencyinput" />
+      <CurrencyInput value={123456.789} id="currencyinput" name="currencyinput" />
     </FormLabelGroup>
     <FormLabelGroup label="DateInput" inputId="dateinput">
-      <DateInput id="dateinput" />
+      <DateInput id="dateinput" name="dateinput" />
     </FormLabelGroup>
     <FormLabelGroup label="FileInput" inputId="fileinput">
-      <FileInput id="fileinput" />
+      <FileInput id="fileinput" name="fileinput" />
     </FormLabelGroup>
     <FormLabelGroup label="MonthInput" inputId="monthinput">
-      <MonthInput id="monthinput" />
+      <MonthInput id="monthinput" name="monthinput" />
     </FormLabelGroup>
     <FormLabelGroup label="StateInput" inputId="stateinput">
-      <StateInput id="stateinput" />
+      <StateInput id="stateinput" name="stateinput" />
     </FormLabelGroup>
     <FormLabelGroup label="StaticInput" inputId="staticinput">
-      <StaticInput value="No Change" id="staticinput" />
+      <StaticInput value="No Change" id="staticinput" name="staticinput" />
     </FormLabelGroup>
   </div>
 );
@@ -107,79 +107,96 @@ export const FloatingLabels = (args) => (
 
 export const FormRows = (args) => (
   <Form>
-    <FormRow label="First Name" id="first" {...args} />
-    <FormRow label="Last Name" feedback="can't be blank" color="danger" id="last" />
-    <FormRow label="Nickname" hint="A fun name to describe yourself!" id="nick" />
-    <FormRow label="DOB" required id="dob" />
-    <FormRow label="Disabled Field" disabled id="disabled" />
-    <FormRow label="Who is Luke's Father?" value="Darth Vader" type="static" id="luke" />
-    <FormRow type="textarea" label="Notes" id="notes" />
-    <FormRow type="select" label="Select Movie" color="success" feedback="Awesome!" id="movie">
-      <FormChoice value="override">A New Hope</FormChoice>
-      <FormChoice>The Empire Strikes Back</FormChoice>
-      <FormChoice>The Force Awakens</FormChoice>
-    </FormRow>
+    <FormRow label="First Name" id="name" name="first" {...args} />
+    <FormRow label="Last Name" id="last" feedback="can't be blank" color="danger" name="last" />
+    <FormRow label="Nickname" id="nick" hint="A fun name to describe yourself!" name="nick" />
+    <FormRow label="DOB" id="dob" required name="dob" />
+    <FormRow label="Disabled Field" id="disabled" disabled name="disabled" />
     <FormRow
-      type="radio"
-      label="Select Ship"
-      hint="Some ships are unreliable..."
-      name="ship"
-      id="ship"
+      label="Who is Luke's Father?"
+      id="luke"
+      value="Darth Vader"
+      type="static"
+      name="luke"
+    />
+    <FormRow type="textarea" label="Notes" id="notes" name="notes" />
+    <FormRow
+      type="select"
+      label="Select Movie"
+      id="movie"
+      color="success"
+      feedback="Awesome!"
+      name="movie"
     >
-      <FormChoice color="danger">Death Star</FormChoice>
-      <FormChoice color="warning">Millennium Falcon</FormChoice>
-      <FormChoice color="success">Imperial Shuttle</FormChoice>
+      <FormChoice value="episode4">A New Hope</FormChoice>
+      <FormChoice value="episode5">The Empire Strikes Back</FormChoice>
+      <FormChoice value="episode7">The Force Awakens</FormChoice>
     </FormRow>
-    <FormRow type="checkbox" label="Select the character(s) you like" id="characters">
-      <FormChoice>Darth Vader</FormChoice>
-      <FormChoice>Luke Skywalker</FormChoice>
-      <FormChoice disabled>Emperor Palpatine</FormChoice>
-      <FormChoice>Rey</FormChoice>
-      <FormChoice>TK-421</FormChoice>
+    <FormRow type="radio" label="Select Ship" hint="Some ships are unreliable..." name="ship">
+      <FormChoice color="danger" value="deathstar">
+        Death Star
+      </FormChoice>
+      <FormChoice color="warning" value="millennium">
+        Millennium Falcon
+      </FormChoice>
+      <FormChoice color="success" value="shuttle">
+        Imperial Shuttle
+      </FormChoice>
     </FormRow>
-    <FormRow type="checkbox" label="Use Jedi mind tricks?" id="jedi" />
-    <FormRow type="radio" label="Do you like Star Wars?" inline name="movie" id="starwars">
+    <FormRow type="checkbox" label="Select the character(s) you like" name="characters">
+      <FormChoice value="vader">Darth Vader</FormChoice>
+      <FormChoice value="luke">Luke Skywalker</FormChoice>
+      <FormChoice disabled value="palpatine">
+        Emperor Palpatine
+      </FormChoice>
+      <FormChoice value="rey">Rey</FormChoice>
+      <FormChoice value="tk421">TK-421</FormChoice>
+    </FormRow>
+    <FormRow type="checkbox" label="Use Jedi mind tricks?" id="jediTricks" name="jediTricks" />
+    <FormRow type="radio" label="Do you like Star Wars?" inline name="likeStarWars">
       <FormChoice>Yes</FormChoice>
       <FormChoice disabled>No</FormChoice>
     </FormRow>
-    <FormRow type={CurrencyInput} label="How much would you pay to meet the cast?" id="pay" />
+    <FormRow
+      type={CurrencyInput}
+      label="How much would you pay to meet the cast?"
+      id="pay"
+      name="pay"
+    />
   </Form>
 );
 
 export const Bound = (args) => (
   <BoundForm object={formData} {...args}>
-    <BoundFormRow label="First Name" name="firstName" id="firstName" />
-    <BoundFormRow label="Last Name" name="lastName" required id="lastName" />
+    <BoundFormRow label="First Name" id="firstName" name="firstName" />
+    <BoundFormRow label="Last Name" id="lastName" name="lastName" required />
     <BoundFormRow
       type={CurrencyInput}
       label="How much would you pay to meet the cast?"
-      name="amount"
       id="pay"
+      name="pay"
     />
-    <BoundFormRow type="select" label="Select Movie" name="movie" id="movie">
-      <FormChoice>A New Hope</FormChoice>
-      <FormChoice value="episode6">The Empire Strikes Back</FormChoice>
-      <FormChoice>The Force Awakens</FormChoice>
+    <BoundFormRow type="select" label="Select Movie" id="movie" name="movie">
+      <FormChoice value="episode4">A New Hope</FormChoice>
+      <FormChoice value="episode5">The Empire Strikes Back</FormChoice>
+      <FormChoice value="episode7">The Force Awakens</FormChoice>
     </BoundFormRow>
-    <BoundFormRow
-      type="checkbox"
-      label="Select the character(s) you like"
-      name="characters"
-      id="characters"
-    >
-      <FormChoice>Darth Vader</FormChoice>
-      <FormChoice>Luke Skywalker</FormChoice>
-      <FormChoice disabled>Emperor Palpatine</FormChoice>
-      <FormChoice value="awesome">Rey</FormChoice>
-      <FormChoice>TK-421</FormChoice>
+    <BoundFormRow type="checkbox" label="Select the character(s) you like" name="characters">
+      <FormChoice value="vader">Darth Vader</FormChoice>
+      <FormChoice value="luke">Luke Skywalker</FormChoice>
+      <FormChoice disabled value="palpatine">
+        Emperor Palpatine
+      </FormChoice>
+      <FormChoice value="rey">Rey</FormChoice>
+      <FormChoice value="tk421">TK-421</FormChoice>
     </BoundFormRow>
-    <BoundFormRow type="checkbox" label="Use Jedi mind tricks?" name="mindTricks" id="mindTricks" />
-    <BoundFormRow type="radio" label="Select Ship" name="ship" id="ship">
+    <BoundFormRow type="checkbox" label="Use Jedi mind tricks?" id="jediTricks" name="mindTricks" />
+    <BoundFormRow type="radio" label="Select Ship" name="ship">
       <FormChoice>Death Star</FormChoice>
       <FormChoice>Millennium Falcon</FormChoice>
       <FormChoice value="shuttle">Imperial Shuttle</FormChoice>
     </BoundFormRow>
-    <BoundFormRow type={AddressInput} name="address" label="Address" id="address" />
+    <BoundFormRow type={AddressInput} id="address" name="address" label="Address" />
     <BoundFormRow
       type="file"
       label="Death Star Schematics"
@@ -192,6 +209,7 @@ export const Bound = (args) => (
     </button>
   </BoundForm>
 );
+
 Bound.args = {
   errors: { lastName: 'Last Name is required' },
   onSubmit: action('submit'),

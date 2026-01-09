@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import { FontAwesomeAPMProps } from '../Icon/FontAwesomeAPM';
-import Icon from '../Icon/Icon';
+import Icon, { IconProps } from '../Icon/Icon';
 
 const iconNames = {
   info: 'circle-info',
@@ -12,7 +11,7 @@ const iconNames = {
   none: 'circle',
 };
 
-interface StatusProps extends Omit<FontAwesomeAPMProps, 'name'> {
+interface StatusProps extends Omit<IconProps, 'name'> {
   type?: keyof typeof iconNames;
   className?: string;
 }
@@ -21,6 +20,7 @@ const Status = ({ type = 'none', className, ...props }: StatusProps) => {
   const iconName = iconNames[type];
 
   if (!iconName) {
+    // eslint-disable-next-line no-console
     console.error(`Unsupported value for 'type' prop passed to Status component: "${type}"`);
   }
 

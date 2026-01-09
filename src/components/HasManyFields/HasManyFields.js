@@ -1,5 +1,4 @@
 import noop from 'lodash.noop';
-import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withDragHandler from '../Reorderable/DragHandler';
@@ -35,24 +34,6 @@ const SortableContainer = ReorderableContainer(
 );
 
 class HasManyFields extends React.Component {
-  static propTypes = {
-    blank: PropTypes.any,
-    defaultValue: PropTypes.array,
-    disabled: PropTypes.bool,
-    deleteProps: PropTypes.object,
-    errors: PropTypes.array,
-    label: PropTypes.string.isRequired,
-    onAdd: PropTypes.func,
-    onRemove: PropTypes.func,
-    onUpdate: PropTypes.func,
-    onChange: PropTypes.func,
-    template: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
-    value: PropTypes.array,
-    minimumRows: PropTypes.number,
-    maximumRows: PropTypes.number,
-    reorderable: PropTypes.bool,
-  };
-
   static defaultProps = {
     defaultValue: [],
     errors: [],

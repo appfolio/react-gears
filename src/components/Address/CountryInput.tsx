@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 import { InputProps } from 'reactstrap';
 import Input from '../Input/Input';
@@ -41,16 +40,6 @@ const CountryInput: FC<CountryInputProps> = ({
       ))}
     </Input>
   );
-};
-
-CountryInput.propTypes = {
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
 };
 
 CountryInput.defaultProps = defaultProps;
