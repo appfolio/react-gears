@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.0](https://github.com/appfolio/react-gears/compare/v8.18.0...v8.19.0) (2026-01-09)
+
+
+### Features
+
+* remove proptypes from components and use server-safe getuniqueid for id generation ([24f2889](https://github.com/appfolio/react-gears/commit/24f288933b8dd272acedcea78343ea98075db40f))
+
 ## [8.18.0](https://github.com/appfolio/react-gears/compare/v8.17.7...v8.18.0) (2025-12-19)
 
 
