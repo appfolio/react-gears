@@ -1,7 +1,7 @@
 import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import React, { FC, useState } from 'react';
-import { getUniqueId } from '../../util/uniqueId';
+import React, { FC } from 'react';
+import { useUniqueId } from '../../util/uniqueId';
 import Button, { ButtonProps } from '../Button/Button';
 import Tooltip from './Tooltip';
 
@@ -19,7 +19,7 @@ const TooltipButton: FC<TooltipButtonProps> = ({
   gearsBtnContainerClass,
   ...props
 }) => {
-  const [buttonId] = useState(() => `tooltip-button-${getUniqueId('tooltip-button-')}`);
+  const buttonId = useUniqueId('tooltip-button-');
   const tooltipId = `tooltip-for-${buttonId}`;
   const className = classnames('d-inline-block', gearsBtnContainerClass);
 

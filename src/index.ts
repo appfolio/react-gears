@@ -93,6 +93,7 @@ export { default as CreditCardNumber } from './components/Input/CreditCardNumber
 export { default as CurrencyInput } from './components/Input/CurrencyInput';
 export { default as DateInput } from './components/Input/DateInput';
 export { default as FileInput } from './components/Input/FileInput';
+export { GearsContextProvider } from './context';
 export { default as Input } from './components/Input/Input';
 export { default as MaskedInput } from './components/Input/MaskedInput';
 export { default as MonthInput } from './components/Input/MonthInput';

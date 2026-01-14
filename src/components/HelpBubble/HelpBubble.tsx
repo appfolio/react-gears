@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Popover from '../Popover/Popover';
@@ -18,7 +18,7 @@ const style = {
 };
 
 function HelpBubble(props: HelpBubbleProps) {
-  const [id] = useState(() => getUniqueId('help-bubble-'));
+  const id = useUniqueId('help-bubble-');
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = (e: SyntheticEvent) => {

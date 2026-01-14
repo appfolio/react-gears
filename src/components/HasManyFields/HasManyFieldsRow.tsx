@@ -1,7 +1,7 @@
 import { Placement } from '@popperjs/core';
 import classnames from 'classnames';
-import React, { useState } from 'react';
-import { getUniqueId } from '../../util/uniqueId';
+import React from 'react';
+import { useUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import ConfirmationButton, { ConfirmationButtonProps } from '../Button/ConfirmationButton';
 import Icon from '../Icon/Icon';
@@ -33,7 +33,7 @@ const HasManyFieldsRow = ({
   deleteProps,
   ...props
 }: HasManyFieldsRowProps) => {
-  const [id] = useState(() => getUniqueId('hmf-', 1));
+  const id = useUniqueId('hmf-', 1);
 
   const classNames = classnames('mb-4 gx-0', className);
   // The `disabled ? <Button> : <ConfirmationButton>` code works around Tooltips not show on `disabled` elements:

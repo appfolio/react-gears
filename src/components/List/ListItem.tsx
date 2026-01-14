@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { useState } from 'react';
 import { ListGroupItemProps } from 'reactstrap';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Collapse from '../Collapse/Collapse';
 import Icon from '../Icon/Icon';
@@ -42,7 +42,7 @@ function ListItem<T>({
   const isExpandable = onExpand !== undefined;
   const ExpandedItem = isExpandable ? onExpand!(item) : undefined;
   const [expanded, setExpanded] = useState(defaultExpanded);
-  const [id] = useState(() => getUniqueId('listitem-', 1));
+  const id = useUniqueId('listitem-', 1);
 
   const unselectedColor = (expanded && expandedColor) || color;
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { getUniqueId } from '../../../util/uniqueId';
+import React from 'react';
+import { useUniqueId } from '../../../util/uniqueId';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 import Input from '../../Input/Input';
@@ -28,7 +28,7 @@ const SortHeader = ({
   onChangeAscending,
   onChangeProperty,
 }: SortHeaderProps) => {
-  const [sortId] = useState(() => getUniqueId('sort-', 1));
+  const sortId = useUniqueId('sort-', 1);
   return (
     <Col
       xs="12"

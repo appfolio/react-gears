@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Label from '../Label/Label';
@@ -71,8 +71,8 @@ function defaultRenderRow(
   ];
 }
 
-function getSelectableCell(row, rowSelected, onSelect) {
-  const selectRowId = getUniqueId('select-row-', 1);
+function SelectableCell({ row, rowSelected, onSelect }) {
+  const selectRowId = useUniqueId('select-row-', 1);
   return (
     <>
       <Label for={selectRowId} hidden>
@@ -86,6 +86,25 @@ function getSelectableCell(row, rowSelected, onSelect) {
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => onSelect(row, e.target.checked)}
         disabled={!!row.disabled}
+      />
+    </>
+  );
+}
+
+function SelectAllHeader({ allSelected, onSelectAll }) {
+  const id = useUniqueId('select-all-', 1);
+  return (
+    <>
+      <Label for={id} hidden>
+        Select all rows
+      </Label>
+      <input
+        type="checkbox"
+        className="mx-1"
+        id={id}
+        checked={allSelected}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => onSelectAll(e.target.checked)}
       />
     </>
   );
@@ -189,26 +208,12 @@ class SortableTable extends React.Component {
     const cols = [...columns];
 
     if (selectable) {
-      const selectAllId = getUniqueId('select-all-', 1);
       cols.unshift({
         align: 'center',
         key: 'select',
-        header: (
-          <>
-            <Label for={selectAllId} hidden>
-              Select all rows
-            </Label>
-            <input
-              type="checkbox"
-              className="mx-1"
-              id={selectAllId}
-              checked={allSelected}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => onSelectAll(e.target.checked)}
-            />
-          </>
-        ),
-        cell: (row) => getSelectableCell(row, rowSelected, onSelect),
+        header: <SelectAllHeader allSelected={allSelected} onSelectAll={onSelectAll} />,
+        // eslint-disable-next-line react/no-unstable-nested-components
+        cell: (row) => <SelectableCell row={row} rowSelected={rowSelected} onSelect={onSelect} />,
         width: '2rem',
       });
     }

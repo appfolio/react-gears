@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import React, { useState } from 'react';
+import React from 'react';
 import type { InputProps } from 'reactstrap';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
@@ -19,7 +19,7 @@ function CheckboxBooleanInput({
   value,
   ...inputProps
 }: CheckboxBooleanInputProps) {
-  const [generatedId] = useState(() => getUniqueId('checkbox-boolean-input-'));
+  const generatedId = useUniqueId('checkbox-boolean-input-');
   const id = inputProps.id || generatedId;
   const classNames = classnames('pt-2', className);
   return (
