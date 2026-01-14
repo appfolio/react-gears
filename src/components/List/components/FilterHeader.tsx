@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
-import { getUniqueId } from '../../../util/uniqueId';
+import React from 'react';
+import { useUniqueId } from '../../../util/uniqueId';
 import Input from '../../Input/Input';
 import Label from '../../Label/Label';
 
@@ -10,7 +10,7 @@ export interface FilterHeaderProps
 }
 
 const FilterHeader = ({ value, onChange, className, id, ...props }: FilterHeaderProps) => {
-  const [filterId] = useState(() => getUniqueId('filter-', 1));
+  const filterId = useUniqueId('filter-', 1);
   return (
     <>
       <Label hidden for={filterId}>

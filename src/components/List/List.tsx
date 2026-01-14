@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ListGroupProps } from 'reactstrap';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import useMap from '../../hooks/useMap';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import Input from '../Input/Input';
 import Col from '../Layout/Col';
 import Row from '../Layout/Row';
@@ -90,7 +90,7 @@ function List<T extends Item>({
     clear: clearSelection,
     replace: replaceSelection,
   } = useMap(selected, selectedKeyMapper);
-  const [selectAllId] = useState(() => getUniqueId('selectall-', 1));
+  const selectAllId = useUniqueId('selectall-', 1);
   const selectAllRef = useRef<HTMLInputElement>(null);
 
   useDeepCompareEffect(() => replaceSelection(selected), [selected, replaceSelection]);

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TooltipProps, UncontrolledTooltipProps } from 'reactstrap';
-import { getUniqueId } from '../../util/uniqueId';
+import { useUniqueId } from '../../util/uniqueId';
 import Tooltip from '../Tooltip/Tooltip';
 
 interface TruncatedTextProps {
@@ -20,7 +20,8 @@ const TruncatedText = ({
   placement = 'top',
   tooltipProps,
 }: TruncatedTextProps) => {
-  const [id] = useState(targetId || (() => getUniqueId('truncated-text-')));
+  const generatedId = useUniqueId('truncated-text-');
+  const id = targetId || generatedId;
   return (
     <>
       <span id={id}>
