@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 import { useUniqueId } from '../../util/uniqueId';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
@@ -71,7 +71,7 @@ function defaultRenderRow(
   ];
 }
 
-function SelectableCell({ row, rowSelected, onSelect }) {
+const SelectableCell = memo(({ row, rowSelected, onSelect }) => {
   const selectRowId = useUniqueId('select-row-', 1);
   return (
     <>
@@ -89,9 +89,9 @@ function SelectableCell({ row, rowSelected, onSelect }) {
       />
     </>
   );
-}
+});
 
-function SelectAllHeader({ allSelected, onSelectAll }) {
+const SelectAllHeader = memo(({ allSelected, onSelectAll }) => {
   const id = useUniqueId('select-all-', 1);
   return (
     <>
@@ -108,7 +108,7 @@ function SelectAllHeader({ allSelected, onSelectAll }) {
       />
     </>
   );
-}
+});
 
 function getExpandableCell(row, expanded, onExpand) {
   return (
