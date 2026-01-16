@@ -1,5 +1,13 @@
 # Change Log
 
+## [8.19.1](https://github.com/appfolio/react-gears/compare/v8.19.0...v8.19.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* make unique id generation come from context when provided ([60f6405](https://github.com/appfolio/react-gears/commit/60f6405c0706046d7a79bc6321947d91ba396a5a))
+* use memo for extracted functional components ([c90c859](https://github.com/appfolio/react-gears/commit/c90c8592a16c01796ca98c47b4f24dd093f0ff21))
+
 ## [8.19.0](https://github.com/appfolio/react-gears/compare/v8.18.0...v8.19.0) (2026-01-09)
 
 
