@@ -560,6 +560,34 @@ describe('<DateInput />', () => {
     });
   });
 
+  describe('controlled value', () => {
+    it('should clear displayed value when value prop changes to undefined after user interaction', () => {
+      const component = mount(<DateInput value="1/1/2025" />);
+      const input = component.find('input');
+      assert.equal(input.getDOMNode().value, '1/1/2025');
+
+      // Simulate user typing which sets internal state.value
+      input.simulate('change', { target: { value: '2/2/2025' } });
+      component.setProps({ value: '2/2/2025' });
+      component.update();
+      assert.equal(input.getDOMNode().value, '2/2/2025');
+
+      component.setProps({ value: undefined });
+      component.update();
+      assert.equal(input.getDOMNode().value, '');
+    });
+
+    it('should clear displayed value when value prop changes to empty string', () => {
+      const component = mount(<DateInput value="1/1/2025" />);
+      const input = component.find('input');
+      assert.equal(input.getDOMNode().value, '1/1/2025');
+
+      component.setProps({ value: '' });
+      component.update();
+      assert.equal(input.getDOMNode().value, '');
+    });
+  });
+
   describe('accessibility', () => {
     it('should contain screen reader only label for buttons', () => {
       const component = mount(<DateInput />);
