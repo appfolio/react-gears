@@ -1,5 +1,5 @@
 import { action } from 'storybook/actions';
-import { Meta, StoryObj } from 'storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { buttonColors } from '../../tooling/colors';
 import FeedbackButton from './FeedbackButton';
