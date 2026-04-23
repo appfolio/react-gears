@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import fecha from 'fecha';
 import React from 'react';
 import SortableTable from './SortableTable';

@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import React from 'react';
 import Label from '../Label/Label';
 import AddressInput from './AddressInput';

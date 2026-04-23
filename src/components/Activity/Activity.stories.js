@@ -1,4 +1,4 @@
-import { action as sbAction } from '@storybook/addon-actions';
+import { action as sbAction } from 'storybook/actions';
 import React from 'react';
 import { colors } from '../../tooling/colors';
 import Activity from './Activity';
