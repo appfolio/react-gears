@@ -15,7 +15,7 @@ describe('<Alert />', () => {
     });
 
     it('should not be dismissible', () => {
-      expect(() => screen.getByRole('button')).toThrowError();
+      expect(() => screen.getByRole('button')).toThrow();
     });
 
     it('should have a default color of "warning"', () => {

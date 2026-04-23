@@ -6,27 +6,25 @@ import checkInvariantViolations from './checkInvariantViolations';
 describe('MultiSelectCombobox - checkInvariantViolations', () => {
   describe('uncontrolled mode', () => {
     it('can handle missing `childrenTypes`', () => {
-      expect(() =>
-        checkInvariantViolations({ hasOnChange: true, hasOptions: true })
-      ).not.toThrowError();
+      expect(() => checkInvariantViolations({ hasOnChange: true, hasOptions: true })).not.toThrow();
     });
 
     it('can pass when there is no violation', () => {
       expect(() =>
         checkInvariantViolations({ childrenTypes: [], hasOnChange: true, hasOptions: true })
-      ).not.toThrowError();
+      ).not.toThrow();
     });
 
     it('can detect missing options', () => {
       expect(() =>
         checkInvariantViolations({ childrenTypes: [], hasOnChange: true, hasOptions: false })
-      ).toThrowError('If no children are supplied, both options and onChange must be provided');
+      ).toThrow('If no children are supplied, both options and onChange must be provided');
     });
 
     it('can detect missing onChange', () => {
       expect(() =>
         checkInvariantViolations({ childrenTypes: [], hasOnChange: false, hasOptions: true })
-      ).toThrowError('If no children are supplied, both options and onChange must be provided');
+      ).toThrow('If no children are supplied, both options and onChange must be provided');
     });
   });
 
@@ -38,7 +36,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: false,
         });
-      }).not.toThrowError();
+      }).not.toThrow();
 
       expect(() => {
         checkInvariantViolations({
@@ -46,7 +44,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: false,
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
 
     it('can detect supplied options', () => {
@@ -56,7 +54,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: true,
         })
-      ).toThrowError('If children are provided, neither onChange or options should be provided.');
+      ).toThrow('If children are provided, neither onChange or options should be provided.');
     });
 
     it('can detect supplied onChange', () => {
@@ -66,7 +64,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: true,
           hasOptions: false,
         })
-      ).toThrowError('If children are provided, neither onChange or options should be provided.');
+      ).toThrow('If children are provided, neither onChange or options should be provided.');
     });
 
     it('can detect wrong number of children', () => {
@@ -76,7 +74,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: false,
         })
-      ).toThrowError('Exactly 2 children should be supplied.');
+      ).toThrow('Exactly 2 children should be supplied.');
     });
 
     it('can detect wrong type of first child', () => {
@@ -86,7 +84,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: false,
         })
-      ).toThrowError('First child must be <ComboboxSelections>');
+      ).toThrow('First child must be <ComboboxSelections>');
     });
 
     it('can detect wrong type of second child', () => {
@@ -96,7 +94,7 @@ describe('MultiSelectCombobox - checkInvariantViolations', () => {
           hasOnChange: false,
           hasOptions: false,
         })
-      ).toThrowError('Second child must be either <ComboboxItems> or <FilteredComboboxItems>');
+      ).toThrow('Second child must be either <ComboboxItems> or <FilteredComboboxItems>');
     });
   });
 });
