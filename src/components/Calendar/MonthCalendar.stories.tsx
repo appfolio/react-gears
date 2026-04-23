@@ -1,5 +1,5 @@
 import { action } from 'storybook/actions';
-import { Meta, StoryObj } from 'storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import MonthCalendar from './MonthCalendar';
 

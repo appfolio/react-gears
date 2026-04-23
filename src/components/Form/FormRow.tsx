@@ -90,7 +90,9 @@ function FormRow<T extends TypeProp>({
       inputCouldHaveChildren
         ? React.Children.map(
             children,
-            (child) => React.isValidElement(child) && React.cloneElement(child, { type })
+            (child) =>
+              React.isValidElement(child) &&
+              React.cloneElement(child as React.ReactElement<any>, { type })
           )
         : undefined,
     [inputCouldHaveChildren, children, type]

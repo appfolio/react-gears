@@ -1,5 +1,5 @@
 import { action } from 'storybook/actions';
-import type { Meta, StoryObj } from 'storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Calendar from './Calendar';
 
 const meta: Meta<typeof Calendar> = {

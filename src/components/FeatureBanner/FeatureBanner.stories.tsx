@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from 'storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { colors } from '../../tooling/colors';
 import Button from '../Button/Button';
