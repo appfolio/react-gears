@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.2](https://github.com/appfolio/react-gears/compare/v8.19.1...v8.19.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* resolve all 37 dependabot security alerts via upgrades ([78a06a3](https://github.com/appfolio/react-gears/commit/78a06a338036155411aa9763785619101888337b))
+
 ## [8.19.1](https://github.com/appfolio/react-gears/compare/v8.19.0...v8.19.1) (2026-01-16)
 
 
