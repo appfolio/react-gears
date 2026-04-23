@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useLayoutEffect } from 'react';
 import useScroll from 'react-use/lib/useScroll';
 import useSessionStorage from 'react-use/lib/useSessionStorage';
-import { v4 as uuidv4 } from 'uuid';
+import { useUniqueId } from '../util/uniqueId';
 
 type Position = {
   x: number;
@@ -9,7 +9,8 @@ type Position = {
 };
 
 function useSavedScroll(container: RefObject<HTMLElement>, key: string | undefined) {
-  const [position, setPosition] = useSessionStorage<Position>(key || uuidv4());
+  const fallbackKey = useUniqueId('saved-scroll-');
+  const [position, setPosition] = useSessionStorage<Position>(key || fallbackKey);
   const scrollPosition = useScroll(container);
 
   useEffect(() => {

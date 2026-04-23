@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
+import { useUniqueId } from '../../util/uniqueId';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
@@ -17,7 +17,7 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup = ({ options, onChange, selected, name }: RadioGroupProps) => {
-  const [groupId] = useState(uuidv4());
+  const groupId = useUniqueId('radiogroup-');
 
   return (
     <FormGroup>

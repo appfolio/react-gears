@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
+import { useUniqueId } from '../../util/uniqueId';
 import FormGroup from '../Form/FormGroup';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
@@ -19,7 +19,7 @@ export interface CheckboxGroupProps {
 }
 
 const CheckboxGroup = ({ className, options, selected, onChange }: CheckboxGroupProps) => {
-  const [groupId] = useState(uuidv4());
+  const groupId = useUniqueId('checkboxgroup-');
 
   const handleCheckboxChange = (checked: boolean, value: Value) => {
     const newSelected = new Set(selected);
