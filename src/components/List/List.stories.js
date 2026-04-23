@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import React, { useState, useEffect } from 'react';
 import Label from '../Label/Label';
 import List from './List';

@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import classNames from 'classnames';
 import React from 'react';
 import Calendar from '../Calendar/Calendar';

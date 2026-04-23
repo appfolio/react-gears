@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import React from 'react';
 import { buttonColors } from '../../tooling/colors';
 import DropdownItem from '../Dropdown/DropdownItem';

@@ -6,17 +6,12 @@ module.exports = {
   ],
 
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-controls',
-    '@storybook/addon-actions',
-    'storybook-source-link',
     '@storybook/addon-webpack5-compiler-babel',
     '@chromatic-com/storybook',
-    '@storybook/addon-viewport',
     {
       name: '@storybook/addon-a11y',
       options: {
-        element: '#story-root',
+        context: '#story-root',
       },
     },
   ],

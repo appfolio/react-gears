@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import React, { useState } from 'react';
 import EditableNote from './EditableNote';
 import EditableNoteMentions from './EditableNoteMentions';
