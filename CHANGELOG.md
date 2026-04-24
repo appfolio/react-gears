@@ -1,5 +1,18 @@
 # Change Log
 
+## [8.19.3](https://github.com/appfolio/react-gears/compare/v8.19.2...v8.19.3) (2026-04-24)
+
+
+### Bug Fixes
+
+* resolve CI lint failures from Storybook 9 upgrade ([834c1dd](https://github.com/appfolio/react-gears/commit/834c1dd3ca6b06d7fc1403b21db167a39d3e3a65))
+* upgrade postcss 8.4.38 to 8.5.10 (CVE-2026-41305) ([3856ad1](https://github.com/appfolio/react-gears/commit/3856ad107e31d8c05bb02d2a54909970871a9ae1))
+
+
+### Miscellaneous
+
+* upgrade Storybook 8 to 9 ([97eddd2](https://github.com/appfolio/react-gears/commit/97eddd26ddfd60bb49659fcb793445e6da17b313))
+
 ## [8.19.2](https://github.com/appfolio/react-gears/compare/v8.19.1...v8.19.2) (2026-04-23)
 
 
