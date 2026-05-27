@@ -46,8 +46,8 @@ You can use [react-gears-cypress](https://github.com/appfolio/react-gears-cypres
 Install dependencies:
 
 ```
-# For AppFolio members. Replace <codeartifact_registry_server> with the correct value.
-CODEARTIFACT_REGISTRY_SERVER=<codeartifact_registry_server> yarn install
+# For AppFolio members. Ensure JFROG_ACCESS_TOKEN is set (e.g. via `otto login --install-jfrog-token`).
+yarn install
 
 # For non-AppFolio members
 YARN_RC_FILENAME=.yarnrc-public.yml yarn install
