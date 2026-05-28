@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.4](https://github.com/appfolio/react-gears/compare/v8.19.3...v8.19.4) (2026-05-28)
+
+
+### Miscellaneous
+
+* migrate npm registry from CodeArtifact to JFrog ([330e839](https://github.com/appfolio/react-gears/commit/330e8397926aca76adc4fceabbd5a9be6c5021c8))
+
 ## [8.19.3](https://github.com/appfolio/react-gears/compare/v8.19.2...v8.19.3) (2026-04-24)
 
 
