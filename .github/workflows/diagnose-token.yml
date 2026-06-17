@@ -54,13 +54,30 @@ jobs:
               () => github.rest.git.deleteRef({ owner, repo, ref: `tags/zzz-diag-tag-${id}` })
             );
 
-            // 3. Create a release (auto-creates its tag) — this is the exact call release-please makes.
+            // 3. Create a release (auto-creates its tag) — non-version tag name.
             await probe(
-              'create release (repos.createRelease)',
+              'create release, non-version tag (zzz-diag-release)',
               () => github.rest.repos.createRelease({ owner, repo, tag_name: `zzz-diag-release-${id}`, target_commitish: sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: true }),
               async (res) => {
                 await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
                 await github.rest.git.deleteRef({ owner, repo, ref: `tags/zzz-diag-release-${id}` });
+              }
+            );
+
+            // 4. Create a VERSION-style tag ref (v*) — does a ruleset target release tags?
+            await probe(
+              'create version tag ref (refs/tags/v0.0.0-diag)',
+              () => github.rest.git.createRef({ owner, repo, ref: `refs/tags/v0.0.0-diag-${id}`, sha }),
+              () => github.rest.git.deleteRef({ owner, repo, ref: `tags/v0.0.0-diag-${id}` })
+            );
+
+            // 5. Create a release with a VERSION-style tag — the shape release-please uses.
+            await probe(
+              'create release, version tag (v0.0.0-diag)',
+              () => github.rest.repos.createRelease({ owner, repo, tag_name: `v0.0.0-diag-${id}`, target_commitish: sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: true, make_latest: 'false' }),
+              async (res) => {
+                await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
+                await github.rest.git.deleteRef({ owner, repo, ref: `tags/v0.0.0-diag-${id}` });
               }
             );
 
