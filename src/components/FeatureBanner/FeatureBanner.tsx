@@ -6,7 +6,7 @@ interface FeatureBannerProps {
   children?: ReactNode;
   color?: string;
   dismissable?: boolean;
-  subtitle: ReactNode;
+  subtitle?: ReactNode;
   title: string;
 }
 
@@ -36,13 +36,17 @@ const FeatureBanner: FC<FeatureBannerProps> = ({
       isOpen={visible}
     >
       <h2 className={`${alertStyle} text-center m-0 px-3 d-none d-sm-block`}>{alertText}</h2>
-      <div className={`d-flex flex-row flex-wrap p-3 w-100 ${dismissable ? 'pe-5' : ''}`}>
+      <div
+        className={`d-flex flex-row flex-wrap p-3 w-100 ${!subtitle ? 'align-items-center' : ''} ${
+          dismissable ? 'pe-5' : ''
+        }`}
+      >
         <div className="flex-fill me-auto">
           <div className="d-inline-block m-0">
             <h2 className={`${alertStyle} d-inline d-sm-none me-2`}>{alertText}</h2>
             <h3 className="d-inline">{title}</h3>
           </div>
-          <p className="m-0">{subtitle}</p>
+          {subtitle && <p className="m-0">{subtitle}</p>}
         </div>
         <div className="d-inline-block my-auto">{children}</div>
       </div>
