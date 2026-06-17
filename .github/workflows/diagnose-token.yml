@@ -1,0 +1,70 @@
+name: diagnose-token
+
+# Diagnostic: isolate whether the default GITHUB_TOKEN can create a branch ref,
+# a tag ref, and a release in this repo. Mirrors the token context that the
+# release-please job uses (push/PR event, same repo, contents: write).
+# Temporary — delete once we've identified what release creation is blocked on.
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = context.sha;
+            const id = context.runId;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const results = [];
+
+            async function probe(label, fn, cleanup) {
+              try {
+                const res = await fn();
+                results.push(`✅ ${label}: OK`);
+                if (cleanup) {
+                  try { await cleanup(res); } catch (e) { core.warning(`cleanup failed for ${label}: ${e.status} ${e.message}`); }
+                }
+              } catch (e) {
+                results.push(`❌ ${label}: ${e.status} ${e.message}`);
+              }
+            }
+
+            // 1. Control: create a branch ref (refs/heads/...) — PRs already prove this works.
+            await probe(
+              'create branch ref (refs/heads)',
+              () => github.rest.git.createRef({ owner, repo, ref: `refs/heads/zzz-diag-branch-${id}`, sha }),
+              () => github.rest.git.deleteRef({ owner, repo, ref: `heads/zzz-diag-branch-${id}` })
+            );
+
+            // 2. Create a tag ref (refs/tags/...) directly.
+            await probe(
+              'create tag ref (refs/tags)',
+              () => github.rest.git.createRef({ owner, repo, ref: `refs/tags/zzz-diag-tag-${id}`, sha }),
+              () => github.rest.git.deleteRef({ owner, repo, ref: `tags/zzz-diag-tag-${id}` })
+            );
+
+            // 3. Create a release (auto-creates its tag) — this is the exact call release-please makes.
+            await probe(
+              'create release (repos.createRelease)',
+              () => github.rest.repos.createRelease({ owner, repo, tag_name: `zzz-diag-release-${id}`, target_commitish: sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: true }),
+              async (res) => {
+                await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
+                await github.rest.git.deleteRef({ owner, repo, ref: `tags/zzz-diag-release-${id}` });
+              }
+            );
+
+            const summary = results.join('\n');
+            core.notice(`Token write probes:\n${summary}`);
+            await core.summary.addHeading('GITHUB_TOKEN write probes').addRaw('\n```\n' + summary + '\n```\n').write();
+            console.log('\n=== RESULTS ===\n' + summary + '\n');
