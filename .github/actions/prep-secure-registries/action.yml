@@ -1,0 +1,25 @@
+name: Prepare Secure Registries
+description: 'Authenticate to the internal JFrog proxy via OIDC and export JFROG_ACCESS_TOKEN for subsequent steps.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Exchange OIDC token with JFrog
+      uses: jfrog/setup-jfrog-cli@v5
+      id: exchange
+      env:
+        JF_URL: https://appfolio.jfrog.io
+      with:
+        oidc-provider-name: appfolio-github-oidc
+        oidc-audience: jfrog-appfolio
+
+    - name: Export JFROG_ACCESS_TOKEN
+      shell: bash
+      run: |
+        TOKEN="${{ steps.exchange.outputs.oidc-token }}"
+        if [ -z "$TOKEN" ]; then
+          echo "::error::JFrog OIDC token exchange failed — no token returned"
+          exit 1
+        fi
+        echo "::add-mask::${TOKEN}"
+        echo "JFROG_ACCESS_TOKEN=${TOKEN}" >> $GITHUB_ENV

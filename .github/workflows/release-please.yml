@@ -38,7 +38,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           node-version-file: '.tool-versions'
-      - uses: appfolio/public-packages/setup@v1
+      - uses: ./.github/actions/prep-secure-registries
         if: ${{ steps.release.outputs.release_created }}
       - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
