@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.tool-versions'
-      - uses: appfolio/public-packages/setup@v1
+      - uses: ./.github/actions/prep-secure-registries
       - run: yarn install --immutable
       - run: yarn dist
       - run: npm version prerelease --preid=$GITHUB_HEAD_REF-`git rev-parse --short HEAD` --git-tag-version=false --commit-hooks=false
