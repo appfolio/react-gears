@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.19.5](https://github.com/appfolio/react-gears/compare/v8.19.4...v8.19.5) (2026-06-17)
+
+
+### Bug Fixes
+
+* upgrade react-use to get js-cookie 3.0.8 ([008dc2f](https://github.com/appfolio/react-gears/commit/008dc2f4bb128de3dc73b71dfdcfdde3669658e3))
+* upgrade release-please-action v3 to v4 for Node 24 compatibility ([aaaf88a](https://github.com/appfolio/react-gears/commit/aaaf88a2ec3bc11b605ff6cc7ed700639acd4edc))
+* use local action for JFrog OIDC instead of private public-packages action ([a381d16](https://github.com/appfolio/react-gears/commit/a381d167070372fbbacfb133212aff4ac1676c4f))
+
 ## [8.19.4](https://github.com/appfolio/react-gears/compare/v8.19.3...v8.19.4) (2026-05-28)
 
 
