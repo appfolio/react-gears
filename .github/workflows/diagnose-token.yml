@@ -105,6 +105,21 @@ jobs:
               }
             );
 
+            // 8/9. Releases at USER-authored non-tip master commits (control for "bot-authored commit" theory).
+            for (const c of [
+              { label: 'user commit 330e8397 (David)', sha: '330e8397926aca76adc4fceabbd5a9be6c5021c8', tag: 'diaguser1' },
+              { label: 'user commit 008dc2f4 (gregbaroni)', sha: '008dc2f4', tag: 'diaguser2' },
+            ]) {
+              await probe(
+                `create release @ ${c.label}`,
+                () => github.rest.repos.createRelease({ owner, repo, tag_name: `v0.0.0-${c.tag}-${id}`, target_commitish: c.sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: false, make_latest: 'false' }),
+                async (res) => {
+                  await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
+                  await github.rest.git.deleteRef({ owner, repo, ref: `tags/v0.0.0-${c.tag}-${id}` });
+                }
+              );
+            }
+
             const summary = `event=${context.eventName}\n` + results.join('\n');
             core.notice(`Token write probes:\n${summary}`);
             await core.summary.addHeading('GITHUB_TOKEN write probes').addRaw('\n```\n' + summary + '\n```\n').write();
