@@ -120,6 +120,21 @@ jobs:
               );
             }
 
+            // 10/11. Disambiguate "non-tip" vs "protected master".
+            for (const c of [
+              { label: 'master HEAD (tip of protected branch)', sha: 'bdc4670e86a1a0408b5953a882285cbaaa9d3fae', tag: 'diagmastertip' },
+              { label: 'non-tip commit on MY feature branch', sha: 'ef4e8d9fdeb2cf04fca4bf3e2c002c93488f6c4b', tag: 'diagbranchnontip' },
+            ]) {
+              await probe(
+                `create release @ ${c.label}`,
+                () => github.rest.repos.createRelease({ owner, repo, tag_name: `v0.0.0-${c.tag}-${id}`, target_commitish: c.sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: false, make_latest: 'false' }),
+                async (res) => {
+                  await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
+                  await github.rest.git.deleteRef({ owner, repo, ref: `tags/v0.0.0-${c.tag}-${id}` });
+                }
+              );
+            }
+
             const summary = `event=${context.eventName}\n` + results.join('\n');
             core.notice(`Token write probes:\n${summary}`);
             await core.summary.addHeading('GITHUB_TOKEN write probes').addRaw('\n```\n' + summary + '\n```\n').write();
