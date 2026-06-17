@@ -9,6 +9,9 @@ on:
   pull_request:
     branches:
       - master
+  push:
+    branches:
+      - diagnose-token-tag-permissions
   workflow_dispatch:
 
 permissions:
@@ -81,7 +84,17 @@ jobs:
               }
             );
 
-            const summary = results.join('\n');
+            // 6. Exact release-please mirror: non-prerelease, make_latest=true.
+            await probe(
+              'create release, EXACT release-please shape (make_latest=true)',
+              () => github.rest.repos.createRelease({ owner, repo, tag_name: `v0.0.0-diaglatest-${id}`, target_commitish: sha, name: 'diagnostic', body: 'diagnostic', draft: false, prerelease: false, make_latest: 'true' }),
+              async (res) => {
+                await github.rest.repos.deleteRelease({ owner, repo, release_id: res.data.id });
+                await github.rest.git.deleteRef({ owner, repo, ref: `tags/v0.0.0-diaglatest-${id}` });
+              }
+            );
+
+            const summary = `event=${context.eventName}\n` + results.join('\n');
             core.notice(`Token write probes:\n${summary}`);
             await core.summary.addHeading('GITHUB_TOKEN write probes').addRaw('\n```\n' + summary + '\n```\n').write();
             console.log('\n=== RESULTS ===\n' + summary + '\n');
