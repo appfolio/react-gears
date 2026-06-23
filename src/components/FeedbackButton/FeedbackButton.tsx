@@ -5,9 +5,6 @@ import Icon from '../Icon/Icon';
 import FeedbackModal from './components/FeedbackModal';
 
 export interface FeedbackFormData {
-  feature: string;
-  recipient: string;
-  cc?: string[];
   rating: number | null;
   comment: string | null;
 }
@@ -16,7 +13,6 @@ export interface FeedbackButtonProps {
   backdrop?: boolean;
   block?: boolean;
   cancelButtonText?: string;
-  cc?: string[];
   children?: ReactNode;
   className?: string;
   color?: string;
@@ -26,7 +22,6 @@ export interface FeedbackButtonProps {
   commentSubtitle?: ReactNode;
   disabled?: boolean;
   doSubmit: (form: FeedbackFormData) => Promise<void>;
-  feature: string;
   highRatingText?: string;
   lowRatingText?: string;
   modalTitle?: ReactNode;
@@ -35,7 +30,6 @@ export interface FeedbackButtonProps {
   ratingIncluded?: boolean;
   ratingRequired?: boolean;
   ratingSubtitle?: ReactNode;
-  recipient: string;
   size?: string;
   submitButtonText?: string;
 }
@@ -90,16 +84,13 @@ const defaultProps = {
 const FeedbackButton: FC<FeedbackButtonProps> = ({
   backdrop = defaultProps.backdrop,
   block,
-  cc,
   children,
   className,
   color = defaultProps.color,
   disabled,
   doSubmit,
-  feature,
   modalTitle = defaultProps.modalTitle,
   outline = defaultProps.outline,
-  recipient,
   size,
   cancelButtonText = defaultProps.cancelButtonText,
   commentIncluded = defaultProps.commentIncluded,
@@ -124,9 +115,6 @@ const FeedbackButton: FC<FeedbackButtonProps> = ({
     comment: string | null;
   }) => {
     const form: FeedbackFormData = {
-      feature,
-      recipient,
-      cc,
       rating,
       comment,
     };
@@ -164,7 +152,7 @@ const FeedbackButton: FC<FeedbackButtonProps> = ({
         backdrop={backdrop}
         onSubmit={onSubmitClick}
         onCancel={() => setIsOpen(false)}
-        modalTitle={modalTitle || feature}
+        modalTitle={modalTitle}
         cancelButtonText={cancelButtonText}
         commentIncluded={commentIncluded}
         commentPlaceholder={commentPlaceholder}
