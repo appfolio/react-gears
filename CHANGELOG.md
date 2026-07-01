@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.6](https://github.com/appfolio/react-gears/compare/v8.19.5...v8.19.6) (2026-07-01)
+
+
+### Bug Fixes
+
+* bump undici and shell-quote to patch high-severity CVEs ([5431d9b](https://github.com/appfolio/react-gears/commit/5431d9b746bbc762e9d88c48322478e1f0742fce))
+
 ## [8.19.5](https://github.com/appfolio/react-gears/compare/v8.19.4...v8.19.5) (2026-06-17)
 
 
