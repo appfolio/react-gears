@@ -45,6 +45,7 @@ export default class SelectMultiValue extends React.Component {
           style={{ opacity: 0.5 }}
           role="button"
           name="xmark"
+          fixedWidth
           onClick={() => {
             if (!disabled) {
               onRemove(value);
