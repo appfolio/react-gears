@@ -310,4 +310,14 @@ describe('<HasManyFields />', () => {
       });
     });
   });
+
+  it('passes rowClassName through to each row', () => {
+    const component = mount(
+      <HasManyFields value={items} template={Input} label="Add an Animal" rowClassName="border rounded p-3" />
+    );
+
+    component.find(HasManyFieldsRow).forEach((row) => {
+      assert.equal('border rounded p-3', row.prop('className'));
+    });
+  });
 });

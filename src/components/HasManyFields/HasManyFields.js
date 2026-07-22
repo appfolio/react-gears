@@ -145,7 +145,14 @@ class HasManyFields extends React.Component {
   };
 
   renderHasManyFieldsRow = (key, index, value, dragHandle) => {
-    const { template: Template, disabled, deleteProps, errors, minimumRows } = this.props;
+    const {
+      template: Template,
+      disabled,
+      deleteProps,
+      errors,
+      minimumRows,
+      rowClassName,
+    } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
     const template = (
@@ -163,6 +170,7 @@ class HasManyFields extends React.Component {
       <HasManyFieldsRow
         onDelete={this.deleteItem(index)}
         key={key}
+        className={rowClassName}
         deletable={this.value.length > minimumRows}
         disabled={disabled}
         deleteProps={deleteProps}

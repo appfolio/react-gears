@@ -67,6 +67,7 @@ LiveExample.args = {
   maximumRows: 5,
   reorderable: false,
   dragHandle: 'outside',
+  rowClassName: '',
 };
 LiveExample.argTypes = {
   dragHandle: {
