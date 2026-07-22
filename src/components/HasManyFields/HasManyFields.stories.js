@@ -66,6 +66,13 @@ LiveExample.args = {
   minimumRows: 1,
   maximumRows: 5,
   reorderable: false,
+  dragHandle: 'outside',
+};
+LiveExample.argTypes = {
+  dragHandle: {
+    control: 'radio',
+    options: ['outside', 'inside'],
+  },
 };
 
 export const RowWrapper = (args) => (

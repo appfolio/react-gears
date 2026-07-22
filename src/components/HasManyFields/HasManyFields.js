@@ -9,15 +9,22 @@ import HasManyFieldsRow from './HasManyFieldsRow';
 
 const DragHandler = withDragHandler();
 
-const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
-  <div className="d-flex js-reorderable-item" key={key}>
-    <DragHandler />
-    <div className="w-100">{renderHasManyFieldsRow(null, sortIndex, value)}</div>
-  </div>
-));
+const SortableItem = ReorderableElement(
+  ({ key, sortIndex, value, renderHasManyFieldsRow, dragHandleInside }) =>
+    dragHandleInside ? (
+      <div className="js-reorderable-item" key={key}>
+        {renderHasManyFieldsRow(null, sortIndex, value, <DragHandler />)}
+      </div>
+    ) : (
+      <div className="d-flex js-reorderable-item" key={key}>
+        <DragHandler />
+        <div className="w-100">{renderHasManyFieldsRow(null, sortIndex, value)}</div>
+      </div>
+    )
+);
 
 const SortableContainer = ReorderableContainer(
-  ({ value, renderAddRow, renderHasManyFieldsRow }) => (
+  ({ value, renderAddRow, renderHasManyFieldsRow, dragHandleInside }) => (
     <div>
       {value.map((item, index) => (
         <SortableItem
@@ -25,6 +32,7 @@ const SortableContainer = ReorderableContainer(
           index={index}
           sortIndex={index}
           value={item}
+          dragHandleInside={dragHandleInside}
           renderHasManyFieldsRow={renderHasManyFieldsRow}
         />
       ))}
@@ -44,6 +52,7 @@ class HasManyFields extends React.Component {
     minimumRows: 1,
     maximumRows: Infinity,
     reorderable: false,
+    dragHandle: 'outside',
   };
 
   constructor(props) {
@@ -135,9 +144,20 @@ class HasManyFields extends React.Component {
     return isFunction && !(Template.prototype && Template.prototype.render);
   };
 
-  renderHasManyFieldsRow = (key, index, value) => {
+  renderHasManyFieldsRow = (key, index, value, dragHandle) => {
     const { template: Template, disabled, deleteProps, errors, minimumRows } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
+
+    const template = (
+      <Template
+        value={value}
+        errors={errors[index]}
+        onChange={this.updateItem(index)}
+        disabled={disabled}
+        index={index}
+        {...refProps}
+      />
+    );
 
     return (
       <HasManyFieldsRow
@@ -147,20 +167,22 @@ class HasManyFields extends React.Component {
         disabled={disabled}
         deleteProps={deleteProps}
       >
-        <Template
-          value={value}
-          errors={errors[index]}
-          onChange={this.updateItem(index)}
-          disabled={disabled}
-          index={index}
-          {...refProps}
-        />
+        {dragHandle ? (
+          <div className="d-flex">
+            {dragHandle}
+            <div className="w-100" style={{ minWidth: 0 }}>
+              {template}
+            </div>
+          </div>
+        ) : (
+          template
+        )}
       </HasManyFieldsRow>
     );
   };
 
   render() {
-    const { className, disabled, reorderable } = this.props;
+    const { className, disabled, reorderable, dragHandle } = this.props;
 
     if (!disabled && reorderable) {
       return (
@@ -172,6 +194,7 @@ class HasManyFields extends React.Component {
             useDragHandle
             lockAxis="y"
             value={this.value}
+            dragHandleInside={dragHandle === 'inside'}
             renderHasManyFieldsRow={this.renderHasManyFieldsRow}
             renderAddRow={this.renderAddRow}
           />
