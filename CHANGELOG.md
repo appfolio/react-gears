@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.19.6](https://github.com/appfolio/react-gears/compare/v8.19.5...v8.19.6) (2026-08-06)
+
+
+### Bug Fixes
+
+* bump undici and shell-quote to patch high-severity CVEs ([5431d9b](https://github.com/appfolio/react-gears/commit/5431d9b746bbc762e9d88c48322478e1f0742fce))
+* give SelectMultiValue remove icon a fixed width ([967c07a](https://github.com/appfolio/react-gears/commit/967c07a778286664c458e2ddef9ae3f9b292247c))
+* patch vulnerable transitive dependencies via yarn up ([a4db21c](https://github.com/appfolio/react-gears/commit/a4db21c149b19475763a69df64e371efc0b1cdc0))
+
 ## [8.19.5](https://github.com/appfolio/react-gears/compare/v8.19.4...v8.19.5) (2026-06-17)
 
 
