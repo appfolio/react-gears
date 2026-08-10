@@ -274,6 +274,50 @@ describe('<HasManyFields />', () => {
         assert.equal(items.length, component.find('.js-reorderable-item').length);
         assert.equal(items.length, component.find(HasManyFieldsRow).length);
       });
+
+      it('renders drag handles outside the rows by default', () => {
+        assert.equal(items.length, component.find('div.rg-DragHandler').length);
+        assert.equal(0, component.find(HasManyFieldsRow).at(0).find('div.rg-DragHandler').length);
+      });
+    });
+  });
+
+  describe('reorderable with dragHandle="inside"', () => {
+    let component;
+
+    beforeEach(() => {
+      component = mount(
+        <HasManyFields
+          value={items}
+          errors={errors}
+          template={Input}
+          blank="foo"
+          label="Add an Animal"
+          reorderable
+          dragHandle="inside"
+        />
+      );
+    });
+
+    it('has correct number of reorderable items', () => {
+      assert.equal(items.length, component.find('.js-reorderable-item').length);
+      assert.equal(items.length, component.find(HasManyFieldsRow).length);
+    });
+
+    it('renders each drag handle inside its row', () => {
+      component.find(HasManyFieldsRow).forEach((row) => {
+        assert.equal(1, row.find('div.rg-DragHandler').length);
+      });
+    });
+  });
+
+  it('passes rowClassName through to each row', () => {
+    const component = mount(
+      <HasManyFields value={items} template={Input} label="Add an Animal" rowClassName="border rounded p-3" />
+    );
+
+    component.find(HasManyFieldsRow).forEach((row) => {
+      assert.equal('border rounded p-3', row.prop('className'));
     });
   });
 });
