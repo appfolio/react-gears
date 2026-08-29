@@ -39,6 +39,25 @@ describe('<FeatureBanner />', () => {
     expect(queryByText('FeatureBannerChildElement')).not.toBeNull();
   });
 
+  describe('without subtitle', () => {
+    it('does not render subtitle', () => {
+      const { queryByText } = render(<FeatureBanner title="FeatureBannerTitle" />);
+
+      expect(queryByText('FeatureBannerTitle')).not.toBeNull();
+    });
+
+    it('renders title and children', () => {
+      const { queryByText } = render(
+        <FeatureBanner title="FeatureBannerTitle">
+          <span>FeatureBannerChildElement</span>
+        </FeatureBanner>
+      );
+
+      expect(queryByText('FeatureBannerTitle')).not.toBeNull();
+      expect(queryByText('FeatureBannerChildElement')).not.toBeNull();
+    });
+  });
+
   describe('when dismissable', () => {
     it('can be closed', async () => {
       const { getByRole, queryByRole } = render(<FeatureBanner {...commonProps} dismissable />);

@@ -39,3 +39,19 @@ export const LiveExample: Story = {
     </FeatureBanner>
   ),
 };
+
+export const WithoutSubtitle: Story = {
+  args: {
+    alertText: 'New',
+    color: 'info',
+    title: 'Company-Wide View of Text Messages',
+  },
+  render: (args) => (
+    <FeatureBanner {...args}>
+      <Button color="primary" outline className="fw-bold text-uppercase">
+        <Icon name="envelope" className="me-2" />
+        Feedback
+      </Button>
+    </FeatureBanner>
+  ),
+};
