@@ -16,6 +16,8 @@ interface HasManyFieldsPropTypes {
   minimumRows?: number;
   maximumRows?: number;
   reorderable?: boolean;
+  dragHandle?: 'outside' | 'inside';
+  rowClassName?: string;
   value?: HasManyValue[];
   className?: string;
 }
