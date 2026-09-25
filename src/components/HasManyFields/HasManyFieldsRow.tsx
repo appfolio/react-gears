@@ -14,6 +14,7 @@ const noop = () => undefined;
 interface HasManyFieldsRowProps {
   children: React.ReactNode;
   className?: string;
+  dragHandle?: React.ReactNode;
   onDelete?: React.MouseEventHandler<any>;
   deletable?: boolean;
   deleteProps?: ConfirmationButtonProps;
@@ -25,6 +26,7 @@ interface HasManyFieldsRowProps {
 const HasManyFieldsRow = ({
   children,
   className,
+  dragHandle,
   disabledReason,
   onDelete = noop,
   disabled = false,
@@ -71,7 +73,14 @@ const HasManyFieldsRow = ({
 
   return (
     <Row className={classNames} {...props}>
-      <Col style={{ minWidth: 0 }}>{children}</Col>
+      {dragHandle && (
+        <Col xs="auto" className="js-drag-handle-col d-flex">
+          {dragHandle}
+        </Col>
+      )}
+      <Col className="align-content-center" style={{ minWidth: 0 }}>
+        {children}
+      </Col>
       {deletable && (
         <Col xs="auto" className="js-delete-col ps-3 d-flex">
           {button}
