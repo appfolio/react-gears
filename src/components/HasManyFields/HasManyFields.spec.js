@@ -274,6 +274,14 @@ describe('<HasManyFields />', () => {
         assert.equal(items.length, component.find('.js-reorderable-item').length);
         assert.equal(items.length, component.find(HasManyFieldsRow).length);
       });
+
+      it('renders the drag handle inside the row rather than beside it', () => {
+        component.find(HasManyFieldsRow).forEach((row) => {
+          assert.notEqual(row.prop('dragHandle'), undefined);
+          assert.equal(row.find('.js-drag-handle-col .rg-DragHandler').length, 1);
+        });
+        assert.equal(component.find('.js-reorderable-item > .rg-DragHandler').length, 0);
+      });
     });
   });
 });

@@ -10,9 +10,8 @@ import HasManyFieldsRow from './HasManyFieldsRow';
 const DragHandler = withDragHandler();
 
 const SortableItem = ReorderableElement(({ key, sortIndex, value, renderHasManyFieldsRow }) => (
-  <div className="d-flex js-reorderable-item" key={key}>
-    <DragHandler />
-    <div className="w-100">{renderHasManyFieldsRow(null, sortIndex, value)}</div>
+  <div className="js-reorderable-item" key={key}>
+    {renderHasManyFieldsRow(null, sortIndex, value, <DragHandler />)}
   </div>
 ));
 
@@ -135,7 +134,7 @@ class HasManyFields extends React.Component {
     return isFunction && !(Template.prototype && Template.prototype.render);
   };
 
-  renderHasManyFieldsRow = (key, index, value) => {
+  renderHasManyFieldsRow = (key, index, value, dragHandle) => {
     const { template: Template, disabled, deleteProps, errors, minimumRows } = this.props;
     const refProps = this.isStateless(Template) ? {} : { ref: this.setRowReference(index) };
 
@@ -143,6 +142,7 @@ class HasManyFields extends React.Component {
       <HasManyFieldsRow
         onDelete={this.deleteItem(index)}
         key={key}
+        dragHandle={dragHandle}
         deletable={this.value.length > minimumRows}
         disabled={disabled}
         deleteProps={deleteProps}

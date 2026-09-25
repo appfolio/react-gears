@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import Button from '../Button/Button';
 import ConfirmationButton from '../Button/ConfirmationButton';
 import Col from '../Layout/Col';
+import Row from '../Layout/Row';
 import Tooltip from '../Tooltip/Tooltip';
 import HasManyFieldsRow from './HasManyFieldsRow';
 
@@ -122,6 +123,28 @@ describe('<HasManyFieldsRow />', () => {
       );
       disabledTooltip = component.find(Tooltip);
       assert.equal(disabledTooltip.prop('placement'), 'left');
+    });
+  });
+
+  describe('drag handle', () => {
+    it('should keep its own bottom margin so existing consumers keep their spacing', () => {
+      component = shallow(<HasManyFieldsRow>Stuff</HasManyFieldsRow>);
+      assert.equal(component.find(Row).hasClass('mb-4'), true);
+    });
+
+    it('should not render a drag handle column by default', () => {
+      component = shallow(<HasManyFieldsRow>Stuff</HasManyFieldsRow>);
+      assert.equal(component.find('.js-drag-handle-col').length, 0);
+    });
+
+    it('should render the drag handle as the first column of the row', () => {
+      component = shallow(
+        <HasManyFieldsRow dragHandle={<span className="handle" />}>Stuff</HasManyFieldsRow>
+      );
+      const handleCol = component.find('.js-drag-handle-col');
+      assert.equal(handleCol.length, 1);
+      assert.equal(handleCol.find('.handle').length, 1);
+      assert.equal(component.find(Col).first().hasClass('js-drag-handle-col'), true);
     });
   });
 
