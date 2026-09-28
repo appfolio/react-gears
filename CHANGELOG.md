@@ -1,5 +1,16 @@
 # Change Log
 
+## [8.19.6](https://github.com/appfolio/react-gears/compare/v8.19.5...v8.19.6) (2026-09-28)
+
+
+### Bug Fixes
+
+* bump 5 packages to patch 9 dependabot alerts ([8eeabda](https://github.com/appfolio/react-gears/commit/8eeabda28468a401f93c1fd545a5109ff7364588))
+* bump undici and shell-quote to patch high-severity CVEs ([5431d9b](https://github.com/appfolio/react-gears/commit/5431d9b746bbc762e9d88c48322478e1f0742fce))
+* give SelectMultiValue remove icon a fixed width ([967c07a](https://github.com/appfolio/react-gears/commit/967c07a778286664c458e2ddef9ae3f9b292247c))
+* **HasManyFields:** make the reorder handle part of the row ([b3349b4](https://github.com/appfolio/react-gears/commit/b3349b4c36c098742aa82d2a7ead274e8f6bd8e6))
+* patch vulnerable transitive dependencies via yarn up ([a4db21c](https://github.com/appfolio/react-gears/commit/a4db21c149b19475763a69df64e371efc0b1cdc0))
+
 ## [8.19.5](https://github.com/appfolio/react-gears/compare/v8.19.4...v8.19.5) (2026-06-17)
 
 
