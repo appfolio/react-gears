@@ -250,7 +250,12 @@ export default class DateInput extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     this.setInputValue();
     if (this.props.onClose && this.state.open !== prevState.open && !this.state.open) {
-      const value = this.props.value !== undefined ? this.props.value : this.state.value;
+      // A pick updates state.value in the same update that closes the picker, before the
+      // parent has re-rendered with the new value prop, so prefer it when it just changed.
+      const value =
+        this.props.value === undefined || this.state.value !== prevState.value
+          ? this.state.value
+          : this.props.value;
       const date = this.props.parse(value, this.props.dateFormat);
 
       if (date) {
@@ -281,6 +286,7 @@ export default class DateInput extends React.Component {
       locale,
       onBlur,
       onChange,
+      onClose,
       parse,
       positionFixed,
       value,
