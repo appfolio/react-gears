@@ -93,6 +93,37 @@ describe('<NoteHeader />', () => {
     });
   });
 
+  describe('header actions', () => {
+    it('should render headerActions in the header', () => {
+      const component = mount(
+        <NoteHeader note={note} headerActions={<span className="custom-action">Remind</span>} />
+      );
+
+      assert.strictEqual(component.find('.js-note-header__actions .custom-action').length, 1);
+    });
+
+    it('should not render an actions wrapper without headerActions', () => {
+      const component = mount(<NoteHeader note={note} />);
+
+      assert.strictEqual(component.find('.js-note-header__actions').exists(), false);
+    });
+
+    it('should render headerActions alongside edit and delete', () => {
+      const component = mount(
+        <NoteHeader
+          note={note}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          headerActions={<span className="custom-action" />}
+        />
+      );
+
+      assert(component.find('.custom-action').exists());
+      assert(component.find('.js-note-header__edit').exists());
+      assert(component.find('.js-note-header__delete').exists());
+    });
+  });
+
   describe('edit', () => {
     describe('rendering', () => {
       const onEdit = sinon.spy();

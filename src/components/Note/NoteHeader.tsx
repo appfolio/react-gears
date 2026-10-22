@@ -21,6 +21,7 @@ type NoteHeaderProps = {
   onDelete?: (note: Omit<Note, 'text'>) => void;
   onEdit?: (note: Omit<Note, 'text'>) => void;
   color?: string;
+  headerActions?: React.ReactNode;
 };
 
 const defaultProps = {
@@ -32,7 +33,7 @@ const NoteHeader: FC<NoteHeaderProps> = ({
   color = 'info',
   ...props
 }) => {
-  const { note, onDelete, onEdit, showTimezone } = props;
+  const { note, onDelete, onEdit, showTimezone, headerActions } = props;
   const { date, edited, from, title } = note;
 
   const headerClassNames = classnames(
@@ -77,7 +78,12 @@ const NoteHeader: FC<NoteHeaderProps> = ({
           )}
         </div>
       </div>
-      <div className="d-inline-flex">
+      <div className="d-inline-flex align-items-center">
+        {headerActions ? (
+          <div className={classnames('js-note-header__actions', { 'me-3': onEdit || onDelete })}>
+            {headerActions}
+          </div>
+        ) : null}
         {onEdit ? (
           <Button
             color="link"
