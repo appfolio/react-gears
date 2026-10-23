@@ -173,18 +173,18 @@ export default class TimeInput extends React.Component {
       return false;
     }
 
-    // only show times on step if we havent started to type minutes
+    // only show times on step if we haven't started to type minutes
     if (!hasTypedTens && !onInterval(time, step)) {
       return false;
     }
 
-    // only show times on step or on 10 min intervals if we havent finished typing minutes
+    // only show times on step or on 10 min intervals if we haven't finished typing minutes
     if (!hasTypedMin && !onInterval(time, step) && !onInterval(time, 10)) {
       return false;
     }
 
     const labelCandidate = flow(
-      // Remove colon from option if input doesnt have one
+      // Remove colon from option if input doesn't have one
       (str) => (inputCandidate.includes(':') ? str : str.replace(/:/gi, '')),
       removeWhitespace,
       removeLeadingZeros,

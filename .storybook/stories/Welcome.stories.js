@@ -68,7 +68,7 @@ export const HelpAndContributing = () => (
       <a href="https://github.com/appfolio/react-gears/issues">GitHub issue</a>
     </p>
     <p>
-      For the component roadmap, status, and ideas, please the{' '}
+      For the component roadmap, status, and ideas, please see the{' '}
       <a href="https://github.com/appfolio/react-gears/projects/1">GitHub project board</a>
     </p>
   </section>
