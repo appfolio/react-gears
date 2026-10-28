@@ -124,7 +124,15 @@ Only appfolio/platform-front-end members can trigger workflows.
 
 ### Creating an official release
 
-After merging your pull request to the default branch, [triggering the release-please workflow](https://github.com/appfolio/react-gears/actions/workflows/release-please.yml) will create or update a special "release pull request".
+Merging a pull request with a `feat:` or `fix:` commit to the default branch automatically creates or updates a special "release pull request". Other commit types, like `chore:`, show up in the changelog but don't start a release on their own.
 
 - Find this "release pull request" under the "Pull requests" tab for this repo. The title will be something like, **chore(master): release 8.0.2**.
-- Approve and merge this "release pull request" then [triggering the release-please workflow](https://github.com/appfolio/react-gears/actions/workflows/release-please.yml) will create an official release (e.g. 8.0.2).
+- Approve and merge this "release pull request". The [release-please workflow](https://github.com/appfolio/react-gears/actions/workflows/release-please.yml) then runs automatically, creates an official release (e.g. 8.0.2), and publishes it to npm.
+
+To release when only `chore:` commits have merged, merge a commit with a `Release-As: <version>` footer, for example:
+
+```
+chore: release 8.0.3
+
+Release-As: 8.0.3
+```
