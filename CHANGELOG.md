@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.7](https://github.com/appfolio/react-gears/compare/v8.19.6...v8.19.7) (2026-10-29)
+
+
+### Miscellaneous Chores
+
+* release 8.19.7 ([7c988bc](https://github.com/appfolio/react-gears/commit/7c988bcb24c9851810a81ec72da02e831ed2201d))
+
 ## [8.19.6](https://github.com/appfolio/react-gears/compare/v8.19.5...v8.19.6) (2026-09-28)
 
 
