@@ -529,6 +529,63 @@ describe('<DateInput />', () => {
     });
   });
 
+  describe('onClose', () => {
+    function ControlledDateInput(props) {
+      const [value, setValue] = React.useState('1/15/2020');
+      return <DateInput value={value} onChange={(v) => setValue(v)} {...props} />;
+    }
+
+    it('should call onClose with the picked date when uncontrolled', () => {
+      const onClose = sinon.spy();
+      const component = mount(<DateInput defaultValue="1/15/2020" onClose={onClose} />);
+      component.find('input').simulate('focus');
+
+      const day = component.find('Day').first();
+      const expectedDate = day.props().day.date;
+      day.simulate('click');
+
+      sinon.assert.calledOnce(onClose);
+      assert(isSameDay(onClose.firstCall.args[0], expectedDate));
+      assert.equal(onClose.firstCall.args[1], true);
+    });
+
+    it('should call onClose with the picked date when controlled', () => {
+      const onClose = sinon.spy();
+      const component = mount(<ControlledDateInput onClose={onClose} />);
+      component.find('input').simulate('focus');
+
+      const day = component.find('Day').first();
+      const expectedDate = day.props().day.date;
+      day.simulate('click');
+
+      sinon.assert.calledOnce(onClose);
+      assert(isSameDay(onClose.firstCall.args[0], expectedDate));
+      assert.equal(onClose.firstCall.args[1], true);
+    });
+
+    it('should call onClose with the current value prop when closed without picking', () => {
+      const onClose = sinon.spy();
+      const component = mount(<DateInput value="1/15/2020" onClose={onClose} />);
+      const input = component.find('input');
+
+      input.simulate('focus');
+      component.find('Day').first().simulate('click');
+      component.setProps({ value: '3/4/2021' });
+      onClose.resetHistory();
+
+      input.simulate('focus');
+      input.simulate('keydown', { key: 'Esc', keyCode: 27, which: 27 });
+
+      sinon.assert.calledOnce(onClose);
+      assert(isSameDay(onClose.firstCall.args[0], new Date(2021, 2, 4)));
+    });
+
+    it('should not pass onClose through to the input', () => {
+      const component = mount(<DateInput onClose={() => {}} />);
+      assert.equal(component.find('input').prop('onClose'), undefined);
+    });
+  });
+
   it('should call custom parse function', () => {
     const callback = sinon.spy(() => new Date(2003, 0, 2));
     mount(<DateInput parse={callback} defaultValue="1-2-3" dateFormat="MM-DD-YY" />);
