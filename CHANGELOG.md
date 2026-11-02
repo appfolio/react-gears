@@ -1,5 +1,12 @@
 # Change Log
 
+## [8.19.8](https://github.com/appfolio/react-gears/compare/v8.19.7...v8.19.8) (2026-11-02)
+
+
+### Bug Fixes
+
+* **DateInput:** pass the picked date to onClose when controlled ([ab3a558](https://github.com/appfolio/react-gears/commit/ab3a558a198b539a7ec122abefd66a45f471bb2b))
+
 ## [8.19.7](https://github.com/appfolio/react-gears/compare/v8.19.6...v8.19.7) (2026-10-29)
 
 
