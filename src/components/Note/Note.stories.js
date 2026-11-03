@@ -1,5 +1,6 @@
 import { action } from 'storybook/actions';
 import React, { useState } from 'react';
+import Button from '../Button/Button';
 import EditableNote from './EditableNote';
 import EditableNoteMentions from './EditableNoteMentions';
 import Note from './Note';
@@ -174,6 +175,23 @@ NoteWithMentions.args = {
   onUndelete: action('onUndelete'),
   rows: Note.defaultProps.rows,
   saving: undefined,
+};
+
+export const NoteWithMentionsAndHeaderActions = ({ from, text, ...args }) => (
+  <NoteMentions
+    mentionableUsers={mentionableUsers}
+    note={{ date: new Date(), from, text, title: 'Service request #42' }}
+    headerActions={
+      <Button color="link" className="p-0">
+        Remind me
+      </Button>
+    }
+    {...args}
+  />
+);
+NoteWithMentionsAndHeaderActions.args = {
+  from: 'Tom Brady',
+  text: 'Hi @Satoshi.Nakamoto Who are you??? I lost all my crypto.',
 };
 
 export const EditableNoteWithMentions = (args) => {
