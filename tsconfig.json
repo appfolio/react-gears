@@ -8,13 +8,19 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "noEmitOnError": true,
     "noEmit": true,
     "strict": true,
     "target": "ESNext",
     "skipLibCheck": true
 
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "moduleResolution": "Node"
+    }
   },
   "include": [
     "src",
